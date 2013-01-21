@@ -26,6 +26,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Forget being compatible with good ol' vi
+set nocompatible
+
 " Sets how many lines of history VIM has to remember
 set history=1000
 
