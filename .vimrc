@@ -29,14 +29,24 @@
 " Sets how many lines of history VIM has to remember
 set history=1000
 
-" Set to auto read when a file is changed from the outside
-set autoread
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Show matching brackets when text indicator is over them
+set showmatch
 
+" How many 10th of a second to blink when matching brackets
+set mat=2
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+"Always show current position
+set ruler
+
+" Height of the command bar
+set cmdheight=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
