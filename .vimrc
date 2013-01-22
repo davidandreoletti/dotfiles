@@ -49,7 +49,6 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-
 " Let Vundle manage Vundle required! 
 Bundle 'gmarik/vundle'
 
@@ -58,6 +57,9 @@ Bundle 'gmarik/vundle'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color schemes
 Bundle 'flazz/vim-colorschemes'
+
+" File Explorer
+Bundle 'scrooloose/nerdtree'
 
 " Class outliner
 "Bundle 'majutsushi/tagbar'
@@ -117,6 +119,13 @@ syntax on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => File tree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Open a NERDTree automatically when vim starts up if no files were specified 
+autocmd vimenter * if !argc() | NERDTree | endif
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -165,7 +174,8 @@ set incsearch
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" Enable mouse support for all modes
+set mouse=a
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
