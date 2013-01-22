@@ -7,6 +7,7 @@
 "    -> General
 "    -> VIM user interface
 "    -> Colors and Fonts
+"    -> Syntax
 "    -> Files and backups
 "    -> Text, tab and indent related
 "    -> Visual mode related
@@ -55,6 +56,12 @@ set cmdheight=2
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntax
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn on that syntax highlighting
+syntax on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
