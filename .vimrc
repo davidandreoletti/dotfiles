@@ -25,6 +25,8 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+source .vim/vimrc-functions.vim
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle
 " Setup: https://github.com/gmarik/vundle
@@ -32,15 +34,9 @@
 " Forget being compatible with good ol' vi
 set nocompatible
 
-" Setting up Vundle - the vim plugin bundler (inspired from github's fisadev/fisa-vim-config)
-let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-if !filereadable(vundle_readme)
-    echo "Installing Vundle..."
-    echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-    let iCanHazVundle=0
+let vundleInstallRequired = F_Vundle_IsVundleInstalled()
+if vundleInstallRequired
+    call F_Vundle_InstallVundle()
 endif
 
 " required for vundle
@@ -69,10 +65,8 @@ Bundle 'scrooloose/nerdtree'
 "Bundle 'Lokaltog/vim-powerline'
 
 " Installing plugins the first time
-if iCanHazVundle == 0
-    echo "Installing Bundles, please ignore key map error messages"
-    echo ""
-    :BundleInstall
+if vundleInstallRequired
+   call F_Vundle_InstallBundles()
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -126,7 +120,8 @@ syntax on
 autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
+"
+map <F2> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
