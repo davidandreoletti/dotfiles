@@ -4,6 +4,8 @@
 "       http://davidandreoletti.com
 "
 " Sections:
+"    -> Vundle
+"    -> Bundles
 "    -> General
 "    -> VIM user interface
 "    -> Colors and Fonts
@@ -23,17 +25,62 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
+" => Vundle
+" Setup: https://github.com/gmarik/vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Forget being compatible with good ol' vi
 set nocompatible
 
+" Setting up Vundle - the vim plugin bundler (inspired from github's fisadev/fisa-vim-config)
+let iCanHazVundle=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle..."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let iCanHazVundle=0
+endif
+
+" required for vundle
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+
+" Let Vundle manage Vundle required! 
+Bundle 'gmarik/vundle'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Bundles
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Color schemes
+Bundle 'flazz/vim-colorschemes'
+
+" Class outliner
+"Bundle 'majutsushi/tagbar'
+
+" Powerline - Better status bar
+"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Bundle 'Lokaltog/vim-powerline'
+
+" Installing plugins the first time
+if iCanHazVundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :BundleInstall
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=1000
 
-
+" Line numbers
+set nu
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -55,7 +102,9 @@ set cmdheight=2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" Color scheme
+" Preview of available color schemes for Java/C/Latex: https://code.google.com/p/vimcolorschemetest/
+colorscheme torte
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntax
