@@ -11,11 +11,12 @@
 "    -> Colors and Fonts
 "    -> Syntax
 "    -> Files and backups
+"    -> File tree
+"    -> Mapping
 "    -> Text, tab and indent related
 "    -> Visual mode related
 "    -> Moving around, tabs and buffers
 "    -> Status line
-"    -> Editing mappings
 "    -> vimgrep searching and cope displaying
 "    -> Search
 "    -> Spell checking
@@ -62,7 +63,10 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 
 " Class outliner
-"Bundle 'majutsushi/tagbar'
+if vundleInstallRequired
+   call F_Tagbar_InstallDependencies()
+endif
+Bundle 'majutsushi/tagbar'
 
 " Powerline - Better status bar
 "Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -124,8 +128,13 @@ syntax on
 autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Mapping
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F2> :NERDTreeToggle<CR>
+map <F8> :TagbarToggle<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -144,12 +153,6 @@ map <F2> :NERDTreeToggle<CR>
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
