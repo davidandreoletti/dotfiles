@@ -14,7 +14,7 @@ function F_Vundle_InstallVundle ()
 	silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 endfunction
 
-" Install bundles via vundle
+" Installs bundles via vundle
 " Return: 0
 function F_Vundle_InstallBundles ()
 	echo "Installing Bundles(please ignore key map error messages) ..."
@@ -56,5 +56,16 @@ function F_Tagbar_InstallDependencies ()
 		silent !sudo apt-get install exuberant-ctags
 	else
 		echoerr "Intalling Tagbar dependencies is NOT specified for this platform."	
+	endif
+endfunction
+
+" Installs PowerLine python
+function F_PowerLine_InstallDependencies ()
+	echo "Installing powerline dependencies"
+	if F_OS_IsDebianBasedOS ()
+		silent !sudo apt-get install python-pip
+		silent !pip install --user git+git://github.com/Lokaltog/powerline
+	else
+		echoerr "Intalling Powerline dependencies is NOT specified for this platform."
 	endif
 endfunction
