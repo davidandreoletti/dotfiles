@@ -74,7 +74,9 @@ if vundleInstallRequired
 endif
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Bundle 'Lokaltog/vim-powerline'
-let g:Powerline_symbols='unicode'
+set t_Co=256
+"let g:Powerline_symbols='unicode'
+let g:Powerline_symbols='fancy'
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
 

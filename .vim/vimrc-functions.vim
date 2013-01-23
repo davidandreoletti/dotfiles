@@ -65,6 +65,12 @@ function F_PowerLine_InstallDependencies ()
 	if F_OS_IsDebianBasedOS ()
 		silent !sudo apt-get install python-pip
 		silent !pip install --user git+git://github.com/Lokaltog/powerline
+		echo "Installing patched fonts ..."
+		silent !cd /tmp && git clone https://github.com/Lokaltog/powerline-fonts && mkdir -p ~/.fonts && find `pwd`/powerline-fonts -iregex '.*\(otf|ttf\)' -printf '%p\0' | xargs -0 -I {} cp -v {} ~/.fonts/
+		silent !curl -O -L https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf && mv -v PowerlineSymbols.otf ~/.fonts
+		silent !curl -O -L https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf && mkdir -p ~/.fonts.conf.d/ && mv -v 10-powerline-symbols.conf ~/.fonts.conf.d/ 
+		silent !fc-cache -vf ~/.fonts
+		echo "Change Terminal font to -DejaVu Sans Mono for Powerline to get nice delimiters in status line"
 	else
 		echoerr "Intalling Powerline dependencies is NOT specified for this platform."
 	endif
