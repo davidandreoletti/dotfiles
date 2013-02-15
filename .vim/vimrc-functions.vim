@@ -74,7 +74,7 @@ function F_PowerLine_InstallDependencies ()
 		silent !sudo apt-get install python-pip
 		silent !pip install --user git+git://github.com/Lokaltog/powerline
 		echo "Installing patched fonts ..."
-		silent !cd /tmp && git clone https://github.com/Lokaltog/powerline-fonts && mkdir -p ~/.fonts && find `pwd`/powerline-fonts -iregex '.*\(otf|ttf\)' -printf '%p\0' | xargs -0 -I {} cp -v {} ~/.fonts/
+		silent !cd /tmp && git clone https://github.com/Lokaltog/powerline-fonts && mkdir -p ~/.fonts && find `pwd`/powerline-fonts -regextype posix-extended -iregex '.*\.(otf|ttf)' -print0 | xargs -0 -I {} cp -v {} ~/.fonts/
 		silent !curl -O -L https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf && mv -v PowerlineSymbols.otf ~/.fonts
 		silent !curl -O -L https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf && mkdir -p ~/.fonts.conf.d/ && mv -v 10-powerline-symbols.conf ~/.fonts.conf.d/ 
 		silent !fc-cache -vf ~/.fonts
