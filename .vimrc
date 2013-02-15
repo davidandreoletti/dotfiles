@@ -52,6 +52,9 @@ Bundle 'gmarik/vundle'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundles
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Master Vim's advanced motion and search
+Bundle 'wikitopian/hardmode'
+
 " Color schemes
 Bundle 'flazz/vim-colorschemes'
 
@@ -94,6 +97,9 @@ set history=1000
 
 " Line numbers
 set nu
+
+"remap leaderkey to ,
+:let mapleader = ","
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -144,6 +150,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 map <F2> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
 
+" Force to master Vim's advanced motion and search functionnality by disabling arrow keys, hjkl keys, page up/down  and others
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+nnoremap <leader>h <Esc>:call EasyMode()<CR>
+nnoremap <leader>H <Esc>:call HardMode()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
