@@ -46,6 +46,13 @@ function F_OS_IsMacBasedOS ()
 	return 0
 endfunction
 
+" Install curl if missing
+function F_Curl_InstallIfMissing ()
+	if F_OS_IsDebianBasedOS ()
+		silent !sudo apt-get install curl
+	endif
+endfunction
+
 " Installs tagbar's dependencies
 function F_Tagbar_InstallDependencies ()
 	echo "Installing Tagbar depedencies ..."
@@ -63,6 +70,7 @@ endfunction
 function F_PowerLine_InstallDependencies ()
 	echo "Installing powerline dependencies"
 	if F_OS_IsDebianBasedOS ()
+		call F_Curl_InstallIfMissing()
 		silent !sudo apt-get install python-pip
 		silent !pip install --user git+git://github.com/Lokaltog/powerline
 		echo "Installing patched fonts ..."
