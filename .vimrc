@@ -61,6 +61,10 @@ Bundle 'flazz/vim-colorschemes'
 " File Explorer
 Bundle 'scrooloose/nerdtree'
 
+" Commenting
+Bundle 'scrooloose/nerdcommenter'
+filetype plugin on
+
 " Convenient way to quickly reach buffers/files/commands/bookmarks/tags
 Bundle 'L9'
 Bundle 'FuzzyFinder'
