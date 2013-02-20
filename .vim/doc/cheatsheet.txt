@@ -1,0 +1,5 @@
+" vim: filetype=help foldmethod=marker foldmarker=<<<,>>> modifiable noreadonly
+
+*mycs*
+:map	List mapped keys
+
