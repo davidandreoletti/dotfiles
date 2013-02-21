@@ -24,6 +24,7 @@
 "    -> Helper functions
 "    -> Help
 "    -> File type
+"    -> Performance
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -221,3 +222,9 @@ set mouse=a
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use Unix as the standard file type
 set ffs=unix,mac,dos
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Performance 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Don't update the display while executing macros
+set lazyredraw
