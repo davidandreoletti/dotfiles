@@ -162,8 +162,9 @@ nnoremap <leader>h <Esc>:call EasyMode()<CR>
 nnoremap <leader>H <Esc>:call HardMode()<CR>
 
 :imap jj <Esc>
+" Make it easy to save current .vimrc as well as to $VIMRC and reload vim conf
+:nmap <leader>rv <Esc>:w! .vimrc<CR>:saveas! $MYVIMRC<CR>:so $MYVIMRC<CR>:e .vimrc<CR>:echo '$VIMRC reloaded'<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

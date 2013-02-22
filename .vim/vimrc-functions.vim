@@ -1,13 +1,13 @@
 " Indicates if vundle is installed
 " Return: 
-function F_Vundle_IsVundleInstalled ()
+function! F_Vundle_IsVundleInstalled ()
 	let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
 	return !filereadable(vundle_readme)
 endfunction
 
 " Installs Vundle
 " Return: 0
-function F_Vundle_InstallVundle ()
+function! F_Vundle_InstallVundle ()
 	echo "Installing Vundle..."
 	echo ""
 	silent !mkdir -p ~/.vim/bundle
@@ -16,7 +16,7 @@ endfunction
 
 " Installs bundles via vundle
 " Return: 0
-function F_Vundle_InstallBundles ()
+function! F_Vundle_InstallBundles ()
 	echo "Installing Bundles(please ignore key map error messages) ..."
 	echo ""
 	:BundleInstall
@@ -24,7 +24,7 @@ endfunction
 
 " Indicates if vim is running on Debian based OS
 " 1 if Debian based OS.
-function F_OS_IsDebianBasedOS ()
+function! F_OS_IsDebianBasedOS ()
 	if has('unix')
 		let s:uname = system("echo -n $(uname -a)") 
 		if s:uname =~ ".*Ubuntu.*""
@@ -36,7 +36,7 @@ endfunction
 
 " Indicates if vim is running on Mac OS
 " 1 if Mac OS.
-function F_OS_IsMacBasedOS ()
+function! F_OS_IsMacBasedOS ()
 	if has('unix')
   		let s:uname = system("echo -n $(uname)")
 		if s:uname ==? "Darwin"
@@ -47,14 +47,14 @@ function F_OS_IsMacBasedOS ()
 endfunction
 
 " Installs curl if missing
-function F_Curl_InstallIfMissing ()
+function! F_Curl_InstallIfMissing ()
 	if F_OS_IsDebianBasedOS ()
 		silent !sudo apt-get install curl
 	endif
 endfunction
 
 " Installs python pip-if missing
-function F_PythonPip_InstallifMissing ()
+function! F_PythonPip_InstallifMissing ()
 	if F_OS_IsDebianBasedOS ()
 		silent !sudo apt-get install python-pip
 	elseif F_OS_IsMacBasedOS ()
@@ -63,7 +63,7 @@ function F_PythonPip_InstallifMissing ()
 endfunction
 
 " Installs tagbar's dependencies
-function F_Tagbar_InstallDependencies ()
+function! F_Tagbar_InstallDependencies ()
 	echo "Installing Tagbar depedencies ..."
 	echo ""
 	if F_OS_IsMacBasedOS ()
@@ -76,7 +76,7 @@ function F_Tagbar_InstallDependencies ()
 endfunction
 
 " Installs PowerLine python
-function F_PowerLine_InstallDependencies ()
+function! F_PowerLine_InstallDependencies ()
 	echo "Installing powerline dependencies"
 	if F_OS_IsDebianBasedOS ()
 		call F_Curl_InstallIfMissing()
