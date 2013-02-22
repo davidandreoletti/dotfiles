@@ -1,5 +1,22 @@
 " vim: filetype=help foldmethod=marker foldmarker=<<<,>>> modifiable noreadonly
 
+
+
 *mycs*
-:map	List mapped keys
+:map			List mapped keys
+f{char} 		Go to next {char}
+t{cahr}			Go to char before {char}
+vf{char}		Select from current cursor position to next {char}
+;			Repeat last command
+/			Search
+:ls			Buffer List
+
+# Text Objects (Define block of text)
+a"			Select everything in "double quotes (double quote included)"
+a]					  in [block bracked included] 
+at					  in tags
+i"			Select everything in double quotes (except double quotes themselves)
+
+gf			Go to file under cursor
+
 
