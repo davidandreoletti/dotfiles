@@ -7,21 +7,20 @@
 "    -> Vundle
 "    -> Bundles
 "    -> General
-"    -> VIM user interface
 "    -> Colors and Fonts
 "    -> Syntax
-"    -> Files and backups
+"    -> Backups
 "    -> File tree
-"    -->Completion
+"    -> Completion
 "    -> Mapping
-"    -> Text, tab and indent related
-"    -> Visual mode related
-"    -> Moving around, tabs and buffers
+"    -> Tabs and indents 
+"    -> Visual mode
+"    -> Motions
 "    -> Status line
-"    -> vimgrep searching and cope displaying
 "    -> Search
 "    -> Spell checking
 "    -> Misc
+"    -> Mouse
 "    -> Helper functions
 "    -> Help
 "    -> File type
@@ -149,9 +148,8 @@ colorscheme torte
 syntax on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
+" => Backups 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => File tree
@@ -187,31 +185,23 @@ nnoremap <leader>H <Esc>:call HardMode()<CR>
 " Sudo a file after openning it
 :cmap w!! w !sudo tee % >/dev/null
 
-
-
-" => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, folding, tabs, windows and buffers
+" => Tabs and indents
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tab is now 4 spaces (unless filetype specific)
 set tabstop=4
 
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Visual mode
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Motion
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status line
-""""""""""""""""""""""""""""""
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vimgrep searching and cope displaying
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Search
@@ -226,9 +216,13 @@ set incsearch
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Mouse
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable mouse support for all modes
 set mouse=a
