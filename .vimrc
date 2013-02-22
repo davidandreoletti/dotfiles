@@ -138,6 +138,9 @@ set ruler
 " Height of the command bar
 set cmdheight=2
 
+" Change terminal's title
+set title
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
