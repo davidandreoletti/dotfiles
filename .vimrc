@@ -7,6 +7,7 @@
 "    -> Vundle
 "    -> Bundles
 "    -> General
+"    -> VIM UI
 "    -> Colors and Fonts
 "    -> Syntax
 "    -> Backups
@@ -117,7 +118,7 @@ set hidden
 " No lines wrapped
 set nowrap
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
+" => VIM UI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Show matching brackets when text indicator is over them
 set showmatch
