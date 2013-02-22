@@ -107,6 +107,13 @@ set nu
 
 "remap leaderkey to ,
 :let mapleader = ","
+
+" Hides buffer instead of closing them
+" Consequence: you can have unwritten changes to a file and open
+" a new file " using :e, without being forced to write or undo 
+" your changes first. Also, undo buffers and marks are preserved 
+" while the buffer is open.
+set hidden
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
