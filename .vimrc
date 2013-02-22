@@ -102,6 +102,9 @@ endif
 " Sets how many lines of history VIM has to remember
 set history=1000
 
+" As many undo as history
+set undolevels=1000
+
 " Line numbers
 set nu
 
