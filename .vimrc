@@ -12,6 +12,7 @@
 "    -> Syntax
 "    -> Files and backups
 "    -> File tree
+"    -->Completion
 "    -> Mapping
 "    -> Text, tab and indent related
 "    -> Visual mode related
@@ -149,6 +150,13 @@ syntax on
 autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Completion
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Make file/command completion useful
+set wildmenu
+set wildmode=list:longest
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mapping
