@@ -114,6 +114,9 @@ set nu
 " your changes first. Also, undo buffers and marks are preserved 
 " while the buffer is open.
 set hidden
+
+" No lines wrapped
+set nowrap
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -198,7 +201,8 @@ nnoremap <leader>H <Esc>:call HardMode()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, folding, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" Tab is now 4 spaces (unless filetype specific)
+set tabstop=4
 
 """"""""""""""""""""""""""""""
 " => Status line
