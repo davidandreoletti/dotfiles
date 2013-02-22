@@ -166,6 +166,9 @@ nnoremap <leader>H <Esc>:call HardMode()<CR>
 :nmap <leader>rv <Esc>:w! .vimrc<CR>:saveas! $MYVIMRC<CR>:so $MYVIMRC<CR>:e .vimrc<CR>:echo '$VIMRC reloaded'<CR>
 " Clear hightlighted searches
 :nmap <silent> ,/ :nohlsearch<CR>
+" Sudo a file after openning it
+:cmap w!! w !sudo tee % >/dev/null
+
 
 
 " => Text, tab and indent related
