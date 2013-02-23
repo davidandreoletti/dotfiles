@@ -27,6 +27,7 @@
 "    -> File type
 "    -> Hidden characters
 "    -> Match pairs
+"    -> Scrolling
 "    -> Performance
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -317,8 +318,12 @@ runtime macros/matchit.vim
 " => File type
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => File type
+" => Scrolling
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Minimal number of screen lines to keep above and below cursor
+" (vertical scrolling only)
+set scrolloff=3
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Performance 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
