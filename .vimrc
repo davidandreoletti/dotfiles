@@ -1,5 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer: 
+" Maintainer:
 "       David Andreoletti
 "       http://davidandreoletti.com
 "
@@ -312,7 +312,7 @@ filetype plugin indent on
 " => Hidden characters 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,trail:·,eol:¬
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Match pair
