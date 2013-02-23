@@ -161,7 +161,8 @@ syntax on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => File tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Open a NERDTree automatically when vim starts up if no files were specified 
+" Open a NERDTree automatically when vim starts up if no files 
+" were specified 
 autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -181,11 +182,19 @@ map <F8> :TagbarToggle<CR>
 " Disable (temporary) all auto indenting/expansion
 set pastetoggle=<F3>
 
-" Force to master Vim's advanced motion and search functionnality by disabling arrow keys, hjkl keys, page up/down  and others
+" Force to master Vim's advanced motion and search functionnality 
+" by disabling arrow keys, hjkl keys, page up/down  and others
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 nnoremap <leader>h <Esc>:call EasyMode()<CR>
 nnoremap <leader>H <Esc>:call HardMode()<CR>
 
+" Get efficient with most vim commands
+" Eg: :w    becomes ;w
+"     Effectively reducing stroke count from S-; w (5 strokes) 
+"     to ;w (3 strokes) 
+nnoremap ; :
+
+" Back to Normal Mode from Insert Mode
 :imap jj <Esc>
 " Make it easy to save current .vimrc as well as to $VIMRC and reload vim conf
 :nmap <leader>rv <Esc>:w! .vimrc<CR>:saveas! $MYVIMRC<CR>:so $MYVIMRC<CR>:e .vimrc<CR>:echo '$VIMRC reloaded'<CR>
