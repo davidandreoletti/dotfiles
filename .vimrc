@@ -215,6 +215,8 @@ nmap <leader>l :set list!<CR>
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
+nnoremap <leader>hh :help quickref<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabs and indents
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
