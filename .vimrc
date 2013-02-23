@@ -10,7 +10,7 @@
 "    -> VIM UI
 "    -> Colors and Fonts
 "    -> Syntax
-"    -> Backups
+"    -> Backup/Swap
 "    -> File tree
 "    -> Completion
 "    -> Mapping
@@ -157,8 +157,11 @@ colorscheme torte
 syntax on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Backups 
+" => Backup/Swap 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Move swap files and backup to central location
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => File tree
