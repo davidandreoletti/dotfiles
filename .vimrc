@@ -178,6 +178,8 @@ set wildmode=list:longest
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F2> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
+" Disable (temporary) all auto indenting/expansion
+set pastetoggle=<F3>
 
 " Force to master Vim's advanced motion and search functionnality by disabling arrow keys, hjkl keys, page up/down  and others
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
