@@ -66,7 +66,6 @@ Bundle 'scrooloose/nerdtree'
 
 " Commenting
 Bundle 'scrooloose/nerdcommenter'
-filetype plugin on
 
 " Convenient way to quickly reach buffers/files/commands/bookmarks/tags
 Bundle 'L9'
@@ -271,6 +270,15 @@ set mouse=a
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use Unix as the standard file type
 set ffs=unix,mac,dos
+
+
+" Enables :
+" - filetype detection 
+" - plugin files for a specific file type  
+" - loading indent file for a specific file type
+" Required by: NERDCommenter
+filetype plugin indent on
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Performance 
