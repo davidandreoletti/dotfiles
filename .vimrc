@@ -26,6 +26,7 @@
 "    -> Help
 "    -> File type
 "    -> Hidden characters
+"    -> Match pairs
 "    -> Performance
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -299,8 +300,13 @@ filetype plugin indent on
 set listchars=tab:▸\ ,eol:¬
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => File type
+" => Match pair
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Extends standard vim % to apply to:
+" - whole words: "if" and "endif"
+" - group of more than 2 words : "if", "else", "endif"
+runtime macros/matchit.vim
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => File type
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
