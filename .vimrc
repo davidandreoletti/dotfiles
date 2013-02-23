@@ -25,6 +25,7 @@
 "    -> Helper functions
 "    -> Help
 "    -> File type
+"    -> Hidden characters
 "    -> Performance
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -190,6 +191,8 @@ nnoremap <leader>H <Esc>:call HardMode()<CR>
 :nmap <silent> ,/ :nohlsearch<CR>
 " Sudo a file after openning it
 :cmap w!! w !sudo tee % >/dev/null
+" Toggle `set list` (i.e hidden characters)
+nmap <leader>l :set list!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabs and indents
@@ -271,7 +274,6 @@ set mouse=a
 " Use Unix as the standard file type
 set ffs=unix,mac,dos
 
-
 " Enables :
 " - filetype detection 
 " - plugin files for a specific file type  
@@ -279,7 +281,27 @@ set ffs=unix,mac,dos
 " Required by: NERDCommenter
 filetype plugin indent on
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Hidden characters 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => File type
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => File type
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => File type
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => File type
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => File type
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Performance 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
