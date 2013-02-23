@@ -210,6 +210,10 @@ nnoremap ; :
 " Toggle `set list` (i.e hidden characters)
 nmap <leader>l :set list!<CR>
 
+" Scroll viewport faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabs and indents
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
