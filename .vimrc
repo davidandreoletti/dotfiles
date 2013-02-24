@@ -71,6 +71,23 @@ Bundle 'scrooloose/nerdtree'
 " Commenting
 Bundle 'scrooloose/nerdcommenter'
 
+" Syntastic
+" C++/C/X*ML/JSON .. syntax checking plugin
+Bundle "scrooloose/syntastic"
+" Setup syntastic's status line
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+" Syntastic Error Window will be opened automatically when errors are
+" detected and closed automatically when none are detected
+let g:syntastic_auto_loc_list=1
+" Syntastic show syntaxhighlighting to mark error (where possible)
+let g:syntastic_enable_highlighting=1
+" Syntastic custom error symbols according to error type
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+
 " Convenient way to quickly reach buffers/files/commands/bookmarks/tags
 Bundle 'L9'
 Bundle 'FuzzyFinder'
@@ -92,7 +109,6 @@ set t_Co=256
 let g:Powerline_symbols='fancy'
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
-
 
 " Installing bunldes the first time
 if vundleInstallRequired
