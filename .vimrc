@@ -231,7 +231,14 @@ nmap <leader>l :set list!<CR>
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
+" Show quick help
 nnoremap <leader>hh :help quickref<CR>
+
+" Resize window
+map <C-l> 5<C-w>>
+map <C-h> 5<C-w><
+map <C-j> 3<C-w>+
+map <C-k> 3<C-w>-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabs and indents
