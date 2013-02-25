@@ -219,7 +219,7 @@ nnoremap ; :
 " Back to Normal Mode from Insert Mode
 :imap jj <Esc>
 " Make it easy to save current .vimrc as well as to $VIMRC and reload vim conf
-:nmap <leader>rv <Esc>:w! .vimrc<CR>:saveas! $MYVIMRC<CR>:so $MYVIMRC<CR>:e .vimrc<CR>:echo '$VIMRC reloaded'<CR>
+:nmap <leader>rv <Esc>:w! .vimrc<CR>:saveas! $MYVIMRC<CR>:bd ~/.vimrc<CR>:e .vimrc<CR>:so $MYVIMRC<CR>:echo '$VIMRC reloaded'<CR>
 " Clear hightlighted searches
 :nmap <silent> ,/ :nohlsearch<CR>
 " Sudo a file after openning it
