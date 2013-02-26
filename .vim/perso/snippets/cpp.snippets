@@ -1,0 +1,38 @@
+extends cpp
+
+snippet cl "Template for a new class using Google C++ Guidelines" !i
+//  \file ${1:`!p snip.rv = snip.fn or "name"`}
+//  ${2:LIBNAME_OR_PROJECTNAME}
+//
+//  Created by ${3:Andreoletti David}.
+//  Copyright `!v strftime("%Y")` ${4:IO Stark}. All rights reserved.
+//
+
+#ifndef ${5:`!p import re; snip.rv = "_" + re.sub(r'\/|\.',"_", path).upper() + "_"`}
+#define $5 
+
+BEGIN_NS(${6:NAMESPACES_NAME})
+
+/**
+ *  ${1/(\w+).*/$1/}
+ */
+class ${1/(\w+).*/$1/} {
+ public:
+  /*
+   * Constructor
+   */
+  ${1/(\w+).*/$1/}();
+
+  /**
+   * Destructor
+   */
+  virtual ~${1/(\w+).*/$1/}();
+
+  $0
+END_NS
+#endif  // $5
+endsnippet   
+
+snippet inc "Template to #include SomeClass.h"
+#include "${1:INCLUDE_HEADER}"
+endsnippet
