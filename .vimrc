@@ -59,6 +59,10 @@ Bundle 'gmarik/vundle'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundles
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" UltiSnips (Snippets)
+Bundle 'SirVer/ultisnips'
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "perso/snippets"]
+
 " Master Vim's advanced motion and search
 Bundle 'wikitopian/hardmode'
 
