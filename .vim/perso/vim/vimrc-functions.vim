@@ -93,9 +93,9 @@ function! F_PowerLine_InstallDependencies ()
 		call F_PythonPip_InstallIfMissing()
 		silent !sudo pip install --user https://github.com/Lokaltog/powerline/tarball/develop
 		" Original Idea : http://superuser.com/questions/120700/how-do-i-programatically-install-a-font-on-a-macintosh
-		echo "Installing patched fonts ..."
-		silent !cd /tmp && cd `mktemp -d` && git clone https://github.com/Lokaltog/powerline-fonts && find -E `pwd`/powerline-fonts -iregex '.*\.(otf|ttf)' -print0 | xargs -0 -I {} cp -v {} ~/Library/Fonts
- 		silent !cd /tmp && cd `mktemp -d` && curl -O -L https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf && mv -v PowerlineSymbols.otf ~/Library/Fonts
+		ho "Installing patched fonts ..."
+		silent !cd /tmp && cd `mktemp -d /tmp/tmp.XXXXX` && git clone https://github.com/Lokaltog/powerline-fonts && find -E `pwd`/powerline-fonts -iregex '.*\.(otf|ttf)' -print0 | xargs -0 -I {} cp -v {} ~/Library/Fonts
+ 		silent !cd /tmp && cd `mktemp -d /tmp/tmp.XXXXX` && curl -O -L https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf && mv -v PowerlineSymbols.otf ~/Library/Fonts
 		"silent !curl -O https://gist.github.com/sjl/1627888/raw/c4e92f81f7956d4ceaee11b5a7b4c445f786dd90/Menlo-ForPowerline.ttc.zip && unzip Menlo-ForPowerline.ttc.zip -d ~/Library/Fonts
 		"silent !curl -O https://gist.github.com/baopham/1838072/raw/7ad07f130cc8d792e32d6ae6bd018a4db47537b1/Monaco-Powerline.otf && mv -v Monaco-Powerline.otf ~/Library/Fonts
 		" Font not installed with Font Book even though it would be better - Font Book checks if font to be installed is valid
