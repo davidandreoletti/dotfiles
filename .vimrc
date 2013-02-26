@@ -59,6 +59,9 @@ Bundle 'gmarik/vundle'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Bundles
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Doxygen
+Bundle 'vim-scripts/DoxygenToolkit.vim'
+
 " UltiSnips (Snippets)
 Bundle 'SirVer/ultisnips'
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "perso/snippets"]
@@ -337,6 +340,9 @@ set ffs=unix,mac,dos
 " Required by: NERDCommenter
 filetype plugin indent on
 
+" Set doxygen tags according to filetype
+autocmd FileType cpp,c,h,hpp,m,mm call F_DoxygenToolKit_SetCPPOrCTags()
+autocmd FileType java call F_DoxygenToolKit_SetJAVATags()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Hidden characters 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

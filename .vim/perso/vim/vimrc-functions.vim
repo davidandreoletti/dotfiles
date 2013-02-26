@@ -1,3 +1,21 @@
+" Set JAVA doxygen tag
+function! F_DoxygenToolKit_SetJAVATags ()
+	let g:DoxygenToolkit_throwTag_pre="@throw "
+	let g:DoxygenToolkit_classTag="@class "
+	let g:DoxygenToolkit_briefTag_pre=""
+	let g:DoxygenToolkit_paramTag_pre="@param "
+	let g:DoxygenToolkit_returnTag="@return "
+endfunction
+
+" Set CPP or C doxygen tag
+function! F_DoxygenToolKit_SetCPPOrCTags ()
+	let g:DoxygenToolkit_throwTag_pre="\\throw "
+	let g:DoxygenToolkit_classTag="\\class "
+	let g:DoxygenToolkit_briefTag_pre=""
+	let g:DoxygenToolkit_paramTag_pre="\\param "
+	let g:DoxygenToolkit_returnTag="\\return "
+endfunction
+
 " Indicates if vundle is installed
 " Return: 
 function! F_Vundle_IsVundleInstalled ()
