@@ -2,7 +2,7 @@
 
 line () {
     local n=${1:-`tput cols`}
-    local span=`printf '%*s\n' "$n" '' | tr ' ' -`
+    local span=`printf '%*s\n' "$n" '' | tr ' ' _`
     echo $span
 }
 
