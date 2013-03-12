@@ -1,0 +1,73 @@
+# Custom Bash prompt
+
+line () {
+    local span=`printf '%*s\n' "$(tput cols)" '' | tr ' ' -`
+    echo $span
+}
+
+if [[ $EUID -eq 0 ]]; then
+    PS1=${COLOR_ROOT}${PS1}${COLOR_RESET}
+elif [[ -n $SUDO_USER ]]; then
+    PS1=${COLOR_SUDO}${PS1}${COLOR_RESET}
+else
+    PS1=${COLOR_USER}${PS1}${COLOR_RESET}
+fi
+
+prompt_git() {
+    git branch &>/dev/null || return 1
+    HEAD="$(git symbolic-ref HEAD 2>/dev/null)"
+    BRANCH="${HEAD##*/}"
+    REVISION="$(git rev-parse --short HEAD)"
+    REVISION_MSG=$(git show -s --format=%s $REVISION)
+    [[ -n "$(git status 2>/dev/null | \
+        grep -F 'clean')" ]] && STATUS="CLEAN" || STATUS="DIRTY"
+    printf 'git:%s' "${BRANCH:-unknown}@${REVISION} (${STATUS}) <${REVISION_MSG}>"
+}
+prompt_hg() {
+    hg branch &>/dev/null || return 1
+    BRANCH="$(hg branch 2>/dev/null)"
+    [[ -n "$(hg status 2>/dev/null)" ]] && STATUS="DIRTY" || STATUS="CLEAN"
+    REVISION="$(hg id --id)"
+    REVISION_MSG="$(hg log -r $REVISION --template '{desc}')"
+    printf 'hg:%s' "${BRANCH:-unknown}@${REVISION} (${STATUS}) <${REVISION_MSG}>"
+}
+prompt_svn() {
+    svn info &>/dev/null || return 1
+    URL="$(svn info 2>/dev/null | \
+        awk -F': ' '$1 == "URL" {print $2}')"
+    ROOT="$(svn info 2>/dev/null | \
+        awk -F': ' '$1 == "Repository Root" {print $2}')"
+    BRANCH=${URL/$ROOT}
+    BRANCH=${BRANCH#/}
+    BRANCH=${BRANCH#branches/}
+    BRANCH=${BRANCH%%/*}
+    [[ -n "$(svn status 2>/dev/null)" ]] && STATUS="!"
+    printf 'svn:%s' "${BRANCH:-unknown} ${STATUS}"
+}
+prompt_vcs() {
+    prompt_git || prompt_svn || prompt_hg
+}
+# $1: Max string length to be returned
+prompt_vcs_truncated () {
+    local maxL=$1
+    local str=`prompt_vcs`
+    local strd="...>"
+    local strdL=${#strd}
+    local strL=${#str}
+    [[ $strL -gt $maxL ]] && strL=$(($strL-$strdL)) && str=${str:0:$strL}$strd
+    echo $str 
+}
+
+prompt_on () {
+    compensate=100
+    PS1=$(printf "%s" "\$(line)")'\n'
+    #PS1=$PS1$(ps1Line1)
+    PS1=$PS1$(printf "%*s\r%s" "$(($(tput cols)-${compensate}))" "\$(prompt_vcs_truncated 100)" '[\u@\h]')
+    PS1=$PS1'\n[\w]'
+    PS1=$PS1'\n$'
+}
+prompt_off() {
+    PS1='\$'
+}
+prompt_on
+

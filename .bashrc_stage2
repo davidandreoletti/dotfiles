@@ -1,0 +1,21 @@
+# Shell history
+shopt -s histappend
+export PROMPT_COMMAND='history -a'
+HISTCONTROL=ignoreboth
+HISTSIZE=2000
+HISTFILESIZE=$HISTSIZE
+HISTTIMEFORMAT='%F %T%t'
+
+# Set 256 capable color
+# Reported with:  find /lib/terminfo /usr/share/terminfo -name "*256*"
+# http://push.cx/2008/256-color-xterms-in-ubuntu
+export TERM=xterm-256color
+
+# Set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# Load aliases
+BASH_ALIAS_FILE=~/.bash_aliases
+[[ -s ${BASH_ALIAS_FILE} ]] && source ${BASH_ALIAS_FILE}

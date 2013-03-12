@@ -1,0 +1,17 @@
+#
+# OSX:      source ~/.bashrc_stage0 into ~/.bash_profile ("Interactive Login"/"Interactive" shell)
+# Ubuntu:   source ~/.bashrc_stage0 into ~/.bash_profile ("Interactive Login" shell)
+#                                   into ~/.bashrc       ("Interactive" shell)
+if [ -n "$BASH_VERSION" ]; then
+    BASHRC_STAGE1_FILE=~/.bashrc_stage1
+    BASHRC_STAGE2_FILE=~/.bashrc_stage2
+    BASHRC_STAGE_WORK_FILE=~/.bashrc_stage_work
+    BASHRC_STAGE_HOME_FILE=~/.bashrc_stage_home
+    [[ -s ${BASHRC_STAGE1_FILE} ]] && source ${BASHRC_STAGE1_FILE}
+    [[ -s ${BASHRC_STAGE2_FILE} ]] && source ${BASHRC_STAGE2_FILE}
+    [[ -s ${BASHRC_STAGE_HOME} ]] && source ${BASHRC_STAGE_HOME}
+    [[ -s ${BASHRC_STAGE_WORK} ]] && source ${BASHRC_STAGE_WORK}
+fi
+
+
+
