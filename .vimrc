@@ -146,6 +146,10 @@ set hidden
 
 " No lines wrapped
 set nowrap
+
+" Show 80th column (Vim 7.3+ only)
+" http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns
+set colorcolumn=80
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM UI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
