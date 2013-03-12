@@ -1,7 +1,8 @@
 # Custom Bash prompt
 
 line () {
-    local span=`printf '%*s\n' "$(tput cols)" '' | tr ' ' -`
+    local n=${1:-`tput cols`}
+    local span=`printf '%*s\n' "$n" '' | tr ' ' -`
     echo $span
 }
 
@@ -47,9 +48,9 @@ prompt_svn() {
 prompt_vcs() {
     prompt_git || prompt_svn || prompt_hg
 }
-# $1: Max string length to be returned
+# $1: Max string length to be returned. Default to number of columns in terminal
 prompt_vcs_truncated () {
-    local maxL=$1
+    local maxL=${1-`tput cols`}
     local str=`prompt_vcs`
     local strd="...>"
     local strdL=${#strd}
@@ -57,12 +58,14 @@ prompt_vcs_truncated () {
     [[ $strL -gt $maxL ]] && strL=$(($strL-$strdL)) && str=${str:0:$strL}$strd
     echo $str 
 }
+prompt_date () {
+    echo `date +"%Y/%m/%d@%k:%M:%S"`
+}
 
 prompt_on () {
     compensate=100
     PS1=$(printf "%s" "\$(line)")'\n'
-    #PS1=$PS1$(ps1Line1)
-    PS1=$PS1$(printf "%*s\r%s" "$(($(tput cols)-${compensate}))" "\$(prompt_vcs_truncated 100)" '[\u@\h]')
+    PS1=$PS1$(printf "%*s\r%s%s" "$(($(tput cols)-${compensate}))" "\$(prompt_vcs_truncated 100)" '[\u@\h]' "[\$(prompt_date)]" )
     PS1=$PS1'\n[\w]'
     PS1=$PS1'\n$'
 }
