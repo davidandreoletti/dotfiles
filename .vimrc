@@ -273,6 +273,9 @@ set shiftround
 " Insert tab on start of line according to shiftwidth only
 set smarttab
 
+" Expand tabs into spaces
+set expandtab
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
