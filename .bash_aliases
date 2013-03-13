@@ -50,3 +50,14 @@ function check_()
 cut -f1 -d" " $1 | sort | uniq -c | sort -nr | head -n 30
 }
 alias mybashusage='check_ ~/.bash_history'
+
+# Finds directory sizes and lists them for the current directory
+function dirsize()
+{
+du -shx * .[a-zA-Z0-9_]* 2> /dev/null | \
+egrep '^ *[0-9.]*[MG]' | sort -n > /tmp/list
+egrep '^ *[0-9.]*M' /tmp/list
+egrep '^ *[0-9.]*G' /tmp/list
+rm /tmp/list
+}
+alias dirsize='dirsize'
