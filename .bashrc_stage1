@@ -1,8 +1,9 @@
 # Custom Bash prompt
 
 line () {
-    local n=${1:-`tput cols`}
-    local span=`printf '%*s\n' "$n" '' | tr ' ' _`
+    local c=${1:-'-'}
+    local n=${2:-`tput cols`}
+    local span=`printf '%*s\n' "$n" '' | tr ' ' ${c}`
     echo $span
 }
 
@@ -61,11 +62,24 @@ prompt_vcs_truncated () {
 prompt_date () {
     echo `date +"%Y/%m/%d@%k:%M:%S"`
 }
+prompt_user () {
+    echo $USER
+}
+prompt_hostname () {
+    echo $HOSTNAME
+}
+prompt_term_width () {
+    echo `tput cols`
+}
+
+prompt_line1() {
+    echo '$(printf "%*s\r%s@%s%s" "$(prompt_term_width)" "$(prompt_vcs_truncated 100)" "[$(prompt_user)" "$(prompt_hostname)]" "[$(prompt_date)]" )'
+
+}
 
 prompt_on () {
-    compensate=100
-    PS1=$(printf "%s" "\$(line)")'\n'
-    PS1=$PS1$(printf "%*s\r%s%s" "$(($(tput cols)-${compensate}))" "\$(prompt_vcs_truncated 100)" '[\u@\h]' "[\$(prompt_date)]" )
+    PS1=$(printf "%s" "\$(line '_')")'\n'
+    PS1=$PS1$(prompt_line1) 
     PS1=$PS1'\n[\w]'
     PS1=$PS1'\n$'
 }
