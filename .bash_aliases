@@ -1,7 +1,7 @@
 # Shell aliases
 alias ll='ls -alh'
 alias mv='mv -v'
-
+alias rm='rm -i'
 # Compression aliases
 alias xt='unp'
 
