@@ -20,18 +20,18 @@ prompt_git() {
     HEAD="$(git symbolic-ref HEAD 2>/dev/null)"
     BRANCH="${HEAD##*/}"
     REVISION="$(git rev-parse --short HEAD)"
-    REVISION_MSG=$(git show -s --format=%s $REVISION)
+    REVISION_MSG=`git show -s --format=%s $REVISION | tr "\\n" " "`
     [[ -n "$(git status 2>/dev/null | \
-        grep -F 'clean')" ]] && STATUS="CLEAN" || STATUS="DIRTY"
-    printf 'git:%s' "${BRANCH:-unknown}@${REVISION} (${STATUS}) <${REVISION_MSG}>"
+        grep -F 'clean')" ]] && STATUS="" || STATUS="+"
+    printf 'git:%s' "${BRANCH:-unknown}@${REVISION}${STATUS} <${REVISION_MSG}>"
 }
 prompt_hg() {
     hg branch &>/dev/null || return 1
     BRANCH="$(hg branch 2>/dev/null)"
-    [[ -n "$(hg status 2>/dev/null)" ]] && STATUS="DIRTY" || STATUS="CLEAN"
+    [[ -n "$(hg status 2>/dev/null)" ]] && STATUS="+" || STATUS=""
     REVISION="$(hg id --id)"
-    REVISION_MSG="$(hg log -r $REVISION --template '{desc}')"
-    printf 'hg:%s' "${BRANCH:-unknown}@${REVISION} (${STATUS}) <${REVISION_MSG}>"
+    REVISION_MSG=`hg log -r $REVISION --template '{desc}' | tr "\\n" " "`
+    printf 'hg:%s' "${BRANCH:-unknown}@${REVISION}${STATUS} <${REVISION_MSG}>"
 }
 prompt_svn() {
     svn info &>/dev/null || return 1
@@ -43,7 +43,7 @@ prompt_svn() {
     BRANCH=${BRANCH#/}
     BRANCH=${BRANCH#branches/}
     BRANCH=${BRANCH%%/*}
-    [[ -n "$(svn status 2>/dev/null)" ]] && STATUS="!"
+    [[ -n "$(svn status 2>/dev/null)" ]] && STATUS="+"
     printf 'svn:%s' "${BRANCH:-unknown} ${STATUS}"
 }
 prompt_vcs() {
@@ -56,7 +56,7 @@ prompt_vcs_truncated () {
     local strd="...>"
     local strdL=${#strd}
     local strL=${#str}
-    [[ $strL -gt $maxL ]] && strL=$(($strL-$strdL)) && str=${str:0:$strL}$strd
+    [[ $strL -gt $maxL ]] && strL=$(($maxL-$strdL)) && str=${str:0:$strL}$strd
     echo $str 
 }
 prompt_date () {
