@@ -61,3 +61,7 @@ egrep '^ *[0-9.]*G' /tmp/list
 rm /tmp/list
 }
 alias dirsize='dirsize'
+
+# Get http headers
+function http_headers() { /usr/bin/curl -I -L $@ ; }
+
