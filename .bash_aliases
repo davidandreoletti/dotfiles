@@ -43,3 +43,10 @@ alias gitst='git status'
 # Mercurial alias
 alias hgsm='hg summary'
 alias hgl='hg log -G --template "{rev}:{node}:{branch}\n{author}\n{desc|firstline}\n\n" | more'
+
+# Bash Usages
+function check_()
+{
+cut -f1 -d" " $1 | sort | uniq -c | sort -nr | head -n 30
+}
+alias mybashusage='check_ ~/.bash_history'
