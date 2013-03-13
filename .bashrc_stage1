@@ -22,6 +22,7 @@ prompt_hg() {
     BRANCH="$(hg branch 2>/dev/null)"
     [[ -n "$(hg status 2>/dev/null)" ]] && STATUS="+" || STATUS=""
     REVISION="$(hg id --id)"
+    REVISION=${REVISION/+/}
     REVISION_MSG=`hg log -r $REVISION --template '{desc}' | tr "\\n" " "`
     printf 'hg:%s' "${BRANCH:-unknown}@${REVISION}${STATUS} <${REVISION_MSG}>"
 }
