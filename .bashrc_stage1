@@ -81,7 +81,7 @@ prompt_line3() {
 }
 
 prompt_on () {
-    PS1=$PS1'\n'
+    PS1=''
     PS1=$PS1$(printf "%s" "\$(line '_')")'\n'
     PS1=$PS1$(prompt_line1) 
     PS1=$PS1'\n[\w]'
