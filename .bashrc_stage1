@@ -11,8 +11,8 @@ prompt_git() {
     git branch &>/dev/null || return 1
     HEAD="$(git symbolic-ref HEAD 2>/dev/null)"
     BRANCH="${HEAD##*/}"
-    REVISION="$(git rev-parse --short HEAD)"
-    REVISION_MSG=`git show -s --format=%s $REVISION | tr "\\n" " "`
+    REVISION="$(git rev-parse --short HEAD 2> /dev/null)"
+    REVISION_MSG=`git show -s --format=%s $REVISION 2> /dev/null | tr "\\n" " "`
     [[ -n "$(git status 2>/dev/null | \
         grep -F 'clean')" ]] && STATUS="" || STATUS="+"
     printf 'git:%s' "${BRANCH:-unknown}@${REVISION}${STATUS} <${REVISION_MSG}>"
