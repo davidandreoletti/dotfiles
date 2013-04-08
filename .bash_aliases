@@ -42,6 +42,7 @@ alias gitst='git status'
 
 # Mercurial alias
 alias hgsm='hg summary'
+alias hgst='hg status'
 alias hgl='hg log -G --template "{rev}:{node}:{branch}\n{author}\n{desc|firstline}\n\n" | more'
 
 # Bash Usages
@@ -76,3 +77,9 @@ function swapthem()
     mv "$2" "$1"
     mv $TMPFILE "$2"
 }
+
+# Indicate what application is binded to port $1
+alias whoisbindedonport='lsof -i :$1'
+
+# Maven
+alias mvnjavadoc='mvn javadoc:javadoc'
