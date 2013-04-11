@@ -43,7 +43,7 @@ alias gitst='git status'
 # Mercurial alias
 alias hgsm='hg summary'
 alias hgst='hg status'
-alias hgl='hg log -G --template "{rev}:{node}:{branch}\n{author}\n{desc|firstline}\n\n" | more'
+alias hglg='hg log -G --template "{rev}:{node}:{branch}\n{author}\n{desc|firstline}\n\n" | more'
 
 # Bash Usages
 function check_()
