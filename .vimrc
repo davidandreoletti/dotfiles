@@ -33,7 +33,7 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-source .vim/perso/vim/vimrc-functions.vim
+source $HOME/.vim/perso/vim/vimrc-functions.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle
