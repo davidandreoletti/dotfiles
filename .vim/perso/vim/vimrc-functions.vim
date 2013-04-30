@@ -64,10 +64,24 @@ function! F_OS_IsMacBasedOS ()
 	return 0
 endfunction
 
+" Indicates if vim is running on Arch Linux OS
+" 1 if Arch Linux.
+function! F_OS_IsArchLinuxBasedOS ()
+	if has('unix')
+  		let s:uname = system("echo -n $(uname -r)")
+		if s:uname =~ ".*ARCH$"
+			return 1
+  		endif
+	endif
+	return 0
+endfunction
+
 " Installs curl if missing
 function! F_Curl_InstallIfMissing ()
 	if F_OS_IsDebianBasedOS ()
 		silent !sudo apt-get install curl
+	elseif F_OS_IsArchLinuxBasedOS ()
+		silent !sudo pacman -S curl
 	endif
 endfunction
 
@@ -77,6 +91,8 @@ function! F_PythonPip_InstallifMissing ()
 		silent !sudo apt-get install python-pip
 	elseif F_OS_IsMacBasedOS ()
 		silent !sudo easy_install pip
+	elseif F_OS_IsArchLinuxBasedOS ()
+		silent !sudo pacman -S python-pip
 	endif	
 endfunction
 
@@ -88,6 +104,8 @@ function! F_Tagbar_InstallDependencies ()
 		silent !cd /tmp && curl -L -O http://downloads.sourceforge.net/project/ctags/ctags/5.8/ctags-5.8.tar.gz && tar xzvf ctags-5.8.tar.gz && cd ctags-5.8 && ./configure && make && sudo make install	
 	elseif F_OS_IsDebianBasedOS ()
 		silent !sudo apt-get install exuberant-ctags
+	elseif F_OS_IsArchLinuxBasedOS ()
+		silent !sudo pacman -S ctags
 	else
 		echoerr "Intalling Tagbar dependencies is NOT specified for this platform."	
 	endif
@@ -96,7 +114,7 @@ endfunction
 " Installs PowerLine python
 function! F_PowerLine_InstallDependencies ()
 	echo "Installing powerline dependencies"
-	if F_OS_IsDebianBasedOS ()
+	if F_OS_IsDebianBasedOS () || F_OS_IsArchLinuxBasedOS ()
 		call F_Curl_InstallIfMissing()
 		call F_PythonPip_InstallIfMissing()
 		silent !pip install --user git+git://github.com/Lokaltog/powerline
