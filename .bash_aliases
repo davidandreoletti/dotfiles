@@ -83,3 +83,7 @@ alias whoisbindedonport='lsof -i :$1'
 
 # Maven
 alias mvnjavadoc='mvn javadoc:javadoc'
+
+# Android
+#
+alias adbclog='adb logcat -c && adb logcat'
