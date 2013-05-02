@@ -1,6 +1,6 @@
 ################################# Toro Ltd ####################################
 
-alias cloneToroME="hg clone ssh://david@toroasia-pr.no-ip.biz//home/hg/akami/Toro_microemulator_20100615"
+alias cloneToroME='hg clone ssh://david@toroasia-pr.no-ip.biz//home/hg/akami/Toro_microemulator_20100615'
 
 #
 # Arch Linux
@@ -32,10 +32,7 @@ export ANT_HOME=/toro-vm/applications/apache-software-foundation/ant/apache-ant-
 export PATH=$PATH:$ANT_HOME/bin
 
 # Android SDK
-ANDROID_HOME=/toro-vm/sdks/google/android/adt-bundle-linux-x86_64-20130219/sdk
-
-export ANDROID_HOME
-#Android platforms tools
+export ANDROID_HOME=/toro-vm/sdks/google/android/adt-bundle-linux-x86_64-20130219/sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 #Repo tool for Android
 #export PATH=/toro-vm/bin/google/android/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
