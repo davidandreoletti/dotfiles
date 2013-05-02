@@ -1,5 +1,7 @@
 ################################# Toro Ltd ####################################
 
+alias cloneToroME="hg clone ssh://david@toroasia-pr.no-ip.biz//home/hg/akami/Toro_microemulator_20100615"
+
 #
 # Arch Linux
 #
