@@ -9,8 +9,8 @@ if [ -n "$BASH_VERSION" ]; then
     BASHRC_STAGE_HOME_FILE=~/.bashrc_stage_home
     [[ -s ${BASHRC_STAGE1_FILE} ]] && source ${BASHRC_STAGE1_FILE}
     [[ -s ${BASHRC_STAGE2_FILE} ]] && source ${BASHRC_STAGE2_FILE}
-    [[ -s ${BASHRC_STAGE_HOME} ]] && source ${BASHRC_STAGE_HOME}
-    [[ -s ${BASHRC_STAGE_WORK} ]] && source ${BASHRC_STAGE_WORK}
+    [[ -s ${BASHRC_STAGE_HOME_FILE} ]] && source ${BASHRC_STAGE_HOME_FILE}
+    [[ -s ${BASHRC_STAGE_WORK_FILE} ]] && source ${BASHRC_STAGE_WORK_FILE}
 fi
 
 
