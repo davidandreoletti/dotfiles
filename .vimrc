@@ -251,6 +251,9 @@ map <C-h> 5<C-w><
 map <C-j> 3<C-w>+
 map <C-k> 3<C-w>-
 
+" Search and replace selected text in VISUAL mode
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabs and indents
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
