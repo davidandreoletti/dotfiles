@@ -14,4 +14,5 @@ else
 	fi
 fi
 unset doIt
-source ~/.bash_profile
+
+echo "Read .bashrc_stage0 for installation"
