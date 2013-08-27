@@ -6,6 +6,10 @@ HISTSIZE=2000
 HISTFILESIZE=$HISTSIZE
 HISTTIMEFORMAT='%F %T%t'
 
+# Set default editors
+export EDITOR=`which vim`
+export VISUAL=$EDITOR
+
 # Set 256 capable color
 # Reported with:  find /lib/terminfo /usr/share/terminfo -name "*256*"
 # http://push.cx/2008/256-color-xterms-in-ubuntu
