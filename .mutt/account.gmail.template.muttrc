@@ -1,0 +1,59 @@
+set my_folder = imaps://$my_login@imap.gmail.com:993/
+#---------------#
+# Account Hooks #
+#---------------#
+account-hook        $my_folder "\
+    set imap_user   = $my_login \
+        imap_pass   = $my_pass"
+
+#-------------------------------------#
+# Folders, mailboxes and folder hooks #
+#-------------------------------------#
+
+# Setup for user:
+
+set folder          = $my_folder
+folder-hook         $my_folder 'unmailboxes *'
+folder-hook         $my_folder/* "\
+    mailboxes       = +INBOX =$my_gmail_rootfolder/Drafts =$my_gmail_rootfolder/Sent =$my_gmail_rootfolder/Spam =$my_gmail_rootfolder/Starred =$my_gmail_rootfolder/Trash"
+set spoolfile       = +INBOX
+folder-hook         $my_folder "\
+    set folder      = $my_folder \
+        spoolfile   = '+INBOX' \
+        postponed   = '+$my_gmail_rootfolder/Drafts' \
+        record      = '' \
+        from        = '$my_name <$my_login> ' \
+        realname    = '$my_name' \
+        status_format = '-%r-$my_login: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---' \
+        smtp_url    = smtps://$my_login@smtp.gmail.com:587 \
+        smtp_pass   = $my_pass \
+        ssl_starttls = yes \
+        ssl_force_tls = yes"
+
+#bind editor <space> noop    # need the "noop" bind so that the line editor accepts IMAP folders with spaces in their names
+macro index,pager e "<save-message>=$my_gmail_rootfolder/All<quote-char> Mail<enter><enter>" "Archive conversation"
+macro index,pager + "<save-message>=$my_gmail_rootfolder/Important<enter><enter>" "Mark as important"
+macro index,pager ! "<save-message>=$my_gmail_rootfolder/Spam<enter><enter>" "Report spam"
+macro index,pager I "<set-flag>O" "Mark as read"
+macro index,pager U "<clear-flag>O" "Mark as unread"
+macro index,pager d "<enter-command>set trash=\"+[Gmail]/Bin\"\n<delete-message>" "Gmail delete message"
+macro index,pager A "<enter-command>unset trash\n<delete-pattern>" "Gmail archive pattern"
+macro index,pager D "<enter-command>set trash=\"+[Gmail]/Bin\"\n<delete-pattern>" "Gmail delete pattern"
+
+macro index,pager ga "<change-folder>=$my_gmail_rootfolder/All<quote-char> Mail<enter>" "Go to 'All Mail'"
+macro index,pager gs "<change-folder>=$my_gmail_rootfolder/Starred<enter>" "Go to 'Starred'"
+macro index,pager gd "<change-folder>=$my_gmail_rootfolder/Drafts<enter>" "Go to 'Drafts'"
+macro index,pager gl "<change-folder>?"                      "Go to 'Label'"
+macro index,pager gi "<change-folder>=INBOX<enter>"           "Go to Inbox"
+macro index,pager gt "<change-folder>=$my_gmail_rootfolder/Sent<quote-char> Mail<enter>"     "Go to 'Sent'"
+
+bind  index,pager a  group-reply        #Reply all
+bind  index,pager \# delete-thread      #Delete
+
+
+#unset my_login 
+#unset my_pass 
+#unset my_name
+
+#set crypt_autosign
+# vim: set ft=muttrc:

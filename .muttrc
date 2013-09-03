@@ -1,0 +1,39 @@
+# Based on http://stevelosh.com/blog/2012/10/the-homely-mutt/#retrieving-passwords
+# http://zuttobenkyou.wordpress.com/tag/custom-variables/
+# http://hacktux.com/mutt/gmail
+# http://www.muttrcbuilder.org/page
+# https://wiki.archlinux.org/index.php/Mutt#mailboxes
+# http://wiki.localhost.lu/OSX%20mutt
+
+# OSX: brew install mutt --sidebar-patch --trash-patch --with-slang
+# Ubuntu: sudo apt-get install mutt-patched
+
+# ACCOUNTS
+#source $HOME/.mutt/accounts.$MUTT_PROFILE.muttrc
+source $HOME/.mutt/accounts.gmail.muttrc
+
+# SETTINGS
+source $HOME/.mutt/settings.muttrc
+
+# KEY BINDINGS
+source $HOME/.mutt/bindings.muttrc
+
+# MACROS
+source $HOME/.mutt/macros.muttrc
+
+# ACCOUNT SPECIFIC MACROS
+# Example: source $HOME/.mutt/macros.gmail.muttrc
+# Example: source $HOME/.mutt/macros.work.muttrc
+
+# ABOOK INTEGRATION
+source $HOME/.mutt/abook.muttrc
+
+# GPG
+source $HOME/.mutt/gpg.muttrc
+
+#SIDEBAR
+#Example: source $HOME/.mutt/sidebar.muttrc
+
+# COLORS
+source $HOME/.mutt/themes/mutt-colors-solarized-dark-256-david-custom.muttrc
+

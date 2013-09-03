@@ -1,0 +1,90 @@
+# Folder locations in local machine 
+set folder           = ~/.mail                            # mailbox location
+set alias_file       = ~/.mutt/alias                      # where to store aliases
+set header_cache     = ~/.mutt/cache/headers              # where to store headers
+set message_cachedir = ~/.mutt/cache/bodies               # where to store bodies
+set certificate_file = ~/.mutt/certificates               # where to store certs
+set mailcap_path     = "~/.mutt/mailcap:/etc/mailcap"     # entries for filetypes
+#set tmpdir           = ~/.mutt/temp                       # where to keep temp files
+set signature        = ~/.mutt/sig                        # my signature file
+
+# Header Options -------------------------------------
+ignore *                                                      # ignore all headers
+unignore from: to: cc: date: subject: user-agent: x-mailer:   # show only these
+unhdr_order *                                                 # some distros order things by default
+hdr_order from: to: cc: date: subject: user-agent: x-mailer:  # and in this order
+
+# Compose View Options -------------------------------
+set envelope_from                      # which from?
+set sig_dashes                         # insert -- before signature
+set edit_headers      = "yes"          # Show headers when editing
+set fast_reply        = "yes"          # Skip the bothering prompt for recipient and subject when replying and start immediately with writing your message: 
+set write_bcc         = "yes"          # Write BCC header
+set askcc             = "yes"          # ask for CC:
+set askbcc            = "yes"          # Ask for BCC: 
+set fcc_attach        = "yes"          # save attachments with the body for outgoing message
+set attribution       = "On %d, %n wrote:" # format of quoting header
+set reply_to          = "ask-yes"      # reply to Reply to: field
+set reverse_name      = "yes"          # reply as whomever it was to
+set include           = "yes"          # Always quote when replying: 
+set forward_quote     = "yes"          # include message in forwards
+set mime_forward      = "no"           # forward attachments as part of body
+set forward_format    = "Fwd: %s"      # format of subject when forwarding
+##set forward_decode                   # decode when forwarding
+set abort_nosubject=ask-yes            # Abort, if message has no subject.
+set abort_unmodified=ask-yes           # Abort, if message wasn't edited.
+set indent_string     ="> "            # The quoting character can be set individually, too:
+set attribution="* %n <%a> wrote:\n" # Here you can determine your personal attribution line. This string always precedes quoted text.
+
+# Index View Options ---------------------------------
+set date_format="%d.%m.%y-%H:%M"
+set index_format="%4C | %Z | %d | %-17.17F | (%?l?%4l&%4c?) | %s"
+set sort              = threads                         # like gmail
+set sort_aux          = reverse-last-date-received      # like gmail
+##set uncollapse_jump                        # don't collapse on an unread message
+##set sort_re                                # thread based on regex
+##set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# Pager View Options ---------------------------------
+set pager_index_lines = 10     # number of index lines to show
+set pager_context     = 3      # number of context lines to show
+set pager_stop        = "yes"  # don't go to next message automatically when at bottom of the current message
+set tilde             = "no"   # show tildes like in vim
+unset markers                # no ugly plus signs
+set menu_scroll       = "yes"  # Scrolling line by line in index mode is really a cool thing, isn't it: 
+auto_view text/html
+auto_view text/calendar
+alternative_order text/plain text/enriched text/html text/*
+##set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+##alternative_order text/plain text/enriched text/html
+
+# Attachment View Options ----------------------------
+set attach_format     = "%u%D%I %t%4n %T%.40d%> [%.20m/%.40M, %.12e%?C?, %C?, %s] " 
+
+# Basic Options --------------------------------------
+##set wait_key          = no        # shut up, mutt
+set use_from            = yes
+set mbox_type           = Maildir   # mailbox type
+set smart_wrap                 # Wrap long lines at word boundary.
+# Check for mail every minute for current IMAP mailbox every 1 min
+set check_new           = yes
+set beep_new            = yes       # bell on new mails
+set timeout             = 60        # idle time before scanning
+set mail_check          = 120       # Check for new mail in ALL mailboxes every 2 min
+set imap_keepalive      = 300       # keep imap connection alive by polling intermittently (time in seconds)
+#unset imap_passive                 # allow mutt to open new imap connection automatically
+set imap_check_subscribed
+set imap_peek = no
+set imap_servernoise	# display warnings from IMAP server
+set delete                          # don't ask, just do
+unset confirmappend                 # don't ask, just do!
+set quit                = ask-yes   # don't ask, just do!!
+unset mark_old                      # read/new used instead of new/old/read
+##set pipe_decode                   # strip headers and eval mimes when piping
+##set thorough_search               # strip headers and eval mimes before searching
+set editor ='vim'
+set send_charset="utf-8:us-ascii"
+set sleep_time          = 0         # fast folder switching
+set move                = "no"
+
+# vim: set ft=muttrc:

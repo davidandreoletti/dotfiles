@@ -1,0 +1,53 @@
+# Confidential data   -------------------------
+# Original:  source "gpg --textmode --output - ~/.dotfiles/mutt/accounts.txt.gpg |"
+source $HOME/.mutt/accounts-secrets.txt
+
+# Setup for all users -------------------------
+
+# DISABLED TO GET: gmail's keybindings (gd,ga,etc) working
+#account-hook . "unset imap_user; unset imap_pass; unset tunnel" # unset first!
+
+# Accounts
+# http://evanhanson.com/misc/multiple-accounts-in-mutt/
+# http://arandomcollectionoftips.blogspot.tw/2010/02/mutt-and-multiple-imap-accounts.html
+# http://www.df7cb.de/blog/2010/Using_multiple_IMAP_accounts_with_Mutt.html
+# http://khairulza.github.io/2012/04/30/mutt-multiple-gmail/
+# http://nixtricks.wordpress.com/2010/05/20/mutt-multiple-email-accounts-using-hooks/
+
+set my_login = $my_login1  
+set my_pass = $my_pass1
+set my_name = $my_name1
+set my_gmail_rootfolder = "[Gmail]"
+source $HOME/.mutt/account.gmail.template.muttrc
+macro index <f2> "<change-folder>$my_folder<enter>"
+
+set my_login = $my_login2  
+set my_pass = $my_pass2
+set my_name = $my_name2
+set my_gmail_rootfolder = "[Gmail]"
+source $HOME/.mutt/account.gmail.template.muttrc
+macro index <f3> "<change-folder>$my_folder<enter>"
+
+set my_login = $my_login3  
+set my_pass = $my_pass3
+set my_name = $my_name3
+set my_gmail_rootfolder = "[Gmail]"
+source $HOME/.mutt/account.gmail.template.muttrc
+macro index <f4> "<change-folder>$my_folder<enter>"
+
+set my_login = $my_login4  
+set my_pass = $my_pass4
+set my_name = $my_name4
+set my_gmail_rootfolder = "[Gmail]"
+source $HOME/.mutt/account.gmail.template.muttrc
+macro index <f5> "<change-folder>$my_folder<enter>"
+
+set my_login = $my_login5  
+set my_pass = $my_pass5
+set my_name = $my_name5
+set my_gmail_rootfolder = "[Google<quote-char> Mail]"
+source $HOME/.mutt/account.gmail.template.muttrc
+macro index <f6> "<change-folder>$my_folder<enter>"
+
+#set crypt_autosign
+# vim: set ft=muttrc:

@@ -1,0 +1,14 @@
+set sidebar_width=30
+set sidebar_visible=yes
+set sidebar_delim='|'
+set sidebar_sort=yes
+set sidebar_shortpath=yes
+
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+
+macro index S '<enter-command>toggle sidebar_visible<enter><refresh>'
+macro pager S '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+
+# vim: set ft=muttrc:
