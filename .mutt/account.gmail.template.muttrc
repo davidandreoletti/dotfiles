@@ -30,6 +30,13 @@ folder-hook         $my_folder "\
         ssl_starttls = yes \
         ssl_force_tls = yes"
 
+# Contacts support for 1 gmail account ONLY
+set query_command = "goobook -c '~/.mutt/.goobookrc' query '%s'"
+bind editor <Tab> complete-query
+bind editor ^T complete
+macro index,pager ac "goobook -c '~/.mutt/.goobookrc' add" "add the sender address to Gmail contacts"
+macro index,pager gr "!goobook -c '~/.mutt/.goobookrc' reload\n" "Reload Gmail contacts list"
+
 #bind editor <space> noop    # need the "noop" bind so that the line editor accepts IMAP folders with spaces in their names
 macro index,pager e "<save-message>=$my_gmail_rootfolder/All<quote-char> Mail<enter><enter>" "Archive conversation"
 macro index,pager + "<save-message>=$my_gmail_rootfolder/Important<enter><enter>" "Mark as important"
