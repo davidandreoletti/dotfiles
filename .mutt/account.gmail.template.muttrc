@@ -36,16 +36,16 @@ macro index,pager + "<save-message>=$my_gmail_rootfolder/Important<enter><enter>
 macro index,pager ! "<save-message>=$my_gmail_rootfolder/Spam<enter><enter>" "Report spam"
 macro index,pager I "<set-flag>O" "Mark as read"
 macro index,pager U "<clear-flag>O" "Mark as unread"
-macro index,pager d "<enter-command>set trash=\"+[Gmail]/Bin\"\n<delete-message>" "Gmail delete message"
+macro index,pager d "<enter-command>set trash=\"+$my_gmail_rootfolder/Bin\"\n<delete-message>" "Gmail delete message"
 macro index,pager A "<enter-command>unset trash\n<delete-pattern>" "Gmail archive pattern"
-macro index,pager D "<enter-command>set trash=\"+[Gmail]/Bin\"\n<delete-pattern>" "Gmail delete pattern"
+macro index,pager D "<enter-command>set trash=\"+$my_gmail_rootfolder/Bin\"\n<delete-pattern>" "Gmail delete pattern"
 
-macro index,pager ga "<change-folder>=$my_gmail_rootfolder/All<quote-char> Mail<enter>" "Go to 'All Mail'"
-macro index,pager gs "<change-folder>=$my_gmail_rootfolder/Starred<enter>" "Go to 'Starred'"
-macro index,pager gd "<change-folder>=$my_gmail_rootfolder/Drafts<enter>" "Go to 'Drafts'"
-macro index,pager gl "<change-folder>?"                      "Go to 'Label'"
-macro index,pager gi "<change-folder>=INBOX<enter>"           "Go to Inbox"
-macro index,pager gt "<change-folder>=$my_gmail_rootfolder/Sent<quote-char> Mail<enter>"     "Go to 'Sent'"
+macro index,pager "ga$my_gmail_macro_num" "<change-folder>=$my_gmail_rootfolder/All<quote-char> Mail<enter>" "Go to 'All Mail'"
+macro index,pager "gs$my_gmail_macro_num" "<change-folder>=$my_gmail_rootfolder/Starred<enter>" "Go to 'Starred'"
+macro index,pager "gd$my_gmail_macro_num" "<change-folder>=$my_gmail_rootfolder/Drafts<enter>" "Go to 'Drafts'"
+macro index,pager "gl$my_gmail_macro_num" "<change-folder>?"                      "Go to 'Label'"
+macro index,pager "gi$my_gmail_macro_num" "<change-folder>=INBOX<enter>"           "Go to Inbox"
+macro index,pager "gt$my_gmail_macro_num" "<change-folder>=$my_gmail_rootfolder/Sent<quote-char> Mail<enter>"     "Go to 'Sent'"
 
 bind  index,pager a  group-reply        #Reply all
 bind  index,pager \# delete-thread      #Delete
