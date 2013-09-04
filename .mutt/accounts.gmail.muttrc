@@ -17,35 +17,40 @@ source $HOME/.mutt/accounts-secrets.txt
 set my_login = $my_login1  
 set my_pass = $my_pass1
 set my_name = $my_name1
-set my_gmail_rootfolder = "[Gmail]"
+set my_gmail_rootfolder = "[Google<quote-char> Mail]"
+set my_gmail_macro_num = 2
 source $HOME/.mutt/account.gmail.template.muttrc
 macro index <f2> "<change-folder>$my_folder<enter>"
 
 set my_login = $my_login2  
 set my_pass = $my_pass2
 set my_name = $my_name2
-set my_gmail_rootfolder = "[Gmail]"
+set my_gmail_rootfolder = "[Google<quote-char> Mail]"
+set my_gmail_macro_num = 3
 source $HOME/.mutt/account.gmail.template.muttrc
 macro index <f3> "<change-folder>$my_folder<enter>"
 
 set my_login = $my_login3  
 set my_pass = $my_pass3
 set my_name = $my_name3
-set my_gmail_rootfolder = "[Gmail]"
+set my_gmail_rootfolder = "[Google<quote-char> Mail]"
+set my_gmail_macro_num = 4
 source $HOME/.mutt/account.gmail.template.muttrc
 macro index <f4> "<change-folder>$my_folder<enter>"
 
 set my_login = $my_login4  
 set my_pass = $my_pass4
 set my_name = $my_name4
-set my_gmail_rootfolder = "[Gmail]"
+set my_gmail_rootfolder = "[Google<quote-char> Mail]"
+set my_gmail_macro_num = 5
 source $HOME/.mutt/account.gmail.template.muttrc
 macro index <f5> "<change-folder>$my_folder<enter>"
 
 set my_login = $my_login5  
 set my_pass = $my_pass5
 set my_name = $my_name5
-set my_gmail_rootfolder = "[Google<quote-char> Mail]"
+set my_gmail_rootfolder = "[Gmail]"
+set my_gmail_macro_num = 6
 source $HOME/.mutt/account.gmail.template.muttrc
 macro index <f6> "<change-folder>$my_folder<enter>"
 
