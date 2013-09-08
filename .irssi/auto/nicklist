@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Wouter Coekaerts &raquo; nicklist.pl</title>
+<meta name="generator" content="WordPress 3.5.1" /> <!-- leave this for stats -->
+<link rel="stylesheet" href="http://wouter.coekaerts.be/wp-content/themes/blue-fade/style.css" type="text/css" media="screen" />
+<link rel="alternate" type="application/rss+xml" title="Wouter Coekaerts RSS Feed" href="http://wouter.coekaerts.be/feed" />
+<link rel="pingback" href="http://wouter.coekaerts.be/xmlrpc.php" />
+<link rel="openid2.provider" href="https://www.google.com/accounts/o8/ud?source=profiles" />
+<link rel="openid2.local_id" href="https://profiles.google.com/101837189657549129220" />
+
+            <script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v4.3.2 | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-16866758-1']);
+				            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
+			<link rel="alternate" type="application/rss+xml" title="Wouter Coekaerts &raquo; nicklist.pl Comments Feed" href="http://wouter.coekaerts.be/irssi/nicklist/feed" />
+<script type='text/javascript' src='http://wouter.coekaerts.be/wp-content/plugins/wp-plus-one/wp-plus-one.js?ver=3.5.1'></script>
+<script type='text/javascript' src='http://wouter.coekaerts.be/wp-includes/js/comment-reply.min.js?ver=3.5.1'></script>
+<script type='text/javascript' src='http://wouter.coekaerts.be/wp-includes/js/jquery/jquery.js?ver=1.8.3'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://wouter.coekaerts.be/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://wouter.coekaerts.be/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='mouse.pl' href='http://wouter.coekaerts.be/irssi/mouse' />
+<link rel='next' title='per_window_prompt.pl' href='http://wouter.coekaerts.be/irssi/per_window_prompt' />
+<meta name="generator" content="WordPress 3.5.1" />
+<link rel='canonical' href='http://wouter.coekaerts.be/irssi/nicklist' />
+<meta id="syntaxhighlighteranchor" name="syntaxhighlighter-version" content="3.1.3" />
+</head>
+<body id="p7bod">
+<div id="top">Wouter Coekaerts<!-- - --></div>
+<!--<div id="masthead"><a href="http://wouter.coekaerts.be"><img src="http://wouter.coekaerts.be/wp-content/themes/blue-fade/images/logo.jpg" alt="WordPress Theme Design - Blue Fade - Web Considerations" border="0" /></a>
+</div>--><!-- This is the end of the masthead div -->
+<div id="wrapper"><!-- This starts the wrapper div. The closing tag is in the archive.php, index.php, single.php, search.php and page.php. -->
+  <div id="column_wrapper"><!-- This starts the column_wrapper div. The closing tag is in the archive.php, index.php, single.php, search.php and page.php. -->
+<div id="right">
+<div class="content">
+<div class="section">
+
+<h1>nicklist.pl</h1>
+
+<div class="entrybody">
+	<p>Version: 0.4.6<BR><br />
+<A HREF='/irssi/scripts/nicklist.pl'>Download</A><BR><br />
+<A HREF='/irssi/scripts/nicklist.pl.html'>View source</A><BR><br />
+<small><A HREF='/irssi/scripts/nicklist.pl.asc'>signature</A></small><BR><BR><br />
+This script draws a nicklist to another terminal, or at the right of your irssi in the same terminal.<BR><br />
+<BR><br />
+There are 2 &#8216;modes&#8217; for this script: fifo and screen.<BR></p>
+<ul>
+<li>The <b>fifo</b> mode is the &#8216;cleanest&#8217; way to do it, works better, faster, but is only possible in X: it needs 2 terminal windows (one for your irssi, one for the nicklist). Here&#8217;s a <A href="/irssi/nlfifo.png">screenshot</A></li>
+<li>The <b>screen</b> mode is a bit easier, works in 1 terminal, but does more redrawing (using more bandwidth if you run it remote), flickers a little bit, and doesn&#8217;t work perfectly (sometimes some lines in the nicklist will be blank for a short while) . (note that the screen mode has improved a lot). Here&#8217;s a <A href="/irssi/nlscreen.png">screenshot</A> of this mode.</li>
+</ul>
+<h2>Usage</h2>
+<p><H2>fifo</H2><br />
+In this mode, the scripts writes its output to a fifo. You should open another terminal window for the nicklist, put it at the right (or left) of the one with your irssi in it, and cat the fifo there.<BR><br />
+<BR><br />
+The first time you use the script, the fifo has to be created, you can do that with <B><CODE>/NICKLIST FIFO</CODE></B><BR><br />
+Next, you start reading the fifo with cat, in a terminal window, where you want the nicklist. (This will initialy give no output at all, the script isn&#8217;t using it yet)<br />
+<B><CODE> $ cat ~/.irssi/nicklistfifo</CODE></B><BR><br />
+Because the script needs to know how big it can draw the nicklist, you need to give it the size of the other terminal:<BR><br />
+<B><CODE><br />
+    /SET nicklist_height <I>&lt;height of nicklist&gt;</I><BR><br />
+    /SET nicklist_width <I>&lt;width of nicklist&gt;</I></CODE></B><BR><br />
+Then, the script can start using it: <B><CODE>/NICKLIST FIFO</CODE></B><BR><br />
+Now the nicklist should appear in the terminal window where you are catting the fifo.<br />
+<BR><br />
+Next time you want to start using the script, first start cat, then do <CODE>/nicklist fifo</CODE><BR></p>
+<p><BR><br />
+<H2>screen</H2><br />
+In this mode the script constantly (every time irssi prints a line) has to redraw the nicklist, so actualy, it&#8217;s not really good, but it works and looks fine most of the time.<BR><br />
+<BR><br />
+As the name suggest, this only works from inside of screen. Before version 0.4 you had to do a lot of configuring manualy, so if you have an older version, please update.<BR><br />
+Just start your irssi inside screen (<B><CODE>screen irssi</CODE></B>), load the script, and <B><CODE>/NICKLIST SCREEN</CODE></B><BR><br />
+<BR><br />
+That should work in linux console, xterm or Konsole. But it doesn&#8217;t work in Eterm, rxvt, aterm or gnome-terminal (and probably some others too): for them you&#8217;ll need to run screen within screen. So you start your screen, and within that, do screen -m irssi (DON&#8217;T forget the -m) (or reattach your screen where you already have an irssi running). (this will be fixed some day&#8230;)<BR><BR><br />
+You can change the width of the nicklist:<BR><br />
+<B><CODE>/SET nicklist_width <I>&lt;width of nicklist&gt;</I></CODE></B> (the default, 11 is probably enough)<BR><br />
+<BR><br />
+After switching to another window in screen and back, it takes some time for the nicklist to reappear, to prevent this delay, run irssi in a screen within another screen if you want multiple screen-windows.<BR><br />
+If your irssi doesn&#8217;t resize properly, and the text from irssi and the nicklist overlap, make sure you&#8217;re running <A HREF='/irssi/scripts/nicklist.pl'>the latest version</A>.<br />
+<BR><br />
+There&#8217;s a problem with <b>split windows</b>: the script doesn&#8217;t know which window is visible in another split window, so it doesn&#8217;t know when it needs to redraw (every time a line that&#8217;s visible on the screen is printed, the nicklist needs to redraw). If you don&#8217;t use split windows, leave this setting empty<BR><br />
+So, the script asumes the only visible windows are the currently active window, or a window in nicklist_screen_split_windows.<BR><br />
+If you don&#8217;t add the windows that should be in it, &#8216;holes&#8217; can apear in the nicklist. If you add too many, it&#8217;ll do more redrawing and become slower.<BR><br />
+So, if you, for example, have a split window with a status window, and a msgs window, and all channels are in the other split window, you should:<BR><br />
+<CODE>/set nicklist_screen_split_windows (status) (msgs)</CODE><BR><br />
+(It&#8217;s a space-seperated list of window names or number, or if you set it to * it always redraws (very inefficient))<BR><br />
+<BR></p>
+<p><H2>automode</H2><br />
+When the script is loaded, it starts in the OFF mode, if you want the screen mode to start automaticly do:<BR><br />
+<B><CODE>/set nicklist_automode SCREEN</CODE></B><BR><br />
+<BR><br />
+<H2>scrolling</H2><br />
+You can scroll up and down in the nicklist with /nicklist scroll. You probably want to bind a key to it.<BR><br />
+<CODE>/bind <I>something</I> command nicklist scroll -10</CODE><BR><br />
+<CODE>/bind <I>something</I> command nicklist scroll +10</CODE><BR><br />
+<BR></p>
+<h2>Bugs</h2>
+<ul>
+<li>Doesn&#8217;t work with all terminals (cursor jumping to wrong place, stuff drawn wrong&#8230;) without the screen-within-screen workaround explained above</li>
+<li>screen in multi display mode can cause some problems while resizing the terminal</li>
+<li>after renaming your already running screen session, nicklist can&#8217;t resize it anymore. can be fixed with <code>/script exec $ENV{STY}="name-of-your-screen"</code> (you can see the full name with <code>screen -ls</code></li>
+<li>if it prints &#8220;Possible memory corruption: ioctl overflowed 3rd argument&#8221;, install the Term::ReadKey Perl module. If nicklist doesn&#8217;t find that module, it tries an ugly thing to work without it anyways, but on some systems it might fail like this.</li>
+</ul>
+<p>If you experience any other bugs, just mail me and I&#8217;ll look into it.</p>
+<h2>Todo</h2>
+<ul>
+<li>use termcap or sth instead of ansi</li>
+<li>new joins/parts/quits/kicks other colour, keep netsplitted nicks</li>
+<li>show away-status/friends/&#8230; with colors</li>
+<li>either fix, or remove nicklist_screen_prefix (e.g. add a &#8220;|&#8221;, recalc width&#8230;)</li>
+<li>remember position of nicklist when switching channels</li>
+<li>show list of common channels / nicklist of one common channel when in query?</li>
+</ul>
+<h2>Changelog</h2>
+<p><a href="http://wouter.coekaerts.be/tmp/nicklist.pl" onclick="javascript:_gaq.push(['_trackEvent','outbound-article-int','/tmp/nicklist.pl']);">current SVN version (0.4.6+, download location is temporary)</a><BR></p>
+<ul>
+<li>Add support for &#8216;other&#8217; modes (&amp;~,&#8230;)</li>
+<li>Give different (configurable) colors to friends, dependant on flags.</li>
+<li>Fix another screen sizing issue</li>
+</ul>
+<p>0.4.6</p>
+<ul>
+<li>work around (screen?) bug in recent systems that caused resizing the screen to fail</li>
+<li>Fix /NICKLIST OFF by Alejandro Mery</li>
+</ul>
+<p>0.4.5</p>
+<ul>
+<li>fixed to work with silc too by c0ffee</li>
+<li>fixed to work in bsd, thanks to Sander Plas</li>
+<li>detect if trying to use screen mode outside screen</li>
+<li>fixed changing the color of the prompt sometimes with long nicks by Casper Kvan Clausen</li>
+</ul>
+	</div><!-- This is the end of the entrybody div -->
+
+
+
+<span class="editit"></span>
+</div><!-- end of section div -->
+</div><!-- end of content div -->
+	</div><!-- end of right div -->
+</div><!-- end of column wrapper div (from header.php) -->
+</div><!-- end of wrapper div (from header.php) -->
+
+<div id="left">
+<div class="content">
+
+<!-- This is the start of the widgets function -->
+
+<div class="menulist"><h4>Menu</h4><div class="menu-pages-container"><ul id="menu-pages" class="menu"><li id="menu-item-12" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12"><a href="/">Home</a></li>
+<li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23"><a rel="author" href="http://wouter.coekaerts.be/about" >About</a></li>
+<li id="menu-item-161" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor menu-item-161"><a href="http://wouter.coekaerts.be/irssi" >Irssi</a></li>
+<li id="menu-item-55" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-55"><a href="http://wouter.coekaerts.be/security" >Security</a></li>
+<li id="menu-item-638" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-638"><a href="http://wouter.coekaerts.be/puzzles" >Puzzles</a></li>
+</ul></div></div>		<div class="menulist">		<h4>Recent Posts</h4>		<ul>
+					<li>
+				<a href="http://wouter.coekaerts.be/2012/puzzle-cookies-solution" title="Java Puzzle 7: Cookies &#8211; Solution">Java Puzzle 7: Cookies &#8211; Solution</a>
+						</li>
+					<li>
+				<a href="http://wouter.coekaerts.be/2012/java-puzzle-cookies" title="Java Puzzle 7: Cookies">Java Puzzle 7: Cookies</a>
+						</li>
+					<li>
+				<a href="http://wouter.coekaerts.be/2012/puzzle-chicken-solution" title="Java Puzzle 6: Chicken or the Egg &#8211; Solution">Java Puzzle 6: Chicken or the Egg &#8211; Solution</a>
+						</li>
+					<li>
+				<a href="http://wouter.coekaerts.be/2012/puzzle-chicken" title="Java Puzzle 6: Chicken or the Egg">Java Puzzle 6: Chicken or the Egg</a>
+						</li>
+					<li>
+				<a href="http://wouter.coekaerts.be/2012/puzzle-ball-solution" title="Java Puzzle 5: Ball &#8211; Solution">Java Puzzle 5: Ball &#8211; Solution</a>
+						</li>
+				</ul>
+		</div><div class="menulist"><h4>Archives</h4>		<ul>
+			<li><a href='http://wouter.coekaerts.be/2012/08' title='August 2012'>August 2012</a></li>
+	<li><a href='http://wouter.coekaerts.be/2012/03' title='March 2012'>March 2012</a></li>
+	<li><a href='http://wouter.coekaerts.be/2012/02' title='February 2012'>February 2012</a></li>
+	<li><a href='http://wouter.coekaerts.be/2011/09' title='September 2011'>September 2011</a></li>
+	<li><a href='http://wouter.coekaerts.be/2011/06' title='June 2011'>June 2011</a></li>
+	<li><a href='http://wouter.coekaerts.be/2011/05' title='May 2011'>May 2011</a></li>
+		</ul>
+</div><div class="menulist"><h4>Search</h4><form method="get" id="searchform" action="http://wouter.coekaerts.be/">
+<div><input type="text" value="" name="s" id="s" size="10" /><br />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form>
+</div>
+<!-- This is the end of the widgets function -->
+
+</div><!-- end of content div -->
+</div><!-- end of left div -->
+
+
+<div id="footer">
+  <div class="content">
+		Powered by
+<a href="http://wordpress.org/">WordPress</a>, based on theme by <a href="http://www.webconsiderations.com">Web Considerations</a>.<br />
+		<a href="http://wouter.coekaerts.be/feed">Entries feed</a>
+		and <a href="http://wouter.coekaerts.be/comments/feed">Comments feed</a>.
+		<!--30 queries. 0.330-->
+
+  </div>
+</div><!-- end of footer div -->
+	<script type="text/javascript">
+	  window.___gcfg = {lang: 'en'};
+	
+	  (function() {
+	    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	    po.src = 'https://apis.google.com/js/plusone.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	  })();
+	</script></body><!-- ends the body element started in the header.php -->
+</html><!-- ends the html element started in the header.php -->
+		
