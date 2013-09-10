@@ -1,12 +1,16 @@
+# Common config
+
 [extensions]
 graphlog = 
 color = 
 progress = 
 purge = 
 rebase = 
-pager =
 
 [pager]
 pager = LESS='FSRX' less
 ignore = version, help, update
 attend = annotate, cat, diff, export, glog, log, qdiff
+
+# Load custom config
+%include ~/.hgrc-custom
