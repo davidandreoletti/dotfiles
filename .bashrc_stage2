@@ -20,6 +20,3 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-# Load aliases
-BASH_ALIAS_FILE=~/.bash_aliases
-[[ -s ${BASH_ALIAS_FILE} ]] && source ${BASH_ALIAS_FILE}
