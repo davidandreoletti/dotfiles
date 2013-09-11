@@ -2,38 +2,40 @@
 
 alias cloneToroME='hg clone ssh://david@toroasia-pr.no-ip.biz//home/hg/akami/Toro_microemulator_20100615'
 
-#
-# Arch Linux
-#
+if [[ "`uname -a`" =~ .*ARCH.* ]]
+then 
+    #
+    # Arch Linux
+    #
 
-# Ibus
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
+    # Ibus
+    export GTK_IM_MODULE=ibus
+    export XMODIFIERS=@im=ibus
+    export QT_IM_MODULE=ibus
 
-# Java
-JAVA_HOME=/opt/java6
-export JAVA_HOME
-export PATH=$PATH:$JAVA_HOME/bin
+    # Java
+    JAVA_HOME=/opt/java6
+    export JAVA_HOME
+    export PATH=$PATH:$JAVA_HOME/bin
 
-# Maven 2.2.1
-export M2_HOME=/toro-vm/applications/apache-software-foundation/maven/apache-maven-2.2.1
-export M2=$M2_HOME/bin
-export MAVEN_OPTS="-Xms256m -Xmx512m"
-export PATH=$PATH:$M2
+    # Maven 2.2.1
+    export M2_HOME=/toro-vm/applications/apache-software-foundation/maven/apache-maven-2.2.1
+    export M2=$M2_HOME/bin
+    export MAVEN_OPTS="-Xms256m -Xmx512m"
+    export PATH=$PATH:$M2
 
-# Maven 3
-export M3_HOME=/toro-vm/applications/apache-software-foundation/maven/apache-maven-3.0.4
-export M3=$M3_HOME/bin
-#DISABLED export PATH=$PATH:$M3
+    # Maven 3
+    export M3_HOME=/toro-vm/applications/apache-software-foundation/maven/apache-maven-3.0.4
+    export M3=$M3_HOME/bin
+    #DISABLED export PATH=$PATH:$M3
 
-# Ant 2
-export ANT_HOME=/toro-vm/applications/apache-software-foundation/ant/apache-ant-1.9.0
-export PATH=$PATH:$ANT_HOME/bin
+    # Ant 2
+    export ANT_HOME=/toro-vm/applications/apache-software-foundation/ant/apache-ant-1.9.0
+    export PATH=$PATH:$ANT_HOME/bin
 
-# Android SDK
-export ANDROID_HOME=/toro-vm/sdks/google/android/adt-bundle-linux-x86_64-20130219/sdk
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-#Repo tool for Android
-#export PATH=/toro-vm/bin/google/android/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
+    # Android SDK
+    export ANDROID_HOME=/toro-vm/sdks/google/android/adt-bundle-linux-x86_64-20130219/sdk
+    export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+    #Repo tool for Android
+    #export PATH=/toro-vm/bin/google/android/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+fi
