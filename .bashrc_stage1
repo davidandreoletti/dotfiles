@@ -41,6 +41,7 @@ prompt_svn() {
 }
 prompt_vcs() {
     prompt_git || prompt_svn || prompt_hg
+    prompt_git || prompt_hg || prompt_svn
 }
 # $1: Max string length to be returned. Default to number of columns in terminal
 prompt_vcs_truncated () {
