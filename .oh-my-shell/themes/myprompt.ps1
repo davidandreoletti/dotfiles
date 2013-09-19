@@ -1,4 +1,8 @@
-# Custom Bash/Zsh prompt
+#
+#  Prompt theme: myprompt
+#  Author: David Andreoletti - http://davidandreoletti.com
+#  Description: Bash/Zsh compatible prompt
+#
 
 # Check for recent enough version of bash.
 if test -n "$BASH_VERSION" -a -n "$PS1" -a -n "$TERM" ; then

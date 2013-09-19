@@ -1,0 +1,8 @@
+#
+# Pre cross shells config
+#
+
+# Load shell specific config
+SHELLRC_STAGE0_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc_stage0"
+[[ -s ${SHELLRC_STAGE0_SHELL_FILE} ]] && source "${SHELLRC_STAGE0_SHELL_FILE}"
+

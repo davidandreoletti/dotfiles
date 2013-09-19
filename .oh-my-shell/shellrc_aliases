@@ -1,3 +1,7 @@
+#
+# Cross shell aliases definitions
+#
+
 # Shell aliases
 alias mv='mv -v'
 alias rm='rm -i'
@@ -5,7 +9,7 @@ alias rm='rm -i'
 # ls command aliases
 # dumb terminal ? http://en.wikipedia.org/wiki/Computer_terminal
 if [ "$TERM" != "dumb" ]; then
-    if [ `uname` == "Darwin" ]; then
+    if [[ $("uname") == "Darwin" ]]; then  # [[ == ]] required for ZSH: http://www.zsh.org/mla/users/2011/msg00162.html
        alias ls='ls -G'
     else
        eval "`dircolors -b`"
@@ -87,3 +91,8 @@ alias mvnjavadoc='mvn javadoc:javadoc'
 # Android
 #
 alias adbclog='adb logcat -c && adb logcat'
+
+# Load shell specific aliases
+SHELLRC_ALIAS_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc_alias"
+[[ -s ${SHELLRC_ALIAS_SHELL_FILE} ]] && source "${SHELLRC_ALIAS_SHELL_FILE}"
+

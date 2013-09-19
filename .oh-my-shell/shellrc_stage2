@@ -1,10 +1,6 @@
-# Shell history
-shopt -s histappend
-export PROMPT_COMMAND='history -a'
-HISTCONTROL=ignoreboth
-HISTSIZE=2000
-HISTFILESIZE=$HISTSIZE
-HISTTIMEFORMAT='%F %T%t'
+#
+# Post cross shell config
+#
 
 # Set default editors
 export EDITOR=`which vim`
@@ -19,4 +15,8 @@ export TERM=xterm-256color
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+
+# Load shell specific config
+SHELLRC_STAGE2_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc_stage2"
+[[ -s ${SHELLRC_STAGE2_SHELL_FILE} ]] && source "${SHELLRC_STAGE2_SHELL_FILE}"
 

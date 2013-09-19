@@ -1,0 +1,8 @@
+# Shell history
+shopt -s histappend
+export PROMPT_COMMAND='history -a'
+HISTCONTROL=ignoreboth
+HISTSIZE=2000
+HISTFILESIZE=$HISTSIZE
+HISTTIMEFORMAT='%F %T%t'
+
