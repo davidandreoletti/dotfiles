@@ -1,13 +1,17 @@
 #!/bin/bash
-
+FORCE_INSTALL=false
 DOTFILESSETUPTYPE="perso" 
-while getopts s:h flag; do
+while getopts fs:h flag; do
   case $flag in
+    f)
+      FORCE_INSTALL=true;
+      ;;
     s)
       DOTFILESSETUPTYPE="$OPTARG";
       ;;
     h)
       echo "Help: bootstrap.sh [options]";
+      echo " -f         Force install."
       echo " -s value\t Setup type to install. Valid values (case sensitive): "
       echo "    work  - For computers at work."
       echo "    perso - For computers at home."
@@ -29,7 +33,7 @@ function doIt() {
         local p="custom/${DOTFILESSETUPTYPE}"
 	cd "${p}" && rsync  -av . ~ && cd - || echo "Cannot find ${p}. Exit." && exit
 }
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
+if [ ${FORCE_INSTALL} == true ]; then
 	doIt
 else
 	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
