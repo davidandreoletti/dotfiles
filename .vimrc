@@ -25,6 +25,7 @@ set nocompatible
 let vundleInstallRequired = F_Vundle_IsVundleInstalled()
 if vundleInstallRequired
     call F_Vundle_InstallVundle()
+"   call F_ClangCompletePlugin_Install()
 endif
 
 " required for vundle
@@ -38,6 +39,9 @@ Bundle 'gmarik/vundle'
 "}}}
 " Bundles{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Switch between paired file (.h<->.cpp)
+Bundle 'derekwyatt/vim-fswitch'
+
 " Doxygen
 Bundle 'vim-scripts/DoxygenToolkit.vim'
 
@@ -190,6 +194,17 @@ Bundle 'majutsushi/tagbar'
 "Bundle 'Lokaltog/vim-powerline'
 "let g:Powerline_symbols='unicode'
 "let g:Powerline_symbols='fancy'
+
+" Clang options
+"let g:clang_user_options='|| exit 0'
+"let g:clang_complete_auto = 1
+"let g:clang_complete_copen = 1
+"let g:clang_hl_errors = 1
+"let g:clang_periodic_quickfix = 1
+"let g:clang_close_preview = 1
+"let g:clang_complete_macros = 1
+"let g:clang_complete_patterns = 1
+"let g:clang_debug = 1
 
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
@@ -371,6 +386,7 @@ set wildmode=list:longest
 "}}}
 " Mapping{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <F2> :NERDTreeToggle<CR><leader>h<CR>
 map <F8> :TagbarToggle<CR>
 if s:useVIM
     nnoremap <F5> :GundoToggle<CR>

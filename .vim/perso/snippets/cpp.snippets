@@ -1,6 +1,25 @@
 extends cpp
 
+snippet headerguard "Header guard" i
+#ifndef ${5:`!p import re; snip.rv = re.sub(r'\/|\.',"_", path).upper() + "_"`}
+#define $5
+$0
+#endif  // $5
+endsnippet
+
+snippet copyright "Copyright message header" i
+//
+//  \file ${1:`!p snip.rv = snip.fn or "name"`}
+//  ${2:LIBNAME_OR_PROJECTNAME}
+//
+//  Created by ${3:Andreoletti David}.
+//  Copyright `!v strftime("%Y")` ${4:IO Stark}. All rights reserved.
+//
+$0   
+endsnippet
+
 snippet cl "Template for a new class using Google C++ Guidelines" !i
+//
 //  \file ${1:`!p snip.rv = snip.fn or "name"`}
 //  ${2:LIBNAME_OR_PROJECTNAME}
 //
@@ -8,7 +27,7 @@ snippet cl "Template for a new class using Google C++ Guidelines" !i
 //  Copyright `!v strftime("%Y")` ${4:IO Stark}. All rights reserved.
 //
 
-#ifndef ${5:`!p import re; snip.rv = "_" + re.sub(r'\/|\.',"_", path).upper() + "_"`}
+#ifndef ${5:`!p import re; snip.rv = re.sub(r'\/|\.',"_", path).upper() + "_"`}
 #define $5 
 
 BEGIN_NS(${6:NAMESPACES_NAME})
@@ -28,6 +47,7 @@ class ${1/(\w+).*/$1/} {
    */
   virtual ~${1/(\w+).*/$1/}();
 
+ private:
   $0
 END_NS
 #endif  // $5

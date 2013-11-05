@@ -32,6 +32,11 @@ function! F_Vundle_InstallVundle ()
 	silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 endfunction
 
+" Installs clang_complete plugin
+function! F_ClangCompletePlugin_Install ()
+	!cd `mktemp -d /tmp/tmp.XXXXX` && git clone https://github.com/Rip-Rip/clang_complete && cd clang_complete && make & vim clang_complete.vmb -u NONE -c 'so %' -c 'q'
+endfunction
+
 " Installs bundles via vundle
 " Return: 0
 function! F_Vundle_InstallBundles ()
