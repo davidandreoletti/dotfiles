@@ -1,6 +1,6 @@
 ################################# Toro Ltd ####################################
 
-alias cloneToroME='hg clone ssh://david@toroasia-pr.no-ip.biz//home/hg/akami/Toro_microemulator_20100615'
+alias cloneTM='hg clone ssh://david@scm.toro-intl.com//home/hg/akami/Toro_microemulator_20100615'
 
 if [[ "`uname -a`" =~ .*ARCH.* ]]
 then 
