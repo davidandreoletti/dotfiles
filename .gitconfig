@@ -1,0 +1,20 @@
+[core]
+    fileMode = true
+    editor = vim
+[color]
+    ui = true
+
+[alias]
+    co = checkout
+    st = status
+    ci = commit
+    br = branch
+    type = cat-file -t
+    dump = cat-file -p
+    graph = log --graph
+    lg = log --graph --pretty=oneline --abbrev-commit --decorate
+    lg-med = log --format='medium' --decorate
+    hist = log --pretty=format:\"%h %ad | [%an] -> %s%d\" --date=short
+
+[include]
+    path = .gitconfig-custom
