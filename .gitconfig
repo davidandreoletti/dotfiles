@@ -1,0 +1,37 @@
+[core]
+    fileMode = true
+    editor = vim
+
+[color]
+    ui = true
+
+[alias]
+    co = checkout
+    st = status
+    ci = commit
+    br = branch
+    type = cat-file -t
+    dump = cat-file -p
+    graph = log --graph
+
+    # log commands
+    lg = !git log --graph --pretty=format:'%C(bold blue)%h%C(reset)∑%C(bold green)%d%C(reset) %C(cyan)%s%C(reset) %C(red)[%an]%C(reset) %C(white)[%cr]%C(reset)' | column -t -s '∑' | more
+    
+    # diff commands
+    # http://stackoverflow.com/questions/3293607/difference-between-git-head-and-the-current-project-state
+    
+    # Shows changes in working directory since your last commit; 
+    # i.e same as diff for "git commit -a".
+    dflc = diff HEAD
+    
+    # Shows changes between the index and your last commit; 
+    # i.e same as diff "git commit" without the "-a" option.
+    # Since 1.6.1 and later. Previous version --cached
+    dfsc = diff --staged
+    
+    # Shows changes in the working directory that are not yet staged 
+    # for the next commit. 
+    # This is the opposite of git dflc
+    df = diff
+[include]
+    path = .gitconfig-custom
