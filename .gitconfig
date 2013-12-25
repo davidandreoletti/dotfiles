@@ -33,5 +33,8 @@
     # for the next commit. 
     # This is the opposite of git dflc
     df = diff
+
+    # Shows incoming commits
+    incoming = !git fetch && git log ..origin/master
 [include]
     path = .gitconfig-custom
