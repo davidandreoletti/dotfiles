@@ -67,4 +67,8 @@ else
 
     # Netbeans
     export PATH=$PATH:/toro-vm/applications/netbeans/netbeans-7.3.1-201306052037-javase/bi
+
+    # Gradle 
+    export GRADLE_HOME=/toro-vm/applications/gradle/gradle-1.10
+    export PATH=$PATH:$GRADLE_HOME/bin
 fi
