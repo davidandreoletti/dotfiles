@@ -40,10 +40,10 @@ then
     #export PATH=/toro-vm/bin/google/android/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 else
     # Java
-    export JAVA_HOME=/usr/lib/jvm/java-6-sun
+    export JAVA_HOME=/usr/lib/jvm/java-7-oracle
     export PATH=$PATH:$JAVA_HOME/bin
     # Maven 2.2.1
-    export M2_HOME=/toro-vm/applications/apache-software-foundation/maven/apache-maven-2.2.1
+    export M2_HOME=/toro-vm/applications/apache-software-foundation/maven/maven
     export M2=$M2_HOME/bin
     export MAVEN_OPTS="-Xms256m -Xmx512m"
     export PATH=$PATH:$M2
@@ -52,7 +52,7 @@ else
     export M3=$M3_HOME/bin
     #DISABLED export PATH=$PATH:$M3
     # Ant 2
-    export ANT_HOME=/toro-vm/applications/apache-software-foundation/ant/apache-ant-1.8.3
+    export ANT_HOME=/toro-vm/applications/apache-software-foundation/ant/ant
     export PATH=$PATH:$ANT_HOME/bin
     # Android SDK
     #export ANDROID_HOME=/toro-vm/sdks/google/android/android-sdk_r18-linux
@@ -66,9 +66,9 @@ else
     export PATH=$PATH:/toro-vm/applications/google/android-studio-bundle-130.737825-linux/bin
 
     # Netbeans
-    export PATH=$PATH:/toro-vm/applications/netbeans/netbeans-7.3.1-201306052037-javase/bi
+    export PATH=$PATH:/toro-vm/applications/netbeans/netbeans/bin
 
     # Gradle 
-    export GRADLE_HOME=/toro-vm/applications/gradle/gradle-1.10
+    export GRADLE_HOME=/toro-vm/applications/gradle/gradle
     export PATH=$PATH:$GRADLE_HOME/bin
 fi
