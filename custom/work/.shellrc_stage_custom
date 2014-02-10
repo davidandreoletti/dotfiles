@@ -40,7 +40,8 @@ then
     #export PATH=/toro-vm/bin/google/android/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 else
     # Java
-    export JAVA_HOME=/usr/lib/jvm/java-7-oracle
+    # PPA: ppa:webupd8team/java
+    export JAVA_HOME=/usr/lib/jvm/java-6-oracle
     export PATH=$PATH:$JAVA_HOME/bin
     # Maven 2.2.1
     export M2_HOME=/toro-vm/applications/apache-software-foundation/maven/maven
