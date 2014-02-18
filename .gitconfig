@@ -37,4 +37,5 @@
     # Shows incoming commits
     incoming = !git fetch && git log ..origin/master
 [include]
+    # Requires git 1.7.10+
     path = .gitconfig-custom
