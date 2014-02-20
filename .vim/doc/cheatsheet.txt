@@ -18,5 +18,8 @@ at					  in tags
 i"			Select everything in double quotes (except double quotes themselves)
 
 gf			Go to file under cursor
-
+gg          Move cursor to the begin of the file
+==          Re-Indent the line
+G           Move cursor to the end of the file
+gg=G        Re-indent the whole file
 
