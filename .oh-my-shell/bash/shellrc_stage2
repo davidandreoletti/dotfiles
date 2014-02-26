@@ -5,4 +5,6 @@ HISTCONTROL=ignoreboth
 HISTSIZE=2000
 HISTFILESIZE=$HISTSIZE
 HISTTIMEFORMAT='%F %T%t'
-
+# Enable vi key binding
+# http://www.techrepublic.com/blog/linux-and-open-source/using-vi-key-bindings-in-bash-and-zsh/
+set -o vi
