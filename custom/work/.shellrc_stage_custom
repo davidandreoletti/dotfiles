@@ -1,6 +1,6 @@
 ################################# Toro Ltd ####################################
 
-alias cloneTM='hg clone ssh://david@scm.toro-intl.com//home/hg/akami/Toro_microemulator_20100615'
+alias cloneTM='hg clone ssh://david@hg.toro-intl.com//mobile-dpt/akami/Toro_microemulator_20100615'
 alias wk='cd /toro-vm/workspaces'
 if [[ "`uname -a`" =~ .*ARCH.* ]]
 then 
