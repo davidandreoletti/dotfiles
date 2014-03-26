@@ -99,6 +99,9 @@ let g:syntastic_warning_symbol='⚠'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 
+" Show a VCS diff using Vim's sign column. 
+Bundle 'mhinz/vim-signify'
+
 " Class outliner
 if vundleInstallRequired
    call F_Tagbar_InstallDependencies()
