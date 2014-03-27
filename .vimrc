@@ -108,16 +108,20 @@ if vundleInstallRequired
 endif
 Bundle 'majutsushi/tagbar'
 
-" Powerline - Better status bar
+" Better status bar
 if vundleInstallRequired
    call F_PowerLine_InstallDependencies()
 endif
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Bundle 'Lokaltog/vim-powerline'
 "let g:Powerline_symbols='unicode'
 let g:Powerline_symbols='fancy'
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
+
+Bundle 'bling/vim-airline'
+" Add powerline symbols to vim-airline
+let g:airline_powerline_fonts = 1
 
 " Installing bunldes the first time
 if vundleInstallRequired
