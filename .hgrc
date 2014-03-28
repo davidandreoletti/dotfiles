@@ -6,6 +6,7 @@ color =
 progress = 
 purge = 
 rebase = 
+shelve =
 
 [pager]
 pager = LESS='FSRX' less
