@@ -96,8 +96,7 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 
 " Convenient way to quickly reach buffers/files/commands/bookmarks/tags
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+Bundle 'kien/ctrlp.vim'
 
 " Show a VCS diff using Vim's sign column. 
 Bundle 'mhinz/vim-signify'
