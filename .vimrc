@@ -123,6 +123,11 @@ Bundle 'bling/vim-airline'
 " Add powerline symbols to vim-airline
 let g:airline_powerline_fonts = 1
 
+" Org-mod for vim
+Bundle 'jceb/vim-orgmode'
+" Dependencies for org-mode
+Bundle 'tpope/vim-speeddating'
+
 " Installing bunldes the first time
 if vundleInstallRequired
    call F_Vundle_InstallBundles()
