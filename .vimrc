@@ -72,6 +72,9 @@ Bundle 'wikitopian/hardmode'
 " Color schemes
 Bundle 'flazz/vim-colorschemes'
 
+" Make gvim-only colorscheme work transparently in vim terminal
+Bundle 'vim-scripts/CSApprox'
+
 " File Explorer
 Bundle 'scrooloose/nerdtree'
 
