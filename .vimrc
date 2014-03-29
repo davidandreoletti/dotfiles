@@ -127,6 +127,10 @@ Bundle 'jceb/vim-orgmode'
 " Dependencies for org-mode
 Bundle 'tpope/vim-speeddating'
 
+" Display vertical thin lines at each indentation level for code indented with
+" spaces
+Bundle 'Yggdroot/indentLine'
+
 " Installing bunldes the first time
 if vundleInstallRequired
    call F_Vundle_InstallBundles()
