@@ -131,6 +131,9 @@ Bundle 'tpope/vim-speeddating'
 " spaces
 Bundle 'Yggdroot/indentLine'
 
+" Rename a buffer within Vim and on the disk
+Bundle 'danro/rename.vim'
+
 " Installing bunldes the first time
 if vundleInstallRequired
    call F_Vundle_InstallBundles()
