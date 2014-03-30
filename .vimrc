@@ -160,6 +160,9 @@ Bundle 'leshill/vim-json'
 " Zoom in/out window
 Bundle 'vim-scripts/ZoomWin'
 
+" Support for Objective-C/Cocoa dev
+Bundle 'msanders/cocoa.vim'
+
 " Installing bunldes the first time
 if vundleInstallRequired
    call F_Vundle_InstallBundles()
