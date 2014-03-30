@@ -72,6 +72,10 @@ Bundle 'wikitopian/hardmode'
 " Ease motions
 Bundle 'Lokaltog/vim-easymotion'
 
+" Operations on surroundings
+" parentheses, brackets, quotes, XML tags, and more
+Bundle 'tpope/vim-surround'
+
 " Color schemes
 Bundle 'flazz/vim-colorschemes'
 
