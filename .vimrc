@@ -134,6 +134,9 @@ Bundle 'tpope/vim-speeddating'
 " spaces
 Bundle 'Yggdroot/indentLine'
 
+" Sublime Text's muliple selection
+Bundle 'terryma/vim-multiple-cursors'
+
 " Rename a buffer within Vim and on the disk
 Bundle 'danro/rename.vim'
 
