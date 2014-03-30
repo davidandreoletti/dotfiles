@@ -69,6 +69,9 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "perso/snippets"]
 " Master Vim's advanced motion and search
 Bundle 'wikitopian/hardmode'
 
+" Ease motions
+Bundle 'Lokaltog/vim-easymotion'
+
 " Color schemes
 Bundle 'flazz/vim-colorschemes'
 
