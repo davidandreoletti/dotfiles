@@ -92,6 +92,9 @@ Bundle 'scrooloose/nerdtree'
 " Commenting
 Bundle 'scrooloose/nerdcommenter'
 
+" Align things
+Bundle 'godlygeek/tabular'
+
 " Syntastic
 " C++/C/X*ML/JSON .. syntax checking plugin
 Bundle "scrooloose/syntastic"
