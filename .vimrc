@@ -154,6 +154,9 @@ Bundle 'terryma/vim-multiple-cursors'
 " Rename a buffer within Vim and on the disk
 Bundle 'danro/rename.vim'
 
+" Support for JSON syntax highlighting
+Bundle 'leshill/vim-json'
+
 " Installing bunldes the first time
 if vundleInstallRequired
    call F_Vundle_InstallBundles()
