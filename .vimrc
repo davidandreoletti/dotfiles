@@ -157,6 +157,9 @@ Bundle 'danro/rename.vim'
 " Support for JSON syntax highlighting
 Bundle 'leshill/vim-json'
 
+" Zoom in/out window
+Bundle 'vim-scripts/ZoomWin'
+
 " Installing bunldes the first time
 if vundleInstallRequired
    call F_Vundle_InstallBundles()
