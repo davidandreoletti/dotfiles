@@ -30,6 +30,7 @@
 "    -> Match pairs
 "    -> Scrolling
 "    -> Performance
+"    -> Undo
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -75,6 +76,9 @@ Bundle 'Lokaltog/vim-easymotion'
 " Operations on surroundings
 " parentheses, brackets, quotes, XML tags, and more
 Bundle 'tpope/vim-surround'
+
+" Visualize Vim Undo Tree
+Bundle 'sjl/gundo.vim'
 
 " Color schemes
 Bundle 'flazz/vim-colorschemes'
@@ -253,6 +257,8 @@ set wildmode=list:longest
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F2> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
+nnoremap <F5> :GundoToggle<CR>
+
 " Disable (temporary) all auto indenting/expansion
 set pastetoggle=<F3>
 
@@ -427,3 +433,10 @@ set scrolloff=3
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Don't update the display while executing macros
 set lazyredraw
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gundo_width = 60
+let g:gundo_preview_height = 15
+let g:gundo_preview_bottom = 1
