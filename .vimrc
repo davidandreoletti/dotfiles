@@ -180,8 +180,9 @@ set undolevels=1000
 " Line numbers
 set nu
 
-"remap leaderkey to ,
+" Map *leaderkeys
 :let mapleader = ","
+:let maploacalleader = "\\"
 
 " Hides buffer instead of closing them
 " Consequence: you can have unwritten changes to a file and open
