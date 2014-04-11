@@ -30,6 +30,7 @@
 "    -> Match pairs
 "    -> Scrolling
 "    -> Performance
+"    -> Undo
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -69,14 +70,30 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "perso/snippets"]
 " Master Vim's advanced motion and search
 Bundle 'wikitopian/hardmode'
 
+" Ease motions
+Bundle 'Lokaltog/vim-easymotion'
+
+" Operations on surroundings
+" parentheses, brackets, quotes, XML tags, and more
+Bundle 'tpope/vim-surround'
+
+" Visualize Vim Undo Tree
+Bundle 'sjl/gundo.vim'
+
 " Color schemes
 Bundle 'flazz/vim-colorschemes'
+
+" Make gvim-only colorscheme work transparently in vim terminal
+Bundle 'vim-scripts/CSApprox'
 
 " File Explorer
 Bundle 'scrooloose/nerdtree'
 
 " Commenting
 Bundle 'scrooloose/nerdcommenter'
+
+" Align things
+Bundle 'godlygeek/tabular'
 
 " Syntastic
 " C++/C/X*ML/JSON .. syntax checking plugin
@@ -96,8 +113,7 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 
 " Convenient way to quickly reach buffers/files/commands/bookmarks/tags
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+Bundle 'kien/ctrlp.vim'
 
 " Show a VCS diff using Vim's sign column. 
 Bundle 'mhinz/vim-signify'
@@ -123,6 +139,30 @@ Bundle 'bling/vim-airline'
 " Add powerline symbols to vim-airline
 let g:airline_powerline_fonts = 1
 
+" Org-mod for vim
+Bundle 'jceb/vim-orgmode'
+" Dependencies for org-mode
+Bundle 'tpope/vim-speeddating'
+
+" Display vertical thin lines at each indentation level for code indented with
+" spaces
+Bundle 'Yggdroot/indentLine'
+
+" Sublime Text's muliple selection
+Bundle 'terryma/vim-multiple-cursors'
+
+" Rename a buffer within Vim and on the disk
+Bundle 'danro/rename.vim'
+
+" Support for JSON syntax highlighting
+Bundle 'leshill/vim-json'
+
+" Zoom in/out window
+Bundle 'vim-scripts/ZoomWin'
+
+" Support for Objective-C/Cocoa dev
+Bundle 'msanders/cocoa.vim'
+
 " Installing bunldes the first time
 if vundleInstallRequired
    call F_Vundle_InstallBundles()
@@ -140,8 +180,9 @@ set undolevels=1000
 " Line numbers
 set nu
 
-"remap leaderkey to ,
+" Map *leaderkeys
 :let mapleader = ","
+:let maploacalleader = "\\"
 
 " Hides buffer instead of closing them
 " Consequence: you can have unwritten changes to a file and open
@@ -229,14 +270,14 @@ set wildmode=list:longest
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F2> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
+nnoremap <F5> :GundoToggle<CR>
+
 " Disable (temporary) all auto indenting/expansion
 set pastetoggle=<F3>
 
 " Force to master Vim's advanced motion and search functionnality 
 " by disabling arrow keys, hjkl keys, page up/down  and others
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-nnoremap <leader>h <Esc>:call EasyMode()<CR>
-nnoremap <leader>H <Esc>:call HardMode()<CR>
 
 " Get efficient with most vim commands
 " Eg: :w    becomes ;w
@@ -405,3 +446,10 @@ set scrolloff=3
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Don't update the display while executing macros
 set lazyredraw
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gundo_width = 60
+let g:gundo_preview_height = 15
+let g:gundo_preview_bottom = 1
