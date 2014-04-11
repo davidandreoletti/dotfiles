@@ -3,42 +3,64 @@
 
 
 *mycs*
+
+Important mappings
+------------------
 :map			List mapped keys
-f{char} 		Go to next {char}
-t{cahr}			Go to char before {char}
-vf{char}		Select from current cursor position to next {char}
 ;			Repeat last command
 /			Search
-:ls			Buffer List
 
-# Text Objects (Define block of text)
+Text Objects 
+------------
+
+    Examples
+    --------
 a"			Select everything in "double quotes (double quote included)"
 a]					  in [block bracked included] 
 at					  in tags
 i"			Select everything in double quotes (except double quotes themselves)
 
-gf			Go to file under cursor
-gg          Move cursor to the begin of the file
-==          Re-Indent the line
-G           Move cursor to the end of the file
-gg=G        Re-indent the whole file
+Motions
+-------
 
-
-
-Motion basics
--------------
+    Motion basics
+    -------------
 
        ^
        |
 <- h j k l ->
      |
      v
+    
+    Character motions
+    -----------------
+f{char} 		Go to next {char}
+t{cahr}			Go to char before {char}
+
+    File motions
+    ------------
+G           Move cursor to the end of the file
+gg          Move cursor to the begin of the file
+gf			Go to file under cursor
+
+Operation with motions
+----------------------
+
+    Selections
+    ----------
+vf{char}		Select from current cursor position to next {char}
 
 Buffers
 -------
 
+    Switching buffer focus
+    ----------------------
 Ctrl-^      Switch to alternate buffer - :ls shows it with buffer with # sign
 :bn / :bp   Next or previous buffer
+    
+    Buffer list management
+    ----------------------
+:ls			Buffer List
 :e!         Restore original file into hidden buffer
 :bd!        Remove hidden buffer from buffer list
 
@@ -75,5 +97,14 @@ ctrl-w +                Increase height by 1 line
 ctrl-w -                Decrease height by 1 line
 ctrl-w _                Max height for active window 
 ctrl-w |                Max width for active window 
+
+Formatting
+----------
+
+    Examples
+    --------
+
+==          Re-Indent the line
+gg=G        Re-indent the whole file
 
 
