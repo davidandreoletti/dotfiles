@@ -1,5 +1,3 @@
-dotfiles
-
 ABOUT
 =====
 
@@ -8,31 +6,39 @@ dotfiles contains numerous configuration files.
 MOTIVATION:
 ===========
 
-Configuration files used to customize my workflow.
+I have custom settings for various softwares I used everyday. 
 
 INSTALLATION:
 =============
 
-The bootstrapper script will pull in the latest version and copy the files to your home folder.
+Git based installation
+----------------------
 
-git clone https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh
+This one liner clones this repository and install the files in your HOME dir.
+
+    git clone https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh
+
 To update, cd into your local dotfiles repository and then:
 
-source bootstrap.sh
-Alternatively, to update while avoiding the confirmation prompt:
+    git pull && source bootstrap.sh
 
-set -- -f; source bootstrap.sh
-Git-free install
+Alternatively, to update without confirmation prompt:
 
-To install these dotfiles without Git:
+    git pull; set -- -f; source bootstrap.sh
 
-cd; curl -#L https://github.com/davidandreoletti/dotfiles.git/tarball/master | tar -xzv --strip-components 1 --exclude={README.rst,bootstrap.sh}
+Git free installation
+---------------------
+
+This one liner get a copy of the master branch and install the files in your HOME dir.
+
+    cd; curl -#L https://github.com/davidandreoletti/dotfiles.git/tarball/master | tar -xzv --strip-components 1 --exclude={README.rst,bootstrap.sh}
+
 To update later on, just run that command again.
 
 DOCUMENTATION
 =============
 
-Files are fully documented.e
+Files are fully documented.
 
 SOURCE
 ======
