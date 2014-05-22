@@ -10,7 +10,7 @@ colorscheme zenburn
 "set activate=addons,bookmarks,diverted,extoptions,help,homepage,quickmark
 
 " pentadactyl gui options
- set go=rbCsn
+ set go=rbCsnT
 
 " Show destination links in 1=status line, 2=command line
 " set showstatuslinks=2
