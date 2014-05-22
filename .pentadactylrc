@@ -1,0 +1,53 @@
+" Inspired from:
+" https://github.com/kylpo/dot-files/blob/master/.pentadactylrc
+
+" Turn off auto-autocompletion (press tab to see autocompletions)
+set autocomplete=
+
+colorscheme zenburn
+
+" determine which tabs open with focus
+"set activate=addons,bookmarks,diverted,extoptions,help,homepage,quickmark
+
+" pentadactyl gui options
+ set go=rbCsn
+
+" Show destination links in 1=status line, 2=command line
+" set showstatuslinks=2
+
+" Show the tab bar only if more then one tab is open
+"set showtabline=multitab
+
+" Download sort order
+set downloadsort=+active,+complete,+filename,+speed,+size
+
+" Focus content after a page has loaded
+"set focuscontent
+
+"set hintkeys='asdfjlk;qwertyuiopzxcvbnm'
+
+set newtab=all
+
+" Enable gmail-specific keybindings (disabled because this can bypassed with <C-Z>)
+"autocmd LocationChange .* :js modes.passAllKeys = /mail\.google\.com|www\.google\.com\/reader\/view/.test(buffer.URL)
+
+" ******************************************************************************
+"set passkeys=
+
+" Gmail
+set passkeys+=mail.google.com:jk<CR>,gi
+
+" Google Calendar
+set passkeys+="https://www\.google\.com/calendar":jkgt12345qrcnp
+
+" Github
+set passkeys+=github.com:t
+
+
+" Noscript
+map <C-c>s :noscript toggletemp<CR>
+map <C-c>S :noscript popup<CR>
+
+" TinyURL
+" map <C-c>t :exe ":tinyurl "+getBrowser().contentWindow.location.href<CR>
+
