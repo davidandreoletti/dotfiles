@@ -41,7 +41,7 @@ then
 else
     # Java
     # PPA: ppa:webupd8team/java
-    export JAVA_HOME=/usr/lib/jvm/java-6-oracle
+    export JAVA_HOME=/usr/lib/jvm/java-7-oracle
     export PATH=$PATH:$JAVA_HOME/bin
     # Maven 2.2.1
     export M2_HOME=/toro-vm/applications/apache-software-foundation/maven/maven
