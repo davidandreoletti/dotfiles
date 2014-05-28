@@ -1,0 +1,23 @@
+################################# Home ####################################
+
+if [[ "`uname -a`" =~ .*Darwin.* ]]
+then 
+    #
+    # Mac 
+    #
+
+    # Gradle 
+    export GRADLE_HOME=/Volumes/Macintosh/Applications/gradle
+    export PATH=$PATH:$GRADLE_HOME/bin
+
+    # Android NDK
+    export ANDROID_NDK_ROOT=/Volumes/Macintosh/Applications/android-ndk
+
+    # Android SDK
+    export ANDROID_HOME=/Volumes/Macintosh/Applications/android-sdk-macosx
+    export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+    #Repo tool for Android
+    #export PATH=/toro-vm/bin/google/android/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+else
+    # Nothing
+fi
