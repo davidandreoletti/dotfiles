@@ -25,3 +25,6 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # correction
 #setopt correctall
+
+# Searh history as in Bash with Ctrl-R 
+bindkey '^R' history-incremental-search-backward
