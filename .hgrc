@@ -8,6 +8,8 @@ purge =
 rebase = 
 shelve =
 histedit =
+mq =
+strip =
 
 [pager]
 pager = LESS='FSRX' less
