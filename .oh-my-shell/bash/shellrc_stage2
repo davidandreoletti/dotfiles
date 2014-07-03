@@ -2,9 +2,11 @@
 shopt -s histappend
 export PROMPT_COMMAND='history -a'
 HISTCONTROL=ignoreboth
-HISTSIZE=2000
+HISTSIZE=10000
 HISTFILESIZE=$HISTSIZE
 HISTTIMEFORMAT='%F %T%t'
+HISTFILE=$HOME/.bash_history
+
 # Enable vi key binding
 # http://www.techrepublic.com/blog/linux-and-open-source/using-vi-key-bindings-in-bash-and-zsh/
 set -o vi
