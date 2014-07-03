@@ -55,9 +55,19 @@ function check_()
 cut -f1 -d" " $1 | sort | uniq -c | sort -nr | head -n 30
 }
 alias mybashusage='check_ ~/.bash_history'
+alias myzshusage='check_ ~/.zsh_history'
 
-# Finds directory sizes and lists them for the current directory
-function dirsize()
+# ff:  to find a file under the current directory
+ff () { find . -name "$@" ; }
+
+# grepfind: to grep through files found by find, e.g. grepf pattern '*.c'
+# note that 'grep -r pattern dir_name' is an alternative if want all files 
+ffwithPattern_() { find . -type f -name "$2" -print0 | xargs -0 grep "$1" ; }
+# I often can't recall what I named this alias, so make it work either way: 
+alias ffp='ffwithPattern_'
+
+## Finds directory sizes and lists them for the current directory
+function dirsize_()
 {
 du -shx * .[a-zA-Z0-9_]* 2> /dev/null | \
 egrep '^ *[0-9.]*[MG]' | sort -n > /tmp/list
@@ -65,7 +75,7 @@ egrep '^ *[0-9.]*M' /tmp/list
 egrep '^ *[0-9.]*G' /tmp/list
 rm /tmp/list
 }
-alias dirsize='dirsize'
+alias dirsize='dirsize_'
 
 # Get http headers
 function http_headers() { /usr/bin/curl -I -L $@ ; }
