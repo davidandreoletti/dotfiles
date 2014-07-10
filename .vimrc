@@ -177,8 +177,10 @@ set history=1000
 " As many undo as history
 set undolevels=1000
 
-" Line numbers
-set nu
+" Absolute Line numbers
+set number 
+" Relative Line numbers
+set relativenumber
 
 " Map *leaderkeys
 :let mapleader = ","
