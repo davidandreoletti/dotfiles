@@ -68,7 +68,12 @@ Bundle 'SirVer/ultisnips'
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "perso/snippets"]
 
 " Master Vim's advanced motion and search
-Bundle 'wikitopian/hardmode'
+Bundle 'takac/vim-hardtime'
+let g:list_of_normal_keys = [ "h", "j", "k", "l", "-", "+" ]
+let g:list_of_visual_keys = [ "h", "j", "k", "l", "-", "+" ]
+let g:hardtime_maxcount = 1
+let g:hardtime_allow_different_key = 1
+let g:hardtime_timeout = 1000
 
 " Ease motions
 Bundle 'Lokaltog/vim-easymotion'
@@ -278,8 +283,8 @@ nnoremap <F5> :GundoToggle<CR>
 set pastetoggle=<F3>
 
 " Force to master Vim's advanced motion and search functionnality 
-" by disabling arrow keys, hjkl keys, page up/down  and others
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+" by disabling some/all arrow keys, hjkl keys, page up/down  and others
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardTimeOn()
 
 " Get efficient with most vim commands
 " Eg: :w    becomes ;w
@@ -313,6 +318,28 @@ map <C-k> 3<C-w>-
 
 " Search and replace selected text in VISUAL mode
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+" Disable PageUp/PageDown and arrow keys 
+nnoremap <buffer> <Left> <nop> 
+nnoremap <buffer> <Right> <nop> 
+nnoremap <buffer> <Up> <nop> 
+nnoremap <buffer> <Down> <nop> 
+nnoremap <buffer> <PageUp> <nop> 
+nnoremap <buffer> <PageDown> <nop> 
+
+inoremap <buffer> <Left> <nop> 
+inoremap <buffer> <Right> <nop> 
+inoremap <buffer> <Up> <nop> 
+inoremap <buffer> <Down> <nop> 
+inoremap <buffer> <PageUp> <nop> 
+inoremap <buffer> <PageDown> <nop> 
+
+vnoremap <buffer> <Left> <nop> 
+vnoremap <buffer> <Right> <nop> 
+vnoremap <buffer> <Up> <nop> 
+vnoremap <buffer> <Down> <nop> 
+vnoremap <buffer> <PageUp> <nop> 
+vnoremap <buffer> <PageDown> <nop> 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabs and indents
