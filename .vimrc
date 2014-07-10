@@ -168,6 +168,9 @@ Bundle 'vim-scripts/ZoomWin'
 " Support for Objective-C/Cocoa dev
 Bundle 'msanders/cocoa.vim'
 
+" Show vim's marks
+Bundle 'kshenoy/vim-signature'
+
 " Installing bunldes the first time
 if vundleInstallRequired
    call F_Vundle_InstallBundles()
