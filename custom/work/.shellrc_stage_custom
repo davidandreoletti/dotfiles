@@ -72,4 +72,7 @@ else
     # Gradle 
     export GRADLE_HOME=/toro-vm/applications/gradle/gradle
     export PATH=$PATH:$GRADLE_HOME/bin
+
+    # CMake
+    export PATH=$PATH:~/toro-vm/applications/cmake/cmake-2.8.12.2-Darwin64-universal/CMake\ 2.8-12.app/Contents/bin
 fi
