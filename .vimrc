@@ -331,26 +331,12 @@ map <C-k> 3<C-w>-
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " Disable PageUp/PageDown and arrow keys 
-nnoremap <buffer> <Left> <nop> 
-nnoremap <buffer> <Right> <nop> 
-nnoremap <buffer> <Up> <nop> 
-nnoremap <buffer> <Down> <nop> 
-nnoremap <buffer> <PageUp> <nop> 
-nnoremap <buffer> <PageDown> <nop> 
-
-inoremap <buffer> <Left> <nop> 
-inoremap <buffer> <Right> <nop> 
-inoremap <buffer> <Up> <nop> 
-inoremap <buffer> <Down> <nop> 
-inoremap <buffer> <PageUp> <nop> 
-inoremap <buffer> <PageDown> <nop> 
-
-vnoremap <buffer> <Left> <nop> 
-vnoremap <buffer> <Right> <nop> 
-vnoremap <buffer> <Up> <nop> 
-vnoremap <buffer> <Down> <nop> 
-vnoremap <buffer> <PageUp> <nop> 
-vnoremap <buffer> <PageDown> <nop> 
+noremap <buffer> <Left> <Nop>
+noremap <buffer> <Right> <Nop>
+noremap <buffer> <Up> <Nop>
+noremap <buffer> <Down> <Nop>
+noremap <buffer> <PageUp> <Nop>
+noremap <buffer> <PageDown> <Nop>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabs and indents
