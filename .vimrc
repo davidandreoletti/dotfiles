@@ -116,6 +116,14 @@ let g:syntastic_enable_highlighting=1
 " Syntastic custom error symbols according to error type
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
+" C++ setup: https://github.com/scrooloose/syntastic/wiki/C--%3A---gcc
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_no_include_search = 1
+let g:syntastic_cpp_no_default_include_dirs = 1
+let g:syntastic_cpp_auto_refresh_includes = 1
+let g:syntastic_cpp_compiler_options = '-std=c++11'
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_compiler = 'clang++'
 
 " Convenient way to quickly reach buffers/files/commands/bookmarks/tags
 Bundle 'kien/ctrlp.vim'
