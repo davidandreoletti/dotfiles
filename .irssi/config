@@ -38,6 +38,7 @@ channels = (
   { name = "#iphonedev"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#mutt"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#vim"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#coscup"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#tested"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 
