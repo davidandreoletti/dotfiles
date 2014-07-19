@@ -101,6 +101,13 @@ settings = {
   theme = "greenbox";
   "fe-text" = { actlist_sort = "refnum"; };
   "fe-common/core" = { show_names_on_join = "no"; theme = "greenbox"; };
+  autolog = "yes";
+  autolog_path = "~/irclogs/$tag/$0.log";
+  log_timestamp = "%H:%M:%S ";
+  autolog_level = "all -crap -clientcrap -ctcps" ;
+  autolog_colors = "no";
+  awaylog_level = "msgs hilight ";
+  awaylog_file = "~/irclogs/irclogsaway.log ";
 };
 
 ignores = ( { level = "JOINS PARTS QUITS"; } );
