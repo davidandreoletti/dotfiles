@@ -30,6 +30,7 @@ chatnets = {
   };
 };
 channels = (
+  { name = "##C"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "##C++"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "##objc"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "##macdev"; chatnet = "Freenode"; autojoin = "yes"; },
