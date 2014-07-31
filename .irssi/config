@@ -39,8 +39,9 @@ channels = (
   { name = "#iphonedev"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#mutt"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#vim"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#coscup"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#tested"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#cocos2d-x"; chatnet = "Freenode"; autojoin = "no"; },
+  { name = "##cocos2d-x"; chatnet = "Freenode"; autojoin = "no"; },
+  { name = "#coscup"; chatnet = "Freenode"; autojoin = "no"; }
 );
 
 aliases = {
