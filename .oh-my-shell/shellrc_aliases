@@ -49,6 +49,8 @@ alias hgsm='hg summary'
 alias hgst='hg status'
 alias hglg='hg log -G --template "{rev}:{node}:{branch}\n{author}\n{desc|firstline}\n\n" | more'
 
+alias telnet-big5='luit -encoding big5 telnet'
+
 # Bash Usages
 function check_()
 {
