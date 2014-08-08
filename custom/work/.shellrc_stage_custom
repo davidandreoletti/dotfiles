@@ -75,4 +75,5 @@ else
 
     # CMake
     export PATH=$PATH:~/toro-vm/applications/cmake/cmake-2.8.12.2-Darwin64-universal/CMake\ 2.8-12.app/Contents/bin
+    export PATH=$PATH:/toro-vm/applications/kitware/cmake/bin
 fi
