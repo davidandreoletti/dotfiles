@@ -1,6 +1,7 @@
 [core]
     fileMode = true
     editor = vim
+    exculdesfile = ~/.gitignore-global-custom
 
 [color]
     ui = true
