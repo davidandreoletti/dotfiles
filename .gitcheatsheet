@@ -1,0 +1,7 @@
+# Permanently remove FOO/BAR folder from a git repository (and tree history)
+# src: http://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-git-repo
+
+git filter-branch --tree-filter 'rm -rf FOO/BAR' HEAD
+
+# Remove all .DS_Stores from the git working directory
+find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch
