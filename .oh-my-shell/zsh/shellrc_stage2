@@ -8,7 +8,7 @@ SAVEHIST=$HISTSIZE
 HISTFILE=$HOME/.zsh_history
 
 # Enable vi key binding
-# http://www.techrepublic.com/blog/linux-and-open-source/using-vi-key-bindings-in-bash-and-zsh/
+# http://usevim.com/2013/10/09/vim-zsh/
 bindkey -v
 
 # Use modern completion system
