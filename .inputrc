@@ -1,3 +1,6 @@
+# Include default distribution customization
+$include /etc/inputrc
+
 # Set vi editing mode
 # (bash, etc)
 set editing-mode vi
