@@ -1,5 +1,7 @@
-* TODO Working winth system clipboard -> copy tmux buffer to system clipboard
-** TODO http://blog.joncairns.com/2013/06/copying-between-tmux-buffers-and-the-system-clipboard/
-*** TODO pbcopy/xclip ->  http://jetpackweb.com/blog/2009/09/23/pbcopy-in-ubuntu-command-line-clipboard/
-**** TODO Write code to detect code and provide OS name as environemnt var
-***** TODO platform detection -> http://stackoverflow.com/questions/394230/detect-the-os-from-a-bash-script
+* TODO:
+* DONE:
+** DONE Working winth system clipboard -> copy tmux buffer to system clipboard
+*** DONE http://blog.joncairns.com/2013/06/copying-between-tmux-buffers-and-the-system-clipboard/
+*** DONE pbcopy/xclip ->  http://jetpackweb.com/blog/2009/09/23/pbcopy-in-ubuntu-command-line-clipboard/
+**** DONE Write code to detect code and provide OS name as environemnt var
+***** DONE platform detection -> http://stackoverflow.com/questions/394230/detect-the-os-from-a-bash-script
