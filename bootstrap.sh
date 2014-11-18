@@ -38,7 +38,7 @@ git pull
 function doIt() {
 	chmod -R 700 .
     echo -n "$USER's "; chsh -s $(which $SHELLTYPE)
-	rsync --exclude ".git/" --exclude "custom/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.rst" -av . ~
+	rsync --exclude ".git/" --exclude "custom/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude ".TODO.org" --exclude "README.rst" -av . ~
         local p="custom/${DOTFILESSETUPTYPE}"
 	cd "${p}" && rsync  -av . ~ && cd - || echo "Cannot find ${p}. Exit." && exit
 }
