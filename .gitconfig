@@ -35,8 +35,14 @@
     # This is the opposite of git dflc
     df = diff
 
-    # Shows incoming commits
-    incoming = !git fetch && git log ..origin/master
+    # Shows incoming commits for current branch only
+    incoming = !(git fetch --quiet && git log ..$(git rev-parse --abbrev-ref --symbolic-full-name @{u})) 
+    # Shows incoming commits for all branchs 
+    incomingall = !git log --remotes=origin --not --branches
+    # Shows outgoing commits for current branch only
+    outgoing = !(git fetch --quiet && git log $(git rev-parse --abbrev-ref --symbolic-full-name @{u})..)
+    # Shows outgoing commits for all branches 
+    outgoingall = !git log --branches --not --remotes=origin
 [include]
     # Requires git 1.7.10+
     path = .gitconfig-custom
