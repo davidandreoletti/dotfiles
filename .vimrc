@@ -176,6 +176,10 @@ Bundle 'vim-scripts/ZoomWin'
 " Support for Objective-C/Cocoa dev
 Bundle 'msanders/cocoa.vim'
 
+" Character encoding value
+" (improves over :ga)
+Bundle 'tpope/vim-characterize'
+
 " Show vim's marks
 Bundle 'kshenoy/vim-signature'
 
