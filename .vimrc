@@ -3,41 +3,11 @@
 "       David Andreoletti
 "       http://davidandreoletti.com
 "
-" Sections:
-"    -> Vundle
-"    -> Bundles
-"    -> General
-"    -> VIM UI
-"    -> Colors and Fonts
-"    -> Syntax
-"    -> Backup/Swap
-"    -> File tree
-"    -> Completion
-"    -> Mapping
-"    -> Tabs and indents 
-"    -> Visual mode
-"    -> Normal mode
-"    -> Motions
-"    -> Status line
-"    -> Search
-"    -> Spell checking
-"    -> Misc
-"    -> Mouse
-"    -> Helper functions
-"    -> Help
-"    -> File type
-"    -> Hidden characters
-"    -> Match pairs
-"    -> Scrolling
-"    -> Performance
-"    -> Undo
-"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" Custom VIM functions {{{
 source $HOME/.vim/perso/vim/vimrc-functions.vim
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle
+"}}}
+" Vundle{{{
 " Setup: https://github.com/gmarik/vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Forget being compatible with good ol' vi
@@ -56,9 +26,8 @@ call vundle#rc()
 
 " Let Vundle manage Vundle required! 
 Bundle 'gmarik/vundle'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Bundles
+"}}}
+" Bundles{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Doxygen
 Bundle 'vim-scripts/DoxygenToolkit.vim'
@@ -187,9 +156,8 @@ Bundle 'kshenoy/vim-signature'
 if vundleInstallRequired
    call F_Vundle_InstallBundles()
 endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
+"}}}
+" General{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=1000
@@ -249,9 +217,8 @@ function! F_Toggle80thColumnMark()
     endif
 endfunction
 call F_Toggle80thColumnMark()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM UI
+"}}}
+" VIM UI{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Show matching brackets when text indicator is over them
 set showmatch
@@ -271,9 +238,8 @@ set cmdheight=2
 " Change terminal's title
 set title
 set titlestring=VIM:\ %-25.55F\ %a%r%m titlelen=70
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors and Fonts
+"}}}
+" Colors and Fonts{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " How to advertize terminal color properly ?
 " - term vs t_Co:
@@ -289,38 +255,34 @@ set titlestring=VIM:\ %-25.55F\ %a%r%m titlelen=70
 " Color scheme
 " Preview of available color schemes for Java/C/Latex: https://code.google.com/p/vimcolorschemetest/
 colorscheme torte
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntax
+"}}}
+" Syntax{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn on that syntax highlighting
 syntax on
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Backup/Swap 
+"}}}
+" Backup/Swap{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Move swap files and backup to central location
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => File tree
+"}}}
+" File tree{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Open a NERDTree automatically when vim starts up if no files 
 " were specified 
 autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Completion
+"}}}
+" Completion{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Make file/command completion useful
 set wildmenu
 set wildmode=list:longest
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Mapping
+"}}}
+" Mapping{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F2> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
@@ -373,9 +335,8 @@ noremap <buffer> <Up> <Nop>
 noremap <buffer> <Down> <Nop>
 noremap <buffer> <PageUp> <Nop>
 noremap <buffer> <PageDown> <Nop>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Tabs and indents
+"}}}
+" Tabs and indents{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tab is now 4 spaces (unless filetype specific)
 set tabstop=4
@@ -398,27 +359,13 @@ set smarttab
 
 " Expand tabs into spaces
 set expandtab
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Visual mode
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Normal mode
+"}}}
+" Normal mode{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Intuitive backspacing
 set backspace=indent,eol,start
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Motion
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Status line
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Search
+"}}}
+" Search{{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Hightlight search results
 set hlsearch
@@ -432,33 +379,18 @@ set ignorecase
 " Ignore case if search pattern is all lowercase, case-sensitive 
 " otherwise
 set smartcase
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Mouse
+"}}}
+" Mouse{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable mouse support for all modes
 set mouse=a
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Help
+"}}}
+" Help{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load custom helps file (such as  my cheatsheet)
 :helptags ~/.vim/doc
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => File type
+"}}}
+" File type{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use Unix as the standard file type
 set ffs=unix,mac,dos
@@ -473,50 +405,40 @@ filetype plugin indent on
 " Set doxygen tags according to filetype
 autocmd FileType cpp,c,h,hpp,m,mm call F_DoxygenToolKit_SetCPPOrCTags()
 autocmd FileType java call F_DoxygenToolKit_SetJAVATags()
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Hidden characters 
+"}}}
+" Hidden characters{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,trail:·,eol:¬
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Match pair
+"}}}
+" Match pair{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Extends standard vim % to apply to:
 " - whole words: "if" and "endif"
 " - group of more than 2 words : "if", "else", "endif"
 runtime macros/matchit.vim
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => File type
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => File type
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Encryption
+"}}}
+" Encryption{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use blowfish by default
 if has("cryptv")
     set cryptmethod=blowfish
 endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Scrolling
+"}}}
+" Scrolling{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Minimal number of screen lines to keep above and below cursor
 " (vertical scrolling only)
 set scrolloff=3
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Performance 
+"}}}
+" Performance{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Don't update the display while executing macros
 set lazyredraw
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Undo
+"}}}
+" Undo{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gundo_width = 60
 let g:gundo_preview_height = 15
 let g:gundo_preview_bottom = 1
+"}}}
