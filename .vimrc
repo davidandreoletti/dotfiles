@@ -139,6 +139,9 @@ Bundle 'danro/rename.vim'
 " Support for JSON syntax highlighting
 Bundle 'leshill/vim-json'
 
+" Git wrapper
+Bundle 'tpope/vim-fugitive'
+
 " Zoom in/out window
 Bundle 'vim-scripts/ZoomWin'
 
