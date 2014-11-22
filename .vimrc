@@ -147,7 +147,7 @@ set encoding=utf-8 " Necessary to show Unicode glyphs
 
 Bundle 'bling/vim-airline'
 " Add powerline symbols to vim-airline
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 
 " Org-mod for vim
 Bundle 'jceb/vim-orgmode'
