@@ -93,6 +93,37 @@ let g:syntastic_cpp_compiler = 'clang++'
 
 " Convenient way to quickly reach buffers/files/commands/bookmarks/tags
 Bundle 'kien/ctrlp.vim'
+" Default seach mode
+let g:ctrlp_cmd = 'CtrlPMixed'
+" Local working directory
+let g:ctrlp_working_path_mode = 'rwa'
+" Position/Listing order/Reslt Window height
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:15'
+" Jump to openned file (in window) if already openned
+let g:ctrlp_switch_buffer = 'Et'
+" Enable Per session caching
+let g:ctrlp_use_caching = 1
+" Enabled Cross session cahcing
+let g:ctrlp_clear_cache_on_exit = 1
+" Show hidden files
+let g:ctrlp_show_hidden = 1
+" Ignore custom files/dirs
+let g:ctrlp_custom_ignore = {
+            \ 'dir': '\v[\/]\.(git|hg|svn)$',
+            \ 'file': '\v\.(exe|so|dll)$',
+            \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+            \ }
+" Number max of files to scan
+let g:ctrlp_max_files = 0
+" Max number of MRU files
+let g:ctrlp_mruf_max = 1000
+" Show MRU files only relative to current dir
+let g:ctrlp_mruf_relative = 1
+" Save MRU list on vim exiting only
+let g:ctrlp_mruf_save_on_update = 1
+" Enable CTRL-P extensions
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
+            \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
 
 " Show a VCS diff using Vim's sign column. 
 Bundle 'mhinz/vim-signify'
