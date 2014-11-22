@@ -6,6 +6,12 @@
     # http://michael.otacoo.com/linux-2/avoid-escape-characters-in-git/
     pager = "less -r"
 
+[push]
+    # Push CURRENT branch to upstream branch
+    # - works if both branchs have different names or same names
+    # http://longair.net/blog/2011/02/27/an-asymmetry-between-git-pull-and-git-push/
+    default = "upstream"
+
 [color]
     ui = true
 
@@ -46,6 +52,7 @@
     outgoing = !(git fetch --quiet && git log $(git rev-parse --abbrev-ref --symbolic-full-name @{u})..)
     # Shows outgoing commits for all branches 
     outgoingall = !git log --branches --not --remotes=origin
+
 [include]
     # Requires git 1.7.10+
     path = .gitconfig-custom
