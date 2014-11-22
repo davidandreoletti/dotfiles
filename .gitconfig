@@ -53,6 +53,10 @@
     # Shows outgoing commits for all branches 
     outgoingall = !git log --branches --not --remotes=origin
 
+    # Reset 1 file
+    # Usage: git reset1f2orig myfile.txt
+    reset1f2orig = !git checkout HEAD --
+
 [include]
     # Requires git 1.7.10+
     path = .gitconfig-custom
