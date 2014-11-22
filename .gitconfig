@@ -2,6 +2,9 @@
     fileMode = true
     editor = vim
     exculdesfile = ~/.gitignore-global-custom
+    # Set pager to display raw control characters
+    # http://michael.otacoo.com/linux-2/avoid-escape-characters-in-git/
+    pager = "less -r"
 
 [color]
     ui = true
@@ -16,7 +19,7 @@
     graph = log --graph
 
     # log commands
-    lg = !git log --graph --pretty=format:'%C(bold blue)%h%C(reset)∑%C(bold green)%d%C(reset) %C(cyan)%s%C(reset) %C(red)[%an]%C(reset) %C(white)[%cr]%C(reset)' | column -t -s '∑' | more
+    lg = !git log --graph --pretty=format:'%C(bold blue)%h%C(reset)∑%C(bold green)%d%C(reset) %C(cyan)%s%C(reset) %C(red)[%an]%C(reset) %C(white)[%cr]%C(reset)' | column -t -s '∑'
     
     # diff commands
     # http://stackoverflow.com/questions/3293607/difference-between-git-head-and-the-current-project-state
