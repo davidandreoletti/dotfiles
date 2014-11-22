@@ -158,6 +158,9 @@ Bundle 'tpope/vim-speeddating'
 " spaces
 Bundle 'Yggdroot/indentLine'
 
+" Diff swap and content file
+Bundle 'chrisbra/Recover.vim'
+
 " Sublime Text's muliple selection
 Bundle 'terryma/vim-multiple-cursors'
 
