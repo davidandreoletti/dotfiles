@@ -60,9 +60,6 @@ Bundle 'flazz/vim-colorschemes'
 " Make gvim-only colorscheme work transparently in vim terminal
 Bundle 'vim-scripts/CSApprox'
 
-" File Explorer
-Bundle 'scrooloose/nerdtree'
-
 " Commenting
 Bundle 'scrooloose/nerdcommenter'
 
@@ -271,14 +268,6 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 "}}}
-" File tree{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Open a NERDTree automatically when vim starts up if no files 
-" were specified 
-autocmd vimenter * if !argc() | NERDTree | endif
-" Close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-"}}}
 " Completion{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Make file/command completion useful
@@ -287,7 +276,6 @@ set wildmode=list:longest
 "}}}
 " Mapping{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <F2> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
 nnoremap <F5> :GundoToggle<CR>
 
