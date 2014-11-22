@@ -467,3 +467,9 @@ let g:gundo_width = 60
 let g:gundo_preview_height = 15
 let g:gundo_preview_bottom = 1
 "}}}
+" Local vimrc{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if filereadable(".vimrc.local")
+   source .vimrc.local
+endif
+"}}}
