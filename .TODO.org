@@ -5,3 +5,6 @@
 *** DONE pbcopy/xclip ->  http://jetpackweb.com/blog/2009/09/23/pbcopy-in-ubuntu-command-line-clipboard/
 **** DONE Write code to detect code and provide OS name as environemnt var
 ***** DONE platform detection -> http://stackoverflow.com/questions/394230/detect-the-os-from-a-bash-script
+http://blog.sanctum.geek.nz/terminal-annoyances/
+      stty -ixon   // Ctrl+S haha!!!
+      steterm -bfreq 0

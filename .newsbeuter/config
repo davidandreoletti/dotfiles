@@ -1,0 +1,73 @@
+# Articles
+## Sort order
+article-sort-order date-desc
+## Mark read articles
+mark-as-read-on-hover yes 
+## Saved articles location
+save-path ~/.newsbeuter/saved-articles
+## New articles notifications
+notify-beep no 
+notify-xterm yes 
+notify-screen no 
+notify-always no
+## Article List
+articlelist-format "%4i %f %D %6a %?T?;%-17T; ?%t"
+## Ignore articles
+ignore-article "*" "title =~ \"Windows\""
+## Show read progress within articles
+display-article-progress yes
+## Delete read articles on quit
+delete-read-articles-on-quit yes
+
+# Feeds
+## List format
+feedlist-format  "%4i %S %10u %t %> %100d"  
+## Don't show read feeds
+show-read-feeds no 
+## Reloads 
+auto-reload yes
+reload-time 15
+suppress-first-reload no 
+reload-threads 4 
+reload-time 30
+## Go to next unread feed with "next-unread" / "prev-unread"
+goto-next-feed yes
+## Select firt unread article when entering feed
+goto-first-unread yes 
+
+
+
+# Download
+## timeout
+download-timeout 60
+## Get fullpage if only link provided
+download-full-page yes 
+## Retries before giving up
+download-retries 2
+
+
+# History saving
+history-limit 1000 
+
+# Keymaps
+## Show keymaps Hints
+show-keymap-hint yes 
+
+# Date time format
+datetime-format "%Y/%m/%d@%H:%M"
+
+
+# Confirm exit
+confirm-exit no
+
+# Remove superflous feeds/itemns such as feeds not in the urls file
+cleanup-on-quit yes
+
+display-article-progress yes
+download-full-page yes
+
+# error log
+error-log                   "~/.newsbeuter/error.log"
+
+include "~/.newsbeuter/config-highlights"
+include "~/.newsbeuter/config-theme"

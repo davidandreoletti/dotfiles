@@ -1,0 +1,21 @@
+# Highlights
+highlight all "(\c[\+][\+]|java|algorithm|datastructure)" default default underline 
+search-highlight-colors white black bold 
+
+highlight article       "^Feed:.*"                          green   default
+highlight article       "^Title:.*"                         cyan    default bold
+highlight article       "^Author:.*"                        cyan    default
+highlight article       "^Link:.*"                          magenta default
+highlight article       "^Date:.*"                          yellow  default
+highlight article       "^Podcast Download URL:.*"          blue    default bold
+highlight article       "^Links:"                           white   blue    bold
+highlight article       "\\[[0-9][0-9]*\\]"                 green   default bold
+highlight article       "\\[image [0-9][0-9]*\\]"           green   default bold
+highlight article       "\\[embedded flash: [0-9][0-9]*\\]" green   default bold
+highlight article       ":.*\\(link\\)$"                    magenta default
+highlight article       ":.*\\(image\\)$"                   magenta default
+highlight article       ":.*\\(embedded flash\\)$"          magenta default
+
+highlight feedlist      "^  *[0-9]+  *N  *.*"               green   default
+highlight articlelist   "^  *[0-9]+  *N  *.*"               green   default
+
