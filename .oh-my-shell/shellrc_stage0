@@ -3,6 +3,8 @@
 #
 # Import shellrc functions
 source "${SHELLRC_DIR}/shellrc_functions"
+# Import tmux functions
+source "${SHELLRC_DIR}/shellrc_tmux"
 
 # Load shell specific config
 SHELLRC_STAGE0_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc_stage0"

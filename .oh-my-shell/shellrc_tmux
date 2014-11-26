@@ -1,0 +1,41 @@
+# Show news in tmux
+tmux_news_show() {
+    if [ ! -z "$TMUX" ]; then
+        echo "tmux_news_show: Running in tmux session already. News not diplayed to prevent nested tmux sessions"
+        return
+    fi
+
+    local _SNAME=news
+
+    # Session exist ? 
+    tmux attach -t $_SNAME
+    # No session
+    if [[ $? != 0 ]];
+    then
+        tmux start-server
+        # New session with Window 1
+        tmux new-session -s "$_SNAME" -d -n "mail" 'until mutt && false; do sleep 1; done; bash'
+        # Window 2 
+        tmux new-window -t "$_SNAME:2" -n "rss" 'until newsbeuter && false; do sleep 1; done; bash'
+        # Window 3
+        tmux new-window -t "$_SNAME:3" -n "irc" 'until irssi && false; do sleep 1; done; bash'
+
+        # http://stackoverflow.com/questions/5311583/tmux-how-to-make-new-window-stay-when-start-shell-command-quits
+        # Show window in session
+        tmux select-window -t $_SNAME:1
+        tmux attach-session -t $_SNAME
+    fi
+
+    # Keep bash running once initial command finished
+    # src: http://unix.stackexchange.com/questions/17116/prevent-pane-window-from-closing-when-command-completes-tmux
+}
+
+# Hide news in tmux
+tmux_news_hide() {
+    if [ ! -z "$TMUX" ]; then
+        echo "tmux_news_show: Running in tmux session already. News not diplayed to prevent nested tmux sessions"
+        return
+    fi
+    local _SNAME=news
+    tmux kill-session -t $_SNAME
+}
