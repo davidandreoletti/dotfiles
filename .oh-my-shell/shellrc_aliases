@@ -6,17 +6,21 @@
 alias mv='mv -v'
 alias rm='rm -i'
 
-# ls command aliases
-# dumb terminal ? http://en.wikipedia.org/wiki/Computer_terminal
-if [ "$TERM" != "dumb" ]; then
-    if [[ $("uname") == "Darwin" ]]; then  # [[ == ]] required for ZSH: http://www.zsh.org/mla/users/2011/msg00162.html
-       alias ls='ls -G'
-    else
-       eval "`dircolors -b`"
-       alias ls='ls --color=auto'
-    fi
+# Detect which `ls` flavor is in use
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+    colorflag="--color"
+else # OS X `ls`
+    colorflag="-G"
 fi
-alias ll='ls -alh'
+# List all files colorized in long format, including dot files
+alias ll="ls -laHF ${colorflag}"
+# List only directories
+alias lsd="ls -lHF ${colorflag} | grep --color=never '^d'"
+# List files colorized
+alias ls="command ls ${colorflag}"
+
+# tree command alias
+alias tree='tree -aC --dirsfirst "$@" | less -FRNX'
 
 # http://serverfault.com/a/28649
 up(){
