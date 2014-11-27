@@ -43,8 +43,9 @@ duplicate_with_simple_numbering() {
 }
 alias backup="duplicate_with_simple_numbering"
 
-# http://serverfault.com/a/28649
-up(){
+# cd aliases
+## http://serverfault.com/a/28649
+function _cd_up_to_nth_dir {
   local d=""
   limit=$1
   for ((i=1 ; i <= limit ; i++))
@@ -55,9 +56,53 @@ up(){
   if [ -z "$d" ]; then
     d=..
   fi
-  cd $d
+  command cd $d
 }
-alias cd..='up'
+alias up='_cd_up_to_nth_dir'
+alias cd..='_cd_up_to_nth_dir'
+
+## builtin cd equivalent using pushd/popd
+# Behaviour:
+# cd2 - ==> same as builtin cd -
+# cd2 foo ==> same as builtin cd foo
+# cd2 ==> same as builtin cd
+# src: https://gist.github.com/mbadran/130469
+function _cd_pushd {
+    if (("$#" > 0)); then
+        if [ "$1" == "-" ]; then
+            pushd > /dev/null
+        else
+            pushd "$@" > /dev/null
+        fi
+    else
+        cd $HOME
+    fi
+}
+
+function _cd_popd {
+    local number=0
+    if (("$#" > 0)); then
+       number=$1 
+    fi
+
+    local i=0
+    number=$(($number - 1))
+    while [ "$i" -lt "$number" ];
+    do
+        popd > /dev/null
+        i=$(($i + 1))
+    done
+}
+
+## Show current directory stack
+alias cds='dirs -v'
+## Clear directory stack
+alias cdsc='dirs -c'
+## Use cd with pushd
+alias cd='_cd_pushd'
+alias cd-='_cd_pushd -'
+## Use cd with popd
+for i in {1..20}; do alias cd$i="_cd_popd $i"; done
 
 # Compression aliases
 alias xt='unp'
