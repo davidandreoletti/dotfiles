@@ -120,6 +120,9 @@ if [[ "$os_type_name" == "linux" ]]; then
 fi
 unset os_type_name
 
+# Get week number
+alias week='date +%V'
+
 # Maven
 alias mvnjavadoc='mvn javadoc:javadoc'
 
