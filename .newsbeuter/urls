@@ -1,19 +1,32 @@
-http://www.reddit.com/r/macsetups/.rss
-http://news.ycombinator.com/rss
+# C++
 http://www.reddit.com/r/cpp/.rss
 
-http://www.reddit.com/r/REMath/.rss
-http://www.reddit.com/r/compsci/.rss
-
-http://www.reddit.com/r/GetMotivated/.rss
-
-http://www.reddit.com/r/unixporn/.rss
-
-http://www.reddit.com/r/EarthPorn/.rss
-
-http://www.reddit.com/r/science/.rss
-
+# Math/Algorithms/Datastructures
 http://www.geeksforgeeks.org/rss
 http://www.geeksforgeeks.org/category/c-puzzles/feed/
 http://www.geeksforgeeks.org/category/articles/feed/
 http://www.geeksforgeeks.org/category/bit-magic/feed/
+http://www.reddit.com/r/REMath/.rss
+http://www.reddit.com/r/compsci/.rss
+
+# Startup Business/Programming Language
+http://c2.com/cgi/wikiRss?min=200&days=7 "~c2.com"
+
+# Startup Business/Programming/OpenSource
+https://news.ycombinator.com/
+
+# Sports
+http://surf.transworld.net/feed/
+
+# Science
+http://www.reddit.com/r/science/.rss
+
+# Motivation
+http://www.reddit.com/r/GetMotivated/.rss
+
+# Earch - because it is beautiful
+http://www.reddit.com/r/EarthPorn/.rss
+
+# Computer setup
+http://www.reddit.com/r/macsetups/.rss
+http://www.reddit.com/r/unixporn/.rss
