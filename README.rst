@@ -1,7 +1,10 @@
 ABOUT
 =====
 
-dotfiles contains numerous configuration files.
+dotfiles contains:
+
+- custom configuration files.
+- custom script to setup a Mac OS X machine.
 
 MOTIVATION:
 ===========
@@ -14,31 +17,22 @@ INSTALLATION:
 Git based installation
 ----------------------
 
-This one liner clones this repository and install the files in your HOME dir.
+This one liner clones this repository and install configuration files in your HOME dir.
 
-    git clone https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh
+    git clone https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b dotfiles -s perso 
 
 To update, cd into your local dotfiles repository and then:
 
-    git pull && source bootstrap.sh
+    git pull && source bootstrap.sh -b dotfiles -s perso
 
 Alternatively, to update without confirmation prompt:
 
-    git pull; set -- -f; source bootstrap.sh
-
-Git free installation
----------------------
-
-This one liner get a copy of the master branch and install the files in your HOME dir.
-
-    cd; curl -#L https://github.com/davidandreoletti/dotfiles.git/tarball/master | tar -xzv --strip-components 1 --exclude={README.rst,bootstrap.sh}
-
-To update later on, just run that command again.
+    git pull; set -- -f; source bootstrap.sh -b dotfiles -s perso
 
 DOCUMENTATION
 =============
 
-Files are fully documented.
+Execute: bootstrap -h
 
 SOURCE
 ======

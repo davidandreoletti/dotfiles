@@ -1,28 +1,62 @@
 #!/bin/bash
-FORCE_INSTALL=false
-DOTFILESSETUPTYPE="perso" 
-SHELLTYPE="bash"
-while getopts fs:t:h flag; do
+BOOSTRAP_COMMAND=""
+DOTFILES_FORCE_INSTALL=false
+DOTFILES_PROFILE="perso" 
+DOTFILES_DEFAULT_SHELL="bash"
+while getopts b:fs:t:h flag; do
   case $flag in
+    b)
+      BOOSTRAP_COMMAND="$OPTARG";
+      ;;
     f)
-      FORCE_INSTALL=true;
+      DOTFILES_FORCE_INSTALL=true;
       ;;
     s)
-      DOTFILESSETUPTYPE="$OPTARG";
+      DOTFILES_PROFILE="$OPTARG";
       ;;
     t)
-      SHELLTYPE="$OPTARG";
+      DOTFILES_DEFAULT_SHELL="$OPTARG";
       ;;
     h)
-      echo "Help: bootstrap.sh [options]";
+      echo "Help: $0.sh -b [command] [options]";
+      echo ""
+      echo " -h            Show this help."
+      echo ""
+      echo "COMMAND"
+      echo ""
+      echo " macosx       Bootstraps a Mac OS X machine."
+      echo " debian       Bootstraps a Debian/Ubuntu machine"
+      echo " dotfiles     Install dotfiles"
+      echo ""
+      echo "OPTIONS"
+      echo ""
+      echo "  MACOSX OPTIONS"
+      echo ""
+      echo "None"
+      echo ""
+      echo "  DEBIAN OPTIONS"
+      echo ""
+      echo "None"
+      echo ""
+      echo "  DOTFILES OPTIONS"
+      echo ""
       echo " -f         Force install."
-      echo " -s value\t Setup type to install. Valid values (case sensitive): "
+      echo " -s profile\t dotfiles profile to install. Valid values (case sensitive): "
       echo "    work  - For computers at work."
       echo "    perso - For computers at home (default)."
-      echo " -t value\t Shell type to use by default. Valid values (case sensitive): "
+      echo " -t shell\t Shell type to use by default. Valid values (case sensitive): "
       echo "    bash - Bash shell (default)"
       echo "    zsh  - ZSH shell"
-      echo " -h This help."
+      echo ""
+      echo "EXAMPLES"
+      echo ""
+      echo " 0) Install dotfiles"
+      echo ""
+      echo "   $0 -b dotfiles -s perso -t bash"
+      echo ""
+      echo " 1) Bootstraps a MAC OS X machine"
+      echo ""
+      echo "   $0 -b macosx"
       ;;
     ?)
       echo "Unsupported option. Exit."
@@ -33,24 +67,56 @@ done
 
 shift $(( OPTIND - 1 ));
 
-cd "$(dirname "${BASH_SOURCE}")"
-git pull
-function doIt() {
-	chmod -R 700 .
-    echo -n "$USER's "; chsh -s $(which $SHELLTYPE)
-	rsync --exclude ".git/" --exclude "custom/" --exclude "tmp/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude ".TODO.org" --exclude "README.rst" -av . ~
-        local p="custom/${DOTFILESSETUPTYPE}"
-	cd "${p}" && rsync  -av . ~ && cd - || echo "Cannot find ${p}. Exit." && exit
-}
-if [ ${FORCE_INSTALL} == true ]; then
-	doIt
-else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
-	echo
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt
-	fi
-fi
-unset doIt
+# boostrap_*
 
-echo "Read .bashrc_stage0 for installation"
+function check_new_updates() {
+    git pull
+}
+
+function bootstrap_dotfiles() {
+    if [ ${DOTFILES_FORCE_INSTALL} == false ]; then
+        read -p " Warning: some dotfiles will be overwritten. Are you sure? (y/n) " -n 1
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            echo "OK :)"
+        else
+            echo "Cancelled"
+            exit 0
+        fi
+    fi
+
+	chmod -R 700 .
+    echo -n "$USER's "; chsh -s $(which $DOTFILES_DEFAULT_SHELL)
+	rsync --exclude ".git/" \
+	      --exclude "custom/" \
+	      --exclude "install/" \
+	      --exclude "tmp/" \
+	      --exclude ".DS_Store" \
+	      --exclude "bootstrap.sh" \
+	      --exclude ".TODO.org" \
+	      --exclude "README.rst" \
+	      -av . ~
+
+    local profile="custom/${DOTFILES_PROFILE}"
+	cd "${profile}" && rsync  -av . ~ && cd - || echo "Cannot find ${profile}. Exit." && exit
+    echo "Read .bashrc_stage0 for installation"
+}
+
+function bootstrap_macosx() {
+    bash "install/bootstrap_macosx.sh"
+}
+
+function bootstrap_debian() {
+    bash "install/bootstrap_debian.sh"
+}
+
+# Main
+pushd "$(dirname "${BASH_SOURCE}")"
+## Args preconditions
+case $BOOSTRAP_COMMAND in
+    "macosx") bootstrap_macosx ;;
+    "debian") bootstrap_debian ;;
+    "dotfiles") check_new_updates; bootstrap_dotfiles ;;
+    *) >&2 echo "Command invalid. $0 -h for help" ;;
+esac
+popd
