@@ -1,6 +1,7 @@
 # C++
 http://www.reddit.com/r/cpp/.rss
 http://herbsutter.com/feed/
+http://www.codemaestro.com/feed
 
 # Math/Algorithms/Datastructures
 http://www.geeksforgeeks.org/rss
@@ -15,6 +16,9 @@ http://c2.com/cgi/wikiRss?min=200&days=7 "~c2.com"
 
 # Startup Business/Programming/OpenSource
 https://news.ycombinator.com/
+
+# Startup Businees/General
+http://feeds.feedburner.com/BothSidesOfTheTable
 
 # ACM
 http://queue.acm.org/rss/feeds/development.xml
@@ -34,11 +38,31 @@ http://queue.acm.org/rss/feeds/semi-structureddata.xml
 http://queue.acm.org/blogs.cfm?archdate=&theblog=26
 http://queue.acm.org/rss/feeds/queuecontent.xml
 
+# API Design
+http://martinfowler.com/tags/API%20design.html
+
+# Testing
+http://martinfowler.com/tags/testing.html
+
+# Game Programming
+http://assemblyrequired.crashworks.org/feed/
+
 # to sort out
 http://www.joelonsoftware.com/rss.xml
 http://blog.coatta.ca/syndication.axd
 http://jeff-barr.com/?feed=rss2
 http://blog.ascher.ca/feed/
+http://feeds.feedburner.com/tom-preston-werner?format=xml
+
+# Geek humour
+http://xkcd.com/rss.xml
+http://explainxkcd.com/rss.xml
+
+# Misc
+http://www.noeldemartin.com/blog/rss.xml
+https://formosanbits.wordpress.com/feed/
+http://davidandreoletti.com/blog/atom.xml
+http://blog.geekingfrog.com/rss/
 
 # Sports
 http://surf.transworld.net/feed/
