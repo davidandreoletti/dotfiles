@@ -2,6 +2,7 @@
 http://www.reddit.com/r/cpp/.rss
 http://herbsutter.com/feed/
 http://www.codemaestro.com/feed
+https://isocpp.org/blog/rss
 
 # Math/Algorithms/Datastructures
 http://www.geeksforgeeks.org/rss
@@ -47,12 +48,16 @@ http://martinfowler.com/tags/testing.html
 # Game Programming
 http://assemblyrequired.crashworks.org/feed/
 
+# Clever guy about encryption
+http://feeds.feedburner.com/Moserware
+
 # to sort out
 http://www.joelonsoftware.com/rss.xml
 http://blog.coatta.ca/syndication.axd
 http://jeff-barr.com/?feed=rss2
 http://blog.ascher.ca/feed/
 http://feeds.feedburner.com/tom-preston-werner?format=xml
+http://jacquesmattheij.com/rss.xml
 
 # Geek humour
 http://xkcd.com/rss.xml
