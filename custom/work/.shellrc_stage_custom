@@ -57,7 +57,9 @@ else
     export PATH=$PATH:$ANT_HOME/bin
     # Android SDK
     #export ANDROID_HOME=/toro-vm/sdks/google/android/android-sdk_r18-linux
-    export ANDROID_HOME=/toro-vm/sdks/google/android/android-sdk_r21-linux
+    #export ANDROID_HOME=/toro-vm/sdks/google/android/android-sdk_r21-linux
+    export ANDROID_HOME=/toro-vm/sdks/google/android/android-sdk_r22-linux
+
     # Android platforms tools
     export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
     #Repo tool for Android
