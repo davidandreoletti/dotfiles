@@ -196,6 +196,12 @@ alias mvnjavadoc='mvn javadoc:javadoc'
 #
 alias adbclog='adb logcat -c && adb logcat'
 
+# SSH
+#
+alias ssh_key_generate_rsa_4096='ssh-keygen -t rsa -b 4096'
+alias ssh_key_protect='chmod 700'
+#Typically you want the .ssh directory permissions to be 700 (drwx------) and the public key (.pub file) to be 644 (-rw-r--r--). Your private key (id_rsa) should be 600 (-rw-------).
+
 # Load shell specific aliases
 SHELLRC_ALIAS_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc_alias"
 [[ -s ${SHELLRC_ALIAS_SHELL_FILE} ]] && source "${SHELLRC_ALIAS_SHELL_FILE}"
