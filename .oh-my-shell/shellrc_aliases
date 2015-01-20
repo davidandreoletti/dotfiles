@@ -196,6 +196,10 @@ alias mvnjavadoc='mvn javadoc:javadoc'
 #
 alias adbclog='adb logcat -c && adb logcat'
 
+# Xcode
+# http://stackoverflow.com/a/18933476/219728
+alias xcodePurgeDerivedData='rm -rf ~/library/Developer/Xcode/DerivedData/*'
+
 # SSH
 #
 alias ssh_key_generate_rsa_4096='ssh-keygen -t rsa -b 4096'
