@@ -42,6 +42,9 @@ channels = (
   { name = "#cocos2d-x"; chatnet = "Freenode"; autojoin = "no"; },
   { name = "##cocos2d-x"; chatnet = "Freenode"; autojoin = "no"; },
   { name = "#coscup"; chatnet = "Freenode"; autojoin = "no"; }
+  { name = "#taipeihack"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#irssi"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#asm"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 
 aliases = {
