@@ -4,6 +4,9 @@ http://herbsutter.com/feed/
 http://www.codemaestro.com/feed
 https://isocpp.org/blog/rss
 
+# JS
+http://feeds.feedburner.com/2ality
+
 # Math/Algorithms/Datastructures
 http://www.geeksforgeeks.org/rss
 http://www.geeksforgeeks.org/category/c-puzzles/feed/
@@ -58,6 +61,8 @@ http://jeff-barr.com/?feed=rss2
 http://blog.ascher.ca/feed/
 http://feeds.feedburner.com/tom-preston-werner?format=xml
 http://jacquesmattheij.com/rss.xml
+# Ram
+http://feedpress.me/hiddentao
 
 # Geek humour
 http://xkcd.com/rss.xml
@@ -88,3 +93,8 @@ http://www.reddit.com/r/unixporn/.rss
 # Taipei
 https://taipeihack.org/blog/en/feed/
 
+# Business - App
+http://blog.ingeniooz.com/feed/
+
+# Bash and stuff
+http://feeds2.feedburner.com/catonmat
