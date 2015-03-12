@@ -210,3 +210,6 @@ alias ssh_key_protect='chmod 700'
 SHELLRC_ALIAS_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc_alias"
 [[ -s ${SHELLRC_ALIAS_SHELL_FILE} ]] && source "${SHELLRC_ALIAS_SHELL_FILE}"
 
+# Backups
+# for duplicity based backups
+alias backupignoredir="touch .backup.ignore"
