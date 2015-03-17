@@ -23,6 +23,8 @@
     type = cat-file -t
     dump = cat-file -p
     graph = log --graph
+    sthl = stash list
+    sths = "!f() { git stash show -p stash@{$1}; }; f"
 
     # log commands
     lg = !git log --graph --pretty=format:'%C(bold blue)%h%C(reset)∑%C(bold green)%d%C(reset) %C(cyan)%s%C(reset) %C(red)[%an]%C(reset) %C(white)[%cr]%C(reset)' | column -t -s '∑'
