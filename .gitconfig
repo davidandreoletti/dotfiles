@@ -23,6 +23,7 @@
     type = cat-file -t
     dump = cat-file -p
     graph = log --graph
+    s = show -p 
     sthl = stash list
     sths = "!f() { git stash show -p stash@{$1}; }; f"
 
