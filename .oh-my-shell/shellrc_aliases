@@ -138,6 +138,9 @@ ffwithPattern_() { find . -type f -name "$2" -print0 | xargs -0 grep "$1" ; }
 # I often can't recall what I named this alias, so make it work either way: 
 alias ffp='ffwithPattern_'
 
+# grepfind: grep the whole dir
+alias ffpg='egrep -R $1'
+
 ## Finds directory sizes and lists them for the current directory
 function dirsize_()
 {
@@ -213,3 +216,7 @@ SHELLRC_ALIAS_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc_alias"
 # Backups
 # for duplicity based backups
 alias backupignoredir="touch .backup.ignore"
+
+# Replay last command with sudo
+# src: https://twitter.com/liamosaur/status/506975850596536320
+alias fuck='sudo $(history -p \!\!)' 
