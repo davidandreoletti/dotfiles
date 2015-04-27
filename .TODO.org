@@ -4,6 +4,8 @@
 *** https://derflounder.wordpress.com/2018/01/20/secure-token-and-filevault-on-apple-file-system/
 *** https://support.apple.com/en-us/HT204837
 ** tmux_show/tmux_hide functions
+** Use uxrvt as default on linux: sudo apt-get unicode-xrvt
+** Use i3 wm as default on linux: sudo apt-get install i3
 * DONE:
 ** DONE Working winth system clipboard -> copy tmux buffer to system clipboard
 *** DONE http://blog.joncairns.com/2013/06/copying-between-tmux-buffers-and-the-system-clipboard/
