@@ -77,8 +77,8 @@
     outgoingall = !git log --branches --not --remotes=origin
 
     # show when a file was introduced
-    # Usage: git fileadded myfile
-    fileadded = !git log --diff-filter=A --pretty=short 
+    # Usage: git whenwasfileadded myfile
+    whenwasfileadded = !git log --diff-filter=A --pretty=short 
 
     # Reset 1 file
     # Usage: git reset1f2orig myfile.txt
