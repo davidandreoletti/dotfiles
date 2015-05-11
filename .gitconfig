@@ -24,8 +24,28 @@
     dump = cat-file -p
     graph = log --graph
     s = show -p 
+
+    # show stash list
     sthl = stash list
-    sths = "!f() { git stash show -p stash@{$1}; }; f"
+
+    # apply stash@{somenumber} 
+    # Usage: git stha 0   --> apply stash@{0}
+    stha = "!f() { git stash apply stash@{$1}; }; f"
+
+    # show stash@{somenumber} as patch
+    # Usage: git sthp 0   --> show stash@{0}
+    sthp = "!f() { git stash show -p stash@{$1}; }; f"
+
+    # delete stash@{somenumber}
+    # Usage: git sthd 0  --> delete stash@{0}
+    sthd = "!f() { git stash drop stash@{$1}; }; f"
+
+    # save stash with message
+    # Usage: git shds "message"
+    sths = stash save 
+
+    # save stash with selective content with message
+    sthsp = stash save --patch
 
     # log commands
     lg = !git log --graph --pretty=format:'%C(bold blue)%h%C(reset)∑%C(bold green)%d%C(reset) %C(cyan)%s%C(reset) %C(red)[%an]%C(reset) %C(white)[%cr]%C(reset)' | column -t -s '∑'
