@@ -90,6 +90,10 @@ let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_cpp_compiler = 'clang++'
+if vundleInstallRequired
+   call F_npm_InstallIfMissing()
+   call F_jshint_InstallifMissing()
+endif
 
 " Convenient way to quickly reach buffers/files/commands/bookmarks/tags
 Bundle 'kien/ctrlp.vim'

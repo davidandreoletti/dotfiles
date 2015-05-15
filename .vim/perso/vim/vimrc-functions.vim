@@ -85,6 +85,20 @@ function! F_Curl_InstallIfMissing ()
 	endif
 endfunction
 
+" Installs npm if missing
+function! F_npm_InstallifMissing ()
+	if F_OS_IsDebianBasedOS ()
+		silent !sudo apt-get install npm 
+	elseif F_OS_IsMacBasedOS ()
+		silent !brew install npm 
+	endif	
+endfunction
+
+" Installs jshint missing
+function! F_jshint_InstallifMissing ()
+    silent !npm install jshint -g 
+endfunction
+
 " Installs python pip-if missing
 function! F_PythonPip_InstallifMissing ()
 	if F_OS_IsDebianBasedOS ()
