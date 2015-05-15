@@ -22,6 +22,9 @@ then
     # Homebrew
     # Use homebrew in priority
     export PATH=/usr/local/bin:$PATH
+
+    # NPM
+    export PATH=${HOME}/.npm/bin:$PATH
 else
     # Nothing
     :
