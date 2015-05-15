@@ -18,12 +18,19 @@
 [alias]
     co = checkout
     st = status
-    ci = commit
     br = branch
     type = cat-file -t
     dump = cat-file -p
     graph = log --graph
     s = show -p 
+
+    # Commit with message
+    # Usage: git ci "some message"
+    ci = commit
+
+    # Undo last LOCAL commit, effectively leaving the working tree as it was BEFORE the commit
+    # Usage: git cul
+    cul = reset --soft HEAD~1
 
     # Delele local branch
     # Usage: git bdl somebranch
