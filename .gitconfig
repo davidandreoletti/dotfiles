@@ -25,6 +25,14 @@
     graph = log --graph
     s = show -p 
 
+    # Delele local branch
+    # Usage: git bdl somebranch
+    bdl = branch -d 
+
+    # Delete remote branch
+    # Usage: git bdr somebranch
+    bdr = "!f() { git push origin :$1 ; }; f"
+
     # show stash list
     sthl = stash list
 
