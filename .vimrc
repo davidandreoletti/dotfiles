@@ -191,6 +191,11 @@ Bundle 'tpope/vim-characterize'
 " Show vim's marks
 Bundle 'kshenoy/vim-signature'
 
+" Enhanced Javascript syntax with support for ES6
+" (based on 'jelera/vim-javascript-syntax')
+Bundle 'othree/yajs.vim'
+
+
 " Installing bunldes the first time
 if vundleInstallRequired
    call F_Vundle_InstallBundles()
