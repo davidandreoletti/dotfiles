@@ -22,7 +22,11 @@
     type = cat-file -t
     dump = cat-file -p
     graph = log --graph
-    s = show -p 
+    s = show -p
+
+    # Show help for a command
+    # Usage: git hp commit
+    hp = help
 
     # Commit with message
     # Usage: git ci "some message"
