@@ -220,3 +220,5 @@ alias backupignoredir="touch .backup.ignore"
 # Replay last command with sudo
 # src: https://twitter.com/liamosaur/status/506975850596536320
 alias fuck='sudo $(history -p \!\!)' 
+
+alias printShellVariables='(set -o posix; set)'
