@@ -1,11 +1,14 @@
-a C++
+# C++
 http://www.reddit.com/r/cpp/.rss
 http://herbsutter.com/feed/
 http://www.codemaestro.com/feed
 https://isocpp.org/blog/rss
+http://eli.thegreenplace.net/feeds/all.atom.xml
+http://bloglitb.blogspot.com/feeds/posts/default?alt=rss
 
 # JS
 http://feeds.feedburner.com/2ality
+https://javascriptweblog.wordpress.com/feed/
 
 # Math/Algorithms/Datastructures
 http://www.geeksforgeeks.org/rss
@@ -14,6 +17,7 @@ http://www.geeksforgeeks.org/category/articles/feed/
 http://www.geeksforgeeks.org/category/bit-magic/feed/
 http://www.reddit.com/r/REMath/.rss
 http://www.reddit.com/r/compsci/.rss
+http://graphicallinearalgebra.net/feed/
 
 # Startup Business/Programming Language
 http://c2.com/cgi/wikiRss?min=200&days=7 "~c2.com"
@@ -62,6 +66,8 @@ http://jeff-barr.com/?feed=rss2
 http://blog.ascher.ca/feed/
 http://feeds.feedburner.com/tom-preston-werner?format=xml
 http://jacquesmattheij.com/rss.xml
+http://pgbovine.net/pgbovine-rss-feed.xml
+
 # Ram
 http://feedpress.me/hiddentao
 
@@ -106,3 +112,9 @@ http://thecodelesscode.com/rss
 # Tech in asia
 https://www.techinasia.com/category/start-up/?tag=taiwan
 
+# To sort out
+http://nullprogram.com/feed/
+http://carlos.bueno.org/atom.xml
+http://feeds.feedburner.com/theendeavour
+http://ssp.impulsetrain.com/rss.xml
+https://schneide.wordpress.com/feed/
