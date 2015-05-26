@@ -1,4 +1,5 @@
 * TODO:
+** tmux_show/tmux_hide functions
 * DONE:
 ** DONE Working winth system clipboard -> copy tmux buffer to system clipboard
 *** DONE http://blog.joncairns.com/2013/06/copying-between-tmux-buffers-and-the-system-clipboard/
