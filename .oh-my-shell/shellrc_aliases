@@ -199,6 +199,19 @@ alias mvnjavadoc='mvn javadoc:javadoc'
 #
 alias adbclog='adb logcat -c && adb logcat'
 
+f_noobfuscatedstacktraceandroid() {
+    '$ANDROID_HOME/tools/proguard/bin/retrace.sh -verbose "$1" "$2"
+}
+
+# Print unbofuscated stacktrace
+# Usage: androidShowPlaintextStacktrace "proguard_mapping.txt" "obfucated_stacktrace.txt"
+alias androidShowPlaintextStacktrace='f_noobfuscatedstacktraceandroid $1 $2'
+
+# List AndroidManifest.xml file data
+# Usage: showAndroidManifest some.apk
+alias showAndroidManifest='aapt l -a '
+
+
 # Xcode
 # http://stackoverflow.com/a/18933476/219728
 alias xcodePurgeDerivedData='rm -rf ~/library/Developer/Xcode/DerivedData/*'
