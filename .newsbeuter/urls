@@ -1,120 +1,87 @@
-# C++
-http://www.reddit.com/r/cpp/.rss
-http://herbsutter.com/feed/
-http://www.codemaestro.com/feed
-https://isocpp.org/blog/rss
-http://eli.thegreenplace.net/feeds/all.atom.xml
-http://bloglitb.blogspot.com/feeds/posts/default?alt=rss
-
-# JS
-http://feeds.feedburner.com/2ality
-https://javascriptweblog.wordpress.com/feed/
-
-# Math/Algorithms/Datastructures
-http://www.geeksforgeeks.org/rss
-http://www.geeksforgeeks.org/category/c-puzzles/feed/
-http://www.geeksforgeeks.org/category/articles/feed/
-http://www.geeksforgeeks.org/category/bit-magic/feed/
-http://www.reddit.com/r/REMath/.rss
-http://www.reddit.com/r/compsci/.rss
-http://graphicallinearalgebra.net/feed/
-
-# Startup Business/Programming Language
-http://c2.com/cgi/wikiRss?min=200&days=7 "~c2.com"
-
-# Startup Business/Programming/OpenSource
-https://news.ycombinator.com/
-
-# Startup Businees/General
-http://feeds.feedburner.com/BothSidesOfTheTable
-http://feeds2.feedburner.com/monday-note
-
-# ACM
-http://queue.acm.org/rss/feeds/development.xml
-http://queue.acm.org/rss/feeds/concurrency.xml
-http://queue.acm.org/rss/feeds/computerarchitecture.xml
-http://queue.acm.org/rss/feeds/ai.xml
-http://queue.acm.org/rss/feeds/componenttechnologies.xml
-http://queue.acm.org/rss/feeds/emailandim.xml
-http://queue.acm.org/rss/feeds/failureandrecovery.xml
-http://queue.acm.org/rss/feeds/filesystemsandstorage.xml
-http://queue.acm.org/rss/feeds/gamedevelopment.xml
-http://queue.acm.org/rss/feeds/graphics.xml
-http://queue.acm.org/rss/feeds/opensource.xml
-http://queue.acm.org/rss/feeds/patchinganddeployment.xml
-http://queue.acm.org/rss/feeds/programminglanguages.xml
-http://queue.acm.org/rss/feeds/semi-structureddata.xml
-http://queue.acm.org/blogs.cfm?archdate=&theblog=26
-http://queue.acm.org/rss/feeds/queuecontent.xml
-
-# API Design
-http://martinfowler.com/tags/API%20design.html
-
-# Testing
-http://martinfowler.com/tags/testing.html
-
-# Game Programming
-http://assemblyrequired.crashworks.org/feed/
-
-# Clever guy about encryption
-http://feeds.feedburner.com/Moserware
-
-# to sort out
-http://www.joelonsoftware.com/rss.xml
-http://blog.coatta.ca/syndication.axd
-http://jeff-barr.com/?feed=rss2
-http://blog.ascher.ca/feed/
-http://feeds.feedburner.com/tom-preston-werner?format=xml
-http://jacquesmattheij.com/rss.xml
-http://pgbovine.net/pgbovine-rss-feed.xml
-
-# Ram
-http://feedpress.me/hiddentao
-
-# Geek humour
-http://xkcd.com/rss.xml
-http://explainxkcd.com/rss.xml
-
-# Misc
-http://www.noeldemartin.com/blog/rss.xml
-https://formosanbits.wordpress.com/feed/
-http://davidandreoletti.com/blog/atom.xml
-http://blog.geekingfrog.com/rss/
-
-# Sports
-http://surf.transworld.net/feed/
-
-# Science
-http://www.reddit.com/r/science/.rss
-
-# Motivation
-http://www.reddit.com/r/GetMotivated/.rss
-
-# Earch - because it is beautiful
-http://www.reddit.com/r/EarthPorn/.rss
-
-# Computer setup
-http://www.reddit.com/r/macsetups/.rss
-http://www.reddit.com/r/unixporn/.rss
-
-# Taipei
-https://taipeihack.org/blog/en/feed/
-
-# Business - App
-http://blog.ingeniooz.com/feed/
-
-# Bash and stuff
-http://feeds2.feedburner.com/catonmat
-
-# Software engineering wisdom explained
-http://thecodelesscode.com/rss
-
-# Tech in asia
-https://www.techinasia.com/category/start-up/?tag=taiwan
-
-# To sort out
-http://nullprogram.com/feed/
-http://carlos.bueno.org/atom.xml
-http://feeds.feedburner.com/theendeavour
-http://ssp.impulsetrain.com/rss.xml
-https://schneide.wordpress.com/feed/
+# https://github.com/sourceful/linkdump/blob/master/rss-opml.xml
+# README
+# Add new RSS feed
+# Sort feeds by 1st tag column: 5,$!sort -b -k2 -t " "
+http://www.reddit.com/r/EarthPorn/.rss                     "beauty/things"
+http://blog.ingeniooz.com/feed/                            "biz/app/dev"
+http://feeds2.feedburner.com/monday-note                   "biz/startup"                   "biz/model"
+https://www.techinasia.com/category/start-up/?tag=taiwan   "biz/startup/taipei"
+http://feeds.feedburner.com/BothSidesOfTheTable            "biz/startup/vc"
+http://queue.acm.org/blogs.cfm?archdate=&theblog=26        "cs/acm"
+http://queue.acm.org/rss/feeds/ai.xml                      "cs/acm"
+http://queue.acm.org/rss/feeds/componenttechnologies.xml   "cs/acm"
+http://queue.acm.org/rss/feeds/computerarchitecture.xml    "cs/acm"
+http://queue.acm.org/rss/feeds/concurrency.xml             "cs/acm"
+http://queue.acm.org/rss/feeds/development.xml             "cs/acm"
+http://queue.acm.org/rss/feeds/emailandim.xml              "cs/acm"
+http://queue.acm.org/rss/feeds/failureandrecovery.xml      "cs/acm"
+http://queue.acm.org/rss/feeds/filesystemsandstorage.xml   "cs/acm"
+http://queue.acm.org/rss/feeds/gamedevelopment.xml         "cs/acm"
+http://queue.acm.org/rss/feeds/graphics.xml                "cs/acm"
+http://queue.acm.org/rss/feeds/opensource.xml              "cs/acm"
+http://queue.acm.org/rss/feeds/patchinganddeployment.xml   "cs/acm"
+http://queue.acm.org/rss/feeds/programminglanguages.xml    "cs/acm"
+http://queue.acm.org/rss/feeds/queuecontent.xml            "cs/acm"
+http://queue.acm.org/rss/feeds/semi-structureddata.xml     "cs/acm"
+http://www.geeksforgeeks.org/rss                           "cs/algo"
+http://www.geeksforgeeks.org/category/bit-magic/feed/      "cs/bitmagic"
+http://atp.fm/episodes?format=rss                          "cs/computer/security/podcast"
+http://leoville.tv/podcasts/sn.xml                         "cs/computer/security/podcast"
+http://feeds.feedburner.com/Moserware                      "cs/encryption"                 "betterexplained"
+http://assemblyrequired.crashworks.org/feed/               "cs/game/programming"
+http://h14s.p5r.org/feed                                   "cs/game/programming"           "cs/math"
+https://news.ycombinator.com/                              "cs/lang"                       "biz/startup
+http://c2.com/cgi/wikiRss?min=200&days=7~c2.com"           "cs/lang"                       "biz/startup"
+http://feeds2.feedburner.com/catonmat                      "cs/lang/bash"
+http://bloglitb.blogspot.com/feeds/posts/default?alt=rss   "cs/lang/c++"
+http://eli.thegreenplace.net/feeds/all.atom.xml            "cs/lang/c++"
+http://herbsutter.com/feed/                                "cs/lang/c++"
+http://www.codemaestro.com/feed                            "cs/lang/c++"
+http://www.reddit.com/r/cpp/.rss                           "cs/lang/c++"
+https://isocpp.org/blog/rss                                "cs/lang/c++"
+http://feeds.feedburner.com/csswizardrycom                 "cs/lang/css"
+http://feeds.feedburner.com/2ality                         "cs/lang/js"
+http://feeds.feedburner.com/PerfectionKills                "cs/lang/js"
+https://javascriptweblog.wordpress.com/feed/               "cs/lang/js"
+http://blog.geekingfrog.com/rss/                           "cs/people"
+http://davidandreoletti.com/blog/atom.xml                  "cs/people"
+http://feedpress.me/hiddentao                              "cs/people"
+http://feeds.feedburner.com/codinghorror                   "cs/people"
+http://feeds.feedburner.com/nczonline                      "cs/people"
+http://feeds.feedburner.com/theendeavour                   "cs/people"
+http://nullprogram.com/feed/                               "cs/people"
+http://ssp.impulsetrain.com/rss.xml                        "cs/people"
+http://substack.net/rss                                    "cs/people"
+http://www.noeldemartin.com/blog/rss.xml                   "cs/people"
+https://schneide.wordpress.com/feed/                       "cs/people"                     "cs/computer/security"
+http://carlos.bueno.org/atom.xml                           "cs/people"                     "good/read"
+http://research.swtch.com/feed.atom                        "cs/people"                     "good/read"
+http://simplecast.fm/podcasts/279/rss                      "cs/podcasts"
+http://www.geeksforgeeks.org/category/c-puzzles/feed/      "cs/puzzle/lang/c"
+http://www.geeksforgeeks.org/category/articles/feed/       "cs/ramdom"
+http://www.reddit.com/r/REMath/.rss                        "cs/reverse/engineering/math"
+http://thecodelesscode.com/rss                             "cs/soft/dev/wisdom"
+http://martinfowler.com/tags/API%20design.html             "cs/software/design/api"
+http://martinfowler.com/tags/testing.html                  "cs/software/testing"
+http://www.coreint.org/podcast.xml                         "cs/tech/apple"
+http://feeds.feedburner.com/WebReflection                  "cs/tech/web"
+http://www.reddit.com/r/compsci/.rss                       "cs/theory"                     "cs/application"
+https://jfdube.wordpress.com/feed/                         "cs/x86/assembly"               "cs/threading"                       "cs/memory"
+http://www.theallium.com/feed/                             "fun"
+http://www.reddit.com/r/unixporn/.rss                      "geek/computer/setup/*nix"
+http://www.reddit.com/r/macsetups/.rss                     "geek/computer/setup/mac"
+http://explainxkcd.com/rss.xml                             "geek/humour"
+http://xkcd.com/rss.xml                                    "geek/humour"
+http://www.reddit.com/r/GetMotivated/.rss                  "human/procrastination"
+http://graphicallinearalgebra.net/feed/                    "math/linearalgebra"
+https://taipeihack.org/blog/en/feed/                       "oss/taipei"
+http://blog.ascher.ca/feed/                                "sort"
+http://blog.coatta.ca/syndication.axd                      "sort"
+http://feeds.feedburner.com/tom-preston-werner?format=xml  "sort"
+http://jacquesmattheij.com/rss.xml                         "sort"
+http://jeff-barr.com/?feed=rss2                            "sort"
+http://pgbovine.net/pgbovine-rss-feed.xml                  "sort"
+http://www.joelonsoftware.com/rss.xml                      "sort"
+http://surf.transworld.net/feed/                           "sport/surf"
+https://formosanbits.wordpress.com/feed/                   "taiwan"
+# Save feeds
