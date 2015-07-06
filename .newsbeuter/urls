@@ -1,7 +1,7 @@
 # https://github.com/sourceful/linkdump/blob/master/rss-opml.xml
-# README
-# Add new RSS feed
-# Sort feeds by 1st tag column: 5,$!sort -b -k2 -t " "
+# README:
+# 1- Add new RSS feed
+# 2- Sort feeds by 1st tag column: 5,$!sort -b -k2 -t " "
 http://www.reddit.com/r/EarthPorn/.rss                     "beauty/things"
 http://blog.ingeniooz.com/feed/                            "biz/app/dev"
 http://feeds2.feedburner.com/monday-note                   "biz/startup"                   "biz/model"
