@@ -31,3 +31,7 @@ else
     # Nothing
     :
 fi
+
+alias davida-hw2-startvms="ssh -t davida-hw2 'bash virtualbox-setup/ssh-vms-manager.sh -s'"
+alias davida-hw2-softstopvms="ssh -t davida-hw2 'bash virtualbox-setup/ssh-vms-manager.sh -p'"
+
