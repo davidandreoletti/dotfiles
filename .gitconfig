@@ -24,6 +24,14 @@
     graph = log --graph
     s = show -p
 
+    # Checkout myfile from a stash 0
+    # Usage: cosf 0 myfile
+    cosf = "!f() {git checkout stash@{$1} -- $2 ; }; f"
+
+    # Checkout myfile from stash 0 as myfile2 
+    # Usage: cosfas 0 myfile myfile2
+    cosfas = "!f() {git show stash@{$1}:$2 $3 ; }; f"
+
     # Show help for a command
     # Usage: git hp commit
     hp = help
