@@ -211,6 +211,8 @@ alias androidShowPlaintextStacktrace='f_noobfuscatedstacktraceandroid $1 $2'
 # Usage: showAndroidManifest some.apk
 alias showAndroidManifest='aapt l -a '
 
+# Reset android logs and terminal
+alias resetAndroidDebuTerminal="clear; tmux clear-history; adb logcat -c; adb logcat"
 
 # Xcode
 # http://stackoverflow.com/a/18933476/219728
