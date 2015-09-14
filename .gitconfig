@@ -107,6 +107,10 @@
     # Usage: git whenwasfileadded myfile
     whenwasfileadded = !git log --diff-filter=A --pretty=short 
 
+    # show list of file in a commit
+    # Usage: git listfiles HEAD~1
+    listfiles = "!f() { git show --pretty="format:" --name-status $1; }; f" 
+
     # Reset 1 file
     # Usage: git reset1f2orig myfile.txt
     reset1f2orig = !git checkout HEAD --
