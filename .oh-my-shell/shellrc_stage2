@@ -19,6 +19,18 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# Add GNU coretutils (if installed) to have dircolors and prevent all
+# coretutils tools (eg: dircolors) to be prefixed with g (eg: gdircolors)
+# on OSX
+# OSX: brew install coreutils
+if [ -d "/usr/local/opt/coreutils/libexec/gnubin" ] ; then
+    PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+fi
+
+if [ -d "/usr/local/opt/coreutils/libexec/gnuman" ] ; then
+    MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+fi
+
 # Load shell specific config
 SHELLRC_STAGE2_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc_stage2"
 [[ -s ${SHELLRC_STAGE2_SHELL_FILE} ]] && source "${SHELLRC_STAGE2_SHELL_FILE}"
