@@ -3,6 +3,8 @@
 ###############################################################################
 # Boostrap new Mac OS X OS
 # export DEBUG=; ./<this script> to debug
+# Prerequisites:
+# Xcode installed
 ###############################################################################
 
 export BOOSTRAP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -90,7 +92,6 @@ homebrew_brew_install "vim"
 homebrew_brew_install "macvim"
 homebrew_brew_install "newsbeuter"
 homebrew_brew_install "rsync"
-homebrew_brew_install "graphviz"
 homebrew_brew_install "cmus"
 homebrew_brew_install "irssi" "--with-perl=yes" "--with-proxy"
 homebrew_brew_install "mutt" "--sidebar-patch" "--trash-patch" "--with-slang"
@@ -99,9 +100,9 @@ python_easy_install "goobook" && chmod -v 755 /usr/local/bin; # for mutt
 
 homebrew_brew_cask_workaround0
 homebrew_brew_install "caskroom/cask/brew-cask"
-# FIXME restore mactex when script is final - 4G download ...
 homebrew_brew_cask_install "mactex"
 homebrew_brew_cask_install "firefox"
+homebrew_brew_cask_install "google-chrome"
 homebrew_brew_cask_install "vlc"
 homebrew_brew_cask_install "java"
 homebrew_brew_cask_install "calibre"
@@ -109,19 +110,18 @@ homebrew_brew_cask_install "sourcetree"
 homebrew_brew_cask_install "transmission"
 homebrew_brew_cask_install "skype"
 homebrew_brew_cask_install "dropbox"
+homebrew_brew_cask_install "virtualbox"
+homebrew_brew_cask_install "virtualbox-extension-pack"
 homebrew_brew_cask_install "flux"
 homebrew_brew_cask_install "iterm2"
 homebrew_brew_cask_install "cyberduck"
-homebrew_brew_cask_install "doxygen"
-homebrew_brew_cask_install "emacs"
 homebrew_brew_cask_install "flash-player"
 homebrew_brew_cask_install "grandperspective"
-homebrew_brew_cask_install "onepassword"
+homebrew_brew_cask_install "1password"
 homebrew_brew_cask_install "onyx"
 homebrew_brew_cask_install "textmate"
-homebrew_brew_cask_install "trim-enabler"
-homebrew_brew_cask_install "gopro-studio" # require password - cannot override
-homebrew_brew_cask_install "undercover" # require password - cannot override
+#homebrew_brew_cask_install "trim-enabler" # El Capitan (OSX 10.11) has trimenable command
+#homebrew_brew_cask_install "undercover" Not in brew cask anymore - keep it to remember to install it # require password - cannot override
 # will require Defaults        env_keep += "HOME MAIL" in sudoers ?
 homebrew_brew_cask_install "intel-haxm" # smae issue as undercover
 
