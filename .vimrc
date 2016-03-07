@@ -440,6 +440,9 @@ filetype plugin indent on
 " Set doxygen tags according to filetype
 autocmd FileType cpp,c,h,hpp,m,mm call F_DoxygenToolKit_SetCPPOrCTags()
 autocmd FileType java call F_DoxygenToolKit_SetJAVATags()
+
+" Edit crontab file in place
+autocmd filetype crontab setlocal nobackup nowritebackup
 "}}}
 " Hidden characters{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
