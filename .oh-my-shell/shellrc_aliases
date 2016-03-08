@@ -43,6 +43,9 @@ duplicate_with_simple_numbering() {
 }
 alias backup="duplicate_with_simple_numbering"
 
+# Mark directory to not be backup by rsync (for consumption by my own custom rsync backup script)
+alias backup-ignore="echo \"- /*\" > .backup.ignore"
+
 # cd aliases
 ## http://serverfault.com/a/28649
 function _cd_up_to_nth_dir {
