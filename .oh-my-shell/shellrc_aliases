@@ -240,3 +240,6 @@ alias backupignoredir="touch .backup.ignore"
 alias fuck='sudo $(history -p \!\!)' 
 
 alias printShellVariables='(set -o posix; set)'
+
+# Update already installed brew packages
+alias brew-dist-upgrade="brew update; brew upgrade `brew outdated`"
