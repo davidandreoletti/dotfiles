@@ -86,6 +86,7 @@ homebrew_is_installed || exit 1
 # FIXME should I brew update or brew upgrade  ?
 homebrew_brew_tap_install "homebrew/dupes"
 homebrew_brew_install "git" # something more recent than Xcode's
+homebrew_brew_install "coreutils"
 homebrew_brew_install "zsh"
 homebrew_brew_install "tmux"
 homebrew_brew_install "vim"
