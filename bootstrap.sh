@@ -87,18 +87,12 @@ function bootstrap_dotfiles() {
 
 	chmod -R 700 .
     echo -n "$USER's "; chsh -s $(which $DOTFILES_DEFAULT_SHELL)
-	rsync --exclude ".git/" \
-	      --exclude "custom/" \
-	      --exclude "install/" \
-	      --exclude "tmp/" \
-	      --exclude ".DS_Store" \
-	      --exclude "bootstrap.sh" \
-	      --exclude ".TODO.org" \
-	      --exclude "README.rst" \
-	      -av . ~
+    local rootDir=`pwd`
+    find . -maxdepth 1 -type d -o -type f | sed "s|^\./||" |  grep -f "$rootDir/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$rootDir/{}" ~/{}";
 
     local profile="custom/${DOTFILES_PROFILE}"
-	cd "${profile}" && rsync  -av . ~ && cd - || echo "Cannot find ${profile}. Exit." && exit
+    local curDir="`pwd`/$profile"
+	cd "${profile}" && find . -maxdepth 1 -type d -o -type f | sed "s|^\./||" |  grep -f "$rootDir/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$curDir/{}" ~/{}" && cd - || echo "Cannot find ${profile}. Exit." && exit
     echo "Read .bashrc_stage0 for installation"
 }
 

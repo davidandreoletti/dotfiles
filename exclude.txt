@@ -1,0 +1,10 @@
+^.$
+^exclude.txt$
+^.git$
+^custom$
+^install$
+^tmp$
+^.DS_Store$
+^bootstrap.sh$
+^.TODO.org$
+^README.rst$
