@@ -14,6 +14,7 @@
     org-plus-contrib
     color-theme
     cyberpunk-theme
+    evil
   ) "List of packages required to be installed at launch.")
 
 (require 'cl)
