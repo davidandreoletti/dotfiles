@@ -33,9 +33,12 @@ reload-time 30
 ## Go to next unread feed with "next-unread" / "prev-unread"
 goto-next-feed yes
 ## Select firt unread article when entering feed
-goto-first-unread yes 
+goto-first-unread yes :
+## Sort
+feed-sort-order title-dec
 
-
+# Browser
+browser open
 
 # Download
 ## timeout
