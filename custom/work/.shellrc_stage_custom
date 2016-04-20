@@ -1,6 +1,12 @@
 ################################# Work ####################################
 
-alias wk='cd ~/Work/Code'
+alias wk='cd ~/Documents/Work/Code'
 
 # Android Studio
 export PATH=$PATH:/opt/homebrew-cask/Caskroom/android-studio/1.5.1.0_2456560/Android\ Studio.app/Contents/MacOS/studio
+
+# Homebrew
+# Use homebrew in priority
+export PATH=/usr/local/bin:$PATH
+
+
