@@ -5,3 +5,7 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 
+(setq org-todo-keywords
+	'((sequence "TODO(t)" "WIP(w)" "|" "DONE(d)")
+	(sequence "WAITFOR" "DELEGATETO" "CHECKING" "|" "COMPLETED")
+	(sequence "|" "CANCELED")))
