@@ -1,2 +1,6 @@
 .emacs.d/elpa
 .emacs.d/auto-save-list
+.gradle/caches
+.gradle/daemon
+.gradle/wrapper
+.gradle/native
