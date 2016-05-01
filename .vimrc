@@ -213,6 +213,10 @@ set undolevels=1000
 set number 
 " Relative Line numbers
 set relativenumber
+" Show keystrokes
+set showcmd
+" Hide Vim startup message
+set shortmess+=I
 
 " Map *leaderkeys
 :let mapleader = ","
