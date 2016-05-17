@@ -12,4 +12,6 @@
 (setq org-todo-keywords
 	'((sequence "TODO(t)" "WIP(w)" "|" "DONE(d)")
 	(sequence "WAITFOR" "DELEGATETO" "CHECKING" "|" "COMPLETED")
+	(sequence "ASK" "ASKING" "|" "ASKED")
+	(sequence "TODO_MAYBE" "|" "DONE")
 	(sequence "|" "CANCELED")))
