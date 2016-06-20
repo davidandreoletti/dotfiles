@@ -1,0 +1,4 @@
+# Increase initial heap size
+-Xms1024m
+# Increase max heap size
+-Xmx1536m
