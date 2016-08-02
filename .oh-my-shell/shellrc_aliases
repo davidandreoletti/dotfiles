@@ -217,6 +217,11 @@ alias showAndroidManifest='aapt l -a '
 # Reset android logs and terminal
 alias resetAndroidDebuTerminal="clear; tmux clear-history; adb logcat -c; adb logcat"
 
+# Take screenshot of Android device screen
+# src: http://blog.shvetsov.com/2013/02/grab-android-screenshot-to-computer-via.html
+# usage: androidTakeScreenshot screenshot.png
+alias androidTakeScreenshot="adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > $1"
+
 # Xcode
 # http://stackoverflow.com/a/18933476/219728
 alias xcodePurgeDerivedData='rm -rf ~/library/Developer/Xcode/DerivedData/*'
