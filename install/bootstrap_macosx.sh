@@ -100,12 +100,13 @@ homebrew_brew_install "mutt" "--sidebar-patch" "--trash-patch" "--with-slang"
 python_easy_install "goobook" && chmod -v 755 /usr/local/bin; # for mutt
 
 homebrew_brew_cask_workaround0
-homebrew_brew_install "caskroom/cask/brew-cask"
+homebrew_brew_tap_install "caskroom/cask"
 homebrew_brew_cask_install "mactex"
 homebrew_brew_cask_install "firefox"
 homebrew_brew_cask_install "google-chrome"
 homebrew_brew_cask_install "vlc"
 homebrew_brew_cask_install "java"
+homebrew_brew_cask_install "android-studio"
 homebrew_brew_cask_install "calibre"
 homebrew_brew_cask_install "sourcetree"
 homebrew_brew_cask_install "transmission"
