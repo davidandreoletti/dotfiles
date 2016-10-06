@@ -121,8 +121,9 @@ defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 ###############################################################################
 # Keyboard #
 ###############################################################################
-# Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 0
+# Set a blazingly fast keyboard repeat rate (For OSX Sierra only)
+defaults write NSGlobalDomain KeyRepeat -int 1 # Fastest official speed: 2
+defaults write NSGlobalDomain IninialKeyRepeat -int 10
 # Automatically illuminate built-in MacBook keyboard in low light
 defaults write com.apple.BezelServices kDim -bool true
 # Turn off keyboard illumination when computer is not used for 5 minutes
