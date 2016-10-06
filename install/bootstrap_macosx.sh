@@ -28,6 +28,7 @@ source "${BOOSTRAP_DIR}/macosx/shell/assistive.sh"
 source "${BOOSTRAP_DIR}/macosx/shell/account.sh"
 source "${BOOSTRAP_DIR}/macosx/shell/softwareupdate.sh"
 source "${BOOSTRAP_DIR}/macosx/shell/ramdisk.sh"
+source "${BOOSTRAP_DIR}/macosx/shell/tmux.sh"
 
 # Bootstrap setup
 ## Ask sudo password for askpass. Required to work around sudo timeout within 
@@ -129,6 +130,8 @@ homebrew_brew_cask_install "intel-haxm" # smae issue as undercover
 
 homebrew_brew_linkapps
 fi
+
+tmux_install_tpm
 
 # Set OSX user/system defaults
 bash "${BOOSTRAP_DIR}/macosx/shell/defaults.sh"
