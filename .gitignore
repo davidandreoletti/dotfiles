@@ -4,3 +4,4 @@
 .gradle/daemon
 .gradle/wrapper
 .gradle/native
+.tmux/resurrect
