@@ -386,6 +386,8 @@ defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 ###############################################################################
 # Disk Utility #
+defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
+defaults write com.apple.DiskUtility advanced-image-options -bool true
 ###############################################################################
 # Show hidden parition
 defaults write com.apple.DiskUtility DUShowEveryPartition -bool YES
