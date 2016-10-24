@@ -332,7 +332,7 @@ set pastetoggle=<F3>
 
 " Force to master Vim's advanced motion and search functionnality 
 " by disabling some/all arrow keys, hjkl keys, page up/down  and others
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardTimeOn()
+" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardTimeOn()
 
 " Get efficient with most vim commands
 " Eg: :w    becomes ;w
