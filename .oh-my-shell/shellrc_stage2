@@ -31,6 +31,9 @@ if [ -d "/usr/local/opt/coreutils/libexec/gnuman" ] ; then
     MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 fi
 
+# Brew change default option
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+
 # Load shell specific config
 SHELLRC_STAGE2_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc_stage2"
 [[ -s ${SHELLRC_STAGE2_SHELL_FILE} ]] && source "${SHELLRC_STAGE2_SHELL_FILE}"
