@@ -3,7 +3,7 @@
 alias wk='cd ~/Documents/Work/Code'
 
 # Android Studio
-export PATH=$PATH:/opt/homebrew-cask/Caskroom/android-studio/2.0.0.20_143.2739321/Android\ Studio.app/Contents/MacOS/studio
+export PATH=$PATH:~/Library/Android/sdk/platform-tools
 
 # Homebrew
 # Use homebrew in priority
