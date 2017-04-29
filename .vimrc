@@ -67,7 +67,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'godlygeek/tabular'
 
 " Syntastic
-" C++/C/X*ML/JSON .. syntax checking plugin
+" C++/C/X*ML/JSON/Javascript .. syntax checking plugin
 Bundle "scrooloose/syntastic"
 " Setup syntastic's status line
 set statusline+=%#warningmsg#
@@ -90,6 +90,9 @@ let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_cpp_compiler = 'clang++'
+" Javascript
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'  " Use project's eslint binary
 if vundleInstallRequired
    call F_npm_InstallIfMissing()
    call F_jshint_InstallifMissing()
