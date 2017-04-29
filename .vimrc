@@ -93,6 +93,12 @@ let g:syntastic_cpp_compiler = 'clang++'
 " Javascript
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'  " Use project's eslint binary
+let g:syntastic_javascript_eslint_args = ['--fix'] " --fix to fix warning/errors automatically
+" Reload js file fixed with eslint --fix
+" src: https://vi.stackexchange.com/a/11281
+set autoread
+au VimEnter *.js au BufWritePost *.js checktime
+
 if vundleInstallRequired
    call F_npm_InstallIfMissing()
    call F_jshint_InstallifMissing()
