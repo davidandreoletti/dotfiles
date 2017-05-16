@@ -11,7 +11,18 @@
 
 (setq org-todo-keywords
 	'((sequence "TODO(t)" "WIP(w)" "|" "DONE(d)")
-	(sequence "WAITFOR" "DELEGATETO" "CHECKING" "|" "COMPLETED")
+	(sequence "WAITFOR" "DELEGATETO" "CHECKING" "|" "TIMEDOUT" "COMPLETED")
 	(sequence "ASK" "ASKING" "|" "ASKED")
-	(sequence "TODO_MAYBE" "|" "DONE")
+	(sequence "TODO_LATER" "|" "DONE")
 	(sequence "|" "CANCELED")))
+
+;;(setq org-todo-keyword-faces
+;;	'(	("TODO" . "yellow")
+;;        ("DONE" . org-done) 
+;;		("WIP"  . "orange")
+;;		("CHECKING" . "orange")
+;;		("WAITFOR" . "blue")
+;;		("DELEGATED" . "blue")
+;;		("CANCELED" . "red" ))
+;;
+
