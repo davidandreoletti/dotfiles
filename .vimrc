@@ -97,6 +97,9 @@ let g:syntastic_javascript_eslint_args = ['--fix'] " --fix to fix warning/errors
 " Reload js file fixed with eslint --fix
 " src: https://vi.stackexchange.com/a/11281
 set autoread
+" HTML5
+let g:syntastic_html_tidy_exec = 'tidy5'
+
 au VimEnter *.js au BufWritePost *.js checktime
 
 if vundleInstallRequired
