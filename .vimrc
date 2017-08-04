@@ -105,7 +105,7 @@ if vundleInstallRequired
 endif
 
 " Convenient way to quickly reach buffers/files/commands/bookmarks/tags
-Bundle 'kien/ctrlp.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
 " Default seach mode
 let g:ctrlp_cmd = 'CtrlPMixed'
 " Local working directory
