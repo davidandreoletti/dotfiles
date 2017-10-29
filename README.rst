@@ -19,7 +19,7 @@ Git based installation
 
 This one liner clones this repository and install configuration files in your HOME dir.
 
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b dotfiles -s perso 
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b dotfiles -s perso -p "`pwd`/../dotfiles-private"
 
 To update, cd into your local dotfiles repository and then:
 

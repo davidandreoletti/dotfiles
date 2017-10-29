@@ -3,7 +3,8 @@ BOOSTRAP_COMMAND=""
 DOTFILES_FORCE_INSTALL=false
 DOTFILES_PROFILE="perso" 
 DOTFILES_DEFAULT_SHELL="bash"
-while getopts b:fs:t:h flag; do
+DOTFILES_PRIVATE_DIR_PATH_SET=false
+while getopts b:fs:t:hp flag; do
   case $flag in
     b)
       BOOSTRAP_COMMAND="$OPTARG";
@@ -16,6 +17,10 @@ while getopts b:fs:t:h flag; do
       ;;
     t)
       DOTFILES_DEFAULT_SHELL="$OPTARG";
+      ;;
+    p)
+      DOTFILES_PRIVATE_DIR_PATH="$OPTARG";
+      DOTFILES_PRIVATE_DIR_PATH_SET=true
       ;;
     h)
       echo "Help: $0.sh -b [command] [options]";
@@ -47,6 +52,7 @@ while getopts b:fs:t:h flag; do
       echo " -t shell\t Shell type to use by default. Valid values (case sensitive): "
       echo "    bash - Bash shell (default)"
       echo "    zsh  - ZSH shell"
+      echo " -p dotfiles-private\t Absolute path to repository with dofiles-private files. Default: none"
       echo ""
       echo "EXAMPLES"
       echo ""
@@ -54,6 +60,15 @@ while getopts b:fs:t:h flag; do
       echo ""
       echo "   $0 -b dotfiles -s perso -t bash"
       echo ""
+      echo " 1) Install dotfiles along with dotfiles-private "
+      echo ""
+      echo "   $0 -b dotfiles -s perso -t bash -p `pwd`/some/path/dotfiles-private"
+      echo ""
+      echo " 2) Install dotfiles"
+      echo ""
+      echo "   $0 -b dotfiles -s perso -t bash"
+      echo ""
+
       echo " 1) Bootstraps a MAC OS X machine"
       echo ""
       echo "   $0 -b macosx"
@@ -96,6 +111,32 @@ function bootstrap_dotfiles() {
     echo "Read .bashrc_stage0 for installation"
 }
 
+function bootstrap_dotfiles_private() {
+    if [ ${DOTFILES_PRIVATE_DIR_PATH_SET} == false]; then
+        return
+    fi    
+
+    if [ ${DOTFILES_FORCE_INSTALL} == false ]; then
+        read -p " Warning: some dotfiles-private will be overwritten. Are you sure? (y/n) " -n 1
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            echo "OK :)"
+        else
+            echo "Cancelled"
+            exit 0
+        fi
+    fi
+
+	chmod -R 700 "$DOTFILES_PRIVATE_DIR_PATH"
+    echo -n "$USER's "; chsh -s $(which $DOTFILES_DEFAULT_SHELL)
+    local rootDir=`pwd`
+    find "$DOTFILES_PRIVATE_DIR_PATH" -maxdepth 1 -type d -o -type f | sed "s|^\./||" |  grep -f "$DOTFILES_PRIVATE_DIR_PATH/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$DOTFILES_PRIVATE_DIR_PATH/{}" ~/{}";
+
+    local profile="custom/${DOTFILES_PROFILE}"
+    local curDir="`pwd`/$profile"
+	cd "$DOTFILES_PRIVATE_DIR_PATH/${profile}" && find . -maxdepth 1 -type d -o -type f | sed "s|^\./||" |  grep -f "$DOTFILES_PRIVATE_DIR_PATH/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$DOTFILES_PRIVATE_DIR_PATH/{}" ~/{}" && cd - || echo "Cannot find $DOTFILES_PRIVATE_DIR_PATH/${profile}. Exit." && exit
+}
+
 function bootstrap_macosx() {
     bash "install/bootstrap_macosx.sh"
 }
@@ -110,7 +151,7 @@ pushd "$(dirname "${BASH_SOURCE}")"
 case $BOOSTRAP_COMMAND in
     "macosx") bootstrap_macosx ;;
     "debian") bootstrap_debian ;;
-    "dotfiles") check_new_updates; bootstrap_dotfiles ;;
+    "dotfiles") check_new_updates; bootstrap_dotfiles; bootstrap_dotfiles_private ;;
     *) >&2 echo "Command invalid. $0 -h for help" ;;
 esac
 popd
