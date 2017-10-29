@@ -5,3 +5,4 @@
 .gradle/wrapper
 .gradle/native
 .tmux/resurrect
+*.DS_Store
