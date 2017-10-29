@@ -115,6 +115,10 @@
     # Usage: git listfiles HEAD~1
     listfiles = "!f() { git show --pretty="format:" --name-status $1; }; f" 
 
+    # show list of files in a repo
+    # Usage: git listfilesrepo HEAD
+    listfiles = "!f() { git ls-tree --full-tree -r $1 }"
+
     # Reset 1 file
     # Usage: git reset1f2orig myfile.txt
     reset1f2orig = !git checkout HEAD --
