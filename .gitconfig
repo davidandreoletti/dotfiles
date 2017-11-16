@@ -28,6 +28,10 @@
     # Usage: aliases
     aliases = config --get-regexp alias
 
+    # Get current commit hash for the current branch
+    # Usage: currentBranchHEADCommitHash
+    currentBranchHEADCommitHash = rev-parse HEAD
+
     # Checkout myfile from a stash 0
     # Usage: cosf 0 myfile
     cosf = "!f() {git checkout stash@{$1} -- $2 ; }; f"
