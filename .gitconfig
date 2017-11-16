@@ -22,7 +22,7 @@
     type = cat-file -t
     dump = cat-file -p
     graph = log --graph
-    s = show -p
+    sh = show -p
 
     # Checkout myfile from a stash 0
     # Usage: cosf 0 myfile
