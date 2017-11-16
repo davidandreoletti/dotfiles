@@ -24,6 +24,10 @@
     graph = log --graph
     sh = show -p
 
+    # List all git aliases defined
+    # Usage: aliases
+    aliases = config --get-regexp alias
+
     # Checkout myfile from a stash 0
     # Usage: cosf 0 myfile
     cosf = "!f() {git checkout stash@{$1} -- $2 ; }; f"
