@@ -126,6 +126,10 @@
     # show list of files in a repo
     # Usage: git listfilesrepo HEAD
     listfiles = "!f() { git ls-tree --full-tree -r $1 }"
+    
+    # Find files with pattern in the files' path
+    # usage: findPaths "pattern"
+    findPaths = "!git ls-files | grep -i"
 
     # Reset 1 file
     # Usage: git reset1f2orig myfile.txt
