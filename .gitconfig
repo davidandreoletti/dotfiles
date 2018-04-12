@@ -146,5 +146,3 @@
 [include]
     # Requires git 1.7.10+
     path = .gitconfig-custom
-[commit]
-	template = .gitcommitmessage
