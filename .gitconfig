@@ -1,7 +1,7 @@
 [core]
     fileMode = true
     editor = vim
-    exculdesfile = ~/.gitignore-global-custom
+    exculdesfile = ~/.gitignore_global
     # Set pager to display raw control characters
     # http://michael.otacoo.com/linux-2/avoid-escape-characters-in-git/
     pager = "less -r"
