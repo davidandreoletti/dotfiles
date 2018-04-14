@@ -35,6 +35,8 @@ Bundle 'vim-scripts/DoxygenToolkit.vim'
 " UltiSnips (Snippets)
 Bundle 'SirVer/ultisnips'
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "perso/snippets"]
+" Disable Ultisnips warning when vim is not compiled with python support
+let g:UltiSnipsNoPythonWarning = 1
 
 " Master Vim's advanced motion and search
 Bundle 'takac/vim-hardtime'
