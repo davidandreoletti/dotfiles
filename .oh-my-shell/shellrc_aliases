@@ -222,6 +222,18 @@ alias resetAndroidDebuTerminal="clear; tmux clear-history; adb logcat -c; adb lo
 # usage: androidTakeScreenshot screenshot.png
 alias androidTakeScreenshot="adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > $1"
 
+# Take video of Android device screen
+# usage: androidTakeVideo video.mp4
+function androidTakeVideoImpl() { 
+    echo "Ctrl+C to stop recording."
+    adb shell rm /sdcard/$1;
+    adb shell -x screenrecord --bit-rate 10000000 /sdcard/$1;
+    echo "Saving file to `pwd`/$1."
+    sleep 2s; # Wait for file to be saved fully on device
+    adb pull /sdcard/$1;
+} 
+alias androidTakeVideo="androidTakeVideoImpl $1"
+
 # Xcode
 # http://stackoverflow.com/a/18933476/219728
 alias xcodePurgeDerivedData='rm -rf ~/library/Developer/Xcode/DerivedData/*'
