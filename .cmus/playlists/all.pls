@@ -1,5 +1,5 @@
 [playlist]
-numberofentries=43
+numberofentries=44
 File1=http://xstream1.somafm.com:6200
 Title1=SomaFM: DEF CON Radio (#1 128k mp3): Music for Hacking. The DEF CON Year-Round Channel.
 Length1=-1
@@ -132,7 +132,9 @@ Length43=-1
 File44=https://stream.brain.fm/?tkn=da944b50-cf6f-11e6-b171-ff843a4118b4-u255452
 Title44=https://stream.brain.fm/?tkn=da944b50-cf6f-11e6-b171-ff843a4118b4-u255452
 Length44=-1
-
+File45=http://ice1.somafm.com/groovesalad-256-mp3
+Title45=SomaFM: Groove Salad (#1 256k mp3)
+Length45=-1
 
 
 
