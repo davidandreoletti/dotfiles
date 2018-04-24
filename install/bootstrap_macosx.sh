@@ -104,7 +104,6 @@ python_easy_install "goobook" && chmod -v 755 /usr/local/bin; # for mutt
 
 homebrew_brew_cask_workaround0
 homebrew_brew_tap_install "caskroom/cask"
-homebrew_brew_cask_install "mactex"
 homebrew_brew_cask_install "firefox"
 homebrew_brew_cask_install "google-chrome"
 homebrew_brew_cask_install "vlc"
@@ -120,7 +119,6 @@ homebrew_brew_cask_install "virtualbox-extension-pack"
 homebrew_brew_cask_install "flux"
 homebrew_brew_cask_install "iterm2"
 homebrew_brew_cask_install "cyberduck"
-homebrew_brew_cask_install "flash-player"
 homebrew_brew_cask_install "grandperspective"
 homebrew_brew_cask_install "1password"
 homebrew_brew_cask_install "onyx"
