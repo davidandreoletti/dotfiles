@@ -4,7 +4,8 @@ DOTFILES_FORCE_INSTALL=false
 DOTFILES_PROFILE="perso" 
 DOTFILES_DEFAULT_SHELL="bash"
 DOTFILES_PRIVATE_DIR_PATH_SET=false
-while getopts b:fs:t:hp flag; do
+DOTFILES_PRIVATE_DIR_PATH_SET="`pwd`/../dotfiles-private"
+while getopts b:fs:t:p:h flag; do
   case $flag in
     b)
       BOOSTRAP_COMMAND="$OPTARG";
@@ -100,19 +101,20 @@ function bootstrap_dotfiles() {
         fi
     fi
 
-	chmod -R 700 .
+    chmod -R 700 .
     echo -n "$USER's "; chsh -s $(which $DOTFILES_DEFAULT_SHELL)
     local rootDir=`pwd`
     find . -maxdepth 1 -type d -o -type f | sed "s|^\./||" |  grep -f "$rootDir/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$rootDir/{}" ~/{}";
 
     local profile="custom/${DOTFILES_PROFILE}"
     local curDir="`pwd`/$profile"
-	cd "${profile}" && find . -maxdepth 1 -type d -o -type f | sed "s|^\./||" |  grep -f "$rootDir/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$curDir/{}" ~/{}" && cd - || echo "Cannot find ${profile}. Exit." && exit
+    cd "${profile}" && find . -maxdepth 1 -type d -o -type f | sed "s|^\./||" |  grep -f "$rootDir/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$curDir/{}" ~/{}" && cd - || echo "Cannot find ${profile}. Ignoring."
+
     echo "Read .bashrc_stage0 for installation"
 }
 
 function bootstrap_dotfiles_private() {
-    if [ ${DOTFILES_PRIVATE_DIR_PATH_SET} == false]; then
+    if [ ${DOTFILES_PRIVATE_DIR_PATH_SET} == false ]; then
         return
     fi    
 
@@ -127,14 +129,14 @@ function bootstrap_dotfiles_private() {
         fi
     fi
 
-	chmod -R 700 "$DOTFILES_PRIVATE_DIR_PATH"
+    chmod -R 700 "$DOTFILES_PRIVATE_DIR_PATH"
     echo -n "$USER's "; chsh -s $(which $DOTFILES_DEFAULT_SHELL)
     local rootDir=`pwd`
-    find "$DOTFILES_PRIVATE_DIR_PATH" -maxdepth 1 -type d -o -type f | sed "s|^\./||" |  grep -f "$DOTFILES_PRIVATE_DIR_PATH/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$DOTFILES_PRIVATE_DIR_PATH/{}" ~/{}";
+    find "$DOTFILES_PRIVATE_DIR_PATH" -maxdepth 1 -type d -o -type f | sed "s|$DOTFILES_PRIVATE_DIR_PATH||" |  grep -f "$DOTFILES_PRIVATE_DIR_PATH/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$DOTFILES_PRIVATE_DIR_PATH/{}" ~/{}";
 
     local profile="custom/${DOTFILES_PROFILE}"
     local curDir="`pwd`/$profile"
-	cd "$DOTFILES_PRIVATE_DIR_PATH/${profile}" && find . -maxdepth 1 -type d -o -type f | sed "s|^\./||" |  grep -f "$DOTFILES_PRIVATE_DIR_PATH/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$DOTFILES_PRIVATE_DIR_PATH/{}" ~/{}" && cd - || echo "Cannot find $DOTFILES_PRIVATE_DIR_PATH/${profile}. Exit." && exit
+    cd "$DOTFILES_PRIVATE_DIR_PATH/${profile}" && find . -maxdepth 1 -type d -o -type f | sed "s|$DOTFILES_PRIVATE_DIR_PATH||" |  grep -f "$DOTFILES_PRIVATE_DIR_PATH/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$DOTFILES_PRIVATE_DIR_PATH/{}" ~/{}" && cd - || echo "Cannot find $DOTFILES_PRIVATE_DIR_PATH/${profile}. Ignoring."
 }
 
 function bootstrap_macosx() {
