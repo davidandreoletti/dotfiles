@@ -118,6 +118,8 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 ###############################################################################
 # Disable “natural” (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+# Enable Tap to click on touchpad
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 ###############################################################################
 # Keyboard #
 ###############################################################################
