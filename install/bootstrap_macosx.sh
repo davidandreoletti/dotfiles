@@ -143,17 +143,11 @@ tmux_install_tpm
 # Set OSX user/system defaults
 bash "${BOOSTRAP_DIR}/macosx/shell/defaults.sh"
 
-# FIXME: install dotfiles ???
-# $(which git) clone \"$dotfilesURL\" && cd dotfiles && set -- -f && bash -x bootstrap.sh -f && echo 'source ~/.oh-my-shell/oh-my-shellrc' >> ~/.bash_profile && echo 'source ~/.oh-my-shell/oh-my-shellrc' >> ~/.zshrc"
-
-
 # Services administration
 ## SSD perf
 fs_has_volume "/" || message_info_show "No volume / to enable noatime flag on" 
 fs_has_volume "/" && fs_enable_flag_noatime_on_filesystem "/" "com.david.andreoletti.ssd.noatime.volumeroot"
-fs_has_volume "/" || message_info_show "No volume /Volumes/Data to enable noatime flag on" 
-fs_has_volume "/Volumes/Data" && fs_enable_flag_noatime_on_filesystem "/Volumes/Data" "com.david.andreoletti.ssd.noatime.volumedata"
-ssd_enable_trim
+# TRIM enabled by default since at least macOS High Sierra
 
 ## Remote SSH
 ssh_user_enable "$(whoami)"  &&  ssh_set_remote_login "on"
