@@ -22,6 +22,12 @@ function account_user_remove_group() {
     sudo ${SUDO_OPTIONS} dseditgroup -o edit -d "$1" -t user "$2" 
 }
 
+#param1: username
+function account_exists() {
+    local USERNAME="$1"
+    $DSCL . read /Users/$USERNAME >/dev/null 2>&1 && return 0 || return 1
+}
+
 # param1: username
 # param2: real name
 # param3: password
