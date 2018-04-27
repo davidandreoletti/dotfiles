@@ -51,3 +51,11 @@ homebrew_brew_cask_workaround0() {
 homebrew_brew_cask_install() {
     sudo ${SUDO_OPTIONS} -u "$(whoami)" brew cask install "$1"
 }
+
+# param1: package name
+homebrew_mas_install() {
+    message_info_show "$1 install ..."
+    sudo ${SUDO_OPTIONS} -u "$(whoami)" mas install $@
+}
+
+
