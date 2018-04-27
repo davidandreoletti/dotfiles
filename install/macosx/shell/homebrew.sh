@@ -34,17 +34,35 @@ homebrew_brew_tap_install() {
 }
 
 homebrew_brew_cask_workaround0() {
-    # create dirs with right permission/wonership otherwise cask will
-    # prompt for a password
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" mkdir -p "/opt/homebrew-cask/Caskroom" # FIXME permission denied
-    # standard /opt dir permission/ownership
-    sudo ${SUDO_OPTIONS} chmod 0775 "/opt"
-    sudo ${SUDO_OPTIONS} chown "root:wheel" "/opt"
-    # cask permission/ownership
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" chmod 0755 "/opt/homebrew-cask"
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" chmod 0755 "/opt/homebrew-cask/Caskroom"
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" chown "$(whoami):staff" "/opt/homebrew-cask"
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" chown "$(whoami):staff" "/opt/homebrew-cask/Caskroom"
+    :
+#    set -x
+#    
+#    DSCL='/usr/bin/dscl'
+#
+#    # Group name to add standard users to
+#    # This group name will be used in place where homebrew expects the "admin" group
+#    HOMEBREW_ADMIN_GROUP="admins"
+#
+#    # Create new homebrew admin group
+#    sudo ${SUDO_OPTIONS} $DSCL . read /Groups/${HOMEBREW_ADMIN_GROUP}  || sudo ${SUDO_OPTIONS} $DSCL . create /Groups/${HOMEBREW_ADMIN_GROUP}
+#
+#    # Add current user to the group
+#    #staffGroupId=`dscl . -read /Groups/staff | awk '($1 == "PrimaryGroupID:") { print $2 }'`
+#    #dscl . -list /Users PrimaryGroupID | grep " ${staffGroujpId}$"
+#    sudo ${SUDO_OPTIONS} /usr/sbin/dseditgroup -o edit -n /Local/Default -a $(whoami) -t user ${HOMEBREW_ADMIN_GROUP}
+#    
+#    #Switch homebrew managed group permission folders for multi users brew install usage
+#    #src: https://gitlab.com/alyda/dotfiles/snippets/19654
+#    sudo ${SUDO_OPTIONS} /usr/sbin/chown -R :${HOMEBREW_ADMIN_GROUP} /usr/local/*
+#    sudo ${SUDO_OPTIONS} /bin/chmod -R g+w /usr/local/*
+#    sudo ${SUDO_OPTIONS} /usr/sbin/chown -R :${HOMEBREW_ADMIN_GROUP} /Library/Caches/Homebrew 
+#    sudo ${SUDO_OPTIONS} /bin/chmod -R g+w /Library/Caches/Homebrew 
+#    sudo ${SUDO_OPTIONS} /bin/mkdir -p /opt
+#    sudo ${SUDO_OPTIONS} /bin/chmod 0755 /opt
+#    sudo ${SUDO_OPTIONS} /usr/sbin/chown "root:wheel" /opt
+#    sudo ${SUDO_OPTIONS} /usr/sbin/chown -R :${HOMEBREW_ADMIN_GROUP} /opt
+#    sudo ${SUDO_OPTIONS} /bin/chmod -R g+w /opt 
+#    set +x
 }
 
 #param1: appname
