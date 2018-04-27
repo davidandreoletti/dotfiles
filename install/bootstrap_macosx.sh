@@ -128,6 +128,12 @@ homebrew_brew_cask_install "textmate"
 #homebrew_brew_cask_install "undercover" Not in brew cask anymore - keep it to remember to install it # require password - cannot override
 # will require Defaults        env_keep += "HOME MAIL" in sudoers ?
 homebrew_brew_cask_install "intel-haxm" # smae issue as undercover
+homebrew_brew_cask_install "intel-haxm"
+    # https://developer.apple.com/library/content/technotes/tn2459/_index.html
+    todolist_add_new_entry "Allow Kernel extension from Intel XAM to run: System Preferences > Seucrity Privacy > General Tab > Allow button"
+
+todolist_add_new_entry "Install Orbicule Undercover: http://www.orbicule.com/undercover/mac/download.php"
+todolist_add_new_entry "Setup License in Orbicule Undercover"
 
 homebrew_brew_linkapps
 fi
