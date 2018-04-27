@@ -1,6 +1,11 @@
 # Inspired from: Secrets Plugin for System Preferences
 # Inspired from: https://github.com/rudolph9/dotfiles/blob/master/.osx
-# Inspered from: https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+# Inspired from: https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+# inspired from" https://github.com/kevinSuttle/macOS-Defaults/blob/master/.macos
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
 
 ###############################################################################
 # UI/UX #
@@ -41,7 +46,7 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 # Hide users with uid < 500
-sudo defaults write /Library/Preferences/com.apple.loginwindow Hide500Users -bool YES
+# sudo defaults write /Library/Preferences/com.apple.loginwindow Hide500Users -bool YES
 ###############################################################################
 # SSD #
 ###############################################################################
@@ -53,6 +58,9 @@ sudo pmset -a sms 0
 # Show remaining battery percentage; hide time
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 defaults write com.apple.menuextra.battery ShowTime -string "NO"
+###############################################################################
+# Bluetooth
+#TODO: Enable bluettoth in macOS menu bar
 ###############################################################################
 # Dock, Dashboard, and hot corners #
 ###############################################################################
@@ -260,13 +268,11 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 chflags nohidden ~/Library
 # Show item info near icons on the desktop and in other icon views
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
 # Show item info to the bottom of the icons on the desktop
 /usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:labelOnBottom true" ~/Library/Preferences/com.apple.finder.plist
 # Enable snap-to-grid for icons on the desktop and in other icon views
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 ###############################################################################
 # Mail #
@@ -407,6 +413,18 @@ defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
 defaults write com.apple.appstore WebKitDeveloperExtras -bool true
 # Enable Debug Menu in the Mac App Store
 defaults write com.apple.appstore ShowDebugMenu -bool true
+# Enable the automatic update check
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+# Check for software updates daily, not just once per week
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+# Download newly available updates in background
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+# Install System data files & security updates
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+# Turn on app auto-update
+defaults write com.apple.commerce AutoUpdate -bool true
+# Allow the App Store to reboot machine on macOS updates
+defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
 ###############################################################################
 # Messages #
 ###############################################################################
