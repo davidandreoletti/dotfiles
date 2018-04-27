@@ -131,6 +131,10 @@ homebrew_brew_cask_install "intel-haxm"
 todolist_add_new_entry "Install Orbicule Undercover: http://www.orbicule.com/undercover/mac/download.php"
 todolist_add_new_entry "Setup License in Orbicule Undercover"
 
+homebrew_brew_install "mas" # Mac App Store command line too
+homebrew_mas_install "539883307" # LINE Inc
+homebrew_mas_install install 409203825 # Numbers
+homebrew_mas_install install 409201541 # Pages
 homebrew_brew_linkapps
 fi
 
