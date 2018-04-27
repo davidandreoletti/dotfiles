@@ -66,15 +66,6 @@ function sudoers_add_user() {
 
     sudo sed -i.bak -e "$pattern" /etc/sudoers
 
-    #local pattern="$ a\\\\
-    ## Added by boostrap-machine script
-    #$ a\\\\
-    #$current_user	ALL=\(ALL\) ALL"
-
-    # su $current_user -c "sudo sed -i.bak -e \"$pattern\" /etc/sudoers" # FIXME tdl
-    ##su $current_user -c "sudo ${SUDO_OPTIONS} sed -i.bak -e \"$pattern\" /etc/sudoers"
-    #sudo ${SUDO_OPTIONS} -u "$current_user" sed -i.bak -e "$pattern" /etc/sudoers
-
     sudo visudo -c
 }
 
