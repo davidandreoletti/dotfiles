@@ -155,6 +155,17 @@ rm /tmp/list
 }
 alias dirsize='dirsize_'
 
+#function showLargestFilesHeldOpen() {
+#    lsof \
+#    | grep REG \
+#    | grep -v "stat: No such file or directory" \
+#    | grep -v "/Library/Application" \
+#    | grep -v DEL \
+#    | awk '{if ($NF=="(deleted)") {x=3;y=1} else {x=2;y=0}; {print $(NF-x) "  " $(NF-y) } }'  \
+#    | sort -n -u -r \
+#    | numfmt  --field=1 --to=iec
+#}
+
 # Get http headers
 function http_headers() { /usr/bin/curl -I -L $@ ; }
 
@@ -265,4 +276,14 @@ alias brew-dist-upgrade="brew update; brew upgrade \`brew outdated\`"
 # Usage: downloadCompleteWebpage http://example.com/mypage.html
 # Src: https://apple.stackexchange.com/questions/100570/getting-files-all-at-once-from-a-web-page-using-curl
 alias downloadCompleteWebpage='wget -r -np -k ' 
+
+#copyFolderStructureOnly {
+#    find . -type d >dirs.txt
+#    xargs mkdir -p <dirs.txt
+#}
+#
+#copyFolderStructureOnlyV2 {
+#    rsync -a --filter="-! */" source_dir/ target_dir/
+#}
+
 [ -x "$(command -v nvim)" ] && alias vim='nvim'
