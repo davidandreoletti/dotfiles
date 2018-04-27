@@ -84,7 +84,6 @@ homebrew_is_installed || exit 1
 ## List of available packages
 ## http://braumeister.org/
 ## http://brewformulas.org/A
-# FIXME should I brew update or brew upgrade  ?
 homebrew_brew_install "bash"; sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"; sudo chsh -s $(brew --prefix)/bin/bash $USER;  # Use Bash 4.x or better as default shell for current user
 homebrew_brew_tap_install "homebrew/dupes"
 homebrew_brew_install "git" # something more recent than Xcode's
