@@ -2,15 +2,17 @@
 
 ###############################################################################
 # Boostrap new Mac OS X OS
-# export DEBUG=; ./<this script> to debug
 # Prerequisites:
 # Xcode installed
 ###############################################################################
 
 export BOOSTRAP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export BOOTSTRAP_PROFILE="$1"
+
 pushd /tmp
 
 # Functions
+source "${BOOSTRAP_DIR}/utils/profile.sh"
 source "${BOOSTRAP_DIR}/utils/debug.sh"
 source "${BOOSTRAP_DIR}/utils/message.sh"
 source "${BOOSTRAP_DIR}/config/config.sh"
@@ -33,7 +35,7 @@ source "${BOOSTRAP_DIR}/macosx/shell/tmux.sh"
 # Bootstrap setup
 ## Ask sudo password for askpass. Required to work around sudo timeout within 
 ## this script process
-message_info_show "Enter password for $(whoami) (required):" #FIXME Check password is correct
+message_info_show "Enter password for $(whoami) (required):"
 read -s p
 echo "$p" | sudo -S echo ""
 
@@ -52,7 +54,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ## Give current user sudo rights
 account_has_administration_permission || message_error_show "Account with admin group required for user management"
 account_has_administration_permission || exit 1
-sudoers_add_user "$(whoami)"
+is_profile_dev_single && sudoers_add_user "$(whoami)"
 
 onexit() {
     # FIXME remove config file with passwords ...
@@ -61,13 +63,11 @@ onexit() {
     unset SUDO_ASKPASS
     unset SUDO_OPTIONS
 
-    # FIXME ramdisk secrets must be deleted
     ramdisk_umount_and_destroy_storage "secrets"
 }
 
 trap onexit EXIT
 
-if is_debug_off ; then  # FIXME debug on/off is wrong - DEBUG va
 xcode_is_installed || xcode_show_not_installed_message
 xcode_is_installed || exit 1
 message_info_show "Xcode Command Line Tools install ..."
@@ -84,61 +84,60 @@ homebrew_is_installed || exit 1
 ## List of available packages
 ## http://braumeister.org/
 ## http://brewformulas.org/A
-homebrew_brew_install "bash"; sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"; sudo chsh -s $(brew --prefix)/bin/bash $USER;  # Use Bash 4.x or better as default shell for current user
-homebrew_brew_tap_install "homebrew/dupes"
-homebrew_brew_install "git" # Get more recent version than the one shipped in Xcode
-homebrew_brew_install "coreutils"
-homebrew_brew_install "zsh"
-homebrew_brew_install "tmux"
-homebrew_brew_install "vim"
-homebrew_brew_install "neovim"
-homebrew_brew_install "ack"
-homebrew_brew_install "newsbeuter"
-homebrew_brew_install "rsync"
-homebrew_brew_install "jenv"
-homebrew_brew_install "cmus"
-homebrew_brew_install "irssi" "--with-perl=yes" "--with-proxy"
+is_profile_admin_or_similar && homebrew_brew_install "bash"; sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"; sudo chsh -s $(brew --prefix)/bin/bash $USER;  # Use Bash 4.x or better as default shell for current user
+is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/dupes"
+is_profile_admin_or_similar && homebrew_brew_install "git" # Get more recent version than the one shipped in Xcode
+is_profile_admin_or_similar && homebrew_brew_install "coreutils" # Apple has outdated unix tooling.
+is_profile_admin_or_similar && homebrew_brew_install "zsh"
+is_profile_admin_or_similar && homebrew_brew_install "tmux"
+is_profile_admin_or_similar && homebrew_brew_install "vim"
+is_profile_admin_or_similar && homebrew_brew_install "neovim"
+is_profile_admin_or_similar && homebrew_brew_install "ack"
+is_profile_admin_or_similar && homebrew_brew_install "newsbeuter"
+is_profile_admin_or_similar && homebrew_brew_install "rsync"
+is_profile_admin_or_similar && homebrew_brew_install "jenv"
+is_profile_admin_or_similar && homebrew_brew_install "cmus"
+is_profile_admin_or_similar && homebrew_brew_install "irssi" "--with-perl=yes" "--with-proxy"
 
-homebrew_brew_cask_workaround0
-homebrew_brew_tap_install "caskroom/cask"
-homebrew_brew_cask_install "firefox"
-homebrew_brew_cask_install "google-chrome"
-homebrew_brew_cask_install "vlc"
-homebrew_brew_cask_install "java"
-homebrew_brew_cask_install "android-studio"
-homebrew_brew_cask_install "appcode"
-homebrew_brew_cask_install "webstorm"
-homebrew_brew_cask_install "sketch"
-homebrew_brew_cask_install "calibre"
-homebrew_brew_cask_install "sourcetree"
-homebrew_brew_cask_install "transmission"
-homebrew_brew_cask_install "skype"
-homebrew_brew_cask_install "dropbox"
-homebrew_brew_cask_install "virtualbox"
-homebrew_brew_cask_install "virtualbox-extension-pack"
-homebrew_brew_cask_install "flux"
-homebrew_brew_cask_install "iterm2"
-homebrew_brew_cask_install "cyberduck"
-homebrew_brew_cask_install "grandperspective"
-homebrew_brew_cask_install "1password"
-homebrew_brew_cask_install "onyx"
-homebrew_brew_cask_install "postman"
-homebrew_brew_cask_install "textmate"
-homebrew_brew_cask_install "intel-haxm"
-    # https://developer.apple.com/library/content/technotes/tn2459/_index.html
-    todolist_add_new_entry "Allow Kernel extension from Intel XAM to run: System Preferences > Seucrity Privacy > General Tab > Allow button"
+#homebrew_brew_cask_workaround0
+is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"
+is_profile_admin_or_similar && homebrew_brew_cask_install "firefox"
+is_profile_admin_or_similar && homebrew_brew_cask_install "google-chrome"
+is_profile_admin_or_similar && homebrew_brew_cask_install "vlc"
+is_profile_admin_or_similar && homebrew_brew_cask_install "java"
+is_profile_admin_or_similar && homebrew_brew_cask_install "android-studio"
+is_profile_admin_or_similar && homebrew_brew_cask_install "appcode"
+is_profile_admin_or_similar && homebrew_brew_cask_install "webstorm"
+is_profile_admin_or_similar && homebrew_brew_cask_install "sketch"
+is_profile_admin_or_similar && homebrew_brew_cask_install "calibre"
+is_profile_admin_or_similar && homebrew_brew_cask_install "sourcetree"
+is_profile_admin_or_similar && homebrew_brew_cask_install "transmission"
+is_profile_admin_or_similar && homebrew_brew_cask_install "skype"
+is_profile_admin_or_similar && homebrew_brew_cask_install "dropbox"
+is_profile_admin_or_similar && homebrew_brew_cask_install "virtualbox"
+is_profile_admin_or_similar && homebrew_brew_cask_install "virtualbox-extension-pack"
+is_profile_admin_or_similar && homebrew_brew_cask_install "flux"
+is_profile_admin_or_similar && homebrew_brew_cask_install "iterm2"
+is_profile_admin_or_similar && homebrew_brew_cask_install "cyberduck"
+is_profile_admin_or_similar && homebrew_brew_cask_install "grandperspective"
+is_profile_admin_or_similar && homebrew_brew_cask_install "1password"
+is_profile_admin_or_similar && homebrew_brew_cask_install "onyx"
+is_profile_admin_or_similar && homebrew_brew_cask_install "postman"
+is_profile_admin_or_similar && homebrew_brew_cask_install "textmate"
+is_profile_admin_or_similar && homebrew_brew_cask_install "intel-haxm"
 
-todolist_add_new_entry "Install Orbicule Undercover: http://www.orbicule.com/undercover/mac/download.php"
-todolist_add_new_entry "Setup License in Orbicule Undercover"
+# https://developer.apple.com/library/content/technotes/tn2459/_index.html
+is_profile_admin_or_similar && todolist_add_new_entry "Allow Kernel extension from Intel XAM to run: System Preferences > Seucrity Privacy > General Tab > Allow button"
 
-homebrew_brew_install "mas" # Mac App Store command line too
-homebrew_mas_install "539883307" # LINE Inc
-homebrew_mas_install install 409203825 # Numbers
-homebrew_mas_install install 409201541 # Pages
-homebrew_brew_linkapps
-fi
+is_profile_admin_or_similar && todolist_add_new_entry "Install Orbicule Undercover: http://www.orbicule.com/undercover/mac/download.php"
+is_profile_admin_or_similar && todolist_add_new_entry "Setup License in Orbicule Undercover"
 
-tmux_install_tpm
+is_profile_admin_or_similar && homebrew_brew_install "mas" # Mac App Store command line too
+is_profile_admin_or_similar && homebrew_mas_install "539883307" # LINE Inc
+is_profile_admin_or_similar && homebrew_mas_install install 409203825 # Numbers
+is_profile_admin_or_similar && homebrew_mas_install install 409201541 # Pages
+
+[[ is_profile_admin || is_profile_dev_single || is_profile_dev_multi ]] && tmux_install_tpm
 
 # Set OSX user/system defaults
 bash "${BOOSTRAP_DIR}/macosx/shell/defaults.sh"
@@ -150,9 +149,9 @@ fs_has_volume "/" && fs_enable_flag_noatime_on_filesystem "/" "com.david.andreol
 # TRIM enabled by default since at least macOS High Sierra
 
 ## Remote SSH
-ssh_user_enable "$(whoami)"  &&  ssh_set_remote_login "on"
+#ssh_user_enable "$(whoami)"  &&  ssh_set_remote_login "on"
 ## Remote VNC
-vnc_user_enable "$(whoami)" "$CONFIG_MACOSX_VNC_PASSWORD"
+#vnc_user_enable "$(whoami)" "$CONFIG_MACOSX_VNC_PASSWORD"
 ## Accessibility API
 assistive_enable_accessibility_api
 
@@ -163,18 +162,19 @@ softwareupdate_updates_install
 
 # Users Administration
 ## Enable Guest
-account_has_administration_permission || message_error_show "Account with admin group required for user management"
-account_has_administration_permission || exit 1
-account_guest_enable
+is_profile_admin_or_similar && account_guest_enable
 ## Create new Administrator account
-account_admin_create "administrator" "Administrator" "$CONFIG_MACOSX_USER_ADMIN_PASSWORD"
+is_admin_available=$(account_exists "administrator")
+account_exists "administrator" || account_admin_create "administrator" "Administrator" "$CONFIG_MACOSX_USER_ADMIN_PASSWORD"
 ## Remove current user from admin group
-## OSX will ask for Administrator password every time something
-## has to be done (least privileges for day to day tasks)
-account_user_remove_group "$(whoami)" "admin"
+## - OSX will ask for Administrator password every time something has to be done (least privileges for day to day tasks)
+## - Homebrew's /usr/local/*' folders have group admin. In multi user setup, 
+##   users with the "admin" group are the only one allowed to "brew install"
+##   DO NOT CHANGE the /usr/local/* group to something - that's futile and agaisnt homebrew's recommendation
+is_profile_dev_single && account_user_remove_group "$(whoami)" "admin"
 ## Change administrator password
-message_info_show "Change Administrator password :)"
-sudo ${SUDOERS_OPTIONS} passwd administrator
+$is_admin_available || message_info_show "Change Administrator password :)"
+$is_admin_available || sudo ${SUDOERS_OPTIONS} passwd administrator
 
 popd
 

@@ -47,9 +47,13 @@ while getopts b:fs:t:p:h flag; do
       echo "  DOTFILES OPTIONS"
       echo ""
       echo " -f         Force install."
-      echo " -s profile\t dotfiles profile to install. Valid values (case sensitive): "
-      echo "    work  - For computers at work."
-      echo "    perso - For computers at home (default)."
+      echo " -s profile\t Profile to install. Valid values (case sensitive): "
+      echo "    work   - (dotfiles configuration only) For computers at work."
+      echo "    perso  - (dotfiles configuration only)For computers at home (default)."
+      echo "    normal - (macosx configuration only) Set as standard user."
+      echo "    admin  - (macosx configuration only) Set as admin oriented user."
+      echo "    dev_single - (macosx configuration only) Use if there will be a single developer accounts/users."
+      echo "    dev_multi  - (macosx configuration only) Use if there will be multiple developer accounts/users."
       echo " -t shell\t Shell type to use by default. Valid values (case sensitive): "
       echo "    bash - Bash shell (default)"
       echo "    zsh  - ZSH shell"
@@ -72,7 +76,14 @@ while getopts b:fs:t:p:h flag; do
 
       echo " 1) Bootstraps a MAC OS X machine"
       echo ""
-      echo "   $0 -b macosx"
+      echo "   1. Setup  -the- user account acting as Administrator"
+      echo "   $0 -b macosx -s admin"
+      echo "   2. Setup depending on the computer's machine purpose: single dev OR multi dev configuration"
+      echo "    Run  all user accounts which will be used for development purpose (ie multi dev machine)"
+      echo "    $0 -b macosx -s dev_multi"
+      echo "    OR"
+      echo "    Run on -the- user account which will be used as the unique development account  (ie single dev machine)"
+      echo "    $0 -b macosx -s dev_single"
       ;;
     ?)
       echo "Unsupported option. Exit."
@@ -140,7 +151,7 @@ function bootstrap_dotfiles_private() {
 }
 
 function bootstrap_macosx() {
-    bash "install/bootstrap_macosx.sh"
+    bash "install/bootstrap_macosx.sh" "$DOTFILES_PROFILE"
 }
 
 function bootstrap_debian() {
