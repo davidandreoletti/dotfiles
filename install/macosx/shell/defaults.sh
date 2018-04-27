@@ -253,8 +253,9 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 # Disable window animations and Get Info animations
 defaults write com.apple.finder DisableAllAnimations -bool true
-# Avoid creating .DS_Store files on network volumes
+# Avoid creating .DS_Store files on network/usb volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Show the ~/Library folder.
 chflags nohidden ~/Library
 # Show item info near icons on the desktop and in other icon views
