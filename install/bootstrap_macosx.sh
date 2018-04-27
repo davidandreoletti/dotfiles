@@ -86,7 +86,7 @@ homebrew_is_installed || exit 1
 ## http://brewformulas.org/A
 homebrew_brew_install "bash"; sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"; sudo chsh -s $(brew --prefix)/bin/bash $USER;  # Use Bash 4.x or better as default shell for current user
 homebrew_brew_tap_install "homebrew/dupes"
-homebrew_brew_install "git" # something more recent than Xcode's
+homebrew_brew_install "git" # Get more recent version than the one shipped in Xcode
 homebrew_brew_install "coreutils"
 homebrew_brew_install "zsh"
 homebrew_brew_install "tmux"
