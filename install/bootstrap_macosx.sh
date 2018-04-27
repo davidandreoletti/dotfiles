@@ -98,9 +98,6 @@ homebrew_brew_install "rsync"
 homebrew_brew_install "jenv"
 homebrew_brew_install "cmus"
 homebrew_brew_install "irssi" "--with-perl=yes" "--with-proxy"
-homebrew_brew_install "mutt" "--sidebar-patch" "--trash-patch" "--with-slang"
-
-python_easy_install "goobook" && chmod -v 755 /usr/local/bin; # for mutt
 
 homebrew_brew_cask_workaround0
 homebrew_brew_tap_install "caskroom/cask"
