@@ -1,4 +1,8 @@
 * TODO:
+** TODO: Check admin account have SecureToken enabled (to unlock FileValut2 disks)
+*** https://centrify.force.com/support/Article/KB-10010-FileVault2-fails-to-initiate-for-macOS-10-13-x-High-Sierra-systems-using-Centrify-Group-Policy-and-or-cannot-add-a-mobile-account-as-a-FileVault-unlocker-account/
+*** https://derflounder.wordpress.com/2018/01/20/secure-token-and-filevault-on-apple-file-system/
+*** https://support.apple.com/en-us/HT204837
 ** tmux_show/tmux_hide functions
 * DONE:
 ** DONE Working winth system clipboard -> copy tmux buffer to system clipboard
