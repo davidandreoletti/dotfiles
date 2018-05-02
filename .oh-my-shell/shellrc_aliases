@@ -287,3 +287,5 @@ alias downloadCompleteWebpage='wget -r -np -k '
 #}
 
 [ -x "$(command -v nvim)" ] && alias vim='nvim'
+
+alias clr="clear; tmux clear-history;"
