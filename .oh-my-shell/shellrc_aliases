@@ -291,3 +291,12 @@ alias downloadCompleteWebpage='wget -r -np -k '
 [ -x "$(command -v nvim)" ] && alias vim='nvim'
 
 alias clr="clear; tmux clear-history;"
+
+# Docker
+
+f_dockerShowContainersInNetwork() {
+    # https://stackoverflow.com/a/43904733
+    docker network inspect $1 -f "{{json .Containers }}"
+}
+
+alias dockerShowContainersInNetwork="f_dockerShowContainersInNetwork $1"
