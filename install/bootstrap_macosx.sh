@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 ###############################################################################
 # Boostrap new Mac OS X OS
@@ -31,6 +32,7 @@ source "${BOOSTRAP_DIR}/macosx/shell/account.sh"
 source "${BOOSTRAP_DIR}/macosx/shell/softwareupdate.sh"
 source "${BOOSTRAP_DIR}/macosx/shell/ramdisk.sh"
 source "${BOOSTRAP_DIR}/macosx/shell/tmux.sh"
+source "${BOOSTRAP_DIR}/macosx/shell/timemachine.sh"
 
 # Bootstrap setup
 ## Ask sudo password for askpass. Required to work around sudo timeout within 
@@ -99,6 +101,7 @@ is_profile_admin_or_similar && homebrew_brew_install "jenv"
 is_profile_admin_or_similar && homebrew_brew_install "nvm"
 is_profile_admin_or_similar && homebrew_brew_install "cmus"
 is_profile_admin_or_similar && homebrew_brew_install "irssi" "--with-perl=yes" "--with-proxy"
+is_profile_admin_or_similar && homebrew_brew_install "rlwrap"  # Needed to execute PlistBuddy in command mode
 
 #homebrew_brew_cask_workaround0
 is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"
@@ -142,6 +145,7 @@ is_profile_admin_or_similar && homebrew_mas_install install 409201541 # Pages
 
 # Set OSX user/system defaults
 bash "${BOOSTRAP_DIR}/macosx/shell/defaults.sh"
+timemachine_defaults
 
 # Services administration
 ## SSD perf
