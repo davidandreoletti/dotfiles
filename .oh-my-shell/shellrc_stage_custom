@@ -3,6 +3,8 @@
 #
 #
 
+# Load homebrew config 
+source "${SHELLRC_DIR}/shellrc_homebrew"
 # Load ssh config 
 source "${SHELLRC_DIR}/shellrc_ssh"
 # Load java config
