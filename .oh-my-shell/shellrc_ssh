@@ -4,20 +4,20 @@
 # Add "AddKeysToAgent yes" to hosts (stored in your ~/.ssh/config) whose keys should be kept by the ssh-agent, when first unlocked
 # Don't use: ssh-add -l > /dev/null || ssh-add
 
-
 # Load a single ssh-agent instance across all terminal sessions
 # src: https://stackoverflow.com/a/32592488/219728
 USER_SSH_AGENT_ENV="$HOME/.ssh/.ssh_agent_env"
-agentPid=`ps -A -u $USER -o "pid,command" -c | grep ssh-agent | cut -d ' ' -f 1`
+agentPid=`ps -A -u $USER -o "pid,command" -c | grep ssh-agent | grep $USER | cut -d ' ' -f 1`
 if [[ "$agentPid" == "" ]]; then
     # No ssh-agent running, start it
     eval $(ssh-agent) > /dev/null
     # Remove eventual previous ssh-agent environment configuration
     rm -f "$USER_SSH_AGENT_ENV" 2> /dev/null
+    touch "$USER_SSH_AGENT_ENV" 2> /dev/null
     # Add new ssh-agent environment configuration
-    echo 'export SSH_AUTH_SOCK'=$SSH_AUTH_SOCK >> ~/.ssh/.ssh_agent_env
-    echo 'export SSH_AGENT_PID'=$SSH_AGENT_PID >> ~/.ssh/.ssh_agent_env
+    echo 'export SSH_AUTH_SOCK'=$SSH_AUTH_SOCK >> "$USER_SSH_AGENT_ENV"
+    echo 'export SSH_AGENT_PID'=$SSH_AGENT_PID >> "$USER_SSH_AGENT_ENV"
 else
-    source $USER_SSH_AGENT_ENV
+    [[ -f "$USER_SSH_AGENT_ENV" ]] && source "$USER_SSH_AGENT_ENV"
 fi
 
