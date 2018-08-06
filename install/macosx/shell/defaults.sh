@@ -477,6 +477,11 @@ defaults write com.skype.skype SKShowSplash -bool NO
 # Open as vertical split
 defaults write org.vim.MacVim MMVerticalSplit -bool true
 ###############################################################################
+# SourceTree
+###############################################################################
+# Do not modify the $HOME/.gitconfig
+defaults write com.torusknot.SourceTreeNotMAS agreedToUpdateConfig 0
+###############################################################################
 # Kill affected applications #
 # - Keep this section disabled to keep boostrap_macosx.sh working
 ###############################################################################
