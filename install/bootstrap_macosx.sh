@@ -100,6 +100,8 @@ is_profile_admin_or_similar && homebrew_brew_install "rsync"
 is_profile_admin_or_similar && homebrew_brew_install "jenv"
 is_profile_admin_or_similar && homebrew_brew_install "nvm"
 is_profile_admin_or_similar && homebrew_brew_install "cmus"
+is_profile_admin_or_similar && homebrew_brew_install "watch"
+is_profile_admin_or_similar && homebrew_brew_install "unp"
 is_profile_admin_or_similar && homebrew_brew_install "irssi" "--with-perl=yes" "--with-proxy"
 is_profile_admin_or_similar && homebrew_brew_install "rlwrap"  # Needed to execute PlistBuddy in command mode
 
