@@ -4,7 +4,9 @@ DOTFILES_FORCE_INSTALL=false
 DOTFILES_PROFILE="perso" 
 DOTFILES_DEFAULT_SHELL="bash"
 DOTFILES_PRIVATE_DIR_PATH_SET=false
-DOTFILES_PRIVATE_DIR_PATH_SET="`pwd`/../dotfiles-private"
+DOTFILES_PRIVATE_DIR_PATH="`pwd`/../dotfiles-private"
+DOTFILES_DIR_PATH="`pwd`"
+
 while getopts b:fs:t:p:h flag; do
   case $flag in
     b)
@@ -100,9 +102,19 @@ function check_new_updates() {
     git pull
 }
 
-function bootstrap_dotfiles() {
+function change_default_shell() {
+    echo -n "$USER's "; chsh -s $(which $DOTFILES_DEFAULT_SHELL)
+}
+
+function bootstrap_symlinking_user_files() {
+    set -x 
+    local user="$1"
+    local repoRootDir="$2"
+    local userHome="$3"
+    local dottype="$repoRootDir"
+
     if [ ${DOTFILES_FORCE_INSTALL} == false ]; then
-        read -p " Warning: some dotfiles will be overwritten. Are you sure? (y/n) " -n 1
+        read -p " Warning: some $dottype will be overwritten. Are you sure? (y/n) " -n 1
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
             echo "OK :)"
@@ -112,15 +124,24 @@ function bootstrap_dotfiles() {
         fi
     fi
 
-    chmod -R 700 .
-    echo -n "$USER's "; chsh -s $(which $DOTFILES_DEFAULT_SHELL)
-    local rootDir=`pwd`
-    find . -maxdepth 1 -type d -o -type f | sed "s|^\./||" |  grep -f "$rootDir/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$rootDir/{}" ~/{}";
+    #Symlink files and folder in the repo's common profile
+    chmod -R 700 "$repoRootDir"
+    local repoExcluded="$repoRootDir/exclude.txt"
+    count=`echo -n "$repoRootDir   " | wc -c`
+    find "$repoRootDir/" -maxdepth 1 -type d -o -type f | cut -c$count- | grep -f "$repoExcluded" --invert-match | xargs -t -I {} bash -c "ln -Ffsv \"$repoRootDir/{}\" \"$userHome/{}\"";
 
-    local profile="custom/${DOTFILES_PROFILE}"
-    local curDir="`pwd`/$profile"
-    cd "${profile}" && find . -maxdepth 1 -type d -o -type f | sed "s|^\./||" |  grep -f "$rootDir/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$curDir/{}" ~/{}" && cd - || echo "Cannot find ${profile}. Ignoring."
+    #Symlink files and folder in the repo's selected profile
+    local repoProfile="custom/${DOTFILES_PROFILE}"
+    local repoProfileRootDir="`pwd`/$repoProfile"
+    local repoProfileExcluded="$repoProfileRootDir/exclude.txt"
+    count=`echo -n "$repoProfileRootDir" | wc -c`
+    [[ ! -f "$repoProfileExcluded" ]] && touch "$repoProfileExcluded"
+    [[ -d "$repoProfileRootDir" ]] && find "$repoProfileRootDir/" -maxdepth 1 -type d -o -type f | cut -c$count- |  grep -f "$repoProfileExcluded" --invert-match | xargs -t -I {} bash -c "ln -Ffsv \"$repoProfileRootDir/{}\" \"$userHome/{}\"" || echo "Cannot find ${repoProfile}. Ignoring."
+    set +x
+}
 
+function bootstrap_dotfiles() {
+    bootstrap_symlinking_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
     echo "Read .bashrc_stage0 for installation"
 }
 
@@ -129,25 +150,7 @@ function bootstrap_dotfiles_private() {
         return
     fi    
 
-    if [ ${DOTFILES_FORCE_INSTALL} == false ]; then
-        read -p " Warning: some dotfiles-private will be overwritten. Are you sure? (y/n) " -n 1
-        echo
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            echo "OK :)"
-        else
-            echo "Cancelled"
-            exit 0
-        fi
-    fi
-
-    chmod -R 700 "$DOTFILES_PRIVATE_DIR_PATH"
-    echo -n "$USER's "; chsh -s $(which $DOTFILES_DEFAULT_SHELL)
-    local rootDir=`pwd`
-    find "$DOTFILES_PRIVATE_DIR_PATH" -maxdepth 1 -type d -o -type f | sed "s|$DOTFILES_PRIVATE_DIR_PATH||" |  grep -f "$DOTFILES_PRIVATE_DIR_PATH/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$DOTFILES_PRIVATE_DIR_PATH/{}" ~/{}";
-
-    local profile="custom/${DOTFILES_PROFILE}"
-    local curDir="`pwd`/$profile"
-    cd "$DOTFILES_PRIVATE_DIR_PATH/${profile}" && find . -maxdepth 1 -type d -o -type f | sed "s|$DOTFILES_PRIVATE_DIR_PATH||" |  grep -f "$DOTFILES_PRIVATE_DIR_PATH/exclude.txt" --invert-match | xargs -I{} bash -c "set -x; cd ~ && ln -Ffsv "$DOTFILES_PRIVATE_DIR_PATH/{}" ~/{}" && cd - || echo "Cannot find $DOTFILES_PRIVATE_DIR_PATH/${profile}. Ignoring."
+    bootstrap_symlinking_user_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
 }
 
 function bootstrap_macosx() {
@@ -164,7 +167,7 @@ pushd "$(dirname "${BASH_SOURCE}")"
 case $BOOSTRAP_COMMAND in
     "macosx") bootstrap_macosx ;;
     "debian") bootstrap_debian ;;
-    "dotfiles") check_new_updates; bootstrap_dotfiles; bootstrap_dotfiles_private ;;
+    "dotfiles") check_new_updates; change_default_shell; bootstrap_dotfiles; bootstrap_dotfiles_private ;;
     *) >&2 echo "Command invalid. $0 -h for help" ;;
 esac
 popd
