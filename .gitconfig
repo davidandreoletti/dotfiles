@@ -150,6 +150,9 @@
     rebaseKeepingMyBranchChangesWhenConflicts = "!f() { git rebase -Xtheirs $1 }; f"
     rebaseKeepingOtherBranchChangesWhenConflicts = "!f() { git rebase -Xours $1 }; f"
 
+[credential]
+    helper = osxkeychain
+
 [include]
     # Requires git 1.7.10+
     path = .gitconfig-custom
