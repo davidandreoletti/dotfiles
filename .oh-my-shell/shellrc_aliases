@@ -299,4 +299,16 @@ f_dockerShowContainersInNetwork() {
     docker network inspect $1 -f "{{json .Containers }}"
 }
 
+# Show containers in a specific network
+#  Usage: dockerShowContainersInNetwork "my-container-name" where my-container-name is taken from docker ps's CONTAINER NAME column
 alias dockerShowContainersInNetwork="f_dockerShowContainersInNetwork $1"
+
+f_dockerSSHIntoContainer() {
+	local containerName="$1"
+	local dockerContainerID="`docker ps | grep \"$containerName\" | cut -d ' ' -f 1`"; 
+	docker exec -it "$dockerContainerID" /bin/sh
+}
+
+# SSH into a running docker container
+# Usage: dockerSSHIntoContainer "my-container-name", where my-container-name is taken from docker ps's CONTAINER NAME column
+alias dockerSSHIntoContainer="f_dockerSSHIntoContainer "
