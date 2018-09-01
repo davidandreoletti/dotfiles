@@ -316,3 +316,6 @@ f_dockerSSHIntoContainer() {
 # SSH into a running docker container
 # Usage: dockerSSHIntoContainer "my-container-name", where my-container-name is taken from docker ps's CONTAINER NAME column
 alias dockerSSHIntoContainer="f_dockerSSHIntoContainer "
+
+# Cat
+alias cat="bat"
