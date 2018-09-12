@@ -155,6 +155,10 @@ is_profile_admin_or_similar && homebrew_mas_install install 409201541 # Pages
 bash "${BOOSTRAP_DIR}/macosx/shell/defaults.sh"
 timemachine_defaults
 
+# Set TimeMachine backup
+# (Failed setup do not stop this script)
+sudo tmutil setdestination -a "smb://${CONFIG_MACOSX_TIMEMACHINE_USERNAME}:${CONFIG_MACOSX_TIMEMACHINE_PASSWORD}@nas-server-vm0/NAS_TimeMachine" || message_error_show "Time Machine backup not setup"
+
 # Services administration
 ## SSD perf
 fs_has_volume "/" || message_info_show "No volume / to enable noatime flag on" 
