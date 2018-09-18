@@ -258,6 +258,9 @@ alias ssh_key_protect='chmod 700'
 alias ssh_is_private_key_password_correct='echo "Type ssh key full path" && read path && ssh-keygen -y -f "$path" && echo "Passowrd is correct for $path" || echo "Password incorrect for $path"'
 # Usage: ssh_show_key_hashes "absolute path to ssh key private or public, but generally public"
 alias ssh_show_key_hashes='echo "Type ssh key full path" && read path && ssh-keygen -E md5 -lf "$path" && ssh-keygen -E sha256 -lf "$path"'
+# Read Public key from PEM file (for example to output the public key into an ~/.ssh/authorized_keys file)
+# Usage: ssh_extract_from_pem_public_key_only_as_rsa_format "/path/to/some/file.pem"
+alias ssh_extract_from_pem_public_key_only_as_rsa_format='ssh-keygen -y -f '
 
 # Load shell specific aliases
 SHELLRC_ALIAS_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc_alias"
@@ -319,3 +322,10 @@ alias dockerSSHIntoContainer="f_dockerSSHIntoContainer "
 
 # Cat
 alias cat="bat"
+
+#
+# Image Manipulation
+# 
+
+# Usage: concatImagesVertically in1.jpg in2.jpg in3.jpg out.jpg
+alias concatImagesVertically="convert -append "
