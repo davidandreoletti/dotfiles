@@ -150,6 +150,21 @@
     rebaseKeepingMyBranchChangesWhenConflicts = "!f() { git rebase -Xtheirs $1 }; f"
     rebaseKeepingOtherBranchChangesWhenConflicts = "!f() { git rebase -Xours $1 }; f"
 
+    # Rebase a portion of a branch onto a different branch
+    #- x - x (ROOT) - x - x - x (TOPIC)
+    #       \
+    #        x - x - x (BEGIN_SUB_BRANCH) - x - x - x (END_SUB_BRANCH)
+    #
+    # You could use git rebase --onto ROOT BEGIN_SUB_BRANCH END_SUB_BRANCH to move wss directly onto v2:
+    #
+    #- x - x(ROOT) - x - x - x (TOPIC)
+    #      |\
+    #      |  x - x - x (BEGIN_SUB_BRANCH)
+    #       \
+    #        x - x - x (END_SUB_BRANCH)
+    # Usage rebaseSubBranchOntoAnotherBranch ROOT BEGIN_SUB_BRANCH END_SUB_BRANCH
+    rebaseSubBranchOntoAnotherBranch = "!f() { git rebase --onto $1 $2 $3 } f"
+
 [credential]
     helper = osxkeychain
 
