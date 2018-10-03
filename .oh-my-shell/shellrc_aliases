@@ -320,6 +320,22 @@ f_dockerSSHIntoContainer() {
 # Usage: dockerSSHIntoContainer "my-container-name", where my-container-name is taken from docker ps's CONTAINER NAME column
 alias dockerSSHIntoContainer="f_dockerSSHIntoContainer "
 
+# Usage: dockerPruneSpecificDanglingImagesLayer  <image_id>
+alias dockerPruneSpecificDanglingImagesLayer="docker rmi "
+
+# Usage: dockerPruneAllDanglingImagesLayers 
+alias dockerPruneAllDanglingImagesLayers="docker rmi \$(docker images -f dangling=true -q)"
+
+f_dockerRemoveContainerAndAssociatedVolumes() {
+    local volumeRegex="$1"
+    local volumeName=`docker volume ls -q | grep "$volumeRegex"`
+    local containerId=`docker ps --filter volume="$volumeName" --format {{.ID}}`
+    docker rm "$containerId" -f --volumes
+}
+
+# Usage: dockerRemoveContainerAndAssociatedVolumes "volume name"
+alias dockerRemoveContainerAndAssociatedVolumes="f_dockerRemoveContainerAndAssociatedVolumes "
+
 # Cat
 alias cat="bat"
 
