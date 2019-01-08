@@ -92,6 +92,8 @@ let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_cpp_compiler = 'clang++'
+" TabNine (auto completion, alledgely better ... test driving it for now)
+Bundle 'zxqfl/tabnine-vim'
 " Javascript
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'  " Use project's eslint binary
