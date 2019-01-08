@@ -64,6 +64,17 @@
     # Usage: git bdr somebranch
     bdr = "!f() { git push origin :$1 ; }; f"
 
+    # EXPERIMENTAL
+    # Push up to a certain commit
+    # Usage: git pushc "commit hash"
+    pushCurrentBranchUpToCommitToOrigin = "!f() { \
+                        set -x; \
+                                            local commitHash=$1 ; \
+                                            local branch=`git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD) | cut -d "/" -f 2` ; \
+                                            local origin=`git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD) | cut -d "/" -f 1` ; \
+                                            git push ${origin} ${commitHash}:${branch}; \
+                                           }; f"
+
     # Rename branch 1 into branch 2
     # usage: bmv "existing branch" "new branch name"
     bmv = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} "$2"; }; f"
@@ -165,6 +176,11 @@
     # Usage rebaseSubBranchOntoAnotherBranch ROOT BEGIN_SUB_BRANCH END_SUB_BRANCH
     rebaseSubBranchOntoAnotherBranch = "!f() { git rebase --onto $1 $2 $3 } f"
 
+    # EXPERIMENTAL
+    # Fixup any commit, not just the last one, by adding a file
+    # git fixup COMMIT_SHA WITH_FIXED_UP_FILE
+    # Src: https://robots.thoughtbot.com/autosquashing-git-commits
+    fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
 [credential]
     helper = osxkeychain
 
