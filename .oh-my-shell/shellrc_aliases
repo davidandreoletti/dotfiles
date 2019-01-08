@@ -276,33 +276,8 @@ alias fuck='sudo $(history -p \!\!)'
 
 alias printShellVariables='(set -o posix; set)'
 
-# Update already installed non cask brew packages
-alias brew-dist-upgrade="brew update; brew upgrade \`brew outdated\`"
-alias brew-upgrades-and-keep-last-version-only="brew update; brew upgrade; brew cleanup -s; brew cask cleanup; brew prune; brew doctor; brew missing"
-#Update already install cask brew packages
-brewCaskUpgrade(){ 
-    for app in $(brew cask list); do 
-        local latest="$(brew cask info "${app}" | awk 'NR==1{print $2}')"; 
-        local versions=($(ls -1 "/usr/local/Caskroom/${app}/.metadata/")); 
-        local current=$(echo ${versions} | awk '{print $NF}'); 
-        
-        if [[ "${latest}" = "latest" ]]; 
-        then 
-            echo "[!] ${app}: ${current} == ${latest}"; 
-            [[ "$1" = "-f" ]] && brew cask install "${app}" --force; 
-            continue; 
-        elif [[ "${current}" = "${latest}" ]]; 
-        then 
-            continue; 
-        fi; 
-        
-        echo "[+] ${app}: ${current} -> ${latest}"; 
-        brew cask uninstall "${app}" --force; 
-        brew cask install "${app}"; 
-    done; 
-}
-
-alias brewcask_upgrades_and_keep_last_version_only="brewCaskUpgrade "
+# Update already installed non cask and cask brew packages
+alias brew-upgrades="brew update; brew cleanup -s; brew upgrade; brew cask upgrade --greedy --force; brew prune; brew doctor; brew missing"
 
 # Download web page (included CSS)
 # Usage: downloadCompleteWebpage http://example.com/mypage.html
