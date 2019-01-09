@@ -481,6 +481,8 @@ defaults write org.vim.MacVim MMVerticalSplit -bool true
 ###############################################################################
 # Do not modify the $HOME/.gitconfig
 defaults write com.torusknot.SourceTreeNotMAS agreedToUpdateConfig 0
+defaults write com.torusknot.SourceTreeNotMAS agreedToEULA2 1
+defaults write com.torusknot.SourceTreeNotMAS analyticsHasAgreed 0
 ###############################################################################
 # Kill affected applications #
 # - Keep this section disabled to keep boostrap_macosx.sh working
