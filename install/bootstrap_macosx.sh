@@ -93,7 +93,7 @@ is_profile_admin_or_similar && homebrew_brew_install "coreutils" # Apple has out
 is_profile_admin_or_similar && homebrew_brew_install "zsh"
 is_profile_admin_or_similar && homebrew_brew_install "tmux"
 is_profile_admin_or_similar && homebrew_brew_install "vim"
-is_profile_admin_or_similar && homebrew_brew_install "neovim"
+is_profile_admin_or_similar && homebrew_brew_install "neovim" && pip3_install "neovim" && pip2_install "neovim" # Install neovim editor + python bindings
 is_profile_admin_or_similar && homebrew_brew_install "ack"
 is_profile_admin_or_similar && homebrew_brew_install "newsbeuter"
 is_profile_admin_or_similar && homebrew_brew_install "rsync"
