@@ -139,7 +139,7 @@
 
     # show list of file in a commit
     # Usage: git listfiles HEAD~1
-    listfiles = "!f() { git show --pretty="format:" --name-status $1; }; f" 
+    listfilesc = "!f() { git show --pretty="format:" --name-status $1; }; f" 
 
     # show list of files in a repo
     # Usage: git listfilesrepo HEAD
@@ -174,9 +174,8 @@
     #       \
     #        x - x - x (END_SUB_BRANCH)
     # Usage rebaseSubBranchOntoAnotherBranch ROOT BEGIN_SUB_BRANCH END_SUB_BRANCH
-    rebaseSubBranchOntoAnotherBranch = "!f() { git rebase --onto $1 $2 $3 } f"
+    rebaseSubBranchOntoAnotherBranch = "!f() { git rebase --onto $1 $2 $3 }; f"
 
-    # EXPERIMENTAL
     # Fixup any commit, not just the last one, by adding a file
     # git fixup COMMIT_SHA WITH_FIXED_UP_FILE
     # Src: https://robots.thoughtbot.com/autosquashing-git-commits
