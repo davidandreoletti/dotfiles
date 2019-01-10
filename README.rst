@@ -3,31 +3,48 @@ ABOUT
 
 dotfiles contains:
 
-- custom configuration files.
-- custom script to setup a Mac OS X machine.
+- configuration files for both personal and work machines
+- script to bootstrap a MacOS machine.
+- script to bootstrap a Debian based machine.
 
 MOTIVATION:
 ===========
 
-I have custom settings for various softwares I used everyday. 
+I have custom settings for various software I used everyday.
 
-INSTALLATION:
+GET STARTED:
 =============
 
-Git based installation
-----------------------
+Bootstrap configuration files
+---------------------------------
 
-This one liner clones this repository and install configuration files in your HOME dir.
+First conf files installation (into your HOME dir):
 
     git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b dotfiles -s perso -p "`pwd`/../dotfiles-private"
 
-To update, cd into your local dotfiles repository and then:
+To update existing conf files (overwritten):
 
-    git pull && git submodule update --recursive --remote && source bootstrap.sh -b dotfiles -s perso
+   cd dotfiles && git pull && git submodule update --recursive --remote && source bootstrap.sh -b dotfiles -s perso
 
-Alternatively, to update without confirmation prompt:
+Bootstrap MacOS machine
+-------------------------
 
-    git pull && git submodule update --recursive --remote; set -- -f; source bootstrap.sh -b dotfiles -s perso
+Current user as **MacOS standard user**
+
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b macosx -s normal -p "`pwd`/../dotfiles-private"
+
+
+Current user as **MacOS Administrator privileges user**
+
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b macosx -s admin -p "`pwd`/../dotfiles-private"
+
+Current user as **single developer account on the machine**
+
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b macosx -s dev_single -p "`pwd`/../dotfiles-private"
+
+Current user as **one of the many developer accounts on the machine**
+
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b macosx -s dev_multi -p "`pwd`/../dotfiles-private"
 
 DOCUMENTATION
 =============
