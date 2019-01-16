@@ -180,6 +180,10 @@
     # git fixup COMMIT_SHA WITH_FIXED_UP_FILE
     # Src: https://robots.thoughtbot.com/autosquashing-git-commits
     fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
+
+    # Show list of ignore files
+    # usage: git ignored
+    ignored = "!git ls-files -o -i --exclude-standard"
 [credential]
     helper = osxkeychain
 
