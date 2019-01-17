@@ -1,0 +1,240 @@
+[alias]
+    # 
+    # - GitAliases: https://github.com/GitAlias/gitalias/blob/master/gitalias.txt
+
+    #
+    # TREE COMMIT LOG
+    #
+    
+    # log commands
+    lg = !git log --graph --pretty=format:'%C(bold blue)%h%C(reset)∑%C(bold green)%d%C(reset) %C(cyan)%s%C(reset) %C(red)[%an]%C(reset) %C(white)[%cr]%C(reset)' | column -t -s '∑'
+
+    lgs = log --graph
+
+    # Shows incoming commits for the current branch only
+    incoming = !(git fetch --quiet && git log ..$(git rev-parse --abbrev-ref --symbolic-full-name @{u})) 
+
+    # Shows incoming commits for all branches
+    incomingall = !git log --remotes=origin --not --branches
+    
+    # Shows outgoing commits for the current branch only
+    outgoing = !(git fetch --quiet && git log $(git rev-parse --abbrev-ref --symbolic-full-name @{u})..)
+    
+    # Shows outgoing commits for all branches 
+    outgoingall = !git log --branches --not --remotes=origin
+
+    #
+    # BRANCH MANAGEMENT
+    #
+
+    # Get list of branches + current one on
+    # usage: br
+    br = branch
+
+    # Delete local branch
+    # Usage: git bdl somebranch
+    bdl = branch -d 
+
+    # Delete remote branch
+    # Usage: git bdr somebranch
+    bdr = "!f() { git push origin :$1 ; }; f"
+
+    # Rename branch 1 into branch 2
+    # usage: bmv "existing branch" "new branch name"
+    bmv = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} "$2"; }; f"
+
+    #
+    # WORK DIR / INDEX MANAGEMENT
+    #
+
+    # Get git work dir/index status
+    # usage: st
+    st = status
+
+    # Checkout a branch/revision
+    # usage: co BRANCH_OR_REVISION
+    co = checkout
+
+    # Checkout myfile from a stash 0
+    # Usage: cosf 0 /repo/base/path/to/file
+    cosf = "!f() {git checkout stash@{$1} -- $2 ; }; f"
+
+    # Checkout myfile from stash 0 as myfile2 
+    # Usage: cosfas 0 myfile myfile2
+    cosfas = "!f() {git show stash@{$1}:$2 $3 ; }; f"
+
+    # Pull update from upstream branch, by stashing work dir /index changes, update with upstream, apply saved shash and deleting stash
+    # usage: pullSafe
+    pullSafe = "!f() { git stash && git pull && git stash pop; }; f"
+
+    # Checkout current branch from a remote, by deleting the curret branch first
+    # usage: reCheckoutBranch "some branch name"
+    reCheckoutBranch = "!f() { git reset --hard HEAD && git checkout dev && git branch -D $1 && git checkout $1; }; f `git rev-parse --abbrev-ref HEAD`"
+
+    # diff commands
+    # http://stackoverflow.com/questions/3293607/difference-between-git-head-and-the-current-project-state
+
+    # Shows changes in the working directory that are not yet staged 
+    # for the next commit. 
+    # This is the opposite of git dflc
+    df = diff
+    
+    # Shows changes in working directory since your last commit; 
+    # i.e same as diff for "git commit -a".
+    dflc = diff HEAD
+    
+    # Shows changes between the index and your last commit; 
+    # i.e same as diff "git commit" without the "-a" option.
+    # Since 1.6.1 and later. Previous version --cached
+    dfsc = diff --staged
+    
+    # Reset a file to its last committed state (on the current branch)
+    # Usage: git resetToLastCommittedState myfile.txt
+    resetToLastCommittedState = !git checkout HEAD --
+
+    #
+    # COMMIT MANAGEMENT
+    #
+
+    # Show commit diff
+    # usage: sh REVISION
+    sh = show -p
+
+    # Get current commit hash for the current branch
+    # Usage: currentBranchHEADCommitHash
+    currentBranchHEADCommitHash = rev-parse HEAD
+
+    # Commit with message
+    # Usage: git ci "some message"
+    ci = commit
+
+    # Undo last LOCAL commit, effectively leaving the working tree as it was BEFORE the commit
+    # Usage: git cul
+    cul = reset --soft HEAD~1
+
+    # Fixup any commit, not just the last one, by adding a file
+    # git fixup COMMIT_SHA WITH_FIXED_UP_FILE
+    # Src: https://robots.thoughtbot.com/autosquashing-git-commits
+    fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
+
+    # Rebase with automatic conflicts management using git rebase -Xours or git rebase -Xtheirs / https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html
+    # Usage: rebaseKeepingMyBranchChangesWhenConflicts / rebaseKeepingOtherBranchChangesWhenConflicts
+    rebaseKeepingMyBranchChangesWhenConflicts = "!f() { git rebase -Xtheirs $1 }; f"
+    rebaseKeepingOtherBranchChangesWhenConflicts = "!f() { git rebase -Xours $1 }; f"
+
+    # Rebase a portion of a branch onto a different branch
+    #- x - x (ROOT) - x - x - x (TOPIC)
+    #       \
+    #        x - x - x (BEGIN_SUB_BRANCH) - x - x - x (END_SUB_BRANCH)
+    #
+    # You could use git rebase --onto ROOT BEGIN_SUB_BRANCH END_SUB_BRANCH to move wss directly onto v2:
+    #
+    #- x - x(ROOT) - x - x - x (TOPIC)
+    #      |\
+    #      |  x - x - x (BEGIN_SUB_BRANCH)
+    #       \
+    #        x - x - x (END_SUB_BRANCH)
+    # Usage rebaseSubBranchOntoAnotherBranch ROOT BEGIN_SUB_BRANCH END_SUB_BRANCH
+    rebaseSubBranchOntoAnotherBranch = "!f() { git rebase --onto $1 $2 $3 }; f"
+
+    #
+    # GIT OBJECT MANAGEMENT
+    #
+
+    # Get Git object type (ie a commit, tree, tag, blob)
+    # usage: type OBJ_REFERNECE
+    type = cat-file -t
+
+    # Get Git object content
+    # usage: dump OBJ_REFERENCE
+    dump = cat-file -p
+
+    #
+    # ALIASES MANAGEMENT
+    #
+
+    # List all git aliases defined
+    # Usage: aliases
+    aliases = config --get-regexp alias
+
+    #
+    # STASH MANAGEMENT
+    #
+
+    # List all files in all stashes
+    # Usage: lfst 
+    lfst = "!f() { git stash list | while IFS=: read STASH ETC; do echo "$STASH: $ETC"; git diff --stat $STASH~..$STASH --; done }; f"
+
+    # Show stash list
+    sthl = stash list
+
+    # Apply stash@{somenumber} to work dir
+    # Usage: git stha 0   --> apply stash@{0}
+    stha = "!f() { git stash apply stash@{$1}; }; f"
+
+    # Show stash@{somenumber} as patch
+    # Usage: git sthp 0   --> show stash@{0}
+    sthp = "!f() { git stash show -p stash@{$1}; }; f"
+
+    # Delete stash@{somenumber} from stash list
+    # Usage: git sthd 0  --> delete stash@{0}
+    sthd = "!f() { git stash drop stash@{$1}; }; f"
+
+    # Save stash with message
+    # Usage: git shds "message"
+    sths = stash save 
+
+    # Save stash with selective content with message
+    sthsp = stash save --patch
+
+    #
+    # GIT COMMAND MANAGEMENT
+    #
+
+    # Show help for a command
+    # Usage: git hp commit
+    hp = help
+
+    #
+    # COMMITTED FILES PRESENCE MANAGEMENT
+    #
+
+    # Show when a file was introduced
+    # Usage: git whenwasfileadded myfile
+    whenwasfileadded = !git log --diff-filter=A --pretty=short 
+
+    # Show list of file in a commit
+    # Usage: git listfiles HEAD~1
+    listfilesc = "!f() { git show --pretty="format:" --name-status $1; }; f" 
+
+    # Show list of files in a repo
+    # Usage: git listfilesrepo HEAD
+    listfiles = "!f() { git ls-tree --full-tree -r $1 }"
+    
+    # Find files with pattern in the files' path
+    # usage: findPaths "pattern"
+    findPaths = "!git ls-files | grep -i"
+
+    #
+    # IGNORED FILE MANAGEMENT
+    #
+
+    # Show list of effectively ignored files
+    # usage: git ignored
+    ignored = "!git ls-files -o -i --exclude-standard"
+
+    #
+    # EXPERIMENTAL
+    # (possibly buggy)
+    #
+    
+    # Push up to a certain commit
+    # Usage: git pushc "commit hash"
+    pushCurrentBranchUpToCommitToOrigin = "!f() { \
+                        set -x; \
+                                            local commitHash=$1 ; \
+                                            local branch=`git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD) | cut -d "/" -f 2` ; \
+                                            local origin=`git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD) | cut -d "/" -f 1` ; \
+                                            git push ${origin} ${commitHash}:${branch}; \
+                                           }; f"
+ 

@@ -1,5 +1,0 @@
-[user]
-    name = David Andreoletti 
-    email = david.andreoletti.dev@gmail.com
-[commit]
-    template = ~/.git-commit-message
