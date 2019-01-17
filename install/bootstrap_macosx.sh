@@ -110,6 +110,9 @@ is_profile_admin_or_similar && homebrew_brew_install "ncdu"  #Replacement for Gr
 is_profile_admin_or_similar && homebrew_brew_install "openssh" # Newer SSH Server requires a more recent SSH client than currently shipped in OSX
 is_profile_admin_or_similar && homebrew_brew_install "irssi" "--with-perl=yes" "--with-proxy"
 is_profile_admin_or_similar && homebrew_brew_install "rlwrap"  # Needed to execute PlistBuddy in command mode
+is_profile_admin_or_similar && homebrew_brew_install "tcpdump"  # TCP traffic sniffing
+is_profile_admin_or_similar && homebrew_brew_install "ngrep"  # grep for network resource
+
 
 #homebrew_brew_cask_workaround0
 is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"
