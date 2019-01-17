@@ -343,3 +343,34 @@ alias cat="bat"
 
 # Usage: concatImagesVertically in1.jpg in2.jpg in3.jpg out.jpg
 alias concatImagesVertically="convert -append "
+
+#
+# HTTP Traffic
+#
+f_http_show_in_out_traffic() {
+    local interfaces=${1:-"any"}
+    local port=${2:-"80"}
+    local verbs=${3:-"GET|POST|PUT|PATCH|DELETE"}
+    echo "Listening to HTTP traffic from/to port $port on interface(s) $interfaces"
+
+    sudo ngrep -d $interfaces -t "^($verbs)" "tcp and port $port"
+}
+
+# Show HTTP traffic on (default) all interfaces to/from port (default) 80 whose HTTP verbs are (default) GET|POST|PUT}PATCH|DELETE
+# (ues ngrep)
+# Usage: httpShowTraffic any 80 "GET|POST"
+alias httpShowTraffic="f_http_show_in_out_traffic "
+
+f_http_show_in_out_traffic2() {
+    local interfaces=${1:-"all"}
+    local port=${2:-"80"}
+    local verbs=${3:-"GET|POST|PUT|PATCH|DELETE"}
+    echo "Listening to HTTP traffic from/to port $port on interface(s) $interfaces"
+
+    sudo tcpdump -i "$interfaces" -n -s 0  -w - "tcp port $port" | grep -a -o -E \"Host\: .*|$verbs \/.*\"
+}
+
+# Show HTTP traffic on (default) all interfaces to/from port (default) 80 whose HTTP verbs are (default) GET|POST|PUT}PATCH|DELETE
+# (ues tcpdump)
+# Usage: httpShowTraffic2 any 80 "GET|POST"
+alias httpShowTraffic2="f_http_show_in_out_traffic2 "
