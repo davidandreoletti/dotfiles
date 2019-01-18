@@ -23,17 +23,15 @@ else
     SHELL_NAME="unknow-shell"
 fi
 
-SHELLRC_STAGE0_FILE="${SHELLRC_DIR}/shellrc_stage0"
-SHELLRC_STAGE1_FILE="${SHELLRC_DIR}/shellrc_stage1"
-SHELLRC_STAGE2_FILE="${SHELLRC_DIR}/shellrc_stage2"
-SHELLRC_ALIAS_FILE="${SHELLRC_DIR}/shellrc_aliases"
-SHELLRC_STAGE_CUSTOM_FILE="${SHELLRC_DIR}/shellrc_stage_custom"
+SHELLRC_STAGE0_FILE="${SHELLRC_DIR}/shellrc/stage0.sh"
+SHELLRC_STAGE1_FILE="${SHELLRC_DIR}/shellrc/stage1.sh"
+SHELLRC_STAGE2_FILE="${SHELLRC_DIR}/shellrc/stage2.sh"
+SHELLRC_ALIAS_FILE="${SHELLRC_DIR}/shellrc/aliases.sh"
+SHELLRC_STAGE_CUSTOM_FILE="${SHELLRC_DIR}/shellrc/stage_custom.sh"
 
 [[ -s ${SHELLRC_STAGE0_FILE} ]] && source ${SHELLRC_STAGE0_FILE}
 [[ -s ${SHELLRC_STAGE1_FILE} ]] && source ${SHELLRC_STAGE1_FILE}
 [[ -s ${SHELLRC_STAGE2_FILE} ]] && source ${SHELLRC_STAGE2_FILE}
 [[ -s ${SHELLRC_ALIAS_FILE} ]] && source ${SHELLRC_ALIAS_FILE}
 [[ -s ${SHELLRC_STAGE_CUSTOM_FILE} ]] && source ${SHELLRC_STAGE_CUSTOM_FILE}
-
-
 
