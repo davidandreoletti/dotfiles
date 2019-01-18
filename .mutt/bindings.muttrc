@@ -2,10 +2,8 @@ bind index I       imap-fetch-mail
 bind pager /       search
 bind pager <up>    previous-line
 bind pager <down>  next-line
-bind pager gg      top
-bind pager G       bottom
-bind index gg      first-entry
-bind index G       last-entry
+#bind pager gg      top
+#bind pager G       bottom
 bind index,pager K previous-unread
 bind index,pager J next-unread
 bind index,pager R group-reply

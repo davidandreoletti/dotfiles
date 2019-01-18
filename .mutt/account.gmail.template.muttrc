@@ -34,8 +34,8 @@ folder-hook         $my_folder "\
 set query_command = "goobook -c '~/.mutt/.goobookrc' query '%s'"
 bind editor <Tab> complete-query
 bind editor ^T complete
-macro index,pager ac "goobook -c '~/.mutt/.goobookrc' add" "add the sender address to Gmail contacts"
-macro index,pager gr "!goobook -c '~/.mutt/.goobookrc' reload\n" "Reload Gmail contacts list"
+#macro index,pager ac "goobook -c '~/.mutt/.goobookrc' add" "add the sender address to Gmail contacts"
+#macro index,pager gr "!goobook -c '~/.mutt/.goobookrc' reload\n" "Reload Gmail contacts list"
 
 #bind editor <space> noop    # need the "noop" bind so that the line editor accepts IMAP folders with spaces in their names
 macro index,pager e "<save-message>=$my_gmail_rootfolder/All<quote-char> Mail<enter><enter>" "Archive conversation"
@@ -47,12 +47,12 @@ macro index,pager d "<enter-command>set trash=\"+$my_gmail_rootfolder/Bin\"\n<de
 macro index,pager A "<enter-command>unset trash\n<delete-pattern>" "Gmail archive pattern"
 macro index,pager D "<enter-command>set trash=\"+$my_gmail_rootfolder/Bin\"\n<delete-pattern>" "Gmail delete pattern"
 
-macro index,pager "ga$my_gmail_macro_num" "<change-folder>=$my_gmail_rootfolder/All<quote-char> Mail<enter>" "Go to 'All Mail'"
-macro index,pager "gs$my_gmail_macro_num" "<change-folder>=$my_gmail_rootfolder/Starred<enter>" "Go to 'Starred'"
-macro index,pager "gd$my_gmail_macro_num" "<change-folder>=$my_gmail_rootfolder/Drafts<enter>" "Go to 'Drafts'"
-macro index,pager "gl$my_gmail_macro_num" "<change-folder>?"                      "Go to 'Label'"
-macro index,pager "gi$my_gmail_macro_num" "<change-folder>=INBOX<enter>"           "Go to Inbox"
-macro index,pager "gt$my_gmail_macro_num" "<change-folder>=$my_gmail_rootfolder/Sent<quote-char> Mail<enter>"     "Go to 'Sent'"
+#macro index,pager "ga$my_gmail_macro_num" "<change-folder>=$my_gmail_rootfolder/All<quote-char> Mail<enter>" "Go to 'All Mail'"
+#macro index,pager "gs$my_gmail_macro_num" "<change-folder>=$my_gmail_rootfolder/Starred<enter>" "Go to 'Starred'"
+#macro index,pager "gd$my_gmail_macro_num" "<change-folder>=$my_gmail_rootfolder/Drafts<enter>" "Go to 'Drafts'"
+#macro index,pager "gl$my_gmail_macro_num" "<change-folder>?"                      "Go to 'Label'"
+#macro index,pager "gi$my_gmail_macro_num" "<change-folder>=INBOX<enter>"           "Go to Inbox"
+#macro index,pager "gt$my_gmail_macro_num" "<change-folder>=$my_gmail_rootfolder/Sent<quote-char> Mail<enter>"     "Go to 'Sent'"
 
 bind  index,pager a  group-reply        #Reply all
 bind  index,pager \# delete-thread      #Delete

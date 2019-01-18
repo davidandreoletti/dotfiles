@@ -5,8 +5,8 @@
 # https://wiki.archlinux.org/index.php/Mutt#mailboxes
 # http://wiki.localhost.lu/OSX%20mutt
 
-# OSX: brew install mutt --sidebar-patch --trash-patch --with-slang
-# Ubuntu: sudo apt-get install mutt-patched
+# OSX: brew install neomutt
+# Ubuntu: sudo apt-get install neomutt
 
 # ACCOUNTS
 #source $HOME/.mutt/accounts.$MUTT_PROFILE.muttrc
