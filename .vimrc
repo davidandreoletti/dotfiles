@@ -515,6 +515,6 @@ let g:gundo_preview_bottom = 1
 " Local vimrc{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if filereadable(".vimrc.local")
-   source .vimrc.local
+   source $HOME/.vimrc.local
 endif
 "}}}
