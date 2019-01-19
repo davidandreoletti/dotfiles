@@ -499,7 +499,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Minimal number of screen lines to keep above and below cursor
 " (vertical scrolling only)
-set scrolloff=3
+set scrolloff=6
 "}}}
 " Performance{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
