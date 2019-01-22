@@ -454,7 +454,7 @@ set mouse=a
 "}}}
 " Help{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Load custom helps file (such as  my cheatsheet)
+" Load custom helps file (such as personal cheatsheet)
 :helptags ~/.vim/doc
 "}}}
 " File type{{{
