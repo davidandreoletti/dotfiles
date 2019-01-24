@@ -93,9 +93,9 @@ is_profile_admin_or_similar && homebrew_brew_install "coreutils" # Apple has out
 is_profile_admin_or_similar && homebrew_brew_install "zsh"
 is_profile_admin_or_similar && homebrew_brew_install "tmux"
 is_profile_admin_or_similar && homebrew_brew_install "vim"
-is_profile_admin_or_similar && homebrew_brew_install "neovim" && \ # Install neovim and python bindings
-    pip3_install "neovim" && pip2_install "neovim" && \ 
-    pip3_install "pynvim" && pip2_install "pynvim"
+is_profile_admin_or_similar && homebrew_brew_install "neovim" && \
+    pip2_install "neovim" && pip3_install "neovim" && \ # Install neovim python package
+    pip2_install "pynvim" && pip3_install "pynvim"      # Install neovim python bindings package
 is_profile_admin_or_similar && homebrew_brew_install "ack"
 is_profile_admin_or_similar && homebrew_brew_install "newsbeuter"
 is_profile_admin_or_similar && homebrew_brew_install "rsync"
@@ -143,6 +143,8 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "tunnelblick"
 is_profile_admin_or_similar && homebrew_brew_cask_install "textmate"
 is_profile_admin_or_similar && homebrew_brew_cask_install "intel-haxm"
 
+is_profile_admin_or_similar && pip2_install "awsli" && pip3_install "awscli"
+ 
 # https://developer.apple.com/library/content/technotes/tn2459/_index.html
 is_profile_admin_or_similar && todolist_add_new_entry "Allow Kernel extension from Intel XAM to run: System Preferences > Seucrity Privacy > General Tab > Allow button"
 
