@@ -1,8 +1,8 @@
 # Upgrade npm managed global pakcages
 
-NPM_PACKAGES_UPDATED="/tmp/$USER_npm_packages_updated"
-NPM_PACKAGES_UPGRADE_SCRIPT="/tmp/$USER_homebrew_npm_upgrade.sh"
-NPM_PACKAGES_UPGRADE_LOG="/tmp/$USER_npm_packages_upgrade.log"
+NPM_PACKAGES_UPDATED="/tmp/${USER}_npm_packages_updated"
+NPM_PACKAGES_UPGRADE_SCRIPT="/tmp/${USER}_homebrew_npm_upgrade.sh"
+NPM_PACKAGES_UPGRADE_LOG="/tmp/${USER}_npm_packages_upgrade.log"
 
 # Force packages upgrades every 1d
 if [ -f "$NPM_PACKAGES_UPDATED" ];

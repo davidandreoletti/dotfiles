@@ -1,8 +1,8 @@
 # Upgrade python managed global pakcages
 
-PYTHON_PACKAGES_UPDATED="/tmp/$USER_python_packages_updated"
-PYTHON_PACKAGES_UPGRADE_SCRIPT="/tmp/$USER_homebrew_python_upgrade.sh"
-PYTHON_PACKAGES_UPGRADE_LOG="/tmp/$USER_python_packages_upgrade.log"
+PYTHON_PACKAGES_UPDATED="/tmp/${USER}_python_packages_updated"
+PYTHON_PACKAGES_UPGRADE_SCRIPT="/tmp/${USER}_packages_python_upgrade.sh"
+PYTHON_PACKAGES_UPGRADE_LOG="/tmp/${USER}_python_packages_upgrade.log"
 
 # Force packages upgrades every 1d
 if [ -f "$PYTHON_PACKAGES_UPDATED" ];
@@ -17,7 +17,7 @@ then
 fi
 
 # Upgrade packages when required
-if [ ! -f "$PYTHON_PACKAGES_UPDATED" ] && [ ! -f "$python_PACKAGES_UPGRADE_SCRIPT" ];
+if [ ! -f "$PYTHON_PACKAGES_UPDATED" ] && [ ! -f "$PYTHON_PACKAGES_UPGRADE_SCRIPT" ];
 then
 
 cat <<EOF > "$PYTHON_PACKAGES_UPGRADE_SCRIPT"
@@ -35,6 +35,7 @@ EOF
 
 rm -f "$PYTHON_PACKAGES_UPGRADE_LOG" > /dev/null 2>&1
 
-bash "$PYTHON_PACKAGES_UPGRADE_SCRIPT" > "$python_PACKAGES_UPGRADE_LOG" 2>&1 &
+bash "$PYTHON_PACKAGES_UPGRADE_SCRIPT" > "$PYTHON_PACKAGES_UPGRADE_LOG" 2>&1 &
 
 fi
+

@@ -2,9 +2,9 @@ export HOMEBREW_NO_ANALYTICS=1
 
 # Upgrade homebrew managed pakcages
 
-HOMEBREW_PACKAGES_UPDATED="/tmp/$USER_homebrew_packages_updated"
-HOMEBREW_PACKAGES_UPGRADE_SCRIPT="/tmp/$USER_homebrew_packages_upgrade.sh"
-HOMEBREW_PACKAGES_UPGRADE_LOG="/tmp/$USER_homebrew_packages_upgrade.log"
+HOMEBREW_PACKAGES_UPDATED="/tmp/${USER}_homebrew_packages_updated"
+HOMEBREW_PACKAGES_UPGRADE_SCRIPT="/tmp/${USER}_homebrew_packages_upgrade.sh"
+HOMEBREW_PACKAGES_UPGRADE_LOG="/tmp/${USER}_homebrew_packages_upgrade.log"
 
 # Force packages upgrades every 1d
 if [ -f "$HOMEBREW_PACKAGES_UPDATED" ];
