@@ -23,15 +23,15 @@ if [ ! -f "$HOMEBREW_PACKAGES_UPDATED" ] && [ ! -f "$HOMEBREW_PACKAGES_UPGRADE_S
 then
 
 cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
-    brew update >/dev/null 2>&1;
+    brew update 2>&1;
 
     # Uninstall previous non cask and cask package versions (to save on disk space over time)
-    brew cleanup >/dev/null 2>&1;
+    brew cleanup 2>&1;
     # brew cask cleanup now depecrated. brew cleanup must be used instead 
 
     # Upgrade non cask and cask brew packages
-    brew upgrade >/dev/null 2>&1;
-    brew cask upgrade --greedy --force >/dev/null 2>&1;
+    brew upgrade 2>&1;
+    brew cask upgrade --greedy --force 2>&1;
 
     touch "$HOMEBREW_PACKAGES_UPDATED"
     chmod 777 "$HOMEBREW_PACKAGES_UPDATED"
