@@ -4,6 +4,15 @@
 "       http://davidandreoletti.com
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Detect what vim variant is being used {{{
+let s:useVIM=0
+let s:useNVIM=0
+if has('nvim')
+    let s:useNVIM=1
+else
+    let s:useVIM=1
+endif
+"}}}
 " Custom VIM functions {{{
 source $HOME/.vim/perso/vim/vimrc-functions.vim
 "}}}
@@ -54,7 +63,14 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-surround'
 
 " Visualize Vim Undo Tree
-Bundle 'sjl/gundo.vim'
+if s:useVIM 
+    " vim + neovim only support, without newer updates
+    Bundle 'sjl/gundo.vim'
+endif
+if s:useNVIM
+    " vim + neovim support (gundo.vim fork), with newer updates
+    Bundle 'simnalamburt/vim-mundo'     
+endif
 
 " Color schemes
 Bundle 'flazz/vim-colorschemes'
@@ -236,6 +252,9 @@ set history=1000
 
 " As many undo as history
 set undolevels=1000
+" Undo history persists across vim sessions
+set undofile
+set undodir=~/.vim/undo
 
 " Absolute Line numbers
 set number 
@@ -353,7 +372,12 @@ set wildmode=list:longest
 " Mapping{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F8> :TagbarToggle<CR>
-nnoremap <F5> :GundoToggle<CR>
+if s:useVIM
+    nnoremap <F5> :GundoToggle<CR>
+endif
+if s:useNVIM 
+    nnoremap <F5> :MundoToggle<CR>
+endif
 
 " Disable (temporary) all auto indenting/expansion
 set pastetoggle=<F3>
@@ -508,9 +532,16 @@ set lazyredraw
 "}}}
 " Undo{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:gundo_width = 60
-let g:gundo_preview_height = 15
-let g:gundo_preview_bottom = 1
+if s:useVIM
+    let g:gundo_width = 60
+    let g:gundo_preview_height = 15
+    let g:gundo_preview_bottom = 1
+endif
+if s:useNVIM
+    let g:mundo_width = 60
+    let g:mundo_preview_height = 15
+    let g:mundo_preview_bottom = 1
+endif
 "}}}
 " Local vimrc{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
