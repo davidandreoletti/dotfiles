@@ -13,6 +13,8 @@ source "${SHELLRC_DIR}/shellrc/java.sh"
 source "${SHELLRC_DIR}/shellrc/nvm.sh"
 # Load npm config
 source "${SHELLRC_DIR}/shellrc/npm.sh"
+# Load python config
+source "${SHELLRC_DIR}/shellrc/python.sh"
 
 # Load shell specific config
 SHELLRC_STAGE_CUSTOM_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc/stage_custom.sh"
