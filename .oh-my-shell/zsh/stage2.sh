@@ -11,6 +11,9 @@ HISTFILE=$HOME/.zsh_history
 # http://usevim.com/2013/10/09/vim-zsh/
 bindkey -v
 
+# Load zsh completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
@@ -35,5 +38,5 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # correction
 #setopt correctall
 
-# Searh history as in Bash with Ctrl-R 
+# Search history as in Bash with Ctrl-R 
 bindkey '^R' history-incremental-search-backward
