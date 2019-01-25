@@ -30,8 +30,15 @@ cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
     # brew cask cleanup now depecrated. brew cleanup must be used instead 
 
     # Upgrade non cask and cask brew packages
+    # - upgrade non casks
     brew upgrade 2>&1;
-    brew cask upgrade --greedy --force 2>&1;
+    # - upgrade cask with explicitly version
+    brew cask upgrade --force 2>&1;
+    # - upgrade cask with "lastest" version or "auto_updates"
+    #   These are upgraded every 4 weeks
+    weeknumber=`date +%V`;
+    reminder=$(( $weeknumber % 4 ))
+    [ $reminder -eq 0 ] && brew cask upgrade --greedy --force 2>&1;
 
     touch "$HOMEBREW_PACKAGES_UPDATED"
     chmod 777 "$HOMEBREW_PACKAGES_UPDATED"
