@@ -1,7 +1,7 @@
 # Upgrade npm managed global pakcages
 
-NPM_PACKAGES_UPDATED="/tmp/${USER}_npm_packages_updated"
-NPM_PACKAGES_UPGRADE_SCRIPT="/tmp/${USER}_homebrew_npm_upgrade.sh"
+NPM_PACKAGES_UPDATED="/tmp/${USER}_npm_packages_upgrade"
+NPM_PACKAGES_UPGRADE_SCRIPT="/tmp/${USER}_npm_packages_upgrade.sh"
 NPM_PACKAGES_UPGRADE_LOG="/tmp/${USER}_npm_packages_upgrade.log"
 
 # Force packages upgrades every 1d
@@ -21,6 +21,16 @@ if [ ! -f "$NPM_PACKAGES_UPDATED" ] && [ ! -f "$NPM_PACKAGES_UPGRADE_SCRIPT" ];
 then
 
 cat <<EOF > "$NPM_PACKAGES_UPGRADE_SCRIPT"
+    set -x
+
+    # Load nvm
+    . `brew --prefix nvm`/nvm.sh
+    # Use the default node version (in case nvm encounters incomaptible options such as npm prefix option being set)
+    nvm use --delete-prefix default --silent
+    nvm current
+    which node
+    which npm
+
     #Upgrade npm itself
     npm install npm@latest -g
 
@@ -28,13 +38,15 @@ cat <<EOF > "$NPM_PACKAGES_UPGRADE_SCRIPT"
     npm outdated -g --depth=0
 
     npm update -g
-    npm cache clean
+    # Cache verify requires npm 5+
     npm cache verify
     npm doctor
 
     touch "$NPM_PACKAGES_UPDATED"
     chmod 777 "$NPM_PACKAGES_UPDATED"
     rm -f "$NPM_PACKAGES_UPGRADE_SCRIPT"
+
+    set +x
 EOF
 
 rm -f "$NPM_PACKAGES_UPGRADE_LOG" > /dev/null 2>&1

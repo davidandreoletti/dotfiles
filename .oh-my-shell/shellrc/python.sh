@@ -21,6 +21,8 @@ if [ ! -f "$PYTHON_PACKAGES_UPDATED" ] && [ ! -f "$PYTHON_PACKAGES_UPGRADE_SCRIP
 then
 
 cat <<EOF > "$PYTHON_PACKAGES_UPGRADE_SCRIPT"
+    set -x
+
     # Install tool to easily upgrade python packages
     pip2 install pip_upgrade_outdated
     pip3 install pip_upgrade_outdated
@@ -31,6 +33,8 @@ cat <<EOF > "$PYTHON_PACKAGES_UPGRADE_SCRIPT"
     touch "$PYTHON_PACKAGES_UPDATED"
     chmod 777 "$PYTHON_PACKAGES_UPDATED"
     rm -f "$PYTHON_PACKAGES_UPGRADE_SCRIPT"
+
+    set +x
 EOF
 
 rm -f "$PYTHON_PACKAGES_UPGRADE_LOG" > /dev/null 2>&1

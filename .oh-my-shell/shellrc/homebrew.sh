@@ -2,7 +2,7 @@ export HOMEBREW_NO_ANALYTICS=1
 
 # Upgrade homebrew managed pakcages
 
-HOMEBREW_PACKAGES_UPDATED="/tmp/${USER}_homebrew_packages_updated"
+HOMEBREW_PACKAGES_UPDATED="/tmp/${USER}_homebrew_packages_upgrade"
 HOMEBREW_PACKAGES_UPGRADE_SCRIPT="/tmp/${USER}_homebrew_packages_upgrade.sh"
 HOMEBREW_PACKAGES_UPGRADE_LOG="/tmp/${USER}_homebrew_packages_upgrade.log"
 
@@ -23,6 +23,8 @@ if [ ! -f "$HOMEBREW_PACKAGES_UPDATED" ] && [ ! -f "$HOMEBREW_PACKAGES_UPGRADE_S
 then
 
 cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
+    set -x
+
     brew update 2>&1;
 
     # Uninstall previous non cask and cask package versions (to save on disk space over time)
@@ -36,13 +38,15 @@ cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
     brew cask upgrade --force 2>&1;
     # - upgrade cask with "lastest" version or "auto_updates"
     #   These are upgraded every 4 weeks
-    weeknumber=`date +%V`;
-    reminder=$(( $weeknumber % 4 ))
-    [ $reminder -eq 0 ] && brew cask upgrade --greedy --force 2>&1;
+    weeknumber=\`date +%V\`;
+    reminder="\$weeknumber % 4"
+    [ \`echo "\$reminder" | bc\` -eq 0 ] && brew cask upgrade --greedy --force 2>&1;
 
     touch "$HOMEBREW_PACKAGES_UPDATED"
     chmod 777 "$HOMEBREW_PACKAGES_UPDATED"
     rm -f "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
+
+    set +x
 EOF
 
 rm -f "$HOMEBREW_PACKAGES_UPGRADE_LOG" > /dev/null 2>&1
