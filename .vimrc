@@ -43,7 +43,8 @@ Bundle 'vim-scripts/DoxygenToolkit.vim'
 
 " UltiSnips (Snippets)
 Bundle 'SirVer/ultisnips'
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "perso/snippets"]
+" UltiSnips's snippets are separated from the engine.
+Plugin 'honza/vim-snippets'
 " Disable Ultisnips warning when vim is not compiled with python support
 let g:UltiSnipsNoPythonWarning = 1
 
