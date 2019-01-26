@@ -7,3 +7,4 @@
 .tmux/resurrect
 *.DS_Store
 .config/inkscape
+.vim/undo
