@@ -140,39 +140,14 @@ if vundleInstallRequired
    call F_jshint_InstallifMissing()
 endif
 
-" Convenient way to quickly reach buffers/files/commands/bookmarks/tags
-Bundle 'ctrlpvim/ctrlp.vim'
-" Default seach mode
-let g:ctrlp_cmd = 'CtrlPMixed'
-" Local working directory
-let g:ctrlp_working_path_mode = 'rwa'
-" Position/Listing order/Reslt Window height
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:15'
-" Jump to openned file (in window) if already openned
-let g:ctrlp_switch_buffer = 'Et'
-" Enable Per session caching
-let g:ctrlp_use_caching = 1
-" Enabled Cross session cahcing
-let g:ctrlp_clear_cache_on_exit = 1
-" Show hidden files
-let g:ctrlp_show_hidden = 1
-" Ignore custom files/dirs
-let g:ctrlp_custom_ignore = {
-            \ 'dir': '\v[\/]\.(git|hg|svn)$',
-            \ 'file': '\v\.(exe|so|dll)$',
-            \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-            \ }
-" Number max of files to scan
-let g:ctrlp_max_files = 0
-" Max number of MRU files
-let g:ctrlp_mruf_max = 1000
-" Show MRU files only relative to current dir
-let g:ctrlp_mruf_relative = 1
-" Save MRU list on vim exiting only
-let g:ctrlp_mruf_save_on_update = 1
-" Enable CTRL-P extensions
-let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
-            \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
+" Fast way to reach/search
+" buffers/files/commands/bookmarks/tags/lines/projects/help
+" pages/commands/history/git commits/etc 
+" - see details at https://github.com/junegunn/fzf.vim#commands
+" - fzf replaces Ctrl-P, FuzzyFinder and Command-T)
+" - fzf is really fast compared to Crtl-P' vimL fuzy finder implementation
+set rtp+=/usr/local/opt/fzf
+Bundle 'junegunn/fzf.vim'
 
 " Show a VCS diff using Vim's sign column. 
 Bundle 'mhinz/vim-signify'
