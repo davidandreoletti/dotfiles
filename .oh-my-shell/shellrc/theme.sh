@@ -1,5 +1,5 @@
 #
-# Cross shell theme/prompt loading
+# Cross shell theme/prompt config
 #
 
 SHELLRC_THEME_DIR="${SHELLRC_DIR}/themes"

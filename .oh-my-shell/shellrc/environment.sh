@@ -1,5 +1,5 @@
 #
-# Post cross shell config
+# Cross shell environment config
 #
 
 # Set default editors
@@ -35,6 +35,6 @@ fi
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 
 # Load shell specific config
-SHELLRC_STAGE2_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/stage2.sh"
-[[ -s ${SHELLRC_STAGE2_SHELL_FILE} ]] && . "${SHELLRC_STAGE2_SHELL_FILE}"
+SHELLRC_ENVIRONMENT_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/environment.sh"
+[[ -s ${SHELLRC_ENVIRONMENT_SHELL_FILE} ]] && . "${SHELLRC_ENVIRONMENT_SHELL_FILE}"
 

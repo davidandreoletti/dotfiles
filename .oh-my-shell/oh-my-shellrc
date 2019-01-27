@@ -15,23 +15,15 @@
 
 SHELLRC_DIR="${HOME}/.oh-my-shell"
 
-if [ -n "$BASH_VERSION" ]; then
-    SHELL_NAME="bash"
-elif test -n "$ZSH_VERSION" ; then
-    SHELL_NAME="zsh"
-else
-    SHELL_NAME="unknow-shell"
-fi
-
 SHELLRC_BOOTSTRAP_FILE="${SHELLRC_DIR}/shellrc/bootstrap.sh"
 SHELLRC_THEME_FILE="${SHELLRC_DIR}/shellrc/theme.sh"
-SHELLRC_STAGE2_FILE="${SHELLRC_DIR}/shellrc/stage_2.sh"
+SHELLRC_ENVIRONMENT_FILE="${SHELLRC_DIR}/shellrc/environment.sh"
 SHELLRC_ALIAS_FILE="${SHELLRC_DIR}/shellrc/aliases.sh"
 SHELLRC_STAGE_CUSTOM_FILE="${SHELLRC_DIR}/shellrc/stage_custom.sh"
 
 [[ -s ${SHELLRC_BOOTSTRAP_FILE} ]] && . ${SHELLRC_BOOTSTRAP_FILE}
 [[ -s ${SHELLRC_THEME_FILE} ]] && . ${SHELLRC_THEME_FILE}
-[[ -s ${SHELLRC_STAGE2_FILE} ]] && . ${SHELLRC_STAGE2_FILE}
+[[ -s ${SHELLRC_ENVIRONMENT_FILE} ]] && . ${SHELLRC_ENVIRONMENT_FILE}
 [[ -s ${SHELLRC_ALIAS_FILE} ]] && . ${SHELLRC_ALIAS_FILE}
 [[ -s ${SHELLRC_STAGE_CUSTOM_FILE} ]] && . ${SHELLRC_STAGE_CUSTOM_FILE}
 
