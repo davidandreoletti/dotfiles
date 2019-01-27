@@ -2,7 +2,7 @@
 BOOSTRAP_COMMAND=""
 DOTFILES_FORCE_INSTALL=false
 DOTFILES_PROFILE="perso" 
-DOTFILES_DEFAULT_SHELL="bash"
+DOTFILES_DEFAULT_SHELL="zsh"
 DOTFILES_PRIVATE_DIR_PATH_SET=false
 DOTFILES_PRIVATE_DIR_PATH="`pwd`/../dotfiles-private"
 DOTFILES_DIR_PATH="`pwd`"
@@ -57,8 +57,8 @@ while getopts b:fs:t:p:h flag; do
       echo "    dev_single - (macosx configuration only) Use if there will be a single developer accounts/users."
       echo "    dev_multi  - (macosx configuration only) Use if there will be multiple developer accounts/users."
       echo " -t shell\t Shell type to use by default. Valid values (case sensitive): "
-      echo "    bash - Bash shell (default)"
-      echo "    zsh  - ZSH shell"
+      echo "    bash - Bash shell"
+      echo "    zsh  - ZSH shell (default)"
       echo " -p dotfiles-private\t Absolute path to repository with dofiles-private files. Default: none"
       echo ""
       echo "EXAMPLES"
