@@ -24,7 +24,7 @@ else
 fi
 
 SHELLRC_STAGE0_FILE="${SHELLRC_DIR}/shellrc/stage_0.sh"
-SHELLRC_STAGE1_FILE="${SHELLRC_DIR}/shellrc/stage_1.sh"
+SHELLRC_STAGE1_FILE="${SHELLRC_DIR}/shellrc/theme.sh"
 SHELLRC_STAGE2_FILE="${SHELLRC_DIR}/shellrc/stage_2.sh"
 SHELLRC_ALIAS_FILE="${SHELLRC_DIR}/shellrc/aliases.sh"
 SHELLRC_STAGE_CUSTOM_FILE="${SHELLRC_DIR}/shellrc/stage_custom.sh"
