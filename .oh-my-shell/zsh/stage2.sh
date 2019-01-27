@@ -40,3 +40,5 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # Search history as in Bash with Ctrl-R 
 bindkey '^R' history-incremental-search-backward
+
+[[ -r "$(brew --prefix fzf)/shell/completion.zsh" ]] && . "$(brew --prefix fzf)/shell/completion.zsh"
