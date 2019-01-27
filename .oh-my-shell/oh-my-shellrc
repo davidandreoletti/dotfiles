@@ -1,13 +1,13 @@
 #
 # Bash shell:
 #
-# OSX:      source ~/.oh-my-shell/oh-my-shellrc into ~/.bash_profile ("Interactive Login"/"Interactive" shell)
-# Ubuntu:   source ~/.oh-my-shell/oh-my-shellrc into ~/.bash_profile ("Interactive Login" shell)
+# OSX:      . ~/.oh-my-shell/oh-my-shellrc into ~/.bash_profile ("Interactive Login"/"Interactive" shell)
+# Ubuntu:   . ~/.oh-my-shell/oh-my-shellrc into ~/.bash_profile ("Interactive Login" shell)
 #                                               into ~/.bashrc       ("Interactive" shell)
 # ZSH shell:
 #
-# OSX:      source ~/.oh-my-shell/oh-my-shellrc into ~/.zshrc ("Interactive Login"/"Interactive" shell)
-# Ubuntu:   source ~/.oh-my-shell/oh-my-shellrc into ~/.zshrc ("Interactive Login" shell)
+# OSX:      . ~/.oh-my-shell/oh-my-shellrc into ~/.zshrc ("Interactive Login"/"Interactive" shell)
+# Ubuntu:   . ~/.oh-my-shell/oh-my-shellrc into ~/.zshrc ("Interactive Login" shell)
 #
 # Source: http://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
 #         http://tanguy.ortolo.eu/blog/article25/shrc
@@ -29,9 +29,9 @@ SHELLRC_STAGE2_FILE="${SHELLRC_DIR}/shellrc/stage2.sh"
 SHELLRC_ALIAS_FILE="${SHELLRC_DIR}/shellrc/aliases.sh"
 SHELLRC_STAGE_CUSTOM_FILE="${SHELLRC_DIR}/shellrc/stage_custom.sh"
 
-[[ -s ${SHELLRC_STAGE0_FILE} ]] && source ${SHELLRC_STAGE0_FILE}
-[[ -s ${SHELLRC_STAGE1_FILE} ]] && source ${SHELLRC_STAGE1_FILE}
-[[ -s ${SHELLRC_STAGE2_FILE} ]] && source ${SHELLRC_STAGE2_FILE}
-[[ -s ${SHELLRC_ALIAS_FILE} ]] && source ${SHELLRC_ALIAS_FILE}
-[[ -s ${SHELLRC_STAGE_CUSTOM_FILE} ]] && source ${SHELLRC_STAGE_CUSTOM_FILE}
+[[ -s ${SHELLRC_STAGE0_FILE} ]] && . ${SHELLRC_STAGE0_FILE}
+[[ -s ${SHELLRC_STAGE1_FILE} ]] && . ${SHELLRC_STAGE1_FILE}
+[[ -s ${SHELLRC_STAGE2_FILE} ]] && . ${SHELLRC_STAGE2_FILE}
+[[ -s ${SHELLRC_ALIAS_FILE} ]] && . ${SHELLRC_ALIAS_FILE}
+[[ -s ${SHELLRC_STAGE_CUSTOM_FILE} ]] && . ${SHELLRC_STAGE_CUSTOM_FILE}
 

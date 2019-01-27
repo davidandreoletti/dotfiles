@@ -36,5 +36,5 @@ export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 
 # Load shell specific config
 SHELLRC_STAGE2_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/stage2.sh"
-[[ -s ${SHELLRC_STAGE2_SHELL_FILE} ]] && source "${SHELLRC_STAGE2_SHELL_FILE}"
+[[ -s ${SHELLRC_STAGE2_SHELL_FILE} ]] && . "${SHELLRC_STAGE2_SHELL_FILE}"
 

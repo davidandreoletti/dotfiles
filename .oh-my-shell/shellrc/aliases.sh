@@ -264,7 +264,7 @@ alias ssh_extract_from_pem_public_key_only_as_rsa_format='ssh-keygen -y -f '
 
 # Load shell specific aliases
 SHELLRC_ALIAS_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc_alias"
-[[ -s ${SHELLRC_ALIAS_SHELL_FILE} ]] && source "${SHELLRC_ALIAS_SHELL_FILE}"
+[[ -s ${SHELLRC_ALIAS_SHELL_FILE} ]] && . "${SHELLRC_ALIAS_SHELL_FILE}"
 
 # Backups
 # for duplicity based backups
