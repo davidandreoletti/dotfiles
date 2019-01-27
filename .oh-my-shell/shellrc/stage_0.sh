@@ -7,6 +7,6 @@
 . "${SHELLRC_DIR}/shellrc/tmux.sh"
 
 # Load shell specific config
-SHELLRC_STAGE0_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc/stage0.sh"
+SHELLRC_STAGE0_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc/stage_0.sh"
 [[ -s ${SHELLRC_STAGE0_SHELL_FILE} ]] && . "${SHELLRC_STAGE0_SHELL_FILE}"
 
