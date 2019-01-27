@@ -23,13 +23,13 @@ else
     SHELL_NAME="unknow-shell"
 fi
 
-SHELLRC_STAGE0_FILE="${SHELLRC_DIR}/shellrc/stage_0.sh"
+SHELLRC_BOOTSTRAP_FILE="${SHELLRC_DIR}/shellrc/bootstrap.sh"
 SHELLRC_THEME_FILE="${SHELLRC_DIR}/shellrc/theme.sh"
 SHELLRC_STAGE2_FILE="${SHELLRC_DIR}/shellrc/stage_2.sh"
 SHELLRC_ALIAS_FILE="${SHELLRC_DIR}/shellrc/aliases.sh"
 SHELLRC_STAGE_CUSTOM_FILE="${SHELLRC_DIR}/shellrc/stage_custom.sh"
 
-[[ -s ${SHELLRC_STAGE0_FILE} ]] && . ${SHELLRC_STAGE0_FILE}
+[[ -s ${SHELLRC_BOOTSTRAP_FILE} ]] && . ${SHELLRC_BOOTSTRAP_FILE}
 [[ -s ${SHELLRC_THEME_FILE} ]] && . ${SHELLRC_THEME_FILE}
 [[ -s ${SHELLRC_STAGE2_FILE} ]] && . ${SHELLRC_STAGE2_FILE}
 [[ -s ${SHELLRC_ALIAS_FILE} ]] && . ${SHELLRC_ALIAS_FILE}
