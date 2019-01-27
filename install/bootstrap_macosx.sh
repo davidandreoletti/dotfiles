@@ -121,7 +121,8 @@ is_profile_admin_or_similar && homebrew_brew_install "irssi" "--with-perl=yes" "
 is_profile_admin_or_similar && homebrew_brew_install "rlwrap"  # Needed to execute PlistBuddy in command mode
 is_profile_admin_or_similar && homebrew_brew_install "tcpdump"  # TCP traffic sniffing
 is_profile_admin_or_similar && homebrew_brew_install "ngrep"  # grep for network resource
-
+is_profile_admin_or_similar && homebrew_brew_tap_install "brew tap burntsushi/ripgrep" "https://github.com/BurntSushi/ripgrep.git" # rigrep binary compiled, as nightly build, and including SIMD and all optimizations enabled. 
+is_profile_admin_or_similar && homebrew_brew_install "brew install ripgrep-bin"  # faster grep
 
 #homebrew_brew_cask_workaround0
 is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"

@@ -29,8 +29,9 @@ homebrew_brew_linkapps() {
 }
 
 # param1: tapname
+# param2: tapSourceURL
 homebrew_brew_tap_install() {
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" brew tap "$1"
+    sudo ${SUDO_OPTIONS} -u "$(whoami)" brew tap "$1" $2
 }
 
 homebrew_brew_cask_workaround0() {
