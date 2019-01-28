@@ -1,3 +1,6 @@
+# .inputrc read by readline capable programs:
+# - bash yes (but no zsh)
+
 # Include default distribution customization
 $include /etc/inputrc
 
