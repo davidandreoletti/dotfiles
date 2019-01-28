@@ -1,0 +1,9 @@
+# Shell history
+setopt APPEND_HISTORY 
+setopt HIST_FIND_NO_DUPS
+setopt INC_APPEND_HIST
+setopt SHARE_HISTORY 
+HISTSIZE=10000
+SAVEHIST=$HISTSIZE
+HISTFILE=$HOME/.zsh_history
+
