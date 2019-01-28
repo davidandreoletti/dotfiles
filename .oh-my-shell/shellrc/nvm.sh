@@ -6,7 +6,8 @@ export NVM_DIR="${HOME}/.nvm"
 # - ignoring desactivated nvm error due to:
 #  - nvm is not compatible with the npm config "prefix" option: currently set to "${HOME}/.npm"
 #  - Run `npm config delete prefix` or `nvm use --delete-prefix v8.11.4 --silent` to unset it.
-. `brew --prefix nvm`/nvm.sh > /dev/null 2>&1
+HOMEBREW_NVM_SCRIPT=$(homebrew_package_path_prefix "/nvm/nvm.sh")
+[ -r "$HOMEBREW_NVM_SCRIPT" ] && . "$HOMEBREW_NVM_SCRIPT" 
 
 # Use default nvm managed node version
 nvm use --delete-prefix default --silent

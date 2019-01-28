@@ -22,6 +22,7 @@ SHELLRC_SHELLRC_DIR="${SHELLRC_ROOT_DIR}/shellrc"
 . ${SHELLRC_SHELLRC_DIR}/environment.sh
 . ${SHELLRC_CURRENT_SHELL_DIR}/history.sh
 . ${SHELLRC_CURRENT_SHELL_DIR}/completion.sh
+. ${SHELLRC_SHELLRC_DIR}/gnucoreutils.sh
 . ${SHELLRC_SHELLRC_DIR}/aliases.sh
 . ${SHELLRC_SHELLRC_DIR}/homebrew.sh
 . ${SHELLRC_SHELLRC_DIR}/ssh.sh

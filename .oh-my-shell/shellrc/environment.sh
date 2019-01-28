@@ -15,23 +15,7 @@ export TERM=xterm-256color
 export MANPAGER="less -X";
 
 # Set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-   export PATH="$HOME/bin:$PATH"
-fi
-
-# Add GNU coretutils (if installed) to have dircolors and prevent all
-# coretutils tools (eg: dircolors) to be prefixed with g (eg: gdircolors)
-# on OSX
-# OSX: brew install coreutils
-# FIXME: Check OS === OSX for OSX specific paths
-OSX_HOMEBREW_GNUCOREUTILS_DIR="/usr/local/opt/coreutils/libexec"
-if [ -d "$OSX_HOMEBREW_GNUCOREUTILS_DIR/gnubin" ] ; then
-    export PATH="$OSX_HOMEBREW_GNUCOREUTILS_DIR/gnubin:$PATH"
-fi
-
-if [ -d "$OSX_HOMEBREW_GNUCOREUTILS_DIR/gnuman" ] ; then
-    export MANPATH="$OSX_HOMEBREW_GNUCOREUTILS_DIR/gnuman:$MANPATH"
-fi
+[ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 
 # Load shell specific config
 SHELLRC_ENVIRONMENT_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/environment.sh"
