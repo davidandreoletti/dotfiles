@@ -1,3 +1,6 @@
+# Enable vi mode
+# - enabled via see $HOME/.inputrc
+
 # Load bash completions
 # Note: List all completions routine with "complete -p"
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"

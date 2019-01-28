@@ -4,8 +4,7 @@
 # Include default distribution customization
 $include /etc/inputrc
 
-# Set vi editing mode
-# (bash, etc)
+# Enable vi mode
 set editing-mode vi
 
 # Do not ring a bell when Readline wants it
