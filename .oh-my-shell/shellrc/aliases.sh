@@ -374,4 +374,4 @@ alias httpShowTraffic2="f_http_show_in_out_traffic2 "
 
 # Load shell specific aliases
 SHELLRC_ALIAS_SHELL_FILE="${SHELLRC_CURRENT_SHELL_DIR}/aliases.sh"
-[[ -s ${SHELLRC_ALIAS_SHELL_FILE} ]] && . "${SHELLRC_ALIAS_SHELL_FILE}"
+[ -r ${SHELLRC_ALIAS_SHELL_FILE} ] && . "${SHELLRC_ALIAS_SHELL_FILE}"
