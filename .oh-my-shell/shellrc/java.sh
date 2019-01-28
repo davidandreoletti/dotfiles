@@ -1,5 +1,4 @@
-os_type_name=`get_os_type`
-if [[ "$os_type_name" == "macosx" ]]; then
+if [[ "$OS_NAME" == "macosx" ]]; then
     # Initialize jenv files
     eval "$(jenv init -)" 
     # Register Java SDKs
