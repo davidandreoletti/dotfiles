@@ -1,6 +1,9 @@
-# Use modern completion system
+# Initialize completion system
+# -U 
 autoload -Uz compinit
-compinit
+# -u use completion scripts files not owned by the current user or root.
+#    Rationale: Homebrew install completions scripts with owner sometimes set as different from the current user 
+compinit -u
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
