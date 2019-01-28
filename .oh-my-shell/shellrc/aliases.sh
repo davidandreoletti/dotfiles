@@ -262,10 +262,6 @@ alias ssh_show_key_hashes='echo "Type ssh key full path" && read path && ssh-key
 # Usage: ssh_extract_from_pem_public_key_only_as_rsa_format "/path/to/some/file.pem"
 alias ssh_extract_from_pem_public_key_only_as_rsa_format='ssh-keygen -y -f '
 
-# Load shell specific aliases
-SHELLRC_ALIAS_SHELL_FILE="${SHELLRC_DIR}/${SHELL_NAME}/shellrc_alias"
-[[ -s ${SHELLRC_ALIAS_SHELL_FILE} ]] && . "${SHELLRC_ALIAS_SHELL_FILE}"
-
 # Backups
 # for duplicity based backups
 alias backupignoredir="touch .backup.ignore"
@@ -374,3 +370,8 @@ f_http_show_in_out_traffic2() {
 # (ues tcpdump)
 # Usage: httpShowTraffic2 any 80 "GET|POST"
 alias httpShowTraffic2="f_http_show_in_out_traffic2 "
+
+
+# Load shell specific aliases
+SHELLRC_ALIAS_SHELL_FILE="${SHELLRC_CURRENT_SHELL_DIR}/aliases.sh"
+[[ -s ${SHELLRC_ALIAS_SHELL_FILE} ]] && . "${SHELLRC_ALIAS_SHELL_FILE}"

@@ -13,17 +13,27 @@
 #         http://tanguy.ortolo.eu/blog/article25/shrc
 #
 
-SHELLRC_DIR="${HOME}/.oh-my-shell"
+SHELLRC_ROOT_DIR="${HOME}/.oh-my-shell"
+SHELLRC_SHELLRC_DIR="${SHELLRC_ROOT_DIR}/shellrc"
 
-SHELLRC_BOOTSTRAP_FILE="${SHELLRC_DIR}/shellrc/bootstrap.sh"
-SHELLRC_THEME_FILE="${SHELLRC_DIR}/shellrc/theme.sh"
-SHELLRC_ENVIRONMENT_FILE="${SHELLRC_DIR}/shellrc/environment.sh"
-SHELLRC_ALIAS_FILE="${SHELLRC_DIR}/shellrc/aliases.sh"
-SHELLRC_STAGE_CUSTOM_FILE="${SHELLRC_DIR}/shellrc/stage_custom.sh"
+# Load common shell configs 
+. ${SHELLRC_SHELLRC_DIR}/bootstrap.sh
+. ${SHELLRC_SHELLRC_DIR}/theme.sh
+. ${SHELLRC_SHELLRC_DIR}/environment.sh
+. ${SHELLRC_SHELLRC_DIR}/aliases.sh
+. ${SHELLRC_SHELLRC_DIR}/stage_custom.sh
+. ${SHELLRC_SHELLRC_DIR}/homebrew.sh
+. ${SHELLRC_SHELLRC_DIR}/ssh.sh
+. ${SHELLRC_SHELLRC_DIR}/java.sh
+. ${SHELLRC_SHELLRC_DIR}/nvm.sh
+. ${SHELLRC_SHELLRC_DIR}/npm.sh
+. ${SHELLRC_SHELLRC_DIR}/python.sh
+. ${SHELLRC_SHELLRC_DIR}/custom.sh
 
-[[ -s ${SHELLRC_BOOTSTRAP_FILE} ]] && . ${SHELLRC_BOOTSTRAP_FILE}
-[[ -s ${SHELLRC_THEME_FILE} ]] && . ${SHELLRC_THEME_FILE}
-[[ -s ${SHELLRC_ENVIRONMENT_FILE} ]] && . ${SHELLRC_ENVIRONMENT_FILE}
-[[ -s ${SHELLRC_ALIAS_FILE} ]] && . ${SHELLRC_ALIAS_FILE}
-[[ -s ${SHELLRC_STAGE_CUSTOM_FILE} ]] && . ${SHELLRC_STAGE_CUSTOM_FILE}
+# Load shell specific config
+SHELLRC_STAGE_CUSTOM_SHELL_FILE="${SHELLRC_CURRENT_SHELL_DIR}/stage_custom.sh"
+[[ -s ${SHELLRC_STAGE_CUSTOM_SHELL_FILE} ]] && . "${SHELLRC_STAGE_CUSTOM_SHELL_FILE}"
 
+# Load computer shell specific config
+SHELLRC_STAGE_CUSTOM_SHELL_FILE="${HOME}/.shellrc_stage_custom.sh"
+[[ -s ${SHELLRC_STAGE_CUSTOM_SHELL_FILE} ]] && . "${SHELLRC_STAGE_CUSTOM_SHELL_FILE}"
