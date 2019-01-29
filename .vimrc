@@ -4,22 +4,17 @@
 "       http://davidandreoletti.com
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Detect what vim variant is being used {{{
-let s:useVIM=0
-let s:useNVIM=0
-if has('nvim')
-    let s:useNVIM=1
-else
-    let s:useVIM=1
-endif
 "}}}
-" Custom VIM functions {{{
-source $HOME/.vim/perso/vim/vimrc-functions.vim
+" Load VIM functions {{{
+source $HOME/.vim/common/functions.vim
+" Detect what vim variant is being used {{{
+let g:vimFlavor = F_Get_Vim_Flavor()
 "}}}
 " Vundle{{{
 " Setup: https://github.com/gmarik/vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Forget being compatible with good ol' vi
+" - required by Vundle
 set nocompatible
 
 let vundleInstallRequired = F_Vundle_IsVundleInstalled()
@@ -36,187 +31,105 @@ call vundle#rc()
 " Let Vundle manage Vundle required! 
 Bundle 'gmarik/vundle'
 "}}}
-" Bundles{{{
+
+" Managed bundles{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Doxygen
 Bundle 'vim-scripts/DoxygenToolkit.vim'
-
-" UltiSnips (Snippets)
+" Snippets Engine
 Bundle 'SirVer/ultisnips'
-" UltiSnips's snippets are separated from the engine.
+" Predefined snippets 
+" - UltiSnips's snippets are separated from the engine.
 Plugin 'honza/vim-snippets'
-" Disable Ultisnips warning when vim is not compiled with python support
-let g:UltiSnipsNoPythonWarning = 1
-
 " Master Vim's advanced motion and search
 Bundle 'takac/vim-hardtime'
-let g:list_of_normal_keys = [ "h", "j", "k", "l", "-", "+" ]
-let g:list_of_visual_keys = [ "h", "j", "k", "l", "-", "+" ]
-let g:hardtime_maxcount = 1
-let g:hardtime_allow_different_key = 1
-let g:hardtime_timeout = 1000
-
 " Ease motions
 Bundle 'Lokaltog/vim-easymotion'
-
 " Operations on surroundings
 " parentheses, brackets, quotes, XML tags, and more
 Bundle 'tpope/vim-surround'
-
 " Visualize Vim Undo Tree
-if s:useVIM 
-    " vim + neovim only support, without newer updates
+if g:vimFlavor ==# g:VIM_FLAVOR_VIM
+    " vim + neovim support, without newer updates
     Bundle 'sjl/gundo.vim'
-endif
-if s:useNVIM
-    " vim + neovim support (gundo.vim fork), with newer updates
+elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
+    " vim + neovim support, with newer updates (gundo.vim fork),
     Bundle 'simnalamburt/vim-mundo'     
 endif
-
 " Color schemes
 Bundle 'flazz/vim-colorschemes'
-
 " Make gvim-only colorscheme work transparently in vim terminal
 Bundle 'vim-scripts/CSApprox'
-
 " Commenting
 Bundle 'scrooloose/nerdcommenter'
-
 " Align things
 Bundle 'godlygeek/tabular'
-
 " Syntastic
 " C++/C/X*ML/JSON/Javascript .. syntax checking plugin
 Bundle "scrooloose/syntastic"
-" Setup syntastic's status line
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
-" Syntastic Error Window will be opened automatically when errors are
-" detected and closed automatically when none are detected
-let g:syntastic_auto_loc_list=1
-" Syntastic show syntaxhighlighting to mark error (where possible)
-let g:syntastic_enable_highlighting=1
-" Syntastic custom error symbols according to error type
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-" C++ setup: https://github.com/scrooloose/syntastic/wiki/C--%3A---gcc
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_no_include_search = 1
-let g:syntastic_cpp_no_default_include_dirs = 1
-let g:syntastic_cpp_auto_refresh_includes = 1
-let g:syntastic_cpp_compiler_options = '-std=c++11'
-let g:syntastic_cpp_remove_include_errors = 1
-let g:syntastic_cpp_compiler = 'clang++'
-" TabNine (auto completion, alledgely better ... test driving it for now)
+" TabNine (ML based auto completion, much better)
 Bundle 'zxqfl/tabnine-vim'
-" Javascript
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'  " Use project's eslint binary
-let g:syntastic_javascript_eslint_args = ['--fix'] " --fix to fix warning/errors automatically
-" Reload js file fixed with eslint --fix
-" src: https://vi.stackexchange.com/a/11281
-set autoread
-" HTML5
-let g:syntastic_html_tidy_exec = 'tidy5'
-
 " NeoMake
 Bundle 'neomake/neomake'
-" When writing a buffer (no delay).
-call neomake#configure#automake('w')
-" When writing a buffer (no delay), and on normal mode changes (after 750ms).
-call neomake#configure#automake('nw', 750)
-" When reading a buffer (after 1s), and when writing (no delay).
-call neomake#configure#automake('rw', 1000)
-" Full config: when writing or reading a buffer, and on changes in insert and
-" normal mode (after 1s; no delay when writing).
-call neomake#configure#automake('nrwi', 500)
-
-au VimEnter *.js au BufWritePost *.js checktime
-
-if vundleInstallRequired
-   call F_npm_InstallIfMissing()
-   call F_jshint_InstallifMissing()
-endif
-
-" Fast way to reach/search
-" buffers/files/commands/bookmarks/tags/lines/projects/help
-" pages/commands/history/git commits/etc 
-" - see details at https://github.com/junegunn/fzf.vim#commands
+" Fast way to reach/search:
+" - buffers (: Buffers)
+" - files (: Files)
+" - commands
+" - bookmarks
+" - tags 
+" - lines
+" - projects
+" - help
+" - pages
+" - commands
+" - history
+" - git commits
+" - etc 
+" See details at https://github.com/junegunn/fzf.vim#commands
 " - fzf replaces Ctrl-P, FuzzyFinder and Command-T)
 " - fzf is really fast compared to Crtl-P' vimL fuzy finder implementation
-set rtp+=/usr/local/opt/fzf
+set rtp +=/usr/local/opt/fzf
 Bundle 'junegunn/fzf.vim'
-
 " Show a VCS diff using Vim's sign column. 
 Bundle 'mhinz/vim-signify'
-
 " Class outliner
 if vundleInstallRequired
    call F_Tagbar_InstallDependencies()
 endif
 Bundle 'majutsushi/tagbar'
-
-" Better status bar
-"if vundleInstallRequired
-   "call F_PowerLine_InstallDependencies()
-"endif
-"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-"Bundle 'Lokaltog/vim-powerline'
-"let g:Powerline_symbols='unicode'
-"let g:Powerline_symbols='fancy'
-
-set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show Unicode glyphs
-
+" Lightweight status bar
 Bundle 'bling/vim-airline'
-" Add powerline symbols to vim-airline
-"let g:airline_powerline_fonts = 1
-
 " Org-mod for vim
 Bundle 'jceb/vim-orgmode'
 " Dependencies for org-mode
 Bundle 'tpope/vim-speeddating'
-
-" Display vertical thin lines at each indentation level for code indented with
-" spaces
+" Display vertical thin lines at each indentation level for code
+" indented with spaces
 Bundle 'Yggdroot/indentLine'
-
 " Diff swap and content file
 Bundle 'chrisbra/Recover.vim'
-
 " Sublime Text's muliple selection
 Bundle 'terryma/vim-multiple-cursors'
-
 " Rename a buffer within Vim and on the disk
 Bundle 'danro/rename.vim'
-
 " Support for JSON syntax highlighting
 Bundle 'leshill/vim-json'
-
 " Git wrapper
 Bundle 'tpope/vim-fugitive'
-
 " Zoom in/out window
 Bundle 'vim-scripts/ZoomWin'
-
 " Support for Objective-C/Cocoa dev
 Bundle 'msanders/cocoa.vim'
-
 " Character encoding value
 " (improves over :ga)
 Bundle 'tpope/vim-characterize'
-
 " Show vim's marks
 Bundle 'kshenoy/vim-signature'
-
 " Enhanced Javascript syntax with support for ES6
 " (based on 'jelera/vim-javascript-syntax')
 Bundle 'othree/yajs.vim'
 
-
-" Installing bunldes the first time
+" Install bundles (on very first vim use) 
 if vundleInstallRequired
    call F_Vundle_InstallBundles()
 endif
@@ -252,42 +165,13 @@ set hidden
 " No lines wrapped
 set nowrap
 
-" Show 80th column (Vim 7.3+ only)
-let g:toggle_80th_column_mark = 1 
-function! F_Toggle80thColumnMark()
-    " option 1: highligh pieces of text over the limit
-    "  - https://www.youtube.com/watch?v=aHm36-na4-4
-    " option 0: static column
-    "  - http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns
-    if g:toggle_80th_column_mark == 1
-        " Disable option 0
-        set colorcolumn=
-        " Enable option 1
-        augroup vimrc_autocmds
-            autocmd!
-            autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#111111
-            autocmd BufEnter * match OverLength /\%80v.*/
-        augroup END
-        doautocmd vimrc_autocmds BufEnter
-        let g:toggle_80th_column_mark = 0
-    else
-        " Disable option 1
-        if exists("#vimrc_autocmds")
-            echo "0:1"
-            highlight clear OverLength
-            match none
-            autocmd! vimrc_autocmds
-            augroup! vimrc_autocmds
-        endif
-        " Enable option 0
-        set colorcolumn=80
-        let g:toggle_80th_column_mark = 1
-    endif
-endfunction
-call F_Toggle80thColumnMark()
 "}}}
 " VIM UI{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Better status bar
+set laststatus=2   " Always show the statusline
+set encoding=utf-8 " Necessary to show Unicode glyphs
+
 " Show matching brackets when text indicator is over them
 set showmatch
 
@@ -326,7 +210,7 @@ colorscheme torte
 "}}}
 " Syntax{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn on that syntax highlighting
+" Turn on syntax highlighting
 syntax on
 "}}}
 " Backup/Swap/Undo{{{
@@ -349,64 +233,6 @@ set directory=~/.vim/tmp/swap,/tmp/
 " Make file/command completion useful
 set wildmenu
 set wildmode=list:longest
-"}}}
-" Mapping{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <F8> :TagbarToggle<CR>
-if s:useVIM
-    nnoremap <F5> :GundoToggle<CR>
-endif
-if s:useNVIM 
-    nnoremap <F5> :MundoToggle<CR>
-endif
-
-" Disable (temporary) all auto indenting/expansion
-set pastetoggle=<F3>
-
-" Force to master Vim's advanced motion and search functionnality 
-" by disabling some/all arrow keys, hjkl keys, page up/down  and others
-" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardTimeOn()
-
-" Get efficient with most vim commands
-" Eg: :w    becomes ;w
-"     Effectively reducing stroke count from S-; w (5 strokes) 
-"     to ;w (3 strokes) 
-nnoremap ; :
-
-" Back to Normal Mode from Insert Mode
-:imap jj <Esc>
-" Make it easy to save current .vimrc as well as to $VIMRC and reload vim conf
-:nmap <leader>rv <Esc>:w! .vimrc<CR>:saveas! $MYVIMRC<CR>:bd ~/.vimrc<CR>:e .vimrc<CR>:so $MYVIMRC<CR>:echo '$VIMRC reloaded'<CR>
-" Clear hightlighted searches
-:nmap <silent> ,/ :nohlsearch<CR>
-" Sudo a file after openning it
-:cmap w!! w !sudo tee % >/dev/null
-" Toggle `set list` (i.e hidden characters)
-nmap <leader>l :set list!<CR>
-
-" Scroll viewport faster
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-
-" Show quick help
-nnoremap <leader>hh :help quickref<CR>
-
-" Resize window
-map <C-l> 5<C-w>>
-map <C-h> 5<C-w><
-map <C-j> 3<C-w>+
-map <C-k> 3<C-w>-
-
-" Search and replace selected text in VISUAL mode
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-
-" Disable PageUp/PageDown and arrow keys 
-noremap <buffer> <Left> <Nop>
-noremap <buffer> <Right> <Nop>
-noremap <buffer> <Up> <Nop>
-noremap <buffer> <Down> <Nop>
-noremap <buffer> <PageUp> <Nop>
-noremap <buffer> <PageDown> <Nop>
 "}}}
 " Tabs and indents{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -457,12 +283,7 @@ set smartcase
 " Enable mouse support for all modes
 set mouse=a
 "}}}
-" Help{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Load custom helps file (such as personal cheatsheet)
-:helptags ~/.vim/doc
-"}}}
-" File type{{{
+" File typc{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use Unix as the standard file type
 set ffs=unix,mac,dos
@@ -491,6 +312,7 @@ set listchars=tab:▸\ ,trail:·,eol:¬
 " Extends standard vim % to apply to:
 " - whole words: "if" and "endif"
 " - group of more than 2 words : "if", "else", "endif"
+" FIXME: is this a plugin ?
 runtime macros/matchit.vim
 "}}}
 " Encryption{{{
@@ -511,22 +333,24 @@ set scrolloff=6
 " Don't update the display while executing macros
 set lazyredraw
 "}}}
-" Undo{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if s:useVIM
-    let g:gundo_width = 60
-    let g:gundo_preview_height = 15
-    let g:gundo_preview_bottom = 1
-endif
-if s:useNVIM
-    let g:mundo_width = 60
-    let g:mundo_preview_height = 15
-    let g:mundo_preview_bottom = 1
-endif
+" Plugins settings{{{
+call F_Load_PluginsSettings('$HOME/.vim/settings')
 "}}}
+" Key Mappings{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call F_Load_KeyMappings('$HOME/.vim/keymap')
+"}}}
+" UI Enhancements {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call F_Load_UISettings('$HOME/.vim/ui')
+"}}}"
 " Local vimrc{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if filereadable(".vimrc.local")
-   source $HOME/.vimrc.local
-endif
+call F_Load_LocalVimrc('$HOME/.vimrc.local')
 "}}}
+" Help{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Load custom helps file 
+" - personal cheatsheets
+:helptags ~/.vim/doc
+"}}}"

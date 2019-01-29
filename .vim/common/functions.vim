@@ -1,3 +1,48 @@
+" Load plugins settings as (settings/*.vim)
+function! F_Load_PluginsSettings (vimPluginSettingsPath)
+    for fpath in split(globpath(a:vimPluginSettingsPath, '*.vim'), '\n')
+        exe 'source ' . fpath
+    endfor
+endfunction
+
+" Load key mapping "plugins" (keymap/*.vim)
+function! F_Load_KeyMappings (vimKeyMappingsPath)
+    for fpath in split(globpath(a:vimKeyMappingsPath, '*.vim'), '\n')
+        exe 'source ' . fpath
+    endfor
+endfunction
+
+" Load ui "plugins" (ui/*.vim)
+function! F_Load_UISettings (uiPath)
+    for fpath in split(globpath(a:uiPath, '*.vim'), '\n')
+        exe 'source ' . fpath
+    endfor
+endfunction
+
+" Load a local vimrc
+function! F_Load_LocalVimrc (localVIMRCPath)
+    if filereadable(a:localVIMRCPath)
+        source a:localVIMRCPath
+    endif
+endfunction
+
+let g:VIM_FLAVOR_VIM = 'vim'
+let g:VIM_FLAVOR_NEOVIM = 'neovim'
+let g:VIM_FLAVOR_UNKNOWN = 'unknown'
+
+" Get VIM flavor
+" Returns:
+" - vim
+" - neovim  
+" - unknown
+function! F_Get_Vim_Flavor ()
+    if has('nvim')
+        return g:VIM_FLAVOR_NEOVIM
+    else
+        return g:VIM_FLAVOR_VIM
+    endif
+endfunction
+
 " Set JAVA doxygen tag
 function! F_DoxygenToolKit_SetJAVATags ()
 	let g:DoxygenToolkit_throwTag_pre="@throw "
@@ -85,20 +130,6 @@ function! F_Curl_InstallIfMissing ()
 	endif
 endfunction
 
-" Installs npm if missing
-function! F_npm_InstallifMissing ()
-	if F_OS_IsDebianBasedOS ()
-		silent !sudo apt-get install npm 
-	elseif F_OS_IsMacBasedOS ()
-		silent !brew install npm 
-	endif	
-endfunction
-
-" Installs jshint missing
-function! F_jshint_InstallifMissing ()
-    silent !npm install jshint -g 
-endfunction
-
 " Installs python pip-if missing
 function! F_PythonPip_InstallifMissing ()
 	if F_OS_IsDebianBasedOS ()
@@ -124,33 +155,3 @@ function! F_Tagbar_InstallDependencies ()
 		echoerr "Intalling Tagbar dependencies is NOT specified for this platform."	
 	endif
 endfunction
-
-"" Installs PowerLine python
-"function! F_PowerLine_InstallDependencies ()
-	"echo "Installing powerline dependencies"
-	"if F_OS_IsDebianBasedOS () || F_OS_IsArchLinuxBasedOS ()
-		"call F_Curl_InstallIfMissing()
-		"call F_PythonPip_InstallIfMissing()
-		"silent !pip install --user git+git://github.com/Lokaltog/powerline
-		"echo "Installing patched fonts ..."
-		"silent !cd /tmp && cd `mktemp -d` && git clone https://github.com/Lokaltog/powerline-fonts && mkdir -p ~/.fonts && find `pwd`/powerline-fonts -regextype posix-extended -iregex '.*\.(otf|ttf)' -print0 | xargs -0 -I {} cp -v {} ~/.fonts/
-		"silent !cd /tmp && cd `mktemp -d` && curl -O -L https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf && mv -v PowerlineSymbols.otf ~/.fonts
-		"silent !cd /tmp && cd `mktemp -d` && curl -O -L https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf && mkdir -p ~/.fonts.conf.d/ && mv -v 10-powerline-symbols.conf ~/.fonts.conf.d/ 
-		"silent !fc-cache -vf ~/.fonts
-		"echo "Change Terminal font to -DejaVu Sans Mono for Powerline- to get nice delimiters in status line"
-	"elseif F_OS_IsMacBasedOS ()
-		"" Original idea : https://coderwall.com/p/dmhp5q
-		"call F_PythonPip_InstallIfMissing()
-		"silent !sudo pip install --user https://github.com/Lokaltog/powerline/tarball/develop
-		"" Original Idea : http://superuser.com/questions/120700/how-do-i-programatically-install-a-font-on-a-macintosh
-		"ho "Installing patched fonts ..."
-		"silent !cd /tmp && cd `mktemp -d /tmp/tmp.XXXXX` && git clone https://github.com/Lokaltog/powerline-fonts && find -E `pwd`/powerline-fonts -iregex '.*\.(otf|ttf)' -print0 | xargs -0 -I {} cp -v {} ~/Library/Fonts
-         "silent !cd /tmp && cd `mktemp -d /tmp/tmp.XXXXX` && curl -O -L https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf && mv -v PowerlineSymbols.otf ~/Library/Fonts
-		""silent !curl -O https://gist.github.com/sjl/1627888/raw/c4e92f81f7956d4ceaee11b5a7b4c445f786dd90/Menlo-ForPowerline.ttc.zip && unzip Menlo-ForPowerline.ttc.zip -d ~/Library/Fonts
-		""silent !curl -O https://gist.github.com/baopham/1838072/raw/7ad07f130cc8d792e32d6ae6bd018a4db47537b1/Monaco-Powerline.otf && mv -v Monaco-Powerline.otf ~/Library/Fonts
-		"" Font not installed with Font Book even though it would be better - Font Book checks if font to be installed is valid
-		"echo "Change Terminal font to -Menlo for Powerline- to get nice delimiters in status line"
-	"else
-		"echoerr "Intalling Powerline dependencies is NOT specified for this platform."
-	"endif
-"endfunction
