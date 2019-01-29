@@ -24,7 +24,8 @@ SHELLRC_SHELLRC_DIR="${SHELLRC_ROOT_DIR}/shellrc"
 . ${SHELLRC_CURRENT_SHELL_DIR}/completion.sh
 . ${SHELLRC_CURRENT_SHELL_DIR}/correction.sh
 . ${SHELLRC_SHELLRC_DIR}/gnucoreutils.sh
-. ${SHELLRC_SHELLRC_DIR}/aliases.sh
+. ${SHELLRC_SHELLRC_DIR}/ripgrep.sh
+. ${SHELLRC_SHELLRC_DIR}/fzf.sh
 . ${SHELLRC_SHELLRC_DIR}/homebrew.sh
 . ${SHELLRC_SHELLRC_DIR}/ssh.sh
 . ${SHELLRC_SHELLRC_DIR}/java.sh
@@ -32,6 +33,7 @@ SHELLRC_SHELLRC_DIR="${SHELLRC_ROOT_DIR}/shellrc"
 . ${SHELLRC_SHELLRC_DIR}/npm.sh
 . ${SHELLRC_SHELLRC_DIR}/python.sh
 . ${SHELLRC_SHELLRC_DIR}/miscellaneous.sh
+. ${SHELLRC_SHELLRC_DIR}/aliases.sh
 
 # Load shell specific config
 . ${SHELLRC_CURRENT_SHELL_DIR}/custom.sh
