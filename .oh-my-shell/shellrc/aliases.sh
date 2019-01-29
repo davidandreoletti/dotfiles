@@ -371,6 +371,8 @@ f_http_show_in_out_traffic2() {
 # Usage: httpShowTraffic2 any 80 "GET|POST"
 alias httpShowTraffic2="f_http_show_in_out_traffic2 "
 
+# Diff
+alias diff="diff --side-by-side"
 
 # Load shell specific aliases
 SHELLRC_ALIAS_SHELL_FILE="${SHELLRC_CURRENT_SHELL_DIR}/aliases.sh"
