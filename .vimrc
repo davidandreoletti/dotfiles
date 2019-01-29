@@ -228,9 +228,6 @@ set history=1000
 
 " As many undo as history
 set undolevels=1000
-" Undo history persists across vim sessions
-set undofile
-set undodir=~/.vim/undo
 
 " Absolute Line numbers
 set number 
@@ -332,12 +329,20 @@ colorscheme torte
 " Turn on that syntax highlighting
 syntax on
 "}}}
-" Backup/Swap{{{
+" Backup/Swap/Undo{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Move swap files and backup to central location
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+" Backups
+" Move backup files to a central location
+set backupdir=~/.vim/tmp/backup,/tmp/
 
+" Undo
+" Move undo files to a central location
+set undodir=~/.vim/tmp/undo,/tmp/
+set undofile
+
+" Swap
+" Move swap to a central location
+set directory=~/.vim/tmp/swap,/tmp/
 "}}}
 " Completion{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
