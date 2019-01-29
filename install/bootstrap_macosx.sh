@@ -102,7 +102,6 @@ is_profile_admin_or_similar && homebrew_brew_install "vim"
 is_profile_admin_or_similar && homebrew_brew_install "neovim" && \
     pip2_install "neovim" && pip3_install "neovim" && \ # Install neovim python package
     pip2_install "pynvim" && pip3_install "pynvim"      # Install neovim python bindings package
-is_profile_admin_or_similar && homebrew_brew_install "ack"
 is_profile_admin_or_similar && homebrew_brew_install "newsbeuter"
 is_profile_admin_or_similar && homebrew_brew_install "rsync"
 is_profile_admin_or_similar && homebrew_brew_install "neomutt"
@@ -124,6 +123,8 @@ is_profile_admin_or_similar && homebrew_brew_install "ngrep"  # grep for network
 is_profile_admin_or_similar && homebrew_brew_tap_install "brew tap burntsushi/ripgrep" "https://github.com/BurntSushi/ripgrep.git" # rigrep binary compiled, as nightly build, and including SIMD and all optimizations enabled. 
 is_profile_admin_or_similar && homebrew_brew_install "ripgrep-bin"  # faster grep
 is_profile_admin_or_similar && homebrew_brew_install "jq"  # JSON manipulator
+is_profile_admin_or_similar && homebrew_brew_install "aq"
+is_profile_admin_or_similar && homebrew_brew_install "ack"
 
 #homebrew_brew_cask_workaround0
 is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"
