@@ -19,6 +19,13 @@ function! F_Load_UISettings (uiPath)
     endfor
 endfunction
 
+" Load commands (commands/*.vim)
+function! F_Load_Commands (vimCommandsPath)
+    for fpath in split(globpath(a:vimCommandsPath, '*.vim'), '\n')
+        exe 'source ' . fpath
+    endfor
+endfunction
+
 " Load a local vimrc
 function! F_Load_LocalVimrc (localVIMRCPath)
     if filereadable(a:localVIMRCPath)

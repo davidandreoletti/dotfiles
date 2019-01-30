@@ -336,6 +336,9 @@ set lazyredraw
 " Plugins settings{{{
 call F_Load_PluginsSettings('$HOME/.vim/settings')
 "}}}
+" Commands {{{
+call F_Load_Commands('$HOME/.vim/commands')
+"}}}
 " Key Mappings{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call F_Load_KeyMappings('$HOME/.vim/keymap')
