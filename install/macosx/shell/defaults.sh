@@ -12,6 +12,8 @@ osascript -e 'tell application "System Preferences" to quit'
 ###############################################################################
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
+# Menu bar: Auto hide menu bar
+defaults write NSGlobalDomain _HIHideMenuBar -bool true
 # Disable transparency in the menu bar and elsewhere on Yosemite
 defaults write com.apple.universalaccess reduceTransparency -bool true
 # Disable opening and closing window animations
