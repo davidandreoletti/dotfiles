@@ -28,4 +28,5 @@
 
 # Global Include/Exlude list
 # - !{FOO,BAR} => exclude foo and bar
--g "!{.git,node_modules}/*"
+-g !.git
+-g "!node_modules}/*"
