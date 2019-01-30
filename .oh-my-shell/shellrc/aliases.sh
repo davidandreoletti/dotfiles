@@ -374,6 +374,13 @@ alias httpShowTraffic2="f_http_show_in_out_traffic2 "
 # Diff
 alias diff="diff --side-by-side"
 
+#
+# ZIP
+#
+
+# Usage: zipPasswordProtectedArchiveCreate "some.zip" "some.txt"
+alias zipPasswordProtectedArchiveCreate='zip --encrypt '
+
 # Load shell specific aliases
 SHELLRC_ALIAS_SHELL_FILE="${SHELLRC_CURRENT_SHELL_DIR}/aliases.sh"
 [ -r ${SHELLRC_ALIAS_SHELL_FILE} ] && . "${SHELLRC_ALIAS_SHELL_FILE}"
