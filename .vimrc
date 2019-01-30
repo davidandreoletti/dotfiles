@@ -185,7 +185,7 @@ set autoread
 set ruler
 
 " Height of the command bar
-set cmdheight=2
+set cmdheight=1
 
 " Change terminal's title
 set title
