@@ -128,6 +128,8 @@ Bundle 'kshenoy/vim-signature'
 " Enhanced Javascript syntax with support for ES6
 " (based on 'jelera/vim-javascript-syntax')
 Bundle 'othree/yajs.vim'
+" Continously update vim session files
+Bundle 'tpope/vim-obsession'
 
 " Install bundles (on very first vim use) 
 if vundleInstallRequired
