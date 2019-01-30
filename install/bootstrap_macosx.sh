@@ -123,8 +123,9 @@ is_profile_admin_or_similar && homebrew_brew_install "ngrep"  # grep for network
 is_profile_admin_or_similar && homebrew_brew_tap_install "burntsushi/ripgrep" "https://github.com/BurntSushi/ripgrep.git" # rigrep binary compiled, as nightly build, and including SIMD and all optimizations enabled. 
 is_profile_admin_or_similar && homebrew_brew_install "ripgrep-bin"  # faster grep
 is_profile_admin_or_similar && homebrew_brew_install "jq"  # JSON manipulator
-is_profile_admin_or_similar && homebrew_brew_install "aq"
-is_profile_admin_or_similar && homebrew_brew_install "ack"
+is_profile_admin_or_similar && homebrew_brew_install "aq"  # Fast file content search
+is_profile_admin_or_similar && homebrew_brew_install "ack" # Fast file content search too
+is_profile_admin_or_similar && homebrew_brew_install "trash" # Move files into macOS user's trash bin (as if done from the Finder)
 
 #homebrew_brew_cask_workaround0
 is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"
