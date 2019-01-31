@@ -72,8 +72,9 @@ nnoremap <leader>hh :help quickref<CR>
 
 " Window{{{
 " Resize window
-map <C-l> 5<C-w>>
-map <C-h> 5<C-w><
+" - Keet it synced with tmux pane keybindings
+map <C-l> 5<C-w><
+map <C-h> 5<C-w>>
 map <C-j> 3<C-w>+
 map <C-k> 3<C-w>-
 "}}}
