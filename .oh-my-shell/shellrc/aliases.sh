@@ -381,19 +381,6 @@ alias diff="diff --side-by-side"
 # Usage: zipPasswordProtectedArchiveCreate "some.zip" "some.txt"
 alias zipPasswordProtectedArchiveCreate='zip --encrypt '
 
-#
-# TMUX
-#
-
-f_tmux_create_or_attach_to_session_named_after_current_directory() {
-    local path="$(pwd)"
-    local name="$(basename $path)"
-    # Remove any dot char
-    name="$(echo \"$name\" | tr -d .)"
-    tmux new-session -s "$name" -A
-}
-alias tmux=f_tmux_create_or_attach_to_session_named_after_current_directory
-
 # Load shell specific aliases
 SHELLRC_ALIAS_SHELL_FILE="${SHELLRC_CURRENT_SHELL_DIR}/aliases.sh"
 [ -r ${SHELLRC_ALIAS_SHELL_FILE} ] && . "${SHELLRC_ALIAS_SHELL_FILE}"

@@ -4,7 +4,7 @@
 # Import shellrc functions
 . "${SHELLRC_SHELLRC_DIR}/functions.sh"
 # Import tmux functions
-. "${SHELLRC_SHELLRC_DIR}/tmux.sh"
+. "${SHELLRC_FUNCTIONS_DIR}/tmux.sh"
 
 OS_NAME=`get_os_type`
 SHELL_NAME=`get_shell_type`

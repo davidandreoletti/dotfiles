@@ -18,6 +18,8 @@
 
 SHELLRC_ROOT_DIR="${HOME}/.oh-my-shell"
 SHELLRC_SHELLRC_DIR="${SHELLRC_ROOT_DIR}/shellrc"
+SHELLRC_FUNCTIONS_DIR="${SHELLRC_SHELLRC_DIR}/functions"
+SHELLRC_ALIASES_DIR="${SHELLRC_SHELLRC_DIR}/aliases"
 
 # Load common shell configs 
 . ${SHELLRC_SHELLRC_DIR}/bootstrap.sh
@@ -37,6 +39,7 @@ SHELLRC_SHELLRC_DIR="${SHELLRC_ROOT_DIR}/shellrc"
 . ${SHELLRC_SHELLRC_DIR}/python.sh
 . ${SHELLRC_SHELLRC_DIR}/miscellaneous.sh
 . ${SHELLRC_SHELLRC_DIR}/aliases.sh
+. ${SHELLRC_ALIASES_DIR}/tmux.sh
 
 # Load shell specific config
 . ${SHELLRC_CURRENT_SHELL_DIR}/custom.sh
