@@ -23,6 +23,9 @@
   # spaceman-diff is expected to be on the $PATH
     command = spaceman-diff
 
+[init]
+  templatedir = ~/.git_template
+
 [include]
     # Notes: Includes directives require git 1.7.10+
     
