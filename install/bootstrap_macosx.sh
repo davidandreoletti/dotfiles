@@ -127,6 +127,9 @@ is_profile_admin_or_similar && homebrew_brew_install "aq"  # Fast file content s
 is_profile_admin_or_similar && homebrew_brew_install "ack" # Fast file content search too
 is_profile_admin_or_similar && homebrew_brew_install "trash" # Move files into macOS user's trash bin (as if done from the Finder)
 is_profile_admin_or_similar && homebrew_brew_install "entr" # Run command on files that have changed
+is_profile_admin_or_similar && homebrew_brew_install "spaceman-diff" # Git can now diff images as colourfull ASCII approximation
+is_profile_admin_or_similar && homebrew_brew_install "imagemagick" # Required by spaceman-diff
+is_profile_admin_or_similar && homebrew_brew_install "jp2a" # Convert images to ASCII. Required by spaceman-diff
 
 #homebrew_brew_cask_workaround0
 is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"

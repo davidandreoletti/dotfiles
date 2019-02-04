@@ -18,6 +18,11 @@
 [credential]
     helper = osxkeychain
 
+[diff "spaceman-diff"]
+  # Diff images as ASCII like images
+  # spaceman-diff is expected to be on the $PATH
+    command = spaceman-diff
+
 [include]
     # Notes: Includes directives require git 1.7.10+
     
