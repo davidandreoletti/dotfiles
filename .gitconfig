@@ -2,9 +2,17 @@
     fileMode = true
     editor = vim
     exculdesfile = ~/.gitignore_global
-    # Set pager to display raw control characters
-    # http://michael.otacoo.com/linux-2/avoid-escape-characters-in-git/
-    pager = "less -r"
+    # Default pager 
+    pager = "~/bin/git-pager.sh simple"
+
+[pager]
+    # Color
+	diff = "~/bin/git-pager.sh diff"
+    log =  "~/bin/git-pager.sh simple"
+    show = "~/bin/git-pager.sh simple"
+
+[interactive]
+    diffFilter = "~/bin/git-pager.sh diff"
 
 [push]
     # Push CURRENT branch to upstream branch
@@ -13,7 +21,21 @@
     default = "upstream"
 
 [color]
-    ui = true    
+    # By default, all non machine oriented outputs are colored
+    # - terminal output will be colored
+    ui = auto
+    # Diff outputs are always colored
+    # Required by:
+    # - diff-highlight
+    diff = auto
+
+[color "diff-highlight"]
+    # Hightligh modified words in diff's output
+    # https://www.viget.com/articles/dress-up-your-git-diffs-with-word-level-highlights/
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
      
 [credential]
     helper = osxkeychain
