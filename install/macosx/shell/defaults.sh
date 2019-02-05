@@ -221,6 +221,8 @@ defaults write com.apple.iTunes disablePing -bool true
 ###############################################################################
 # Finder #
 ###############################################################################
+# Hide desktop icons
+defaults write com.apple.finder CreateDesktop -bool false
 # Set Desktop as the default location for new Finder windows
 # For other paths, use `PfLo` and `file:///full/path/here/`
 defaults write com.apple.finder NewWindowTarget -string "PfDe"
