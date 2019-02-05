@@ -42,6 +42,9 @@
     rebase = preserve
 
 [merge]
+    # Merge conflict tool, in order of preference
+    # Defaults: git mergetool --tool-help
+    tool = opendiff,vimdiff
     # Show common ancestor in conflicts markers
     # - text in between ||||||| marker and ======= marker represent the command ancestor code
     conflictstyle = diff3
