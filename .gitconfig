@@ -2,6 +2,9 @@
     fileMode = true
     editor = vim
     exculdesfile = ~/.gitignore_global
+	# Centralized Git hooks
+	# Requires git 2.9+
+	hooksPath = ~/.git_hooks
     # Default pager 
     pager = "~/bin/git-pager.sh simple"
 
