@@ -37,3 +37,52 @@ f_tmux_open_or_create_session () {
 
     tmux $change -t "$session" 2>/dev/null || (tmux new-session -d -s "$session"; tmux $change -t "$session"); 
 }
+
+# ftpane - switch pane (@george-b)
+# src: https://github.com/junegunn/fzf/wiki/examples#tmux
+f_tmux_pane_switcher() {
+    local panes current_window current_pane target target_window target_pane
+    panes=$(command tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
+    current_pane=$(command tmux display-message -p '#I:#P')
+    current_window=$(command tmux display-message -p '#I')
+
+    target=$(echo "$panes" | grep -v "$current_pane" | fzf +m --reverse) || return
+
+    target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
+    target_pane=$(echo $target | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
+
+    if [[ $current_window -eq $target_window ]]; then
+        command tmux select-pane -t ${target_window}.${target_pane}
+    else
+        command tmux select-pane -t ${target_window}.${target_pane} &&
+            command tmux select-window -t $target_window
+                fi
+            }
+
+# ftsess - switch session (based on @george-b)
+# modified src: https://github.com/pokey/dotfiles/blob/master/bin/ftsess
+f_tmux_session_switcher() {
+    sessions=$(command tmux list-sessions -F '#S')
+
+    target=$(echo "$sessions" | fzf-tmux +m --reverse)
+    res=$?
+    [ "$res" -eq "130" ] && exit 0
+    [ "$res" -eq "0" ] || exit $res
+
+    command tmux switch-client -t "$target"
+}
+
+# ftwind - switch window (based on @george-b)
+# modified: src https://github.com/pokey/dotfiles/blob/master/bin/ftwind
+f_tmux_window_switcher() {
+    windows=$(command tmux list-windows -F '#I - #(basename #{pane_current_path}) (#{window_name})')
+
+    target=$(echo "$windows" | fzf-tmux +m --reverse)
+    res=$?
+    [ "$res" -eq "130" ] && exit 0
+    [ "$res" -eq "0" ] || exit $res
+
+    target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
+
+    command tmux select-window -t $target_window
+}
