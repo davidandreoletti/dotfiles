@@ -32,6 +32,14 @@
     # - remote branches 
     # - local branches 
     autoSetupMerge = always
+
+[pull]
+    # Rebase branches on top of the fetched branch, instead of merging the default branch from the default remote when "git pull" is run.
+    # - preserve: flatten locally commited merge commits when calling "git pull"
+    # -- "git rebase --preserve-merges":
+    # --- call it so that locally committed merge commits are not be flattened by running git pull.
+    # --- BUT DANGEROUS, read https://git-scm.com/docs/git-rebase#_bugs first.
+    rebase = preserve
 [init]
     templatedir = ~/.git_template
 
