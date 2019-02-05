@@ -40,6 +40,12 @@
     # --- call it so that locally committed merge commits are not be flattened by running git pull.
     # --- BUT DANGEROUS, read https://git-scm.com/docs/git-rebase#_bugs first.
     rebase = preserve
+
+[merge]
+    # Show common ancestor in conflicts markers
+    # - text in between ||||||| marker and ======= marker represent the command ancestor code
+    conflictstyle = diff3
+
 [diff]
     # Produce diff using patience algorithm with additional support for "low-occurrence common elements"
     # - Net result is diff are, generally, more intuitive; it reconciles better the misaligned brackets in functions and tags.
