@@ -40,6 +40,11 @@
     # --- call it so that locally committed merge commits are not be flattened by running git pull.
     # --- BUT DANGEROUS, read https://git-scm.com/docs/git-rebase#_bugs first.
     rebase = preserve
+[diff]
+    # Produce diff using patience algorithm with additional support for "low-occurrence common elements"
+    # - Net result is diff are, generally, more intuitive; it reconciles better the misaligned brackets in functions and tags.
+    algorithm = histogram
+
 [mergetool]
     # Delete merge backup files (as .orig files)
     # After performing a merge, the original file with conflict markers can be saved as a file with a .orig extension. 
