@@ -113,7 +113,7 @@ is_profile_admin_or_similar && homebrew_brew_install "unp"
 is_profile_admin_or_similar && homebrew_brew_install "bat"   # cat with highlighting, paging, line numbers support
 is_profile_admin_or_similar && homebrew_brew_install "fzf"   # Ctrl+R replacement for searching the history / files
 is_profile_admin_or_similar && homebrew_brew_install "fd"    # A simpler find
-is_profile_admin_or_similar && homebrew_brew_install "tldr"  #manpage are nice but some too long to read to get. let's tldr them, when available. Eg: tldr tar
+is_profile_admin_or_similar && homebrew_brew_install "tldr"  # Short manpage version, with example for most comman use cases
 is_profile_admin_or_similar && homebrew_brew_install "ncdu"  #Replacement for Grandperspective and du
 is_profile_admin_or_similar && homebrew_brew_install "openssh" # Newer SSH Server requires a more recent SSH client than currently shipped in OSX
 is_profile_admin_or_similar && homebrew_brew_install "irssi" "--with-perl=yes" "--with-proxy"
