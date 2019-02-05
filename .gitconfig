@@ -40,6 +40,13 @@
     # --- call it so that locally committed merge commits are not be flattened by running git pull.
     # --- BUT DANGEROUS, read https://git-scm.com/docs/git-rebase#_bugs first.
     rebase = preserve
+[mergetool]
+    # Delete merge backup files (as .orig files)
+    # After performing a merge, the original file with conflict markers can be saved as a file with a .orig extension. 
+    keepBackup = false
+    # Do not prompt before each invocation of the merge resolution program
+    prompt = false
+
 [init]
     templatedir = ~/.git_template
 
