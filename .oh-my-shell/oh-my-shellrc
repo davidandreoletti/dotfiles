@@ -18,37 +18,70 @@
 
 SHELLRC_ROOT_DIR="${HOME}/.oh-my-shell"
 SHELLRC_SHELLRC_DIR="${SHELLRC_ROOT_DIR}/shellrc"
-SHELLRC_FUNCTIONS_DIR="${SHELLRC_SHELLRC_DIR}/functions"
-SHELLRC_ALIASES_DIR="${SHELLRC_SHELLRC_DIR}/aliases"
+SHELLRC_BOOTSTRAP_DIR="${SHELLRC_SHELLRC_DIR}/bootstrap"
+SHELLRC_PLUGINS_DIR="${SHELLRC_SHELLRC_DIR}/plugins"
 
-# Import boostraping functions
-. "${SHELLRC_FUNCTIONS_DIR}/bootstrap.sh"
+# Load boostrap 
+. "${SHELLRC_BOOTSTRAP_DIR}/helper.sh"
+dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/helper2.sh"
+dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/init.sh"
 
-# Load common shell configs 
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/bootstrap.sh"
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/theme.sh"
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/environment.sh"
-dot_if_exists "${SHELLRC_CURRENT_SHELL_DIR}/history.sh"
-dot_if_exists "${SHELLRC_CURRENT_SHELL_DIR}/completion.sh"
-dot_if_exists "${SHELLRC_CURRENT_SHELL_DIR}/correction.sh"
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/gnucoreutils.sh"
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/ripgrep.sh"
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/fzf.sh"
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/homebrew.sh"
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/ssh.sh"
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/java.sh"
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/nvm.sh"
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/npm.sh"
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/python.sh"
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/miscellaneous.sh"
-dot_if_exists "${SHELLRC_SHELLRC_DIR}/aliases.sh"
-dot_if_exists "${SHELLRC_ALIASES_DIR}/tmux.sh"
+# Load shell plugins (part 1)
+dot_current_shell_plugin_if_exists "environment"
+dot_current_shell_plugin_if_exists "history"
+dot_current_shell_plugin_if_exists "completion"
+dot_current_shell_plugin_if_exists "correction"
 
-# Load shell specific config
-dot_if_exists "${SHELLRC_CURRENT_SHELL_DIR}/custom.sh"
+# Load app plugins 
+# - Keep this list sorted alphabetically
+dot_plugin_if_exists "android"
+dot_plugin_if_exists "archive"
+dot_plugin_if_exists "backup"
+dot_plugin_if_exists "cat"
+dot_plugin_if_exists "cd"
+dot_plugin_if_exists "date"
+dot_plugin_if_exists "debugging_shell_scripts"
+dot_plugin_if_exists "docker"
+dot_plugin_if_exists "download"
+dot_plugin_if_exists "environment"
+dot_plugin_if_exists "file_directory"
+dot_plugin_if_exists "fzf"
+dot_plugin_if_exists "git"
+dot_plugin_if_exists "gnucoreutils"
+dot_plugin_if_exists "history"
+dot_plugin_if_exists "homebrew"
+dot_plugin_if_exists "image"
+dot_plugin_if_exists "java"
+dot_plugin_if_exists "legacy"
+dot_plugin_if_exists "ls"
+dot_plugin_if_exists "man"
+dot_plugin_if_exists "misc"
+dot_plugin_if_exists "mv"
+dot_plugin_if_exists "network"
+dot_plugin_if_exists "npm"
+dot_plugin_if_exists "nvm"
+dot_plugin_if_exists "open"
+dot_plugin_if_exists "process"
+dot_plugin_if_exists "python"
+dot_plugin_if_exists "ripgrep"
+dot_plugin_if_exists "rm"
+dot_plugin_if_exists "search"
+dot_plugin_if_exists "ssh"
+dot_plugin_if_exists "telnet"
+dot_plugin_if_exists "termbin"
+dot_plugin_if_exists "theme"
+dot_plugin_if_exists "tmux"
+dot_plugin_if_exists "tree"
+dot_plugin_if_exists "vim_neovim"
+dot_plugin_if_exists "weather"
+dot_plugin_if_exists "xcode"
+dot_plugin_if_exists "zip"
+
+# Load shell plugins (part 2)
+dot_current_shell_plugin_if_exists "custom"
 
 # Load <computer,user> shell specific config
-dot_if_exists "${HOME}/.shellrc_custom.sh"
+dot_if_exists "${HOME}/.shellrc.sh"
 
 # Load tmux by default
 if [ -z "$TMUX" ]; then

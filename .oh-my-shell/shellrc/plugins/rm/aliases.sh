@@ -1,0 +1,2 @@
+alias rm='rm -i'
+

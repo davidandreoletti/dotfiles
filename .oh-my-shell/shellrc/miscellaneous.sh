@@ -1,4 +1,0 @@
-#
-# Custom cross shell config
-#
-
