@@ -8,7 +8,9 @@ f_tmux_get_session_named_after_current_directory() {
 
 # Open/switch existing session or create tmux session
 # Usage: f_tmux_open_or_create_session BEHAVIOUR OPTIONAL_SESSION_NAME 
-# - BEHAVIOUR : choose OR dirname (default)
+# - BEHAVIOUR : 
+#       - interactive: Session named after interactively selection one
+#       - cwd (default): Session named after current directory name, unless OPTIONAL_SESSION_NAME is specified
 # - OPTIONAL_SESSION_NAME : someName
 # modified src: https://github.com/junegunn/fzf/wiki/examples#tmux
 f_tmux_open_or_create_session () {
@@ -17,25 +19,27 @@ f_tmux_open_or_create_session () {
     # - automatically when 1 session partially match the session name
     # Create new session:
     # - automatically when 0 session partially match the session name
-    local behaviour=${1:-"dirname"}
+    local behaviour=${1:-"cwd"}
 
-    if [ "$behaviour" == "dirname" ];
-    then
-        local defaultSessionName=$(f_tmux_get_session_named_after_current_directory)
-        local prefered=${2:-$defaultSessionName}
-    fi
-
-    if [ "$behaviour" == "select" ];
-    then
-        local prefered=${2:-"default"}
-    fi
+    case $behaviour in
+        cwd)
+            local defaultSessionName=$(f_tmux_get_session_named_after_current_directory)
+            local prefered=${2:-$defaultSessionName}
+            ;;
+        interactive)
+            local prefered=${2:-"default"}
+            ;;
+        *)
+            local prefered=${2:-"default"}
+            ;;
+    esac
 
     local session=$(command tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --select-1 --query=$prefered || echo $prefered) 
 
     # Inside tmux, try switch current client's session to session. Otherwise fallback to (create) + attach to the session
     [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
 
-    tmux $change -t "$session" 2>/dev/null || (tmux new-session -d -s "$session"; tmux $change -t "$session"); 
+    command tmux $change -t "$session" 2>/dev/null || (command tmux new-session -d -s "$session"; command tmux $change -t "$session"); 
 }
 
 # ftpane - switch pane (@george-b)
@@ -56,8 +60,8 @@ f_tmux_pane_switcher() {
     else
         command tmux select-pane -t ${target_window}.${target_pane} &&
             command tmux select-window -t $target_window
-                fi
-            }
+    fi
+}
 
 # ftsess - switch session (based on @george-b)
 # modified src: https://github.com/pokey/dotfiles/blob/master/bin/ftsess

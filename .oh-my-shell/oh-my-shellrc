@@ -47,3 +47,8 @@ SHELLRC_ALIASES_DIR="${SHELLRC_SHELLRC_DIR}/aliases"
 # Load <computer,user> shell specific config
 SHELLRC_STAGE_CUSTOM_SHELL_FILE="${HOME}/.shellrc_custom.sh"
 [ -r ${SHELLRC_STAGE_CUSTOM_SHELL_FILE} ] && . "${SHELLRC_STAGE_CUSTOM_SHELL_FILE}"
+
+# Load tmux by default
+if [ -z "$TMUX" ]; then
+    tmux "cwd" 
+fi
