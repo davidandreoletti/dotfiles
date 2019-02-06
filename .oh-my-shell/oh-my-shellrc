@@ -21,32 +21,34 @@ SHELLRC_SHELLRC_DIR="${SHELLRC_ROOT_DIR}/shellrc"
 SHELLRC_FUNCTIONS_DIR="${SHELLRC_SHELLRC_DIR}/functions"
 SHELLRC_ALIASES_DIR="${SHELLRC_SHELLRC_DIR}/aliases"
 
+# Import boostraping functions
+. "${SHELLRC_FUNCTIONS_DIR}/bootstrap.sh"
+
 # Load common shell configs 
-. ${SHELLRC_SHELLRC_DIR}/bootstrap.sh
-. ${SHELLRC_SHELLRC_DIR}/theme.sh
-. ${SHELLRC_SHELLRC_DIR}/environment.sh
-. ${SHELLRC_CURRENT_SHELL_DIR}/history.sh
-. ${SHELLRC_CURRENT_SHELL_DIR}/completion.sh
-. ${SHELLRC_CURRENT_SHELL_DIR}/correction.sh
-. ${SHELLRC_SHELLRC_DIR}/gnucoreutils.sh
-. ${SHELLRC_SHELLRC_DIR}/ripgrep.sh
-. ${SHELLRC_SHELLRC_DIR}/fzf.sh
-. ${SHELLRC_SHELLRC_DIR}/homebrew.sh
-. ${SHELLRC_SHELLRC_DIR}/ssh.sh
-. ${SHELLRC_SHELLRC_DIR}/java.sh
-. ${SHELLRC_SHELLRC_DIR}/nvm.sh
-. ${SHELLRC_SHELLRC_DIR}/npm.sh
-. ${SHELLRC_SHELLRC_DIR}/python.sh
-. ${SHELLRC_SHELLRC_DIR}/miscellaneous.sh
-. ${SHELLRC_SHELLRC_DIR}/aliases.sh
-. ${SHELLRC_ALIASES_DIR}/tmux.sh
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/bootstrap.sh"
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/theme.sh"
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/environment.sh"
+dot_if_exists "${SHELLRC_CURRENT_SHELL_DIR}/history.sh"
+dot_if_exists "${SHELLRC_CURRENT_SHELL_DIR}/completion.sh"
+dot_if_exists "${SHELLRC_CURRENT_SHELL_DIR}/correction.sh"
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/gnucoreutils.sh"
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/ripgrep.sh"
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/fzf.sh"
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/homebrew.sh"
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/ssh.sh"
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/java.sh"
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/nvm.sh"
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/npm.sh"
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/python.sh"
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/miscellaneous.sh"
+dot_if_exists "${SHELLRC_SHELLRC_DIR}/aliases.sh"
+dot_if_exists "${SHELLRC_ALIASES_DIR}/tmux.sh"
 
 # Load shell specific config
-. ${SHELLRC_CURRENT_SHELL_DIR}/custom.sh
+dot_if_exists "${SHELLRC_CURRENT_SHELL_DIR}/custom.sh"
 
 # Load <computer,user> shell specific config
-SHELLRC_STAGE_CUSTOM_SHELL_FILE="${HOME}/.shellrc_custom.sh"
-[ -r ${SHELLRC_STAGE_CUSTOM_SHELL_FILE} ] && . "${SHELLRC_STAGE_CUSTOM_SHELL_FILE}"
+dot_if_exists "${HOME}/.shellrc_custom.sh"
 
 # Load tmux by default
 if [ -z "$TMUX" ]; then

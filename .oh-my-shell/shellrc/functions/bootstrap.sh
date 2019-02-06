@@ -37,3 +37,45 @@ homebrew_package_path_prefix() {
     echo "$homebrew_package_path"
 }
 
+# Execute commands in listed files, in the current environment
+# Usage: dot "file1.sh" "file2.sh"
+dot() {
+  for f in $*
+  do
+      #echo source $(basename $f)
+      . $f
+  done
+}
+
+# Execute commands in listed files, in the current environment, for files that exist
+# Usage: dot_if_exists "file1.sh" "file2.sh"
+dot_if_exists() {
+    for f in $*
+    do
+        if [ -f $f ] && [ -r $f ]
+        then
+            #echo source $(basename $f)
+            . $f
+        fi
+    done
+}
+
+# Execute commands in listed files, in the current environment, for the very first file that exist
+# Usage: dot_if_exists "file1.sh" "file2.sh"
+dot_first_if_exists() {
+    for f in $*
+    do
+        if [ -f $f ] && [ -r $f ]
+        then
+            #echo source $f
+            . $f
+            return
+        fi
+    done
+}
+
+append_path() {
+    #echo "PATH+ '$2'"
+    PATH="${PATH}:$1"
+    export PATH
+}

@@ -1,16 +1,13 @@
 #
 # Bootstrap cross shells config
 #
-# Import shellrc functions
-. "${SHELLRC_SHELLRC_DIR}/functions.sh"
-# Import tmux functions
-. "${SHELLRC_FUNCTIONS_DIR}/tmux.sh"
+
+# Import app specific functions
+dot_if_exists "${SHELLRC_FUNCTIONS_DIR}/tmux.sh"
 
 OS_NAME=`get_os_type`
 SHELL_NAME=`get_shell_type`
 SHELLRC_CURRENT_SHELL_DIR="${SHELLRC_ROOT_DIR}/${SHELL_NAME}"
 
 # Load shell specific config
-SHELLRC_BOOTSTRAP_SHELL_FILE="${SHELLRC_CURRENT_SHELL_DIR}/boostrap.sh"
-[ -r ${SHELLRC_BOOTSTRAP_SHELL_FILE} ] && . "${SHELLRC_BOOTSTRAP_SHELL_FILE}"
-
+dot_if_exists "${SHELLRC_CURRENT_SHELL_DIR}/boostrap.sh" 
