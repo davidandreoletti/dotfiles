@@ -1,7 +1,7 @@
 [core]
     fileMode = true
     editor = vim
-    exculdesfile = ~/.gitignore_global
+    excludesFile = ~/.config/git/ignore
 	# Centralized Git hooks
 	# Requires git 2.9+
 	hooksPath = ~/.git_hooks
