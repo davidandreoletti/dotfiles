@@ -130,6 +130,7 @@ is_profile_admin_or_similar && homebrew_brew_install "entr" # Run command on fil
 is_profile_admin_or_similar && homebrew_brew_install "spaceman-diff" # Git can now diff images as colourfull ASCII approximation
 is_profile_admin_or_similar && homebrew_brew_install "imagemagick" # Required by spaceman-diff
 is_profile_admin_or_similar && homebrew_brew_install "jp2a" # Convert images to ASCII. Required by spaceman-diff
+is_profile_admin_or_similar && homebrew_brew_install "hub" # Unofficial Github CLI (for Pull Requests, etc) 
 
 #homebrew_brew_cask_workaround0
 is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"

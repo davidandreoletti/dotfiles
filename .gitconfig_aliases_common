@@ -237,4 +237,21 @@
                                             local origin=`git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD) | cut -d "/" -f 1` ; \
                                             git push ${origin} ${commitHash}:${branch}; \
                                            }; f"
- 
+    # Create new Pull Request on Github, with current checkout branch as the branch to merge on the default upstream branch 
+    # - Requires hub
+    githubPRCreate = "!f() { local prFile=$(mktemp /tmp/github-pr.XXXXXX); echo "PR_TITLE\n<PR_Description" > $prFile; hub pull-request -f $prFile}; f"
+
+    # Delete LOCAL merged branches, except the one named production,master,staging,dev,wip
+    #deleteAllLocallyMergedBranches = "!f() { git branch --merged | egrep -v '(^\*|production|master|staging|dev|wip)' | xargs git branch -d }; f"
+
+    # Delet REMOTE merged branche, manually selected to be deleted
+    deleteRemotelyBranchesManuallySelected = "!f() { git remote prune $(git remote | fzf --height 40% --reverse) }; f"
+
+    # Permanently remove FOO/BAR folder from a git repository (and tree history)
+    # src: http://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-git-repo
+    # FIXME: turn into alias + test this
+    #git filter-branch --tree-filter 'rm -rf FOO/BAR' HEAD
+    
+    # Remove all .DS_Stores from the git working directory
+    # FIXME: turn into alias test this
+    #find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch

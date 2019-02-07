@@ -1,12 +1,48 @@
+# Official readline documentation:
+# - https://tiswww.cwru.edu/php/chet/readline/readline.html
+
 # .inputrc read by readline capable programs:
 # - bash yes (but no zsh)
 
 # Include default distribution customization
 $include /etc/inputrc
 
-# Enable vi mode
+#
+# VIM mode
+#
+
+# Use vi keybindings
 set editing-mode vi
+# Current keymap for keybindings
+# - multiple keymaps possible:
+# -- vi, vi-command and vi-move are one an the same keymap
+# -- vi-insert
+# - to know keybindings differens: diff <(bind -pm vi) <(bind -pm vi-insert)
+# Start shell/program in editing mode
+# src: https://superuser.com/a/1114109/47829
+set keymap vi-insert
+
+# VIM leader remapping 
+$if mode=vi
+    # key to leave vi-insert mode
+    set keymap vi-insert
+    "jj": vi-movement-mode # remap escape
+$endif
+
+# Cursor representations similar as vim's cursor, 
+# on a per os basis, in insert / command modes
+set show-mode-in-prompt on
+$if term=linux
+    set vi-ins-mode-string \1\e[?0c\2
+    set vi-cmd-mode-string \1\e[?8c\2
+$else
+    set vi-ins-mode-string \1\e[6 q\2
+    set vi-cmd-mode-string \1\e[2 q\2
+$endif
 
 # Do not ring a bell when Readline wants it
 # (eg: no further completion in bash)
 set bell-style none
+
+# Expand tilde to user home path
+set expand-tilde on

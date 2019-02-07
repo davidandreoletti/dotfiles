@@ -45,6 +45,8 @@ Plugin 'honza/vim-snippets'
 Bundle 'takac/vim-hardtime'
 " Ease motions
 Bundle 'Lokaltog/vim-easymotion'
+" Ease aligning things (table, field, etc ...)
+Bundle 'junegunn/vim-easy-align'
 " Operations on surroundings
 " parentheses, brackets, quotes, XML tags, and more
 Bundle 'tpope/vim-surround'
@@ -300,6 +302,7 @@ filetype plugin indent on
 " Set doxygen tags according to filetype
 autocmd FileType cpp,c,h,hpp,m,mm call F_DoxygenToolKit_SetCPPOrCTags()
 autocmd FileType java call F_DoxygenToolKit_SetJAVATags()
+autocmd BufRead,BufNewFile *.md setlocal spell
 
 " Edit crontab file in place
 autocmd filetype crontab setlocal nobackup nowritebackup

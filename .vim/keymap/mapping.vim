@@ -72,10 +72,18 @@ nnoremap <leader>hh :help quickref<CR>
 
 " Window{{{
 " Resize window
-" - Keet it synced with tmux pane keybindings
+" - Keep it synced with tmux pane keybindings
 map <C-l> 5<C-w><
 map <C-h> 5<C-w>>
 map <C-j> 3<C-w>+
 map <C-k> 3<C-w>-
+" Pane splittng 
+" - Use default vim splitting keybindings:
+"   - <leader> C-w v (vertical split)
+"   - <leader> C-w s (horizontal split)
+" - Keep it synced with tmux pane keybindings
+" Deprecated pane split mapping. vim's default are perfect.
+"  nnoremap <leader>- :split<enter>
+"  nnoremap <leader>\| :vsplit<enter>
 "}}}
 

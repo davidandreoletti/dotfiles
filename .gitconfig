@@ -87,7 +87,7 @@
     prompt = false
 
 [init]
-    templatedir = ~/.git_template
+    templatedir = ~/.git_templates
 
 [include]
     # Notes: Includes directives require git 1.7.10+
