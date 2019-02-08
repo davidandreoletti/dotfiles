@@ -3,7 +3,7 @@
 dot() {
   for f in $*
   do
-      echo source $(basename $f)
+      #echo source $(basename $f)
       . $f
   done
 }
@@ -15,10 +15,11 @@ dot_if_exists() {
     do
         if [ -f $f ] && [ -r $f ]
         then
-            echo source $f
+            #echo source $f
             . $f
         else
-            echo No source $f
+            #echo No source $f
+            :
         fi
     done
 }
