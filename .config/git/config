@@ -4,7 +4,7 @@
     excludesFile = ~/.config/git/ignore
 	# Centralized Git hooks
 	# Requires git 2.9+
-	hooksPath = ~/.git_hooks
+	hooksPath = ~/.config/git/hooks
     # Default pager 
     pager = "~/bin/git-pager.sh simple"
 
@@ -87,7 +87,7 @@
     prompt = false
 
 [init]
-    templatedir = ~/.git_templates
+    templatedir = ~/.config/git/templates
 
 [include]
     # Notes: Includes directives require git 1.7.10+
@@ -102,9 +102,9 @@
     #
 
     # Popular git aliases
-    path = ~/.gitconfig_aliases_gitaliases
+    path = ~/.config/git/aliases/gitaliases
     # Personal but common git aliases
-    path = ~/.gitconfig_aliases_common
+    path = ~/.config/git/aliases/common
     # Custom git aliases (per profile)
     path = ~/.gitconfig_aliases_custom 
 
