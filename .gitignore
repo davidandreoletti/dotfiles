@@ -5,6 +5,5 @@
 .gradle/wrapper
 .gradle/native
 .tmux/resurrect
-*.DS_Store
 .config/inkscape
 .vim/cache
