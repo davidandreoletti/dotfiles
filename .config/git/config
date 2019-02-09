@@ -113,6 +113,8 @@
 [status]
     # Show relative path, relative to current directory (instead of repository root)
     relativePaths = true
+    # Show submodule status
+    submodulesummary = true
 
 [tag]
     sort = version:refname
