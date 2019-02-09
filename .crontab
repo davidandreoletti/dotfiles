@@ -1,0 +1,28 @@
+# src: https://github.com/paulirish/dotfiles/blob/master/crontab
+#
+# env EDITOR=nano crontab -e
+#
+# see .cron/ folder
+#    chmod +x *.sh
+
+#=====================================================================#
+#     0-23   0-59               0-30  0-6   1-12                      #
+#     |_    _|                 _|    _|    _|                         #
+#       |  |                  |     |     |            * any          #
+#    At HH:MM on day-of-month MD on WD in M            - range        #
+#       |  |                  |     |     |            , array        #
+#     __|__|            ______|     |   __|            / step         #
+#    |  |            __|         ___|__|                              #
+#   _|  |__         |         __|   |__                               #
+#  |       |        |        |         |                              #
+#  |       |        |        |         |                              #
+#=====================================================================#
+#  Min  |  Hour  |  Mday  |  Month  |  Wday  |  Command               #
+#=====================================================================#
+#   0       3        *        *         *        $HOME/.cron/daily-nighttime.sh > /dev/null 2>&1
+#   */5     *        *        *         *        $HOME/.cron/every-five-minutes.sh > /dev/null 2>&1
+#   15      *        *        *         *        $HOME/.cron/every-hour.sh
+#   20      17,18    *        *         1-5      $HOME/.cron/twice-during-weekdays.sh  > /dev/null 2>&1
+#   0       0        *        *         0        $HOME/.cron/twice-a-week.sh > /dev/null 2>&1
+#=====================================================================#
+
