@@ -131,6 +131,12 @@ is_profile_admin_or_similar && homebrew_brew_install "spaceman-diff" # Git can n
 is_profile_admin_or_similar && homebrew_brew_install "imagemagick" # Required by spaceman-diff
 is_profile_admin_or_similar && homebrew_brew_install "jp2a" # Convert images to ASCII. Required by spaceman-diff
 is_profile_admin_or_similar && homebrew_brew_install "hub" # Unofficial Github CLI (for Pull Requests, etc) 
+is_profile_admin_or_similar && homebrew_brew_install "z"    # Smarter cd
+is_profile_admin_or_similar && homebrew_brew_install "pv"   # pipe data flow speed progress indicator
+is_profile_admin_or_similar && homebrew_brew_install "rename" # Mass file rename
+is_profile_admin_or_similar && homebrew_brew_install "moreutils" # parallel, elekdo, etc
+is_profile_admin_or_similar && homebrew_brew_install "findutils" # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
+is_profile_admin_or_similar && homebrew_brew_install "gnu-sed" "--with-default-names" # GNU `sed`, overwriting the built-in `sed`
 
 #homebrew_brew_cask_workaround0
 is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"
