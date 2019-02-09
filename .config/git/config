@@ -2,6 +2,10 @@
     fileMode = true
     editor = vim
     excludesFile = ~/.config/git/ignore
+    quotePath = true
+    logAllRefUpdates = true
+    trustctime = true
+
 	# Centralized Git hooks
 	# Requires git 2.9+
 	hooksPath = ~/.config/git/hooks
@@ -22,6 +26,9 @@
     # - works if both branchs have different names or same names
     # http://longair.net/blog/2011/02/27/an-asymmetry-between-git-pull-and-git-push/
     default = "upstream"
+    # Push tags assoctiod to the pushed branch
+    # - equivalent to --follow-tags 
+    followTags = true
 
 [color]
     # By default, all non machine oriented outputs are colored
@@ -78,6 +85,10 @@
     # Produce diff using patience algorithm with additional support for "low-occurrence common elements"
     # - Net result is diff are, generally, more intuitive; it reconciles better the misaligned brackets in functions and tags.
     algorithm = histogram
+    # git diff detects renames and copies
+    renames = copies
+    # Number of lines of context in patches
+    context = 6
 
 [mergetool]
     # Delete merge backup files (as .orig files)
@@ -85,6 +96,30 @@
     keepBackup = false
     # Do not prompt before each invocation of the merge resolution program
     prompt = false
+
+[repack]
+    # Use delta offset when repacking 
+    # Requires: git 1.4.4+
+    usedeltabaseoffset = true
+
+[help]
+    # Show correct command version but do not exectude it when mistyped
+    autocorrect = 0
+
+[rerere]
+    # Enable rerere by default (instead of on first use of git rerere)
+    enabled = true
+
+[status]
+    # Show relative path, relative to current directory (instead of repository root)
+    relativePaths = true
+
+[tag]
+    sort = version:refname
+
+[user]
+    # Explicitly require user.name / user.email to be set
+    useConfigOnly = true
 
 [init]
     templatedir = ~/.config/git/templates
