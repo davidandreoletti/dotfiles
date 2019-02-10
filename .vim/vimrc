@@ -132,6 +132,8 @@ Bundle 'kshenoy/vim-signature'
 Bundle 'othree/yajs.vim'
 " Continously update vim session files
 Bundle 'tpope/vim-obsession'
+" - Extends tpope/vim-obsession to support 1 vim session per directory
+Bundle 'dhruvasagar/vim-prosession'
 
 " Install bundles (on very first vim use) 
 if vundleInstallRequired
