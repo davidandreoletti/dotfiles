@@ -1,6 +1,3 @@
-# Print the files that ripgrep would search, but don't actually search them
- --files 
- 
 # Search also looks into git ignored files in:
 #  --local .gitignore files
 #  --$GIT_DIR/info/exclude
@@ -14,6 +11,8 @@
 # --no-ignore 
 # -uuu
 
+# Print the files that ripgrep would search, but don't actually search them
+# --files 
  
 # Search also looks into "dot" files
 --hidden 
@@ -21,12 +20,8 @@
 # Follow symlinked
 --follow 
 
-# Custom types
-# --type-add
-# web:*.{html,css,js}*
-# 
-
 # Global Include/Exlude list
 # - !{FOO,BAR} => exclude foo and bar
--g !.git
--g "!node_modules}/*"
+# - FOO => include foo
+#-g "!.git"
+#-g "!node_modules}/*"
