@@ -223,29 +223,32 @@ syntax on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Backups
 " Move backup files to a central location
-set backupdir=~/.vim//cache/backup,/tmp/
+let s:backupDirPath=expand($HOME)."/.vim/cache/backup/".g:vimFlavor
+let &backupdir=s:backupDirPath
 
 " Undo
 " Move undo files to a central location
-set undodir=~/.vim//cache/undo,/tmp/
+let s:undirPath=expand($HOME)."/.vim/cache/undo/".g:vimFlavor."//"
+let &undodir=s:undirPath
 set undofile
 
 " Swap
 " Move swap to a central location
-set directory=~/.vim//cache/swap,/tmp/
+let s:directoryPath=expand($HOME)."/.vim/cache/swap/".g:vimFlavor."//"
+let &directory=s:directoryPath
 
 " VimInfo
 " Move viminfo to a central location
 " src: https://stackoverflow.com/a/23036077
-set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
-"           | |    |   |   |    | |  + viminfo file path
-"           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
-"           | |    |   |   |    + disable 'hlsearch' loading viminfo
-"           | |    |   |   + command-line history saved
-"           | |    |   + search history saved
-"           | |    + files marks saved
-"           | + lines saved each register (old name for <, vi6.2)
-"           + save/restore buffer list
+let &viminfo="%,<800,\'10,/50,:100,h,f0,n$HOME/.vim/cache/viminfo/".g:vimFlavor.'/viminfo'
+"            | |    |   |   |    | |    + viminfo file path
+"            | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
+"            | |    |   |   |    + disable 'hlsearch' loading viminfo
+"            | |    |   |   + command-line history saved
+"            | |    |   + search history saved
+"            | |    + files marks saved
+"            | + lines saved each register (old name for <, vi6.2)
+"            + save/restore buffer list
 "}}}
 " Completion{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
