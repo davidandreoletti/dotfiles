@@ -1,3 +1,4 @@
+" Fzf augmented commands Fzf augmented commands Fzf augmented commands Fzf augmented commands Fzf augmented commands Fzf augmented commands Fzf augmented commands
 " Fzf augmented commands
 " {{{FZF
 " Augmenting Ag command using fzf#vim#with_preview function
@@ -19,10 +20,14 @@ command! -bang -nargs=* Ag
 " Augmenting Rg with fzf#vim#grep, with preview window:
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --no-heading --color=always --smart-case --hidden '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
+
+" Search with Rg by default 
+command! -bang -nargs=* Fd
+  \ Rg<bang>
 
 " Augmenting Files command, with preview window
 command! -bang -nargs=? -complete=dir Files
