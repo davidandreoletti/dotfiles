@@ -5,5 +5,9 @@
 .gradle/wrapper
 .gradle/native
 .tmux/resurrect
+.tmux/plugins
 .config/inkscape
 .vim/cache
+.vim/bundle
+.vim/sessions
+.vim/session
