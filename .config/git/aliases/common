@@ -92,6 +92,9 @@
     # Usage: git resetToLastCommittedState myfile.txt
     resetToLastCommittedState = !git checkout HEAD --
 
+    # Add hunks to index, using fzf to select files
+    iadd = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add -p "
+
     #
     # COMMIT MANAGEMENT
     #
