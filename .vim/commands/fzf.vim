@@ -1,8 +1,5 @@
-" Files related commands
+" Fzf augmented commands
 " {{{FZF
-" Find files with PATTERN as content
-command! -bang -nargs=* FindFilesContainingPattern call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-
 " Augmenting Ag command using fzf#vim#with_preview function
 "   * fzf#vim#with_preview([[options], [preview window], [toggle keys...]])
 "     * For syntax-highlighting, Ruby and any of the following tools are required:
@@ -19,7 +16,7 @@ command! -bang -nargs=* Ag
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
 
-" Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
+" Augmenting Rg with fzf#vim#grep, with preview window:
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
@@ -27,7 +24,11 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
-" Likewise, Files command with preview window
+" Augmenting Files command, with preview window
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+" Augmenting Colors command, with preview window
+command! -bang Colors
+  \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
 " }}}
