@@ -12,16 +12,16 @@
     lgs = log --graph
 
     # Shows incoming commits for the current branch only
-    incoming = !(git fetch --quiet && git log ..$(git rev-parse --abbrev-ref --symbolic-full-name @{u})) 
+    in = !(git fetch --quiet && git log ..$(git rev-parse --abbrev-ref --symbolic-full-name @{u})) 
 
     # Shows incoming commits for all branches
-    incomingall = !git log --remotes=origin --not --branches
+    inall = !git log --remotes=origin --not --branches
     
     # Shows outgoing commits for the current branch only
-    outgoing = !(git fetch --quiet && git log $(git rev-parse --abbrev-ref --symbolic-full-name @{u})..)
+    out = !(git fetch --quiet && git log $(git rev-parse --abbrev-ref --symbolic-full-name @{u})..)
     
     # Shows outgoing commits for all branches 
-    outgoingall = !git log --branches --not --remotes=origin
+    outall = !git log --branches --not --remotes=origin
 
     #
     # BRANCH MANAGEMENT
