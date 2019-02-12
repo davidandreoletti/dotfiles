@@ -38,10 +38,16 @@ dot_first_if_exists() {
     done
 }
 
+if_dir_exists() {
+    [ -d $1 ] && [ -r $1 ]
+    return
+}
+
 # Usage: dot_plugin_if_exists PLUGIN_NAME
 dot_plugin_if_exists() {
     local pluginName="${1:-"none"}"
     export SHELLRC_CURRENT_PLUGIN_DIR="${SHELLRC_PLUGINS_DIR}/${pluginName}"
+    if_dir_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/bin" && path_prepend "${SHELLRC_CURRENT_PLUGIN_DIR}/bin"
     dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/environment.sh"
     dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/functions.sh"
     dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/aliases.sh"
