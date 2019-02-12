@@ -165,6 +165,8 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "textmate"
 is_profile_admin_or_similar && homebrew_brew_cask_install "intel-haxm"
 
 is_profile_admin_or_similar && pip2_install "awsli" && pip3_install "awscli"
+
+is_profile_admin_or_similar && $SHELL -x install/browsers/chrome/extensions/install.sh
  
 # https://developer.apple.com/library/content/technotes/tn2459/_index.html
 is_profile_admin_or_similar && todolist_add_new_entry "Allow Kernel extension from Intel XAM to run: System Preferences > Seucrity Privacy > General Tab > Allow button"
