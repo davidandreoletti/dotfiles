@@ -9,7 +9,7 @@
     # log commands
     lg = !git log --graph --pretty=format:'%C(bold blue)%h%C(reset)∑%C(bold green)%d%C(reset) %C(cyan)%s%C(reset) %C(red)[%an]%C(reset) %C(white)[%cr]%C(reset)' | column -t -s '∑'
 
-    lgs = log --graph
+    ilgg = !gitInteractiveHistory
 
     # Shows incoming commits for the current branch only
     in = !(git fetch --quiet && git log ..$(git rev-parse --abbrev-ref --symbolic-full-name @{u})) 
