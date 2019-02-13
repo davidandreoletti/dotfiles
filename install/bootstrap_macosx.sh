@@ -83,9 +83,10 @@ homebrew_is_installed || homebrew_install  #FIXME ask for password
 homebrew_is_installed || message_error_show "failed"
 homebrew_is_installed || exit 1
 
-## List of available packages
-## http://braumeister.org/
-## http://brewformulas.org/A
+## Command line applications
+## - List of available packages
+##  - http://braumeister.org/
+##  - http://brewformulas.org/A
 is_profile_admin_or_similar && homebrew_brew_install "bash"; 
     sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"; 
     # Use Bash 4.x or better as default shell for current user
@@ -140,6 +141,7 @@ is_profile_admin_or_similar && homebrew_brew_install "findutils" # GNU `find`, `
 is_profile_admin_or_similar && homebrew_brew_install "gnu-sed" "--with-default-names" # GNU `sed`, overwriting the built-in `sed`
 is_profile_admin_or_similar && homebrew_brew_install "xml-coreutils" # Command XML utilities (eg: xml-grep)
 
+## GUI applications
 #homebrew_brew_cask_workaround0
 is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"
 is_profile_admin_or_similar && homebrew_brew_cask_install "firefox"
@@ -166,10 +168,13 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "tunnelblick"
 is_profile_admin_or_similar && homebrew_brew_cask_install "textmate"
 is_profile_admin_or_similar && homebrew_brew_cask_install "intel-haxm"
 
+## Browser add-ons
+is_profile_admin_or_similar && $SHELL -x install/browsers/chrome/extensions/install.sh
+is_profile_admin_or_similar && $SHELL -x install/browsers/firefox/extensions/install.sh
+ 
 is_profile_admin_or_similar && pip2_install "awsli" && pip3_install "awscli"
 
-is_profile_admin_or_similar && $SHELL -x install/browsers/chrome/extensions/install.sh
- 
+
 # https://developer.apple.com/library/content/technotes/tn2459/_index.html
 is_profile_admin_or_similar && todolist_add_new_entry "Allow Kernel extension from Intel XAM to run: System Preferences > Seucrity Privacy > General Tab > Allow button"
 
