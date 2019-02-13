@@ -11,7 +11,7 @@ do
         # "remaining" urls can be used as is
         remainingFd=<(echo -e "$remaining") \
         # "youtube" urls must be contverted first
-        youtubeFd=<(echo -e "$youtube" | xargs youtube-dl -g )
+        youtubeFd=<(echo -e "$youtube" | xargs youtube-dl -f 'worst' -g )
 
         # Print to stdout url to be loaded by mpc add or similar client
         command cat $remainingFd $youtubeFd 
