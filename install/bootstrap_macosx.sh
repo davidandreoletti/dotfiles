@@ -107,8 +107,9 @@ is_profile_admin_or_similar && homebrew_brew_install "rsync"
 is_profile_admin_or_similar && homebrew_brew_install "neomutt"
 is_profile_admin_or_similar && homebrew_brew_install "jenv"
 is_profile_admin_or_similar && homebrew_brew_install "nvm"
-is_profile_admin_or_similar && homebrew_brew_install "cmus"
-is_profile_admin_or_similar && homebrew_brew_install "watch"
+is_profile_admin_or_similar && homebrew_brew_install "mpd"  # Music player daemon
+is_profile_admin_or_similar && homebrew_brew_install "mpc"  # Music player (simple) client
+is_profile_admin_or_similar && homebrew_brew_install "pms"  # Music player (tui) client
 is_profile_admin_or_similar && homebrew_brew_install "unp"
 is_profile_admin_or_similar && homebrew_brew_install "bat"   # cat with highlighting, paging, line numbers support
 is_profile_admin_or_similar && homebrew_brew_install "fzf"   # Ctrl+R replacement for searching the history / files
@@ -137,6 +138,7 @@ is_profile_admin_or_similar && homebrew_brew_install "rename" # Mass file rename
 is_profile_admin_or_similar && homebrew_brew_install "moreutils" # parallel, elekdo, etc
 is_profile_admin_or_similar && homebrew_brew_install "findutils" # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
 is_profile_admin_or_similar && homebrew_brew_install "gnu-sed" "--with-default-names" # GNU `sed`, overwriting the built-in `sed`
+is_profile_admin_or_similar && homebrew_brew_install "xml-coreutils" # Command XML utilities (eg: xml-grep)
 
 #homebrew_brew_cask_workaround0
 is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"

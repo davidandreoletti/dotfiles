@@ -11,3 +11,12 @@
 .vim/bundle
 .vim/sessions
 .vim/session
+.mpd/db
+.mpd/log
+.mpd/mpd.db
+.mpd/mpd.log
+.mpd/mpdstate
+.mpd/pid
+.mpd/state
+database
+sticker.sql
