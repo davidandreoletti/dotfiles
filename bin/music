@@ -1,0 +1,20 @@
+# Run mpd as daemon
+mpd
+
+# Load musics and begin playing
+(
+    # Load musics
+    command pushd "$HOME/.playlists" > /dev/null 2>&1
+        # Compute music urls
+        urls=<($SHELL mpd.sh *.m3u) 
+        # Append, randomly sorted, musics to MPD, and playing very first music loaded
+        #cat $urls | shuf | tee -p >(mpc add) | mpc play 
+        cat $urls | shuf | mpc add
+        mpc play 
+    command popd > /dev/null 2>&1
+    # Remove duplicate musics
+    mpc playlist | sort | uniq -d -c | while read song; do count=$(echo "$song" | sed -e "s/^[ \t]*//" | cut -d" " -f1); song=$(echo "$song" | sed -e "s/^[ \t]*//" | cut -d" " -f2-); for (( i = 2 ; i <= $count; i++ )); do mpc playlist | grep -n "$song" | tail -n 1 | cut -d: -f1 | mpc del; done; done
+) &
+
+# Run mpd client
+pms
