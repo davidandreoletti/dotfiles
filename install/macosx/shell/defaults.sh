@@ -347,6 +347,8 @@ sudo mdutil -E / > /dev/null
 ###############################################################################
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
+# Enable 'Secure Keyboard Entry'
+defaults write com.apple.terminal SecureKeyboardEntry -bool true
 # Use a modified version of the Solarized Dark theme by default in Terminal.app
 #TERM_PROFILE='Solarized Dark xterm-256color';
 #CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
@@ -439,6 +441,16 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 # Disable continuous spell checking
 #defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 ###############################################################################
+# Image Capture #
+###############################################################################
+# Prevent Photos from opening automatically when devices are plugged in
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+###############################################################################
+# Crash Report #
+###############################################################################
+# Make crash reports appear as notifications
+defaults write com.apple.CrashReporter UseUNC 1
+###############################################################################
 # Google Chrome & Google Chrome Canary #
 ###############################################################################
 # Allow installing user scripts via GitHub Gist or Userscripts.org
@@ -451,6 +463,11 @@ defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -boo
 defaults write com.google.Chrome DisablePrintPreview -bool true
 defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 ###############################################################################
+# Firefox #
+###############################################################################
+# Enable backswipe navigation  with back scroll
+defaults write org.mozilla.firefox AppleEnableSwipeNavigateWithScrolls -bool false
+###############################################################################
 # GPGMail 2 #
 ###############################################################################
 # Disable signing emails by default
@@ -458,7 +475,7 @@ defaults write ~/Library/Preferences/org.gpgtools.gpgmail SignNewEmailsByDefault
 ###############################################################################
 # Transmission.app #
 ###############################################################################
-# Use `~/Documents/Torrents` to store incomplete downloads
+# Use `~/Documents/Downloads` to store incomplete downloads
 defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
 defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Documents/Downloads"
 defaults write org.m0k.transmission "AutoImportDirectory" -string "${HOME}/Downloads"
