@@ -10,8 +10,13 @@ bindkey '^r' history-incremental-search-backward
 bindkey '^e' edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
+
+# Latency to switch between vim modes
+# in milliseconds
 export KEYTIMEOUT=1
 
 # Search history as in Bash with Ctrl-R 
 bindkey '^R' history-incremental-search-backward
 
+# cd into string typed on the terminal if said string is a directory
+setopt auto_cd
