@@ -50,6 +50,15 @@
 [credential]
     helper = osxkeychain
 
+[diff]
+    # Produce diff using patience algorithm with additional support for "low-occurrence common elements"
+    # - Net result is diff are, generally, more intuitive; it reconciles better the misaligned brackets in functions and tags.
+    algorithm = histogram
+    # git diff detects renames and copies
+    renames = copies
+    # Number of lines of context in patches
+    context = 6
+
 [diff "spaceman-diff"]
     # Diff images as ASCII like images
     # spaceman-diff is expected to be on the $PATH
@@ -81,14 +90,6 @@
     # - text in between ||||||| marker and ======= marker represent the command ancestor code
     conflictstyle = diff3
 
-[diff]
-    # Produce diff using patience algorithm with additional support for "low-occurrence common elements"
-    # - Net result is diff are, generally, more intuitive; it reconciles better the misaligned brackets in functions and tags.
-    algorithm = histogram
-    # git diff detects renames and copies
-    renames = copies
-    # Number of lines of context in patches
-    context = 6
 
 [mergetool]
     # Delete merge backup files (as .orig files)
@@ -121,6 +122,7 @@
 
 [user]
     # Explicitly require user.name / user.email to be set
+    # - never guess the user/email from the environment
     useConfigOnly = true
 
 [init]
