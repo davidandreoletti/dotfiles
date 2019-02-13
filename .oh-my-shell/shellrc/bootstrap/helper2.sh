@@ -48,3 +48,16 @@ path_append() {
     PATH="${PATH}:$1"
     export PATH
 }
+
+command_exists() {
+  command -v $1 > /dev/null 2>&1
+}
+
+exec_if_exists() {
+  if [[ -x $1 ]]
+  then
+    echo exec $*
+    exec $*
+  fi
+}
+
