@@ -64,6 +64,11 @@
     # spaceman-diff is expected to be on the $PATH
     command = spaceman-diff
 
+[diff "bin"]
+    # Use `hexdump` to diff binary files.
+    textconv = hexdump -v -C
+
+
 [branch]
     # By default, "git pull" will REBASE (instead merge) the local branch created with "git checkout" / "git branch" when the local branche tracking these branches:
     # - remote branches 
