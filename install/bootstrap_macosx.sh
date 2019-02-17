@@ -140,6 +140,7 @@ is_profile_admin_or_similar && homebrew_brew_install "moreutils" # parallel, ele
 is_profile_admin_or_similar && homebrew_brew_install "findutils" # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
 is_profile_admin_or_similar && homebrew_brew_install "gnu-sed" "--with-default-names" # GNU `sed`, overwriting the built-in `sed`
 is_profile_admin_or_similar && homebrew_brew_install "xml-coreutils" # Command XML utilities (eg: xml-grep)
+is_profile_admin_or_similar && homebrew_brew_install "lynx" # Terminal browser
 is_profile_admin_or_similar && homebrew_brew_install "rbenv" # Ruby Version Installer and manager
 
 ## GUI applications
