@@ -218,6 +218,8 @@ defaults write com.apple.iTunes disableGeniusSidebar -bool true
 defaults write com.apple.iTunes disablePingSidebar -bool true
 # Disable all the other Ping stuff in iTunes
 defaults write com.apple.iTunes disablePing -bool true
+# Disable openning iTunes when device is plugged in
+defaults write com.apple.iTunes dontAutomaticallySyncIPods -bool true
 ###############################################################################
 # Finder #
 ###############################################################################
