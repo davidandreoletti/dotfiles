@@ -1,4 +1,19 @@
-# Run mpd as daemon
+# Generate/Load per user MPD port
+MPD_PORT_FILE="$HOME/.mpd/port"
+if [ ! -f "$MPD_PORT_FILE" ]
+then
+    echo "$RANDOM" > "$MPD_PORT_FILE"
+fi
+
+# Export MPD host/port for some mpd clients to communicate with
+export MPD_PORT="$(cat $MPD_PORT_FILE)"
+export MPD_HOST="127.0.0.1"
+
+# Start mpd server
+# - replacing the port value with the one generated
+MPD_OLD_PORT=$(cat .mpd/mpd.conf | grep "^port" | cut -d\" -f2)
+sed -i '' "s/$MPD_OLD_PORT/$MPD_PORT/" "$HOME/.mpd/mpd.conf"
+# - start mpd as daemon
 mpd
 
 # Load musics and begin playing
@@ -17,4 +32,5 @@ mpd
 ) &
 
 # Run mpd client
-pms
+PMS_OPTIONS="-p $MPD_PORT -h $MPD_HOST"
+pms $PMS_OPTIONS
