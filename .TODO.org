@@ -1,4 +1,6 @@
 * TODO:
+** osx defaults:
+*** Show time + date (instead of just time) in top bar on the desktop.
 ** browser:
 *** safari:
 **** install vimari + setup again. automate this ?https://github.com/guyht/vimari
@@ -26,7 +28,6 @@
 ** cron:
 *** define cronjob per user, without having to modify /etc/crontab:
 ** misc
-*** install bat: https://github.com/sharkdp/bat/blob/master/doc/alternatives.md ?
 *** xprofile: https://github.com/tony/.dot-config/blob/master/.xprofile
 *** any good useful item from: https://github.com/tony/.dot-config ?
 ** profile:
