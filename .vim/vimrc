@@ -17,62 +17,57 @@ let g:vimFlavor = F_Get_Vim_Flavor()
 " - required by Vundle
 set nocompatible
 
-let vundleInstallRequired = F_Vundle_IsVundleInstalled()
-if vundleInstallRequired
-    call F_Vundle_InstallVundle()
+" required for vundle
+"filetype off
+
+let pluginManagerInstallationRequired = F_VimPlug_IsInstalled()
+if pluginManagerInstallationRequired
+    call F_VimPlug_Install()
 endif
 
-" required for vundle
-filetype off
+call plug#begin('~/.vim/bundle')
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" Let Vundle manage Vundle required! 
-Bundle 'gmarik/vundle'
-"}}}
-
-" Managed bundles{{{
+" Managed plugins{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Doxygen
-Bundle 'vim-scripts/DoxygenToolkit.vim'
+Plug 'vim-scripts/DoxygenToolkit.vim'
 " Snippets Engine
-Bundle 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 " Predefined snippets 
 " - UltiSnips's snippets are separated from the engine.
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 " Master Vim's advanced motion and search
-Bundle 'takac/vim-hardtime'
+Plug 'takac/vim-hardtime'
 " Ease motions
-Bundle 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 " Ease aligning things (table, field, etc ...)
-Bundle 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'
 " Operations on surroundings
 " parentheses, brackets, quotes, XML tags, and more
-Bundle 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " Visualize Vim Undo Tree
 if g:vimFlavor ==# g:VIM_FLAVOR_VIM
     " vim + neovim support, without newer updates
-    Bundle 'sjl/gundo.vim'
+    Plug 'sjl/gundo.vim'
 elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
     " vim + neovim support, with newer updates (gundo.vim fork),
-    Bundle 'simnalamburt/vim-mundo'     
+    Plug 'simnalamburt/vim-mundo'     
 endif
 " Color schemes
-Bundle 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 " Make gvim-only colorscheme work transparently in vim terminal
-Bundle 'vim-scripts/CSApprox'
+Plug 'vim-scripts/CSApprox'
 " Commenting
-Bundle 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 " Align things
-Bundle 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 " Syntastic
 " C++/C/X*ML/JSON/Javascript .. syntax checking plugin
-Bundle "scrooloose/syntastic"
+Plug 'scrooloose/syntastic'
 " TabNine (ML based auto completion, much better)
-Bundle 'zxqfl/tabnine-vim'
+Plug 'zxqfl/tabnine-vim'
 " NeoMake
-Bundle 'neomake/neomake'
+Plug 'neomake/neomake'
 " Fast way to reach/search:
 " - buffers (: Buffers)
 " - files (: Files)
@@ -91,53 +86,56 @@ Bundle 'neomake/neomake'
 " - fzf replaces Ctrl-P, FuzzyFinder and Command-T)
 " - fzf is really fast compared to Crtl-P' vimL fuzy finder implementation
 set rtp +=/usr/local/opt/fzf
-Bundle 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 " Show a VCS diff using Vim's sign column. 
-Bundle 'mhinz/vim-signify'
+Plug 'mhinz/vim-signify'
 " Class outliner
-if vundleInstallRequired
+if pluginManagerInstallationRequired
    call F_Tagbar_InstallDependencies()
 endif
-Bundle 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 " Lightweight status bar
-Bundle 'bling/vim-airline'
+Plug 'bling/vim-airline'
 " Org-mod for vim
-Bundle 'jceb/vim-orgmode'
+Plug 'jceb/vim-orgmode'
 " Dependencies for org-mode
-Bundle 'tpope/vim-speeddating'
+Plug 'tpope/vim-speeddating'
 " Display vertical thin lines at each indentation level for code
 " indented with spaces
-Bundle 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 " Diff swap and content file
-Bundle 'chrisbra/Recover.vim'
+Plug 'chrisbra/Recover.vim'
 " Sublime Text's muliple selection
-Bundle 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 " Rename a buffer within Vim and on the disk
-Bundle 'danro/rename.vim'
+Plug 'danro/rename.vim'
 " Support for JSON syntax highlighting
-Bundle 'leshill/vim-json'
+Plug 'leshill/vim-json'
 " Git wrapper
-Bundle 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Zoom in/out window
-Bundle 'vim-scripts/ZoomWin'
+Plug 'vim-scripts/ZoomWin'
 " Support for Objective-C/Cocoa dev
-Bundle 'msanders/cocoa.vim'
+Plug 'msanders/cocoa.vim'
 " Character encoding value
 " (improves over :ga)
-Bundle 'tpope/vim-characterize'
+Plug 'tpope/vim-characterize'
 " Show vim's marks
-Bundle 'kshenoy/vim-signature'
+Plug 'kshenoy/vim-signature'
 " Enhanced Javascript syntax with support for ES6
 " (based on 'jelera/vim-javascript-syntax')
-Bundle 'othree/yajs.vim'
+Plug 'othree/yajs.vim'
 " Continously update vim session files
-Bundle 'tpope/vim-obsession'
+Plug 'tpope/vim-obsession'
 " - Extends tpope/vim-obsession to support 1 vim session per directory
-Bundle 'dhruvasagar/vim-prosession'
+Plug 'dhruvasagar/vim-prosession'
+
+" Initialize plugin system
+call plug#end()
 
 " Install bundles (on very first vim use) 
-if vundleInstallRequired
-   call F_Vundle_InstallBundles()
+if pluginManagerInstallationRequired
+   call F_VimPlug_InstallPlugins()
 endif
 "}}}
 " General{{{

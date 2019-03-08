@@ -11,6 +11,7 @@
 .vim/bundle
 .vim/sessions
 .vim/session
+.vim/autoload/plug.vim
 .mpd/db
 .mpd/log
 .mpd/mpd.db

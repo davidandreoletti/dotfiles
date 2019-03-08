@@ -68,16 +68,40 @@ function! F_DoxygenToolKit_SetCPPOrCTags ()
 	let g:DoxygenToolkit_returnTag="\\return "
 endfunction
 
+" Indicates if vimplug is installed
+" Return: 
+function! F_VimPlug_IsInstalled ()
+	let vundle_readme=expand('~/.vim/autoload/plug.vim')
+	return !filereadable(vundle_readme)
+endfunction
+
+" Installs VimPlug
+" Return: 0
+function! F_VimPlug_Install ()
+	echo "Installing VimPlug..."
+	echo ""
+	silent !mkdir -p ~/.vim/bundle2
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endfunction
+
+" Installs bundles via vimplug
+" Return: 0
+function! F_VimPlug_InstallPlugins ()
+	echo "Installing Bundles(please ignore key map error messages) ..."
+	echo ""
+	:PlugInstall
+endfunction
+
 " Indicates if vundle is installed
 " Return: 
-function! F_Vundle_IsVundleInstalled ()
+function! F_Vundle_IsInstalled ()
 	let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
 	return !filereadable(vundle_readme)
 endfunction
 
 " Installs Vundle
 " Return: 0
-function! F_Vundle_InstallVundle ()
+function! F_Vundle_Install ()
 	echo "Installing Vundle..."
 	echo ""
 	silent !mkdir -p ~/.vim/bundle
