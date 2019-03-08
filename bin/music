@@ -12,7 +12,9 @@ export MPD_HOST="127.0.0.1"
 # Start mpd server
 # - replacing the port value with the one generated
 MPD_OLD_PORT=$(cat .mpd/mpd.conf | grep "^port" | cut -d\" -f2)
-sed -i '' "s/$MPD_OLD_PORT/$MPD_PORT/" "$HOME/.mpd/mpd.conf"
+sed -i.bak "s/$MPD_OLD_PORT/$MPD_PORT/" "$HOME/.mpd/mpd.conf"
+rm -f "$HOME/.mpd/mpd.conf.bak"
+
 # - start mpd as daemon
 mpd
 
