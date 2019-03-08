@@ -12,6 +12,21 @@ alias dockerPruneSpecificDanglingImagesLayer="docker rmi "
 # Usage: dockerPruneAllDanglingImagesLayers 
 alias dockerPruneAllDanglingImagesLayers="docker rmi \$(docker images -f dangling=true -q)"
 
-# Usage: dockerRemoveContainerAndAssociatedVolumes "volume name"
-alias dockerRemoveContainerAndAssociatedVolumes="f_docker_RemoveContainerAndAssociatedVolumes "
+# Usage: dockerRemoveContainerByVolume "(partial) volume name"
+alias dockerRemoveContainerByVolume="f_docker_RemoveContainerByVolume "
 
+# Usage: dockerPruneAll
+alias dockerPruneAll="docker system prune --all --force --volumes"
+
+# Kill all running containers
+# Usage: dockerKillAll
+alias dockerKillAll="docker ps -q -a | xargs -n1 -I _ docker kill _"
+
+# Delete all stopped containers
+alias dockerDeleteAllStoppedContainers="docker ps -q -a | xargs -n1 -I _ docker rm _"
+
+# Delete all stopped containers along with associated volumes
+alias dockerDeleteAllStoppedContainersAndAssociatedVolumes="docker ps -q -a | xargs -n1 -I _ docker rm --volumes _"
+
+# Delete all images
+alias dockerDeleteAllImages="docker images -q | xargs -n1 -I _ docker rmi _"
