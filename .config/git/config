@@ -1,5 +1,5 @@
 [core]
-    fileMode = true
+    filemode = true
     editor = vim
     excludesFile = ~/.config/git/ignore
     quotePath = true
