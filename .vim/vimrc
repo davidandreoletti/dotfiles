@@ -129,7 +129,8 @@ Plug 'othree/yajs.vim'
 Plug 'tpope/vim-obsession'
 " - Extends tpope/vim-obsession to support 1 vim session per directory
 Plug 'dhruvasagar/vim-prosession'
-
+" Markdown Live Preview
+Plug 'junegunn/vim-xmark', { 'do': 'make' }
 " Initialize plugin system
 call plug#end()
 
