@@ -87,6 +87,8 @@ homebrew_is_installed || exit 1
 ## - List of available packages
 ##  - http://braumeister.org/
 ##  - http://brewformulas.org/A
+is_profile_admin_or_similar && homebrew_brew_install "python2" && homebrew_link "python2" && homebrew_postinstall "python2"
+is_profile_admin_or_similar && homebrew_brew_install "python3" && homebrew_link "python3" && homebrew_postinstall "python3"
 is_profile_admin_or_similar && homebrew_brew_install "bash"; 
     sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"; 
     # Use Bash 4.x or better as default shell for current user
@@ -101,8 +103,8 @@ is_profile_admin_or_similar && homebrew_brew_install "zsh-completions"
 is_profile_admin_or_similar && homebrew_brew_install "tmux"
 is_profile_admin_or_similar && homebrew_brew_install "vim"
 is_profile_admin_or_similar && homebrew_brew_install "neovim" && \
-    pip2_install "neovim" && pip3_install "neovim" && \ # Install neovim python package
-    pip2_install "pynvim" && pip3_install "pynvim"      # Install neovim python bindings package
+    pip2_global_install "neovim" && pip3_global_install "neovim" && \ # Install neovim python package
+    pip2_global_install "pynvim" && pip3_global_install "pynvim"      # Install neovim python bindings package
 is_profile_admin_or_similar && homebrew_brew_install "newsbeuter"
 is_profile_admin_or_similar && homebrew_brew_install "rsync"
 is_profile_admin_or_similar && homebrew_brew_install "neomutt"
@@ -175,7 +177,7 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "intel-haxm"
 is_profile_admin_or_similar && $SHELL -x install/browsers/chrome/extensions/install.sh
 is_profile_admin_or_similar && $SHELL -x install/browsers/firefox/extensions/install.sh
  
-is_profile_admin_or_similar && pip2_install "awsli" && pip3_install "awscli"
+is_profile_admin_or_similar && pip2_global_install "awsli" && pip3_global_install "awscli"
 
 
 # https://developer.apple.com/library/content/technotes/tn2459/_index.html

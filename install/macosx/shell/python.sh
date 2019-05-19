@@ -7,12 +7,12 @@ python_easy_install() {
     return $?
 }
 
-pip3_install() {
+pip3_global_install() {
     sudo ${SUDO_OPTIONS} pip3 install $@
     return $?
 }
 
-pip2_install() {
+pip2_global_install() {
     sudo ${SUDO_OPTIONS} pip2 install $@
     return $?
 }

@@ -23,9 +23,19 @@ homebrew_brew_install() {
     sudo ${SUDO_OPTIONS} -u "$(whoami)" brew install $@
 }
 
+homebrew_postinstall() {
+    message_info_show "$1 post install ..."
+    sudo ${SUDO_OPTIONS} -u "$(whoami)" brew postinstall $@
+}
+
 homebrew_brew_linkapps() {
     message_info_show "brew linkapps ..."
     sudo ${SUDO_OPTIONS} -u "$(whoami)" brew linkapps
+}
+
+homebrew_brew_link() {
+    message_info_show "brew link $1 ..."
+    sudo ${SUDO_OPTIONS} -u "$(whoami)" brew link $@
 }
 
 # param1: tapname
