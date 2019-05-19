@@ -89,8 +89,8 @@ atlassian-ide-plugin.xml
 com_crashlytics_export_strings.xml
 
 ### vim ###
-[._]*.s[a-w][a-z]
-[._]s[a-w][a-z]
+#[._]*.s[a-w][a-z]
+#[._]s[a-w][a-z]
 *.un~
 Session.vim
 .netrwhist
@@ -131,3 +131,6 @@ build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
+
+### SSH keys ###
+!*.pem
