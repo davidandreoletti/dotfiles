@@ -115,8 +115,6 @@ Plug 'leshill/vim-json'
 Plug 'tpope/vim-fugitive'
 " Zoom in/out window
 Plug 'vim-scripts/ZoomWin'
-" Support for Objective-C/Cocoa dev
-Plug 'msanders/cocoa.vim'
 " Character encoding value
 " (improves over :ga)
 Plug 'tpope/vim-characterize'
