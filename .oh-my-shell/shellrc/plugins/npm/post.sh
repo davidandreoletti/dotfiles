@@ -25,8 +25,9 @@ cat <<EOF > "$NPM_PACKAGES_UPGRADE_SCRIPT"
 
     # Load nvm
     . `brew --prefix nvm`/nvm.sh
-    # Use the default node version (in case nvm encounters incomaptible options such as npm prefix option being set)
-    nvm use --delete-prefix default --silent
+    # Use the most recent LTS node version by default (in case nvm encounters incomaptible options such as npm prefix option being set)
+    nvm install --lts 
+    nvm use --delete-prefix --lts --silent
     nvm current
     which node
     which npm
