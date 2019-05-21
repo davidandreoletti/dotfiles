@@ -69,7 +69,9 @@ dot_plugin_if_exists "rbenv"
 dot_plugin_if_exists "ripgrep"
 dot_plugin_if_exists "rm"
 dot_plugin_if_exists "rsync"
+dot_plugin_if_exists "sharefile"
 dot_plugin_if_exists "search"
+dot_plugin_if_exists "shorturl"
 dot_plugin_if_exists "ssh"
 dot_plugin_if_exists "telnet"
 dot_plugin_if_exists "termbin"
@@ -80,7 +82,7 @@ dot_plugin_if_exists "vim_neovim"
 dot_plugin_if_exists "weather"
 dot_plugin_if_exists "xcode"
 dot_plugin_if_exists "zip"
-dot_plugin_if_exists "shorturl"
+
 # Load shell plugins (part 2)
 dot_current_shell_plugin_if_exists "custom"
 

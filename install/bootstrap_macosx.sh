@@ -145,6 +145,7 @@ is_profile_admin_or_similar && homebrew_brew_install "xml-coreutils" # Command X
 is_profile_admin_or_similar && homebrew_brew_install "lynx" # Terminal browser
 is_profile_admin_or_similar && homebrew_brew_install "rbenv" # Ruby Version Installer and manager
 is_profile_admin_or_similar && homebrew_brew_install "gawk" # Required by: tmux-fingers plugin
+is_profile_admin_or_similar && homebrew_brew_install "ffsend" # Firefox Send client. Required by 1 oh-my-shell plugin
 
 ## GUI applications
 #homebrew_brew_cask_workaround0
