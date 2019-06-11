@@ -105,6 +105,8 @@ is_profile_admin_or_similar && homebrew_brew_install "vim"
 is_profile_admin_or_similar && homebrew_brew_install "neovim" && \
     pip2_global_install "neovim" && pip3_global_install "neovim" && \ # Install neovim python package
     pip2_global_install "pynvim" && pip3_global_install "pynvim"      # Install neovim python bindings package
+
+is_profile_admin_or_similar && pip3_global_install "tasklog"          # Install tasklog cli
 is_profile_admin_or_similar && homebrew_brew_install "newsbeuter"
 is_profile_admin_or_similar && homebrew_brew_install "rsync"
 is_profile_admin_or_similar && homebrew_brew_install "neomutt"
@@ -172,6 +174,7 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "onyx"
 is_profile_admin_or_similar && homebrew_brew_cask_install "postman"
 is_profile_admin_or_similar && homebrew_brew_cask_install "tunnelblick"
 is_profile_admin_or_similar && homebrew_brew_cask_install "textmate"
+is_profile_admin_or_similar && homebrew_brew_cask_install "trailer"         # Github Pull Requests Manager
 is_profile_admin_or_similar && homebrew_brew_cask_install "intel-haxm"
 
 ## Browser add-ons
