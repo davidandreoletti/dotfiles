@@ -3,10 +3,12 @@ if [[ "$OS_NAME" == "macosx" ]]; then
     # Initialize jenv
     # (easier JAVA_HOME switching)
     #
-    eval "$(jenv init -)" 
-
-    # Register Installed Java SDKs with jenv
-    find "/Library/Java/JavaVirtualMachines" -mindepth 1 -maxdepth 1 -type d -name "*jdk*" -exec bash -c "yes | jenv add \"{}/Contents/Home\" > /dev/null 2>&1" \;
+    #eval "$(jenv init - --no-rehash)"
+    (
+        # Register Installed Java SDKs with jenv
+        find "/Library/Java/JavaVirtualMachines" -mindepth 1 -maxdepth 1 -type d -name "*jdk*" -exec bash -c "yes | jenv add \"{}/Contents/Home\" > /dev/null 2>&1" \; &
+        jenv rehash &
+    ) 2> /dev/null
 
     # jenv used to select a specific java version
     #jenv enable-plugin export > /dev/null  2>&1; 
