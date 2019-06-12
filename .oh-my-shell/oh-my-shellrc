@@ -34,7 +34,6 @@ dot_current_shell_plugin_if_exists "completion"
 dot_current_shell_plugin_if_exists "correction"
 
 # Load app plugins 
-# - Keep this list sorted alphabetically
 dot_plugin_if_exists "android"
 dot_plugin_if_exists "archive"
 dot_plugin_if_exists "backup"
@@ -62,7 +61,7 @@ dot_plugin_if_exists "misc"
 dot_plugin_if_exists "mv"
 dot_plugin_if_exists "network"
 dot_plugin_if_exists "nvm"
-dot_plugin_if_exists "npm"
+dot_plugin_if_exists "npm" # Loading dependency: nvm plugin
 dot_plugin_if_exists "open"
 dot_plugin_if_exists "process"
 dot_plugin_if_exists "python"
