@@ -15,6 +15,14 @@ MPD_OLD_PORT=$(cat .mpd/mpd.conf | grep "^port" | cut -d\" -f2)
 sed -i.bak "s/$MPD_OLD_PORT/$MPD_PORT/" "$HOME/.mpd/mpd.conf"
 rm -f "$HOME/.mpd/mpd.conf.bak"
 
+# - Kill previous mpd daemon
+if pgrep -U $USER mpd
+then
+    echo "Killing previous music player daemon"
+    pkill -U $USER mpd
+    sleep 3s
+fi
+
 # - start mpd as daemon
 mpd
 
