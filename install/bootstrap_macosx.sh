@@ -176,6 +176,7 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "tunnelblick"
 is_profile_admin_or_similar && homebrew_brew_cask_install "textmate"
 is_profile_admin_or_similar && homebrew_brew_cask_install "trailer"         # Github Pull Requests Manager
 is_profile_admin_or_similar && homebrew_brew_cask_install "intel-haxm"
+is_profile_admin_or_similar && homebrew_brew_cask_install "zeplin"
 
 ## Browser add-ons
 is_profile_admin_or_similar && $SHELL -x install/browsers/chrome/extensions/install.sh
