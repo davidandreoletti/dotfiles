@@ -12,13 +12,8 @@
 .vim/sessions
 .vim/session
 .vim/autoload/plug.vim
-.mpd/db
-.mpd/log
-.mpd/mpd.db
-.mpd/mpd.log
-.mpd/mpdstate
-.mpd/pid
-.mpd/state
+.mpd
+!.mpd/mpd.conf
 database
 sticker.sql
 port
