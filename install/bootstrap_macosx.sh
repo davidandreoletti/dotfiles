@@ -148,6 +148,7 @@ is_profile_admin_or_similar && homebrew_brew_install "lynx" # Terminal browser
 is_profile_admin_or_similar && homebrew_brew_install "rbenv" # Ruby Version Installer and manager
 is_profile_admin_or_similar && homebrew_brew_install "gawk" # Required by: tmux-fingers plugin
 is_profile_admin_or_similar && homebrew_brew_install "ffsend" # Firefox Send client. Required by 1 oh-my-shell plugin
+is_profile_admin_or_similar && homebrew_brew_install "csvkit" # Swiss army knife for csv files
 is_profile_admin_or_similar && homebrew_brew_install "libiconv" # Convert files from/to various character encodings
 
 ## GUI applications
@@ -178,6 +179,7 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "textmate"
 is_profile_admin_or_similar && homebrew_brew_cask_install "trailer"         # Github Pull Requests Manager
 is_profile_admin_or_similar && homebrew_brew_cask_install "intel-haxm"
 is_profile_admin_or_similar && homebrew_brew_cask_install "zeplin"
+is_profile_admin_or_similar && homebrew_brew_cask_install "ngrok"
 
 ## Browser add-ons
 is_profile_admin_or_similar && $SHELL -x install/browsers/chrome/extensions/install.sh
