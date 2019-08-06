@@ -10,9 +10,8 @@ set -g set-titles on
 set -g set-titles-string '#(whoami)@#H - (#S:#W.#P)'
 
 # Panes
-set -g pane-border-fg default
-set -g pane-active-border-bg default
-set -g pane-active-border-fg $HIGHLIGHT
+set -g pane-border-style fg=default
+set -g pane-active-border-style bg=default,fg=$HIGHLIGHT
 
 set -g display-panes-time 1000
 set -g display-panes-colour $FOREGROUND
@@ -23,26 +22,19 @@ set -g clock-mode-colour $FOREGROUND
 set -g clock-mode-style 24
 
 # Mode
-set -g mode-bg $HIGHLIGHT
-set -g mode-fg $BACKGROUND
+set -g mode-style bg=$HIGHLIGHT,fg=$BACKGROUND
 
 # Windows
 
 setw -g window-status-format " #I:#W"
-setw -g window-status-bg default
-setw -g window-status-fg $FOREGROUND
-setw -g window-status-attr dim
+setw -g window-status-style bg=default,fg=$FOREGROUND,dim
 
 setw -g window-status-last-style fg=$FOREGROUND,bold
 
 setw -g window-status-current-format " #I:#W"
-setw -g window-status-current-bg default
-setw -g window-status-current-fg $HIGHLIGHT
-setw -g window-status-current-attr bold
+setw -g window-status-current-style bg=default,fg=$HIGHLIGHT,bold
 
-setw -g window-status-activity-bg $BACKGROUND
-setw -g window-status-activity-fg $ACTIVITY
-setw -g window-status-activity-attr dim
+setw -g window-status-activity-style bg=$BACKGROUND,fg=$ACTIVITY,dim
 
 ## Cannot use:
 ##  - screen-bce, screen-256color-bce: tmux does not support bce
@@ -71,8 +63,6 @@ set -g status-left ' π '
 set -g status-right '| #S:#I.#P '
 
 # Message
-set -g message-bg $BACKGROUND
-set -g message-fg $HIGHLIGHT
-set -g message-attr bright
+set -g message-style bg=$BACKGROUND,fg=$HIGHLIGHT,bright
 
 # vim: set syntax=tmux:
