@@ -94,6 +94,7 @@ is_profile_admin_or_similar && homebrew_brew_install "bash";
     # Use Bash 4.x or better as default shell for current user
 is_profile_admin_or_similar && homebrew_brew_install "bash-completion"
 is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/dupes"
+is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/services"    # Launch services in backgroun. 
 is_profile_admin_or_similar && homebrew_brew_install "git" # Get more recent version than the one shipped in Xcode
 is_profile_admin_or_similar && homebrew_brew_install "coreutils" # Apple has outdated unix tooling.
 is_profile_admin_or_similar && homebrew_brew_install "zsh"
@@ -150,6 +151,7 @@ is_profile_admin_or_similar && homebrew_brew_install "gawk" # Required by: tmux-
 is_profile_admin_or_similar && homebrew_brew_install "ffsend" # Firefox Send client. Required by 1 oh-my-shell plugin
 is_profile_admin_or_similar && homebrew_brew_install "csvkit" # Swiss army knife for csv files
 is_profile_admin_or_similar && homebrew_brew_install "libiconv" # Convert files from/to various character encodings
+is_profile_admin_or_similar && homebrew_brew_install "postgresql" # Postgresql DB and standard command line utils like psql. PG db not started at runtime.
 
 ## GUI applications
 #homebrew_brew_cask_workaround0
@@ -180,6 +182,7 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "trailer"         # Gi
 is_profile_admin_or_similar && homebrew_brew_cask_install "intel-haxm"
 is_profile_admin_or_similar && homebrew_brew_cask_install "zeplin"
 is_profile_admin_or_similar && homebrew_brew_cask_install "ngrok"
+is_profile_admin_or_similar && homebrew_brew_cask_install "tableplus" # DataGrip alternative, with NoSQL support, until DataGrip bring support
 
 ## Browser add-ons
 is_profile_admin_or_similar && $SHELL -x install/browsers/chrome/extensions/install.sh
