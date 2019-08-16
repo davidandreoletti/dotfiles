@@ -35,6 +35,7 @@ dot_current_shell_plugin_if_exists "correction"
 
 # Load app plugins 
 dot_plugin_if_exists "locale"
+dot_plugin_if_exists "gnucoreutils"                 # Expose standard GNU tools, including to .oh-my-shellrc
 dot_plugin_if_exists "android"
 dot_plugin_if_exists "archive"
 dot_plugin_if_exists "backup"
@@ -51,7 +52,6 @@ dot_plugin_if_exists "file_directory"
 dot_plugin_if_exists "fzf"
 dot_plugin_if_exists "git"
 dot_plugin_if_exists "github"
-dot_plugin_if_exists "gnucoreutils"
 dot_plugin_if_exists "libiconv"
 dot_plugin_if_exists "history"
 dot_plugin_if_exists "homebrew"
