@@ -1,2 +1,2 @@
-alias dotfiles='cd $(readlink -f "$HOME/.config"/../)'
-alias dotfiles-private='cd $(readlink -f "$HOME/.ssh"/../)'
+alias dotfiles="cd $DOTFILES_HOME"
+alias dotfiles-private="cd $DOTFILES_PRIVATE_HOME"
