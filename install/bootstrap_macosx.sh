@@ -154,6 +154,7 @@ is_profile_admin_or_similar && homebrew_brew_install "csvkit" # Swiss army knife
 is_profile_admin_or_similar && homebrew_brew_install "libiconv" # Convert files from/to various character encodings
 is_profile_admin_or_similar && homebrew_brew_install "postgresql" # Postgresql DB and standard command line utils like psql. PG db not started at runtime.
 is_profile_admin_or_similar && homebrew_brew_install "proctools" # GNU pkill, pgrep
+is_profile_admin_or_similar && homebrew_brew_install "translate-shell" # Translate any languages
 #is_profile_admin_or_similar && homebrew_brew_install "tdsmith/ham/chirp"  # CHIRP software to configure HAM radios
 #is_profile_admin_or_similar && homebrew_brew_install "tdsmith/ham/xastir" # HAM Station Tracking / Info reporting
 
