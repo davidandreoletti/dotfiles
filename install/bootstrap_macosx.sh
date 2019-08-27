@@ -194,7 +194,7 @@ is_profile_admin_or_similar && $SHELL -x install/browsers/chrome/extensions/inst
 is_profile_admin_or_similar && $SHELL -x install/browsers/firefox/extensions/install.sh
  
 is_profile_admin_or_similar && pip2_global_install "awsli" && pip3_global_install "awscli"
-
+is_profile_admin_or_similar && pip3_global_install "buku[server]" # Browser independent bookmark manager, with standalone server
 
 # https://developer.apple.com/library/content/technotes/tn2459/_index.html
 is_profile_admin_or_similar && todolist_add_new_entry "Allow Kernel extension from Intel XAM to run: System Preferences > Seucrity Privacy > General Tab > Allow button"
