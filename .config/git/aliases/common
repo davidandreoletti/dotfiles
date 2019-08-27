@@ -1,7 +1,4 @@
 [alias]
-    # 
-    # - GitAliases: https://github.com/GitAlias/gitalias/blob/master/gitalias.txt
-
     #
     # TREE COMMIT LOG
     #
@@ -139,6 +136,48 @@
     #        x - x - x (END_SUB_BRANCH)
     # Usage rebaseSubBranchOntoAnotherBranch ROOT BEGIN_SUB_BRANCH END_SUB_BRANCH
     rebaseSubBranchOntoAnotherBranch = "!f() { git rebase --onto $1 $2 $3 }; f"
+
+    # Change author commit for every commit after the commit SHA (excluded)
+    # Usage: git reauthorSince "SHA" "John Doe <john.doe@example.com>"
+    reauthorSince = !bash -c 'git rebase --onto $1 --exec \"git commit --amend --no-edit --author=\\\"$2\\\"\" $1' --
+
+    # Change both author and commiter commit dates for every commit after the commit SHA (excluded)
+    # Usage: git redateSince "SHA" "local: 2019-05-02"
+    # DATE FORMAT: 
+    # - iso8601: 2006-07-03 17:18:43 +0200
+    # - more formats at https://stackoverflow.com/a/19742762 
+    #redateSince = !bash -c 'git rebase --onto $1 --exec \"export GIT_AUTHOR_DATE=\"$2\" && export GIT_COMMITTER_DATE=\"$2\" && git commit --amend --no-edit --date=$2\" $1' --
+    redateSince = !bash -c 'git rebase --onto $1 --exec \"export GIT_AUTHOR_DATE=\\\"$2\\\" && export GIT_COMMITTER_DATE=\\\"$2\\\" && git commit --amend --no-edit --date=\\\"$2\\\" \" $1' --
+
+    # Change author commit for a single commit
+    # Usage: git reauthor "SHA" "John Doe <john.doe@example.com>"
+    reauthor = "!f() { \
+        local commit=\"$1\"; \
+        local new_author=\"$2\"; \
+        local temp_branch=\"reauthor-rebasing\"; \
+        local current_branch=\"$(git rev-parse --abbrev-ref HEAD)\"; \
+        [[ -z \"$new_author\" ]] && echo \"Error: Author name needed.\" && exit 1;  \
+        git checkout -b \"$temp_branch\" \"$commit\"; \
+        git commit --amend --no-edit --author=\"$new_author\"; \
+        git checkout \"$current_branch\" && git rebase \"$commit\" --onto \"$temp_branch\" && git branch -d \"$temp_branch\"; \
+    }; f" 
+
+    # Change both author and commiter commit dates for a single commit
+    # Usage: git redate "SHA" "local: 2019-05-02"
+    # DATE FORMAT: 
+    # - iso8601: 2006-07-03 17:18:43 +0200
+    # - more formats at https://stackoverflow.com/a/19742762
+    redate = "!f() { \
+        local commit=\"$1\"; \
+        local new_date=\"$2\"; \
+        local date temp_branch=\"redate-rebasing\"; \
+        local current_branch=\"$(git rev-parse --abbrev-ref HEAD)\"; \
+        git checkout -b \"$temp_branch\" \"$commit\"; \
+        export GIT_AUTHOR_DATE=\"$new_date\"; \
+        export GIT_COMMITTER_DATE=\"$new_date\"; \
+        git commit --amend --no-edit --date=\"$new_date\"; \
+        git checkout \"$current_branch\" && git rebase \"$commit\" --onto \"$temp_branch\" && git branch -d \"$temp_branch\"; \
+    }; f" 
 
     #
     # GIT OBJECT MANAGEMENT
