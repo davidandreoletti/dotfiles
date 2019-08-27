@@ -18,3 +18,4 @@ database
 sticker.sql
 port
 .config/gcloud/logs
+qalc.history
