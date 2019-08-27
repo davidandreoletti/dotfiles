@@ -40,6 +40,7 @@ dot_plugin_if_exists "dotfiles"                     # Expose DOTFILES_HOME, DOTF
 dot_plugin_if_exists "android"
 dot_plugin_if_exists "archive"
 dot_plugin_if_exists "backup"
+dot_plugin_if_exists "dropbox"
 dot_plugin_if_exists "cat"
 dot_plugin_if_exists "cd"
 dot_plugin_if_exists "date"
