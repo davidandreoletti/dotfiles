@@ -1,4 +1,0 @@
-Problem:   Can’t locate object method “send_raw_now” via package “Irssi::Irc::Server”
-Solution:  use Irssi::Irc;      in cap_sasl.pl
-           http://buffered.io/posts/irssi-and-sasl-on-osx
-

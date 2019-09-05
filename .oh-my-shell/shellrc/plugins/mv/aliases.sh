@@ -1,2 +1,0 @@
-alias mv='mv -v'
-
