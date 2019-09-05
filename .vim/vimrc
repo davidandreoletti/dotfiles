@@ -129,6 +129,8 @@ Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 " Markdown Live Preview
 Plug 'junegunn/vim-xmark', { 'do': 'make' }
+" Restructed Text support
+Plug 'Rykka/riv.vim'
 " Initialize plugin system
 call plug#end()
 
