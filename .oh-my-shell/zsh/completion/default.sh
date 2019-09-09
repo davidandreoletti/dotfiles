@@ -1,3 +1,7 @@
+# Suite of completions from "zsh-completion" homebrew package 
+# - must be set before "compinit"
+FPATH=/usr/local/share/zsh-completions:$FPATH
+
 # Initialize completion system
 # -U 
 autoload -Uz compinit
@@ -21,13 +25,6 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
-# Suite of completions from "zsh-completion" homebrew package 
-fpath=(/usr/local/share/zsh-completions $fpath)
-
-# Completion for installed homebrew packages, with completion profile.d support  
-HOMEBREW_PROFILED_COMPLETION_DIR=$(homebrew_package_path_prefix "/etc/profile.d/zsh_completion.sh")
-dot_if_exists "$HOMEBREW_PROFILED_COMPLETION_DIR"
 
 # Completion for installed homebrew packages, without completion profile.d support  
 HOMEBREW_FZF_COMPLETION_DIR=$(homebrew_package_path_prefix "/fzf/shell/completion.zsh")
