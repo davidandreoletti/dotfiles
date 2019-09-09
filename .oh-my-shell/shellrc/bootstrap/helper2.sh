@@ -38,15 +38,31 @@ homebrew_package_path_prefix() {
 }
 
 path_prepend() {
-    #echo '$2' +PATH "
-    PATH="$1:${PATH}"
+    local newPath="$1"
+    #echo "PATH: $newPath"
+    PATH="$newPath:$PATH"
     export PATH
 }
 
 path_append() {
-    #echo "PATH+ '$2'"
-    PATH="${PATH}:$1"
+    local newPath="$1"
+    #echo "PATH: $newPath:"
+    PATH="$PATH:$newPath"
     export PATH
+}
+
+manpath_append() {
+    local newPath="$1"
+    #echo "MANPATH: $newPath:"
+    MANPATH="$MANPATH:$newPath"
+    export MANPATH
+}
+
+manpath_prepend() {
+    local newPath="$1"
+    #echo "MANPATH: $newPath"
+    MANPATH="$newPath:$MANPATH"
+    export MANPATH
 }
 
 command_exists() {

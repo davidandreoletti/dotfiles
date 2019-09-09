@@ -1,1 +1,1 @@
-export PATH="$HOME/.fastlane/bin:$PATH"
+path_prepend "$HOME/.fastlane/bin"

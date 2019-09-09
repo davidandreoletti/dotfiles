@@ -24,7 +24,7 @@ function loadNVMFast() {
     HOMEBREW_NVM_SCRIPT=$(homebrew_package_path_prefix "/nvm/nvm.sh")
     source "$HOMEBREW_NVM_SCRIPT" --no-use
     NODE_VERSION=$(cat $NVM_DIR/alias/default)
-    export PATH="$NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH"
+    path_prepend "$NVM_DIR/versions/node/v$NODE_VERSION/bin"
 }
 
 loadNVMFast &> /dev/null
