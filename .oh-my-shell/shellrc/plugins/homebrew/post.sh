@@ -53,8 +53,8 @@ source "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT" | tee "$HOMEBREW_PACKAGES_UPGRADE_LOG
 function isCurrentUserHomebrewCellarDirectoryOwner () {
 	local fileOrDirPath="$1"
 	local resourceOwner="$(stat -c '%U' $fileOrDirPath)"
-	
-	[ "$USER" == "$resourceOwner" ]
+
+	[ "$USER" = "$resourceOwner" ]
 }
 
 # Force packages upgrades every 1d
