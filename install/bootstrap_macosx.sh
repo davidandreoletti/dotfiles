@@ -190,6 +190,8 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "trailer"         # Gi
 is_profile_admin_or_similar && homebrew_brew_cask_install "intel-haxm"
 is_profile_admin_or_similar && homebrew_brew_cask_install "zeplin"
 is_profile_admin_or_similar && homebrew_brew_cask_install "ngrok"
+is_profile_admin_or_similar && homebrew_brew_cask_install "google-cloud-sdk" && \    # Google Cloud SDK 
+    gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab 
 is_profile_admin_or_similar && homebrew_brew_cask_install "tableplus" # DataGrip alternative, with NoSQL support, until DataGrip bring support
 
 ## Browser add-ons
