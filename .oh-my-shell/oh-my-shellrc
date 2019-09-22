@@ -30,8 +30,6 @@ dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/init.sh"
 # Load shell plugins (part 1)
 dot_current_shell_plugin_if_exists "environment"
 dot_current_shell_plugin_if_exists "history"
-dot_current_shell_plugin_if_exists "completion"
-dot_current_shell_plugin_if_exists "correction"
 
 # Load app plugins 
 dot_plugin_if_exists "locale"
@@ -97,6 +95,8 @@ dot_plugin_if_exists "xcode"
 dot_plugin_if_exists "zip"
 
 # Load shell plugins (part 2)
+dot_current_shell_plugin_if_exists "completion" # Requires: gnucoreutils 
+dot_current_shell_plugin_if_exists "correction"
 dot_current_shell_plugin_if_exists "custom"
 
 # Load <computer,user> shell specific config
