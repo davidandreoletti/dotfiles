@@ -1,5 +1,5 @@
 ## http://serverfault.com/a/28649
-function f_cd_cd_up_to_nth_dir {
+function f_cd_up_to_nth_dir {
   local d=""
   limit=$1
   for ((i=1 ; i <= limit ; i++))
@@ -10,7 +10,7 @@ function f_cd_cd_up_to_nth_dir {
   if [ -z "$d" ]; then
     d=..
   fi
-  command cd $d
+  builtin cd $d
 }
 
 ## builtin cd equivalent using pushd/popd
@@ -20,20 +20,20 @@ function f_cd_cd_up_to_nth_dir {
 # cd2 ==> same as builtin cd
 # src: https://gist.github.com/mbadran/130469
 function f_cd_pushd {
-    if (("$#" > 0)); then
-        if [ "$1" == "-" ]; then
+    if [ "$#" -gt "0" ]; then
+        if [ "$1" = "-" ]; then
             pushd > /dev/null
         else
             pushd "$@" > /dev/null
         fi
     else
-        cd $HOME
+        pushd $HOME > /dev/null
     fi
 }
 
 function f_cd_popd {
     local number=0
-    if (("$#" > 0)); then
+    if [ "$#" -gt "0" ]; then
        number=$1 
     fi
 
