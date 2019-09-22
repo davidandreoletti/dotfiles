@@ -153,7 +153,7 @@ f_tmux_get_session_named_after_current_directory() {
 # Open/switch existing session or create tmux session
 # Usage: f_tmux_open_or_create_session BEHAVIOUR OPTIONAL_SESSION_NAME 
 # - BEHAVIOUR : 
-#       - interactive: Session named after interactively selection one
+#       - interactive: Session named after interactively selecting one session
 #       - cwd (default): Session named after current directory name, unless OPTIONAL_SESSION_NAME is specified
 # - OPTIONAL_SESSION_NAME : someName
 # modified src: https://github.com/junegunn/fzf/wiki/examples#tmux
