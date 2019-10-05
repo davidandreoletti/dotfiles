@@ -19,4 +19,4 @@ export KEYTIMEOUT=1
 bindkey '^R' history-incremental-search-backward
 
 # cd into string typed on the terminal if said string is a directory
-setopt auto_cd
+setopt autocd 
