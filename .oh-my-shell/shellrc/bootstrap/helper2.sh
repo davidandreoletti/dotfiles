@@ -37,6 +37,12 @@ homebrew_package_path_prefix() {
     echo "$homebrew_package_path"
 }
 
+homebrew_cask_package_path_prefix() {
+    local packageNameOrRelativePathName="$1"
+    local homebrew_package_path="$(homebrew_packages_path_prefix)/../Caskroom/$packageNameOrRelativePathName"
+    echo "$homebrew_package_path"
+}
+
 path_prepend() {
     local newPath="$1"
     #echo "PATH: $newPath"
