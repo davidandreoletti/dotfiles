@@ -97,6 +97,7 @@ is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/dupes"
 is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/services"    # Launch services in backgroun. 
 is_profile_admin_or_similar && homebrew_brew_install "git" # Get more recent version than the one shipped in Xcode
 is_profile_admin_or_similar && homebrew_brew_install "coreutils" # Apple has outdated unix tooling.
+is_profile_admin_or_similar && homebrew_brew_install "findutils" # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
 is_profile_admin_or_similar && homebrew_brew_install "gnu-sed" # Apple has outdated unix tooling. sed is another one
 is_profile_admin_or_similar && homebrew_brew_install "zsh"
     sudo bash -c "echo $(brew --prefix)/bin/zsh >> /private/etc/shells"; 
@@ -143,7 +144,6 @@ is_profile_admin_or_similar && homebrew_brew_install "z"    # Smarter cd
 is_profile_admin_or_similar && homebrew_brew_install "pv"   # pipe data flow speed progress indicator
 is_profile_admin_or_similar && homebrew_brew_install "rename" # Mass file rename
 is_profile_admin_or_similar && homebrew_brew_install "moreutils" # parallel, elekdo, etc
-is_profile_admin_or_similar && homebrew_brew_install "findutils" # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
 is_profile_admin_or_similar && homebrew_brew_install "gnu-sed" "--with-default-names" # GNU `sed`, overwriting the built-in `sed`
 is_profile_admin_or_similar && homebrew_brew_install "xml-coreutils" # Command XML utilities (eg: xml-grep)
 is_profile_admin_or_similar && homebrew_brew_install "lynx" # Terminal browser

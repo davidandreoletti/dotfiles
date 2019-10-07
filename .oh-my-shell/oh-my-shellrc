@@ -34,6 +34,7 @@ dot_current_shell_plugin_if_exists "history"
 # Load app plugins 
 dot_plugin_if_exists "locale"
 dot_plugin_if_exists "gnucoreutils"                 # Expose standard GNU tools, including to .oh-my-shellrc
+dot_plugin_if_exists "gnufindutils"                    # Expose other GNU tools, including to .oh-my-shellrc
 dot_plugin_if_exists "dotfiles"                     # Expose DOTFILES_HOME, DOTFILES_PRIVATE_HOME to other plugins
 dot_plugin_if_exists "android"
 dot_plugin_if_exists "archive"
