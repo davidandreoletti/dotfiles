@@ -159,6 +159,7 @@ is_profile_admin_or_similar && homebrew_brew_install "translate-shell" # Transla
 is_profile_admin_or_similar && homebrew_brew_install "httpie" # Curl simplified
 is_profile_admin_or_similar && homebrew_brew_install "libqalculate" # qalc: General pupose calculator, to convert unit / dimension analysis
 is_profile_admin_or_similar && homebrew_brew_install "rename" # Mass rename files.
+is_profile_admin_or_similar && homebrew_brew_install "shellcheck" # Linting for bash/sh shells scripts
 is_profile_admin_or_similar && homebrew_brew_tap_install "box/repo" && homebrew_brew_install "boz/repo/kail" # kubernetes pods console viewer
 #is_profile_admin_or_similar && homebrew_brew_install "tdsmith/ham/chirp"  # CHIRP software to configure HAM radios
 #is_profile_admin_or_similar && homebrew_brew_install "tdsmith/ham/xastir" # HAM Station Tracking / Info reporting
