@@ -143,8 +143,8 @@ tmux_session_get_or_create() {
 
 
 f_tmux_get_session_named_after_current_directory() {
-    local path="$(pwd)"
-    local name=$(basename $path)
+    local pathDir="$(pwd)"
+    local name="$(basename $pathDir)"
     # Remove all characters not allowed as session name by tmux 
     name=$(echo $name | tr -d .)
     echo $name
