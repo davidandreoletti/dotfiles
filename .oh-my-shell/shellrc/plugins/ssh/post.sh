@@ -7,7 +7,7 @@
 # Load a single ssh-agent instance across all terminal sessions
 # src: https://stackoverflow.com/a/32592488/219728
 USER_SSH_AGENT_ENV="$HOME/.ssh/.ssh_agent_env"
-agentPid=`ps -A -u $USER -o "pid,command" -c | grep ssh-agent | grep $USER | cut -d ' ' -f 1`
+agentPid=`ps -u $USER -o "pid,command" -c | grep ssh-agent | cut -d ' ' -f 1`
 if [[ "$agentPid" == "" ]]; then
     # No ssh-agent running, start it
     eval $(ssh-agent) > /dev/null
