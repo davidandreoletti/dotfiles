@@ -11,6 +11,7 @@
 .vim/bundle
 .vim/sessions
 .vim/session
+.vim/plugged
 .vim/autoload/plug.vim
 .mpd
 !.mpd/mpd.conf
@@ -18,4 +19,6 @@ database
 sticker.sql
 port
 .config/gcloud/logs
+.config/git/aliases/gitaliases
+.config/configstore/update-notifier-npm.json
 qalc.history
