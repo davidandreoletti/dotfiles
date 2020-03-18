@@ -1,6 +1,7 @@
-# Generate RSA 4k key pair
-# Usage: ssh_key_generate_rsa_4096 <no-args>
-alias ssh_key_generate_rsa_4096='ssh-keygen -t rsa -b 4096'
+# Generate RSA 4k (or ED25519) key pair
+# Usage: ssh_key_generate_rsa_4096 "email@me.com"
+alias ssh_key_generate_rsa_4096='ssh-keygen -t rsa -b 4096 -C '
+alias ssh_key_generate_ed25519='ssh-keygen -t ed25519 -C '
 
 # Fix SSH key pair. Typically you want: 
 # - .ssh directory permissions to be 700 (drwx------) 
