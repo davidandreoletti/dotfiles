@@ -16,7 +16,9 @@ bindkey '^x^e' edit-command-line
 export KEYTIMEOUT=1
 
 # Search history as in Bash with Ctrl-R 
-bindkey '^R' history-incremental-search-backward
+#bindkey '^R' history-incremental-search-backward
+# Show history with arrow up key
+bindkey '^[[A' fzf-history-widget
 
 # cd into string typed on the terminal if said string is a directory
 setopt autocd 

@@ -29,3 +29,10 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # Completion for installed homebrew packages, without completion profile.d support  
 HOMEBREW_FZF_COMPLETION_DIR=$(homebrew_package_path_prefix "/fzf/shell/completion.zsh")
 dot_if_exists "$HOMEBREW_FZF_COMPLETION_DIR"
+
+# Enables:
+# - CTRL-T as fzf file chooser.
+# -- Eg: vim <ctrl-t>
+HOMEBREW_FZF_KEYBINDINGS_DIR=$(homebrew_package_path_prefix "/fzf/shell/key-bindings.zsh")
+dot_if_exists "$HOMEBREW_FZF_KEYBINDINGS_DIR"
+
