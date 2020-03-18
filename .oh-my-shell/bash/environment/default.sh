@@ -5,7 +5,7 @@
 # https://www.gnu.org/software/bash/manual/bashref.html#The-Shopt-Builtin
 
 # Automatically prepend `cd` to directory names.
-shopt -s autocd
+#shopt -s autocd
 
 # Check the window size after each command and, if necessary, update
 # the values of `LINES` and `COLUMNS`.
