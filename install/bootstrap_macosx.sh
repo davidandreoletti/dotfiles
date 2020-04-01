@@ -87,8 +87,14 @@ homebrew_is_installed || exit 1
 ## - List of available packages
 ##  - http://braumeister.org/
 ##  - http://brewformulas.org/A
+
+# Python version for OS & utilities
 is_profile_admin_or_similar && homebrew_brew_install "python2" && homebrew_link "python2" && homebrew_postinstall "python2"
 is_profile_admin_or_similar && homebrew_brew_install "python3" && homebrew_link "python3" && homebrew_postinstall "python3"
+# Python version manager for development projects 
+is_profile_admin_or_similar && homebrew_brew_install "pyenv" # Manage python version on a per user/folder basis
+is_profile_admin_or_similar && homebrew_brew_install "pyenv-virtualenv" # pyenv plugin: virtualenv/venv
+" # Manage python version on a per user/folder basis
 is_profile_admin_or_similar && homebrew_brew_install "bash"; 
     sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"; 
     # Use Bash 4.x or better as default shell for current user
