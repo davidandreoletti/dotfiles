@@ -52,7 +52,7 @@ prompt_git() {
     BRANCH="${HEAD##*/}"
     REVISION="$(git rev-parse --short HEAD 2> /dev/null)"
     REVISION_MSG=`git show -s --format=%s $REVISION 2> /dev/null | tr "\\n" " "`
-    [[ -n "$(git status 2>/dev/null | \
+    [[ -n "$(git --no-optional-locks status --porcelain 2>/dev/null | \
         grep -F 'clean')" ]] && STATUS="" || STATUS="+"
     printf 'git:%s' "${BRANCH:-unknown}@${REVISION}${STATUS} <${REVISION_MSG}>"
 }
@@ -79,7 +79,7 @@ prompt_svn() {
     printf 'svn:%s' "${BRANCH:-unknown} ${STATUS}"
 }
 prompt_vcs() {
-    prompt_git || prompt_hg || prompt_svn
+    prompt_git # || prompt_hg || prompt_svn
 }
 # $1: Max string length to be returned. Default to number of columns in terminal
 prompt_vcs_truncated () {
