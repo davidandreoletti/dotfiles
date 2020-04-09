@@ -150,3 +150,7 @@ develop-eggs/
 *.egg-info/
 *.egg
 
+# pyenv
+#
+.pyenv/versions
+.pyenv/shims
