@@ -13,6 +13,10 @@
 #         http://tanguy.ortolo.eu/blog/article25/shrc
 #
 
+# Profile shell loading
+# - env var set to enable profiling
+#SHELLRC_PROFILE=0
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 

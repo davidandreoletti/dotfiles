@@ -1,18 +1,30 @@
 function _timeNow() {
-  #startTime=$(command date "+%s000")
-  startTime=$(command date "+%s%3N")
-  startTime="${startTime//[!0-9]/}"
-  echo "$startTime"
+  if [[ -z "$SHELLRC_PROFILE" ]]; 
+  then
+    echo "0"
+   else
+    #startTime=$(command date "+%s000")
+    startTime=$(command date "+%s%3N")
+    startTime="${startTime//[!0-9]/}"
+    echo "$startTime"
+   fi 
 }
 
 function _timeInterval() {
+  if [[ -z "$SHELLRC_PROFILE" ]]; 
+  then
+    echo "0"
+  else
     local startTime=$1
     local endTime=$2
     local runtime=$(echo "$endTime - $startTime" | bc)
     echo "$runtime"
+  fi
 }
 
 function _reportIfSlowerThan() {
+  if [[ ! -z "$SHELLRC_PROFILE" ]]; 
+  then
     local id=$1
     local measured=$2
     local max=${3:-200} # in milliseconds
@@ -21,8 +33,9 @@ function _reportIfSlowerThan() {
     if [[ $measured -gt $max ]];
     then
         #echo "$startTime > $endTime"
-        echo "$measured ms -> $id"
+        echo "$measured ms $RANDOM -> $id"
     fi 
+   fi
 }
 
 
@@ -89,7 +102,7 @@ function dot_delayed_plugins_step_if_exists() {
 
     local endTime=$(_timeNow)
     local runtime=$(_timeInterval $startTime $endTime)
-    #_reportIfSlowerThan "delayed_plugin: $stepName" $runtime 100
+    _reportIfSlowerThan "delayed_plugin: $stepName" $runtime 100
 }
 
 # Usage: dot_plugin_if_exists PLUGIN_NAME
@@ -113,7 +126,7 @@ function dot_plugin_if_exists() {
 
     local endTime=$(_timeNow)
     local runtime=$(_timeInterval $startTime $endTime)
-    #_reportIfSlowerThan "plugin: $pluginName" $runtime 90
+    _reportIfSlowerThan "plugin: $pluginName" $runtime 20
 }
 
 # Usage: dot_current_shell_plugin_if_exists PLUGIN_NAME
