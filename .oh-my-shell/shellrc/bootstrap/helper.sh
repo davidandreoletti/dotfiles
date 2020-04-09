@@ -1,7 +1,35 @@
+function _timeNow() {
+  #startTime=$(command date "+%s000")
+  startTime=$(command date "+%s%3N")
+  startTime="${startTime//[!0-9]/}"
+  echo "$startTime"
+}
+
+function _timeInterval() {
+    local startTime=$1
+    local endTime=$2
+    local runtime=$(echo "$endTime - $startTime" | bc)
+    echo "$runtime"
+}
+
+function _reportIfSlowerThan() {
+    local id=$1
+    local measured=$2
+    local max=${3:-200} # in milliseconds
+
+    # Report scripts loading slower
+    if [[ $measured -gt $max ]];
+    then
+        #echo "$startTime > $endTime"
+        echo "$measured ms -> $id"
+    fi 
+}
+
+
 # Execute commands in listed files, in the current environment
 # Usage: dot "file1.sh" "file2.sh"
-dot() {
-  for f in $*
+function dot() {
+  for f in "$@"
   do
       #echo source $(basename $f)
       . $f
@@ -10,7 +38,7 @@ dot() {
 
 # Execute commands in listed files, in the current environment, for files that exist
 # Usage: dot_if_exists "file1.sh" "file2.sh"
-dot_if_exists() {
+function dot_if_exists() {
     for f in $*
     do
         if [ -f $f ] && [ -r $f ]
@@ -26,7 +54,7 @@ dot_if_exists() {
 
 # Execute commands in listed files, in the current environment, for the very first file that exist
 # Usage: dot_if_exists "file1.sh" "file2.sh"
-dot_first_if_exists() {
+function dot_first_if_exists() {
     for f in $*
     do
         if [ -f $f ] && [ -r $f ]
@@ -38,7 +66,7 @@ dot_first_if_exists() {
     done
 }
 
-if_dir_exists() {
+function if_dir_exists() {
     [ -d $1 ] && [ -r $1 ]
     return
 }
@@ -50,39 +78,25 @@ function shell_session_step_file () {
 }
 
 # Usage: dot_delayed_plugins_step_if_exists STEP NAME
-dot_delayed_plugins_step_if_exists() {
+function dot_delayed_plugins_step_if_exists() {
     local stepName="${1:-"none"}"
 
-    #set -x
-    #startTime=$(command date "+%s%3N")
-    #startTime="${startTime//[!0-9]/}"
-    #set +x
+    local startTime=$(_timeNow)
 
     local stepFile=$(shell_session_step_file "$stepName")
     dot_if_exists "$stepFile"
     rm -f "$stepFile"
 
-    #set -x
-    #endTime=$(command date "+%s%3N")
-    #endTime="${endTime//[!0-9]/}"
-    #runtime=$(echo "$endTime - $startTime" | bc)
-    #set +x
-    # Report plugins loading slower than 200 milliseconds
-    #if [[ $runtime -gt 200 ]];
-    #then
-    #    #echo "$startTime > $endTime"
-    #    echo "$runtime ms -> $pluginName"
-    #fi
+    local endTime=$(_timeNow)
+    local runtime=$(_timeInterval $startTime $endTime)
+    #_reportIfSlowerThan "delayed_plugin: $stepName" $runtime 100
 }
 
 # Usage: dot_plugin_if_exists PLUGIN_NAME
-dot_plugin_if_exists() {
+function dot_plugin_if_exists() {
     local pluginName="${1:-"none"}"
 
-    #set -x
-    #startTime=$(command date "+%s%3N")
-    #startTime="${startTime//[!0-9]/}"
-    #set +x
+    local startTime=$(_timeNow)
 
     export SHELLRC_CURRENT_PLUGIN_DIR="${SHELLRC_PLUGINS_DIR}/${pluginName}"
     if_dir_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/bin" && path_prepend "${SHELLRC_CURRENT_PLUGIN_DIR}/bin"
@@ -97,17 +111,9 @@ dot_plugin_if_exists() {
     echo "dot_if_exists ${SHELLRC_CURRENT_PLUGIN_DIR}/post.sh" >> "$stepPostFile"
     unset SHELLRC_CURRENT_PLUGIN_DIR 
 
-    #set -x
-    #endTime=$(command date "+%s%3N")
-    #endTime="${endTime//[!0-9]/}"
-    #runtime=$(echo "$endTime - $startTime" | bc)
-    #set +x
-    # Report plugins loading slower than 200 milliseconds
-    #if [[ $runtime -gt 200 ]];
-    #then
-    #    #echo "$startTime > $endTime"
-    #    echo "$runtime ms -> $pluginName"
-    #fi
+    local endTime=$(_timeNow)
+    local runtime=$(_timeInterval $startTime $endTime)
+    #_reportIfSlowerThan "plugin: $pluginName" $runtime 90
 }
 
 # Usage: dot_current_shell_plugin_if_exists PLUGIN_NAME
@@ -117,5 +123,4 @@ dot_current_shell_plugin_if_exists() {
     dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/default.sh"
     unset SHELLRC_CURRENT_PLUGIN_DIR 
 }
-
 
