@@ -3,9 +3,14 @@ function _timeNow() {
   then
     echo "0"
    else
+    # Get time with milliseconds precision
+    startTime=${EPOCHREALTIME:0:14} # Requires bash 5.0 or zsh 5.x
+    startTime=${startTime//.}
+    
+    # Note: DO NOT USE THESE - they have different behaviour on macOS's BSD date vs GNU date
     #startTime=$(command date "+%s000")
-    startTime=$(command date "+%s%3N")
-    startTime="${startTime//[!0-9]/}"
+    #startTime=$(command date "+%s%3N")
+    #startTime="${startTime//[!0-9]/}"
     echo "$startTime"
    fi 
 }

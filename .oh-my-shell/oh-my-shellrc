@@ -31,11 +31,11 @@ dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/helper2.sh"
 dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/helper3.sh"
 dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/init.sh"
 
-__startTime=$(_timeNow)
-
 # Load shell plugins (part 1)
 dot_current_shell_plugin_if_exists "environment"
 dot_current_shell_plugin_if_exists "history"
+
+__startTime=$(_timeNow)
 
 # Load app plugins 
 dot_plugin_if_exists "locale"
