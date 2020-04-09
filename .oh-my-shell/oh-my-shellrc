@@ -31,6 +31,8 @@ dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/helper2.sh"
 dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/helper3.sh"
 dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/init.sh"
 
+__startTime=$(_timeNow)
+
 # Load shell plugins (part 1)
 dot_current_shell_plugin_if_exists "environment"
 dot_current_shell_plugin_if_exists "history"
@@ -114,6 +116,10 @@ dot_delayed_plugins_step_if_exists "post"
 
 # Load <computer,user> shell specific config
 dot_if_exists "${HOME}/.shellrc.sh"
+
+__endTime=$(_timeNow)
+__runtime=$(_timeInterval $__startTime $__endTime)
+_reportIfSlowerThan "oh-my-shell loading: " $__runtime 1
 
 # Load tmux by default
 if [ -z "$TMUX" ]; then

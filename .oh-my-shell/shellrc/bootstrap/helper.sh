@@ -33,7 +33,7 @@ function _reportIfSlowerThan() {
     if [[ $measured -gt $max ]];
     then
         #echo "$startTime > $endTime"
-        echo "$measured ms $RANDOM -> $id"
+        echo "profiling: $measured ms $RANDOM -> $id"
     fi 
    fi
 }
