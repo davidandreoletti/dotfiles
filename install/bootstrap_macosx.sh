@@ -166,6 +166,8 @@ is_profile_admin_or_similar && homebrew_brew_install "httpie" # Curl simplified
 is_profile_admin_or_similar && homebrew_brew_install "libqalculate" # qalc: General pupose calculator, to convert unit / dimension analysis
 is_profile_admin_or_similar && homebrew_brew_install "rename" # Mass rename files.
 is_profile_admin_or_similar && homebrew_brew_install "shellcheck" # Linting for bash/sh shells scripts
+is_profile_admin_or_similar && homebrew_brew_install "gnupg" # GNU implementation of PGP
+is_profile_admin_or_similar && homebrew_brew_install "pinentry-mac" # Connect gpg-agent to OSX keychain 
 is_profile_admin_or_similar && homebrew_brew_tap_install "box/repo" && homebrew_brew_install "boz/repo/kail" # kubernetes pods console viewer
 #is_profile_admin_or_similar && homebrew_brew_install "tdsmith/ham/chirp"  # CHIRP software to configure HAM radios
 #is_profile_admin_or_similar && homebrew_brew_install "tdsmith/ham/xastir" # HAM Station Tracking / Info reporting
@@ -200,6 +202,7 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "vnc-viewer"
 is_profile_admin_or_similar && homebrew_brew_cask_install "thinkorswim"
 is_profile_admin_or_similar && homebrew_brew_cask_install "zeplin"
 is_profile_admin_or_similar && homebrew_brew_cask_install "ngrok"
+is_profile_admin_or_similar && homebrew_brew_cask_install "qlvideo" # Additional supported format for Finder's Quicklook
 is_profile_admin_or_similar && homebrew_brew_cask_install "google-cloud-sdk" && \    # Google Cloud SDK 
     gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab 
 is_profile_admin_or_similar && homebrew_brew_cask_install "tableplus" # DataGrip alternative, with NoSQL support, until DataGrip bring support
