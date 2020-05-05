@@ -132,7 +132,18 @@
 [tag]
     sort = version:refname
 
+[format]
+    subjectPrefix = "[PATCH]"
+    # Certify you have the rights to submit this work under the same open source license
+    signOff = true
+
+[gpg]
+    # Default key format when signing
+    format = openpgp
+
 [user]
+    # Explicityl setup no signing key
+    signikey = NONE
     # Explicitly require user.name / user.email to be set
     # - never guess the user/email from the environment
     useConfigOnly = true

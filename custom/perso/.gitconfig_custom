@@ -1,5 +1,7 @@
 [user]
     name = David Andreoletti 
     email = david@example.com
+    signingkey = NONE
 [commit]
     template = ~/.git-commit-message
+    gpgsign = false
