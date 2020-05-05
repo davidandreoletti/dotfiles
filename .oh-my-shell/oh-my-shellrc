@@ -119,7 +119,7 @@ dot_if_exists "${HOME}/.shellrc.sh"
 
 __endTime=$(_timeNow)
 __runtime=$(_timeInterval $__startTime $__endTime)
-_reportIfSlowerThan "oh-my-shell loading: " $__runtime 1
+_reportIfSlowerThan "oh-my-shell: loading " $__runtime 1000
 
 # Load tmux by default
 if [ -z "$TMUX" ]; then

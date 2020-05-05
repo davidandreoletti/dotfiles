@@ -131,7 +131,7 @@ function dot_plugin_if_exists() {
 
     local endTime=$(_timeNow)
     local runtime=$(_timeInterval $startTime $endTime)
-    _reportIfSlowerThan "plugin: $pluginName" $runtime 20
+    _reportIfSlowerThan "plugin: $pluginName" $runtime 50
 }
 
 # Usage: dot_current_shell_plugin_if_exists PLUGIN_NAME
