@@ -168,6 +168,10 @@ is_profile_admin_or_similar && homebrew_brew_install "rename" # Mass rename file
 is_profile_admin_or_similar && homebrew_brew_install "shellcheck" # Linting for bash/sh shells scripts
 is_profile_admin_or_similar && homebrew_brew_install "gnupg" # GNU implementation of PGP
 is_profile_admin_or_similar && homebrew_brew_install "pinentry-mac" # Connect gpg-agent to OSX keychain 
+is_profile_admin_or_similar && homebrew_brew_install "hopenpgp-tools" # Verify PGP key setup best practice 
+is_profile_admin_or_similar && homebrew_brew_install "pgpdump-tools" # PGP packet/key analyser 
+is_profile_admin_or_similar && homebrew_brew_install "libfaketime" # Freeze system clock for a given application (eg: shell script)
+is_profile_admin_or_similar && homebrew_brew_install "expect" # Automate interactive program interactions
 is_profile_admin_or_similar && homebrew_brew_tap_install "box/repo" && homebrew_brew_install "boz/repo/kail" # kubernetes pods console viewer
 #is_profile_admin_or_similar && homebrew_brew_install "tdsmith/ham/chirp"  # CHIRP software to configure HAM radios
 #is_profile_admin_or_similar && homebrew_brew_install "tdsmith/ham/xastir" # HAM Station Tracking / Info reporting
