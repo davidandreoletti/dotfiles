@@ -82,7 +82,6 @@ gnupg_lint_key() {
     # - only signing subkey requires embedded cross certification with master key (https://git.gnupg.org/cgi-bin/gitweb.cgi?p=gnupg.git;a=blob;f=g10/keyedit.c;h=1456d286784d32b43d96aa19a9c8b923e2b49a83;hb=e926f30a1cda75f6334b79c303b5134f0441a3dc#l5091)
 }
 
-unset -f gnupg_create_revocation_certificate_for_key
 gnupg_create_revocation_certificate_for_key() {
     # Inspiration: https://github.com/mgorny/gen-revoke/blob/master/gen-revoke.bash
 
@@ -166,19 +165,20 @@ gnupg_create_revocation_certificate_for_key() {
 # -- https://alexcabal.com/creating-the-perfect-gpg-keypair
 # - misc:
 # -- https://gist.github.com/fervic/ad30e9f76008eade565be81cef2f8f8c
-unset -f gnupg_create_CSEA_key
 gnupg_create_CSEA_key() {
-    local OUT="$PWD/out"
+    tmpDir="$(f_create_ramfs 10)"
+    ( sleep 900s; f_delete_ramfs "$tmpDir" ) &
+    local OUT="$tmpDir/out"
 
     local DAILY_GNUPGHOME="$HOME/.gnupg"
     local DAILY_GNUPGHOME_REVOCS_DIR="$DAILY_GNUPGHOME/openpgp-revocs.d"
     mkdir -p "$DAILY_GNUPGHOME_REVOCS_DIR"
 
     # Use ephermeral directory for key manipulation, away from daily keyring
-    local LOCAL_GNUPGHOME="$(mktemp -d)"
+    local LOCAL_GNUPGHOME="$(mktemp -d --tmpdir="$tmpDir")"
     local LOCAL_GNUPGHOME_REVOCS_DIR="$LOCAL_GNUPGHOME/openpgp-revocs.d"
 
-    local LOCAL_GNUPGHOME2="$(mktemp -d)"
+    local LOCAL_GNUPGHOME2="$(mktemp -d --tmpdir="$tmpDir")"
     local LOCAL_GNUPGHOME2_REVOCS_DIR="$LOCAL_GNUPGHOME2/openpgp-revocs.d"
 
     local name="${1:-John Doe}"
@@ -187,8 +187,8 @@ gnupg_create_CSEA_key() {
     local keyPairAlgo="${4:-ed25519}"
     local keyPairAlgo2="${5:-cv25519}"
     local confirmStep="${6:-0}"
-    local stopOnFailure="${6:-0}"
-    local importIntoDailyKeyring="${7:-0}"
+    local stopOnFailure="${7:-0}"
+    local importIntoDailyKeyring="${8:-0}"
     local passphrase=""
 
     echo "Set the master key's + sub keys passphrase:"
@@ -331,15 +331,16 @@ gnupg_create_CSEA_key() {
             command cp "$cert" "$DAILY_GNUPGHOME_REVOCS_DIR/"
             [ "$?" -ne "0" ] && [ "$stopOnFailure" -eq "0" ] && echo "ERROR: Importing revocation cert $cert into $DAILY_GNUPGHOME" && return
         done
+    else
+       echo "Generated master + sub keys available at $LOCAL_GNUPGHOME"
+       echo "This directory is a RAM backed directory. Press ENTER to wipe out"
+       echo "Suggestion: Copy the directory elsewhere to not loose the generated keys"
+       read -r 
     fi
 
     #
-    # Laptop key mode ?
+    # Laptop key mode (master key + sub keys, with master skey secret removed) ?
     # FIXME - https://spin.atomicobject.com/2013/11/24/secure-gpg-keys-guide/
-
-    echo "$LOCAL_GNUPGHOME"
-    #rm -rf "$LOCAL_GNUPGHOME"
-    #rm -rf "$LOCAL_GNUPGHOME2"
 }
 
 # FIXME create utility functions to publish sub keys
@@ -367,8 +368,23 @@ gnupg_create_CSEA_key() {
 # Use text pinentry preferably over GUI pinentry
 # - https://kevinlocke.name/bits/2019/07/31/prefer-terminal-for-gpg-pinentry/
 
+###
 # Useful
+###
+
 # Delete all keys in a keychain, unattended
 # cat <(gpg -K) <(gpg -k) | grep -A1 "ssb\|sec" | sed '/^--$/d' | grep --invert-match "ssb\|sec" | sed '/^--$/d' | xargs -n1 -I {} gpg --batch --yes --delete-keys {} \;
+
+# Encrypt file
+#echo "TEST" > file.txt; gpg --output file.gpg --encrypt --recipient david@andreoletti.net file.txt; 
+
+# Sign content to be encrypted
+#shasum -a 256 file.txt | awk '{print $1}' > file.txt.sha256sum; gpg --output file.txt.sha256sum.sig --sign file.txt.sha256sum; cat file.txt.sha256sum; 
+
+# Decrypt file
+#rm file.txt; gpg --output file.txt --decrypt file.gpg;
+
+# Verify decrypted file was not compromised
+#cat file.txt; gpg --verify file.txt.sha256sum.sig
 
 
