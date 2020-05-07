@@ -142,9 +142,9 @@
     format = openpgp
 
 [user]
-    # Explicityl setup no signing key
-    signikey = NONE
-    # Explicitly require user.name / user.email to be set
+    # Setup no default signing key
+    signikey = NO_DEFAULT_KEY_FINGERPRINT
+    # Require user.name / user.email to be set
     # - never guess the user/email from the environment
     useConfigOnly = true
 

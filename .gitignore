@@ -18,6 +18,7 @@
 database
 sticker.sql
 port
+.config/gtk-2.0
 .config/gcloud/logs
 .config/git/aliases/gitaliases
 .config/configstore/update-notifier-npm.json
