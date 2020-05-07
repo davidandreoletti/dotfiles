@@ -162,6 +162,7 @@ is_profile_admin_or_similar && homebrew_brew_install "libiconv" # Convert files 
 is_profile_admin_or_similar && homebrew_brew_install "postgresql" # Postgresql DB and standard command line utils like psql. PG db not started at runtime.
 is_profile_admin_or_similar && homebrew_brew_install "proctools" # GNU pkill, pgrep
 is_profile_admin_or_similar && homebrew_brew_install "translate-shell" # Translate any languages
+is_profile_admin_or_similar && homebrew_brew_install "qrencode" # Generae QR code 
 is_profile_admin_or_similar && homebrew_brew_install "httpie" # Curl simplified
 is_profile_admin_or_similar && homebrew_brew_install "libqalculate" # qalc: General pupose calculator, to convert unit / dimension analysis
 is_profile_admin_or_similar && homebrew_brew_install "rename" # Mass rename files.
