@@ -131,7 +131,7 @@ function bootstrap_symlinking_user_files() {
     find "$repoRootDir/" -maxdepth 1 -type d -o -type f | cut -c$count- | grep -f "$repoExcluded" --invert-match | xargs -t -I {} bash -c "ln -Ffsv \"$repoRootDir/{}\" \"$userHome/{}\"";
 
     #Symlink files and folder in the repo's selected profile
-    local repoProfile="custom/${DOTFILES_PROFILE}"
+    local repoProfile="profile/${DOTFILES_PROFILE}"
     local repoProfileRootDir="`pwd`/$repoProfile"
     local repoProfileExcluded="$repoProfileRootDir/exclude.txt"
     count=`echo -n "$repoProfileRootDir" | wc -c`
