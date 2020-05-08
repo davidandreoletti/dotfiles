@@ -135,8 +135,8 @@
     forceSignAnnotated = false
 
 [format]
-    subjectPrefix = "[PATCH]"
-    # Certify you have the rights to submit this work under the project's licence
+    subjectPrefix = "PATCH"
+    # Certify you have the rights to submit this work under the project's guidelines
     signOff = true
 
 [commit]
@@ -162,9 +162,14 @@
     # Notes: Includes directives require git 1.7.10+
 
     #
-    # Misc
+    # Custom config
     #
     path = ~/.gitconfig_custom
+
+    #
+    # Custom identities
+    #
+    path = ~/.gitconfig_sendemail_identities
 
     #
     # Aliases
