@@ -131,19 +131,26 @@
 
 [tag]
     sort = version:refname
+    # GPG sign annotated tags
+    forceSignAnnotated = false
 
 [format]
     subjectPrefix = "[PATCH]"
-    # Certify you have the rights to submit this work under the same open source license
+    # Certify you have the rights to submit this work under the project's licence
     signOff = true
+
+[commit]
+    gpgsign = false
 
 [gpg]
     # Default key format when signing
     format = openpgp
+    # Use gnupg
+    program = gpg
 
 [user]
     # Setup no default signing key
-    signikey = NO_DEFAULT_KEY_FINGERPRINT
+    signingkey = NO_DEFAULT_KEY_FINGERPRINT
     # Require user.name / user.email to be set
     # - never guess the user/email from the environment
     useConfigOnly = true
