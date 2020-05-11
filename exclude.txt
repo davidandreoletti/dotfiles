@@ -1,10 +1,12 @@
+# Non dotfiles
 ^.$
 ^exclude.txt$
 ^.git$
-^custom$
+^profile$
 ^install$
 ^tmp$
 ^.DS_Store$
 ^bootstrap.sh$
 ^.TODO.org$
 ^README.rst$
+^gitignore$

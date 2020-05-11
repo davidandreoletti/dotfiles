@@ -106,15 +106,21 @@ function change_default_shell() {
     echo -n "$USER's "; chsh -s $(which $DOTFILES_DEFAULT_SHELL)
 }
 
+# Remove all lines starting with # from a file, inplace
+function filter_out_comments() {
+    local inFile="$1"
+    local outFile="$(mktemp)"
+    cat "$inFile" | sed '/^#/d' > "$outFile"
+    echo "$outFile"
+}
+
 function bootstrap_symlinking_user_files() {
-    set -x 
     local user="$1"
-    local repoRootDir="$2"
-    local userHome="$3"
-    local dottype="$repoRootDir"
+    local sourceDir="$2"
+    local destDir="$3"
 
     if [ ${DOTFILES_FORCE_INSTALL} == false ]; then
-        read -p " Warning: some $dottype will be overwritten. Are you sure? (y/n) " -n 1
+        read -p " Warning: some files/folder in $destDir will be overwritten. Are you sure? (y/n) " -n 1
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
             echo "OK :)"
@@ -124,24 +130,60 @@ function bootstrap_symlinking_user_files() {
         fi
     fi
 
-    #Symlink files and folder in the repo's common profile
-    chmod -R 700 "$repoRootDir"
-    local repoExcluded="$repoRootDir/exclude.txt"
-    count=`echo -n "$repoRootDir   " | wc -c`
-    find "$repoRootDir/" -maxdepth 1 -type d -o -type f | cut -c$count- | grep -f "$repoExcluded" --invert-match | xargs -t -I {} bash -c "ln -Ffsv \"$repoRootDir/{}\" \"$userHome/{}\"";
 
-    #Symlink files and folder in the repo's selected profile
-    local repoProfile="profile/${DOTFILES_PROFILE}"
-    local repoProfileRootDir="`pwd`/$repoProfile"
-    local repoProfileExcluded="$repoProfileRootDir/exclude.txt"
-    count=`echo -n "$repoProfileRootDir" | wc -c`
-    [[ ! -f "$repoProfileExcluded" ]] && touch "$repoProfileExcluded"
-    [[ -d "$repoProfileRootDir" ]] && find "$repoProfileRootDir/" -maxdepth 1 -type d -o -type f | cut -c$count- |  grep -f "$repoProfileExcluded" --invert-match | xargs -t -I {} bash -c "ln -Ffsv \"$repoProfileRootDir/{}\" \"$userHome/{}\"" || echo "Cannot find ${repoProfile}. Ignoring."
-    set +x
+    linkerFile="$(mktemp)"
+
+cat <<- 'EOF' >"$linkerFile"
+        #!/bin/bash
+        sourceDir="$1"                                                          # eg: /path/to/dotfiles/.foo/bar/bazfile
+        destDir="$2"                                                            # eg: $HOME
+        subPath="$3"                                                            # eg: .foo/bar/bazfile
+
+        sourcePath="$sourceDir/$subPath"            
+        destPath="$destDir/$subPath"
+
+        destPath2="$destPath/SENTINEL_VALUE"
+        action=""
+        finalDestPath="" 
+
+        while true; do
+            destPath2="$(dirname "$destPath2")"
+
+            [ "$destPath2" = "$destDir" ] && break
+            [ ! -e "$destPath2" ] && action="symlink" && finalDestPath="$destPath" && continue
+            [ ! -L "$destPath2" ] && continue
+
+            resolvedDestPath2="$(readlink --canonicalize "$destPath2")"
+            isDestPath2SymlinkingToSourceDir="$(grep -q "$sourceDir" <<< "$resolvedDestPath2"; echo $?)"
+
+            [ "$isDestPath2SymlinkingToSourceDir" -eq "0" ] && action="none" && break
+            [ -e "$resolvedDestPath2" ] && continue
+            
+            action="symlink" && finalDestPath="$destPath" && break
+        done
+
+        [ "$action" = "symlink" ] && ln -Ffsv "$sourcePath" "$destPath2"
+EOF
+
+    #chmod -R 700 "$sourceDir"
+
+    # Symlink files and folders
+    for srcDir in "$sourceDir" "profile/$DOTFILES_PROFILE"
+    do
+        local sourceExcluded="$(filter_out_comments "$srcDir/exclude.txt")"
+        count=`echo -n "$srcDir   " | wc -c`
+        find "$srcDir/" -type d -o -type f | cut -c$((count - 1))- | \
+            grep -f "$sourceExcluded" --invert-match | \
+            xargs -I '%' -L1 bash "$linkerFile" "$srcDir" "$destDir"
+            #xargs -P4 -t -I '%' -L1 bash "$linkerFile" "$srcDir" "$destDir"
+    done
 }
 
 function bootstrap_dotfiles() {
-    bootstrap_symlinking_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
+    #bootstrap_symlinking_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
+
+    HOME2="$(mktemp -d)"
+    bootstrap_symlinking_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME2"
     echo "Read .bashrc_stage0 for installation"
 }
 
@@ -150,7 +192,9 @@ function bootstrap_dotfiles_private() {
         return
     fi    
 
-    bootstrap_symlinking_user_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
+    #bootstrap_symlinking_user_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
+    HOME2="$(mktemp -d)"
+    bootstrap_symlinking_user_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME2"
 }
 
 function bootstrap_macosx() {
@@ -167,7 +211,8 @@ pushd "$(dirname "${BASH_SOURCE}")"
 case $BOOSTRAP_COMMAND in
     "macosx") bootstrap_macosx ;;
     "debian") bootstrap_debian ;;
-    "dotfiles") check_new_updates; change_default_shell; bootstrap_dotfiles; bootstrap_dotfiles_private ;;
+    "dotfiles") bootstrap_dotfiles; bootstrap_dotfiles_private ;;
+    #"dotfiles") check_new_updates; change_default_shell; bootstrap_dotfiles; bootstrap_dotfiles_private ;;
     *) >&2 echo "Command invalid. $0 -h for help" ;;
 esac
 popd
