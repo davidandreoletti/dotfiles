@@ -20,6 +20,11 @@ sticker.sql
 port
 .config/gtk-2.0
 .config/gcloud/logs
-.config/git/aliases/gitaliases
 .config/configstore/update-notifier-npm.json
 qalc.history
+# Git files obtained somewhere else
+.config/git/aliases/gitaliases
+.config/git/aliases/custom
+.config/git/identities
+.config/git/custom
+

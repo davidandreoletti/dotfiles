@@ -1,5 +1,5 @@
 [core]
-    filemode = true
+    filemode = false
     editor = vim
     excludesFile = ~/.config/git/ignore
     quotePath = true
@@ -164,12 +164,12 @@
     #
     # Custom config
     #
-    path = ~/.gitconfig_custom
+    path = ~/.config/git/custom #~/.gitconfig_custom
 
     #
     # Custom identities
     #
-    path = ~/.gitconfig_sendemail_identities
+    path = ~/.config/git/identities
 
     #
     # Aliases
@@ -180,5 +180,5 @@
     # Personal but common git aliases
     path = ~/.config/git/aliases/common
     # Custom git aliases (per profile)
-    path = ~/.gitconfig_aliases_custom 
+    path = ~/.config/git/aliases/custom 
 

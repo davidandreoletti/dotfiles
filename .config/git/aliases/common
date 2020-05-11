@@ -297,3 +297,9 @@
     # Remove all .DS_Stores from the git working directory
     # FIXME: turn into alias test this
     #find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch
+
+    #
+    # EMAIL PACTHES
+    #
+
+    mailPatches = "!f() { local revlist="$1"; local recipientEmail="$2"; git send-email "$revlist" --to "$recipientEmail" }"
