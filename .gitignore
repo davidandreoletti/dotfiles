@@ -26,5 +26,10 @@ qalc.history
 .config/git/aliases/gitaliases
 .config/git/aliases/custom
 .config/git/identities
-.config/git/custom
-
+.config/git/config_custom
+.config/git/commit-message
+.config/git/identities
+# Oh-my-shell files obtained somewhore else
+.oh-my-shell/shellrc/plugins/custom
+.config/gcloud
+.config/tasklog

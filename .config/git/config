@@ -164,7 +164,7 @@
     #
     # Custom config
     #
-    path = ~/.config/git/custom #~/.gitconfig_custom
+    path = ~/.config/git/config_custom
 
     #
     # Custom identities

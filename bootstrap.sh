@@ -143,14 +143,17 @@ cat <<- 'EOF' >"$linkerFile"
         destPath="$destDir/$subPath"
 
         destPath2="$destPath/SENTINEL_VALUE"
+        sourcePath2="$sourcePath/SENTINEL_VALUE"
         action=""
         finalDestPath="" 
+        finalSourcePath="" 
 
         while true; do
             destPath2="$(dirname "$destPath2")"
+            sourcePath2="$(dirname "$sourcePath2")"
 
             [ "$destPath2" = "$destDir" ] && break
-            [ ! -e "$destPath2" ] && action="symlink" && finalDestPath="$destPath" && continue
+            [ ! -e "$destPath2" ] && action="symlink" && finalDestPath="$destPath2" && finalSourcePath="$sourcePath2" && continue
             [ ! -L "$destPath2" ] && continue
 
             resolvedDestPath2="$(readlink --canonicalize "$destPath2")"
@@ -159,18 +162,20 @@ cat <<- 'EOF' >"$linkerFile"
             [ "$isDestPath2SymlinkingToSourceDir" -eq "0" ] && action="none" && break
             [ -e "$resolvedDestPath2" ] && continue
             
-            action="symlink" && finalDestPath="$destPath" && break
+            action="symlink" && finalDestPath="$destPath2" && finalSourcePath="$sourcePath2" && break
         done
 
-        [ "$action" = "symlink" ] && ln -Ffsv "$sourcePath" "$destPath2"
+        [ "$action" = "symlink" ] && ln -Ffsv "$finalSourcePath" "$finalDestPath"
 EOF
 
-    #chmod -R 700 "$sourceDir"
+    chmod -R 700 "$sourceDir"
 
     # Symlink files and folders
-    for srcDir in "$sourceDir" "profile/$DOTFILES_PROFILE"
+    for srcDir in "$sourceDir" "$sourceDir/profile/$DOTFILES_PROFILE"
     do
-        local sourceExcluded="$(filter_out_comments "$srcDir/exclude.txt")"
+        filterFile="$(mktemp)"
+        [ -e "$srcDir/exclude.txt" ] && filterFile="$srcDir/exclude.txt" || echo "NO_PATH_WILL_BE_MATECHD" > "$filterFile"
+        local sourceExcluded="$(filter_out_comments "$filterFile")"
         count=`echo -n "$srcDir   " | wc -c`
         find "$srcDir/" -type d -o -type f | cut -c$((count - 1))- | \
             grep -f "$sourceExcluded" --invert-match | \
@@ -180,10 +185,7 @@ EOF
 }
 
 function bootstrap_dotfiles() {
-    #bootstrap_symlinking_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
-
-    HOME2="$(mktemp -d)"
-    bootstrap_symlinking_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME2"
+    bootstrap_symlinking_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
     echo "Read .bashrc_stage0 for installation"
 }
 
@@ -192,9 +194,7 @@ function bootstrap_dotfiles_private() {
         return
     fi    
 
-    #bootstrap_symlinking_user_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
-    HOME2="$(mktemp -d)"
-    bootstrap_symlinking_user_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME2"
+    bootstrap_symlinking_user_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
 }
 
 function bootstrap_macosx() {
@@ -211,8 +211,7 @@ pushd "$(dirname "${BASH_SOURCE}")"
 case $BOOSTRAP_COMMAND in
     "macosx") bootstrap_macosx ;;
     "debian") bootstrap_debian ;;
-    "dotfiles") bootstrap_dotfiles; bootstrap_dotfiles_private ;;
-    #"dotfiles") check_new_updates; change_default_shell; bootstrap_dotfiles; bootstrap_dotfiles_private ;;
+    "dotfiles") check_new_updates; change_default_shell; bootstrap_dotfiles; bootstrap_dotfiles_private ;;
     *) >&2 echo "Command invalid. $0 -h for help" ;;
 esac
 popd
