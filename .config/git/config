@@ -1,5 +1,6 @@
 [core]
-    filemode = false
+    # macOS APFS/HFS & Linux ext4 support executable bit
+    filemode = true
     editor = vim
     excludesFile = ~/.config/git/ignore
     quotePath = true
@@ -174,7 +175,6 @@
     #
     # Aliases
     #
-
     # Popular git aliases
     path = ~/.config/git/aliases/gitaliases
     # Personal but common git aliases
