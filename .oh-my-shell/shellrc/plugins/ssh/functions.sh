@@ -9,3 +9,9 @@ f_ssh_show_key_hashes() {
     ssh-keygen -E sha256 -lf "$keyPath"
 }
 
+f_ssh_home_fix_files_and_folders_permissions () {
+    local sshDir="${1:-"$HOME/.ssh"}"
+    chmod 700 "$sshDir"
+    find -L "$sshDir" -type f -exec chmod -v 600 {} \;
+    find -L "$sshDir" -type d -exec chmod -v 700 {} \;
+}

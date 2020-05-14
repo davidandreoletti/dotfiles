@@ -1,6 +1,52 @@
 # shellcheck disable=SC2181,2155,SC2039
 
+# Export master+sub keys' public + private key as a single file
+# Usage: function "master key fingerprint"
+gnupg_export_public_and_private_key() {
+    local fingerprint="$(tr -d ' ' <<<"$1")"
+    local LOCAL_GNUPGHOME="${2:-$GNUPGHOME}"
+
+    local epheremalStorageDuration="600s"
+    local tmpDir="$(f_create_ramfs 10)"
+    ( sleep $epheremalStorageDuration; f_delete_ramfs "$tmpDir" ) &
+
+    local exportedKeysFile="$tmpDir/$fingerprint.asc"
+    command cat <( GNUPGHOME="$LOCAL_GNUPGHOME" gpg --output - --armor --export --export-options export-backup "$fingerprint" ) \
+                <( echo "@@@THIS_IS_A_SPERATOR_@@@" ) \
+                <( GNUPGHOME="$LOCAL_GNUPGHOME" gpg --output - --armor --export-secret-key --export-options export-backup "$fingerprint" ) \
+                > "$exportedKeysFile"
+
+    echo "Exported file available at $exportedKeysFile. PS: File will be deleted in $epheremalStorageDuration."
+}
+
+# Import master+sub keys public/private keys file
+# This function takes a single key file, created from gnupg_export_public_and_private_key
+#
+# Usage: function /path/to/keys.file
+gnupg_import_public_and_private_key() {
+    local exportedKeysFile="${1}"
+    local LOCAL_GNUPGHOME="${2:-$GNUPGHOME}"
+
+    csplit --quiet "$exportedKeysFile" "/@@@THIS_IS_A_SPERATOR_@@@/"
+    for f in "xx00" "xx01"
+    do
+        GNUPGHOME="$LOCAL_GNUPGHOME" gpg --import "$f"
+        rm -fv "$f"
+    done
+}
+
+#
+# Creates an ephemeral GNUPGHOME
+#
+gnupg_create_ephemeral_gnupghome() {
+    local tmpDir="${1:-$(mktemp -d)}"
+    local LOCAL_GNUPGHOME="$(mktemp -d --tmpdir="$tmpDir")"
+    echo "$LOCAL_GNUPGHOME" 
+}
+
+#
 # Utility functions to create "perfect" master key / sub key
+#
 
 # Create master key with passphrase
 # Usage: function "John Doe" "me@example.com" "1y" "capabilities" "passphrase" "/path/to/random/file.conf"
@@ -166,8 +212,9 @@ gnupg_create_revocation_certificate_for_key() {
 # - misc:
 # -- https://gist.github.com/fervic/ad30e9f76008eade565be81cef2f8f8c
 gnupg_create_CSEA_key() {
-    tmpDir="$(f_create_ramfs 10)"
-    ( sleep 900s; f_delete_ramfs "$tmpDir" ) &
+    local epheremalStorageDuration="600s"
+    local tmpDir="$(f_create_ramfs 10)"
+    ( sleep $epheremalStorageDuration; f_delete_ramfs "$tmpDir" ) &
     local OUT="$tmpDir/out"
 
     local DAILY_GNUPGHOME="$HOME/.gnupg"
@@ -175,10 +222,10 @@ gnupg_create_CSEA_key() {
     mkdir -p "$DAILY_GNUPGHOME_REVOCS_DIR"
 
     # Use ephermeral directory for key manipulation, away from daily keyring
-    local LOCAL_GNUPGHOME="$(mktemp -d --tmpdir="$tmpDir")"
+    local LOCAL_GNUPGHOME="$(gnupg_create_ephemeral_gnupghome "$tmpDir")"
     local LOCAL_GNUPGHOME_REVOCS_DIR="$LOCAL_GNUPGHOME/openpgp-revocs.d"
 
-    local LOCAL_GNUPGHOME2="$(mktemp -d --tmpdir="$tmpDir")"
+    local LOCAL_GNUPGHOME2="$(gnupg_create_ephemeral_gnupghome "$tmpDir")"
     local LOCAL_GNUPGHOME2_REVOCS_DIR="$LOCAL_GNUPGHOME2/openpgp-revocs.d"
 
     local name="${1:-John Doe}"
@@ -264,12 +311,14 @@ gnupg_create_CSEA_key() {
 
     # Export public keys only (master + all subs) as backup
     GNUPGHOME="$LOCAL_GNUPGHOME" gpg --options "$HOME/.gnupg/gpg.conf" \
-        --export --armor \
+        --armor \
+        --export --export-options export-backup \
         --output "$publicKeysFile" "$masterKeyFingerprint" > /dev/null 2>&1
 
     # Export secret keys only (master + all subs) as backup
     GNUPGHOME="$LOCAL_GNUPGHOME" gpg --options "$HOME/.gnupg/gpg.conf" \
-        --export-secret-keys --armor \
+        --armor \
+        --export-secret-keys --export-options export-backup \
         --output "$secretKeysFile" "$masterKeyFingerprint" > /dev/null 2>&1
 
     # Change master + sub key passphrase
@@ -332,7 +381,7 @@ gnupg_create_CSEA_key() {
             [ "$?" -ne "0" ] && [ "$stopOnFailure" -eq "0" ] && echo "ERROR: Importing revocation cert $cert into $DAILY_GNUPGHOME" && return
         done
     else
-       echo "Generated master + sub keys available at $LOCAL_GNUPGHOME"
+       echo "Generated master + sub keys available at $LOCAL_GNUPGHOME. IMPORTANT: Files be deleted in $epheremalStorageDuration"
        echo "This directory is a RAM backed directory. Press ENTER to wipe out"
        echo "Suggestion: Copy the directory elsewhere to not loose the generated keys"
        read -r 
@@ -341,6 +390,13 @@ gnupg_create_CSEA_key() {
     #
     # Laptop key mode (master key + sub keys, with master skey secret removed) ?
     # FIXME - https://spin.atomicobject.com/2013/11/24/secure-gpg-keys-guide/
+}
+
+f_gnupg_home_fix_files_and_folders_permissions () {
+    local gnupgDir="${1:-"$HOME/.gnupg"}"
+    chmod 700 "$gnupgDir"
+    find -L "$gnupgDir" -type f -exec chmod -v 600 {} \;
+    find -L "$gnupgDir" -type d -exec chmod -v 700 {} \;
 }
 
 # FIXME create utility functions to publish sub keys

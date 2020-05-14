@@ -195,6 +195,13 @@ function bootstrap_dotfiles_private() {
     fi    
 
     bootstrap_symlinking_user_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
+    if [ $(dotfiles_private_locked_status) = "LOCKED" ];
+    then
+        echo "WARNING: $DOTFILES_PRIVATE_DIR_PATH's files are LOCKED (ie ENCRYPTED)."
+        echo "To unlock them, run: source $DOTFILES_PRIVATE_DIR_PATH/bin/dotfiles_private_unlock"
+    else
+        echo "NOTE: $DOTFILES_PRIVATE_DIR_PATH's files are UNLOCKED (ie DECRYPTED)."
+    fi
 }
 
 function bootstrap_macosx() {
