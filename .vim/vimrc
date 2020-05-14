@@ -131,6 +131,8 @@ Plug 'dhruvasagar/vim-prosession'
 Plug 'junegunn/vim-xmark', { 'do': 'make' }
 " Restructed Text support
 Plug 'Rykka/riv.vim'
+" Shell script formatting
+Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 " Initialize plugin system
 call plug#end()
 
