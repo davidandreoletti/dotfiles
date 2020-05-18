@@ -80,3 +80,6 @@
 ** XDG_xxxx on macOS: 
 *** https://stackoverflow.com/questions/3373948/equivalents-of-xdg-config-home-and-xdg-data-home-on-mac-os-x
 *** https://github.com/majutsushi/etc/blob/master/shell-common/profile#L26
+SHELL PERF IMPROVEMENT: This is a gold mine! :-)
+* https://htr3n.github.io/2018/07/faster-zsh/#lazy-loading
+
