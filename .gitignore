@@ -22,6 +22,9 @@ port
 .config/gcloud/logs
 .config/configstore/update-notifier-npm.json
 qalc.history
+# Irssi files obtained somewhere else
+.irssi/config
+.irssi/config.autosave
 # Git files obtained somewhere else
 .config/git/aliases/gitaliases
 .config/git/aliases/custom
