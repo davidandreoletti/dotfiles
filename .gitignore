@@ -32,7 +32,11 @@ qalc.history
 .config/git/config_custom
 .config/git/commit-message
 .config/git/identities
-# Oh-my-shell files obtained somewhore else
+# Oh-my-shell files obtained somewhere else
 .oh-my-shell/shellrc/plugins/custom
 .config/gcloud
 .config/tasklog
+# Studio files obtained shomewhere else
+.studio/*
+!.studio/setup_and_run.sh
+!.studio/README

@@ -1,0 +1,5 @@
+# How to use studio ?
+
+1. Download Studio binaries at https://github.com/marian-m12l/studio
+2. Run: bash setup_and_run.sh
+3. The app will open in a new tab
