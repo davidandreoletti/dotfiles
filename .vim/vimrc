@@ -31,11 +31,6 @@ call plug#begin('~/.vim/bundle')
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Doxygen
 Plug 'vim-scripts/DoxygenToolkit.vim'
-" Snippets Engine
-Plug 'SirVer/ultisnips'
-" Predefined snippets 
-" - UltiSnips's snippets are separated from the engine.
-Plug 'honza/vim-snippets'
 " Master Vim's advanced motion and search
 Plug 'takac/vim-hardtime'
 " Ease motions
