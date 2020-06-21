@@ -47,6 +47,9 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Reveal IP address, hostname, OS version, etc. when clicking the clock
 # in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+# Show menu bar date as "Thu 18 Aug 23:58"
+# - https://www.tech-otaku.com/mac/setting-the-date-and-time-format-for-the-macos-menu-bar-clock-using-terminal/
+sudo defaults write com.apple.menuextra.clock DateFormat -string "EEE d MMM HH:mm"
 # Hide users with uid < 500
 # sudo defaults write /Library/Preferences/com.apple.loginwindow Hide500Users -bool YES
 ###############################################################################
