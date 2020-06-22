@@ -2,4 +2,4 @@
 
 # Vim editor without plugins loaded
 # Usage: vimb /path/to/file
-alias vimbr='vim -u NONE '
+alias vimn='vim -u NONE '
