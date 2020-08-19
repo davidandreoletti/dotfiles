@@ -60,7 +60,7 @@ Plug 'godlygeek/tabular'
 " C++/C/X*ML/JSON/Javascript .. syntax checking plugin
 Plug 'scrooloose/syntastic'
 " TabNine (ML based auto completion, much better)
-Plug 'zxqfl/tabnine-vim'
+"Plug 'zxqfl/tabnine-vim'
 " NeoMake
 Plug 'neomake/neomake'
 " Fast way to reach/search:
