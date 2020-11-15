@@ -175,6 +175,7 @@ is_profile_admin_or_similar && homebrew_brew_install "pgpdump-tools" # PGP packe
 is_profile_admin_or_similar && homebrew_brew_install "libfaketime" # Freeze system clock for a given application (eg: shell script)
 is_profile_admin_or_similar && homebrew_brew_install "expect" # Automate interactive program interactions
 is_profile_admin_or_similar && homebrew_brew_install "git-crypt" # Encrypt git repository
+is_profile_admin_or_similar && homebrew_brew_install "iperf" # Network performance measurement
 is_profile_admin_or_similar && homebrew_brew_install "inetutils" # GNU ftp comand and more 
 is_profile_admin_or_similar && homebrew_brew_tap_install "box/repo" && homebrew_brew_install "boz/repo/kail" # kubernetes pods console viewer
 #is_profile_admin_or_similar && homebrew_brew_install "tdsmith/ham/chirp"  # CHIRP software to configure HAM radios
@@ -210,6 +211,7 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "vnc-viewer"
 is_profile_admin_or_similar && homebrew_brew_cask_install "thinkorswim"
 is_profile_admin_or_similar && homebrew_brew_cask_install "zeplin"
 is_profile_admin_or_similar && homebrew_brew_cask_install "ngrok"
+is_profile_admin_or_similar && homebrew_brew_cask_install "parsec" # Local/Remote LAN stream
 is_profile_admin_or_similar && homebrew_brew_cask_install "qlvideo" # Additional supported format for Finder's Quicklook
 is_profile_admin_or_similar && homebrew_brew_cask_install "google-cloud-sdk" && \    # Google Cloud SDK 
     gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab 
@@ -232,6 +234,7 @@ is_profile_admin_or_similar && homebrew_brew_install "mas" # Mac App Store comma
 is_profile_admin_or_similar && homebrew_mas_install "539883307" # LINE Inc
 is_profile_admin_or_similar && homebrew_mas_install install 409203825 # Numbers
 is_profile_admin_or_similar && homebrew_mas_install install 409201541 # Pages
+is_profile_admin_or_similar && homebrew_mas_install install 1295203466 # Microsoft Remote Desktop
 
 [[ is_profile_admin || is_profile_dev_single || is_profile_dev_multi ]] && tmux_install_tpm
 
