@@ -102,6 +102,10 @@ function check_new_updates() {
     git pull
 }
 
+function check_new_shell_exists() {
+    [ -f "$DOTFILES_DEFAULT_SHELL" ] || { echo "Shell $DOTFILES_DEFAULT_SHELL does not exist. EXITING now before trashinng your new setup" && exit 1 }
+}
+
 function change_default_shell() {
     echo -n "$USER's "; chsh -s $(which $DOTFILES_DEFAULT_SHELL)
 }
@@ -218,7 +222,7 @@ pushd "$(dirname "${BASH_SOURCE}")"
 case $BOOSTRAP_COMMAND in
     "macosx") bootstrap_macosx ;;
     "debian") bootstrap_debian ;;
-    "dotfiles") check_new_updates; change_default_shell; bootstrap_dotfiles; bootstrap_dotfiles_private ;;
+    "dotfiles") check_new_updates; check_new_shell_exists && change_default_shell; bootstrap_dotfiles; bootstrap_dotfiles_private ;;
     *) >&2 echo "Command invalid. $0 -h for help" ;;
 esac
 popd
