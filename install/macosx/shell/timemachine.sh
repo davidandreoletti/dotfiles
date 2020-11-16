@@ -12,7 +12,13 @@ timemachine_add_unique_exclusion_entry() {
     local path="$1"
     local value="$2"
     local file="$3"
-    timemachine_has_entry_value "$path" "$value" "$file" || sudo rlwrap /usr/libexec/PlistBuddy -c "Add :'$path':0 string '$value'" "$file"
+    timemachine_has_entry_value "$path" "$value" "$file" || sudo /usr/libexec/PlistBuddy -c "Add :'$path':0 string '$value'" "$file"
+}
+
+timemachine_add_new_array_entry() {
+    local path="$1"
+    local file="$2"
+    sudo /usr/libexec/PlistBuddy -c "Add '$path' array" "$file"
 }
 
 timemachine_defaults() {
@@ -20,6 +26,7 @@ timemachine_defaults() {
     # Excludes additional folders from Time Machine
     sudo plutil -convert xml1 "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE" 
     ## System wide excludes
+    timemachine_has_entry_value "SkipPaths" "/Applications" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE" || timemachine_add_new_array_entry "SkipPaths" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     timemachine_add_unique_exclusion_entry "SkipPaths" "/Applications" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     ## Per User home directory excludes
     timemachine_add_unique_exclusion_entry "SkipPaths" "$HOME/Downloads" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
