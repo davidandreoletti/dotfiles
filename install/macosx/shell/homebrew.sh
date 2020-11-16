@@ -10,7 +10,7 @@ homebrew_is_installed() {
 homebrew_install() {
     message_info_show "brew package manager install ..."
     pushd /tmp
-    echo -ne '\n' | sudo ${SUDO_OPTIONS} -u "$(whoami)" ${SUDO_OPTIONS} ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    echo -ne '\n' | sudo ${SUDO_OPTIONS} -u "$(whoami)" ${SUDO_OPTIONS} /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     popd
     # Check system is ready to install software via brew
     brew doctor
