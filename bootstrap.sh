@@ -190,7 +190,7 @@ EOF
 
 function bootstrap_dotfiles() {
     bootstrap_symlinking_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
-    echo "Read .bashrc_stage0 for installation"
+    echo "Read $PWD/.oh-my-shell/oh-my-shell for installation"
 }
 
 function bootstrap_dotfiles_private() {
