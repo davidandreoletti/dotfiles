@@ -17,6 +17,14 @@ homebrew_install() {
     return $?
 }
 
+homebrew_fix_writable_dirs() {
+    local owner="$1"
+    for dir_path in "/usr/local/Homebrew" "/usr/local/etc/bash_completion.d" "/usr/local/share/doc" "/usr/local/share/man" "/usr/local/share/man/man1" "/usr/local/share/zsh" "/usr/local/share/zsh/site-functions" "/usr/local/var/homebrew/locks";
+    do
+       sudo chown -Rv "$owner:admin" -R "$dir_path"
+    done
+}
+
 # param1: package name
 homebrew_brew_install() {
     message_info_show "$1 install ..."
