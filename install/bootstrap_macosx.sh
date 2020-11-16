@@ -172,7 +172,8 @@ is_profile_admin_or_similar && homebrew_brew_install "expect" # Automate interac
 is_profile_admin_or_similar && homebrew_brew_install "git-crypt" # Encrypt git repository
 is_profile_admin_or_similar && homebrew_brew_install "iperf" # Network performance measurement
 is_profile_admin_or_similar && homebrew_brew_install "inetutils" # GNU ftp comand and more 
-is_profile_admin_or_similar && homebrew_brew_tap_install "box/repo" && homebrew_brew_install "boz/repo/kail" # kubernetes pods console viewer
+is_profile_admin_or_similar && homebrew_brew_install "java"
+is_profile_admin_or_similar && homebrew_brew_tap_install "boz/repo" && homebrew_brew_install "boz/repo/kail" # kubernetes pods console viewer
 #is_profile_admin_or_similar && homebrew_brew_install "tdsmith/ham/chirp"  # CHIRP software to configure HAM radios
 #is_profile_admin_or_similar && homebrew_brew_install "tdsmith/ham/xastir" # HAM Station Tracking / Info reporting
 
@@ -182,17 +183,13 @@ is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"
 is_profile_admin_or_similar && homebrew_brew_cask_install "firefox"
 is_profile_admin_or_similar && homebrew_brew_cask_install "google-chrome"
 is_profile_admin_or_similar && homebrew_brew_cask_install "vlc"
-is_profile_admin_or_similar && homebrew_brew_cask_install "java"
 is_profile_admin_or_similar && homebrew_brew_cask_install "jetbrains-toolbox"
-is_profile_admin_or_similar && homebrew_brew_cask_install "android-studio"
 is_profile_admin_or_similar && homebrew_brew_cask_install "sketch"
 is_profile_admin_or_similar && homebrew_brew_cask_install "calibre"
 is_profile_admin_or_similar && homebrew_brew_cask_install "sourcetree"
 is_profile_admin_or_similar && homebrew_brew_cask_install "transmission"
 is_profile_admin_or_similar && homebrew_brew_cask_install "skype"
 is_profile_admin_or_similar && homebrew_brew_cask_install "dropbox"
-is_profile_admin_or_similar && homebrew_brew_cask_install "virtualbox"
-is_profile_admin_or_similar && homebrew_brew_cask_install "virtualbox-extension-pack"
 is_profile_admin_or_similar && homebrew_brew_cask_install "cyberduck"
 is_profile_admin_or_similar && homebrew_brew_cask_install "grandperspective"
 is_profile_admin_or_similar && homebrew_brew_cask_install "1password"
