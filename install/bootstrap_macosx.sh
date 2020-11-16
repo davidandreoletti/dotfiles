@@ -93,9 +93,8 @@ is_profile_admin_or_similar && homebrew_brew_install "python3" && homebrew_link 
 # Python version manager for development projects 
 is_profile_admin_or_similar && homebrew_brew_install "pyenv" # Manage python version on a per user/folder basis
 is_profile_admin_or_similar && homebrew_brew_install "pyenv-virtualenv" # pyenv plugin: virtualenv/venv
-is_profile_admin_or_similar && homebrew_brew_install "bash"; 
-    sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"; 
-    # Use Bash 4.x or better as default shell for current user
+# Use Bash 4.x or better as default shell for current user
+is_profile_admin_or_similar && homebrew_brew_install "bash" && sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"; 
 is_profile_admin_or_similar && homebrew_brew_install "bash-completion"
 is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/dupes"
 is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/services"    # Launch services in backgroun. 
@@ -103,9 +102,7 @@ is_profile_admin_or_similar && homebrew_brew_install "git" # Get more recent ver
 is_profile_admin_or_similar && homebrew_brew_install "coreutils" # Apple has outdated unix tooling.
 is_profile_admin_or_similar && homebrew_brew_install "findutils" # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
 is_profile_admin_or_similar && homebrew_brew_install "gnu-sed" # Apple has outdated unix tooling. sed is another one
-is_profile_admin_or_similar && homebrew_brew_install "zsh"
-    sudo bash -c "echo $(brew --prefix)/bin/zsh >> /private/etc/shells"; 
-    sudo chsh -s $(brew --prefix)/bin/zsh $USER;  
+is_profile_admin_or_similar && homebrew_brew_install "zsh" && sudo bash -c "echo $(brew --prefix)/bin/zsh >> /private/etc/shells" && sudo chsh -s $(brew --prefix)/bin/zsh $USER;  
 is_profile_admin_or_similar && homebrew_brew_install "zsh-completions"
 is_profile_admin_or_similar && homebrew_brew_install "tmux"
 is_profile_admin_or_similar && homebrew_brew_install "vim"
