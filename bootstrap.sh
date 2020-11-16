@@ -183,7 +183,7 @@ EOF
         count=`echo -n "$srcDir   " | wc -c`
         find "$srcDir/" -type d -o -type f | cut -c$((count - 1))- | \
             grep -f "$sourceExcluded" --invert-match | \
-            xargs -I '%' -L1 bash "$linkerFile" "$srcDir" "$destDir"
+            xargs -I '%' -L1 bash -x "$linkerFile" "$srcDir" "$destDir" %
             #xargs -P4 -t -I '%' -L1 bash "$linkerFile" "$srcDir" "$destDir"
     done
 }
