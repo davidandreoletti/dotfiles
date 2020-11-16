@@ -81,6 +81,7 @@ read
 message_info_show "Homebrew install ..."
 homebrew_is_installed || homebrew_install  #FIXME ask for password 
 homebrew_is_installed || message_error_show "failed"
+homebrew_is_installed && is_profile_admin_or_similar && homebrew_fix_writable_dirs "$whoami"
 homebrew_is_installed || exit 1
 
 ## Command line applications
@@ -96,7 +97,6 @@ is_profile_admin_or_similar && homebrew_brew_install "pyenv-virtualenv" # pyenv 
 # Use Bash 4.x or better as default shell for current user
 is_profile_admin_or_similar && homebrew_brew_install "bash" && sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"; 
 is_profile_admin_or_similar && homebrew_brew_install "bash-completion"
-is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/dupes"
 is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/services"    # Launch services in backgroun. 
 is_profile_admin_or_similar && homebrew_brew_install "git" # Get more recent version than the one shipped in Xcode
 is_profile_admin_or_similar && homebrew_brew_install "coreutils" # Apple has outdated unix tooling.
