@@ -40,3 +40,4 @@ qalc.history
 .studio/*
 !.studio/setup_and_run.sh
 !.studio/README
+.pyenv/cache
