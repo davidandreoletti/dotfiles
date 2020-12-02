@@ -120,6 +120,7 @@ is_profile_admin_or_similar && homebrew_brew_install "newsbeuter"
 is_profile_admin_or_similar && homebrew_brew_install "rsync"
 is_profile_admin_or_similar && homebrew_brew_install "neomutt"
 is_profile_admin_or_similar && homebrew_brew_install "jenv"
+is_profile_admin_or_similar && homebrew_brew_install "htop"
 is_profile_admin_or_similar && homebrew_brew_install "nvm"
 is_profile_admin_or_similar && homebrew_brew_install "mpd"  # Music player daemon
 is_profile_admin_or_similar && homebrew_brew_install "mpc"  # Music player (simple) client
