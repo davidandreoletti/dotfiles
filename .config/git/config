@@ -157,6 +157,7 @@
     useConfigOnly = true
 
 [init]
+    defaultBranch = "master"
     templatedir = ~/.config/git/templates
 
 [include]
