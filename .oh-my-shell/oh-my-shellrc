@@ -108,6 +108,7 @@ dot_plugin_if_exists "vim_neovim"
 dot_plugin_if_exists "weather"
 dot_plugin_if_exists "xcode"
 dot_plugin_if_exists "zip"
+dot_plugin_if_exists "conda"
 
 # Load shell plugins (part 2)
 dot_current_shell_plugin_if_exists "completion" # Requires: gnucoreutils 
