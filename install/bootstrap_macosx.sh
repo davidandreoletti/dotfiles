@@ -122,6 +122,8 @@ is_profile_admin_or_similar && homebrew_brew_install "neomutt"
 is_profile_admin_or_similar && homebrew_brew_install "jenv"
 is_profile_admin_or_similar && homebrew_brew_install "htop"
 is_profile_admin_or_similar && homebrew_brew_install "nvm"
+is_profile_admin_or_similar && homebrew_brew_install "wget"
+is_profile_admin_or_similar && homebrew_brew_install "curl"
 is_profile_admin_or_similar && homebrew_brew_install "mpd"  # Music player daemon
 is_profile_admin_or_similar && homebrew_brew_install "mpc"  # Music player (simple) client
 is_profile_admin_or_similar && homebrew_brew_install "pms"  # Music player (tui) client
@@ -187,7 +189,7 @@ is_profile_admin_or_similar && homebrew_brew_tap_install "boz/repo" && homebrew_
 ## GUI applications
 #homebrew_brew_cask_workaround0
 is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"
-is_profile_admin_or_similar && homebrew_brew_cask_install "firefox"
+is_profile_admin_or_similar && homebrew_brew_cask_install "miniconda"
 is_profile_admin_or_similar && homebrew_brew_cask_install "google-chrome"
 is_profile_admin_or_similar && homebrew_brew_cask_install "vlc"
 is_profile_admin_or_similar && homebrew_brew_cask_install "jetbrains-toolbox"
