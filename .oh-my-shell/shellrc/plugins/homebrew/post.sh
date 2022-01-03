@@ -43,6 +43,8 @@ cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
         brew cask upgrade --force 2>&1;
         # - upgrade cask with "lastest" version or "auto_updates"
         brew cask upgrade --greedy --force 2>&1;
+        # Free spaces by removing old versions, logs, etc
+        brew cleanup --prune=all
     fi 
 EOF
 
