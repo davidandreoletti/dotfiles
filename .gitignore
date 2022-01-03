@@ -42,3 +42,5 @@ qalc.history
 !.studio/README
 .pyenv/cache
 .pyenv/sources
+.config/nvim/pack/kite
+.vim/pack/kite
