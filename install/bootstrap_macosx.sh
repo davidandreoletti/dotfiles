@@ -118,6 +118,7 @@ is_profile_admin_or_similar && homebrew_brew_install "neovim" && \
 is_profile_admin_or_similar && pip3_global_install "tasklog"          # Install tasklog cli
 is_profile_admin_or_similar && homebrew_brew_install "newsbeuter"
 is_profile_admin_or_similar && homebrew_brew_install "rsync"
+is_profile_admin_or_similar && homebrew_brew_install "gdb"            # versatile debugger
 is_profile_admin_or_similar && homebrew_brew_install "neomutt"
 is_profile_admin_or_similar && homebrew_brew_install "jenv"
 is_profile_admin_or_similar && homebrew_brew_install "htop"
@@ -155,6 +156,7 @@ is_profile_admin_or_similar && homebrew_brew_install "pv"   # pipe data flow spe
 is_profile_admin_or_similar && homebrew_brew_install "dive"   # Inspect docker layers
 is_profile_admin_or_similar && homebrew_brew_install "rename" # Mass file rename
 is_profile_admin_or_similar && homebrew_brew_install "moreutils" # parallel, elekdo, etc
+is_profile_admin_or_similar && homebrew_brew_install "mitmproxy" # Charles Proxy in command line
 is_profile_admin_or_similar && homebrew_brew_install "tree"
 is_profile_admin_or_similar && homebrew_brew_install "gnu-sed" # GNU `sed`, overwriting the built-in `sed`
 is_profile_admin_or_similar && homebrew_brew_install "xml-coreutils" # Command XML utilities (eg: xml-grep)
@@ -205,6 +207,7 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "1password"
 is_profile_admin_or_similar && homebrew_brew_cask_install "onyx"
 is_profile_admin_or_similar && homebrew_brew_cask_install "postman"
 is_profile_admin_or_similar && homebrew_brew_cask_install "tunnelblick"
+is_profile_admin_or_similar && homebrew_brew_cask_install "http-toolkit"
 is_profile_admin_or_similar && homebrew_brew_cask_install "textmate"
 is_profile_admin_or_similar && homebrew_brew_cask_install "trailer"         # Github Pull Requests Manager
 is_profile_admin_or_similar && homebrew_brew_cask_install "intel-haxm"
