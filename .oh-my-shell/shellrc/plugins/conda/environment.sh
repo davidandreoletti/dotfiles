@@ -1,4 +1,4 @@
 # Init conda:
 # - init code completion, etc
-eval "$(conda init)"
+[ -d "$HOME/.conda" ] || conda init --quiet 
 
