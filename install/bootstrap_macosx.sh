@@ -102,7 +102,7 @@ is_profile_admin_or_similar && homebrew_brew_install "pyenv-virtualenv" # pyenv 
 # Use Bash 4.x or better as default shell for current user
 is_profile_admin_or_similar && homebrew_brew_install "bash" && sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"; 
 is_profile_admin_or_similar && homebrew_brew_install "bash-completion"
-is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/services"    # Launch services in backgroun. 
+is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/services"    # Launch services in background. 
 is_profile_admin_or_similar && homebrew_brew_install "git" # Get more recent version than the one shipped in Xcode
 is_profile_admin_or_similar && homebrew_brew_install "coreutils" # Apple has outdated unix tooling.
 is_profile_admin_or_similar && homebrew_brew_install "findutils" # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
@@ -129,6 +129,7 @@ is_profile_admin_or_similar && homebrew_brew_install "mpd"  # Music player daemo
 is_profile_admin_or_similar && homebrew_brew_install "mpc"  # Music player (simple) client
 is_profile_admin_or_similar && homebrew_brew_install "pms"  # Music player (tui) client
 is_profile_admin_or_similar && homebrew_brew_install "unp"
+is_profile_admin_or_similar && homebrew_brew_install "rar"  # RAR files
 is_profile_admin_or_similar && homebrew_brew_install "bat"   # cat with highlighting, paging, line numbers support
 is_profile_admin_or_similar && homebrew_brew_install "fzf"   # Ctrl+R replacement for searching the history / files
 is_profile_admin_or_similar && homebrew_brew_install "fd"    # A simpler find
