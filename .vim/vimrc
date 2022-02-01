@@ -319,7 +319,9 @@ autocmd FileType java call F_DoxygenToolKit_SetJAVATags()
 autocmd BufRead,BufNewFile *.md setlocal spell
 
 " Edit crontab file in place
+" src: https://vim.fandom.com/wiki/Editing_crontab
 autocmd filetype crontab setlocal nobackup nowritebackup
+au BufEnter /private/tmp/crontab.* setl backupcopy=yes
 "}}}
 " Hidden characters{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
