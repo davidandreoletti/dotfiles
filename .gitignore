@@ -44,3 +44,7 @@ qalc.history
 .pyenv/sources
 .config/nvim/pack/kite
 .vim/pack/kite
+.vim/commands
+.vim/keymap
+.vim/settings
+.vim/ui
