@@ -1,9 +1,9 @@
 # src: https://github.com/paulirish/dotfiles/blob/master/crontab
 #
-# env EDITOR=nano crontab -e
-#
-# see .cron/ folder
-#    chmod +x *.sh
+# Usage:
+#  - crontab -e
+#  - crontab $HOME/.crontab (to notify cron of new changes)
+#  - chmod +x .cron/*.sh if new scripts were added
 
 #=====================================================================#
 #     0-23   0-59               0-30  0-6   1-12                      #
@@ -25,4 +25,5 @@
 #   20      17,18    *        *         1-5      $HOME/.cron/twice-during-weekdays.sh  > /dev/null 2>&1
 #   0       0        *        *         0        $HOME/.cron/twice-a-week.sh > /dev/null 2>&1
 #=====================================================================#
-
+# Upgrade vim pluggin once a week
+0 0 * * 0 vim +PlugUpdate +qa > /dev/null 2&>1
