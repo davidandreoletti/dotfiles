@@ -26,6 +26,11 @@ To update existing conf files (overwritten):
 
    cd dotfiles && git pull && git submodule update --recursive --remote && source bootstrap.sh -b dotfiles -s perso
 
+To prvent git from displaying every file those permission have changed (yet no file content changed)
+
+   vim THIS_REPO.git/.git/config
+      filemode = false
+
 Bootstrap MacOS machine
 -------------------------
 
