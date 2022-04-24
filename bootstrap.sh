@@ -7,7 +7,7 @@ DOTFILES_PRIVATE_DIR_PATH_SET=false
 DOTFILES_PRIVATE_DIR_PATH="`pwd`/../dotfiles-private"
 DOTFILES_DIR_PATH="`pwd`"
 
-while getopts b:fs:t:p:h flag; do
+while getopts 'b:fs:t:p:h' flag; do
   case $flag in
     b)
       BOOSTRAP_COMMAND="$OPTARG";
@@ -139,15 +139,16 @@ function bootstrap_symlinking_user_files() {
 
 cat <<- 'EOF' >"$linkerFile"
         #!/bin/bash
-        sourceDir="$1"                                                          # eg: /path/to/dotfiles/.foo/bar/bazfile
+        sourceDir="$1"                                                          # eg: /path/to/dotfiles
         destDir="$2"                                                            # eg: $HOME
         subPath="$3"                                                            # eg: .foo/bar/bazfile
 
-        sourcePath="$sourceDir/$subPath"            
+        sourcePath="$sourceDir/$subPath"
         destPath="$destDir/$subPath"
 
         destPath2="$destPath/SENTINEL_VALUE"
         sourcePath2="$sourcePath/SENTINEL_VALUE"
+
         action=""
         finalDestPath="" 
         finalSourcePath="" 
@@ -156,17 +157,23 @@ cat <<- 'EOF' >"$linkerFile"
             destPath2="$(dirname "$destPath2")"
             sourcePath2="$(dirname "$sourcePath2")"
 
-            [ "$destPath2" = "$destDir" ] && break
-            [ ! -e "$destPath2" ] && action="symlink" && finalDestPath="$destPath2" && finalSourcePath="$sourcePath2" && continue
-            [ ! -L "$destPath2" ] && continue
+	    # Same dest dir, then do nothing
+            [ "$destPath2" = "$destDir" ] && action="nothing" && break
 
-            resolvedDestPath2="$(readlink --canonicalize "$destPath2")"
-            isDestPath2SymlinkingToSourceDir="$(grep -q "$sourceDir" <<< "$resolvedDestPath2"; echo $?)"
+            # Symlink exists
+            if [ -L "$destPath2" ];
+	    then
+		    # If resolved symlink is linking to somewhere in src, no more symlink needed
+		    resolvedDestPath2="$(/usr/local/bin/greadlink --canonicalize "$destPath2")"
+		    isDestPath2SymlinkingToSourceDir="$(grep -q "$sourceDir" <<< "$resolvedDestPath2"; echo $?)"
+		    [ "$isDestPath2SymlinkingToSourceDir" -eq "0" ] && action="nothing" && break
 
-            [ "$isDestPath2SymlinkingToSourceDir" -eq "0" ] && action="none" && break
-            [ -e "$resolvedDestPath2" ] && continue
-            
-            action="symlink" && finalDestPath="$destPath2" && finalSourcePath="$sourcePath2" && break
+		    # If resolved symlink is not linking to somewhere in src, skip overwriting linking
+		    [ -e "$resolvedDestPath2" ] && action="nothing" && break
+            else
+		    # If no existing (symbolic link), then symlink src/subPath<--dest/subPath
+		    [ ! -e "$destPath2" ] && action="symlink" && finalDestPath="$destPath2" && finalSourcePath="$sourcePath2" && break
+            fi
         done
 
         [ "$action" = "symlink" ] && ln -Ffsv "$finalSourcePath" "$finalDestPath"
@@ -181,9 +188,9 @@ EOF
         [ -e "$srcDir/exclude.txt" ] && filterFile="$srcDir/exclude.txt" || echo "NO_PATH_WILL_BE_MATECHD" > "$filterFile"
         local sourceExcluded="$(filter_out_comments "$filterFile")"
         count=`echo -n "$srcDir   " | wc -c`
-        find "$srcDir/" -type d -o -type f | cut -c$((count - 1))- | \
+        find "$srcDir/" -type d -o -type f | cut -c$((count - 0))- | \
             grep -f "$sourceExcluded" --invert-match | \
-            xargs -I '%' -L1 bash -x "$linkerFile" "$srcDir" "$destDir" %
+            xargs -I '%' -L1 bash "$linkerFile" "$srcDir" "$destDir" %
             #xargs -P4 -t -I '%' -L1 bash "$linkerFile" "$srcDir" "$destDir"
     done
 }
