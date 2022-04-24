@@ -15,41 +15,99 @@ I have custom settings for various software I used everyday.
 GET STARTED:
 =============
 
-Bootstrap configuration files
----------------------------------
-
-First conf files installation (into your HOME dir):
-
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b dotfiles -s perso -p "`pwd`/../dotfiles-private"
-
-To update existing conf files (overwritten):
-
-   cd dotfiles && git pull && git submodule update --recursive --remote && source bootstrap.sh -b dotfiles -s perso
-
-To prvent git from displaying every file those permission have changed (yet no file content changed)
-
-   vim THIS_REPO.git/.git/config
-      filemode = false
-
 Bootstrap MacOS machine
 -------------------------
 
-Current user as **MacOS standard user**
+1. Prerequisites:
+- Xcode + Licence Accepted
+    sudo xcodebuild -license
+- bash
+- Grant Terminal Full Disk Access: 
+    System Preferences > Security & Privacy > Privacy tab > Full Disk Access >  + Terminal.app
+    Kill Terminal
 
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b macosx -s normal -p "`pwd`/../dotfiles-private"
+2. Select bootstrap script profile matching the user's account purpose
+
+IMPORTANT: Your most recents mac user setup was build in this order: 
+- account davidandreoletti: profile primary_dev
+- account administrator:    profile admin
+- account davidis:          profile dev_multi
+
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Feature                          | macOS standard user  | macOS Administrator  | macOs Primary Dev  | macOS Nthy Developer  |
++==================================+======================+======================+====================+=======================+
+| Xcode Command Line tools install | y                    | y                    | y                  | y                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Homebrew install                 | y                    | y                    | y                  | y                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Homebrew packages installation   | n                    | y                    | y                  | n                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Browser addons installation      | n                    | y                    | y                  | n                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Mac App Store apps installation  | n                    | y                    | y                  | n                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Tmux plugins                     | n                    | y                    | y                  | y                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Time Machine backup setup        | y                    | y                    | y                  | y                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| SSD perf optimization setup      | y                    | y                    | y                  | y                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Remote SSH                       | n                    | n                    | n                  | n                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Remote VNC                       | n                    | n                    | n                  | n                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Enable Guest Account             | n                    | y                    | y                  | n                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Create Administrator account     | n                    | n                    | y                  | n                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
 
 
-Current user as **MacOS Administrator privileges user**
+3. Run bootstrap script matching to the user's account purpose
 
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b macosx -s admin -p "`pwd`/../dotfiles-private"
+Current user will be a **MacOS standard user**:
 
-Current user as **single developer account on the machine**
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b macosx -s normal -p "`pwd`/../dotfiles-private"
 
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b macosx -s dev_single -p "`pwd`/../dotfiles-private"
+Current user will be a **MacOS Administrator privileges user**
 
-Current user as **one of the many developer accounts on the machine**
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b macosx -s admin -p "`pwd`/../dotfiles-private"
 
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b macosx -s dev_multi -p "`pwd`/../dotfiles-private"
+Current user will be a  **primary developer account on the machine**
+
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b macosx -s dev_single -p "`pwd`/../dotfiles-private"
+
+Current user will be a  **one of the secondaries developer accounts on the machine**
+
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b macosx -s dev_multi -p "`pwd`/../dotfiles-private"
+
+
+
+Bootstrap configuration files
+---------------------------------
+
+1. Select bootstrap conf script profile matching the user's account purpose
+
+IMPORTANT: Your most recents mac user setup was build in this order: 
+- account davidandreoletti: profile perso
+- account davidis:          profile ?
+
+
+2. Run bootstratp conf script matching the selected profile
+
+a. Install conf files into your HOME dir:
+
+   bash
+   git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b dotfiles -s perso -p "`pwd`/../dotfiles-private"
+
+b. (if boostrap script was edited only) Update existing conf files (overwritten):
+
+   bash
+   cd dotfiles && git pull && git submodule update --recursive --remote && source bootstrap.sh -b dotfiles -s perso
+
+c. Prevent git from displaying every file those permission have changed (yet no file content changed)
+
+   vim THIS_REPO.git/.git/config
+      filemode = false
 
 DOCUMENTATION
 =============
