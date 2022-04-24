@@ -95,7 +95,7 @@ homebrew_is_installed || exit 1
 ##  - http://brewformulas.org/A
 
 # Python version for OS & utilities
-is_profile_admin_or_similar && homebrew_brew_install "python3" && homebrew_link "python3" && homebrew_postinstall "python3"
+is_profile_admin_or_similar && homebrew_brew_install "python3" && homebrew_brew_link "python3" && homebrew_postinstall "python3"
 # Python version manager for development projects 
 is_profile_admin_or_similar && homebrew_brew_install "pyenv" # Manage python version on a per user/folder basis
 is_profile_admin_or_similar && homebrew_brew_install "pyenv-virtualenv" # pyenv plugin: virtualenv/venv
