@@ -44,7 +44,7 @@ function account_admin_create() {
     sudo ${SUDO_OPTIONS} $DSCL . create /Users/${USERNAME} UniqueID 550
     sudo ${SUDO_OPTIONS} $DSCL . create /Users/${USERNAME} PrimaryGroupID 80      # 80 = Admin User   20 = Regular User
     #dudo ${SUDO_OPTIONS} $DSCL . append /Groups/admin GroupMembership corybohon
-    sudo ${SUDO_OPTIONS} $DSCL . create /Users/${USERNAME} UserShell /bin/bash
+    sudo ${SUDO_OPTIONS} $DSCL . create /Users/${USERNAME} UserShell /bin/zsh
     sudo ${SUDO_OPTIONS} $DSCL . create /Users/${USERNAME} NFSHomeDirectory /Users/${USERNAME}
     sudo ${SUDO_OPTIONS} cp -R /System/Library/User\ Template/English.lproj /Users/${USERNAME}
     sudo ${SUDO_OPTIONS} chown -R ${USERNAME}:staff /Users/${USERNAME}
