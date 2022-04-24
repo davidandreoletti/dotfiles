@@ -111,9 +111,9 @@ is_profile_admin_or_similar && homebrew_brew_install "zsh" && sudo bash -c "echo
 is_profile_admin_or_similar && homebrew_brew_install "zsh-completions"
 is_profile_admin_or_similar && homebrew_brew_install "tmux"
 is_profile_admin_or_similar && homebrew_brew_install "vim"
-is_profile_admin_or_similar && homebrew_brew_install "neovim" && \
-    pip2_global_install "neovim" && pip3_global_install "neovim" && \ # Install neovim python package
-    pip2_global_install "pynvim" && pip3_global_install "pynvim"      # Install neovim python bindings package
+
+# Install neovim, neovim python package, neovim python bindings package
+is_profile_admin_or_similar && homebrew_brew_install "neovim" && pip3_global_install "neovim" && pip3_global_install "pynvim" 
 
 is_profile_admin_or_similar && pip3_global_install "tasklog"          # Install tasklog cli
 is_profile_admin_or_similar && homebrew_brew_install "newsbeuter"
