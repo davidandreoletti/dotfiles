@@ -107,8 +107,10 @@ is_profile_admin_or_similar && homebrew_brew_install "git" # Get more recent ver
 is_profile_admin_or_similar && homebrew_brew_install "coreutils" # Apple has outdated unix tooling.
 is_profile_admin_or_similar && homebrew_brew_install "findutils" # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
 is_profile_admin_or_similar && homebrew_brew_install "gnu-sed" # Apple has outdated unix tooling. sed is another one
-is_profile_admin_or_similar && homebrew_brew_install "zsh" && sudo bash -c "echo $(brew --prefix)/bin/zsh >> /private/etc/shells" && sudo chsh -s $(brew --prefix)/bin/zsh $USER;  
+
+is_profile_admin_or_similar && homebrew_brew_install "zsh" && sudo bash -c "echo $(brew --prefix)/bin/zsh >> /private/etc/shells" && sudo chsh -s $(brew --prefix)/bin/zsh $USER; 
 is_profile_admin_or_similar && homebrew_brew_install "zsh-completions"
+
 is_profile_admin_or_similar && homebrew_brew_install "tmux"
 is_profile_admin_or_similar && homebrew_brew_install "vim"
 
@@ -136,7 +138,7 @@ is_profile_admin_or_similar && homebrew_brew_install "fd"    # A simpler find
 is_profile_admin_or_similar && homebrew_brew_install "tldr"  # Short manpage version, with example for most comman use cases
 is_profile_admin_or_similar && homebrew_brew_install "ncdu"  #Replacement for Grandperspective and du
 is_profile_admin_or_similar && homebrew_brew_install "openssh" # Newer SSH Server requires a more recent SSH client than currently shipped in OSX
-is_profile_admin_or_similar && homebrew_brew_install "irssi" "--with-perl=yes" "--with-proxy"
+is_profile_admin_or_similar && homebrew_brew_install "irssi" # IRC client. Note: --with-perl=yes --with-proxy included since brew irssi formula v1.2.3
 is_profile_admin_or_similar && homebrew_brew_install "rlwrap"  # Needed to execute PlistBuddy in command mode
 is_profile_admin_or_similar && homebrew_brew_install "tcpdump"  # TCP traffic sniffing
 is_profile_admin_or_similar && homebrew_brew_install "ngrep"  # grep for network resource
@@ -144,7 +146,6 @@ is_profile_admin_or_similar && homebrew_brew_tap_install "burntsushi/ripgrep" "h
 is_profile_admin_or_similar && homebrew_brew_install "ripgrep-bin"  # faster grep
 is_profile_admin_or_similar && homebrew_brew_install "jq"  # JSON manipulator
 is_profile_admin_or_similar && homebrew_brew_install "python-yq"  # YAML manipulator. Requires: jq
-is_profile_admin_or_similar && homebrew_brew_install "aq"  # Fast file content search
 is_profile_admin_or_similar && homebrew_brew_install "ack" # Fast file content search too
 is_profile_admin_or_similar && homebrew_brew_install "trash" # Move files into macOS user's trash bin (as if done from the Finder)
 is_profile_admin_or_similar && homebrew_brew_install "entr" # Run command on files that have changed
@@ -178,7 +179,7 @@ is_profile_admin_or_similar && homebrew_brew_install "shellcheck" # Linting for 
 is_profile_admin_or_similar && homebrew_brew_install "gnupg" # GNU implementation of PGP
 is_profile_admin_or_similar && homebrew_brew_install "pinentry-mac" # Connect gpg-agent to OSX keychain 
 is_profile_admin_or_similar && homebrew_brew_install "hopenpgp-tools" # Verify PGP key setup best practice 
-is_profile_admin_or_similar && homebrew_brew_install "pgpdump-tools" # PGP packet/key analyser 
+is_profile_admin_or_similar && homebrew_brew_install "pgpdump" # PGP packet/key analyser 
 is_profile_admin_or_similar && homebrew_brew_install "libfaketime" # Freeze system clock for a given application (eg: shell script)
 is_profile_admin_or_similar && homebrew_brew_install "expect" # Automate interactive program interactions
 is_profile_admin_or_similar && homebrew_brew_install "git-crypt" # Encrypt git repository
@@ -191,7 +192,7 @@ is_profile_admin_or_similar && homebrew_brew_tap_install "boz/repo" && homebrew_
 
 ## GUI applications
 #homebrew_brew_cask_workaround0
-is_profile_admin_or_similar && homebrew_brew_tap_install "caskroom/cask"
+is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/cask"
 is_profile_admin_or_similar && homebrew_brew_cask_install "miniconda"
 is_profile_admin_or_similar && homebrew_brew_cask_install "google-chrome"
 is_profile_admin_or_similar && homebrew_brew_cask_install "vlc"
@@ -219,28 +220,31 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "zeplin"
 is_profile_admin_or_similar && homebrew_brew_cask_install "ngrok"
 is_profile_admin_or_similar && homebrew_brew_cask_install "parsec" # Local/Remote LAN stream
 is_profile_admin_or_similar && homebrew_brew_cask_install "qlvideo" # Additional supported format for Finder's Quicklook
-is_profile_admin_or_similar && homebrew_brew_cask_install "google-cloud-sdk" && \    # Google Cloud SDK 
-    gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab 
 is_profile_admin_or_similar && homebrew_brew_cask_install "tableplus" # DataGrip alternative, with NoSQL support, until DataGrip bring support
 
+# Google Cloud SDK 
+shell_name="$( basename \"echo $SHELL\" )"
+is_profile_admin_or_similar && homebrew_brew_cask_install "google-cloud-sdk" && \
+	source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.${shell_name}.inc" && \
+	gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab 
+
 ## Browser add-ons
-is_profile_admin_or_similar && $SHELL -x install/browsers/chrome/extensions/install.sh
-is_profile_admin_or_similar && $SHELL -x install/browsers/firefox/extensions/install.sh
- 
-is_profile_admin_or_similar && pip2_global_install "awsli" && pip3_global_install "awscli"
+pushd "$BOOSTRAP_DIR"
+is_profile_admin_or_similar && $SHELL -x ../install/browsers/chrome/extensions/install.sh
+is_profile_admin_or_similar && $SHELL -x ../install/browsers/firefox/extensions/install.sh
+popd
+
+is_profile_admin_or_similar && pip3_global_install "awscli"
 is_profile_admin_or_similar && pip3_global_install "buku[server]" # Browser independent bookmark manager, with standalone server
 
 # https://developer.apple.com/library/content/technotes/tn2459/_index.html
 is_profile_admin_or_similar && todolist_add_new_entry "Allow Kernel extension from Intel XAM to run: System Preferences > Seucrity Privacy > General Tab > Allow button"
 
-is_profile_admin_or_similar && todolist_add_new_entry "Install Orbicule Undercover: http://www.orbicule.com/undercover/mac/download.php"
-is_profile_admin_or_similar && todolist_add_new_entry "Setup License in Orbicule Undercover"
-
 is_profile_admin_or_similar && homebrew_brew_install "mas" # Mac App Store command line too
 is_profile_admin_or_similar && homebrew_mas_install "539883307" # LINE Inc
-is_profile_admin_or_similar && homebrew_mas_install install 409203825 # Numbers
-is_profile_admin_or_similar && homebrew_mas_install install 409201541 # Pages
-is_profile_admin_or_similar && homebrew_mas_install install 1295203466 # Microsoft Remote Desktop
+is_profile_admin_or_similar && homebrew_mas_install "409203825" # Numbers
+is_profile_admin_or_similar && homebrew_mas_install "409201541" # Pages
+is_profile_admin_or_similar && homebrew_mas_install "1295203466" # Microsoft Remote Desktop
 
 [[ is_profile_admin || is_profile_dev_single || is_profile_dev_multi ]] && tmux_install_tpm
 
