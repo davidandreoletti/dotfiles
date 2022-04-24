@@ -1,3 +1,8 @@
+
+CHROME_BIN="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+[ ! -f "$CHROME_BIN" ] && echo "Chrome not installed. Skipping extensions intallation." && exit 0
+
 function forceUserToInstallExtensions() {
     PER_USER_CHROME_EXTENSIONS_DIR_PATH="$HOME/Library/Application Support/Google/Chrome/External Extensions/"
     mkdir -pv "$PER_USER_CHROME_EXTENSIONS_DIR_PATH"

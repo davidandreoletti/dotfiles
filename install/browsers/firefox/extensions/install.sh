@@ -1,5 +1,7 @@
 FIREFOX_BIN="/Applications/Firefox.app/Contents/MacOS/firefox-bin"
 
+[ ! -f "$FIREFOX_BIN" ] && echo "Firefox not installed. Skipping extensions intallation." && exit 0
+
 echo "Firefox browser will open multiple window, each asking to install a different add-ons"
 echo "Once all add-ons install, kill the firefox browser instance to resume the installation"
 $FIREFOX_BIN --browser \
