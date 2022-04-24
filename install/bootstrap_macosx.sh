@@ -86,7 +86,7 @@ read
 message_info_show "Homebrew install ..."
 homebrew_is_installed || homebrew_install  #FIXME ask for password 
 homebrew_is_installed || message_error_show "failed"
-homebrew_is_installed && is_profile_admin_or_similar && homebrew_fix_writable_dirs "$whoami"
+homebrew_is_installed && is_profile_admin_or_similar && homebrew_fix_writable_dirs "$(whoami)"
 homebrew_is_installed || exit 1
 
 ## Command line applications
