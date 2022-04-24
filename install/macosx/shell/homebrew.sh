@@ -86,7 +86,7 @@ homebrew_brew_cask_workaround0() {
 
 #param1: appname
 homebrew_brew_cask_install() {
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" brew cask install "$1"
+    sudo ${SUDO_OPTIONS} -u "$(whoami)" brew install --cask "$1"
 }
 
 # param1: package name
