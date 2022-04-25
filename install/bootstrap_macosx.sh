@@ -248,6 +248,10 @@ is_profile_admin_or_similar && homebrew_mas_install "1295203466" # Microsoft Rem
 
 [[ is_profile_admin || is_profile_dev_single || is_profile_dev_multi ]] && tmux_install_tpm
 
+# Fixing git-crypt no visible in SourceTree
+# src: https://jira.atlassian.com/browse/SRCTREE-2511?focusedCommentId=2835134&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-2835134
+is_profile_admin_or_similar && echo "Fixing SourceTree not having git-crypt in its default path" && sudo ln -s /usr/local/bin/git-crypt /Applications/SourceTree.app/Contents/Resources/bin/
+
 # Set OSX user/system defaults
 bash "${BOOSTRAP_DIR}/macosx/shell/defaults.sh"
 timemachine_defaults
