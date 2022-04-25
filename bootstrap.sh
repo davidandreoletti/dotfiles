@@ -6,6 +6,7 @@ DOTFILES_DEFAULT_SHELL="zsh"
 DOTFILES_PRIVATE_DIR_PATH_SET=false
 DOTFILES_PRIVATE_DIR_PATH="`pwd`/../dotfiles-private"
 DOTFILES_DIR_PATH="`pwd`"
+GREADLINK_BIN="/usr/local/bin/greadlink"
 
 while getopts 'b:fs:t:p:h' flag; do
   case $flag in
@@ -107,7 +108,8 @@ function check_new_shell_exists() {
 }
 
 function change_default_shell() {
-    echo -n "$USER's "; chsh -s $(which $DOTFILES_DEFAULT_SHELL)
+    echo "INFO: $USER wants a new shell: $(which $DOTFILES_DEFAULT_SHELL)"
+    chsh -s $(which $DOTFILES_DEFAULT_SHELL)
 }
 
 # Remove all lines starting with # from a file, inplace
@@ -123,11 +125,18 @@ function bootstrap_symlinking_user_files() {
     local sourceDir="$2"
     local destDir="$3"
 
+    if ! command -v $GREADLINK_BIN > /dev/null 2>&1
+    then
+        echo "Error: Missing $GREADLINK_BIN. Exiting."
+        exit 1
+    fi
+
     if [ ${DOTFILES_FORCE_INSTALL} == false ]; then
-        read -p " Warning: some files/folder in $destDir will be overwritten. Are you sure? (y/n) " -n 1
+        echo "INFO: $user will have symlinked configuration files from $destDir to $sourceDir"
+        read -p "WARNING: Some files/folder in $destDir will be overwritten. Are you sure? (y/n) " -n 1
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
-            echo "OK :)"
+            echo "OK :). Symlinking files ...."
         else
             echo "Cancelled"
             exit 0
@@ -197,22 +206,71 @@ EOF
 
 function bootstrap_dotfiles() {
     bootstrap_symlinking_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
-    echo "Read $PWD/.oh-my-shell/oh-my-shell for installation"
+}
+
+function bootstrap_oh_my_shell() {
+    # - OSX:      . ~/.oh-my-shell/oh-my-shellrc into ~/.bash_profile ("Interactive Login"/"Interactive" shell)
+    # - Ubuntu:   . ~/.oh-my-shell/oh-my-shellrc into ~/.bash_profile ("Interactive Login" shell)
+    #                                               into ~/.bashrc       ("Interactive" shell)
+    # ZSH shell:
+    #
+    # - OSX:      . ~/.oh-my-shell/oh-my-shellrc into ~/.zshrc ("Interactive Login"/"Interactive" shell)
+    # - Ubuntu:   . ~/.oh-my-shell/oh-my-shellrc into ~/.zshrc ("Interactive Login" shell)
+    #
+    # Source: http://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
+    #         http://tanguy.ortolo.eu/blog/article25/shrc
+
+    shell_name="$(basename $SHELL)"
+    shell_file="/tmp/.unknownrc"
+
+    # Check shell type
+    if [ "$shell_name"  = "bash" ];
+    then
+        shell_file="$HOME/.bash_profile"
+    elif [ "$shell_name"  = "zsh" ];
+    then
+        shell_file="$HOME/.zshrc"
+    else
+        echo "Error: Shell not supported: $SHELL. Exiting"
+        exit 1
+    fi
+
+    # Enforce possibly empty file presence
+    touch "$shell_file"
+
+    # Setup oh_my_shellrc entry point when missing
+    load_statment=". ~/.oh-my-shell/oh-my-shellrc"
+
+    if ! grep -Fxq "$load_statment" "$shell_file";
+    then
+        echo "Configuring loading oh-my-shell at shell startup: $load_statment ---> $shell_file"
+        echo "$load_statment" >> "$shell_file"
+    else
+        echo "Already configured loading oh-my-shell at shell startup: $load_statment ---> $shell_file"
+    fi
 }
 
 function bootstrap_dotfiles_private() {
     if [ ${DOTFILES_PRIVATE_DIR_PATH_SET} == false ]; then
+        echo "WARNING: No dotfiles-private dir set"
         return
     fi    
 
-    bootstrap_symlinking_user_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
-    if [ $(dotfiles_private_locked_status) = "LOCKED" ];
+    # Simplify private dir path
+    DOTFILES_PRIVATE_DIR_PATH="$($GREADLINK_BIN --canonicalize "$DOTFILES_PRIVATE_DIR_PATH")"
+
+    if [ "$($DOTFILES_PRIVATE_DIR_PATH/bin/dotfiles_private_locked_status $DOTFILES_PRIVATE_DIR_PATH )" = "LOCKED" ];
     then
-        echo "WARNING: $DOTFILES_PRIVATE_DIR_PATH's files are LOCKED (ie ENCRYPTED)."
-        echo "To unlock them, run: source $DOTFILES_PRIVATE_DIR_PATH/bin/dotfiles_private_unlock"
+        echo "WARNING: $DOTFILES_PRIVATE_DIR_PATH's files are LOCKED (ie ENCRYPTED). Symlinking fils requires unlocked files."
+        echo "To unlock files, run: bash $DOTFILES_PRIVATE_DIR_PATH/bin/dotfiles_private_unlock \"$DOTFILES_PRIVATE_DIR_PATH\""
     else
         echo "NOTE: $DOTFILES_PRIVATE_DIR_PATH's files are UNLOCKED (ie DECRYPTED)."
+        bootstrap_symlinking_user_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
     fi
+}
+
+function oh_my_shell_ready() {
+    echo "oh_my_shell is ready. Open a new terminal to start using it"
 }
 
 function bootstrap_macosx() {
@@ -224,12 +282,12 @@ function bootstrap_debian() {
 }
 
 # Main
-pushd "$(dirname "${BASH_SOURCE}")"
+pushd "$(dirname "${BASH_SOURCE}")" 1> /dev/null 2>&1 
 ## Args preconditions
 case $BOOSTRAP_COMMAND in
     "macosx") bootstrap_macosx ;;
     "debian") bootstrap_debian ;;
-    "dotfiles") check_new_updates; check_new_shell_exists && change_default_shell; bootstrap_dotfiles; bootstrap_dotfiles_private ;;
+    "dotfiles") check_new_updates; check_new_shell_exists && change_default_shell; bootstrap_dotfiles; bootstrap_oh_my_shell; bootstrap_dotfiles_private; oh_my_shell_ready ;;
     *) >&2 echo "Command invalid. $0 -h for help" ;;
 esac
-popd
+popd 1> /dev/null 2>&1

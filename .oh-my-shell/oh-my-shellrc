@@ -1,19 +1,4 @@
-#
-# Bash shell:
-#
-# - OSX:      . ~/.oh-my-shell/oh-my-shellrc into ~/.bash_profile ("Interactive Login"/"Interactive" shell)
-# - Ubuntu:   . ~/.oh-my-shell/oh-my-shellrc into ~/.bash_profile ("Interactive Login" shell)
-#                                               into ~/.bashrc       ("Interactive" shell)
-# ZSH shell:
-#
-# - OSX:      . ~/.oh-my-shell/oh-my-shellrc into ~/.zshrc ("Interactive Login"/"Interactive" shell)
-# - Ubuntu:   . ~/.oh-my-shell/oh-my-shellrc into ~/.zshrc ("Interactive Login" shell)
-#
-# Source: http://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
-#         http://tanguy.ortolo.eu/blog/article25/shrc
-#
-
-# Profile shell loading
+# Profile shell loading entry point
 # - env var set to enable profiling
 #SHELLRC_PROFILE=0
 
