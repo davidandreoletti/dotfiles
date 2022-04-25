@@ -103,7 +103,7 @@ function check_new_updates() {
 }
 
 function check_new_shell_exists() {
-    [ -f "$DOTFILES_DEFAULT_SHELL" ] || { echo "Shell $DOTFILES_DEFAULT_SHELL does not exist. EXITING now before trashinng your new setup" && exit 1 }
+    [ -f "$(which $DOTFILES_DEFAULT_SHELL)" ] || ( echo "Shell $DOTFILES_DEFAULT_SHELL does not exist. EXITING now before trashinng your new setup"; exit 1 )
 }
 
 function change_default_shell() {
