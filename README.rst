@@ -85,24 +85,24 @@ Current user will be a  **one of the secondaries developer accounts on the machi
 Bootstrap configuration files
 ---------------------------------
 
-1. Select bootstrap conf script profile matching the user's account purpose
+1. Prerequisites:
+- ```bootstrap -b macosx -s ...``` with homebrew packages installed minimun
+
+2. Select bootstrap conf script profile matching the user's account purpose
 
 IMPORTANT: Your most recents mac user setup was build in this order: 
 - account davidandreoletti: profile perso
 - account davidis:          profile ?
 
+3. Run bootstratp conf script matching the selected profile
 
-2. Run bootstratp conf script matching the selected profile
+a. (if boostrap config script has never been called) Install conf files into your HOME dir:
 
-a. Install conf files into your HOME dir:
+   git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash bootstrap.sh -b dotfiles -s perso -p "`pwd`/../dotfiles-private"
 
-   bash
-   git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && source bootstrap.sh -b dotfiles -s perso -p "`pwd`/../dotfiles-private"
+b. (if boostrap config script has been edited since) Update existing conf files (overwritten):
 
-b. (if boostrap script was edited only) Update existing conf files (overwritten):
-
-   bash
-   cd dotfiles && git pull && git submodule update --recursive --remote && source bootstrap.sh -b dotfiles -s perso
+   cd dotfiles && git pull && git submodule update --recursive --remote && bash bootstrap.sh -b dotfiles -s perso
 
 c. Prevent git from displaying every file those permission have changed (yet no file content changed)
 
