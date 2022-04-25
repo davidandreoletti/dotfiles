@@ -253,8 +253,37 @@ bash "${BOOSTRAP_DIR}/macosx/shell/defaults.sh"
 timemachine_defaults
 
 # Set TimeMachine backup
-# (Failed setup do not stop this script)
-sudo tmutil setdestination -a "smb://${CONFIG_MACOSX_TIMEMACHINE_USERNAME}:${CONFIG_MACOSX_TIMEMACHINE_PASSWORD}@nas-server-vm0/NAS_TimeMachine" || message_error_show "Time Machine backup not setup"
+# tmutil destinationinfo
+# ====================================================
+# Name          : NAS_TimeMachine
+# Kind          : Network
+# URL           : smb://davidandreoletti@nas-server-vm0/NAS_TimeMachine
+# ID            : 4437C0CE-5C88-4113-B52A-CA325E8ACD1A
+
+# (Failed TM setup must not stop this script)
+smb_uri="smb://${CONFIG_MACOSX_TIMEMACHINE_USERNAME}:${CONFIG_MACOSX_TIMEMACHINE_PASSWORD}@nas-server-vm0/NAS_TimeMachine"
+smb_uri2="smb://nas-server-vm0/NAS_TimeMachine"
+smb_volume="/Volumes/NAS_TimeMachine"
+
+if sudo tmutil setdestination -a "$smb_uri"
+then
+    # TimeMachine backup set but not auto mounted
+    sudo tmutil destinationinfo
+else
+    # Requires NAS_Timemachine to be setup an automatically mounted (at X session login time)
+    echo "Finder: Mount $smb_uri2 + Save mount endpoints as user Login Item."
+    echo "When completed, press Enter to continue";
+    read -p nothing
+
+    if sudo tmutil setdestination -a "$smb_volume"
+    then 
+        # TimeMachine backup set but not auto mounted ?
+        sudo tmutil destinationinfo
+    else
+        message_error_show "Time Machine backup not setup automatically: $smb_uri / $smb_volume"
+        todolist_add_new_entry "Time Machine backup mUST be setup manually: $smb_uri / $smb_volume"
+    fi
+fi
 
 # Services administration
 ## SSD perf

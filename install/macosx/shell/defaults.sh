@@ -1,8 +1,8 @@
 # Inspired from: Secrets Plugin for System Preferences
 # Inspired from: https://github.com/rudolph9/dotfiles/blob/master/.osx
 # Inspired from: https://github.com/mathiasbynens/dotfiles/blob/master/.osx
-# inspired from" https://github.com/kevinSuttle/macOS-Defaults/blob/master/.macos
-
+# Inspired from: https://github.com/kevinSuttle/macOS-Defaults/blob/master/.macos
+# Inspired from: https://git.herrbischoff.com/awesome-macos-command-line/about/
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -382,8 +382,10 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 ###############################################################################
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
-# Disable local Time Machine backups (disablelocal command missing in Big Sur - keeping it as reference to investigate how to disable local TM)
+# Disable local Time Machine backups (disablelocal command is missing since Big Sur)
 # hash tmutil &> /dev/null && sudo tmutil disablelocal
+# No Time Machine backup while on battery
+sudo defaults write /Library/Preferences/com.apple.TimeMachine RequiresACPower -bool false
 ###############################################################################
 # Activity Monitor #
 ###############################################################################
