@@ -210,6 +210,7 @@ is_profile_admin_or_similar && homebrew_brew_cask_install "grandperspective"
 is_profile_admin_or_similar && homebrew_brew_cask_install "1password"
 is_profile_admin_or_similar && homebrew_brew_cask_install "onyx"
 is_profile_admin_or_similar && homebrew_brew_cask_install "postman"
+is_profile_admin_or_similar && homebrew_brew_cask_install "keka"            # File Archiver with support for zst, zip, etc
 is_profile_admin_or_similar && homebrew_brew_cask_install "tunnelblick"
 is_profile_admin_or_similar && homebrew_brew_cask_install "http-toolkit"
 is_profile_admin_or_similar && homebrew_brew_cask_install "textmate"
