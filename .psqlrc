@@ -1,0 +1,16 @@
+-- Use pspg pager: https://github.com/okbob/pspg
+-- \setenv PAGER pspg
+\setenv PAGER 'pspg --no-mouse -bX --no-commandbar --no-topbar'
+
+\set QUIET 1
+
+\timing on
+\pset linestyle unicode
+\pset border 2
+
+\echo '🧐 postgres_dba installed. Use ":dba"'
+\set dba '\\i ~/.postgres_dba/start.psql'
+
+\unset QUIET
+
+

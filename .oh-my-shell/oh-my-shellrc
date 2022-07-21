@@ -71,6 +71,7 @@ dot_plugin_if_exists "notebook"                     # Requires: dotfiles plugin
 dot_plugin_if_exists "open"
 dot_plugin_if_exists "pdf"
 dot_plugin_if_exists "process"
+dot_plugin_if_exists "postgres"
 dot_plugin_if_exists "python"
 dot_plugin_if_exists "pyenv"
 dot_plugin_if_exists "rbenv"
