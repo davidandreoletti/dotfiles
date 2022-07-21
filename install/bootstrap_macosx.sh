@@ -170,6 +170,7 @@ is_profile_admin_or_similar && homebrew_brew_install "ffsend" # Firefox Send cli
 is_profile_admin_or_similar && homebrew_brew_install "csvkit" # Swiss army knife for csv files
 is_profile_admin_or_similar && homebrew_brew_install "libiconv" # Convert files from/to various character encodings
 is_profile_admin_or_similar && homebrew_brew_install "postgresql" # Postgresql DB and standard command line utils like psql. PG db not started at runtime.
+is_profile_admin_or_similar && homebrew_brew_install "pspg"         # Pager for psql official client
 is_profile_admin_or_similar && homebrew_brew_install "proctools" # GNU pkill, pgrep
 is_profile_admin_or_similar && homebrew_brew_install "translate-shell" # Translate any languages
 is_profile_admin_or_similar && homebrew_brew_install "qrencode" # Generae QR code 
