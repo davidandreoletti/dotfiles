@@ -25,24 +25,20 @@ cat <<EOF > "$PYTHON_PACKAGES_UPGRADE_SCRIPT"
     set -x
 
     # Usually multiple python versions exits:
-    # - OSX default python: 2.7x
-    # - Homebrew default pythons: 2.7x, 3.x
+    # - OSX default python: 3.x
+    # - Homebrew default pythons: 3.x
     # -- Details: https://docs.brew.sh/Homebrew-and-Python
 
     # Global packages locations
-    #python2 -m site
     python3 -m site
     # Current user's packages locations
-    #python2 -m site --user-site
     python3 -m site --user-site
 
     # For homebrew python installations. See details at https://docs.brew.sh/Homebrew-and-Python
 
     # Install tool to easily upgrade python packages
-    #pip2 install pip_upgrade_outdated
     pip3 install pip_upgrade_outdated
     # Upgrade python packages, meeting other packages depedencies
-    #pip_upgrade_outdated -2 -s  # Python 2 support
     pip_upgrade_outdated -3 -s  # Python 3 support
 
     touch "$PYTHON_PACKAGES_UPDATED"
