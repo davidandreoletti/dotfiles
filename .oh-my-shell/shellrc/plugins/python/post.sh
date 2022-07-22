@@ -1,4 +1,5 @@
-# Upgrade python managed global pakcages
+# Always install the latest python version per MAJOR.MINOR group
+( ( for v in 3.8 3.9 3.10; do echo "Installing $v" >> /tmp/foo.txt ;pyenv install --skip-existing "${v}:latest"; done ) & )
 
 PYTHON_PACKAGES_UPDATED="/tmp/${USER}_python_packages_updated"
 PYTHON_PACKAGES_UPGRADE_SCRIPT="/tmp/${USER}_packages_python_upgrade.sh"
