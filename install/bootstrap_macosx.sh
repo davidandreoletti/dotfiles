@@ -97,135 +97,132 @@ homebrew_is_installed || exit 1
 # Python version for OS & utilities
 is_profile_admin_or_similar && homebrew_brew_install "python3" && homebrew_brew_link "python3" && homebrew_postinstall "python3"
 # Python version manager for development projects 
-is_profile_admin_or_similar && homebrew_brew_install "pyenv" # Manage python version on a per user/folder basis
-is_profile_admin_or_similar && homebrew_brew_install "pyenv-virtualenv" # pyenv plugin: virtualenv/venv
+is_profile_admin_or_similar &&  homebrew_brew_install  "pyenv"              # Manage python version on a per user/folder basis
+is_profile_admin_or_similar &&  homebrew_brew_install  "pyenv-virtualenv"  # pyenv plugin: virtualenv/venv
 # Use Bash 4.x or better as default shell for current user
-is_profile_admin_or_similar && homebrew_brew_install "bash" && sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"; 
-is_profile_admin_or_similar && homebrew_brew_install "bash-completion"
-is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/services"    # Launch services in background. 
-is_profile_admin_or_similar && homebrew_brew_install "git" # Get more recent version than the one shipped in Xcode
-is_profile_admin_or_similar && homebrew_brew_install "coreutils" # Apple has outdated unix tooling.
-is_profile_admin_or_similar && homebrew_brew_install "findutils" # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
-is_profile_admin_or_similar && homebrew_brew_install "gnu-sed" # Apple has outdated unix tooling. sed is another one
+is_profile_admin_or_similar  &&  homebrew_brew_install  "bash"             &&  sudo  bash  -c  "echo  $(brew  --prefix)/bin/bash  >>  /private/etc/shells";
+is_profile_admin_or_similar  &&  homebrew_brew_install  "bash-completion"
+is_profile_admin_or_similar  &&  homebrew_brew_tap_install "homebrew/services"    # Launch services in background. 
+is_profile_admin_or_similar  &&  homebrew_brew_install  "git"        # Get more recent version than the one shipped in Xcode
+is_profile_admin_or_similar  &&  homebrew_brew_install  "coreutils"  # Apple has outdated unix tooling.
+is_profile_admin_or_similar  &&  homebrew_brew_install  "findutils"  # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
+is_profile_admin_or_similar  &&  homebrew_brew_install  "gnu-sed"    # Apple has outdated unix tooling. sed is another one
 
-is_profile_admin_or_similar && homebrew_brew_install "zsh" && sudo bash -c "echo $(brew --prefix)/bin/zsh >> /private/etc/shells" && sudo chsh -s $(brew --prefix)/bin/zsh $USER; 
-is_profile_admin_or_similar && homebrew_brew_install "zsh-completions"
-
-is_profile_admin_or_similar && homebrew_brew_install "tmux"
-is_profile_admin_or_similar && homebrew_brew_install "vim"
+is_profile_admin_or_similar  &&  homebrew_brew_install  "zsh" && sudo bash -c "echo $(brew --prefix)/bin/zsh >> /private/etc/shells" && sudo chsh -s $(brew --prefix)/bin/zsh $USER; 
+is_profile_admin_or_similar  &&  homebrew_brew_install  "zsh-completions"
+is_profile_admin_or_similar  &&  homebrew_brew_install  "tmux"
+is_profile_admin_or_similar  &&  homebrew_brew_install  "vim"
 
 # Install neovim, neovim python package, neovim python bindings package
 is_profile_admin_or_similar && homebrew_brew_install "neovim" && pip3_global_install "neovim" && pip3_global_install "pynvim" 
 
-is_profile_admin_or_similar && pip3_global_install "tasklog"          # Install tasklog cli
-is_profile_admin_or_similar && homebrew_brew_install "newsbeuter"
-is_profile_admin_or_similar && homebrew_brew_install "rsync"
-is_profile_admin_or_similar && homebrew_brew_install "gdb"            # versatile debugger
-is_profile_admin_or_similar && homebrew_brew_install "neomutt"
-is_profile_admin_or_similar && homebrew_brew_install "jenv"
-is_profile_admin_or_similar && homebrew_brew_install "htop"
-is_profile_admin_or_similar && homebrew_brew_install "nvm"
-is_profile_admin_or_similar && homebrew_brew_install "wget"
-is_profile_admin_or_similar && homebrew_brew_install "util-linux"     # Collection of linux utilies
-is_profile_admin_or_similar && homebrew_brew_install "redis" # Redis Key Value Storage
-is_profile_admin_or_similar && homebrew_brew_install "curl"
-is_profile_admin_or_similar && homebrew_brew_install "mpd"  # Music player daemon
-is_profile_admin_or_similar && homebrew_brew_install "mpc"  # Music player (simple) client
-is_profile_admin_or_similar && homebrew_brew_install "pms"  # Music player (tui) client
-is_profile_admin_or_similar && homebrew_brew_install "unp"
-is_profile_admin_or_similar && homebrew_brew_install "rar"  # RAR files
-is_profile_admin_or_similar && homebrew_brew_install "bat"   # cat with highlighting, paging, line numbers support
-is_profile_admin_or_similar && homebrew_brew_install "fzf"   # Ctrl+R replacement for searching the history / files
-is_profile_admin_or_similar && homebrew_brew_install "fd"    # A simpler find
-is_profile_admin_or_similar && homebrew_brew_install "tldr"  # Short manpage version, with example for most comman use cases
-is_profile_admin_or_similar && homebrew_brew_install "ncdu"  #Replacement for Grandperspective and du
-is_profile_admin_or_similar && homebrew_brew_install "openssh" # Newer SSH Server requires a more recent SSH client than currently shipped in OSX
-is_profile_admin_or_similar && homebrew_brew_install "irssi" # IRC client. Note: --with-perl=yes --with-proxy included since brew irssi formula v1.2.3
-is_profile_admin_or_similar && homebrew_brew_install "rlwrap"  # Needed to execute PlistBuddy in command mode
-is_profile_admin_or_similar && homebrew_brew_install "tcpdump"  # TCP traffic sniffing
-is_profile_admin_or_similar && homebrew_brew_install "ngrep"  # grep for network resource
-is_profile_admin_or_similar && homebrew_brew_tap_install "burntsushi/ripgrep" "https://github.com/BurntSushi/ripgrep.git" # rigrep binary compiled, as nightly build, and including SIMD and all optimizations enabled. 
-is_profile_admin_or_similar && homebrew_brew_install "ripgrep-bin"  # faster grep
-is_profile_admin_or_similar && homebrew_brew_install "jq"  # JSON manipulator
-is_profile_admin_or_similar && homebrew_brew_install "python-yq"  # YAML manipulator. Requires: jq
-is_profile_admin_or_similar && homebrew_brew_install "ack" # Fast file content search too
-is_profile_admin_or_similar && homebrew_brew_install "trash" # Move files into macOS user's trash bin (as if done from the Finder)
-is_profile_admin_or_similar && homebrew_brew_install "entr" # Run command on files that have changed
-is_profile_admin_or_similar && homebrew_brew_install "spaceman-diff" # Git can now diff images as colourfull ASCII approximation
-is_profile_admin_or_similar && homebrew_brew_install "imagemagick" # Required by spaceman-diff
-is_profile_admin_or_similar && homebrew_brew_install "jp2a" # Convert images to ASCII. Required by spaceman-diff
-is_profile_admin_or_similar && homebrew_brew_install "hub" # Unofficial Github CLI (for Pull Requests, etc) 
-is_profile_admin_or_similar && homebrew_brew_install "z"    # Smarter cd
-is_profile_admin_or_similar && homebrew_brew_install "pv"   # pipe data flow speed progress indicator
-is_profile_admin_or_similar && homebrew_brew_install "dive"   # Inspect docker layers
-is_profile_admin_or_similar && homebrew_brew_install "rename" # Mass file rename
-is_profile_admin_or_similar && homebrew_brew_install "moreutils" # parallel, elekdo, etc
-is_profile_admin_or_similar && homebrew_brew_install "mitmproxy" # Charles Proxy in command line
-is_profile_admin_or_similar && homebrew_brew_install "tree"
-is_profile_admin_or_similar && homebrew_brew_install "gnu-sed" # GNU `sed`, overwriting the built-in `sed`
-is_profile_admin_or_similar && homebrew_brew_install "xml-coreutils" # Command XML utilities (eg: xml-grep)
-is_profile_admin_or_similar && homebrew_brew_install "lynx" # Terminal browser
-is_profile_admin_or_similar && homebrew_brew_install "rbenv" # Ruby Version Installer and manager
-is_profile_admin_or_similar && homebrew_brew_install "gawk" # Required by: tmux-fingers plugin
-is_profile_admin_or_similar && homebrew_brew_install "ffsend" # Firefox Send client. Required by 1 oh-my-shell plugin
-is_profile_admin_or_similar && homebrew_brew_install "csvkit" # Swiss army knife for csv files
-is_profile_admin_or_similar && homebrew_brew_install "libiconv" # Convert files from/to various character encodings
-is_profile_admin_or_similar && homebrew_brew_install "postgresql" # Postgresql DB and standard command line utils like psql. PG db not started at runtime.
-is_profile_admin_or_similar && homebrew_brew_install "pspg"         # Pager for psql official client
-is_profile_admin_or_similar && homebrew_brew_install "proctools" # GNU pkill, pgrep
-is_profile_admin_or_similar && homebrew_brew_install "translate-shell" # Translate any languages
-is_profile_admin_or_similar && homebrew_brew_install "qrencode" # Generae QR code 
-is_profile_admin_or_similar && homebrew_brew_install "httpie" # Curl simplified
-is_profile_admin_or_similar && homebrew_brew_install "libqalculate" # qalc: General pupose calculator, to convert unit / dimension analysis
-is_profile_admin_or_similar && homebrew_brew_install "rename" # Mass rename files.
-is_profile_admin_or_similar && homebrew_brew_install "shellcheck" # Linting for bash/sh shells scripts
-is_profile_admin_or_similar && homebrew_brew_install "gnupg" # GNU implementation of PGP
-is_profile_admin_or_similar && homebrew_brew_install "pinentry-mac" # Connect gpg-agent to OSX keychain 
-is_profile_admin_or_similar && homebrew_brew_install "hopenpgp-tools" # Verify PGP key setup best practice 
-is_profile_admin_or_similar && homebrew_brew_install "pgpdump" # PGP packet/key analyser 
-is_profile_admin_or_similar && homebrew_brew_install "libfaketime" # Freeze system clock for a given application (eg: shell script)
-is_profile_admin_or_similar && homebrew_brew_install "expect" # Automate interactive program interactions
-is_profile_admin_or_similar && homebrew_brew_install "git-crypt" # Encrypt git repository
-is_profile_admin_or_similar && homebrew_brew_install "iperf" # Network performance measurement
-is_profile_admin_or_similar && homebrew_brew_install "inetutils" # GNU ftp comand and more 
-is_profile_admin_or_similar && homebrew_brew_install "java"
-is_profile_admin_or_similar && homebrew_brew_tap_install "boz/repo" && homebrew_brew_install "boz/repo/kail" # kubernetes pods console viewer
-#is_profile_admin_or_similar && homebrew_brew_install "tdsmith/ham/chirp"  # CHIRP software to configure HAM radios
-#is_profile_admin_or_similar && homebrew_brew_install "tdsmith/ham/xastir" # HAM Station Tracking / Info reporting
-
+is_profile_admin_or_similar   &&  pip3_global_install        "tasklog"             # Install tasklog cli
+is_profile_admin_or_similar   &&  homebrew_brew_install      "newsbeuter"
+is_profile_admin_or_similar   &&  homebrew_brew_install      "rsync"
+is_profile_admin_or_similar   &&  homebrew_brew_install      "gdb"                 # versatile debugger
+is_profile_admin_or_similar   &&  homebrew_brew_install      "neomutt"
+is_profile_admin_or_similar   &&  homebrew_brew_install      "jenv"
+is_profile_admin_or_similar   &&  homebrew_brew_install      "htop"
+is_profile_admin_or_similar   &&  homebrew_brew_install      "nvm"
+is_profile_admin_or_similar   &&  homebrew_brew_install      "wget"
+is_profile_admin_or_similar   &&  homebrew_brew_install      "util-linux"          # Collection of linux utilies
+is_profile_admin_or_similar   &&  homebrew_brew_install      "redis"               # Redis Key Value Storage
+is_profile_admin_or_similar   &&  homebrew_brew_install      "curl"
+is_profile_admin_or_similar   &&  homebrew_brew_install      "mpd"                 # Music player daemon
+is_profile_admin_or_similar   &&  homebrew_brew_install      "mpc"                 # Music player (simple) client
+is_profile_admin_or_similar   &&  homebrew_brew_install      "pms"                 # Music player (tui) client
+is_profile_admin_or_similar   &&  homebrew_brew_install      "unp"
+is_profile_admin_or_similar   &&  homebrew_brew_install      "rar"                 # RAR files
+is_profile_admin_or_similar   &&  homebrew_brew_install      "bat"                 # cat with highlighting, paging, line numbers support
+is_profile_admin_or_similar   &&  homebrew_brew_install      "fzf"                 # Ctrl+R replacement for searching the history / files
+is_profile_admin_or_similar   &&  homebrew_brew_install      "fd"                  # A simpler find
+is_profile_admin_or_similar   &&  homebrew_brew_install      "tldr"                # Short manpage version, with example for most comman use cases
+is_profile_admin_or_similar   &&  homebrew_brew_install      "ncdu"                #Replacement for Grandperspective and du
+is_profile_admin_or_similar   &&  homebrew_brew_install      "openssh"             # Newer SSH Server requires a more recent SSH client than currently shipped in OSX
+is_profile_admin_or_similar   &&  homebrew_brew_install      "irssi"               # IRC client. Note: --with-perl=yes --with-proxy included since brew irssi formula v1.2.3
+is_profile_admin_or_similar   &&  homebrew_brew_install      "rlwrap"              # Needed to execute PlistBuddy in command mode
+is_profile_admin_or_similar   &&  homebrew_brew_install      "tcpdump"             # TCP traffic sniffing
+is_profile_admin_or_similar   &&  homebrew_brew_install      "ngrep"               # grep for network resource
+is_profile_admin_or_similar   &&  homebrew_brew_tap_install  "burntsushi/ripgrep"  "https://github.com/BurntSushi/ripgrep.git"  #                      rigrep            binary         compiled,        as            nightly    build,         and     including      SIMD      and        all      optimizations  enabled.
+is_profile_admin_or_similar   &&  homebrew_brew_install      "ripgrep-bin"         # faster grep
+is_profile_admin_or_similar   &&  homebrew_brew_install      "jq"                  # JSON manipulator
+is_profile_admin_or_similar   &&  homebrew_brew_install      "python-yq"           # YAML manipulator. Requires: jq
+is_profile_admin_or_similar   &&  homebrew_brew_install      "ack"                 # Fast file content search too
+is_profile_admin_or_similar   &&  homebrew_brew_install      "trash"               # Move files into macOS user's trash bin (as if done from the Finder)
+is_profile_admin_or_similar   &&  homebrew_brew_install      "entr"                # Run command on files that have changed
+is_profile_admin_or_similar   &&  homebrew_brew_install      "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
+is_profile_admin_or_similar   &&  homebrew_brew_install      "imagemagick"         # Required by spaceman-diff
+is_profile_admin_or_similar   &&  homebrew_brew_install      "jp2a"                # Convert images to ASCII. Required by spaceman-diff
+is_profile_admin_or_similar   &&  homebrew_brew_install      "hub"                 # Unofficial Github CLI (for Pull Requests, etc)
+is_profile_admin_or_similar   &&  homebrew_brew_install      "z"                   # Smarter cd
+is_profile_admin_or_similar   &&  homebrew_brew_install      "pv"                  # pipe data flow speed progress indicator
+is_profile_admin_or_similar   &&  homebrew_brew_install      "dive"                # Inspect docker layers
+is_profile_admin_or_similar   &&  homebrew_brew_install      "rename"              # Mass file rename
+is_profile_admin_or_similar   &&  homebrew_brew_install      "moreutils"           # parallel, elekdo, etc
+is_profile_admin_or_similar   &&  homebrew_brew_install      "mitmproxy"           # Charles Proxy in command line
+is_profile_admin_or_similar   &&  homebrew_brew_install      "tree"
+is_profile_admin_or_similar   &&  homebrew_brew_install      "gnu-sed"             # GNU `sed`, overwriting the built-in `sed`
+is_profile_admin_or_similar   &&  homebrew_brew_install      "xml-coreutils"       # Command XML utilities (eg: xml-grep)
+is_profile_admin_or_similar   &&  homebrew_brew_install      "lynx"                # Terminal browser
+is_profile_admin_or_similar   &&  homebrew_brew_install      "rbenv"               # Ruby Version Installer and manager
+is_profile_admin_or_similar   &&  homebrew_brew_install      "gawk"                # Required by: tmux-fingers plugin
+is_profile_admin_or_similar   &&  homebrew_brew_install      "ffsend"              # Firefox Send client. Required by 1 oh-my-shell plugin
+is_profile_admin_or_similar   &&  homebrew_brew_install      "csvkit"              # Swiss army knife for csv files
+is_profile_admin_or_similar   &&  homebrew_brew_install      "libiconv"            # Convert files from/to various character encodings
+is_profile_admin_or_similar   &&  homebrew_brew_install      "postgresql"          # Postgresql DB and standard command line utils like psql. PG db not started at runtime.
+is_profile_admin_or_similar   &&  homebrew_brew_install      "pspg"                # Pager for psql official client
+is_profile_admin_or_similar   &&  homebrew_brew_install      "proctools"           # GNU pkill, pgrep
+is_profile_admin_or_similar   &&  homebrew_brew_install      "translate-shell"     # Translate any languages
+is_profile_admin_or_similar   &&  homebrew_brew_install      "qrencode"            # Generae QR code
+is_profile_admin_or_similar   &&  homebrew_brew_install      "httpie"              # Curl simplified
+is_profile_admin_or_similar   &&  homebrew_brew_install      "libqalculate"        # qalc: General pupose calculator, to convert unit / dimension analysis
+is_profile_admin_or_similar   &&  homebrew_brew_install      "rename"              # Mass rename files.
+is_profile_admin_or_similar   &&  homebrew_brew_install      "shellcheck"          # Linting for bash/sh shells scripts
+is_profile_admin_or_similar   &&  homebrew_brew_install      "gnupg"               # GNU implementation of PGP
+is_profile_admin_or_similar   &&  homebrew_brew_install      "pinentry-mac"        # Connect gpg-agent to OSX keychain
+is_profile_admin_or_similar   &&  homebrew_brew_install      "hopenpgp-tools"      # Verify PGP key setup best practice
+is_profile_admin_or_similar   &&  homebrew_brew_install      "pgpdump"             # PGP packet/key analyser
+is_profile_admin_or_similar   &&  homebrew_brew_install      "libfaketime"         # Freeze system clock for a given application (eg: shell script)
+is_profile_admin_or_similar   &&  homebrew_brew_install      "expect"              # Automate interactive program interactions
+is_profile_admin_or_similar   &&  homebrew_brew_install      "git-crypt"           # Encrypt git repository
+is_profile_admin_or_similar   &&  homebrew_brew_install      "iperf"               # Network performance measurement
+is_profile_admin_or_similar   &&  homebrew_brew_install      "inetutils"           # GNU ftp comand and more
+is_profile_admin_or_similar   &&  homebrew_brew_install      "java"
+is_profile_admin_or_similar   &&  homebrew_brew_tap_install  "boz/repo"            &&                                           homebrew_brew_install  "boz/repo/kail"   # kubernetes pods console viewer
+#is_profile_admin_or_similar  &&  homebrew_brew_install      "tdsmith/ham/chirp"   # CHIRP software to configure HAM radios
+#is_profile_admin_or_similar  &&  homebrew_brew_install      "tdsmith/ham/xastir"  # HAM Station Tracking / Info reporting
 ## GUI applications
 #homebrew_brew_cask_workaround0
-is_profile_admin_or_similar && homebrew_brew_tap_install "homebrew/cask"
-is_profile_admin_or_similar && homebrew_brew_cask_install "miniconda"
-is_profile_admin_or_similar && homebrew_brew_cask_install "google-chrome"
-is_profile_admin_or_similar && homebrew_brew_cask_install "vlc"
-is_profile_admin_or_similar && homebrew_brew_cask_install "jetbrains-toolbox"
-is_profile_admin_or_similar && homebrew_brew_cask_install "sketch"
-is_profile_admin_or_similar && homebrew_brew_cask_install "calibre"
-is_profile_admin_or_similar && homebrew_brew_cask_install "sourcetree"
-is_profile_admin_or_similar && homebrew_brew_cask_install "transmission"
-is_profile_admin_or_similar && homebrew_brew_cask_install "skype"
-is_profile_admin_or_similar && homebrew_brew_cask_install "dropbox"
-is_profile_admin_or_similar && homebrew_brew_cask_install "cyberduck"
-is_profile_admin_or_similar && homebrew_brew_cask_install "grandperspective"
-is_profile_admin_or_similar && homebrew_brew_cask_install "1password"
-is_profile_admin_or_similar && homebrew_brew_cask_install "onyx"
-is_profile_admin_or_similar && homebrew_brew_cask_install "postman"
-is_profile_admin_or_similar && homebrew_brew_cask_install "keka"            # File Archiver with support for zst, zip, etc
-is_profile_admin_or_similar && homebrew_brew_cask_install "tunnelblick"
-is_profile_admin_or_similar && homebrew_brew_cask_install "http-toolkit"
-is_profile_admin_or_similar && homebrew_brew_cask_install "textmate"
-is_profile_admin_or_similar && homebrew_brew_cask_install "trailer"         # Github Pull Requests Manager
-is_profile_admin_or_similar && homebrew_brew_cask_install "intel-haxm"
-is_profile_admin_or_similar && homebrew_brew_cask_install "vnc-viewer"
-is_profile_admin_or_similar && homebrew_brew_cask_install "thinkorswim"
-is_profile_admin_or_similar && homebrew_brew_cask_install "spyder"  # Python/R datasciense IDE
-is_profile_admin_or_similar && homebrew_brew_cask_install "zeplin"
-is_profile_admin_or_similar && homebrew_brew_cask_install "ngrok"
-is_profile_admin_or_similar && homebrew_brew_cask_install "parsec" # Local/Remote LAN stream
-is_profile_admin_or_similar && homebrew_brew_cask_install "qlvideo" # Additional supported format for Finder's Quicklook
-is_profile_admin_or_similar && homebrew_brew_cask_install "tableplus" # DataGrip alternative, with NoSQL support, until DataGrip bring support
-
+is_profile_admin_or_similar  &&  homebrew_brew_tap_install   "homebrew/cask"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "miniconda"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "google-chrome"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "vlc"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "jetbrains-toolbox"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "sketch"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "calibre"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "sourcetree"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "transmission"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "skype"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "dropbox"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "cyberduck"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "grandperspective"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "1password"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "onyx"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "postman"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "keka"               # File Archiver with support for zst,zip,etc
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "tunnelblick"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "http-toolkit"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "textmate"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "trailer"            # Github Pull Requests Manager
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "intel-haxm"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "vnc-viewer"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "thinkorswim"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "spyder"             # Python/R datasciense IDE
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "zeplin"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "ngrok"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "parsec"             # Local/Remote LAN stream
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "qlvideo"            # Additional supported format for Finder's  Quicklook
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "tableplus"          # DataGrip alternative, with NoSQL support, until DataGrip bring support
 # Google Cloud SDK 
 shell_name="$( basename \"echo $SHELL\" )"
 is_profile_admin_or_similar && homebrew_brew_cask_install "google-cloud-sdk" && \
@@ -238,18 +235,17 @@ is_profile_admin_or_similar && $SHELL -x ../install/browsers/chrome/extensions/i
 is_profile_admin_or_similar && $SHELL -x ../install/browsers/firefox/extensions/install.sh
 popd
 
-is_profile_admin_or_similar && pip3_global_install "awscli"
-is_profile_admin_or_similar && pip3_global_install "buku[server]" # Browser independent bookmark manager, with standalone server
+is_profile_admin_or_similar  &&  pip3_global_install  "awscli"        # AWS command line
+is_profile_admin_or_similar  &&  pip3_global_install  "buku[server]"  # Browser independent bookmark manager, with standalone server
 
 # https://developer.apple.com/library/content/technotes/tn2459/_index.html
 is_profile_admin_or_similar && todolist_add_new_entry "Allow Kernel extension from Intel XAM to run: System Preferences > Seucrity Privacy > General Tab > Allow button"
 
-is_profile_admin_or_similar && homebrew_brew_install "mas" # Mac App Store command line too
-is_profile_admin_or_similar && homebrew_mas_install "539883307" # LINE Inc
-is_profile_admin_or_similar && homebrew_mas_install "409203825" # Numbers
-is_profile_admin_or_similar && homebrew_mas_install "409201541" # Pages
-is_profile_admin_or_similar && homebrew_mas_install "1295203466" # Microsoft Remote Desktop
-
+is_profile_admin_or_similar  &&  homebrew_brew_install  "mas"         #  Mac App Store command line too
+is_profile_admin_or_similar  &&  homebrew_mas_install   "539883307"   #  LINE Inc
+is_profile_admin_or_similar  &&  homebrew_mas_install   "409203825"   #  Numbers
+is_profile_admin_or_similar  &&  homebrew_mas_install   "409201541"   #  Pages
+is_profile_admin_or_similar  &&  homebrew_mas_install   "1295203466"  #  Microsoft Remote Desktop
 [[ is_profile_admin || is_profile_dev_single || is_profile_dev_multi ]] && tmux_install_tpm
 
 # Fixing git-crypt no visible in SourceTree
