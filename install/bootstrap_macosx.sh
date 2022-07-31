@@ -185,7 +185,7 @@ is_profile_admin_or_similar   &&  homebrew_brew_install      "pgpdump"          
 is_profile_admin_or_similar   &&  homebrew_brew_install      "libfaketime"         # Freeze system clock for a given application (eg: shell script)
 is_profile_admin_or_similar   &&  homebrew_brew_install      "expect"              # Automate interactive program interactions
 is_profile_admin_or_similar   &&  homebrew_brew_install      "git-crypt"           # Encrypt git repository
-is_profile_admin_or_similar   &&  homebrew_brew_install      "iperf"               # Network performance measurement
+is_profile_admin_or_similar   &&  homebrew_brew_install      "iperf3"              # Network performance measurement
 is_profile_admin_or_similar   &&  homebrew_brew_install      "inetutils"           # GNU ftp comand and more
 is_profile_admin_or_similar   &&  homebrew_brew_install      "java"
 is_profile_admin_or_similar   &&  homebrew_brew_tap_install  "boz/repo"            &&                                           homebrew_brew_install  "boz/repo/kail"   # kubernetes pods console viewer
