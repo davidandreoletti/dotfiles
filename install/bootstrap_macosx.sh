@@ -210,7 +210,6 @@ is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "1password"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "onyx"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "postman"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "keka"               # File Archiver with support for zst,zip,etc
-is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "tunnelblick"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "http-toolkit"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "textmate"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "trailer"            # Github Pull Requests Manager
@@ -242,6 +241,7 @@ is_profile_admin_or_similar  &&  pip3_global_install  "buku[server]"  # Browser 
 is_profile_admin_or_similar && todolist_add_new_entry "Allow Kernel extension from Intel XAM to run: System Preferences > Seucrity Privacy > General Tab > Allow button"
 
 is_profile_admin_or_similar  &&  homebrew_brew_install  "mas"         #  Mac App Store command line too
+is_profile_admin_or_similar  &&  homebrew_mas_install   "1451685025"  #  Wireguard
 is_profile_admin_or_similar  &&  homebrew_mas_install   "539883307"   #  LINE Inc
 is_profile_admin_or_similar  &&  homebrew_mas_install   "409203825"   #  Numbers
 is_profile_admin_or_similar  &&  homebrew_mas_install   "409201541"   #  Pages
