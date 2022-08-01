@@ -23,6 +23,8 @@ then
 
 cat <<EOF > "$PYTHON_PACKAGES_UPGRADE_SCRIPT"
     set -x
+    # Delete all pip cached files
+    pip cache purge
 
     # Usually multiple python versions exits:
     # - OSX default python: 3.x
