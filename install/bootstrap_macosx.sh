@@ -188,6 +188,9 @@ is_profile_admin_or_similar   &&  homebrew_brew_install      "git-crypt"        
 is_profile_admin_or_similar   &&  homebrew_brew_install      "iperf3"              # Network performance measurement
 is_profile_admin_or_similar   &&  homebrew_brew_install      "inetutils"           # GNU ftp comand and more
 is_profile_admin_or_similar   &&  homebrew_brew_install      "java"
+is_profile_admin_or_similar   &&  homebrew_brew_tap_install  "arthurk/homebrew-virt-manager" &&
+is_profile_admin_or_similar   &&  homebrew_brew_install      "virt-manager"
+is_profile_admin_or_similar   &&  homebrew_brew_install      "virt-viewer"         # QEMU Virt Manager/Viewer for macOS Monterey
 is_profile_admin_or_similar   &&  homebrew_brew_tap_install  "boz/repo"            &&                                           homebrew_brew_install  "boz/repo/kail"   # kubernetes pods console viewer
 #is_profile_admin_or_similar  &&  homebrew_brew_install      "tdsmith/ham/chirp"   # CHIRP software to configure HAM radios
 #is_profile_admin_or_similar  &&  homebrew_brew_install      "tdsmith/ham/xastir"  # HAM Station Tracking / Info reporting
