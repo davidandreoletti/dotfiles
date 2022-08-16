@@ -219,6 +219,7 @@ is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "thinkorswim"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "spyder"             # Python/R datasciense IDE
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "zeplin"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "ngrok"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "xquartz"            # X.Org X Window System
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "parsec"             # Local/Remote LAN stream
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "qlvideo"            # Additional supported format for Finder's  Quicklook
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "tableplus"          # DataGrip alternative, with NoSQL support, until DataGrip bring support
