@@ -31,7 +31,7 @@ cat <<EOF > "$NPM_PACKAGES_UPGRADE_SCRIPT"
     which npm
 
     #Upgrade npm itself
-    npm install npm@latest -g
+    npm install -g npm@latest
 
     #Upgrade npm list global outdated"
     npm outdated -g --depth=0
