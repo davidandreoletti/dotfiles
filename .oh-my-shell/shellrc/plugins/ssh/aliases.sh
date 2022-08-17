@@ -22,3 +22,6 @@ alias ssh_show_key_hashes='f_ssh_show_key_hashes '
 # Usage: ssh_extract_from_pem_public_key_only_as_rsa_format "/path/to/some/file.pem"
 alias ssh_extract_from_pem_public_key_only_as_rsa_format='ssh-keygen -y -f '
 
+# Force close ssh connection now
+# Usage: ssh_force_close_connection "some_ssh_host"
+alias ssh_force_close_connection='ssh -O exit '
