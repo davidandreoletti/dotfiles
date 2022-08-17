@@ -252,6 +252,7 @@ is_profile_admin_or_similar  &&  homebrew_mas_install   "539883307"   #  LINE In
 is_profile_admin_or_similar  &&  homebrew_mas_install   "409203825"   #  Numbers
 is_profile_admin_or_similar  &&  homebrew_mas_install   "409201541"   #  Pages
 is_profile_admin_or_similar  &&  homebrew_mas_install   "1295203466"  #  Microsoft Remote Desktop
+is_profile_admin_or_similar  &&  homebrew_mas_install   "1388020431"  #  DevCleaner For Xcode (remove simulator & associated caches)
 [[ is_profile_admin || is_profile_dev_single || is_profile_dev_multi ]] && tmux_install_tpm
 
 # Fixing git-crypt no visible in SourceTree
