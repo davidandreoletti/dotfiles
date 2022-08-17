@@ -50,7 +50,7 @@ EOF
 
 rm -f "$NPM_PACKAGES_UPGRADE_LOG" > /dev/null 2>&1
 
-( bash "$NPM_PACKAGES_UPGRADE_SCRIPT" > "$NPM_PACKAGES_UPGRADE_LOG" 2>&1 & )
+( bash "$NPM_PACKAGES_UPGRADE_SCRIPT" > "$NPM_PACKAGES_UPGRADE_LOG" & ) > /dev/null 2>&1
 
 fi
 
