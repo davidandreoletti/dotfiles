@@ -125,6 +125,7 @@ is_profile_admin_or_similar   &&  homebrew_brew_install      "jenv"
 is_profile_admin_or_similar   &&  homebrew_brew_install      "htop"
 is_profile_admin_or_similar   &&  homebrew_brew_install      "nvm"
 is_profile_admin_or_similar   &&  homebrew_brew_install      "wget"
+is_profile_admin_or_similar   &&  homebrew_brew_install      "goenv"               # Golang environment manager
 is_profile_admin_or_similar   &&  homebrew_brew_install      "asdf"                # Version manager for multiple runtime environment
 is_profile_admin_or_similar   &&  homebrew_brew_install      "util-linux"          # Collection of linux utilies
 is_profile_admin_or_similar   &&  homebrew_brew_install      "redis"               # Redis Key Value Storage
