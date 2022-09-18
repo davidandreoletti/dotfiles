@@ -230,6 +230,10 @@ is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "xquartz"          
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "parsec"             # Local/Remote LAN stream
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "qlvideo"            # Additional supported format for Finder's  Quicklook
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "tableplus"          # DataGrip alternative, with NoSQL support, until DataGrip bring support
+
+is_profile_admin  &&  homebrew_brew_tap_install "homebrew/autoupdate"             # Auto update homebrew packages every 1d
+is_profile_adimn  &&  brew autoupdate start "86400" --uprade --cleanup 
+
 # Google Cloud SDK 
 shell_name="$( basename \"echo $SHELL\" )"
 is_profile_admin_or_similar && homebrew_brew_cask_install "google-cloud-sdk" && \
