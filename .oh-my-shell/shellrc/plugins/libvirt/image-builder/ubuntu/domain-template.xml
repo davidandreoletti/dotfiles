@@ -1,0 +1,81 @@
+<domain type='hvf' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
+    <name>sample0</name>
+    <memory unit='GB'>2</memory>
+    <cpu mode='host-passthrough'>
+        <topology sockets='1' cores='1' threads='2'/>
+    </cpu>
+    <vcpu>2</vcpu>
+    <os>
+        <type arch='x86_64' machine='q35'>hvm</type>
+        <!-- UEFI boot
+        <loader readonly='yes' secure='yes'/> -->
+        <!-- BIOS boot -->
+        <boot dev='cdrom'/>
+        <boot dev='hd'/>
+        <!-- Generic boot -->
+        <smbios mode='emulate'/>
+        <bootmenu enable='yes' timeout='3000'/>
+    </os>
+    <features>
+        <acpi/>
+        <apic/>
+    </features>
+    <clock offset="utc"/>
+    <devices>
+        <emulator>/usr/local/bin/qemu-system-x86_64</emulator>
+        <!-- Qemu Guest Agent -->
+        <channel type="unix">
+            <target type="virtio" name="org.qemu.guest_agent.0"/>
+        </channel>
+        <!-- Input -->
+        <input type='tablet' bus='usb'/>
+        <input type='keyboard' bus='usb'/>
+        <!-- USB Controller -->
+        <controller type='usb' index='0' model='nec-xhci' ports="2" />
+        <!-- Drive Controller -->
+        <controller type='scsi' index='0' model='virtio-scsi' />
+        <controller type='scsi' index='1' model='virtio-scsi' />
+        <!-- Disk -->
+        <disk type='volume' device='disk'>
+            <driver name='qemu' type='qcow2'/>
+            <source pool='sample0' volume='disk-os'/>
+            <target bus='scsi' dev='sda'/>
+            <address type='drive' controller='0' bus='0' target='0' unit='0'/>
+        </disk>
+        <disk type='volume' device='disk'>
+            <driver name='qemu' type='raw'/>
+            <source pool='sample0' volume='disk-seed'/>
+            <target bus='scsi' dev='sdb'/>
+            <address type='drive' controller='0' bus='0' target='1' unit='0'/>
+            <readonly/>
+        </disk>
+        <disk type='volume' device='disk'>
+            <driver name='qemu' type='qcow2'/>
+            <source pool='sample0' volume='disk-data0'/>
+            <target bus='scsi' dev='sdc'/>
+            <address type='drive' controller='1' bus='0' target='0' unit='0'/>
+        </disk>
+        <!-- Graphic -->
+        <graphics type='vnc' port='-1' autoport='yes' listen='0.0.0.0' keymap='en-us' sharePolicy='ignore'/>
+        <console type='pty'>
+            <target type='serial'/>
+        </console>
+        <video>
+            <model type='virtio' vram='32768'/>
+        </video>
+    </devices>
+    <!-- Events handling -->
+    <on_poweroff>destroy</on_poweroff>
+    <on_reboot>restart</on_reboot>
+    <on_crash>destroy</on_crash>
+    <on_lockfailure>pause</on_lockfailure>
+    <qemu:commandline>
+        <qemu:arg value='-netdev'/>
+        <qemu:arg value='user,id=n1,hostfwd=__HOSTFWD__'/>
+        <!-- sample: <qemu:arg value='user,id=n1,hostfwd=tcp::2222-:22'/> -->
+        <qemu:arg value='-device'/>
+        <qemu:arg value='virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19'/>
+    </qemu:commandline>
+    <!-- 
+    <qemu:deprecation behavior='crash'/> -->
+</domain>

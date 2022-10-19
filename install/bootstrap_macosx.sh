@@ -165,6 +165,7 @@ is_profile_admin_or_similar   &&  homebrew_brew_install      "mitmproxy"        
 is_profile_admin_or_similar   &&  homebrew_brew_install      "tree"
 is_profile_admin_or_similar   &&  homebrew_brew_install      "gnu-sed"             # GNU `sed`, overwriting the built-in `sed`
 is_profile_admin_or_similar   &&  homebrew_brew_install      "xml-coreutils"       # Command XML utilities (eg: xml-grep)
+is_profile_admin_or_similar   &&  homebrew_brew_install      "xmlstarlet"          # Command XML utilities (eg: xmlstarlet)
 is_profile_admin_or_similar   &&  homebrew_brew_install      "lynx"                # Terminal browser
 is_profile_admin_or_similar   &&  homebrew_brew_install      "rbenv"               # Ruby Version Installer and manager
 is_profile_admin_or_similar   &&  homebrew_brew_install      "gawk"                # Required by: tmux-fingers plugin
@@ -212,7 +213,7 @@ is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "transmission"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "skype"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "dropbox"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "cyberduck"
-is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "grandperspective"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "grandperspective"   # Disk usage GUI
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "1password"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "onyx"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "postman"
