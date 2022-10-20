@@ -4,20 +4,17 @@ if [[ "$OS_NAME" == "macosx" ]]; then
     # (easier JAVA_HOME switching)
     #
     #eval "$(jenv init - --no-rehash)"
+
+    # Register JDK with jenv
     (
-        # Register Installed Java SDKs with jenv
+        # Register already installed JDKs
         find "/Library/Java/JavaVirtualMachines" -mindepth 1 -maxdepth 1 -type d -name "*jdk*" -exec bash -c "yes | jenv add \"{}/Contents/Home\" > /dev/null 2>&1" \;
         find "/Library/Java/JavaVirtualMachines" -mindepth 1 -maxdepth 1 -xtype d -name "*jdk*" -exec bash -c "yes | jenv add \"{}/Contents/Home\" > /dev/null 2>&1" \;
+        # Register perhaps not already registered JDKs
+        find $HOMEBREW_CELLAR -type d -regex ".*openjdk.jdk$"  -exec bash -c "yes | jenv add {}/Contents/Home" \;
+        # Notify jenv to reload shims
         jenv rehash
-    ) 2> /dev/null 
-
-    # jenv used to select a specific java version
-    #jenv enable-plugin export > /dev/null  2>&1; 
-    # By default, setup jenv to use the most recent version
-    #mostRecentJavaVersion=`jenv versions | sort | head -n1 | cut -f1`; 
-    #mostRecentJavaVersion=`echo "$mostRecentJavaVersion" | sed 's/ //g'`;
-    #echo "$mostRecentJavaVersion" > $HOME/.java-version
-
+    ) > /dev/null 2>&1
 
     ########################################################
     # IMPORTANT: jenv's initialization unsets JAVA_HOME.
@@ -29,6 +26,6 @@ if [[ "$OS_NAME" == "macosx" ]]; then
     launchctl setenv JAVA_HOME `/usr/libexec/java_home`
 
     # 2. Export "JAVA_HOME" for shell applications
-    # Java version used: 1.8.x for tooling like android/gradle
-    export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+    # Java version used for tooling like android/gradle
+    export JAVA_HOME="$(/usr/libexec/java_home)"
 fi
