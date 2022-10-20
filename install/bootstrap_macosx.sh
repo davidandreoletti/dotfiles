@@ -205,6 +205,7 @@ is_profile_admin_or_similar  &&  homebrew_brew_tap_install   "homebrew/cask"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "miniconda"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "google-chrome"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "vlc"
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "utm"                  # Qemu GUI
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "jetbrains-toolbox"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "sketch"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "calibre"
