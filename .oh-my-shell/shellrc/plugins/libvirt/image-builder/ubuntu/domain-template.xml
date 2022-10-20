@@ -1,20 +1,27 @@
 <domain type='hvf' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
-    <name>sample0</name>
-    <memory unit='GB'>2</memory>
+    <name>domain-template</name>
+    <memory unit='GB'>__MEMORY__</memory>
+    <!--
     <cpu mode='host-passthrough'>
         <topology sockets='1' cores='1' threads='2'/>
-    </cpu>
-    <vcpu>2</vcpu>
-    <os>
+        </cpu>
+    -->
+    <cpu mode='host-passthrough'></cpu>
+    <vcpu>__VCPU__</vcpu>
+    <!-- UEFI boot 
+        https://that.guru/blog/uefi-secure-boot-in-libvirt/ 
+        https://bugzilla.redhat.com/show_bug.cgi?id=1929357#c13
+    -->
+    <os firmware='efi'>
         <type arch='x86_64' machine='q35'>hvm</type>
-        <!-- UEFI boot
-        <loader readonly='yes' secure='yes'/> -->
-        <!-- BIOS boot -->
+        <firmware>
+            <feature enabled='no' name='enrolled-keys'/>
+            <feature enabled='no' name='secure-boot'/>
+        </firmware>
+        <!-- Generic boot -->
         <boot dev='cdrom'/>
         <boot dev='hd'/>
-        <!-- Generic boot -->
-        <smbios mode='emulate'/>
-        <bootmenu enable='yes' timeout='3000'/>
+        <bootmenu enable='yes' timeout='1000'/>
     </os>
     <features>
         <acpi/>
@@ -38,30 +45,53 @@
         <!-- Disk -->
         <disk type='volume' device='disk'>
             <driver name='qemu' type='qcow2'/>
-            <source pool='sample0' volume='disk-os'/>
+            <source pool='__POOLNAME__' volume='disk-os' startupPolicy='optional'/>
             <target bus='scsi' dev='sda'/>
             <address type='drive' controller='0' bus='0' target='0' unit='0'/>
         </disk>
         <disk type='volume' device='disk'>
             <driver name='qemu' type='raw'/>
-            <source pool='sample0' volume='disk-seed'/>
+            <source pool='__POOLNAME__' volume='disk-seed' startupPolicy='optional'/>
             <target bus='scsi' dev='sdb'/>
             <address type='drive' controller='0' bus='0' target='1' unit='0'/>
             <readonly/>
         </disk>
         <disk type='volume' device='disk'>
             <driver name='qemu' type='qcow2'/>
-            <source pool='sample0' volume='disk-data0'/>
+            <source pool='__POOLNAME__' volume='disk-data0' startupPolicy='optional'/>
             <target bus='scsi' dev='sdc'/>
             <address type='drive' controller='1' bus='0' target='0' unit='0'/>
         </disk>
-        <!-- Graphic -->
+        <disk type='volume' device='cdrom'>
+            <driver name='qemu' type='raw'/>
+            <source pool='__POOLNAME__' volume='disk-cdrom' startupPolicy='optional'/>
+            <target bus='scsi' dev='sdd'/>
+            <address type='drive' controller='1' bus='0' target='1' unit='0'/>
+            <readonly/>
+        </disk>
+        <!-- Graphic: VNC -->
         <graphics type='vnc' port='-1' autoport='yes' listen='0.0.0.0' keymap='en-us' sharePolicy='ignore'/>
+        <!-- Graphic: EGL headless Not supported
+        <graphics type='egl-headless'>
+            <gl enable='yes'/>
+        </graphics> -->
+        <!-- Graphic: SDL Not supported
+        <graphics type='sdl'>
+            <gl enable='yes'/>
+        </graphics> -->
+        <!-- Grapihc: Spice Not supported
+        <graphics type="spice">
+            <listen type="none"/>
+            <image compression="off"/>
+            <gl enable="yes"/>
+        </graphics> -->
         <console type='pty'>
             <target type='serial'/>
         </console>
         <video>
-            <model type='virtio' vram='32768'/>
+            <model type='virtio' heads='1' primary='yes'>
+                <!--<acceleration accel3d='yes'/> 3d not supported -->
+            </model>
         </video>
     </devices>
     <!-- Events handling -->
