@@ -6,5 +6,6 @@
 eval "$(goenv init -)"
 
 # Let goenv manager GOROOT / GOPATH
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$PATH:$GOPATH/bin"
+path_append "$GOROOT"
+path_append "$GOPATH"
+
