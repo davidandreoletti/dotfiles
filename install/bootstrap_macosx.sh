@@ -190,6 +190,8 @@ is_profile_admin_or_similar   &&  homebrew_brew_install      "expect"           
 is_profile_admin_or_similar   &&  homebrew_brew_install      "git-crypt"           # Encrypt git repository
 is_profile_admin_or_similar   &&  homebrew_brew_install      "iperf3"              # Network performance measurement
 is_profile_admin_or_similar   &&  homebrew_brew_install      "inetutils"           # GNU ftp comand and more
+is_profile_admin_or_similar   &&  homebrew_brew_install      "wireguard-tools"     # Wireguard tooling. Eg: wg
+is_profile_admin_or_similar   &&  homebrew_brew_install      "nmap"                # Network Mapper
 is_profile_admin_or_similar   &&  homebrew_brew_install      "java"
 is_profile_admin_or_similar   &&  homebrew_brew_install      "libvirt"
 is_profile_admin_or_similar   &&  homebrew_brew_install      "qemu"
@@ -207,11 +209,10 @@ is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "google-chrome"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "vlc"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "utm"                  # Qemu GUI
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "jetbrains-toolbox"
-is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "sketch"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "calibre"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "sourcetree"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "transmission"
-is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "skype"
+#is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "skype"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "dropbox"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "cyberduck"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "grandperspective"   # Disk usage GUI
@@ -226,13 +227,15 @@ is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "intel-haxm"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "vnc-viewer"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "thinkorswim"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "spyder"             # Python/R datasciense IDE
-is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "zeplin"
+#is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "zeplin"
+#is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "sketch"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "saulpw/vd/visidata" # Visualize tabular data in the terminal
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "ngrok"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "xquartz"            # X.Org X Window System
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "parsec"             # Local/Remote LAN stream
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "qlvideo"            # Additional supported format for Finder's  Quicklook
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "tableplus"          # DataGrip alternative, with NoSQL support, until DataGrip bring support
+is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "google-earth-pro"   # Google Earth
 
 is_profile_admin  &&  homebrew_brew_tap_install "homebrew/autoupdate"             # Auto update homebrew packages every 1d
 is_profile_adimn  &&  brew autoupdate start "86400" --uprade --cleanup 
