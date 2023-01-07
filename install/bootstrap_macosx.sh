@@ -223,7 +223,6 @@ is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "keka"             
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "http-toolkit"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "textmate"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "trailer"            # Github Pull Requests Manager
-is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "intel-haxm"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "vnc-viewer"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "thinkorswim"
 is_profile_admin_or_similar  &&  homebrew_brew_cask_install  "spyder"             # Python/R datasciense IDE
