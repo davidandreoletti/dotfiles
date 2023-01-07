@@ -216,6 +216,14 @@ defaults write com.apple.Safari DebugSafari4IncludeTopSites -bool false
 defaults write com.apple.Safari WebKitJavaEnabled -bool NO
 # Enabel DEBUG menu
 defaults write com.apple.Safari IncludeDebugMenu -bool YES
+# Clear history:
+# 1 = after one day
+# 7 = after one week
+# 14 = after two weeks
+# 31 = after one month
+# 365 = after one year
+# 365000 = never (after 1000 years)
+defaults write com.apple.Safari HistoryAgeInDaysLimit -int 14
 ###############################################################################
 # Airdrop #
 ###############################################################################
