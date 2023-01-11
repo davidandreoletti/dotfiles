@@ -50,3 +50,15 @@ qalc.history
 .vim/ui
 .config/Webull Desktop/Webull Desktop
 .docker/sbom
+.config/libvirt/storage
+.config/libvirt/qemu/nvram
+.config/libvirt/qemu
+.docker/.buildNodeID
+.docker/.token_seed
+.docker/.token_seed.lock
+.docker/scan
+.docker/buildx
+.docker/application-template
+.docker/cli-plugins
+.docker/contexts
+data.json
