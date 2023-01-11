@@ -2,9 +2,9 @@
 set -x
 
 ###############################################################################
-# Boostrap new Mac OS X OS
+# Boostrap new macOS 
 # Prerequisites:
-# Xcode installed
+# - Xcode installed
 ###############################################################################
 
 export BOOSTRAP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -18,9 +18,9 @@ source "${BOOSTRAP_DIR}/utils/debug.sh"
 source "${BOOSTRAP_DIR}/utils/message.sh"
 source "${BOOSTRAP_DIR}/config/config.sh"
 source "${BOOSTRAP_DIR}/utils/todolist.sh"
+source "${BOOSTRAP_DIR}/common/shell/homebrew.sh"
 source "${BOOSTRAP_DIR}/macosx/shell/sudoers.sh"
 source "${BOOSTRAP_DIR}/macosx/shell/xcode.sh"
-source "${BOOSTRAP_DIR}/macosx/shell/homebrew.sh"
 source "${BOOSTRAP_DIR}/macosx/shell/python.sh"
 source "${BOOSTRAP_DIR}/macosx/shell/dmg.sh"
 source "${BOOSTRAP_DIR}/macosx/shell/fs.sh"
@@ -95,26 +95,26 @@ homebrew_is_installed || exit 1
 ##  - http://brewformulas.org/A
 
 # Python version for OS & utilities
-is_profile_admin_or_similar && homebrew_brew_install "python3" && homebrew_brew_link "python3" && homebrew_postinstall "python3"
+is_profile_admin_or_similar  && homebrew_brew_install "python3" && homebrew_brew_link "python3" && homebrew_postinstall "python3"
 # Python version manager for development projects 
-is_profile_admin_or_similar &&  homebrew_brew_install  "pyenv"              # Manage python version on a per user/folder basis
-is_profile_admin_or_similar &&  homebrew_brew_install  "pyenv-virtualenv"  # pyenv plugin: virtualenv/venv
+is_profile_admin_or_similar  &&  homebrew_brew_install       "pyenv"               # Manage python version on a per user/folder basis
+is_profile_admin_or_similar  &&  homebrew_brew_install       "pyenv-virtualenv"    # pyenv plugin: virtualenv/venv
 # Use Bash 4.x or better as default shell for current user
-is_profile_admin_or_similar  &&  homebrew_brew_install  "bash"             &&  sudo  bash  -c  "echo  $(brew  --prefix)/bin/bash  >>  /private/etc/shells";
-is_profile_admin_or_similar  &&  homebrew_brew_install  "bash-completion"
-is_profile_admin_or_similar  &&  homebrew_brew_tap_install "homebrew/services"    # Launch services in background. 
-is_profile_admin_or_similar  &&  homebrew_brew_install  "git"        # Get more recent version than the one shipped in Xcode
-is_profile_admin_or_similar  &&  homebrew_brew_install  "coreutils"  # Apple has outdated unix tooling.
-is_profile_admin_or_similar  &&  homebrew_brew_install  "findutils"  # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
-is_profile_admin_or_similar  &&  homebrew_brew_install  "gnu-sed"    # Apple has outdated unix tooling. sed is another one
+is_profile_admin_or_similar  &&  homebrew_brew_install       "bash"             &&  sudo  bash  -c  "echo  $(brew  --prefix)/bin/bash  >>  /private/etc/shells";
+is_profile_admin_or_similar  &&  homebrew_brew_install       "bash-completion"
+is_profile_admin_or_similar  &&  homebrew_brew_tap_install   "homebrew/services"     # Launch services in background. 
+is_profile_admin_or_similar  &&  homebrew_brew_install       "git"                 # Get more recent version than the one shipped in Xcode
+is_profile_admin_or_similar  &&  homebrew_brew_install       "coreutils"           # Apple has outdated unix tooling.
+is_profile_admin_or_similar  &&  homebrew_brew_install       "findutils"           # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
+is_profile_admin_or_similar  &&  homebrew_brew_install       "gnu-sed"             # Apple has outdated unix tooling. sed is another one
 
-is_profile_admin_or_similar  &&  homebrew_brew_install  "zsh" && sudo bash -c "echo $(brew --prefix)/bin/zsh >> /private/etc/shells" && sudo chsh -s $(brew --prefix)/bin/zsh $USER; 
-is_profile_admin_or_similar  &&  homebrew_brew_install  "zsh-completions"
-is_profile_admin_or_similar  &&  homebrew_brew_install  "tmux"
-is_profile_admin_or_similar  &&  homebrew_brew_install  "vim"
+is_profile_admin_or_similar  &&  homebrew_brew_install       "zsh" && sudo bash -c "echo $(brew --prefix)/bin/zsh >> /private/etc/shells" && sudo chsh -s $(brew --prefix)/bin/zsh $USER; 
+is_profile_admin_or_similar  &&  homebrew_brew_install       "zsh-completions"
+is_profile_admin_or_similar  &&  homebrew_brew_install       "tmux"
+is_profile_admin_or_similar  &&  homebrew_brew_install       "vim"
 
 # Install neovim, neovim python package, neovim python bindings package
-is_profile_admin_or_similar && homebrew_brew_install "neovim" && pip3_global_install "neovim" && pip3_global_install "pynvim" 
+is_profile_admin_or_similar && homebrew_brew_install         "neovim" && pip3_global_install "neovim" && pip3_global_install "pynvim" 
 
 is_profile_admin_or_similar   &&  pip3_global_install        "tasklog"             # Install tasklog cli
 is_profile_admin_or_similar   &&  homebrew_brew_install      "newsbeuter"
@@ -140,7 +140,7 @@ is_profile_admin_or_similar   &&  homebrew_brew_install      "fzf"              
 is_profile_admin_or_similar   &&  homebrew_brew_install      "fd"                  # A simpler find
 is_profile_admin_or_similar   &&  homebrew_brew_install      "tldr"                # Short manpage version, with example for most comman use cases
 is_profile_admin_or_similar   &&  homebrew_brew_install      "ncdu"                #Replacement for Grandperspective and du
-is_profile_admin_or_similar   &&  homebrew_brew_install      "openssh"             # Newer SSH Server requires a more recent SSH client than currently shipped in OSX
+is_profile_admin_or_similar   &&  homebrew_brew_install      "openssh"             # Newer SSH Server requires a more recent SSH client than currently shipped in macOS
 is_profile_admin_or_similar   &&  homebrew_brew_install      "irssi"               # IRC client. Note: --with-perl=yes --with-proxy included since brew irssi formula v1.2.3
 is_profile_admin_or_similar   &&  homebrew_brew_install      "rlwrap"              # Needed to execute PlistBuddy in command mode
 is_profile_admin_or_similar   &&  homebrew_brew_install      "tcpdump"             # TCP traffic sniffing
@@ -270,7 +270,7 @@ is_profile_admin_or_similar  &&  homebrew_mas_install   "1388020431"  #  DevClea
 # src: https://jira.atlassian.com/browse/SRCTREE-2511?focusedCommentId=2835134&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-2835134
 is_profile_admin_or_similar && echo "Fixing SourceTree not having git-crypt in its default path" && sudo ln -s /usr/local/bin/git-crypt /Applications/SourceTree.app/Contents/Resources/bin/
 
-# Set OSX user/system defaults
+# Set user/system defaults
 bash "${BOOSTRAP_DIR}/macosx/shell/defaults.sh"
 timemachine_defaults
 
@@ -320,9 +320,9 @@ fs_has_volume "/" && fs_enable_flag_noatime_on_filesystem "/" "com.david.andreol
 ## Accessibility API
 assistive_enable_accessibility_api
 
-message_info_show "Apple Softwares: checking updates ..."
+message_info_show "Softwares checking updates ..."
 softwareupdate_list_pending_updates
-message_info_show "Apple Softwares: updates installing ..."
+message_info_show "Softwares updates installing ..."
 softwareupdate_updates_install
 
 # Users Administration
