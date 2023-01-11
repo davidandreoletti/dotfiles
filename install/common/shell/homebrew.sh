@@ -3,6 +3,12 @@
 ###############################################################################
 
 homebrew_is_installed() {
+    # case: macOs
+    test -d /usr/local/Homebrew && eval "$(/usr/local/Homebrew/bin/brew shellenv)" > /tmp/brew_shell_env.sh && source /tmp/brew_shell_env.sh
+    # case: linux
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)" > /tmp/brew_shell_env.sh && source /tmp/brew_shell_env.sh
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" > /tmp/brew_shell_env.sh && source /tmp/brew_shell_env.sh
+
     which brew >> /dev/null
     return $?
 }
@@ -12,6 +18,14 @@ homebrew_install() {
     pushd /tmp
     echo -ne '\n' | sudo ${SUDO_OPTIONS} -u "$(whoami)" ${SUDO_OPTIONS} /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     popd
+
+    # case: macOs
+    test -d /usr/local/Homebrew && eval "$(/usr/local/Homebrew/bin/brew shellenv)" > /tmp/brew_shell_env.sh && source /tmp/brew_shell_env.sh
+    # case: linux
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)" > /tmp/brew_shell_env.sh && source /tmp/brew_shell_env.sh
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" > /tmp/brew_shell_env.sh && source /tmp/brew_shell_env.sh
+    rm /tpm/brew_shell_env.sh
+
     # Check system is ready to install software via brew
     brew doctor
     return $?
@@ -28,28 +42,33 @@ homebrew_fix_writable_dirs() {
 # param1: package name
 homebrew_brew_install() {
     message_info_show "$1 install ..."
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" brew install $@
+    brew=$(which brew)
+    sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew install $@
 }
 
 homebrew_postinstall() {
     message_info_show "$1 post install ..."
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" brew postinstall $@
+    brew=$(which brew)
+    sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew postinstall $@
 }
 
 homebrew_brew_linkapps() {
     message_info_show "brew linkapps ..."
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" brew linkapps
+    brew=$(which brew)
+    sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew linkapps
 }
 
 homebrew_brew_link() {
     message_info_show "brew link $1 ..."
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" brew link $@
+    brew=$(which brew)
+    sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew link $@
 }
 
 # param1: tapname
 # param2: tapSourceURL
 homebrew_brew_tap_install() {
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" brew tap "$1" $2
+    brew=$(which brew)
+    sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew tap "$1" $2
 }
 
 homebrew_brew_cask_workaround0() {
@@ -86,13 +105,15 @@ homebrew_brew_cask_workaround0() {
 
 #param1: appname
 homebrew_brew_cask_install() {
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" brew install --cask "$1"
+    brew=$(which brew)
+    sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew install --cask "$1"
 }
 
 # param1: package name
 homebrew_mas_install() {
     message_info_show "$1 install ..."
-    sudo ${SUDO_OPTIONS} -u "$(whoami)" mas install $@
+    mas=$(which mas)
+    sudo ${SUDO_OPTIONS} -u "$(whoami)" $mas install $@
 }
 
 

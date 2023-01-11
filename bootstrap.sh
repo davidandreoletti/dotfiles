@@ -33,8 +33,9 @@ while getopts 'b:fs:t:p:h' flag; do
       echo ""
       echo "COMMAND"
       echo ""
-      echo " macosx       Bootstraps a Mac OS X machine."
+      echo " macosx       Bootstraps a macOS machine."
       echo " debian       Bootstraps a Debian/Ubuntu machine"
+      echo " fedora       Bootstraps a Fedora machine"
       echo " dotfiles     Install dotfiles"
       echo ""
       echo "OPTIONS"
@@ -44,6 +45,10 @@ while getopts 'b:fs:t:p:h' flag; do
       echo "None"
       echo ""
       echo "  DEBIAN OPTIONS"
+      echo ""
+      echo "None"
+      echo ""
+      echo "  FEDORA OPTIONS"
       echo ""
       echo "None"
       echo ""
@@ -76,17 +81,18 @@ while getopts 'b:fs:t:p:h' flag; do
       echo ""
       echo "   $0 -b dotfiles -s perso -t bash"
       echo ""
-
-      echo " 1) Bootstraps a MAC OS X machine"
+      echo " 3) Bootstraps a macOS/Fedora machine"
       echo ""
       echo "   1. Setup  -the- user account acting as Administrator"
-      echo "   $0 -b macosx -s admin"
+      echo "   $0 -b <macosx/fedora> -s admin"
+      echo ""
       echo "   2. Setup depending on the computer's machine purpose: single dev OR multi dev configuration"
       echo "    Run  all user accounts which will be used for development purpose (ie multi dev machine)"
-      echo "    $0 -b macosx -s dev_multi"
+      echo "    $0 -b <macosx/fedora> -s dev_multi"
       echo "    OR"
       echo "    Run on -the- user account which will be used as the unique development account  (ie single dev machine)"
-      echo "    $0 -b macosx -s dev_single"
+      echo "    $0 -b <macosx/fedora> -s dev_single"
+      echo ""
       ;;
     ?)
       echo "Unsupported option. Exit."
@@ -277,6 +283,10 @@ function bootstrap_macosx() {
     bash "install/bootstrap_macosx.sh" "$DOTFILES_PROFILE"
 }
 
+function bootstrap_fedora() {
+    bash "install/bootstrap_fedora.sh" "$DOTFILES_PROFILE"
+}
+
 function bootstrap_debian() {
     bash "install/bootstrap_debian.sh"
 }
@@ -286,6 +296,7 @@ pushd "$(dirname "${BASH_SOURCE}")" 1> /dev/null 2>&1
 ## Args preconditions
 case $BOOSTRAP_COMMAND in
     "macosx") bootstrap_macosx ;;
+    "fedora") bootstrap_fedora ;;
     "debian") bootstrap_debian ;;
     "dotfiles") check_new_updates; check_new_shell_exists && change_default_shell; bootstrap_dotfiles; bootstrap_oh_my_shell; bootstrap_dotfiles_private; oh_my_shell_ready ;;
     *) >&2 echo "Command invalid. $0 -h for help" ;;

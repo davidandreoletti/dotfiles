@@ -8,7 +8,6 @@ SECURITY='/usr/bin/security'
 # param1: current user
 function account_has_administration_permission() {
     # Can use sudo
-    #sudo ${SUDO_OPTIONS} echo >> /dev/null
     sudo -n true
     [[ $? -eq 0 ]] && return 0
     # Has admin group

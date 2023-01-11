@@ -81,6 +81,47 @@ Current user will be a  **one of the secondaries developer accounts on the machi
     git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b macosx -s dev_multi -p "`pwd`/../dotfiles-private"
 
 
+Bootstrap Fedora machine
+-------------------------
+
+1. Prerequisites:
+- bash
+
+2. Select bootstrap script profile matching the user's account purpose
+
+IMPORTANT: Your most recents fedora user setup was build in this order: 
+- account davidandreoletti: profile primary_dev
+- account administrator:    profile admin
+- account davidis:          profile dev_multi
+
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Feature                          | Fedora standard user | Fedora Administrator | Fedora Primary Dev | Fedora Nthy Developer  |
++==================================+======================+======================+====================+=======================+
+| Homebrew install                 | y                    | y                    | y                  | y                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Homebrew packages installation   | n                    | y                    | y                  | n                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Browser addons installation      | n                    | y                    | y                  | n                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Tmux plugins                     | n                    | y                    | y                  | y                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Enable Guest Account             | n                    | y                    | y                  | n                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Create Administrator account     | n                    | n                    | y                  | n                     |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+
+
+3. Run bootstrap script matching to the user's account purpose
+
+Current user will be a **Fedora standard user**:
+
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b fedora -s normal -p "`pwd`/../dotfiles-private"
+
+Current user will be a **Fedora Administrator privileges user**
+
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b fedora -s admin -p "`pwd`/../dotfiles-private"
+
+
 
 Bootstrap configuration files
 ---------------------------------
