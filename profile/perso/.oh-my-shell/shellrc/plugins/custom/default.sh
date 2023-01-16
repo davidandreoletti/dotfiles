@@ -22,10 +22,6 @@ then
     #Repo tool for Android
     #export PATH=/toro-vm/bin/google/android/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-    # Homebrew
-    # Use homebrew in priority
-    export PATH=/usr/local/bin:$PATH
-
     # NPM
     export PATH=${HOME}/.npm/bin:$PATH
 

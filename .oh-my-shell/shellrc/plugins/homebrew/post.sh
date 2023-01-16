@@ -54,6 +54,7 @@ source "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT" | tee "$HOMEBREW_PACKAGES_UPGRADE_LOG
 
 function isCurrentUserHomebrewCellarDirectoryOwner () {
 	local fileOrDirPath="$1"
+	
 	local resourceOwner="$(stat -c '%U' $fileOrDirPath)"
 
 	[ "$USER" = "$resourceOwner" ]
@@ -75,6 +76,10 @@ fi
 if [ ! -f "$HOMEBREW_PACKAGES_UPDATED" ] && [ ! -f "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT" ];
 then
     rm -f "$HOMEBREW_PACKAGES_UPGRADE_LOG" > /dev/null 2>&1
-    isCurrentUserHomebrewCellarDirectoryOwner "$(brew --prefix)/Cellar" && upgradeBrewPackagesInForeground
-    isCurrentUserHomebrewCellarDirectoryOwner "$(brew --prefix)/Cellar" && upgradeBrewPackagesInBackground
+    # case: macos
+    cellarDir="$(brew --prefix)/Cellar"
+    # case: linux
+    [ ! -d "$cellarDir" ] && cellarDir="$(brew --prefix)/../Cellar"
+    isCurrentUserHomebrewCellarDirectoryOwner "$cellarDir" && upgradeBrewPackagesInForeground
+    isCurrentUserHomebrewCellarDirectoryOwner "$cellarDir" && upgradeBrewPackagesInBackground
 fi

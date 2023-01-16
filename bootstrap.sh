@@ -6,7 +6,13 @@ DOTFILES_DEFAULT_SHELL="zsh"
 DOTFILES_PRIVATE_DIR_PATH_SET=false
 DOTFILES_PRIVATE_DIR_PATH="`pwd`/../dotfiles-private"
 DOTFILES_DIR_PATH="`pwd`"
+
+# Get GNU readlink avaiable
 GREADLINK_BIN="/usr/local/bin/greadlink"
+if [ ! -f "$GREADLINK_BIN" ];
+then
+	GREADLINK_BIN="$(which readlink)"
+fi
 
 while getopts 'b:fs:t:p:h' flag; do
   case $flag in
@@ -131,10 +137,14 @@ function bootstrap_symlinking_user_files() {
     local sourceDir="$2"
     local destDir="$3"
 
+    # Check GNU readlink from coreutils found
     if ! command -v $GREADLINK_BIN > /dev/null 2>&1
     then
-        echo "Error: Missing $GREADLINK_BIN. Exiting."
-        exit 1
+	    if ! $GREADLINK_BIN | grep "readlink" | grep "GNU" | grep "coreutils" > /dev/null 2>&1
+	    then
+		echo "Error: Missing GNU readlink $GREADLINK_BIN. Exiting."
+		exit 1
+	    fi
     fi
 
     if [ ${DOTFILES_FORCE_INSTALL} == false ]; then
@@ -154,9 +164,12 @@ function bootstrap_symlinking_user_files() {
 
 cat <<- 'EOF' >"$linkerFile"
         #!/bin/bash
+	set -x
         sourceDir="$1"                                                          # eg: /path/to/dotfiles
         destDir="$2"                                                            # eg: $HOME
-        subPath="$3"                                                            # eg: .foo/bar/bazfile
+	greadlink="$3"                                                          # eg: /bin/readlink
+        subPath="$4"                                                            # eg: .foo/bar/bazfile
+
 
         sourcePath="$sourceDir/$subPath"
         destPath="$destDir/$subPath"
@@ -179,7 +192,7 @@ cat <<- 'EOF' >"$linkerFile"
             if [ -L "$destPath2" ];
 	    then
 		    # If resolved symlink is linking to somewhere in src, no more symlink needed
-		    resolvedDestPath2="$(/usr/local/bin/greadlink --canonicalize "$destPath2")"
+		    resolvedDestPath2="$($greadlink --canonicalize "$destPath2")"
 		    isDestPath2SymlinkingToSourceDir="$(grep -q "$sourceDir" <<< "$resolvedDestPath2"; echo $?)"
 		    [ "$isDestPath2SymlinkingToSourceDir" -eq "0" ] && action="nothing" && break
 
@@ -190,11 +203,22 @@ cat <<- 'EOF' >"$linkerFile"
 		    [ ! -e "$destPath2" ] && action="symlink" && finalDestPath="$destPath2" && finalSourcePath="$sourcePath2" && break
             fi
         done
-
-        [ "$action" = "symlink" ] && ln -Ffsv "$finalSourcePath" "$finalDestPath"
+ 
+        if [ "$action" = "symlink" ];
+	then
+            # Optionaly delete destination if empty dir or empty file
+	    #find "$finalDestPath" -maxdepth 1 -type d -empty -delete -o -type f -empty -delete
+	    #( [ -f "$finalDestPath" ] || [ -d "$finalDestPath" ] ) && find "$finalDestPath" -maxdepth 1 -type d -empty -o -type f -empty 
+            ln -Ffsv "$finalSourcePath" "$finalDestPath"
+	fi
 EOF
 
     chmod -R 700 "$sourceDir"
+
+    source "install/common/shell/os.sh"
+    charCutCount=0
+    is_macos && charCutCount=0
+    is_linux && charCutCount=1
 
     # Symlink files and folders
     for srcDir in "$sourceDir" "$sourceDir/profile/$DOTFILES_PROFILE"
@@ -203,10 +227,17 @@ EOF
         [ -e "$srcDir/exclude.txt" ] && filterFile="$srcDir/exclude.txt" || echo "NO_PATH_WILL_BE_MATECHD" > "$filterFile"
         local sourceExcluded="$(filter_out_comments "$filterFile")"
         count=`echo -n "$srcDir   " | wc -c`
-        find "$srcDir/" -type d -o -type f | cut -c$((count - 0))- | \
+
+	is_macos && find "$srcDir/" -type d -o -type f | cut -c$((count - charCutCount))- | \
             grep -f "$sourceExcluded" --invert-match | \
-            xargs -I '%' -L1 bash "$linkerFile" "$srcDir" "$destDir" %
-            #xargs -P4 -t -I '%' -L1 bash "$linkerFile" "$srcDir" "$destDir"
+            xargs -I '%' -L1 bash "$linkerFile" "$srcDir" "$destDir" "$GREADLINK_BIN" %
+            #xargs -P4 -t -I % -L1 bash "$linkerFile" "$srcDir" "$destDir" "$GREADLINK_BIN" %
+	    
+        is_linux && find "$srcDir/" -type d -o -type f | cut -c$((count - charCutCount))- | \
+            grep -f "$sourceExcluded" --invert-match | \
+            xargs -L1 bash "$linkerFile" "$srcDir" "$destDir" "$GREADLINK_BIN"
+            #worked on macos: xargs -t -I '%' -L1 bash "$linkerFile" "$srcDir" "$destDir" "$GREADLINK_BIN" %
+            #xargs -P4 -t -I % -L1 bash "$linkerFile" "$srcDir" "$destDir" "$GREADLINK_BIN" %
     done
 }
 
