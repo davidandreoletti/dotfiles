@@ -157,6 +157,9 @@ then
     is_fedora  &&  fedora_snap_install                     "snap-store"
     is_macos   &&  homebrew_brew_tap_install               "homebrew/cask"
 
+    is_macos   &&  homebrew_brew_cask_install              "kitty"
+    is_fedora  &&  fedora_dnf_install                      "kitty"
+ 
     is_macos   &&  homebrew_brew_cask_install              "miniconda"
     is_fedora  &&  fedora_dnf_install                      "conda"  && (echo "Install conda shell profiles"; sudo conda init --quiet)
     is_macos   &&  homebrew_brew_cask_install              "google-chrome"
