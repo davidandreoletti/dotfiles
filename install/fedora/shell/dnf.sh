@@ -16,3 +16,7 @@ fedora_dnf_group_install() {
 }
 
 
+fedora_dnf_update_repo_metadata() {
+    message_info_show "Update repositories metadata..."
+    sudo ${SUDO_OPTIONS} dnf upgrade --refresh -y
+}
