@@ -32,6 +32,8 @@ qalc.history
 .config/git/config_custom
 .config/git/commit-message
 .config/git/identities
+# JGit
+.config/jgit
 # Oh-my-shell files obtained somewhere else
 .oh-my-shell/shellrc/plugins/custom
 .config/gcloud
@@ -61,4 +63,7 @@ qalc.history
 .docker/application-template
 .docker/cli-plugins
 .docker/contexts
+.docker/canary.json
+.docker/config.json
+.docker/features.json
 data.json
