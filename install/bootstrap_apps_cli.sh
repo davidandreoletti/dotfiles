@@ -85,7 +85,8 @@ then
     homebrew_brew_install                  "rename"              # Mass file rename
     homebrew_brew_install                  "moreutils"           # parallel, elekdo, etc
     homebrew_brew_install                  "mitmproxy"           # Charles Proxy in command line
-    homebrew_brew_install                  "tree"
+    homebrew_brew_install                  "xdg-ninja"           # Recommands where to move files per program when programs support XDG directories structures
+    homebrew_brew_install                  "tree"                # Print directory content as tree structure 
     homebrew_brew_install                  "gnu-sed"             # GNU `sed`, overwriting the built-in `sed`
     homebrew_brew_install                  "xml-coreutils"       # Command XML utilities (eg: xml-grep)
     homebrew_brew_install                  "xmlstarlet"          # Command XML utilities (eg: xmlstarlet)
