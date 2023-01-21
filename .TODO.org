@@ -1,0 +1,85 @@
+* TODO:
+** osx defaults:
+*** Show time + date (instead of just time) in top bar on the desktop.
+** browser:
+*** safari:
+**** install vimari + setup again. automate this ?https://github.com/guyht/vimari
+*** chrome:
+**** Current setup likely indicate it is Managed by an admin. Automatically Installed extensions are removed on browser restart. Look into keep those extension installed by whitelisting them or their source: https://www.jamf.com/jamf-nation/discussions/13947/configuring-google-chrome
+** osx:
+*** Check admin account have SecureToken enabled (to unlock FileValut2 disks)
+**** https://centrify.force.com/support/Article/KB-10010-FileVault2-fails-to-initiate-for-macOS-10-13-x-High-Sierra-systems-using-Centrify-Group-Policy-and-or-cannot-add-a-mobile-account-as-a-FileVault-unlocker-account/
+**** https://derflounder.wordpress.com/2018/01/20/secure-token-and-filevault-on-apple-file-system/
+**** https://support.apple.com/en-us/HT204837
+*** Get osx keychain credentials for ghi: https://github.com/mrzool/dotfiles/blob/master/git/.gitconfig#L38
+** termital:
+*** truecolor terminal: https://gist.github.com/XVilka/8346728
+** keyboard remaaping:
+*** http://stevelosh.com/blog/2012/10/a-modern-space-cadet/#the-original
+** dotfiles:
+*** https://gist.github.com/rampion/104020
+*** https://github.com/paulirish/dotfiles
+** zsh:
+*** get some inspiration from https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins
+*** fast ZSH loading fast: https://gist.github.com/ctechols/ca1035271ad134841284
+*** aws: https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/aws/aws.plugin.zsh
+** mutt: 
+*** improve config from this https://github.com/meain/dotfiles/blob/master/mutt/.muttrc ?
+** nvm:
+*** loading fast: https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/?utm_term=28631259784&utm_medium=comment_embed&utm_source=embed&utm_name=null&utm_content=footer
+** cron:
+*** define cronjob per user, without having to modify /etc/crontab:
+** misc
+*** xprofile: https://github.com/tony/.dot-config/blob/master/.xprofile
+*** any good useful item from: https://github.com/tony/.dot-config ?
+** profile:
+*** https://github.com/majutsushi/etc/blob/master/shell-common/profile
+** vim/fzf: 
+*** https://github.com/junegunn/fzf/wiki/Examples-(vim)
+** fzf
+*** preview window https://github.com/junegunn/fzf#preview-window
+*** syntax highlight https://github.com/junegunn/fzf#preview-window
+*** Shortcut:
+**** Ctrl + r - search through bash history with fzf
+**** Ctrl + p - edit a file in vim from fzf
+**** mv dir/** - expand a directory with (**) and select from fzf
+**** Alt + c - change directory from fzf - see the update at the bottom for faster search with bfs.
+*** Ctrl + t - insert file from fzf into command
+** tmux
+*** https://github.com/Morantron/tmux-fingers ? zsh support ?
+*** cleanup custom written tmux_show/tmux_hide functions libtmux might be better suited
+*** use dedicated tmux session manager ?  https://github.com/tmux-python/tmuxp
+** vim:
+*** use one of these latex plugins https://vi.stackexchange.com/questions/2047/what-are-the-differences-between-latex-plugins ?
+*** improve config from https://github.com/meain/dotfiles/blob/master/nvim/.config/nvim/init.vim ?
+*** improve config from https://github.com/geekingfrog/configFiles/blob/master/.vimrc
+*** https://github.com/bdd/.vim/blob/master/vimrc#L80 
+*** goodies: https://statico.github.io/vim3.html !
+*** goodies https://github.com/majutsushi/etc/blob/master/vim/vimrc ?
+*** goodies https://github.com/bag-man/dotfiles/blob/master/vimrc ?
+*** search and replace project wide: https://github.com/junegunn/fzf.vim/issues/528 ?
+*** goodies https://github.com/statico/dotfiles/blob/master/.vim/vimrc ?
+*** switch to ALE: https://github.com/ErikBjare/dotfiles/commit/2b946b5d0f95ba056ce99bf0487c3ff414ce3c51 ?
+*** useful recommandations: https://www.vi-improved.org/recommendations/
+ * vim: Save/Restore session automatically
+ * vim: should I use https://github.com/monokrome/vim-lazy-obsession to get
+ * vim : mapping of simultaneous command : https://www.vim.org/scripts/script.php?script_id=2425
+   automatic vim session saved/loaded ?
+ * vim: use ale instead of syntastic or neomake ?
+ * vim: use https://vimawesome.com/plugin/sleuth-vim ? automatic
+ * vim: use https://github.com/justinmk/vim-sneak instead of easy-motion or
+   go back to bare vim ?
+ * vim: anything good to take from
+  https://wrotenwrites.com/a_modern_terminal_workflow_2/ (and similar pages)?
+*** https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
+** Plug youtube video as audio stream onnly into mpd: https://github.com/mps-youtube/mps-youtube/pulls
+** taskwarrior: 
+*** Use it http://taskwarrior.org ?
+** PGP:
+*** key publication: https://gist.github.com/terrywang/32a6d285d103b8f9beea94b970b0d16a
+** XDG_xxxx on macOS: 
+*** https://stackoverflow.com/questions/3373948/equivalents-of-xdg-config-home-and-xdg-data-home-on-mac-os-x
+*** https://github.com/majutsushi/etc/blob/master/shell-common/profile#L26
+SHELL PERF IMPROVEMENT: This is a gold mine! :-)
+* https://htr3n.github.io/2018/07/faster-zsh/#lazy-loading
+
