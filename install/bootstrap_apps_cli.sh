@@ -134,7 +134,7 @@ is_profile_admin
 if [ "$?" -eq 0 ];
 then
     homebrew_brew_tap_install "homebrew/autoupdate"  # Auto update homebrew packages every 1d
-    brew autoupdate start "86400" --uprade --cleanup 
+    brew autoupdate start "86400" --upgrade --cleanup 
 fi
 
 # Install *-completions at the end to prevent the error below when installing other packages
