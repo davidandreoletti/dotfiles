@@ -95,7 +95,7 @@ then
     is_fedora && fedora_dnf_install        "rbenv"
     homebrew_brew_install                  "gawk"                # Required by: tmux-fingers plugin
     homebrew_brew_install                  "ffsend"              # Firefox Send client. Required by 1 oh-my-shell plugin
-    homebrew_brew_install                  "csvkit"              # Swiss army knife for csv files
+    is_macos  && hhomebrew_brew_install    "csvkit"              # Swiss army knife for csv files
     homebrew_brew_install                  "libiconv"            # Convert files from/to various character encodings
     homebrew_brew_install                  "postgresql@14"       # Postgresql DB and standard command line utils like psql. PG db not started at runtime.
     homebrew_brew_install                  "pspg"                # Pager for psql official client
