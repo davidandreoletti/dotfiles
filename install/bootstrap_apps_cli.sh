@@ -53,6 +53,7 @@ then
     homebrew_brew_install                  "asdf"                # Version manager for multiple runtime environment
     homebrew_brew_install                  "util-linux"          # Collection of linux utilies
     homebrew_brew_install                  "redis"               # Redis Key Value Storage
+    homebrew_brew_install                  "fortune"             # Fortune cookie
     homebrew_brew_install                  "curl"
     homebrew_brew_install                  "mpd"                 # Music player daemon
     homebrew_brew_install                  "mpc"                 # Music player (simple) client
