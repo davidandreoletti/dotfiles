@@ -40,9 +40,10 @@ cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
         echo "Brew cask packages last upgraded 4+ weeks ago. Upgrading now. Ctrl-C to cancel"
         # Upgrade cask packages
         # - upgrade cask with explicitly version
-        brew cask upgrade --force 2>&1;
+        set -x
+        [ "$OS_NAME" == "macosx" ] && brew upgrade --cask --force 2>&1;
         # - upgrade cask with "lastest" version or "auto_updates"
-        brew cask upgrade --greedy --force 2>&1;
+        [ "$OS_NAME" == "macosx" ] && brew upgrade --cask --greedy --force 2>&1;
         # Free spaces by removing old versions, logs, etc
         brew cleanup --prune=all
     fi 
