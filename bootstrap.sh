@@ -164,7 +164,6 @@ function bootstrap_symlinking_user_files() {
 
 cat <<- 'EOF' >"$linkerFile"
         #!/bin/bash
-	set -x
         sourceDir="$1"                                                          # eg: /path/to/dotfiles
         destDir="$2"                                                            # eg: $HOME
 	greadlink="$3"                                                          # eg: /bin/readlink
@@ -298,7 +297,7 @@ function bootstrap_dotfiles_private() {
 
     if [ "$($DOTFILES_PRIVATE_DIR_PATH/bin/dotfiles_private_locked_status $DOTFILES_PRIVATE_DIR_PATH )" = "LOCKED" ];
     then
-        echo "WARNING: $DOTFILES_PRIVATE_DIR_PATH's files are LOCKED (ie ENCRYPTED). Symlinking fils requires unlocked files."
+        echo "WARNING: $DOTFILES_PRIVATE_DIR_PATH's files are LOCKED (ie ENCRYPTED). Symlinking files requires unlocked files."
         echo "To unlock files, run: bash $DOTFILES_PRIVATE_DIR_PATH/bin/dotfiles_private_unlock \"$DOTFILES_PRIVATE_DIR_PATH\""
     else
         echo "NOTE: $DOTFILES_PRIVATE_DIR_PATH's files are UNLOCKED (ie DECRYPTED)."
