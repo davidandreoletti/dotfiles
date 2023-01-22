@@ -52,6 +52,7 @@
     # macos credential helper
     helper = osxkeychain
     # fedora credential helper  (ie git-credential-libsecret)
+    # src: https://my-take-on.tech/2019/08/23/safely-storing-git-credentials/
     helper = libsecret
 
 [diff]

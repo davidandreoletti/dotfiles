@@ -79,6 +79,7 @@ then
     homebrew_brew_install                  "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
 
     is_fedora  &&  fedora_dnf_install      "git-credential-libsecret" # git credential helper using GNOME's libsecret backend
+    is_fedora  &&  homebrew_brew_install   "git-credential-libsecret" # provide git credential helper with libsecret also for homebrew's installed git 
 
     homebrew_brew_install                  "imagemagick"         # Required by spaceman-diff
     homebrew_brew_install                  "jp2a"                # Convert images to ASCII. Required by spaceman-diff
