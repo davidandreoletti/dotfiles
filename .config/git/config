@@ -49,7 +49,10 @@
     newHighlight = green bold 22
      
 [credential]
+    # macos credential helper
     helper = osxkeychain
+    # fedora credential helper  (ie git-credential-libsecret)
+    helper = libsecret
 
 [diff]
     # Produce diff using patience algorithm with additional support for "low-occurrence common elements"
@@ -155,6 +158,8 @@
     # Require user.name / user.email to be set
     # - never guess the user/email from the environment
     useConfigOnly = true
+	email = david.andreoletti.dev@gmail.com
+	name = David Andreoletti
 
 [init]
     defaultBranch = "master"
