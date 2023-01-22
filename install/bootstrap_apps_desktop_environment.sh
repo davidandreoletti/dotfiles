@@ -34,4 +34,7 @@ then
     is_fedora  &&  fedora_dnf_install "evince-thumbnailer"
     # - manage compressed archives
     is_fedora  &&  fedora_dnf_install "file-roller-nautilus"
+
+    # Keychain
+    is_fedora  &&  fedora_dnf_install "seahorse"
 fi
