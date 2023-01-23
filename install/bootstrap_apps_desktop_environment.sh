@@ -20,9 +20,9 @@ then
     is_fedora  &&  fedora_dnf_install "gnome-terminal"
 
     # Enable login using graphical interface
-    is_fedora  &&  systemctl enable gdm; 
+    is_fedora  &&  sudo ${SUDO_OPTIONS} systemctl enable gdm; 
     # Boot to graphical interface as default
-    is_fedora  &&  systemctl set-default graphical.target; 
+    is_fedora  &&  sudo ${SUDO_OPTIONS} systemctl set-default graphical.target; 
 
     # File Manager
     is_fedora  &&  fedora_dnf_install "nautilus"
