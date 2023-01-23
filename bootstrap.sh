@@ -245,9 +245,10 @@ function bootstrap_dotfiles() {
 }
 
 function bootstrap_oh_my_shell() {
+    # BASH shell:
     # - OSX:      . ~/.oh-my-shell/oh-my-shellrc into ~/.bash_profile ("Interactive Login"/"Interactive" shell)
     # - Ubuntu:   . ~/.oh-my-shell/oh-my-shellrc into ~/.bash_profile ("Interactive Login" shell)
-    #                                               into ~/.bashrc       ("Interactive" shell)
+    #                                            into ~/.bashrc       ("Interactive" shell)
     # ZSH shell:
     #
     # - OSX:      . ~/.oh-my-shell/oh-my-shellrc into ~/.zshrc ("Interactive Login"/"Interactive" shell)
