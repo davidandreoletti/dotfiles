@@ -37,4 +37,7 @@ then
 
     # Keychain
     is_fedora  &&  fedora_dnf_install "seahorse"
+
+    # Wallpaper
+    is_fedora  &&  fedora_dnf_install "variety"
 fi
