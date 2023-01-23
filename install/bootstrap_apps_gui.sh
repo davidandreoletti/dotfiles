@@ -32,7 +32,15 @@ then
 
     is_macos   &&  homebrew_brew_cask_install              "kitty"
     is_fedora  &&  fedora_dnf_install                      "kitty"
- 
+
+    # Docker repository (from upstream rather than distribution packages)
+    is_fedora  &&  fedora_dnf_config_manager_add_repo      "https://download.docker.com/linux/fedora/docker-ce.repo"
+    is_fedora  &&  fedora_dnf_install                      "docker-ce" \
+               &&  fedora_dnf_install                      "docker-ce-cli" \
+               &&  fedora_dnf_install                      "containerd.io" \
+               &&  fedora_dnf_install                      "docker-compose-plugin"
+    is_macos   &&  echo "FIXME: Install docker-desktop (required) with https://docs.docker.com/desktop/install/mac-install/#install-from-the-command-line. Then automate the installation"
+
     is_macos   &&  homebrew_brew_cask_install              "miniconda"
     is_fedora  &&  fedora_dnf_install                      "conda"  && (echo "Install conda shell profiles"; sudo conda init --quiet)
     is_macos   &&  homebrew_brew_cask_install              "google-chrome"

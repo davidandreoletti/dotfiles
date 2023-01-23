@@ -20,3 +20,10 @@ fedora_dnf_update_repo_metadata() {
     message_info_show "Update repositories metadata..."
     sudo ${SUDO_OPTIONS} dnf upgrade --refresh -y
 }
+
+# param1: repo url 
+fedora_dnf_config_manager_add_repo() {
+    message_info_show "$1 repo to add ..."
+    # Must use default sudo setting. Hence no: -u <user_name>
+    sudo ${SUDO_OPTIONS} dnf -y config-manager --add-repo $@
+}

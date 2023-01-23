@@ -10,4 +10,7 @@ then
     is_fedora  &&  fedora_dnf_install "zram" \
                &&  fedora_dnf_install "zram-generator" \
                &&  fedora_dnf_install "zram-generator-defaults"
+
+    # Install tools to add new repositories
+    is_fedora  &&  fedora_dnf_install "dnf-plugins-core"
 fi
