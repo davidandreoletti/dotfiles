@@ -36,7 +36,7 @@ then
     homebrew_brew_install                  "tmux"
     homebrew_brew_install                  "vim"
     
-    # Install neovim, neovim python package, neovim python bindings package
+    # Neovim, neovim python package, neovim python bindings package
     homebrew_brew_install                  "neovim"  \
     && pip3_global_install                 "neovim"  \
     && pip3_global_install                 "pynvim" 
@@ -64,7 +64,13 @@ then
     homebrew_brew_install                  "fd"                  # A simpler find
     homebrew_brew_install                  "tldr"                # Short manpage version, with example for most comman use cases
     homebrew_brew_install                  "ncdu"                #Replacement for Grandperspective and du
-    homebrew_brew_install                  "openssh"             
+
+    # OpenSSH client / server
+    homebrew_brew_install                  "openssh"             # OpenSSH client and server
+    is_macos  &&  fedora_dnf_install       "openssh-server" \
+              &&  sudo systemctl enable sshd
+              &&  sudo systemctl start sshd
+
     homebrew_brew_install                  "irssi"               # IRC client. Note: --with-perl=yes --with-proxy included since brew irssi formula v1.2.3
     homebrew_brew_install                  "rlwrap"              # Needed to execute PlistBuddy in command mode
     homebrew_brew_install                  "tcpdump"             # TCP traffic sniffing
