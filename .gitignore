@@ -85,4 +85,8 @@ qalc.history
 .docker/config.json
 .docker/features.json
 .docker/sbom
+# bin
+bin/dotfiles_private_locked_status
+bin/dotfiles_private_unlock
+bin/export-repository-by-replaying-commits-without-git-patches
 data.json
