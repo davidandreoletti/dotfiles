@@ -1,18 +1,16 @@
+# Emacs
 .emacs.d/elpa
 .emacs.d/auto-save-list
 .gradle/caches
 .gradle/daemon
 .gradle/wrapper
 .gradle/native
+# Tmux
 .tmux/resurrect
 .tmux/plugins
+# Inkspace
 .config/inkscape
-.vim/cache
-.vim/bundle
-.vim/sessions
-.vim/session
-.vim/plugged
-.vim/autoload/plug.vim
+# Music Player daemon
 .mpd
 !.mpd/mpd.conf
 database
@@ -42,19 +40,39 @@ qalc.history
 .studio/*
 !.studio/setup_and_run.sh
 !.studio/README
+# Pyenv
 .pyenv/cache
 .pyenv/sources
 .config/nvim/pack/kite
+# Vim
 .vim/pack/kite
 .vim/commands
 .vim/keymap
 .vim/settings
 .vim/ui
+.vim/cache
+.vim/bundle
+.vim/sessions
+.vim/session
+.vim/plugged
+.vim/autoload/plug.vim
 .config/Webull Desktop/Webull Desktop
-.docker/sbom
+# Libvirt
 .config/libvirt/storage
 .config/libvirt/qemu/nvram
 .config/libvirt/qemu
+# Variety
+.config/variety/Downloaded
+.config/variety/history.txt
+.config/variety/scripts
+.config/variety/variety.log
+.config/variety/ui.conf
+.config/variety/wallpaper
+.config/variety/variety_latest_default.conf
+.config/variety/.version
+.config/variety/.last_change_time
+.config/variety/.firstrun
+# Docker
 .docker/.buildNodeID
 .docker/.token_seed
 .docker/.token_seed.lock
@@ -66,4 +84,5 @@ qalc.history
 .docker/canary.json
 .docker/config.json
 .docker/features.json
+.docker/sbom
 data.json

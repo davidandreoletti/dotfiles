@@ -121,13 +121,21 @@ Current user will be a **Fedora Administrator privileges user**
 
     git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b fedora -s admin -p "`pwd`/../dotfiles-private"
 
+Current user will be a  **primary developer account on the machine**
+
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b fedora -s dev_single -p "`pwd`/../dotfiles-private"
+
+Current user will be a  **one of the secondaries developer accounts on the machine**
+
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b fedora -s dev_multi -p "`pwd`/../dotfiles-private"
+
 
 
 Bootstrap configuration files
 ---------------------------------
 
 1. Prerequisites:
-- ```bootstrap -b macosx -s ...``` with homebrew packages installed minimun
+- ```bootstrap -b <macosx|fedora> -s ...``` with homebrew packages installed minimun
 
 2. Select bootstrap conf script profile matching the user's account purpose
 
@@ -149,6 +157,7 @@ c. Prevent git from displaying every file those permission have changed (yet no 
 
    vim THIS_REPO.git/.git/config
       filemode = false
+
 
 DOCUMENTATION
 =============
