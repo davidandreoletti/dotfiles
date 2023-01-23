@@ -34,11 +34,19 @@ then
     is_fedora  &&  fedora_dnf_install                      "kitty"
 
     # Docker repository (from upstream rather than distribution packages)
+    # src:
+    #  - fedora: 
+    #  -- https://docs.docker.com/engine/install/fedora/#install-using-the-repository
+    #  -- https://docs.docker.com/engine/install/linux-postinstall/
     is_fedora  &&  fedora_dnf_config_manager_add_repo      "https://download.docker.com/linux/fedora/docker-ce.repo"
     is_fedora  &&  fedora_dnf_install                      "docker-ce" \
                &&  fedora_dnf_install                      "docker-ce-cli" \
                &&  fedora_dnf_install                      "containerd.io" \
                &&  fedora_dnf_install                      "docker-compose-plugin"
+               &&  sudo usermod -a -G docker $(whoami) \
+               &&  newgrp docker \
+               &&  sudo systemctl enable docker.service \
+               &&  sudo systemctl start docker.service
     is_macos   &&  echo "FIXME: Install docker-desktop (required) with https://docs.docker.com/desktop/install/mac-install/#install-from-the-command-line. Then automate the installation"
 
     is_macos   &&  homebrew_brew_cask_install              "miniconda"
