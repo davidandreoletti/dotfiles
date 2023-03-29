@@ -14,6 +14,7 @@ SHELLRC_PLUGINS_DIR="${SHELLRC_SHELLRC_DIR}/plugins"
 . "${SHELLRC_BOOTSTRAP_DIR}/helper.sh"
 dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/helper2.sh"
 dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/helper3.sh"
+dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/helper4.sh"
 dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/init.sh"
 
 # Load shell plugins (part 1)

@@ -1,14 +1,27 @@
 # Upgrade homebrew managed packages
 
-HOMEBREW_PACKAGES_UPDATED="/tmp/${USER}_homebrew_packages_upgraded"
-HOMEBREW_PACKAGES_UPGRADE_SCRIPT="/tmp/${USER}_homebrew_packages_upgrade.sh"
-HOMEBREW_PACKAGES_UPGRADE_LOG="/tmp/${USER}_homebrew_packages_upgrade.log"
+HOMEBREW_POST_BASE="/tmp/${USER}_homebrew_post"
+HOMEBREW_POST_MARKER="$HOMEBREW_POST_BASE.marker"
 
-function upgradeBrewPackagesInBackground () {
+HOMEBREW_PACKAGES_UPGRADE_SCRIPT="$HOMEBREW_POST_BASE.package_upgrade.sh"
+HOMEBREW_PACKAGES_UPGRADE_LOG="$HOMEBREW_PACKAGES_UPGRADE_SCRIPT.log"
+HOMEBREW_PACKAGES_UPGRADE_SCRIPT2="$HOMEBREW_POST_BASE.package_upgrade2.sh"
+HOMEBREW_PACKAGES_UPGRADE_LOG2="$HOMEBREW_PACKAGES_UPGRADE_SCRIPT2.log"
+
+
+# 3600*24*30 = 30 days
+if f_run_every_x_seconds "$HOMEBREW_POST_MARKER" "$((3600*24*30))" ;
+then
+
+function f_isCurrentUserHomebrewCellarDirectoryOwner () {
+	local fileOrDirPath="$1"
+	
+	local resourceOwner="$(stat -c '%U' $fileOrDirPath)"
+
+	[ "$USER" = "$resourceOwner" ]
+}
 
 cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
-    set -x
-
     brew update 2>&1;
 
     # Uninstall previous non cask and cask package versions (to save on disk space over time)
@@ -18,21 +31,9 @@ cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
     # Upgrade non cask packages
     # - upgrade non casks
     brew upgrade 2>&1;
-
-    touch "$HOMEBREW_PACKAGES_UPDATED"
-    chmod 777 "$HOMEBREW_PACKAGES_UPDATED"
-    rm -f "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
-
-    set +x
 EOF
 
-bash "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT" > "$HOMEBREW_PACKAGES_UPGRADE_LOG" 2>&1 &
-
-}
-
-function upgradeBrewPackagesInForeground () {
-
-cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
+cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT2"
     weeknumber=\`date +%V\`;
     reminder="\$weeknumber % 4"
     if [ \`echo "\$reminder" | bc\` -eq 0 ];
@@ -40,7 +41,6 @@ cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
         echo "Brew cask packages last upgraded 4+ weeks ago. Upgrading now. Ctrl-C to cancel"
         # Upgrade cask packages
         # - upgrade cask with explicitly version
-        set -x
         [ "$OS_NAME" == "macosx" ] && brew upgrade --cask --force 2>&1;
         # - upgrade cask with "lastest" version or "auto_updates"
         [ "$OS_NAME" == "macosx" ] && brew upgrade --cask --greedy --force 2>&1;
@@ -49,38 +49,15 @@ cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
     fi 
 EOF
 
-source "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT" | tee "$HOMEBREW_PACKAGES_UPGRADE_LOG"
-
-}
-
-function isCurrentUserHomebrewCellarDirectoryOwner () {
-	local fileOrDirPath="$1"
-	
-	local resourceOwner="$(stat -c '%U' $fileOrDirPath)"
-
-	[ "$USER" = "$resourceOwner" ]
-}
-
-# Force packages upgrades every 1d
-if [ -f "$HOMEBREW_PACKAGES_UPDATED" ];
-then
-    ts1=$(stat -c %Y "$HOMEBREW_PACKAGES_UPDATED"); 
-    now=$(date '+%s'); 
-    ts2=$(($now - 3600*24*1)); # 3600*24*1 = 1 day 
-    if [ $ts1 -lt $ts2 ];
-    then 
-        rm -f "$HOMEBREW_PACKAGES_UPDATED" > /dev/null 2>&1;
-    fi
-fi
-
-# Upgrade packages when required
-if [ ! -f "$HOMEBREW_PACKAGES_UPDATED" ] && [ ! -f "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT" ];
-then
-    rm -f "$HOMEBREW_PACKAGES_UPGRADE_LOG" > /dev/null 2>&1
     # case: macos
     cellarDir="$(brew --prefix)/Cellar"
     # case: linux
     [ ! -d "$cellarDir" ] && cellarDir="$(brew --prefix)/../Cellar"
-    isCurrentUserHomebrewCellarDirectoryOwner "$cellarDir" && upgradeBrewPackagesInForeground
-    isCurrentUserHomebrewCellarDirectoryOwner "$cellarDir" && upgradeBrewPackagesInBackground
+
+    if f_isCurrentUserHomebrewCellarDirectoryOwner "$cellarDir";
+    then
+        f_run_exclusive_with_completion "${HOMEBREW_PACKAGES_UPGRADE_SCRIPT2}.lockfile" "$HOMEBREW_PACKAGES_UPGRADE_LOG2" "$HOMEBREW_POST_MARKER" bash $HOMEBREW_PACKAGES_UPGRADE_SCRIPT2
+    else
+        f_run_exclusive_in_background_with_completion "${HOMEBREW_PACKAGES_UPGRADE_SCRIPT}.lockfile" "$HOMEBREW_PACKAGES_UPGRADE_LOG" "$HOMEBREW_POST_MARKER" bash $HOMEBREW_PACKAGES_UPGRADE_SCRIPT
+    fi
 fi

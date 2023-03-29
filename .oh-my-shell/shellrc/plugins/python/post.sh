@@ -1,29 +1,29 @@
-# Always install the latest python version per MAJOR.MINOR group
-#( ( for v in 3.9 3.10 3.11; do echo "Installing $v" >> /tmp/foo.txt ;pyenv install --skip-existing "${v}:latest"; done ) & )
-( ( for v in 3.9 3.10 3.11; do echo "Installing $v" >> /tmp/foo.txt ;pyenv install --skip-existing "${v}"; done ) & )
+PYTHON_POST_BASE="/tmp/${USER}_python_post"
+PYTHON_POST_MARKER="${PYTHON_POST_BASE}.marker"
 
-PYTHON_PACKAGES_UPDATED="/tmp/${USER}_python_packages_updated"
-PYTHON_PACKAGES_UPGRADE_SCRIPT="/tmp/${USER}_packages_python_upgrade.sh"
-PYTHON_PACKAGES_UPGRADE_LOG="/tmp/${USER}_python_packages_upgrade.log"
-
-# Force packages upgrades every 1d
-if [ -f "$PYTHON_PACKAGES_UPDATED" ];
+# 3600*24*15 = 30 days
+if f_run_every_x_seconds "$PYTHON_POST_MARKER" "$((3600*24*30))" ;
 then
-    ts1=$(stat -c %Y "$PYTHON_PACKAGES_UPDATED"); 
-    now=$(date '+%s'); 
-    ts2=$(($now - 3600*24*1)); # 3600*24*1 = 1 day 
-    if [ $ts1 -lt $ts2 ];
-    then 
-        rm -f "$PYTHON_PACKAGES_UPDATED" > /dev/null 2>&1;
-    fi
-fi
 
-# Upgrade packages when required
-if [ ! -f "$PYTHON_PACKAGES_UPDATED" ] && [ ! -f "$PYTHON_PACKAGES_UPGRADE_SCRIPT" ];
-then
+    # Always install the latest python version per MAJOR.MINOR group
+    PYTHON_INSTALL_SCRIPT="${PYTHON_POST_BASE}.install.sh"
+    PYTHON_INSTALL_LOG="${PYTHON_INSTALL_SCRIPT}.log"
+
+cat <<EOF > "$PYTHON_INSTALL_SCRIPT"
+    for v in 3.9 3.10 3.11; 
+    do 
+        echo "Installing \$v"
+        pyenv install --skip-existing "\$v"  # "\$v:latest"
+    done 
+EOF
+
+    f_run_exclusive_in_background_with_completion "${PYTHON_INSTALL_SCRIPT}.lockfile" "$PYTHON_INSTALL_LOG" "$PYTHON_POST_MARKER" bash $PYTHON_INSTALL_SCRIPT
+
+    # Force packages upgrades every 15d
+    PYTHON_PACKAGES_UPGRADE_SCRIPT="${PYTHON_POST_BASE}.package_upgrades.sh"
+    PYTHON_PACKAGES_UPGRADE_LOG="${PYTHON_PACKAGES_UPGRADE_SCRIPT}.log"
 
 cat <<EOF > "$PYTHON_PACKAGES_UPGRADE_SCRIPT"
-    set -x
     # Delete all pip cached files
     pip cache purge
 
@@ -43,17 +43,7 @@ cat <<EOF > "$PYTHON_PACKAGES_UPGRADE_SCRIPT"
     pip3 install pip_upgrade_outdated
     # Upgrade python packages, meeting other packages depedencies
     pip_upgrade_outdated -3 -s  # Python 3 support
-
-    touch "$PYTHON_PACKAGES_UPDATED"
-    chmod 777 "$PYTHON_PACKAGES_UPDATED"
-    rm -f "$PYTHON_PACKAGES_UPGRADE_SCRIPT"
-
-    set +x
 EOF
 
-rm -f "$PYTHON_PACKAGES_UPGRADE_LOG" > /dev/null 2>&1
-
-( bash "$PYTHON_PACKAGES_UPGRADE_SCRIPT" > "$PYTHON_PACKAGES_UPGRADE_LOG" 2>&1 & )
-
+    f_run_exclusive_in_background_with_completion "${PYTHON_PACKAGES_UPGRADE_SCRIPT}.lockfile" "$PYTHON_PACKAGES_UPGRADE_LOG" "$PYTHON_POST_MARKER" bash $PYTHON_PACKAGES_UPGRADE_SCRIPT
 fi
-
