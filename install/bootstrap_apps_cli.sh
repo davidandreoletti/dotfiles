@@ -51,7 +51,7 @@ then
     homebrew_brew_install                  "wget"
     homebrew_brew_install                  "goenv"               # Golang environment manager
     homebrew_brew_install                  "asdf"                # Version manager for multiple runtime environment
-    homebrew_brew_install                  "util-linux"          # Collection of linux utilies
+    homebrew_brew_install                  "util-linux"          # Collection of linux utilies such as flock
     homebrew_brew_install                  "redis"               # Redis Key Value Storage
     homebrew_brew_install                  "fortune"             # Fortune cookie
     homebrew_brew_install                  "curl"
