@@ -54,9 +54,14 @@ function f_libvirt_pool_volume_disk_define {
         "$srcFile" $volSize
 
     #shellcheck disable=SC2086
-    virsh ${VIRSH_OPTIONS} vol-delete \
-        --pool "$poolName" \
-        --vol "$volName"
+    if virsh ${VIRSH_OPTIONS} --pool "$poolName" "$volName" >/dev/null 2>&1;
+    then
+        echo "$volName does not exist yet"
+    else
+        virsh ${VIRSH_OPTIONS} vol-delete \
+            --pool "$poolName" \
+            --vol "$volName"
+    fi
 
     #shellcheck disable=SC2086
     virsh ${VIRSH_OPTIONS} vol-create-as \
