@@ -68,8 +68,11 @@ then
     # OpenSSH client / server
     homebrew_brew_install                  "openssh"             # OpenSSH client and server
     is_macos  &&  fedora_dnf_install       "openssh-server" \
-              &&  sudo systemctl enable sshd
+              &&  sudo systemctl enable sshd \
               &&  sudo systemctl start sshd
+
+    is_macos  &&  homebrew_brew_install    "fwknop"              # Firewall port knocking 
+    is_fedora &&  fedora_dnf_install       "fwknop"
 
     homebrew_brew_install                  "irssi"               # IRC client. Note: --with-perl=yes --with-proxy included since brew irssi formula v1.2.3
     homebrew_brew_install                  "rlwrap"              # Needed to execute PlistBuddy in command mode
