@@ -124,6 +124,7 @@ then
     homebrew_brew_install                  "pinentry-mac"        # Connect gpg-agent to OSX keychain
     homebrew_brew_install                  "hopenpgp-tools"      # Verify PGP key setup best practice
     homebrew_brew_install                  "pgpdump"             # PGP packet/key analyser
+    homebrew_brew_install                  "pstree"              # Show ps output as a tree
     homebrew_brew_install                  "libfaketime"         # Freeze system clock for a given application (eg: shell script)
     homebrew_brew_install                  "expect"              # Automate interactive program interactions
     homebrew_brew_install                  "git-crypt"           # Encrypt git repository
