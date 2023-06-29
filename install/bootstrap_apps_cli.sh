@@ -142,7 +142,8 @@ then
     homebrew_brew_install                  "boz/repo/kail"       # kubernetes pods console viewer
     pip3_global_install                    "buku[server]"        # Browser independent bookmark manager, with standalone server
     pip3_global_install                    "tasklog"             # Install tasklog cli
-    pip3_global_install                    "awscli"              # AWS command line
+    pip3_global_install                    "awscli"              # AWS CLI
+    is_macos && homebrew_brew_install      "oci-cli"             # Oracle Cloud CLI
     homebrew_brew_install                  "tfenv"               # Terraform version manager like rbenv
 fi
 
