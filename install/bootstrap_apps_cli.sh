@@ -143,6 +143,7 @@ then
     pip3_global_install                    "buku[server]"        # Browser independent bookmark manager, with standalone server
     pip3_global_install                    "tasklog"             # Install tasklog cli
     pip3_global_install                    "awscli"              # AWS command line
+    homebrew_brew_install                  "tfenv"               # Terraform version manager like rbenv
 fi
 
 is_profile_admin
