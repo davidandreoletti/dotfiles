@@ -10,7 +10,7 @@ then
     PYTHON_INSTALL_LOG="${PYTHON_INSTALL_SCRIPT}.log"
 
 cat <<EOF > "$PYTHON_INSTALL_SCRIPT"
-    for v in 3.9 3.10 3.11; 
+    for v in 3.11 3.10 3.9; 
     do 
         echo "Installing \$v"
         pyenv install --skip-existing "\$v"  # "\$v:latest"
