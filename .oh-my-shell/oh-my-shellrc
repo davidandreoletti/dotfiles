@@ -117,7 +117,7 @@ dot_delayed_plugins_step_if_exists "completions"
 dot_current_shell_plugin_if_exists "correction"
 dot_current_shell_plugin_if_exists "custom"
 
-# Load shell plugin (part 3)
+# Load app/shell plugin (part 3)
 dot_delayed_plugins_step_if_exists "post"
 
 # Load <computer,user> shell specific config

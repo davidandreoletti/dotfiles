@@ -32,7 +32,7 @@ f_run_exclusive() {
 
     (
         # why 9 ? reason: https://unix.stackexchange.com/a/475427/45954
-        flock --exclusive --nonblock 9;
+        flock --exclusive --nonblock --verbose 9 || exit 1
         #exec > >(tee "$logFile") 2>&1;
         exec "${@:3}";
     ) 9>>"$lockFile"
