@@ -23,6 +23,12 @@ then
         # Add RPM Fusion (free / nonfree)
         fedora_dnf_install "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
         fedora_dnf_install "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+
+        # Cloudflare WARP client
+        # src: https://community.cloudflare.com/t/setup-warp-in-fedora-34/277475/7
+        # src: https://linuxspin.com/install-and-configure-cloudflare-warp-on-linux/#install-cloudflare-warp-on-fedora
+        rpm -ivh http://pkg.cloudflareclient.com/cloudflare-release-el8.rpm
+        sed -i 's/dists\/\$releasever\/main/dists/8/main/' /etc/yum.repos.d/cloudflare.repo
     fi
 
     is_fedora  &&  fedora_flatpak_remote_add               "flathub"     "https://flathub.org/repo/flathub.flatpakrepo"
@@ -94,6 +100,9 @@ then
     is_macos   &&  homebrew_brew_cask_install              "parsec"             # Local/Remote LAN stream
     is_macos   &&  homebrew_brew_cask_install              "qlvideo"            # Additional supported format for Finder's  Quicklook
     is_macos   &&  homebrew_brew_cask_install              "rar"                # RAR files
+
+    is_macos   &&  homebrew_brew_cask_install              "cloudflare-warp"    # Cloudflare WARP client
+    is_fedora  &&  fedora_dnf_install                      "cloudflare-warp"
 
     is_macos   &&  homebrew_brew_cask_install              "google-earth-pro"   # Google Earth
     is_macos   &&  homebrew_brew_cask_install              "google-cloud-sdk" \
