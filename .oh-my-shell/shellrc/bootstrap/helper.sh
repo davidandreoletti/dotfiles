@@ -100,15 +100,22 @@ function dot_delayed_plugins_step_if_exists() {
     local stepName="${1:-"none"}"
     local reportSpeedOverDurationMs="${2:-100}"
 
-    local startTime=$(_timeNow)
-
     local stepFile=$(shell_session_step_file "$stepName")
-    dot_if_exists "$stepFile"
-    rm -f "$stepFile"
 
-    local endTime=$(_timeNow)
-    local runtime=$(_timeInterval $startTime $endTime)
-    _reportIfSlowerThan "delayed_plugin: $stepName" $runtime $reportSpeedOverDurationMs
+    while IFS= read -r pluginName;
+    do
+        export SHELLRC_CURRENT_PLUGIN_DIR="${SHELLRC_PLUGINS_DIR}/${pluginName}"
+        local startTime=$(_timeNow)
+
+        dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/${stepName}.sh"
+
+        local endTime=$(_timeNow)
+        local runtime=$(_timeInterval $startTime $endTime)
+        _reportIfSlowerThan "plugin: $pluginName: $stepName": $runtime $reportSpeedOverDurationMs
+        unset SHELLRC_CURRENT_PLUGIN_DIR 
+    done < "$stepFile"
+
+    rm -f "$stepFile"
 }
 
 # Usage: dot_plugin_if_exists PLUGIN_NAME
@@ -125,10 +132,10 @@ function dot_plugin_if_exists() {
     dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/aliases.sh"
 
     local stepCompletionFile=$(shell_session_step_file "completions")
-    echo "dot_if_exists ${SHELLRC_CURRENT_PLUGIN_DIR}/completions.sh" >> "$stepCompletionFile"
+    echo "$pluginName" >> "$stepCompletionFile"
 
     local stepPostFile=$(shell_session_step_file "post")
-    echo "dot_if_exists ${SHELLRC_CURRENT_PLUGIN_DIR}/post.sh" >> "$stepPostFile"
+    echo "$pluginName" >> "$stepPostFile"
     unset SHELLRC_CURRENT_PLUGIN_DIR 
 
     local endTime=$(_timeNow)
