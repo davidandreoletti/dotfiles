@@ -91,3 +91,4 @@ bin/dotfiles_private_unlock
 bin/export-repository-by-replaying-commits-without-git-patches
 data.json
 .tfenv/versions
+.docker/scout/sbom
