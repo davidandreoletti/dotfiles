@@ -98,6 +98,7 @@ function shell_session_step_file () {
 # Usage: dot_delayed_plugins_step_if_exists STEP NAME
 function dot_delayed_plugins_step_if_exists() {
     local stepName="${1:-"none"}"
+    local reportSpeedOverDurationMs="${2:-100}"
 
     local startTime=$(_timeNow)
 
@@ -107,12 +108,13 @@ function dot_delayed_plugins_step_if_exists() {
 
     local endTime=$(_timeNow)
     local runtime=$(_timeInterval $startTime $endTime)
-    _reportIfSlowerThan "delayed_plugin: $stepName" $runtime 100
+    _reportIfSlowerThan "delayed_plugin: $stepName" $runtime $reportSpeedOverDurationMs
 }
 
 # Usage: dot_plugin_if_exists PLUGIN_NAME
 function dot_plugin_if_exists() {
     local pluginName="${1:-"none"}"
+    local reportSpeedOverDurationMs="${2:-50}"
 
     local startTime=$(_timeNow)
 
@@ -131,7 +133,7 @@ function dot_plugin_if_exists() {
 
     local endTime=$(_timeNow)
     local runtime=$(_timeInterval $startTime $endTime)
-    _reportIfSlowerThan "plugin: $pluginName" $runtime 50
+    _reportIfSlowerThan "plugin: $pluginName" $runtime $reportSpeedOverDurationMs
 }
 
 # Usage: dot_current_shell_plugin_if_exists PLUGIN_NAME
