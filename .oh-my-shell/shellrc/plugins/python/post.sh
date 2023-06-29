@@ -17,9 +17,10 @@ cat <<EOF > "$PYTHON_INSTALL_SCRIPT"
     done 
 EOF
 
-    f_run_exclusive_in_background_with_completion "${PYTHON_INSTALL_SCRIPT}.lockfile" "$PYTHON_INSTALL_LOG" "$PYTHON_POST_MARKER" bash $PYTHON_INSTALL_SCRIPT
+    # Install python in background with lowest priority
+    f_run_exclusive_in_background_with_completion "${PYTHON_INSTALL_SCRIPT}.lockfile" "$PYTHON_INSTALL_LOG" "$PYTHON_POST_MARKER" nice -n 10 bash $PYTHON_INSTALL_SCRIPT
 
-    # Force packages upgrades every 15d
+    # Force packages upgrades
     PYTHON_PACKAGES_UPGRADE_SCRIPT="${PYTHON_POST_BASE}.package_upgrades.sh"
     PYTHON_PACKAGES_UPGRADE_LOG="${PYTHON_PACKAGES_UPGRADE_SCRIPT}.log"
 
