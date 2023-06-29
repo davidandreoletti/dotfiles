@@ -38,7 +38,7 @@ function _reportIfSlowerThan() {
     if [[ $measured -gt $max ]];
     then
         #echo "$startTime > $endTime"
-        echo "profiling: $measured ms $RANDOM -> $id"
+        echo "profiling:speed:$id: $measured ms. Expected less than $max ms"
     fi 
    fi
 }
