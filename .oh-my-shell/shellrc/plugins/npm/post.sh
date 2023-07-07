@@ -1,4 +1,4 @@
-NPM_POST_BASE="/tmp/${USER}_npm_post"
+NPM_POST_BASE="$HOME/.oh-my-shell/tmp/npm_post"
 NPM_POST_MARKER="${NPM_POST_BASE}.marker"
 
 # 3600*24*30 = 30 days

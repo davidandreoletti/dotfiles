@@ -1,4 +1,4 @@
-PYTHON_POST_BASE="/tmp/${USER}_python_post"
+PYTHON_POST_BASE="$HOME/.oh-my-shell/tmp/python_post"
 PYTHON_POST_MARKER="${PYTHON_POST_BASE}.marker"
 
 # 3600*24*15 = 30 days

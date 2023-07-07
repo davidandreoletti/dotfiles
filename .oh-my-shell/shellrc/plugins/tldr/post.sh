@@ -1,4 +1,4 @@
-TLDR_POST_BASE="/tmp/${USER}_tldr_post"
+TLDR_POST_BASE="$HOME/.oh-my-shell/tmp/tldr_post"
 TLDR_POST_MARKER="${TLDR_POST_BASE}.marker"
 
 # 3600*24*7 = 7 days

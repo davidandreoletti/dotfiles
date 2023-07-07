@@ -1,6 +1,6 @@
 # Upgrade homebrew managed packages
 
-HOMEBREW_POST_BASE="/tmp/${USER}_homebrew_post"
+HOMEBREW_POST_BASE="$HOME/.oh-my-shell/tmp/homebrew_post"
 HOMEBREW_POST_MARKER="$HOMEBREW_POST_BASE.marker"
 
 HOMEBREW_PACKAGES_UPGRADE_SCRIPT="$HOMEBREW_POST_BASE.package_upgrade.sh"
