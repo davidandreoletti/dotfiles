@@ -93,3 +93,4 @@ data.json
 .tfenv/versions
 .docker/scout/sbom
 .config/xnviewmp
+.oh-my-shell/tmp
