@@ -25,3 +25,13 @@ alias ssh_extract_from_pem_public_key_only_as_rsa_format='ssh-keygen -y -f '
 # Force close ssh connection now
 # Usage: ssh_force_close_connection "some_ssh_host"
 alias ssh_force_close_connection='ssh -O exit '
+
+# Run SSH client config audit
+# Usage: ssh_audit_client 192.168.x.y
+# src: https://github.com/jtesta/ssh-audit#client-standard-audit-example
+alias ssh_audit_client='docker run -it --rm --name ssh_audit -p 2222:2222 positronsecurity/ssh-audit'
+
+# Run SSH server config audit
+# Usage: ssh_audit_server "some.ssh.server.ip"
+# src: https://github.com/jtesta/ssh-audit#server-standard-audit-example 
+alias ssh_audit_server='docker run -it --rm --name sshd_audit positronsecurity/ssh-audit '
