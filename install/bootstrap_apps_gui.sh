@@ -76,6 +76,8 @@ then
     is_fedora  &&  fedora_flatpak_flathub_install          "org.filezillaproject.Filezilla"
     is_macos   &&  homebrew_brew_cask_install              "grandperspective"   # Disk usage GUI
     is_macos   &&  homebrew_brew_cask_install              "1password"
+    is_macos   &&  homebrew_brew_cask_install              "keepassxc"
+    is_fedora  &&  fedora_dnf_install                      "keepassxc"
     is_macos   &&  homebrew_brew_cask_install              "onyx"
     is_macos   &&  homebrew_brew_cask_install              "postman"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.getpostman.Postman"
