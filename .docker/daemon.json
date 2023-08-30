@@ -6,17 +6,14 @@
     }
   },
   "experimental": false,
-  "features": {
-    "buildkit": true
-  },
-  "max-concurrent-downloads": 16,
-  "max-concurrent-uploads": 8,
   "log-opts": {
+    "cache-compress": "true",
     "cache-disabled": "false",
     "cache-max-file": "5",
     "cache-max-size": "100m",
-    "cache-compress": "true",
     "max-file": "5",
     "max-size": "100m"
-  }
+  },
+  "max-concurrent-downloads": 16,
+  "max-concurrent-uploads": 8
 }
