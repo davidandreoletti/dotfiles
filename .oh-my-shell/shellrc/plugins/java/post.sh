@@ -11,7 +11,10 @@ if [[ "$OS_NAME" == "macosx" ]]; then
         find "/Library/Java/JavaVirtualMachines" -mindepth 1 -maxdepth 1 -type d -name "*jdk*" -exec bash -c "yes | jenv add \"{}/Contents/Home\" > /dev/null 2>&1" \;
         find "/Library/Java/JavaVirtualMachines" -mindepth 1 -maxdepth 1 -xtype d -name "*jdk*" -exec bash -c "yes | jenv add \"{}/Contents/Home\" > /dev/null 2>&1" \;
         # Register perhaps not already registered JDKs
-        find $HOMEBREW_CELLAR -type d -regex ".*openjdk.jdk$"  -exec bash -c "yes | jenv add {}/Contents/Home" \;
+        for directory in $HOMEBREW_CELLAR/openjdk*;
+        do
+            find $directory -depth -maxdepth 4 -type d -regex ".*openjdk.jdk$"  -exec bash -c "yes | jenv add {}/Contents/Home" \;
+        done
         # Notify jenv to reload shims
         jenv rehash
     ) > /dev/null 2>&1
