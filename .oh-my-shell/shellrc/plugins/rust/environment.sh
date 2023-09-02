@@ -1,1 +1,4 @@
-path_prepend "$HOME/.cargo/bin"
+export CARGO_HOME="$HOME/.cargo"
+
+path_prepend "$CARGO_HOME/bin"
+
