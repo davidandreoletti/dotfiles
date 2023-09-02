@@ -29,6 +29,10 @@ then
         # src: https://linuxspin.com/install-and-configure-cloudflare-warp-on-linux/#install-cloudflare-warp-on-fedora
         rpm -ivh http://pkg.cloudflareclient.com/cloudflare-release-el8.rpm
         sed -i 's/dists\/\$releasever\/main/dists/8/main/' /etc/yum.repos.d/cloudflare.repo
+
+        # Github Desktop
+        rpm --import https://rpm.packages.shiftkey.dev/gpg.key
+        sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
     fi
 
     is_fedora  &&  fedora_flatpak_remote_add               "flathub"     "https://flathub.org/repo/flathub.flatpakrepo"
@@ -67,7 +71,7 @@ then
     is_macos   &&  homebrew_brew_cask_install              "calibre"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.calibre_ebook.calibre"
     is_macos   &&  homebrew_brew_cask_install              "sourcetree"
-    is_fedora  &&  fedora_dnf_install                      "gitg"
+    is_fedora  &&  fedora_dnf_install                      "github-desktop"
     is_macos   &&  homebrew_brew_cask_install              "transmission"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.transmissionbt.Transmission"
     is_macos   &&  homebrew_brew_cask_install              "dropbox"
