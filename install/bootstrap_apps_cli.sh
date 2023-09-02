@@ -131,6 +131,7 @@ then
     homebrew_brew_install                  "iperf3"              # Network performance measurement
     homebrew_brew_install                  "inetutils"           # GNU ftp comand and more
     homebrew_brew_install                  "wireguard-tools"     # Wireguard tooling. Eg: wg
+    homebrew_brew_install                  "rust"                # Rust + package manager / compiler toolchain
     homebrew_brew_install                  "nmap"                # Network Mapper
     homebrew_brew_install                  "java"
     homebrew_brew_install                  "libvirt"             # KVM/Qemu machine definition / hypervision abstraction
