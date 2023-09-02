@@ -1,3 +1,7 @@
+# Rust
+.cargo/registry/cache
+.cargo/registry/index
+.cargo/registry/src
 # Emacs
 .emacs.d/elpa
 .emacs.d/auto-save-list
@@ -98,3 +102,4 @@ data.json
 .docker/scout/sbom
 .config/xnviewmp
 .oh-my-shell/tmp
+.cargo/registry/CACHEDIR.TAG
