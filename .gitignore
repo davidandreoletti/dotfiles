@@ -2,6 +2,8 @@
 .cargo/registry/cache
 .cargo/registry/index
 .cargo/registry/src
+.cargo/.package-cache
+.cargo/bin
 # Emacs
 .emacs.d/elpa
 .emacs.d/auto-save-list
