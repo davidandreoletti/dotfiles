@@ -1,7 +1,5 @@
 # Rust
-.cargo/registry/cache
-.cargo/registry/index
-.cargo/registry/src
+.cargo/registry
 .cargo/.package-cache
 .cargo/bin
 # Emacs
@@ -95,6 +93,14 @@ qalc.history
 .docker/config.json
 .docker/features.json
 .docker/sbom
+# Docker Desktop
+.docker/desktop/log
+.docker/desktop/vms
+.docker/desktop/userId
+.docker/desktop/*.json
+.docker/desktop/cni
+.docker/desktop/*.lock
+.docker/desktop/locked-directories
 # bin
 bin/dotfiles_private_locked_status
 bin/dotfiles_private_unlock
@@ -104,4 +110,3 @@ data.json
 .docker/scout/sbom
 .config/xnviewmp
 .oh-my-shell/tmp
-.cargo/registry/CACHEDIR.TAG
