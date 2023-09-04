@@ -3,7 +3,7 @@
 # mnemonic [B]rew [I]nstall [P]lugin
 # src: https://github.com/junegunn/fzf/wiki/examples#homebrew
 f_homebrew_bip() {
-  local inst=$(brew search | fzf -m)
+  local inst=$(brew search "$@" | fzf -m)
 
   if [[ $inst ]]; then
     for prog in $(echo $inst);
@@ -29,7 +29,7 @@ f_homebrew_bcp() {
 
   if [[ $uninst ]]; then
     for prog in $(echo $uninst);
-    do brew uninstall $prog; done;
+    do; brew uninstall $prog; done;
   fi
 }
 
@@ -58,7 +58,7 @@ f_homebrew_bcip() {
 # using brew list as input source (all brew cask installed applications) 
 # and display a info quickview window for the currently marked application
 #uninstall() {
-bcup () {
+f_homebrew_bcup () {
     local token
     token=$(brew cask list | fzf-tmux --query="$1" +m --preview 'brew cask info {}')
 
