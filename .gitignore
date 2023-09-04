@@ -15,7 +15,7 @@
 # Inkspace
 .config/inkscape
 # Music Player daemon
-.mpd
+.mpd/*
 !.mpd/mpd.conf
 database
 sticker.sql
