@@ -9,6 +9,7 @@ then
     homebrew_brew_tap_install              "homebrew/services"  # Launch services in background.
     homebrew_brew_tap_install              "burntsushi/ripgrep"  "https://github.com/BurntSushi/ripgrep.git"
     homebrew_brew_tap_install              "boz/repo"
+    homebrew_brew_tap_install              "mopidy/mopidy"
     #homebrew_brew_tap_install              "arthurk/homebrew-virt-manager"
 
     # Python version for OS & utilities
@@ -58,6 +59,13 @@ then
     homebrew_brew_install                  "mpd"                 # Music player daemon
     homebrew_brew_install                  "mpc"                 # Music player (simple) client
     homebrew_brew_install                  "pms"                 # Music player (tui) client
+    homebrew_brew_install                  "mopidy"              # Music server with cloud music support plugins
+    homebrew_brew_install                  "mopidy-mpd"          # Mopidi plugin to mpd clients
+    homebrew_brew_install                  "mopidy-local"        # Mopidi plugin to play local music
+    homebrew_brew_install                  "mopidy-somafm"       # Mopidi plugin to play somafm music
+    homebrew_brew_install                  "mopidy-soundcloud"   # Mopidi plugin to play soundcloud music
+    homebrew_brew_install                  "mopidy-spotify"      # Mopidi plugin to play spotify music
+    homebrew_brew_install                  "mopidy-tunein"       # Mopidi plugin to play tune-in music
     homebrew_brew_install                  "unp"
     homebrew_brew_install                  "bat"                 # cat with highlighting, paging, line numbers support
     homebrew_brew_install                  "fzf"                 # Ctrl+R replacement for searching the history / files
