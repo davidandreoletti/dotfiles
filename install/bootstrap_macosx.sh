@@ -167,8 +167,11 @@ is_profile_admin_or_similar && account_guest_enable
 is_admin_available=$(account_exists "administrator")
 account_exists "administrator" || account_admin_create "administrator" "Administrator" "$CONFIG_MACOSX_USER_ADMIN_PASSWORD"
 ## Remove current user from admin group
-## - OSX will ask for Administrator password every time something has to be done (least privileges for day to day tasks)
-## - Homebrew's /usr/local/*' folders have group admin. In multi user setup, 
+## Consequences:
+## - macOS
+## -- OS asks for Administrator password every time something has to be done (least privileges for day to day tasks)
+## - Homebrew:
+## -- /usr/local/*' folders have group admin. In multi user setup, 
 ##   users with the "admin" group are the only one allowed to "brew install"
 ##   DO NOT CHANGE the /usr/local/* group to something - that's futile and agaisnt homebrew's recommendation
 is_profile_dev_single && account_user_remove_group "$(whoami)" "admin"
