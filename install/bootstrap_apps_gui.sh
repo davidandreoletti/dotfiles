@@ -106,7 +106,6 @@ then
     is_macos   &&  homebrew_brew_cask_install              "parsec"             # Local/Remote LAN stream
     is_macos   &&  homebrew_brew_cask_install              "qlvideo"            # Additional supported format for Finder's  Quicklook
     is_macos   &&  homebrew_brew_cask_install              "rar"                # RAR files
-    is_macos   &&  homebrew_brew_cask_install              "multipass"          # Ubuntu multipass to create cloud-init enabled virtual machines
 
     is_macos   &&  homebrew_brew_cask_install              "cloudflare-warp"    # Cloudflare WARP client
     is_fedora  &&  fedora_dnf_install                      "cloudflare-warp"
