@@ -144,7 +144,9 @@ then
     homebrew_brew_install                  "java"
     homebrew_brew_install                  "libvirt"             # KVM/Qemu machine definition / hypervision abstraction
     homebrew_brew_install                  "qemu"
-    #homebrew_brew_install                  "virt-manager"
+    homebrew_brew_install                  "virt-manager"        # QEMU Manager
+    homebrew_brew_install                  "xorriso"             # ISO9660+RR manipulation tool to kickstart a fedora vm with virt-install
+
     #homebrew_brew_install                  "virt-viewer"         # QEMU Virt Manager/Viewer for macOS Monterey
     #homebrew_brew_install                  "tdsmith/ham/chirp"   # CHIRP software to configure HAM radios
     #homebrew_brew_install                  "tdsmith/ham/xastir"  # HAM Station Tracking / Info reporting
