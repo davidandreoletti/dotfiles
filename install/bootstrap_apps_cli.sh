@@ -146,6 +146,8 @@ then
     homebrew_brew_install                  "qemu"
     homebrew_brew_install                  "virt-manager"        # QEMU Manager
     homebrew_brew_install                  "xorriso"             # ISO9660+RR manipulation tool to kickstart a fedora vm with virt-install
+    homebrew_brew_install                  "file"
+    homebrew_brew_install                  "usbutils"            # List USB devices via lsusb
 
     #homebrew_brew_install                  "virt-viewer"         # QEMU Virt Manager/Viewer for macOS Monterey
     #homebrew_brew_install                  "tdsmith/ham/chirp"   # CHIRP software to configure HAM radios
