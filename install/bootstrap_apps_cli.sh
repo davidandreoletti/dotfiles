@@ -57,8 +57,8 @@ then
     homebrew_brew_install                  "fortune"             # Fortune cookie
     homebrew_brew_install                  "curl"
     homebrew_brew_install                  "mpd"                 # Music player daemon
-    homebrew_brew_install                  "mpc"                 # Music player (simple) client
-    homebrew_brew_install                  "pms"                 # Music player (tui) client
+    homebrew_brew_install                  "mpc"                 # Music player (CLI) client
+    homebrew_brew_install                  "ncmpc"               # Music player (TUI) client
     homebrew_brew_install                  "mopidy"              # Music server with cloud music support plugins
     homebrew_brew_install                  "mopidy-mpd"          # Mopidi plugin to mpd clients
     homebrew_brew_install                  "mopidy-local"        # Mopidi plugin to play local music
