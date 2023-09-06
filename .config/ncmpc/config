@@ -1,0 +1,13 @@
+host=127.0.0.1
+port=6600
+timeout=10
+enable-mouse=yes
+auto-center=yes
+scroll-offset=5
+find-show-last=yes
+find-wrap=yes
+wrap-around=no
+welcome-screen-list=yes
+visible-bitrate=yes
+enable-colors=yes
+screen-list=playlist, browse, library
