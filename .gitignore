@@ -109,4 +109,6 @@ data.json
 .tfenv/versions
 .docker/scout/sbom
 .config/xnviewmp
+# oh-my-shell
 .oh-my-shell/tmp
+.oh-my-shell/shellrc/plugins/video_archives
