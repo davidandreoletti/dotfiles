@@ -1,46 +1,53 @@
-# Generate/Load per user MPD port
-MPD_PORT_FILE="$HOME/.mpd/port"
-if [ ! -f "$MPD_PORT_FILE" ]
-then
-    echo "$RANDOM" > "$MPD_PORT_FILE"
-fi
+#!/bin/bash
 
-# Export MPD host/port for some mpd clients to communicate with
-export MPD_PORT="$(cat $MPD_PORT_FILE)"
-export MPD_HOST="127.0.0.1"
-
-# Start mpd server
-# - replacing the port value with the one generated
-MPD_OLD_PORT=$(cat .mpd/mpd.conf | grep "^port" | cut -d\" -f2)
-sed -i.bak "s/$MPD_OLD_PORT/$MPD_PORT/" "$HOME/.mpd/mpd.conf"
-rm -f "$HOME/.mpd/mpd.conf.bak"
-
-# - Kill previous mpd daemon
-if pgrep -U $USER mpd
-then
-    echo "Killing previous music player daemon"
-    pkill -U $USER mpd
-    sleep 3s
-fi
-
-# - start mpd as daemon
-mpd
-
-# Load musics and begin playing
-(
-    # Load musics
+f_mpd_update_database() {
+    echo "Updating playlists ..."
+    # Create/Update playlists
     command pushd "$HOME/.playlists" > /dev/null 2>&1
-        # Compute music urls
-        urls=<($SHELL mpd.sh *.m3u) 
-        # Append, randomly sorted, musics to MPD, and playing very first music loaded
-        #cat $urls | shuf | tee -p >(mpc add) | mpc play 
-        cat $urls | shuf | mpc add
-        mpc play 
-    command popd > /dev/null 2>&1
-    # Remove duplicate musics
-    mpc playlist | sort | uniq -d -c | while read song; do count=$(echo "$song" | sed -e "s/^[ \t]*//" | cut -d" " -f1); song=$(echo "$song" | sed -e "s/^[ \t]*//" | cut -d" " -f2-); for (( i = 2 ; i <= $count; i++ )); do mpc playlist | grep -n "$song" | tail -n 1 | cut -d: -f1 | mpc del; done; done
-) &
+        # Download music m3u files
+        $SHELL to_m3u.sh *.playlist
 
-# Run mpd client
-PMS_OPTIONS="-p $MPD_PORT -h $MPD_HOST"
-pms $PMS_OPTIONS
+        for m3u_file in *.m3u;
+        do
+            playlist_name="$(basename $m3u_file .m3u)"
+
+            # Convert stream urls into new playlist
+            if [[ "$playlist_name" == "programming" ]];
+            then
+                command cat <($SHELL convert.sh $m3u_file) > "$HOME/.mpd/playlists/${playlist_name}.m3u"
+            else
+                mv "$PWD/$m3u_file" "$HOME/.mpd/playlists/${playlist_name}.m3u"
+            fi
+        done
+    command popd > /dev/null 2>&1
+
+    # Remove duplicate musics
+    #mpc playlist | sort | uniq -d -c | while read song; do count=$(echo "$song" | sed -e "s/^[ \t]*//" | cut -d" " -f1); song=$(echo "$song" | sed -e "s/^[ \t]*//" | cut -d" " -f2-); for (( i = 2 ; i <= $count; i++ )); do mpc playlist | grep -n "$song" | tail -n 1 | cut -d: -f1 | mpc del; done; done
+}
+
+f_mpd_play() {
+    # List playlists available
+    echo "** Available playlists **"
+    mpc ls
+
+    echo ""
+    echo "** Playing music **"
+    mpc play
+}
+
+while true; do
+    case "$1" in
+        --update ) 
+            f_mpd_update_database; shift 
+            ;;
+        -- ) 
+            shift
+            break
+            ;;
+        * )
+            f_mpd_play
+            break
+            ;;
+    esac
+done
+
