@@ -10,6 +10,7 @@ then
     homebrew_brew_tap_install              "burntsushi/ripgrep"  "https://github.com/BurntSushi/ripgrep.git"
     homebrew_brew_tap_install              "boz/repo"
     homebrew_brew_tap_install              "mopidy/mopidy"
+    homebrew_brew_tap_install              "homebrew-ffmpeg/ffmpeg"
     #homebrew_brew_tap_install              "arthurk/homebrew-virt-manager"
 
     # Python version for OS & utilities
@@ -57,6 +58,19 @@ then
     homebrew_brew_install                  "fortune"             # Fortune cookie
     homebrew_brew_install                  "curl"
     
+    # Multimedia tools
+    homebrew_brew_install                  "fdk-aac"             # Fraunhofer FDK AAC library
+    homebrew_brew_install                  "openssl"             # Openssl library
+    homebrew_brew_install                  "libvmaf"             # VMAF library
+    homebrew_brew_install                  "jpeg-xl"             # JPEG-XL codec library
+    homebrew_brew_install                  "zimg"                # Scaling, colorspace conversion, and dithering library
+    homebrew_brew_install                  "ffmpeg \
+                                            --with-fdk-aac \
+                                            --with-openssl \
+                                            --with-libvmaf \
+                                            --with-jpeg-xl \
+                                            --with-zimg"         # FFMPEG (using https://github.com/homebrew-ffmpeg/homebrew-ffmpeg's tap + dependencies above this line)
+
     # Multimedia players
     homebrew_brew_install                  "mpc"                 # Music player (CLI) client
     homebrew_brew_install                  "ncmpc"               # Music player (TUI) client
