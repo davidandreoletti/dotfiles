@@ -56,9 +56,13 @@ then
     homebrew_brew_install                  "redis"               # Redis Key Value Storage
     homebrew_brew_install                  "fortune"             # Fortune cookie
     homebrew_brew_install                  "curl"
-    homebrew_brew_install                  "mpd"                 # Music player daemon
+    
+    # Multimedia players
     homebrew_brew_install                  "mpc"                 # Music player (CLI) client
     homebrew_brew_install                  "ncmpc"               # Music player (TUI) client
+
+    # Multimedia servers
+    homebrew_brew_install                  "mpd"                 # Music player daemon
     homebrew_brew_install                  "mopidy"              # Music server with cloud music support plugins
     homebrew_brew_install                  "mopidy-mpd"          # Mopidi plugin to mpd clients
     homebrew_brew_install                  "mopidy-local"        # Mopidi plugin to play local music
@@ -66,6 +70,7 @@ then
     homebrew_brew_install                  "mopidy-soundcloud"   # Mopidi plugin to play soundcloud music
     homebrew_brew_install                  "mopidy-spotify"      # Mopidi plugin to play spotify music
     homebrew_brew_install                  "mopidy-tunein"       # Mopidi plugin to play tune-in music
+
     homebrew_brew_install                  "unp"
     homebrew_brew_install                  "bat"                 # cat with highlighting, paging, line numbers support
     homebrew_brew_install                  "fzf"                 # Ctrl+R replacement for searching the history / files
