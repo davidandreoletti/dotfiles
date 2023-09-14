@@ -101,6 +101,7 @@ qalc.history
 .docker/desktop/cni
 .docker/desktop/*.lock
 .docker/desktop/locked-directories
+.docker/desktop-build/*.lock
 # bin
 bin/dotfiles_private_locked_status
 bin/dotfiles_private_unlock
