@@ -27,7 +27,12 @@ then
     
     is_fedora && fedora_dnf_install        "bash"
     is_macos  && homebrew_brew_install     "bash"  &&  sudo  bash  -c  "echo  $(brew  --prefix)/bin/bash >> $SHELLS_FILE";
+
+    # Git
     homebrew_brew_install                  "git"                # Get more recent version than the one shipped in Xcode
+    homebrew_brew_install                  "gitui"              # git TUI for large patch set to deal with on a console
+
+    # GUN * utils
     homebrew_brew_install                  "coreutils"          # Apple has outdated unix tooling.
     homebrew_brew_install                  "findutils"          # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
     homebrew_brew_install                  "gnu-sed"            # Apple has outdated unix tooling. sed is another one
