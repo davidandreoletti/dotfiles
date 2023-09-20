@@ -74,3 +74,22 @@ f_homebrew_bcup () {
         fi
     fi
 }
+
+unset -f f_homebrew_core_fix_package
+# Workflow to edit a brew formula, run tests
+f_homebrew_core_fix_package () {
+    local package_name="$1"
+    # src: https://github.com/Homebrew/homebrew-core/blob/master/CONTRIBUTING.md#to-contribute-a-fix-to-the-foo-formula
+
+    # Tap homebrew core
+    brew tap homebrew/core
+
+    # Edit formula
+    brew edit $package_name
+
+    brew uninstall --force $package_name
+    HOMEBREW_NO_INSTALL_FROM_API=1 brew install --build-from-source $package_name
+    brew test $package_name
+    brew audit --strict $package_name
+    brew style $package_name
+}

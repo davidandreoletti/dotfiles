@@ -25,3 +25,7 @@ alias brew_uninstall_package="f_homebrew_bcp"
 # Update package interractively
 # Usage: brew_update_package "foobar"
 alias brew_uninstall_package="f_homebrew_bup"
+
+# Download homebrew core in the current directory, move to PACKAGE dir, open a shell to write a fix
+# Usage: homebrew_core_fix_package PACKAGE 
+alias homebrew_core_fix_package="f_homebrew_core_fix_package "
