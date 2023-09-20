@@ -23,3 +23,6 @@ alias virt_start_vm='f_libvirt_domain_start '
 # Usage: wipeVM "domain_name"
 alias virt_delete_vm='f_libvirt_domain_unsetup '
 
+# Start vm from menu
+# Usage: virt_start_vm_menu
+alias virt_start_vm_menu='virsh list --all --name | grep "-" | fzf | xargs -I% virsh start %'
