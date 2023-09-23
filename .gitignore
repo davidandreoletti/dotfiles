@@ -57,6 +57,7 @@ qalc.history
 .vim/settings
 .vim/ui
 .vim/cache
+.vim/cache/undo/neovim/%private%tmp%a.pem
 .vim/bundle
 .vim/sessions
 .vim/session
