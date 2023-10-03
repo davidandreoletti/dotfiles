@@ -4,21 +4,21 @@
 tmux_has_window_with_name() {
     local sessionName=$1 
     local windowName=$2
-    tmux list-windows -t "$sessionName" | grep "$windowName" > /dev/null
+    command tmux list-windows -t "$sessionName" | grep "$windowName" > /dev/null
 }
 
 # Usage: tmux_find_windowname_by_index "session name" "window name"
 tmux_find_windowname_by_index() {
     local sessionName=$1
     local indexName=$2
-    tmux list-windows -t "$sessionName" | grep "^$indexName:" | cut -f2 -d " "
+    command tmux list-windows -t "$sessionName" | grep "^$indexName:" | cut -f2 -d " "
 }
 
 # Usage: tmux_find_windowindex_by_windowname "session name" "index value"
 tmux_find_windowindex_by_windowname() {
     local sessionName=$1
     local windowName=$2
-    tmux list-windows -t "$sessionName" | grep ": $windowName" | cut -f1 -d " " | cut -f1 -d ":"
+    command tmux list-windows -t "$sessionName" | grep ": $windowName" | cut -f1 -d " " | cut -f1 -d ":"
 }
 
 # Find current tmux session name
@@ -26,7 +26,7 @@ tmux_find_windowindex_by_windowname() {
 # Return: Tmux session name
 tmux_find_current_session_name() {
     # src: http://unix.stackexchange.com/questions/111499/how-do-i-know-the-name-of-a-tmux-session
-    local sessionName=$(tmux display-message -p '#S')
+    local sessionName=$(command tmux display-message -p '#S')
     echo "$sessionName"
 }
 
@@ -34,7 +34,7 @@ tmux_find_current_session_name() {
 # Usage: tmux_attach_session "session name"
 tmux_attach_session() {
     local sessionName="$1"
-    tmux attach-session -t "$sessionName"
+    command tmux attach-session -t "$sessionName"
 }
 
 # Get or create session with name
@@ -46,8 +46,8 @@ tmux_get_or_create_session() {
         sessionName=$(tmux_find_current_session_name)
     else 
         # Not in Tmux session
-        tmux start-server
-        tmux new-session -d -n "shell" -s "$sessionName" "$SHELL" > /dev/null
+        command tmux start-server
+        command tmux new-session -d -n "shell" -s "$sessionName" "$SHELL" > /dev/null
     fi
     echo "$sessionName"
 }
@@ -66,14 +66,14 @@ tmux_is_in_tmux_environement() {
 }
 
 # Open window with windowindowName and running command
-# Usage: tmux_open_window "mail" "mutt; bash" "session anme"
+# Usage: tmux_open_window "mail" "session name" "mutt; bash"
 tmux_open_window() {
     local windowName="$1"
-    local cmd="$2"
-    #local sessionName=$(tmux_get_or_create_session "default")
-    local sessionName="$3"
+    local sessionName="$2"
+    local cmd="$3"
+
     # Create Tmux window
-    tmux_has_window_with_name "$sessionName" "$windowName" || tmux new-window -t "$sessionName" -n "$windowName" "$cmd" 
+    tmux_has_window_with_name "$sessionName" "$windowName" || command tmux new-window -t "$sessionName" -n "$windowName" "$cmd" 
 
     # http://stackoverflow.com/questions/5311583/tmux-how-to-make-new-window-stay-when-start-shell-command-quits
     # Keep bash running once initial command finished
@@ -87,26 +87,26 @@ tmux_close_window() {
     local sessionName=$2
 
     tmux_is_in_tmux_environement || return
-    tmux_has_window_with_name "$sessionName" "$windowName" && tmux kill-window -t "$sessionName:$windowName"
+    tmux_has_window_with_name "$sessionName" "$windowName" && command tmux kill-window -t "$sessionName:$windowName"
 }
 
 # Show window with windowName
-# Usage: tmux_open_window "session name" "window name"
+# Usage: tmux_show_window "session name" "window name"
 tmux_show_window() {
     local sessionName=$1
     local windowName=$2
 
     tmux_is_in_tmux_environement || tmux_attach_session "$sessionName"
 
-    tmux select-window -t "$sessionName:$windowName"
+    command tmux select-window -t "$sessionName:$windowName"
 }
 
 tmux_news_show() {
     set -x
     local sessionName=$(tmux_get_or_create_session "news")
-    tmux_open_window "mail" 'until mutt && false; do sleep 1; done; bash' "$sessionName"
-    tmux_open_window "rss" 'until newsbeuter && false; do sleep 1; done; bash' "$sessionName"
-    tmux_open_window "irc" 'until irssi && false; do sleep 1; done; bash' "$sessionName"
+    tmux_open_window "mail" "$sessionName" 'until mutt && false; do sleep 1; done; $SHELL'
+    tmux_open_window "rss" "$sessionName" 'until newsbeuter && false; do sleep 1; done; $SHELL'
+    tmux_open_window "irc" "$sessionName" 'until irssi && false; do sleep 1; done; $SHELL'
     # Show mail window by default in the current session
     tmux_show_window "$sessionName" "mail"
     set +x
@@ -122,7 +122,7 @@ tmux_news_hide() {
 tmux_android_show() {
     set -x
     local sessionName=$(tmux_get_or_create_session "android")
-    tmux_open_window "adblog" 'until adb logcat && false; do sleep 1; adb logcat -c; done; bash' "$sessionName"
+    tmux_open_window "adblog" "$sessionName" 'until adb logcat && false; do sleep 1; adb logcat -c; done; bash'
     set +x
 }
 
@@ -135,9 +135,9 @@ tmux_android_hide() {
 tmux_session_get_or_create() {
   [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
   if [ $1 ]; then 
-     tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1"); return
+     command tmux $change -t "$1" 2>/dev/null || (command tmux new-session -d -s $1 && command tmux $change -t "$1"); return
   fi
-  session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) &&  tmux $change -t "$session" || echo "No sessions found."
+  session=$(command tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) &&  command tmux $change -t "$session" || echo "No sessions found."
 }
 
 
