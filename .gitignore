@@ -42,6 +42,7 @@ qalc.history
 .oh-my-shell/shellrc/plugins/family
 .config/gcloud
 .config/tasklog
+.config/mopidy
 # Studio files obtained shomewhere else
 .studio/*
 !.studio/setup_and_run.sh
@@ -114,3 +115,4 @@ data.json
 # oh-my-shell
 .oh-my-shell/tmp
 .oh-my-shell/shellrc/plugins/video_archives
+.oh-my-shell/shellrc/plugins/tmux/functions.sh
