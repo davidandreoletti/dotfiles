@@ -35,6 +35,7 @@ then
     # GUN * utils
     homebrew_brew_install                  "coreutils"          # Apple has outdated unix tooling.
     homebrew_brew_install                  "findutils"          # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
+    homebrew_brew_install                  "inetutils"          # GNU `ftp`, `sftp`
     homebrew_brew_install                  "gnu-sed"            # Apple has outdated unix tooling. sed is another one
     
     # Use as default shell for current user
