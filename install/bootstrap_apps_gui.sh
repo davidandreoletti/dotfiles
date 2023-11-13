@@ -33,6 +33,11 @@ then
         # Github Desktop
         rpm --import https://rpm.packages.shiftkey.dev/gpg.key
         sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
+
+        # VSCode
+        # src: https://code.visualstudio.com/docs/setup/linux
+        sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+        sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
     fi
 
     is_fedora  &&  fedora_flatpak_remote_add               "flathub"     "https://flathub.org/repo/flathub.flatpakrepo"
@@ -107,6 +112,15 @@ then
     is_macos   &&  homebrew_brew_cask_install              "qlvideo"            # Additional supported format for Finder's  Quicklook
     is_macos   &&  homebrew_brew_cask_install              "rar"                # RAR files
 
+    # VSCode
+    #is_macos   &&  homebrew_brew_cask_install              "visual-studio-code"
+    #is_fedora  &&  fedora_dnf_install                      "code"
+
+    # Firefox
+    is_macos   && homebrew_brew_cask_install               "firefox" 
+    is_fedora  &&  fedora_dnf_install                      "firefox"
+
+    # Cloudflare-WARP
     is_macos   &&  homebrew_brew_cask_install              "cloudflare-warp"    # Cloudflare WARP client
     is_fedora  &&  fedora_dnf_install                      "cloudflare-warp"
 
