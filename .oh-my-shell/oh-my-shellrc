@@ -35,6 +35,7 @@ dot_plugin_if_exists "android"
 dot_plugin_if_exists "asdf"
 dot_plugin_if_exists "archive"
 dot_plugin_if_exists "backup"
+dot_plugin_if_exists "dd"
 dot_plugin_if_exists "dropbox"
 dot_plugin_if_exists "dns"
 dot_plugin_if_exists "buku"                         # Depends on: dropbox
