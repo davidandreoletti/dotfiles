@@ -175,9 +175,6 @@ then
     homebrew_brew_install                  "file"
     homebrew_brew_install                  "usbutils"            # List USB devices via lsusb
 
-    # dd & variants
-    homebrew_brew_install                  "dcfldd"              # dd for bit perfect
-
     #homebrew_brew_install                  "virt-viewer"         # QEMU Virt Manager/Viewer for macOS Monterey
     #homebrew_brew_install                  "tdsmith/ham/chirp"   # CHIRP software to configure HAM radios
     #homebrew_brew_install                  "tdsmith/ham/xastir"  # HAM Station Tracking / Info reporting

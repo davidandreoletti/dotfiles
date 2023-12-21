@@ -1,37 +1,130 @@
 f_dd_to_disk() {
+    #echo "This is not working as expected yet"
+    #return 1
+
+    # - Shell posix compatible dd with hash input+output verification
+    # - no write to disk for non input/output data
    local input="$1"
    local output="$2"
+   local bs="${3:-4M}"
+   local buffer="${3:-8m}"
 
-   echo "dd: $input -> $output ..."
-   #statusinterval=32768 -> status update every 32 * 32768 blocks (ie 1Gb)
-   dcfldd \
-       if="$input" \
-       of="$output" \
-       status=on \
-       statusinterval=32768 \
-       sizeprobe=if \
-       hashconv=after \
-       hash=sha256,sha512
+   file $input | grep "compressed"
+   # compressed=0 -> file is compressed
+   compressed="${PIPESTATUS}${pipestatus}" # bash/zsh
 
-   if [ $? != 0 ];
+   local catBin="ucat"
+   if [ "$compressed" = "0 1" ];
    then
-       echo "dd failed. exit code: $?."
-       return
+       catBin="cat"
    fi
 
-   echo "verify: $input == $output ..."
-   dcfldd \
-       if="$input" \
-       vf="$output" \
-       status=on \
-       statusinterval=32768 \
-       sizeprobe=if \
-       hashconv=after \
-       hash=sha256,sha512
+   echo "dd'ing: $input -> $output ..."
+   FIFO0="/tmp/$$.dd_to_disk.0"
+   FIFO1="/tmp/$$.dd_to_disk.1"
+   FIFO2="/tmp/$$.dd_to_disk.2"
+   FIFOS="/tmp/$$.dd_to_disk.size"
+   FIFOH="/tmp/$$.dd_to_disk.hash"
 
-   if [ $? != 0 ];
+   rm -f $FIFO0
+   rm -f $FIFO1
+   rm -f $FIFO2
+   rm -f $FIFOS
+   rm -f $FIFOH
+
+   mkfifo $FIFO0
+   mkfifo $FIFO1
+   mkfifo $FIFO2
+
+   local catPID
+   local ucatPID
+   local hashPID 
+   local ddPID 
+   local sizePID 
+
+   local hash 
+   local hash2 
+
+   local ddJID
+
+   #
+   # Pre-warm sudo
+   #
+   sudo true
+
+   #
+   #Write to multiple FIFO files  
+   #
+
+   # Use pee instead of tee, to prevent tee from getting stuck randomly on macOS
+   #command $catBin "$input" | env tee -p $FIFO0 | env tee -p $FIFO1 > $FIFO2 &
+   (command $catBin "$input" | pee "cat > $FIFO0" "cat > $FIFO1" "cat > $FIFO2") > /dev/null 2>&1 &
+   ucatPID=$!
+
+   #
+   # Read from each FIFO individually
+   #
+   # (a | b |c ) 1>/dev/null 2>&1 & ==> put pipe in background, redirect stdout to /dev/null, redirect stderr to /dev/null too
+   (command cat $FIFO1 | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "sha256sum" | command sha256sum > $FIFOH) 1>/dev/null 2>&1 &
+   hashPID=$!
+
+   (command cat $FIFO0 | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "wc" | wc --bytes --total=only > $FIFOS) 1>/dev/null 2>&1 &
+   catPID=$!
+
+   command cat $FIFO2 | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "writing $output" --force | sudo command dd of="$output" bs=$bs status=none 
+  
+   #
+   # Wait for all FIFO to be closed
+   #
+   for pid in $ucatPID $hashPID $catPID 
+   do
+     wait $pid
+     code=$?
+        
+     if [ $code != 0 ];
+     then
+         echo "copy failed. exit code: $code."
+         return $code
+     fi
+   done
+
+   #
+   # Read total bytes written
+   #
+   sizeWrittenBytes=$(command cat $FIFOS)
+   #echo "input size written: $sizeWrittenBytes bytes"
+
+   rm -f $FIFO0
+   rm -f $FIFO1
+   rm -f $FIFO2
+   rm -f $FIFOS
+
+   echo "verify: $input == $output ..."
+
+   #
+   # Pre-warm sudo again
+   #
+   sudo true
+
+   #
+   # Read input hash
+   #
+   hash="$(command cat $FIFOH)"
+
+   #
+   # Compute + read output hash
+   #
+   #(sudo command dd if="$output" bs=$bs status=none | pv --progress --rate --bytes --wait --buffer-size $buffer --stop-at-size --size $sizeWrittenBytes --name "verification" | sha256sum) > $FIFOH 2>/dev/null &
+   sudo command dd if="$output" bs=$bs status=none | pv --progress --rate --bytes --wait --buffer-size $buffer --stop-at-size --size $sizeWrittenBytes --name "verification" | sha256sum > $FIFOH
+   hash2="$(command cat $FIFOH)"
+
+   rm -f $FIFOH
+
+   if [ "$hash" != "$hash2" ];
    then
-       echo "verification failed. exit code: $?."
-       return
+       echo "verification: failed."
+       return 1
+   else
+       echo "verification: OK"
    fi
 }
