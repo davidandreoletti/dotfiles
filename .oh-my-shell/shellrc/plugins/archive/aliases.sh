@@ -8,4 +8,4 @@ alias archiveEachFolderSeparatidely='f_archiveEachFolderSeparatedely'
 # Archive as tar.gz the specified folder
 # Usage: archiveFolder /path/to/my/folder
 # - Note: archive name is archive.tar.gz
-alias archiveFolder='tar -czvf archive.tar.gz '
+alias archiveFolder='tar -cafv archive.tar.zstd '
