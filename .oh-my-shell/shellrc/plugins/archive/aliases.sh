@@ -9,3 +9,13 @@ alias archiveEachFolderSeparatidely='f_archiveEachFolderSeparatedely'
 # Usage: archiveFolder /path/to/my/folder
 # - Note: archive name is archive.tar.gz
 alias archiveFolder='tar -cafv archive.tar.zstd '
+
+# Send a directory over the network fast
+# companion app: archiveReceiveFromNetwork
+# Usage: archiveToNetwork 192.168.3.101 1234
+alias archiveSendToNetwork='f_archiveSendToNetwork'
+
+# Receive a directory over the network fast
+# companion app: archiveSendToNetwork
+# Usage: archiveToNetwork 1234
+alias archiveReceiveFromNetwork='f_archiveReceiveFromNetwork'
