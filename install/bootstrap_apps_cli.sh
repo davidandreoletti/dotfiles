@@ -37,6 +37,7 @@ then
     homebrew_brew_install                  "findutils"          # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
     homebrew_brew_install                  "inetutils"          # GNU `ftp`, `sftp`
     homebrew_brew_install                  "gnu-sed"            # Apple has outdated unix tooling. sed is another one
+    homebrew_brew_install                  "netcat"             # Apple has outdated unix tooling. netcat is one of them
     
     # Use as default shell for current user
     is_fedora && fedora_dnf_install        "zsh"
