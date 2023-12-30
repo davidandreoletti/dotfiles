@@ -1,2 +1,2 @@
-# macosx only
-alias clearDNSCache='sudo killall -HUP mDNSResponder || sudo killall mDNSResponderHelper; sudo dscacheutil -flushcache'
+# Usage: dnsClearCache
+alias dnsClearCache='f_dns_clear_cache'
