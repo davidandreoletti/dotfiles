@@ -95,7 +95,11 @@ then
     homebrew_brew_install                  "bat"                 # cat with highlighting, paging, line numbers support
     homebrew_brew_install                  "fzf"                 # Ctrl+R replacement for searching the history / files
     homebrew_brew_install                  "fd"                  # A simpler find
+
+    # CLI cheatsheet
     homebrew_brew_install                  "tldr"                # Short manpage version, with example for most comman use cases
+    homebrew_brew_install                  "cheat"               # Alternative short manpage version, with example for most comman use cases
+
     homebrew_brew_install                  "ncdu"                #Replacement for Grandperspective and du
 
     # DNS client 
