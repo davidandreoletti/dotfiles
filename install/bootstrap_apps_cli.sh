@@ -99,6 +99,9 @@ then
     homebrew_brew_install                  "tldr"                # Short manpage version, with example for most comman use cases
     homebrew_brew_install                  "ncdu"                #Replacement for Grandperspective and du
 
+    # DNS client 
+    homebrew_brew_install                  "dog"                 # Simpler dig 
+
     # OpenSSH client / server
     homebrew_brew_install                  "openssh"             # OpenSSH client and server
     is_macos  &&  fedora_dnf_install       "openssh-server" \
