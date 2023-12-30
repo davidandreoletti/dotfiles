@@ -116,3 +116,4 @@ data.json
 .oh-my-shell/tmp
 .oh-my-shell/shellrc/plugins/video_archives
 .oh-my-shell/shellrc/plugins/tmux/functions.sh
+.config/cheat/cheatsheets/community/
