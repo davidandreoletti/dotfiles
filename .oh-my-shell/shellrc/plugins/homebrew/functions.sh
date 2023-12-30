@@ -86,7 +86,7 @@ f_homebrew_core_fix_package () {
     # Edit formula
     brew edit $package_name
 
-    brew uninstall --force $package_name
+    brew uninstall --ignore-dependencies --force $package_name
     HOMEBREW_NO_INSTALL_FROM_API=1 brew install --build-from-source $package_name
     brew test $package_name
     brew audit --strict $package_name
