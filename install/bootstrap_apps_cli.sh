@@ -55,7 +55,6 @@ then
     homebrew_brew_install                  "gdb"                 # versatile debugger
     homebrew_brew_install                  "neomutt"
     homebrew_brew_install                  "jenv"
-    homebrew_brew_install                  "htop"
     homebrew_brew_install                  "nvm"
     homebrew_brew_install                  "wget"
     homebrew_brew_install                  "goenv"               # Golang environment manager
@@ -101,6 +100,10 @@ then
 
     # DNS client 
     homebrew_brew_install                  "dog"                 # Simpler dig 
+
+    # Local system monitoring 
+    homebrew_brew_install                  "htop"                # 
+    homebrew_brew_install                  "glances"             # Extensive system monitoring 
 
     # OpenSSH client / server
     homebrew_brew_install                  "openssh"             # OpenSSH client and server
