@@ -1,10 +1,13 @@
-function f_man_prefer_tldr_when_available() {
-    local requested="$1"
-    if [ -x "$(command -v tldr)" ]
+function f_man_prefer_alternative() {
+    local program="$1"
+    if [ -x "$(command -v cheat)" ]
     then
-        command tldr $requested || command man $requested
+        cat <(echo "--tldr: $program ---------------------------------------") \
+            <(command tldr $program) \
+            <(echo "--cheat: $program ---------------------------------------") \
+            <(command cheat $program)
     else
-        command man $requested
+        command man $program
     fi
 }
 
