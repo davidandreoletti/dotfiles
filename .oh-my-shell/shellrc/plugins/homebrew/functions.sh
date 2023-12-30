@@ -75,7 +75,6 @@ f_homebrew_bcup () {
     fi
 }
 
-unset -f f_homebrew_core_fix_package
 # Workflow to edit a brew formula, run tests
 f_homebrew_core_fix_package () {
     local package_name="$1"
