@@ -29,8 +29,6 @@ call plug#begin('~/.vim/bundle')
 
 " Managed plugins{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Doxygen
-Plug 'vim-scripts/DoxygenToolkit.vim'
 " Master Vim's advanced motion and search
 Plug 'takac/vim-hardtime'
 " Ease motions
@@ -313,9 +311,6 @@ set ffs=unix,mac,dos
 " Required by: NERDCommenter
 filetype plugin indent on
 
-" Set doxygen tags according to filetype
-autocmd FileType cpp,c,h,hpp,m,mm call F_DoxygenToolKit_SetCPPOrCTags()
-autocmd FileType java call F_DoxygenToolKit_SetJAVATags()
 autocmd BufRead,BufNewFile *.md setlocal spell
 
 " Edit crontab file in place
