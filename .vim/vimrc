@@ -29,6 +29,8 @@ call plug#begin('~/.vim/bundle')
 
 " Managed plugins{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Startup time
+Plug 'dstein64/vim-startuptime'
 " Master Vim's advanced motion and search
 Plug 'takac/vim-hardtime'
 " Ease motions
