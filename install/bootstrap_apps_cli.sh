@@ -31,6 +31,7 @@ then
     # Git
     homebrew_brew_install                  "git"                # Get more recent version than the one shipped in Xcode
     homebrew_brew_install                  "gitui"              # git TUI for large patch set to deal with on a console
+    homebrew_brew_install                  "lazygit"            # git TUI easy interactive rebase 
 
     # GUN * utils
     homebrew_brew_install                  "coreutils"          # Apple has outdated unix tooling.
