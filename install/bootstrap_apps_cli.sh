@@ -92,7 +92,9 @@ then
     homebrew_brew_install                  "mopidy-spotify"      # Mopidi plugin to play spotify music
     homebrew_brew_install                  "mopidy-tunein"       # Mopidi plugin to play tune-in music
 
+    # Archive decompression
     homebrew_brew_install                  "unp"
+
     # Personal dashboard on the terminal
     homebrew_brew_install                  "wtfutil"
 
