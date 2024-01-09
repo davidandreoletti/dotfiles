@@ -117,3 +117,4 @@ data.json
 .oh-my-shell/shellrc/plugins/video_archives
 .oh-my-shell/shellrc/plugins/tmux/functions.sh
 .config/cheat/cheatsheets/community/
+.config/lazygit/state.yml
