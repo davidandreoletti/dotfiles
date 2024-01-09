@@ -93,6 +93,9 @@ then
     homebrew_brew_install                  "mopidy-tunein"       # Mopidi plugin to play tune-in music
 
     homebrew_brew_install                  "unp"
+    # Personal dashboard on the terminal
+    homebrew_brew_install                  "wtfutil"
+
     homebrew_brew_install                  "bat"                 # cat with highlighting, paging, line numbers support
     homebrew_brew_install                  "fzf"                 # Ctrl+R replacement for searching the history / files
     homebrew_brew_install                  "fd"                  # A simpler find
