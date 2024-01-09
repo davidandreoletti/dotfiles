@@ -125,7 +125,7 @@ Plug 'dhruvasagar/vim-prosession'
 " Markdown Live Preview
 Plug 'junegunn/vim-xmark', { 'do': 'make' }
 " Restructed Text support
-Plug 'Rykka/riv.vim'
+Plug 'habamax/vim-rst'
 " Shell script formatting
 Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 " Initialize plugin system
