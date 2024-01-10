@@ -122,3 +122,6 @@ data.json
 .config/lazygit/state.yml
 # Alacritty
 .config/alacritty/themes
+# Broot
+.config/broot/launcher/refused
+.config/broot/skins
