@@ -25,6 +25,7 @@ then
     is_fedora && fedora_dnf_install        "sqlite-devel"       # dependencies for pyenv installed python versions 
     is_fedora && fedora_dnf_install        "tk-devel"           # dependencies for pyenv installed python versions 
     
+    # Bash shell
     is_fedora && fedora_dnf_install        "bash"
     is_macos  && homebrew_brew_install     "bash"  &&  sudo  bash  -c  "echo  $(brew  --prefix)/bin/bash >> $SHELLS_FILE";
 
@@ -33,6 +34,9 @@ then
     homebrew_brew_install                  "gitui"              # git TUI for large patch set to deal with on a console
     homebrew_brew_install                  "lazygit"            # git TUI easy interactive rebase 
     homebrew_brew_install                  "git-delta"          # Better diff output for git
+    homebrew_brew_install                  "git-crypt"          # Encrypt git repository
+    is_fedora  &&  fedora_dnf_install      "git-credential-libsecret" # git credential helper using GNOME's libsecret backend
+    is_fedora  &&  homebrew_brew_install   "git-credential-libsecret" # provide git credential helper with libsecret also for homebrew's installed git 
 
     # GUN * utils
     homebrew_brew_install                  "coreutils"          # Apple has outdated unix tooling.
@@ -40,7 +44,14 @@ then
     homebrew_brew_install                  "inetutils"          # GNU `ftp`, `sftp`
     homebrew_brew_install                  "gnu-sed"            # Apple has outdated unix tooling. sed is another one
     homebrew_brew_install                  "netcat"             # Apple has outdated unix tooling. netcat is one of them
-    
+    homebrew_brew_install                  "util-linux"         # Collection of linux utilies such as flock
+    homebrew_brew_install                  "usbutils"           # List USB devices via lsusb
+    homebrew_brew_install                  "moreutils"          # parallel, elekdo, etc    
+    homebrew_brew_install                  "gnu-sed"            # GNU `sed`, overwriting the built-in `sed`
+    homebrew_brew_install                  "proctools"          # GNU pkill, pgrep
+    homebrew_brew_install                  "inetutils"          # GNU ftp comand and more
+
+    # Zsh shell
     # Use as default shell for current user
     is_fedora && fedora_dnf_install        "zsh"
     is_macos  && homebrew_brew_install     "zsh"   && sudo bash -c "echo $(brew --prefix)/bin/zsh >> $SHELLS_FILE" && sudo chsh -s $(brew --prefix)/bin/zsh $USER;
@@ -52,20 +63,63 @@ then
     && pip3_global_install                 "neovim"  \
     && pip3_global_install                 "pynvim" 
     
-    homebrew_brew_install                  "newsbeuter"
+    # RSS
+    homebrew_brew_install                  "newsbeuter"          # RSS/Atom reader
+
+    # File synchronization
     homebrew_brew_install                  "rsync"
+
+    # File size explorer
+    homebrew_brew_install                  "ncdu"                # Replacement for Grandperspective and du
+    homebrew_brew_install                  "bat"                 # cat with highlighting, paging, line numbers support
+
+    # File type detection
+    homebrew_brew_install                  "file"
+
+    # File encoding
+    homebrew_brew_install                  "libiconv"            # Convert files from/to various character encodings
+
+    # File renamer
+    homebrew_brew_install                  "rename"              # Mass file rename
+
+    # Debugger
     homebrew_brew_install                  "gdb"                 # versatile debugger
+
+    # Email client
     homebrew_brew_install                  "neomutt"
-    homebrew_brew_install                  "jenv"
-    homebrew_brew_install                  "nvm"
-    homebrew_brew_install                  "wget"
+
+    # IRC client
+    homebrew_brew_install                  "irssi"               # IRC client. Note: --with-perl=yes --with-proxy included since brew irssi formula v1.2.3
+
+    # Programming language SDK manager
+    homebrew_brew_install                  "jenv"                # Java JDK manager
+    homebrew_brew_install                  "nvm"                 # Node SDK manager
     homebrew_brew_install                  "goenv"               # Golang environment manager
     homebrew_brew_install                  "asdf"                # Version manager for multiple runtime environment
-    homebrew_brew_install                  "util-linux"          # Collection of linux utilies such as flock
-    homebrew_brew_install                  "redis"               # Redis Key Value Storage
-    homebrew_brew_install                  "fortune"             # Fortune cookie
+    homebrew_brew_install                  "tfenv"               # Terraform version manager like rbenv
+    is_macos  && homebrew_brew_install     "rbenv"               # Ruby Version Installer and manager
+    is_fedora && fedora_dnf_install        "rbenv"
+
+    # Network data transfer
+    homebrew_brew_install                  "wget"
     homebrew_brew_install                  "curl"
-    
+    homebrew_brew_install                  "httpie"              # Curl simplified
+    homebrew_brew_install                  "tcpdump"             # TCP traffic sniffing
+    homebrew_brew_install                  "mitmproxy"           # Charles Proxy in command line
+
+    # Network topology discovery
+    homebrew_brew_install                  "nmap"                # Network Mapper
+
+    # Network performance
+    homebrew_brew_install                  "iperf3"              # Network performance measurement
+
+    # Database/cache engines
+    # - Redis
+    homebrew_brew_install                  "redis"               # Redis Key-Value Storage
+    # - Postgres
+    homebrew_brew_install                  "postgresql@14"       # Postgresql DB and standard command line utils like psql. PG db not started at runtime.
+    homebrew_brew_install                  "pspg"                # Pager for psql official client
+ 
     # Multimedia tools
     homebrew_brew_install                  "fdk-aac"             # Fraunhofer FDK AAC library
     homebrew_brew_install                  "openssl"             # Openssl library
@@ -96,18 +150,15 @@ then
     # Archive decompression
     homebrew_brew_install                  "unp"
 
-    # Personal dashboard on the terminal
+    # Personal dashboard
     homebrew_brew_install                  "wtfutil"
 
-    homebrew_brew_install                  "bat"                 # cat with highlighting, paging, line numbers support
     homebrew_brew_install                  "fzf"                 # Ctrl+R replacement for searching the history / files
     homebrew_brew_install                  "fd"                  # A simpler find
 
     # CLI cheatsheet
     homebrew_brew_install                  "tldr"                # Short manpage version, with example for most comman use cases
     homebrew_brew_install                  "cheat"               # Alternative short manpage version, with example for most comman use cases
-
-    homebrew_brew_install                  "ncdu"                #Replacement for Grandperspective and du
 
     # DNS client 
     homebrew_brew_install                  "dog"                 # Simpler dig 
@@ -125,82 +176,103 @@ then
     is_macos  &&  homebrew_brew_install    "fwknop"              # Firewall port knocking 
     is_fedora &&  fedora_dnf_install       "fwknop"
 
-    homebrew_brew_install                  "irssi"               # IRC client. Note: --with-perl=yes --with-proxy included since brew irssi formula v1.2.3
-    homebrew_brew_install                  "rlwrap"              # Needed to execute PlistBuddy in command mode
-    homebrew_brew_install                  "tcpdump"             # TCP traffic sniffing
-    homebrew_brew_install                  "ngrep"               # grep for network resource
+    # PGP
+    homebrew_brew_install                  "gnupg"               # GNU implementation of PGP
+    homebrew_brew_install                  "hopenpgp-tools"      # Verify PGP key setup best practice
+    homebrew_brew_install                  "pinentry-mac"        # Connect gpg-agent to OSX keychain
+    homebrew_brew_install                  "pgpdump"             # PGP packet/key analyser
 
-    homebrew_brew_install                  "ripgrep-bin"         # faster grep "rigrep" binary compiled, as nightly build, and including SIMD and all optimizations enabled.
+    # Docker
+    homebrew_brew_install                  "dive"                # Inspect docker layers
+
+    # Kubernetes
+    homebrew_brew_install                  "boz/repo/kail"       # kubernetes pods console viewer
+
+    # Text manipulation
+    homebrew_brew_install                  "gawk"                # Required by: tmux-fingers plugin
+
+    # XML Manipulation/query
+    homebrew_brew_install                  "xml-coreutils"       # Command XML utilities (eg: xml-grep)
+    homebrew_brew_install                  "xmlstarlet"          # Command XML utilities (eg: xmlstarlet)
+
+    # CSV Manipulation/query
+    is_macos  && hhomebrew_brew_install    "csvkit"              # Swiss army knife for csv files
+
+    # JSON Manipulation/query
     homebrew_brew_install                  "jq"                  # JSON manipulator
+
+    # YAML Manipulation/query
     homebrew_brew_install                  "python-yq"           # YAML manipulator. Requires: jq
-    homebrew_brew_install                  "ack"                 # Fast file content search too
-    homebrew_brew_install                  "trash"               # Move files into macOS user's trash bin (as if done from the Finder)
-    homebrew_brew_install                  "entr"                # Run command on files that have changed
-    homebrew_brew_install                  "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
 
-    is_fedora  &&  fedora_dnf_install      "git-credential-libsecret" # git credential helper using GNOME's libsecret backend
-    is_fedora  &&  homebrew_brew_install   "git-credential-libsecret" # provide git credential helper with libsecret also for homebrew's installed git 
+    # Terminal browser
+    homebrew_brew_install                  "lynx"                # Terminal browser
 
+    # File sharing
+    homebrew_brew_install                  "ffsend"              # Firefox Send client. Required by 1 oh-my-shell plugin
+
+    # i18n
+    homebrew_brew_install                  "translate-shell"     # Translate any languages
+
+    # Calculator
+    homebrew_brew_install                  "libqalculate"        # qalc: General pupose calculator, to convert unit / dimension analysis
+
+    # QR code
+    homebrew_brew_install                  "qrencode"            # Generae QR code
+
+    # Linter
+    homebrew_brew_install                  "shellcheck"          # Linting for bash/sh shells scripts
+
+    # Wireguard
+    homebrew_brew_install                  "wireguard-tools"     # Wireguard tooling. Eg: wg
+
+    # Programing languages
+    homebrew_brew_install                  "rust"                # Rust + package manager / compiler toolchain
+    homebrew_brew_install                  "java"
+
+    # Virtualization
+    homebrew_brew_install                  "libvirt"             # KVM/Qemu machine definition / hypervision abstraction
+    homebrew_brew_install                  "qemu"
+    homebrew_brew_install                  "virt-manager"        # QEMU Manager
+    #homebrew_brew_install                  "virt-viewer"         # QEMU Virt Manager/Viewer for macOS Monterey
+
+    # ISO
+    homebrew_brew_install                  "xorriso"             # ISO9660+RR manipulation tool to kickstart a fedora vm with virt-install
+    
+    # Software defined radio
+    #homebrew_brew_install                  "tdsmith/ham/xastir"  # HAM Station Tracking / Info reporting
+    #homebrew_brew_install                  "tdsmith/ham/chirp"   # CHIRP software to configure HAM radios
+
+    # Bookmarks
+    pip3_global_install                    "buku[server]"        # Browser independent bookmark manager, with standalone server
+
+    # Scrum / daily standup manager
+    pip3_global_install                    "tasklog"             # Install tasklog cli
+
+    # AWS SDK
+    pip3_global_install                    "awscli"              # AWS CLI
+    
+    # Oracle Cloud SDK
+    is_macos && homebrew_brew_install      "oci-cli"             # Oracle Cloud CLI
+
+    # Misc
+    homebrew_brew_install                  "fortune"             # Fortune cookie
     homebrew_brew_install                  "imagemagick"         # Required by spaceman-diff
     homebrew_brew_install                  "jp2a"                # Convert images to ASCII. Required by spaceman-diff
     homebrew_brew_install                  "hub"                 # Unofficial Github CLI (for Pull Requests, etc)
     homebrew_brew_install                  "z"                   # Smarter cd
     homebrew_brew_install                  "pv"                  # pipe data flow speed progress indicator
-    homebrew_brew_install                  "dive"                # Inspect docker layers
-    homebrew_brew_install                  "rename"              # Mass file rename
-    homebrew_brew_install                  "moreutils"           # parallel, elekdo, etc
-    homebrew_brew_install                  "mitmproxy"           # Charles Proxy in command line
-    homebrew_brew_install                  "xdg-ninja"           # Recommands where to move files per program when programs support XDG directories structures
-    homebrew_brew_install                  "tree"                # Print directory content as tree structure 
-    homebrew_brew_install                  "gnu-sed"             # GNU `sed`, overwriting the built-in `sed`
-    homebrew_brew_install                  "xml-coreutils"       # Command XML utilities (eg: xml-grep)
-    homebrew_brew_install                  "xmlstarlet"          # Command XML utilities (eg: xmlstarlet)
-    homebrew_brew_install                  "lynx"                # Terminal browser
-    is_macos  && homebrew_brew_install     "rbenv"               # Ruby Version Installer and manager
-    is_fedora && fedora_dnf_install        "rbenv"
-    homebrew_brew_install                  "gawk"                # Required by: tmux-fingers plugin
-    homebrew_brew_install                  "ffsend"              # Firefox Send client. Required by 1 oh-my-shell plugin
-    is_macos  && hhomebrew_brew_install    "csvkit"              # Swiss army knife for csv files
-    homebrew_brew_install                  "libiconv"            # Convert files from/to various character encodings
-    homebrew_brew_install                  "postgresql@14"       # Postgresql DB and standard command line utils like psql. PG db not started at runtime.
-    homebrew_brew_install                  "pspg"                # Pager for psql official client
-    homebrew_brew_install                  "proctools"           # GNU pkill, pgrep
-    homebrew_brew_install                  "translate-shell"     # Translate any languages
-    homebrew_brew_install                  "qrencode"            # Generae QR code
-    homebrew_brew_install                  "httpie"              # Curl simplified
-    homebrew_brew_install                  "libqalculate"        # qalc: General pupose calculator, to convert unit / dimension analysis
-    homebrew_brew_install                  "rename"              # Mass rename files.
-    homebrew_brew_install                  "shellcheck"          # Linting for bash/sh shells scripts
-    homebrew_brew_install                  "gnupg"               # GNU implementation of PGP
-    homebrew_brew_install                  "pinentry-mac"        # Connect gpg-agent to OSX keychain
-    homebrew_brew_install                  "hopenpgp-tools"      # Verify PGP key setup best practice
-    homebrew_brew_install                  "pgpdump"             # PGP packet/key analyser
     homebrew_brew_install                  "pstree"              # Show ps output as a tree
     homebrew_brew_install                  "libfaketime"         # Freeze system clock for a given application (eg: shell script)
     homebrew_brew_install                  "expect"              # Automate interactive program interactions
-    homebrew_brew_install                  "git-crypt"           # Encrypt git repository
-    homebrew_brew_install                  "iperf3"              # Network performance measurement
-    homebrew_brew_install                  "inetutils"           # GNU ftp comand and more
-    homebrew_brew_install                  "wireguard-tools"     # Wireguard tooling. Eg: wg
-    homebrew_brew_install                  "rust"                # Rust + package manager / compiler toolchain
-    homebrew_brew_install                  "nmap"                # Network Mapper
-    homebrew_brew_install                  "java"
-    homebrew_brew_install                  "libvirt"             # KVM/Qemu machine definition / hypervision abstraction
-    homebrew_brew_install                  "qemu"
-    homebrew_brew_install                  "virt-manager"        # QEMU Manager
-    homebrew_brew_install                  "xorriso"             # ISO9660+RR manipulation tool to kickstart a fedora vm with virt-install
-    homebrew_brew_install                  "file"
-    homebrew_brew_install                  "usbutils"            # List USB devices via lsusb
-
-    #homebrew_brew_install                  "virt-viewer"         # QEMU Virt Manager/Viewer for macOS Monterey
-    #homebrew_brew_install                  "tdsmith/ham/chirp"   # CHIRP software to configure HAM radios
-    #homebrew_brew_install                  "tdsmith/ham/xastir"  # HAM Station Tracking / Info reporting
-    homebrew_brew_install                  "boz/repo/kail"       # kubernetes pods console viewer
-    pip3_global_install                    "buku[server]"        # Browser independent bookmark manager, with standalone server
-    pip3_global_install                    "tasklog"             # Install tasklog cli
-    pip3_global_install                    "awscli"              # AWS CLI
-    is_macos && homebrew_brew_install      "oci-cli"             # Oracle Cloud CLI
-    homebrew_brew_install                  "tfenv"               # Terraform version manager like rbenv
+    homebrew_brew_install                  "xdg-ninja"           # Recommands where to move files per program when programs support XDG directories structures
+    homebrew_brew_install                  "tree"                # Print directory content as tree structure 
+    homebrew_brew_install                  "rlwrap"              # Needed to execute PlistBuddy in command mode
+    homebrew_brew_install                  "ngrep"               # grep for network resource
+    homebrew_brew_install                  "ripgrep-bin"         # faster grep "rigrep" binary compiled, as nightly build, and including SIMD and all optimizations enabled.
+    homebrew_brew_install                  "ack"                 # Fast file content search too
+    homebrew_brew_install                  "trash"               # Move files into macOS user's trash bin (as if done from the Finder)
+    homebrew_brew_install                  "entr"                # Run command on files that have changed
+    homebrew_brew_install                  "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
 fi
 
 is_profile_admin
