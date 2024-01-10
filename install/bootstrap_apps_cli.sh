@@ -187,6 +187,7 @@ then
 
     # Kubernetes
     homebrew_brew_install                  "boz/repo/kail"       # kubernetes pods console viewer
+    homebrew_brew_install                  "k9s"                 # kubernetes cluster manager TUI
 
     # Text manipulation
     homebrew_brew_install                  "gawk"                # Required by: tmux-fingers plugin
