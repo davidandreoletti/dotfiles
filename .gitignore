@@ -126,3 +126,4 @@ data.json
 .config/broot/launcher/refused
 .config/broot/skins
 .config/beets/library.db
+.config/MusicBrainz/.Picard.ini.synclock
