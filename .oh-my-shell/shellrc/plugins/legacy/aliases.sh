@@ -2,9 +2,6 @@
 # Legacy aliases, awaiting to be moved to app specific aliases files
 #
 
-# Indicate what application is binded to port $1
-alias whoisbindedonport='lsof -i :$1'
-
 # pbcopy/pbpaste: Take standard input and place it in the system clipboard
 # (to paste into other applications)
 # src: http://jetpackweb.com/blog/2009/09/23/pbcopy-in-ubuntu-command-line-clipboard/

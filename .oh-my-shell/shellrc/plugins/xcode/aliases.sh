@@ -1,7 +1,7 @@
 # http://stackoverflow.com/a/18933476/219728
-alias xcodePurgeDerivedData='rm -rf ~/library/Developer/Xcode/DerivedData/*'
+alias xcode_purge_derived_data='rm -rf ~/library/Developer/Xcode/DerivedData/*'
 
-alias xcodePurgeAllCaches='(
+alias xcode_purge_all_caches='(
 echo "Delete Archived Applications"
 rm -rfv ~/Library/Developer/Xcode/Archives/*/
 echo "Delete Devired Data"

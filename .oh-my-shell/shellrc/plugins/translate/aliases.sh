@@ -1,7 +1,7 @@
 # Translate text into any language
 # Usage: trs :fr Hello
-alias trs='trans '
+alias translate='trans '
 # Translate text into french
-alias trsfr='trans :fr'
+alias translate_to_fr='trans :fr'
 # Translate text into english
-alias trseng='trans :en-GB'
+alias translate_to_gb='trans :en-GB'

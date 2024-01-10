@@ -1,4 +1,4 @@
-f_dd_to_disk() {
+f_dd_verify() {
     #echo "This is not working as expected yet"
     #return 1
 

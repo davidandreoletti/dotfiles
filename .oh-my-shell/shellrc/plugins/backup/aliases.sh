@@ -4,10 +4,5 @@
 alias backup="f_backup_duplicate_with_simple_numbering"
 
 # Mark directory to not be backup by rsync (for consumption by my own custom rsync backup script)
-alias backupMarkDirectoryAsIgnored="echo \"- /*\" > .backup.ignore"
-
-# Backups
-# for duplicity based backups
-alias backupignoredir="touch .backup.ignore"
-
+alias backup_ignore_directory="echo \"- /*\" > .backup.ignore"
 

@@ -1,2 +1,2 @@
 alias shorturl='f_shortenURL '
-alias shorturlToClipboard='f_shortenURLAndPasteToSystemClipboard '
+alias shorturl_to_clipboard='f_shortenURLAndPasteToSystemClipboard '
