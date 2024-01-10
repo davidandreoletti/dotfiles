@@ -11,7 +11,7 @@ set -g set-titles-string '#(whoami)@#H - (#S:#W.#P)'
 
 # Panes
 set -g pane-border-style fg=default
-set -g pane-active-border-style bg=default,fg=$HIGHLIGHT
+set -g pane-active-border-style fg=$HIGHLIGHT,bg=default
 
 set -g display-panes-time 1000
 set -g display-panes-colour $FOREGROUND
@@ -28,18 +28,12 @@ set -g mode-style bg=$HIGHLIGHT,fg=$BACKGROUND
 
 setw -g window-status-format " #I:#W"
 setw -g window-status-style bg=default,fg=$FOREGROUND,dim
-
 setw -g window-status-last-style fg=$FOREGROUND,bold
 
 setw -g window-status-current-format " #I:#W"
 setw -g window-status-current-style bg=default,fg=$HIGHLIGHT,bold
 
 setw -g window-status-activity-style bg=$BACKGROUND,fg=$ACTIVITY,dim
-
-## Cannot use:
-##  - screen-bce, screen-256color-bce: tmux does not support bce
-##  - screen-256color: vim broken without -bce
-set -g default-terminal "screen-256color"
 
 # Base index ( start counting from 1 )
 set -g base-index 1
@@ -49,8 +43,7 @@ setw -g pane-base-index 1
 set -g status-position top
 
 # Status Colors
-set -g status-bg $BACKGROUND
-set -g status-fg $FOREGROUND
+set -g status-style fg=$FOREGROUND,bg=$BACKGROUND
 
 # Status Interval
 # But there is a strange bug that freezes osx
@@ -60,9 +53,9 @@ set -g status-interval 0
 
 # Status contents
 set -g status-left ' π '
-set -g status-right '| #S:#I.#P '
+set -g status-right '#{?client_prefix,...,} %W/52 | #S:#I.#P '
 
 # Message
-set -g message-style bg=$BACKGROUND,fg=$HIGHLIGHT,bright
+set -g message-style fg=$HIGHLIGHT,bg=$BACKGROUND,bright
 
 # vim: set syntax=tmux:
