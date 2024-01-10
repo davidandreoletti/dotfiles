@@ -1,0 +1,42 @@
+live_config_reload = true
+
+import = [
+    "~/.config/alacritty/themes/themes/darcula.toml"
+]
+
+[window]
+startup_mode = "Maximized"
+dynamic_title = true
+
+[scrolling]
+history = 100000
+multiplier = 3
+
+[cursor]
+thickness = 1
+
+[cursor.style]
+shape = "Beam"
+blinking = "Off"
+
+[font]
+size = 14
+
+[[hints.enabled]]
+#macOS
+#command = "open"
+#Linux
+command = "xdg-open"
+post_processing = true
+regex = "(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "O"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = true
+mods = "None"
+
+#[debug]
+#render_timer = true

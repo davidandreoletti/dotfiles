@@ -32,6 +32,7 @@ dot_plugin_if_exists "inetutils"                    # Expose other GNU tools, in
 dot_plugin_if_exists "util_linux"                   # Expose other linux tools, including to .oh-my-shellrc
 dot_plugin_if_exists "dotfiles"                     # Expose DOTFILES_HOME, DOTFILES_PRIVATE_HOME to other plugins
 dot_plugin_if_exists "android"
+dot_plugin_if_exists "alacritty"
 dot_plugin_if_exists "asdf"
 dot_plugin_if_exists "archive"
 dot_plugin_if_exists "backup"
