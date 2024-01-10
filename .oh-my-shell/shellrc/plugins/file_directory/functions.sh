@@ -12,3 +12,10 @@ function f_file_directory_swap()
     [ ! -e $2 ] && echo "swap: $2 does not exist" && return 1
     command mv -v "$1" $TMPFILE && command mv -v "$2" "$1" && command mv -v $TMPFILE "$2"
 }
+
+function f_file_directory_create_missing_dirs_file() {
+    local missing_path="$1"
+
+    mkdir -p "$(dirname $missing_path)" && \
+        command touch "$missing_path"
+}
