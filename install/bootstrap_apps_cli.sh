@@ -85,6 +85,9 @@ then
     # File progress
     homebrew_brew_install                  "progress"            # Report cp,mv,dd,tar,gzip,gunzip,cat's % of copied data
 
+    # File deletion
+    homebrew_brew_install                  "rm-improved"         # Undo rm operations -sometimes-
+
     # Debugger
     homebrew_brew_install                  "gdb"                 # versatile debugger
 
