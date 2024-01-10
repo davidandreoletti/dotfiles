@@ -125,3 +125,4 @@ data.json
 # Broot
 .config/broot/launcher/refused
 .config/broot/skins
+.config/beets/library.db
