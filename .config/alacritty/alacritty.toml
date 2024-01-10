@@ -1,7 +1,8 @@
 live_config_reload = true
 
+#https://github.com/alacritty/alacritty-theme
 import = [
-    "~/.config/alacritty/themes/themes/darcula.toml"
+    "~/.config/alacritty/themes/themes/terminal_app.toml"
 ]
 
 [window]

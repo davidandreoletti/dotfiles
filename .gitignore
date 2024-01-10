@@ -116,5 +116,9 @@ data.json
 .oh-my-shell/tmp
 .oh-my-shell/shellrc/plugins/video_archives
 .oh-my-shell/shellrc/plugins/tmux/functions.sh
+# cheat
 .config/cheat/cheatsheets/community/
+# lazygit
 .config/lazygit/state.yml
+# Alacritty
+.config/alacritty/themes
