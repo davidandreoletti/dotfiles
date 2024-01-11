@@ -71,6 +71,7 @@ then
 
     # File explorer
     homebrew_brew_install                  "z"                   # Smarter cd
+    homebrew_brew_install                  "zoxide"              # like z but better
 
     # File size explorer
     homebrew_brew_install                  "ncdu"                # Replacement for Grandperspective and du
