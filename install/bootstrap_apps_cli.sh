@@ -264,6 +264,13 @@ then
     # Oracle Cloud SDK
     is_macos && homebrew_brew_install      "oci-cli"             # Oracle Cloud CLI
 
+    # Timezone
+    homebrew_brew_install                  "tz"                  # Timezone helper
+
+    # Run command on event
+    homebrew_brew_install                  "watch"               # Run a command at regular interval
+    homebrew_brew_install                  "entr"                # Run command on files that have changed
+
     # Misc
     homebrew_brew_install                  "fortune"             # Fortune cookie
     homebrew_brew_install                  "imagemagick"         # Required by spaceman-diff
@@ -280,11 +287,8 @@ then
     homebrew_brew_install                  "ripgrep-bin"         # faster grep "rigrep" binary compiled, as nightly build, and including SIMD and all optimizations enabled.
     homebrew_brew_install                  "ack"                 # Fast file content search too
     homebrew_brew_install                  "trash"               # Move files into macOS user's trash bin (as if done from the Finder)
-    homebrew_brew_install                  "entr"                # Run command on files that have changed
     homebrew_brew_install                  "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
-    homebrew_brew_install                  "watch"               # Run a command at regular interval
     homebrew_brew_install                  "so"                  # Query stackoverflow TUI
-    homebrew_brew_install                  "tz"                  # Timezone helper
 fi
 
 is_profile_admin
