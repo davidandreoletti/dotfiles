@@ -310,6 +310,10 @@ function oh_my_shell_ready() {
     echo "oh_my_shell is ready. Open a new terminal to start using it"
 }
 
+function bootstrap_vim_plugins() {
+    bash "install/bootstrap_vim_plugins.sh" 
+}
+
 function bootstrap_macosx() {
     bash "install/bootstrap_macosx.sh" "$DOTFILES_PROFILE"
 }
@@ -326,10 +330,24 @@ function bootstrap_debian() {
 pushd "$(dirname "${BASH_SOURCE}")" 1> /dev/null 2>&1 
 ## Args preconditions
 case $BOOSTRAP_COMMAND in
-    "macosx") bootstrap_macosx ;;
-    "fedora") bootstrap_fedora ;;
-    "debian") bootstrap_debian ;;
-    "dotfiles") check_new_updates; check_new_shell_exists && change_default_shell; bootstrap_dotfiles; bootstrap_oh_my_shell; bootstrap_dotfiles_private; oh_my_shell_ready ;;
+    "macosx") 
+        bootstrap_macosx;
+        ;;
+    "fedora") 
+        bootstrap_fedora;
+        ;;
+    "debian") 
+        bootstrap_debian;
+        ;;
+    "dotfiles") 
+        check_new_updates; 
+        check_new_shell_exists && change_default_shell; 
+        bootstrap_dotfiles;
+        bootstrap_oh_my_shell;
+        bootstrap_dotfiles_private;
+        bootstrap_vim_plugins
+        oh_my_shell_ready
+        ;;
     *) >&2 echo "Command invalid. $0 -h for help" ;;
 esac
 popd 1> /dev/null 2>&1
