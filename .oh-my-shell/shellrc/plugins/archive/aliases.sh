@@ -1,4 +1,9 @@
+# Compress nearly anything into an archive
+# usage: archive_compress foo/  foo.tar.gz
+alias archive_compress='ouch compress'
+
 # Uncompress nearly any archive
+# usage: archive_uncompress foo.tar.gz
 alias archive_uncompress='unp'
 
 # Archive as zip file each root level folder in the specified path
