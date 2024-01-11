@@ -69,6 +69,9 @@ then
     # File synchronization
     homebrew_brew_install                  "rsync"
 
+    # File explorer
+    homebrew_brew_install                  "z"                   # Smarter cd
+
     # File size explorer
     homebrew_brew_install                  "ncdu"                # Replacement for Grandperspective and du
     homebrew_brew_install                  "bat"                 # cat with highlighting, paging, line numbers support
@@ -266,7 +269,6 @@ then
     homebrew_brew_install                  "imagemagick"         # Required by spaceman-diff
     homebrew_brew_install                  "jp2a"                # Convert images to ASCII. Required by spaceman-diff
     homebrew_brew_install                  "hub"                 # Unofficial Github CLI (for Pull Requests, etc)
-    homebrew_brew_install                  "z"                   # Smarter cd
     homebrew_brew_install                  "pv"                  # pipe data flow speed progress indicator
     homebrew_brew_install                  "pstree"              # Show ps output as a tree
     homebrew_brew_install                  "libfaketime"         # Freeze system clock for a given application (eg: shell script)
