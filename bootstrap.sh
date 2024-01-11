@@ -137,111 +137,15 @@ function bootstrap_symlinking_user_files() {
     local sourceDir="$2"
     local destDir="$3"
 
-    # Check GNU readlink from coreutils found
-    if ! command -v $GREADLINK_BIN > /dev/null 2>&1
+    if ! command -v stow > /dev/null 2>&1
     then
-	    if ! $GREADLINK_BIN | grep "readlink" | grep "GNU" | grep "coreutils" > /dev/null 2>&1
-	    then
-		echo "Error: Missing GNU readlink $GREADLINK_BIN. Exiting."
-		exit 1
-	    fi
+        echo "Error: missing GNU stow"
+        exit 1
     fi
 
-    if [ ${DOTFILES_FORCE_INSTALL} == false ]; then
-        echo "INFO: $user will have symlinked configuration files from $destDir to $sourceDir"
-        read -p "WARNING: Some files/folder in $destDir will be overwritten. Are you sure? (y/n) " -n 1
-        echo
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            echo "OK :). Symlinking files ...."
-        else
-            echo "Cancelled"
-            exit 0
-        fi
-    fi
-
-
-    linkerFile="$(mktemp)"
-
-cat <<- 'EOF' >"$linkerFile"
-        #!/bin/bash
-        sourceDir="$1"                                                          # eg: /path/to/dotfiles
-        destDir="$2"                                                            # eg: $HOME
-	greadlink="$3"                                                          # eg: /bin/readlink
-        subPath="$4"                                                            # eg: .foo/bar/bazfile
-
-
-        sourcePath="$sourceDir/$subPath"
-        destPath="$destDir/$subPath"
-
-        destPath2="$destPath/SENTINEL_VALUE"
-        sourcePath2="$sourcePath/SENTINEL_VALUE"
-
-        action=""
-        finalDestPath="" 
-        finalSourcePath="" 
-
-        while true; do
-            destPath2="$(dirname "$destPath2")"
-            sourcePath2="$(dirname "$sourcePath2")"
-
-	    # Same dest dir, then do nothing
-            [ "$destPath2" = "$destDir" ] && action="nothing" && break
-
-            # Symlink exists
-            if [ -L "$destPath2" ];
-	    then
-		    # If resolved symlink is linking to somewhere in src, no more symlink needed
-		    resolvedDestPath2="$($greadlink --canonicalize "$destPath2")"
-		    isDestPath2SymlinkingToSourceDir="$(grep -q "$sourceDir" <<< "$resolvedDestPath2"; echo $?)"
-		    [ "$isDestPath2SymlinkingToSourceDir" -eq "0" ] && action="nothing" && break
-
-		    # If resolved symlink is not linking to somewhere in src, skip overwriting linking
-		    [ -e "$resolvedDestPath2" ] && action="nothing" && break
-            else
-		    # If no existing (symbolic link), then symlink src/subPath<--dest/subPath
-		    [ ! -e "$destPath2" ] && action="symlink" && finalDestPath="$destPath2" && finalSourcePath="$sourcePath2" && break
-            fi
-        done
- 
-        if [ "$action" = "symlink" ];
-	then
-            # Optionaly delete destination if empty dir or empty file
-	    #find "$finalDestPath" -maxdepth 1 -type d -empty -delete -o -type f -empty -delete
-	    #( [ -f "$finalDestPath" ] || [ -d "$finalDestPath" ] ) && find "$finalDestPath" -maxdepth 1 -type d -empty -o -type f -empty 
-            ln -Ffsv "$finalSourcePath" "$finalDestPath"
-	fi
-EOF
-
-    chmod -R 700 "$sourceDir"
-
-    source "install/common/shell/os.sh"
-    charCutCount=0
-    is_macos && charCutCount=0
-    is_linux && charCutCount=1
-
-    # Symlink files and folders
-    for srcDir in "$sourceDir" "$sourceDir/profile/$DOTFILES_PROFILE"
-    do
-        filterFile="$(mktemp)"
-        [ -e "$srcDir/exclude.txt" ] && filterFile="$srcDir/exclude.txt" || echo "NO_PATH_WILL_BE_MATECHD" > "$filterFile"
-        local sourceExcluded="$(filter_out_comments "$filterFile")"
-        count=`echo -n "$srcDir   " | wc -c`
-
-	is_macos && find "$srcDir/" -type d -o -type f | cut -c$((count - charCutCount))- | \
-            grep -f "$sourceExcluded" --invert-match | \
-            xargs -I '%' -L1 bash "$linkerFile" "$srcDir" "$destDir" "$GREADLINK_BIN" %
-            #xargs -P4 -t -I % -L1 bash "$linkerFile" "$srcDir" "$destDir" "$GREADLINK_BIN" %
-	    
-        is_linux && find "$srcDir/" -type d -o -type f | cut -c$((count - charCutCount))- | \
-            grep -f "$sourceExcluded" --invert-match | \
-            xargs -L1 bash "$linkerFile" "$srcDir" "$destDir" "$GREADLINK_BIN"
-            #worked on macos: xargs -t -I '%' -L1 bash "$linkerFile" "$srcDir" "$destDir" "$GREADLINK_BIN" %
-            #xargs -P4 -t -I % -L1 bash "$linkerFile" "$srcDir" "$destDir" "$GREADLINK_BIN" %
-    done
-}
-
-function bootstrap_dotfiles() {
-    bootstrap_symlinking_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
+    local package="$(basename $sourceDir)"
+    #stow_options="--simulate"
+    stow ${stow_options} --verbose=1 --restow --dir="$(realpath $sourceDir/..)" --target="$(realpath $destDir)" $package
 }
 
 function bootstrap_oh_my_shell() {
@@ -273,7 +177,7 @@ function bootstrap_oh_my_shell() {
     fi
 
     # Enforce possibly empty file presence
-    touch "$shell_file"
+    command touch "$shell_file"
 
     # Setup oh_my_shellrc entry point when missing
     load_statment=". ~/.oh-my-shell/oh-my-shellrc"
@@ -287,9 +191,13 @@ function bootstrap_oh_my_shell() {
     fi
 }
 
+function bootstrap_dotfiles() {
+    bootstrap_symlinking_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
+}
+
 function bootstrap_dotfiles_private() {
     if [ ${DOTFILES_PRIVATE_DIR_PATH_SET} == false ]; then
-        echo "WARNING: No dotfiles-private dir set"
+        echo "WARNING: No dotfiles-private dir set."
         return
     fi    
 

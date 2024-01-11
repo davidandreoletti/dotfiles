@@ -1,0 +1,13 @@
+# These are not dotfiles to be installed into $HOME
+README.rst
+bootstrap.sh
+doc
+exclude.txt
+install
+profile
+.git
+.gitmodules
+.gitignore
+.DS_Store
+.TODO.org
+.stow-local-ignore
