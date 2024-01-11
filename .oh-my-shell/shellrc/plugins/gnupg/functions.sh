@@ -31,7 +31,7 @@ gnupg_import_public_and_private_key() {
     for f in "xx00" "xx01"
     do
         GNUPGHOME="$LOCAL_GNUPGHOME" gpg --import "$f"
-        rm -fv "$f"
+        command rm -fv "$f"
     done
 }
 
@@ -438,7 +438,7 @@ f_gnupg_home_fix_files_and_folders_permissions () {
 #shasum -a 256 file.txt | awk '{print $1}' > file.txt.sha256sum; gpg --output file.txt.sha256sum.sig --sign file.txt.sha256sum; cat file.txt.sha256sum; 
 
 # Decrypt file
-#rm file.txt; gpg --output file.txt --decrypt file.gpg;
+#command rm file.txt; gpg --output file.txt --decrypt file.gpg;
 
 # Verify decrypted file was not compromised
 #cat file.txt; gpg --verify file.txt.sha256sum.sig

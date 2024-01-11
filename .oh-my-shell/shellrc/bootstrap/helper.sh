@@ -115,7 +115,7 @@ function dot_delayed_plugins_step_if_exists() {
         unset SHELLRC_CURRENT_PLUGIN_DIR 
     done < "$stepFile"
 
-    rm -f "$stepFile"
+    command rm -f "$stepFile"
 }
 
 # Usage: dot_plugin_if_exists PLUGIN_NAME

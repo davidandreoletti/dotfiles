@@ -26,11 +26,11 @@ f_dd_verify() {
    FIFOS="/tmp/$$.dd_to_disk.size"
    FIFOH="/tmp/$$.dd_to_disk.hash"
 
-   rm -f $FIFO0
-   rm -f $FIFO1
-   rm -f $FIFO2
-   rm -f $FIFOS
-   rm -f $FIFOH
+   command rm -f $FIFO0
+   command rm -f $FIFO1
+   command rm -f $FIFO2
+   command rm -f $FIFOS
+   command rm -f $FIFOH
 
    mkfifo $FIFO0
    mkfifo $FIFO1
@@ -94,10 +94,10 @@ f_dd_verify() {
    sizeWrittenBytes=$(command cat $FIFOS)
    #echo "input size written: $sizeWrittenBytes bytes"
 
-   rm -f $FIFO0
-   rm -f $FIFO1
-   rm -f $FIFO2
-   rm -f $FIFOS
+   command rm -f $FIFO0
+   command rm -f $FIFO1
+   command rm -f $FIFO2
+   command rm -f $FIFOS
 
    echo "verify: $input == $output ..."
 
@@ -118,7 +118,7 @@ f_dd_verify() {
    sudo command dd if="$output" bs=$bs status=none | pv --progress --rate --bytes --wait --buffer-size $buffer --stop-at-size --size $sizeWrittenBytes --name "verification" | sha256sum > $FIFOH
    hash2="$(command cat $FIFOH)"
 
-   rm -f $FIFOH
+   command rm -f $FIFOH
 
    if [ "$hash" != "$hash2" ];
    then

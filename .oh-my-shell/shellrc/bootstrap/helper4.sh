@@ -8,7 +8,7 @@ f_run_every_x_seconds() {
         ts2=$((now - duration)); 
         if [ "$ts1" -lt "$ts2" ];
         then 
-            rm -f "$markerFile" > /dev/null 2>&1;
+            command rm -f "$markerFile" > /dev/null 2>&1;
             return 0
         else
             return 1
