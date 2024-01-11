@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#
+# Cross platfrom file opener
+#
+
+#Check for various OS openers. Quit as soon as we find one that works.
+# - src: https://github.com/rafi/.config/blob/98952835b4094b51b71d33a5d4acf97c8a4bf26e/bash/aliases#L341
+exit_code=1
+opener_found=1
+for opener in xdg-open open; do
+	if command -v $opener >/dev/null 2>&1; then
+        opener_found=0
+        $opener "$@"
+        exit_code=$?
+		break;
+	fi
+done
+
+if [ ! $opener_found ];
+then
+    echo "Error: No platfrom 'opener' binary found."
+fi
+exit ${exit_code}

@@ -24,10 +24,7 @@ blinking = "Off"
 size = 14
 
 [[hints.enabled]]
-#macOS
-#command = "open"
-#Linux
-command = "xdg-open"
+command = "$HOME/.bin/open"
 post_processing = true
 regex = "(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
 
