@@ -92,6 +92,9 @@ then
     # File deletion
     homebrew_brew_install                  "rm-improved"         # Undo rm operations -sometimes-
 
+    # File listing color customization
+    homebrew_brew_install                  "vivid"               # Customize LS_COLORS
+
     # Debugger
     homebrew_brew_install                  "gdb"                 # versatile debugger
 
