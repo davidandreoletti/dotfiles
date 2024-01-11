@@ -1,0 +1,8 @@
+[
+	"See https://parsec.app/config for documentation and example. JSON must be valid before saving or file be will be erased.",
+	{
+		"client_decoder_h265": {
+			"value": true
+		}
+	}
+]
