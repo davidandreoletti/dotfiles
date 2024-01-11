@@ -167,16 +167,24 @@ f_tmux_open_or_create_session () {
         cwd)
             local defaultSessionName=$(f_tmux_get_session_named_after_current_directory)
             local prefered=${2:-$defaultSessionName}
+            local session=$({ echo "$prefered"; command tmux list-sessions -F "#{session_name}" 2>/dev/null } | fzf --no-multi --cycle --select-1 --print-query)
             ;;
         interactive)
             local prefered=${2:-"default"}
+            local session=$({ echo "$prefered"; command tmux list-sessions -F "#{session_name}" 2>/dev/null } | fzf --no-multi --cycle --print-query)
             ;;
         *)
-            local prefered=${2:-"default"}
+            echo "Unsupported 'behaviour' value for f_tmux_open_or_create_session"
+            local session=""
             ;;
     esac
 
-    local session=$(command tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --select-1 --query=$prefered || echo $prefered) 
+    if [ -z "$session" ];
+    then
+        echo "No session named choosen."
+        echo "No tmux started"
+        return
+    fi
 
     # Inside tmux, try switch current client's session to session. Otherwise fallback to (create) + attach to the session
     [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
