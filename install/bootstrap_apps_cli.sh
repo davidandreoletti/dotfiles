@@ -74,7 +74,7 @@ then
     homebrew_brew_install                  "zoxide"              # like z but better
 
     # File size explorer
-    homebrew_brew_install                  "ncdu"                # Replacement for Grandperspective and du
+    homebrew_brew_install                  "ncdu"                # du TUI (aka Grandperspective for terminal)
     homebrew_brew_install                  "bat"                 # cat with highlighting, paging, line numbers support
 
     # File type detection
