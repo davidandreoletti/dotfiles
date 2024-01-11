@@ -1,7 +1,10 @@
 # Rust
+.cargo/bin
 .cargo/registry
 .cargo/.package-cache
-.cargo/bin
+.cargo/.crates2.json
+.cargo/.crates.toml
+.cargo/env
 # Emacs
 .emacs.d/elpa
 .emacs.d/auto-save-list
@@ -127,3 +130,106 @@ data.json
 .config/broot/skins
 .config/beets/library.db
 .config/MusicBrainz/.Picard.ini.synclock
+# Protege
+.Protege/logs
+.Protege/org.exquisite.protege
+.Protege/plugins
+# Asdf
+.asdf/installs
+.asdf/plugins
+.asdf/repository/
+.asdf/shims
+.asdf/tmp
+# Conda
+.conda/environments.txt
+.conda/envs
+# Docly
+.docly
+# Ruby
+.gem
+# Go
+.goenv/shims
+.goenv/versions
+# Jenv
+.jenv/*.time
+.jenv/shims
+.jenv/versions
+.jenv/jenv.version
+# Jupyter
+.jupyter/lab/workspaces
+.jupyter/lab
+.jupyter/migrated
+# Kite
+.kite/editors.json
+.kite/git-cache.json
+.kite/installid
+.kite/kited_has_run
+.kite/license.json
+.kite/logs
+.kite/message.log
+.kite/metrics-disabled
+.kite/vim-plugin.json
+# m2
+.m2/repository
+# matplotlib
+.matplotlib/fontlist-v330.json
+# mcode
+.mcode/logs
+# mitmproxy
+.mitmproxy/mitmproxy-ca-cert.cer
+.mitmproxy/mitmproxy-ca-cert.p12
+.mitmproxy/mitmproxy-ca-cert.pem
+.mitmproxy/mitmproxy-ca.p12
+.mitmproxy/mitmproxy-dhparam.pem
+.mitmproxy/mitmproxy-ca.pem
+.mitmproxy/mitmproxy-ca.pem
+# npm
+.npm/_cacache
+.npm/_logs
+.npm/_npx
+.npm/bin
+.npm/lib
+.npm/share
+.npm/_update-notifier-last-checked
+.npm/anonymous-cli-metrics.json
+# nvm
+.nvm/.cache
+.nvm/alias
+.nvm/default.node.installed
+.nvm/nvm-exec
+.nvm/nvm.sh
+.nvm/versions
+# Parsec
+.parsec/appdata.json
+.parsec/config.txt
+.parsec/hotkey.json
+.parsec/lock
+.parsec/log*
+.parsec/metrics_client.json
+.parsec/*.dylib
+.parsec/sysinfo.json
+.parsec/*.bin
+.parsec/window.json
+# rustup
+.rustup/toolchains
+.rustup/update-hashes
+# terraform
+.terraform.d/checkpoint_cache
+.terraform.d/checkpoint_signature
+# tldr
+.tldrc/date
+.tldrc/tldr
+.tldrc/tldr-master
+# tox
+.tox/distshare
+# travis
+.travis/travis.sh
+# vscode
+.vscode/extensions/extensions.json
+.vscode/extensions
+.vscode/argv.json
+# wdm
+.wdm/drivers
+.wdm/drivers.json
+# android
+.android/analytics.settings
