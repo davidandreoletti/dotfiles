@@ -260,8 +260,11 @@ then
     # Bookmarks
     pip3_global_install                    "buku[server]"        # Browser independent bookmark manager, with standalone server
 
-    # Scrum / daily standup manager
+    # Scrum
+    # Daily standup manager
+    # Task manager
     pip3_global_install                    "tasklog"             # Install tasklog cli
+    homebrew_brew_install                  "task"                # Taskwarrior
 
     # AWS SDK
     pip3_global_install                    "awscli"              # AWS CLI
