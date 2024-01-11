@@ -229,6 +229,7 @@ then
 
     # Calculator
     homebrew_brew_install                  "libqalculate"        # qalc: General pupose calculator, to convert unit / dimension analysis
+    homebrew_brew_install                  "pcalc"               # palc: hex/binary/decimal calculator
 
     # QR code
     homebrew_brew_install                  "qrencode"            # Generae QR code
