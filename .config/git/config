@@ -184,8 +184,6 @@
     # Require user.name / user.email to be set
     # - never guess the user/email from the environment
     useConfigOnly = true
-	email = david.andreoletti.dev@gmail.com
-	name = David Andreoletti
 
 [init]
     # "master" as default branch name.
@@ -205,8 +203,9 @@
     path = ~/.config/git/aliases/common
 
     #
+    # Profiles
     #
-    path = ~/.config/git/identities
+    path = ~/.config/git/profiles/config_all
 
     #
     # Local config
