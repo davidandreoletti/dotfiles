@@ -17,7 +17,7 @@ export VISUAL=$EDITOR
 #export TERM=xterm-256color
 
 # Set PATH so it includes user's private bin if it exists
-[ -d "$HOME/bin" ] && path_prepend "$HOME/bin"
+[ -d "$HOME/.bin" ] && path_prepend "$HOME/.bin"
 
 # Load shell specific config
 dot_if_exists "${SHELLRC_CURRENT_SHELL_DIR}/environment.sh"
