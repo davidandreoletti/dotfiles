@@ -161,7 +161,8 @@ then
     homebrew_brew_install                  "mopidy-tunein"       # Mopidi plugin to play tune-in music
 
     # Archive decompression
-    homebrew_brew_install                  "unp"
+    homebrew_brew_install                  "unp"                 # Decompress anything
+    homebrew_brew_install                  "ouch"                # Compress/decompress anything
 
     # Personal dashboard
     homebrew_brew_install                  "wtfutil"
