@@ -45,8 +45,3 @@ function f_cd_popd {
         i=$(($i + 1))
     done
 }
-
-#3 builtin cd equivalent using zoxide
-function f_cd_zoxide {
-   zoxide
-}

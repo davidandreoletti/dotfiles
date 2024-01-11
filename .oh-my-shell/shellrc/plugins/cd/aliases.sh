@@ -13,7 +13,7 @@ alias cd-='f_cd_pushd -'
 
 # Move to fuzzy
 # usage: cdi
-alias cdi='f_cd_zoxide'
+alias cdi='zoxide --no-cmd' # do not define z/zi commands (used by z plugin)
 
 # Show current directory stack
 # usage: cd_stack
