@@ -1,0 +1,7 @@
+# Use the command 'task show' to see all defaults and overrides
+data.location=~/.local/share/task
+hooks.location=~/.config/task/hooks
+
+# theme
+include dark-blue-256.theme
+
