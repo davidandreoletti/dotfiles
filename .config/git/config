@@ -195,22 +195,18 @@
     # Notes: Includes directives require git 1.7.10+
 
     #
-    # Custom config
-    #
-    path = ~/.config/git/config_custom
-
-    #
-    # Custom identities
-    #
-    path = ~/.config/git/identities
-
-    #
     # Aliases
     #
     # Popular git aliases
     path = ~/.config/git/aliases/gitaliases
-    # Personal but common git aliases
+    # Common profile git aliases
     path = ~/.config/git/aliases/common
-    # Custom git aliases (per profile)
-    path = ~/.config/git/aliases/custom 
 
+    #
+    #
+    path = ~/.config/git/identities
+
+    #
+    # Local config
+    #
+    path = ~/.config/git/config_local
