@@ -23,6 +23,13 @@
 [interactive]
     diffFilter = "~/bin/git-pager.sh delta --color-only --features=interactive"
 
+[commit]
+    # Show unified diff between the HEAD commit and what would be committed at the
+    # bottom of the commit message template to help the user describe the commit 
+    # by reminding what changes the commit has
+    # src: https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---verbose
+    verbose = true
+
 [push]
     # Push CURRENT branch to upstream branch
     # - works if both branchs have different names or same names
@@ -103,6 +110,9 @@
     # - text in between ||||||| marker and ======= marker represent the command ancestor code
     conflictstyle = diff3
 
+[log]
+	date = iso
+
 [pretty]
     custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
     #                     │        │            │            │             └─ author name
@@ -136,6 +146,8 @@
     relativePaths = true
     # Show submodule status
     submodulesummary = true
+    # Show number of entries stashed away
+    showStash = true
 
 [tag]
     sort = version:refname
