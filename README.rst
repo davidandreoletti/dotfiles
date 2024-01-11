@@ -1,21 +1,34 @@
 ABOUT
 =====
 
-dotfiles contains:
+dotfiles can:
 
-- configuration files for both personal and work machines
-- script to bootstrap a MacOS machine.
-- script to bootstrap a Debian based machine.
+- bootstrap a machine:
+  - macOS
+  - Fedora 
+  - (future) Debian/Ubuntu
+- bootstrap base conf files:
+  - personal environments*
+  - work environments*
+
+
+* Looking for secrets ? Conf files with secrets are stored elsewhere.
 
 MOTIVATION:
 ===========
 
-I have custom settings for various software I used everyday.
+One central place to manage permanent/recurrent software settings.
 
 GET STARTED:
 =============
 
-Bootstrap MacOS machine
+Overview
+---------
+
+1. Boottrap a machine
+2. Boottrap conf files (+ updates plugins)
+
+Bootstrap macOS machine
 -------------------------
 
 1. Prerequisites:
@@ -64,11 +77,11 @@ IMPORTANT: Your most recents mac user setup was build in this order:
 
 3. Run bootstrap script matching to the user's account purpose
 
-Current user will be a **MacOS standard user**:
+Current user will be a **macOS standard user**:
 
     git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b macosx -s normal -p "`pwd`/../dotfiles-private"
 
-Current user will be a **MacOS Administrator privileges user**
+Current user will be a **macOS Administrator privileges user**
 
     git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b macosx -s admin -p "`pwd`/../dotfiles-private"
 
@@ -86,6 +99,7 @@ Bootstrap Fedora machine
 
 1. Prerequisites:
 - bash
+- dnf
 
 2. Select bootstrap script profile matching the user's account purpose
 
@@ -139,9 +153,26 @@ Bootstrap configuration files
 
 2. Select bootstrap conf script profile matching the user's account purpose
 
-IMPORTANT: Your most recents mac user setup was build in this order: 
+IMPORTANT: Your most recents user setup was build in this order: 
 - account davidandreoletti: profile perso
-- account davidis:          profile ?
+- account davidis:          profile work
+
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+| Feature                          |     standard user    |     Administrator    |      Primary Dev   |      Nthy Developer   |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+|                                  | macOS     | linux    | macOS     | linux    | macOS     | linux  | macOS     | linux     |
++==================================+======================+======================+====================+=======================+
+| Link public conf files to $HOME  | y         | y        | y         | y        | y         | y        | y         | y       |
++----------------------------------+----------------------+----------------------+----------------------+---------------------+
+| Link private conf files to $HOME | y         | y        | y         | y        | y         | y        | y         | y       |
++----------------------------------+----------------------+----------------------+----------------------+---------------------+
+| `XDG <xdg>`_ conformity          | y         | y        | y         | y        | y         | y        | y         | y       |
++----------------------------------+----------------------+----------------------+----------------------+---------------------+
+| Auto install vim plugins         | y         | y        | y         | y        | y         | y        | y         | y       |
++----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+
+
+.. _xdg: https://practical.li/blog/posts/adopt-FreeDesktop.org-XDG-standard-for-configuration-files/
 
 3. Run bootstratp conf script matching the selected profile
 
@@ -153,7 +184,7 @@ b. (if boostrap config script has been edited since) Update existing conf files 
 
    cd dotfiles && git pull && git submodule update --recursive --remote && bash bootstrap.sh -b dotfiles -s perso
 
-c. Prevent git from displaying every file those permission have changed (yet no file content changed)
+c. Prevent git from displaying every file whose permission have changed (yet no file content changed)
 
    vim THIS_REPO.git/.git/config
       filemode = false
@@ -170,15 +201,11 @@ SOURCE
 Main source repository: https://github.com/davidandreoletti/dotfiles
 
 
-REQUIREMENTS
-============
-
-None
-
 CONTRIBUTORS:
 =============
 
-If you would like to contribute, feel free to do so.
+Feel free to read/copy.
+No contribution accepted.
 
 AUTHOR
 ======
