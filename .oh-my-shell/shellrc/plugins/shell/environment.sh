@@ -1,9 +1,7 @@
-SHELL_NAME=$(get_shell_type)
-
-if [ "$SHELL_NAME" = "bash" ];
+if is_bash ;
 then
     SHELL_ROOT_PROFILE="$HOME/.bash_profile"
-elif [ "$SHELL_NAME" = "zsh" ];
+elif is_zsh ;
 then
     SHELL_ROOT_PROFILE="$HOME/.zshrc"
 fi

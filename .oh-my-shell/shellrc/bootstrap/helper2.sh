@@ -41,15 +41,19 @@ get_os_type() {
     echo "unknown" && return 0
 }
 
+is_bash () {
+    test -n "$BASH_VERSION"
+}
+
+is_zsh () {
+    test -n "$ZSH_VERSION"
+}
+
 # Get shell name
 get_shell_type() {
-    if [ -n "$BASH_VERSION" ]; then
-        echo "bash"
-    elif test -n "$ZSH_VERSION" ; then
-        echo "zsh"
-    else
-        echo "unknow-shell"
-    fi
+    is_bash && echo "bash" && return 0
+    is_zsh && echo "zsh" && return 0
+    echo "unknow-shell" && return 0
 }
 
 homebrew_packages_path_prefix() {
