@@ -1,5 +1,5 @@
 # Load asdf
-#. $(brew --prefix)/opt/asdf/libexec/asdf.sh
+#. $(homebrew_package_path_prefix "/asdf/libexec/asdf.sh")
 
 # Load plugins
 #_asdf_plugin_installed="$(asdf plugin list)"
