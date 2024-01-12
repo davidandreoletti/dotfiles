@@ -1,7 +1,3 @@
-#
-# Legacy aliases, awaiting to be moved to app specific aliases files
-#
-
 # pbcopy/pbpaste: Take standard input and place it in the system clipboard
 # (to paste into other applications)
 # src: http://jetpackweb.com/blog/2009/09/23/pbcopy-in-ubuntu-command-line-clipboard/
@@ -20,14 +16,4 @@ if [[ "$os_type_name" == "linux" ]]; then
     unset xselpresent
 fi
 unset os_type_name
-
-
-#copyFolderStructureOnly {
-#    find . -type d >dirs.txt
-#    xargs mkdir -p <dirs.txt
-#}
-#
-#copyFolderStructureOnlyV2 {
-#    rsync -a --filter="-! */" source_dir/ target_dir/
-#}
 
