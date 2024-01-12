@@ -14,7 +14,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 # Init pyenv plugins
-if command -v pyenv-virtualenv-init > /dev/null; 
+if command_exists pyenv-virtualenv-init ; 
 then 
     eval "$(pyenv virtualenv-init -)"; 
 fi

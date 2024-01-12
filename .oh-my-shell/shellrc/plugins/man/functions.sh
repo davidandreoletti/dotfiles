@@ -1,6 +1,6 @@
 function f_man_prefer_alternative() {
     local program="$1"
-    if [ -x "$(command -v cheat)" ]
+    if command_exists cheat ;
     then
         cat <(echo "--tldr: $program ---------------------------------------") \
             <(command tldr $program) \

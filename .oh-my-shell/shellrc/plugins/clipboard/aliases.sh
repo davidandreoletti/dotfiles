@@ -2,12 +2,10 @@
 # (to paste into other applications)
 # src: http://jetpackweb.com/blog/2009/09/23/pbcopy-in-ubuntu-command-line-clipboard/
 if [ is_linux ]; then
-    xclippresent=`command -v xclip >/dev/null 2>&1; echo $?`
-    xselpresent=`command -v xsel >/dev/null 2>&1; echo $?`
-    if [[ ${xclippresent} == 0 ]]; then
+    if command_exists 'xclip' ; then
         alias pbcopy='xclip -selection clipboard'
         alias pbpaste='xclip -selection clipboard -o'
-    elif [[ ${xselpresent} == 0 ]]; then
+    elif command_exists 'xsel' ; then
         alias pbcopy='xsel --clipboard --input'
         alias pbpaste='xsel --clipboard --output'
     fi

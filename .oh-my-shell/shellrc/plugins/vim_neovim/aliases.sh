@@ -1,4 +1,4 @@
-[ -x "$(command -v nvim)" ] && alias vim='nvim'
+command_exists 'nvim' && alias vim='nvim'
 
 # Vim editor without plugins loaded
 # Usage: vimb /path/to/file
