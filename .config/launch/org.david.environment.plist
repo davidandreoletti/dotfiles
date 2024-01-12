@@ -30,6 +30,13 @@
 			launchctl setenv XDG_STATE_HOME $HOME/.local/state
 
 			launchctl setenv NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
+
+			<!--
+			launchctl setenv ANDROID_SDK_HOME $HOME/.local/share/android
+			launchctl setenv GNUPGHOME $HOME/.config/gnupg
+			launchctl setenv PASSWORD_STORE_DIR $HOME/docs/pass/
+			launchctl setenv TERMINFO $XDG_DATA_HOME/terminfo
+			-->
 		</string>
 	</array>
 	<key>RunAtLoad</key>
