@@ -14,6 +14,6 @@ then
 	for xdg in XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_STATE_HOME;
 	do
 		[ -z "$xdg" ] && echo "$xdg is not defined"
-		[ ! -z "$xdg" ] && ( [ -d "$XDG_CONFIG_HOME" ] || mkdir -m 0750 "$xdg" )
+		[ ! -z "$xdg" ] && ( [ -d "$xdg" ] || mkdir -m 0750 "$xdg" )
 	done
 fi
