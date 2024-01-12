@@ -7,5 +7,13 @@
 
 export PATH
 
-# XDG directories difference between Linux and macOS.
-# https://practical.li/blog/posts/adopt-FreeDesktop.org-XDG-standard-for-configuration-files/
+# Check XDG directories exist
+if [[ "$OS_NAME" == "macosx" ]];
+then
+	# Keep synced with .config/launch/org.david.environment.plist's XDG_xxxx var
+	for xdg in XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_STATE_HOME;
+	do
+		[ -z "$xdg" ] && echo "$xdg is not defined"
+		[ ! -z "$xdg" ] && ( [ -d "$XDG_CONFIG_HOME" ] || mkdir -m 0750 "$xdg" )
+	done
+fi
