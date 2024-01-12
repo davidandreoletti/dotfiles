@@ -3,7 +3,7 @@
 #
 
 # Set default editors
-export EDITOR=`which vim`
+export EDITOR=`command which --skip-alias --skip-functions nvim`
 export VISUAL=$EDITOR
 
 # TERM reports the terminal type. Best to leave the terminal implementation report it
