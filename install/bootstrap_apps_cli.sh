@@ -198,6 +198,9 @@ then
     homebrew_brew_install                  "pgpdump"             # PGP packet/key analyser
     homebrew_brew_install                  "age"                 # File encryption for the masses
 
+	# Secret sharing
+    homebrew_brew_install                  "ots"                 # Time bound secret sharing
+
     # Docker
     homebrew_brew_install                  "dive"                # Inspect docker layers
 
