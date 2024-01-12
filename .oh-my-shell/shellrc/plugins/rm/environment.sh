@@ -1,7 +1,7 @@
-if [[ "$OS_NAME" == "macosx" ]];
+if is_macos ;
 then
     RM_GRAVEYARD="$HOME/.Trash"
-elif [[ "$OS_NAME" == "linux" ]];
+elif is_linux ;
 then
     RM_GRAVEYARD="$XDG_DATA_HOME/Trash"
 else

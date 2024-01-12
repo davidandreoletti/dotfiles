@@ -8,7 +8,7 @@
 export PATH
 
 # Check XDG directories exist
-if [[ "$OS_NAME" == "macosx" ]];
+if is_macos ;
 then
 	# Keep synced with .config/launch/org.david.environment.plist's XDG_xxxx var
 	for xdg in XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_STATE_HOME;

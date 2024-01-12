@@ -1,6 +1,6 @@
 # Init conda:
 # - init code completion, etc
-if [[ "$OS_NAME" == "macosx" ]];
+if is_macos ;
 then
     [ -d "$HOME/.conda" ] || ( conda init --quiet $SHELL_NAME )
 else

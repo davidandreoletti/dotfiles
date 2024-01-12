@@ -1,12 +1,44 @@
+# Keep is_xxx in sync with install/comman/shell/os.sh
+is_macos () {
+    case "$(uname -sr)" in
+        Darwin*)
+        return 0
+        ;;
+        *)
+        return 1
+        ;;
+    esac
+}
+
+is_linux () {
+    case "$(uname -sr)" in
+        Linux*)
+        return 0
+        ;;
+        *)
+        return 1
+        ;;
+    esac
+}
+
+is_fedora () {
+    case "$(grep -E '^(ID)=' /etc/os-release | cut -d'=' -f 2)" in
+        fedora*)
+        return 0
+        ;;
+        *)
+        return 1
+        ;;
+    esac
+}
+
 #
 # Get os type
 #
 get_os_type() {
-    case "$OSTYPE" in
-        darwin*)  echo "macosx" ;;
-        linux*)   echo "linux" ;;
-        *)        echo "unknown" ;;
-    esac
+    is_macos && echo "macos" && return 0
+    is_linux && echo "linux" && return 0
+    echo "unknown" && return 0
 }
 
 # Get shell name

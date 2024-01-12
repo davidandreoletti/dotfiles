@@ -2,7 +2,7 @@
 export HOMEBREW_NO_ANALYTICS=1
 
 # Init homebrew
-if [[ "$OS_NAME" == "macosx" ]];
+if is_macos ;
 then
 	# Homebrew cask default option
 	# --appdir Location where cask apps are installed
@@ -13,7 +13,7 @@ then
 	eval "$(/usr/local/Homebrew/bin/brew shellenv)"
 	# - ARM arch
 	# eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [[ "$OS_NAME" == "linux" ]];
+elif is_linux ;
 then
 	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi

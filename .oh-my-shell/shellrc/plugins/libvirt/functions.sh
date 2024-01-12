@@ -296,10 +296,10 @@ function f_libvirt_domain_setup_generic_virtual {
     
     # Pick virtualization engine
     local virt_type="qemu"
-    if [[ "$OSTYPE" == "linux-gnu"* ]]; 
+    if is_linux ; 
     then
         virt_type="kvm"
-    elif [[ "$OSTYPE" == "darwin"* ]]; 
+    elif is_macos ; 
     then
         virt_type="hvf"
     fi

@@ -1,4 +1,4 @@
-if [[ "$OS_NAME" == "macosx" ]]; then
+if is_macos ; then
 	#
     # Initialize jenv
     # (easier JAVA_HOME switching)

@@ -1,3 +1,5 @@
+# Keep is_xxx in sync with .oh-my-shell/shellrc/bootstrap/helper2.sh
+
 is_macos () {
     case "$(uname -sr)" in
         Darwin*)
