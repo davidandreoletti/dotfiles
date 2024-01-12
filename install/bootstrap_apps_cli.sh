@@ -203,6 +203,9 @@ then
     homebrew_brew_install                  "boz/repo/kail"       # kubernetes pods console viewer
     homebrew_brew_install                  "k9s"                 # kubernetes cluster manager TUI
 
+	# Text characters
+    homebrew_brew_install                  "chars"               # Display name/code for ASCII/Unicode characters/code points
+
     # Text manipulation
     homebrew_brew_install                  "gawk"                # Required by: tmux-fingers plugin
 
