@@ -13,6 +13,6 @@
 #   <local ref> <local sha1> <remote ref> <remote sha1>
 #
 
-[ -r "$(which fortune)" ] && fortune 2>&1;
+[ -r "$(command which fortune)" ] && fortune 2>&1;
 
 exit 0
