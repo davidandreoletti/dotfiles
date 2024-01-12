@@ -51,6 +51,7 @@ then
     homebrew_brew_install                  "gnu-sed"            # GNU `sed`, overwriting the built-in `sed`
     homebrew_brew_install                  "proctools"          # GNU pkill, pgrep
     homebrew_brew_install                  "inetutils"          # GNU ftp comand and more
+    homebrew_brew_install                  "gnu-which"          # GNU which comand 
 
     # Zsh shell
     # Use as default shell for current user
