@@ -1,2 +1,2 @@
 # https://github.com/ajeetdsouza/zoxide
-eval "$(zoxide init $(basename $SHELL))"
+eval "$(zoxide init ${SHELL_NAME})"

@@ -1,1 +1,1 @@
-command_exists ots && eval "$(ots completion $(basename $SHELL))"
+command_exists ots && eval "$(ots completion $SHELL_NAME)"

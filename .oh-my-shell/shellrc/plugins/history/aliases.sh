@@ -1,1 +1,1 @@
-alias historyMostUsed="f_history_list_most_used ~/.$(basename $SHELL)_history"
+alias historyMostUsed="f_history_list_most_used ~/.${SHELL_NAME}_history"

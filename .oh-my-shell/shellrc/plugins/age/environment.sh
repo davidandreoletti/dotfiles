@@ -1,2 +1,1 @@
-# shell completion
-command_exists enc && enc completion $(basename $SHELL) -h
+command_exists enc && enc completion ${SHELL_NAME} -h
