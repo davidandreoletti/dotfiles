@@ -184,7 +184,7 @@ then
 
     # OpenSSH client / server
     homebrew_brew_install                  "openssh"             # OpenSSH client and server
-    is_macos  &&  fedora_dnf_install       "openssh-server" \
+    fedora_dnf_install                     "openssh-server" \
               &&  sudo systemctl enable sshd \
               &&  sudo systemctl start sshd
 
