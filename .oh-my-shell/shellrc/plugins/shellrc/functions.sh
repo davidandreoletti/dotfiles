@@ -1,25 +1,47 @@
 function f_shellrc_plugin_create() {
     local name="$1"
-    local main="$HOME/.oh-my-shell/oh-my-shellrc"
-    local plugin_dir="$SHELLRC_PLUGINS_DIR/$name"
+    local main="$SHELLRC_OH_MY_SHELLRC"
+    local plugin_dir="$SHELLRC_PLUGINS_DIR_LOCAL/$name"
 
-    # Create plugin dir/file structure
+    f_shellrc_plugin_edit "$name" 1
+
+    echo "plugin: $name :register"
+    $EDITOR "$main"
+
+    f_shellrc_plugin_reload "$name"
+}
+
+function f_shellrc_plugin_edit() {
+    local name="$1"
+    local reload_plugin="${2:-0}"
+    local main="$SHELLRC_OH_MY_SHELLRC"
+    local plugin_dir="$SHELLRC_PLUGINS_DIR_LOCAL/$name"
+
+    echo "plugin: $name :create structure"
     mkdir -p "$plugin_dir"
     command touch "$plugin_dir/aliases.sh"
     command touch "$plugin_dir/functions.sh"
     command touch "$plugin_dir/environment.sh"
     command touch "$plugin_dir/post.sh"
 
-    echo "Add plugin '$name' to $main"
-    # FIXME Use EDITOR - once 'vim' is aliased to nvim issue is fixed
-    vim "$main"
+    echo "plugin: $name :edit function"
+    $EDITOR $plugin_dir/*.sh
 
-    echo "Edit plugin '$name'"
-    # FIXME Use EDITOR - once 'vim' is aliased to nvim issue is fixed
-    vim $plugin_dir/*.sh
+    . "$DOTFILES_HOME_LOCAL/install/common/shell/stow.sh"
 
-    # FIXME: Call stow to symlink the plugin into ~/.oh-my-shell
+    stow_files "$USER" "$DOTFILES_HOME_LOCAL" "$HOME"
 
     # Reload shell
-    shell_reload_profile
+    [ $reload_plugin ] && f_shellrc_plugin_reload "$name"
 }
+
+function f_shellrc_plugin_reload() {
+    local name="$1"
+    local main="$SHELLRC_OH_MY_SHELLRC"
+    local plugin_dir="$SHELLRC_PLUGINS_DIR_LOCAL/$name"
+
+    echo "plugin: $name :reloading"
+
+    dot_plugin_if_exists "$name"
+}
+

@@ -1,2 +1,2 @@
-export DOTFILES_HOME=$(realpath "$(dirname $(readlink -f ~/.oh-my-shell/oh-my-shellrc))/../")
-export DOTFILES_PRIVATE_HOME="$(dirname $(readlink -f $HOME/.ssh))"
+export DOTFILES_HOME="$DOTFILES_HOME_LOCAL"
+export DOTFILES_PRIVATE_HOME="$DOTFILES_PRIVATE_HOME_LOCAL"

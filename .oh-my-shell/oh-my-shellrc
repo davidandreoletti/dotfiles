@@ -8,7 +8,16 @@
 SHELLRC_ROOT_DIR="${HOME}/.oh-my-shell"
 SHELLRC_SHELLRC_DIR="${SHELLRC_ROOT_DIR}/shellrc"
 SHELLRC_BOOTSTRAP_DIR="${SHELLRC_SHELLRC_DIR}/bootstrap"
-SHELLRC_PLUGINS_DIR="${SHELLRC_SHELLRC_DIR}/plugins"
+
+export SHELLRC_OH_MY_SHELLRC="${SHELLRC_ROOT_DIR}/oh-my-shellrc"
+
+#export DOTFILES_HOME_LOCAL=$(realpath "$(dirname $(readlink -f ~/.oh-my-shell/oh-my-shellrc))/../")
+export DOTFILES_HOME_LOCAL=$(realpath "$(dirname $(readlink -f $SHELLRC_OH_MY_SHELLRC))/../")
+export DOTFILES_PRIVATE_HOME_LOCAL="$(dirname $(readlink -f $HOME/.ssh))"
+
+export SHELLRC_PLUGINS_DIR="${SHELLRC_SHELLRC_DIR}/plugins"
+export SHELLRC_PLUGINS_DIR_LOCAL="${DOTFILES_HOME_LOCAL}/.oh-my-shell/shellrc/plugins"
+
 
 # Load bootstrap
 . "${SHELLRC_BOOTSTRAP_DIR}/helper.sh"
