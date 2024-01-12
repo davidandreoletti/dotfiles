@@ -16,6 +16,10 @@ eval "$(pyenv init -)"
 # Init pyenv plugins
 if command_exists pyenv-virtualenv-init ; 
 then 
-    eval "$(pyenv virtualenv-init -)"; 
+    # official setup
+    #eval "$(pyenv virtualenv-init -)"; 
+    # unofficial setup yet shell response is much faster
+    # src: https://github.com/pyenv/pyenv-virtualenv/issues/259#issuecomment-1731123922
+    eval "$(pyenv virtualenv-init - | sed s/precmd/chpwd/g)"; 
 fi
 
