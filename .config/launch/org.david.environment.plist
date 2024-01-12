@@ -28,6 +28,8 @@
 			launchctl setenv XDG_CACHE_HOME $HOME/.cache
 			launchctl setenv XDG_DATA_HOME $HOME/.local/share
 			launchctl setenv XDG_STATE_HOME $HOME/.local/state
+
+			launchctl setenv NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
 		</string>
 	</array>
 	<key>RunAtLoad</key>
