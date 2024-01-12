@@ -1,1 +1,9 @@
 report_errors: False
+channels:
+  - conda-forge
+  - defaults
+default_threads: 4
+auto_update_conda: false
+pip_interop_enabled: true
+auto_activate_base: false
+channel_priority: strict
