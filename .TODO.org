@@ -1,6 +1,4 @@
 * TODO:
-** osx defaults:
-*** Show time + date (instead of just time) in top bar on the desktop.
 ** browser:
 *** safari:
 **** install vimari + setup again. automate this ?https://github.com/guyht/vimari
@@ -11,11 +9,6 @@
 **** https://centrify.force.com/support/Article/KB-10010-FileVault2-fails-to-initiate-for-macOS-10-13-x-High-Sierra-systems-using-Centrify-Group-Policy-and-or-cannot-add-a-mobile-account-as-a-FileVault-unlocker-account/
 **** https://derflounder.wordpress.com/2018/01/20/secure-token-and-filevault-on-apple-file-system/
 **** https://support.apple.com/en-us/HT204837
-*** Get osx keychain credentials for ghi: https://github.com/mrzool/dotfiles/blob/master/git/.gitconfig#L38
-** termital:
-*** truecolor terminal: https://gist.github.com/XVilka/8346728
-** keyboard remaaping:
-*** http://stevelosh.com/blog/2012/10/a-modern-space-cadet/#the-original
 ** dotfiles:
 *** https://gist.github.com/rampion/104020
 *** https://github.com/paulirish/dotfiles
@@ -34,32 +27,8 @@
 *** any good useful item from: https://github.com/tony/.dot-config ?
 ** profile:
 *** https://github.com/majutsushi/etc/blob/master/shell-common/profile
-** vim/fzf: 
-*** https://github.com/junegunn/fzf/wiki/Examples-(vim)
-** fzf
-*** preview window https://github.com/junegunn/fzf#preview-window
-*** syntax highlight https://github.com/junegunn/fzf#preview-window
-*** Shortcut:
-**** Ctrl + r - search through bash history with fzf
-**** Ctrl + p - edit a file in vim from fzf
-**** mv dir/** - expand a directory with (**) and select from fzf
-**** Alt + c - change directory from fzf - see the update at the bottom for faster search with bfs.
-*** Ctrl + t - insert file from fzf into command
-** tmux
-*** https://github.com/Morantron/tmux-fingers ? zsh support ?
-*** cleanup custom written tmux_show/tmux_hide functions libtmux might be better suited
-*** use dedicated tmux session manager ?  https://github.com/tmux-python/tmuxp
 ** vim:
-*** use one of these latex plugins https://vi.stackexchange.com/questions/2047/what-are-the-differences-between-latex-plugins ?
-*** improve config from https://github.com/meain/dotfiles/blob/master/nvim/.config/nvim/init.vim ?
-*** improve config from https://github.com/geekingfrog/configFiles/blob/master/.vimrc
-*** https://github.com/bdd/.vim/blob/master/vimrc#L80 
-*** goodies: https://statico.github.io/vim3.html !
-*** goodies https://github.com/majutsushi/etc/blob/master/vim/vimrc ?
-*** goodies https://github.com/bag-man/dotfiles/blob/master/vimrc ?
-*** search and replace project wide: https://github.com/junegunn/fzf.vim/issues/528 ?
-*** goodies https://github.com/statico/dotfiles/blob/master/.vim/vimrc ?
-*** switch to ALE: https://github.com/ErikBjare/dotfiles/commit/2b946b5d0f95ba056ce99bf0487c3ff414ce3c51 ?
+*** https://github.com/Stormherz/tablify
 *** useful recommandations: https://www.vi-improved.org/recommendations/
  * vim: Save/Restore session automatically
  * vim: should I use https://github.com/monokrome/vim-lazy-obsession to get
@@ -73,13 +42,13 @@
   https://wrotenwrites.com/a_modern_terminal_workflow_2/ (and similar pages)?
 *** https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
 ** Plug youtube video as audio stream onnly into mpd: https://github.com/mps-youtube/mps-youtube/pulls
-** taskwarrior: 
-*** Use it http://taskwarrior.org ?
 ** PGP:
 *** key publication: https://gist.github.com/terrywang/32a6d285d103b8f9beea94b970b0d16a
-** XDG_xxxx on macOS: 
-*** https://stackoverflow.com/questions/3373948/equivalents-of-xdg-config-home-and-xdg-data-home-on-mac-os-x
-*** https://github.com/majutsushi/etc/blob/master/shell-common/profile#L26
 SHELL PERF IMPROVEMENT: This is a gold mine! :-)
 * https://htr3n.github.io/2018/07/faster-zsh/#lazy-loading
+* format .oh-my-shell + lint
+* tomb: https://dyne.org/software/tomb/
+* pass ? https://www.passwordstore.org + https://github.com/roddhjav/pass-import#readme
+* safe instead of pass ? https://z3bra.org/safe/
+* https://github.com/gitleaks/gitleaks
 
