@@ -79,19 +79,19 @@ IMPORTANT: Your most recents mac user setup was build in this order:
 
 Current user will be a **macOS standard user**:
 
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b macosx -s normal -p "`pwd`/../dotfiles-private"
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s normal -p "`pwd`/../dotfiles-private"
 
 Current user will be a **macOS Administrator privileges user**
 
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b macosx -s admin -p "`pwd`/../dotfiles-private"
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine macosx -s admin -p "`pwd`/../dotfiles-private"
 
 Current user will be a  **primary developer account on the machine**
 
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b macosx -s dev_single -p "`pwd`/../dotfiles-private"
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine macosx -s dev_single -p "`pwd`/../dotfiles-private"
 
 Current user will be a  **one of the secondaries developer accounts on the machine**
 
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b macosx -s dev_multi -p "`pwd`/../dotfiles-private"
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine macosx -s dev_multi -p "`pwd`/../dotfiles-private"
 
 
 Bootstrap Fedora machine
@@ -129,19 +129,19 @@ IMPORTANT: Your most recents fedora user setup was build in this order:
 
 Current user will be a **Fedora standard user**:
 
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b fedora -s normal -p "`pwd`/../dotfiles-private"
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s normal -p "`pwd`/../dotfiles-private"
 
 Current user will be a **Fedora Administrator privileges user**
 
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b fedora -s admin -p "`pwd`/../dotfiles-private"
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s admin -p "`pwd`/../dotfiles-private"
 
 Current user will be a  **primary developer account on the machine**
 
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b fedora -s dev_single -p "`pwd`/../dotfiles-private"
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s dev_single -p "`pwd`/../dotfiles-private"
 
 Current user will be a  **one of the secondaries developer accounts on the machine**
 
-    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b fedora -s dev_multi -p "`pwd`/../dotfiles-private"
+    git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s dev_multi -p "`pwd`/../dotfiles-private"
 
 
 

@@ -1,11 +1,10 @@
 #!/bin/bash
 BOOSTRAP_COMMAND=""
-DOTFILES_FORCE_INSTALL=false
 DOTFILES_PROFILE="perso" 
 DOTFILES_DEFAULT_SHELL="zsh"
+DOTFILES_DIR_PATH="$(pwd)"
 DOTFILES_PRIVATE_DIR_PATH_SET=false
-DOTFILES_PRIVATE_DIR_PATH="`pwd`/../dotfiles-private"
-DOTFILES_DIR_PATH="`pwd`"
+DOTFILES_PRIVATE_DIR_PATH="$DOTFILES_DIR_PATH/../dotfiles-private"
 
 # Get GNU readlink avaiable
 GREADLINK_BIN="/usr/local/bin/greadlink"
@@ -14,13 +13,19 @@ then
 	GREADLINK_BIN="$(which readlink)"
 fi
 
-while getopts 'b:fs:t:p:h' flag; do
+# Simplify private dir path
+DOTFILES_PRIVATE_DIR_PATH="$($GREADLINK_BIN --canonicalize "$DOTFILES_PRIVATE_DIR_PATH")"
+
+. "$DOTFILES_DIR_PATH/install/common/shell/os.sh"
+
+# Process program arguments
+while getopts 'db:s:t:p:h' flag; do
   case $flag in
+    d)
+      BASH_DEBUG="-x"
+      ;;
     b)
       BOOSTRAP_COMMAND="$OPTARG";
-      ;;
-    f)
-      DOTFILES_FORCE_INSTALL=true;
       ;;
     s)
       DOTFILES_PROFILE="$OPTARG";
@@ -33,72 +38,72 @@ while getopts 'b:fs:t:p:h' flag; do
       DOTFILES_PRIVATE_DIR_PATH_SET=true
       ;;
     h)
-      echo "Help: $0.sh -b [command] [options]";
-      echo ""
-      echo " -h            Show this help."
-      echo ""
-      echo "COMMAND"
-      echo ""
-      echo " macosx       Bootstraps a macOS machine."
-      echo " debian       Bootstraps a Debian/Ubuntu machine"
-      echo " fedora       Bootstraps a Fedora machine"
-      echo " dotfiles     Install dotfiles"
-      echo ""
-      echo "OPTIONS"
-      echo ""
-      echo "  MACOSX OPTIONS"
-      echo ""
-      echo "None"
-      echo ""
-      echo "  DEBIAN OPTIONS"
-      echo ""
-      echo "None"
-      echo ""
-      echo "  FEDORA OPTIONS"
-      echo ""
-      echo "None"
-      echo ""
-      echo "  DOTFILES OPTIONS"
-      echo ""
-      echo " -f         Force install."
-      echo " -s profile\t Profile to install. Valid values (case sensitive): "
-      echo "    work   - (dotfiles configuration only) For computers at work."
-      echo "    perso  - (dotfiles configuration only)For computers at home (default)."
-      echo "    normal - (macosx configuration only) Set as standard user."
-      echo "    admin  - (macosx configuration only) Set as admin oriented user."
-      echo "    dev_single - (macosx configuration only) Use if there will be a single developer accounts/users."
-      echo "    dev_multi  - (macosx configuration only) Use if there will be multiple developer accounts/users."
-      echo " -t shell\t Shell type to use by default. Valid values (case sensitive): "
-      echo "    bash - Bash shell"
-      echo "    zsh  - ZSH shell (default)"
-      echo " -p dotfiles-private\t Absolute path to repository with dofiles-private files. Default: none"
-      echo ""
-      echo "EXAMPLES"
-      echo ""
-      echo " 0) Install dotfiles"
-      echo ""
-      echo "   $0 -b dotfiles -s perso -t bash"
-      echo ""
-      echo " 1) Install dotfiles along with dotfiles-private "
-      echo ""
-      echo "   $0 -b dotfiles -s perso -t bash -p `pwd`/some/path/dotfiles-private"
-      echo ""
-      echo " 2) Install dotfiles"
-      echo ""
-      echo "   $0 -b dotfiles -s perso -t bash"
-      echo ""
-      echo " 3) Bootstraps a macOS/Fedora machine"
-      echo ""
-      echo "   1. Setup  -the- user account acting as Administrator"
-      echo "   $0 -b <macosx/fedora> -s admin"
-      echo ""
-      echo "   2. Setup depending on the computer's machine purpose: single dev OR multi dev configuration"
-      echo "    Run  all user accounts which will be used for development purpose (ie multi dev machine)"
-      echo "    $0 -b <macosx/fedora> -s dev_multi"
-      echo "    OR"
-      echo "    Run on -the- user account which will be used as the unique development account  (ie single dev machine)"
-      echo "    $0 -b <macosx/fedora> -s dev_single"
-      echo ""
+      echo -e "Help: $0.sh -b [command] [options]";
+      echo -e ""
+      echo -e " -h            Show this help."
+      echo -e ""
+      echo -e "COMMAND"
+      echo -e ""
+      echo -e " machine      Bootstraps a macOS/Fedora/(future:Debian/Ubuntu) machine."
+      echo -e " dotfiles     Bootstraps dotfiles"
+      echo -e ""
+      echo -e " MACHINE OPTIONS"
+      echo -e ""
+      echo -e " -d"
+      echo -e "    \tEnable debug output"
+      echo -e ""
+      echo -e " DOTFILES OPTIONS"
+      echo -e ""
+      echo -e " -d"
+      echo -e "    \tEnable debug output"
+      echo -e ""
+      echo -e " -s <profile>"
+	  echo -e "    \tProfile to install (case sensitive)."
+      echo -e ""
+      echo -e "    <profile>"
+      echo -e "    \tNAME   \t\t-\tSUPPORT\t\t-\tDESCRIPTION"
+      echo -e "    \t------------------------------------------------------------------------------------------"
+      echo -e "    \tperso  \t\t-\t(dotfiles)\t-\tFor computers at home (default)."
+      echo -e "    \twork   \t\t-\t(dotfiles)\t-\tFor computers at work."
+      echo -e "    \tnormal \t\t-\t(machine)\t-\tSet as standard user."
+      echo -e "    \tadmin  \t\t-\t(machine)\t-\tSet as admin oriented user."
+      echo -e "    \tdev_single \t-\t(machine)\t-\tUse if there will be a single developer accounts/users."
+      echo -e "    \tdev_multi  \t-\t(machine)\t-\tUse if there will be multiple developer accounts/users."
+      echo -e ""
+      echo -e " -t <shell>"
+	  echo -e "    \t Shell type to use by default (case sensitive)."
+      echo -e ""
+      echo -e "    <shell>"
+      echo -e "    \tbash - Bash shell"
+      echo -e "    \tzsh  - ZSH shell (default)"
+      echo -e ""
+      echo -e " -p <path>"
+      echo -e "    \t Absolute path to 'dofiles-private' repository. Default: $DOTFILES_PRIVATE_DIR_PATH"
+      echo -e ""
+      echo -e "EXAMPLES"
+      echo -e ""
+      echo -e " 0) Bootstraps a macOS/Fedora machine"
+      echo -e ""
+      echo -e "   a. Setup user account with 'Administrator' role"
+      echo -e ""
+      echo -e "      > $0 -b machine -s admin"
+      echo -e ""
+      echo -e "   b. Setup user account per role (single dev, multi dev)"
+      echo -e ""
+      echo -e "      multi dev => each user accounts is a developer account"
+      echo -e ""
+      echo -e "      > $0 -b machine -s dev_multi"
+      echo -e ""
+      echo -e "      single dev => one user account is a developer account"
+      echo -e ""
+      echo -e "      Run on -the- user account which will be used as the unique development account  (ie single dev machine)"
+      echo -e ""
+      echo -e "      > $0 -b machine -s dev_single"
+      echo -e ""
+      echo -e " 1) Install dotfiles + dotfiles-private"
+      echo -e ""
+      echo -e "    > $0 -b dotfiles -s perso -t bash -p ${DOTFILES_PRIVATE_DIR_PATH}"
+      echo -e ""
       ;;
     ?)
       echo "Unsupported option. Exit."
@@ -132,7 +137,7 @@ function filter_out_comments() {
     echo "$outFile"
 }
 
-function bootstrap_symlinking_user_files() {
+function bootstrap_symlink_user_files() {
     local user="$1"
     local sourceDir="$2"
     local destDir="$3"
@@ -145,7 +150,7 @@ function bootstrap_symlinking_user_files() {
 
     local package="$(basename $sourceDir)"
     #stow_options="--simulate"
-    stow ${stow_options} --verbose=1 --restow --dir="$(realpath $sourceDir/..)" --target="$(realpath $destDir)" $package
+    command stow ${stow_options} --verbose=1 --restow --dir="$(realpath $sourceDir/..)" --target="$(realpath $destDir)" $package
 }
 
 function bootstrap_oh_my_shell() {
@@ -192,7 +197,7 @@ function bootstrap_oh_my_shell() {
 }
 
 function bootstrap_dotfiles() {
-    bootstrap_symlinking_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
+    bootstrap_symlink_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
 }
 
 function bootstrap_dotfiles_private() {
@@ -201,16 +206,13 @@ function bootstrap_dotfiles_private() {
         return
     fi    
 
-    # Simplify private dir path
-    DOTFILES_PRIVATE_DIR_PATH="$($GREADLINK_BIN --canonicalize "$DOTFILES_PRIVATE_DIR_PATH")"
-
     if [ "$($DOTFILES_PRIVATE_DIR_PATH/bin/dotfiles_private_locked_status $DOTFILES_PRIVATE_DIR_PATH )" = "LOCKED" ];
     then
         echo "WARNING: $DOTFILES_PRIVATE_DIR_PATH's files are LOCKED (ie ENCRYPTED). Symlinking files requires unlocked files."
         echo "To unlock files, run: bash $DOTFILES_PRIVATE_DIR_PATH/bin/dotfiles_private_unlock \"$DOTFILES_PRIVATE_DIR_PATH\""
     else
         echo "NOTE: $DOTFILES_PRIVATE_DIR_PATH's files are UNLOCKED (ie DECRYPTED)."
-        bootstrap_symlinking_user_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
+        bootstrap_symlink_user_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
     fi
 }
 
@@ -219,35 +221,25 @@ function oh_my_shell_ready() {
 }
 
 function bootstrap_vim_plugins() {
-    bash "install/bootstrap_vim_plugins.sh" 
+    bash $BASH_DEBUG "install/bootstrap_vim_plugins.sh" 
 }
 
-function bootstrap_macosx() {
-    bash "install/bootstrap_macosx.sh" "$DOTFILES_PROFILE"
-}
+function bootstrap_os() {
+	local os="$1"
 
-function bootstrap_fedora() {
-    bash "install/bootstrap_fedora.sh" "$DOTFILES_PROFILE"
-}
-
-function bootstrap_debian() {
-    bash "install/bootstrap_debian.sh"
+    bash $BASH_DEBUG "install/bootstrap_${os}.sh" "$DOTFILES_PROFILE"
 }
 
 # Main
 pushd "$(dirname "${BASH_SOURCE}")" 1> /dev/null 2>&1 
 ## Args preconditions
 case $BOOSTRAP_COMMAND in
-    "macosx") 
-        bootstrap_macosx;
+    "machine") 
+        is_macos  && bootstrap_os 'macos';
+        is_fedora && bootstrap_os 'fedora';
+        is_debian && bootstrap_os 'debian';
         ;;
-    "fedora") 
-        bootstrap_fedora;
-        ;;
-    "debian") 
-        bootstrap_debian;
-        ;;
-    "dotfiles") 
+    "dotfiles")
         check_new_updates; 
         check_new_shell_exists && change_default_shell; 
         bootstrap_dotfiles;
