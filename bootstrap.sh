@@ -17,6 +17,7 @@ fi
 DOTFILES_PRIVATE_DIR_PATH="$($GREADLINK_BIN --canonicalize "$DOTFILES_PRIVATE_DIR_PATH")"
 
 . "$DOTFILES_DIR_PATH/install/common/shell/os.sh"
+. "$DOTFILES_DIR_PATH/install/common/shell/stow.sh"
 
 # Process program arguments
 while getopts 'db:s:t:p:h' flag; do
@@ -137,22 +138,6 @@ function filter_out_comments() {
     echo "$outFile"
 }
 
-function bootstrap_symlink_user_files() {
-    local user="$1"
-    local sourceDir="$2"
-    local destDir="$3"
-
-    if ! command -v stow > /dev/null 2>&1
-    then
-        echo "Error: missing GNU stow"
-        exit 1
-    fi
-
-    local package="$(basename $sourceDir)"
-    #stow_options="--simulate"
-    command stow ${stow_options} --verbose=1 --restow --dir="$(realpath $sourceDir/..)" --target="$(realpath $destDir)" $package
-}
-
 function bootstrap_oh_my_shell() {
     # BASH shell:
     # - OSX:      . ~/.oh-my-shell/oh-my-shellrc into ~/.bash_profile ("Interactive Login"/"Interactive" shell)
@@ -197,7 +182,7 @@ function bootstrap_oh_my_shell() {
 }
 
 function bootstrap_dotfiles() {
-    bootstrap_symlink_user_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
+    stow_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
 }
 
 function bootstrap_dotfiles_private() {
@@ -212,7 +197,7 @@ function bootstrap_dotfiles_private() {
         echo "To unlock files, run: bash $DOTFILES_PRIVATE_DIR_PATH/bin/dotfiles_private_unlock \"$DOTFILES_PRIVATE_DIR_PATH\""
     else
         echo "NOTE: $DOTFILES_PRIVATE_DIR_PATH's files are UNLOCKED (ie DECRYPTED)."
-        bootstrap_symlink_user_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
+        stow_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
     fi
 }
 
