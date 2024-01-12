@@ -87,6 +87,7 @@ dot_plugin_if_exists "npm"                          # Loading dependency: nvm pl
 dot_plugin_if_exists "notebook"                     # Requires: dotfiles plugin
 dot_plugin_if_exists "open"
 dot_plugin_if_exists "oraclecloud"
+dot_plugin_if_exists "ots"
 dot_plugin_if_exists "pipe"
 dot_plugin_if_exists "pdf"
 dot_plugin_if_exists "pcalc"
