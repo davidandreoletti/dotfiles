@@ -104,6 +104,7 @@ then
     # Email client
     homebrew_brew_install                  "neomutt"
     homebrew_brew_install                  "aerc"
+    homebrew_brew_install                  "himalaya"
 
     # IRC client
     homebrew_brew_install                  "irssi"               # IRC client. Note: --with-perl=yes --with-proxy included since brew irssi formula v1.2.3
