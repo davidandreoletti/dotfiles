@@ -84,10 +84,10 @@ then
     homebrew_brew_install                  "file"
 
     # File encoding
-    homebrew_brew_install                  "libiconv"            # Convert files from/to various character encodings
+    is_macos && homebrew_brew_install      "libiconv"            # Convert files from/to various character encodings
 
     # File renamer
-    homebrew_brew_install                  "rename"              # Mass file rename
+    is_macos && homebrew_brew_install      "rename"              # Mass file rename
 
     # File progress
     homebrew_brew_install                  "progress"            # Report cp,mv,dd,tar,gzip,gunzip,cat's % of copied data
@@ -258,7 +258,7 @@ then
     # Virtualization
     homebrew_brew_install                  "libvirt"             # KVM/Qemu machine definition / hypervision abstraction
     homebrew_brew_install                  "qemu"
-    homebrew_brew_install                  "virt-manager"        # QEMU Manager
+    is_macos && homebrew_brew_install      "virt-manager"        # QEMU Manager
     #homebrew_brew_install                  "virt-viewer"         # QEMU Virt Manager/Viewer for macOS Monterey
 
     # ISO
@@ -305,7 +305,7 @@ then
     homebrew_brew_install                  "ngrep"               # grep for network resource
     homebrew_brew_install                  "ripgrep-bin"         # faster grep "rigrep" binary compiled, as nightly build, and including SIMD and all optimizations enabled.
     homebrew_brew_install                  "ack"                 # Fast file content search too
-    homebrew_brew_install                  "trash"               # Move files into macOS user's trash bin (as if done from the Finder)
+    is_macos && homebrew_brew_install      "trash"               # Move files into macOS user's trash bin (as if done from the Finder)
     homebrew_brew_install                  "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
     homebrew_brew_install                  "so"                  # Query stackoverflow TUI
 fi
@@ -313,8 +313,8 @@ fi
 is_profile_admin
 if [ "$?" -eq 0 ];
 then
-    homebrew_brew_tap_install "homebrew/autoupdate"  # Auto update homebrew packages every 1d
-    brew autoupdate start "86400" --upgrade --cleanup 
+    is_macos && homebrew_brew_tap_install "homebrew/autoupdate"  # Auto update homebrew packages every 1d
+    is_macos && brew autoupdate start "86400" --upgrade --cleanup 
 fi
 
 # Install *-completions at the end to prevent the error below when installing other packages
