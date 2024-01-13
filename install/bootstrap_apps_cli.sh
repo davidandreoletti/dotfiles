@@ -49,7 +49,7 @@ then
     homebrew_brew_install                  "usbutils"           # List USB devices via lsusb
     homebrew_brew_install                  "moreutils"          # parallel, elekdo, etc    
     homebrew_brew_install                  "gnu-sed"            # GNU `sed`, overwriting the built-in `sed`
-    homebrew_brew_install                  "proctools"          # GNU pkill, pgrep
+    is_macos && homebrew_brew_install      "proctools"          # GNU pkill, pgrep
     homebrew_brew_install                  "inetutils"          # GNU ftp comand and more
     homebrew_brew_install                  "gnu-which"          # GNU which comand 
 
