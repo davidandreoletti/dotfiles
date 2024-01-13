@@ -196,7 +196,7 @@ then
     # De/Encryption
     homebrew_brew_install                  "gnupg"               # GNU implementation of PGP
     homebrew_brew_install                  "hopenpgp-tools"      # Verify PGP key setup best practice
-    homebrew_brew_install                  "pinentry-mac"        # Connect gpg-agent to OSX keychain
+    is_macos && homebrew_brew_install      "pinentry-mac"        # Connect gpg-agent to OSX keychain
     homebrew_brew_install                  "pgpdump"             # PGP packet/key analyser
     homebrew_brew_install                  "age"                 # File encryption for the masses
 
