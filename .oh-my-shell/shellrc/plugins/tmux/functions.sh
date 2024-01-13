@@ -118,10 +118,8 @@ tmux_news_hide() {
 }
 
 tmux_android_show() {
-    set -x
     local sessionName=$(tmux_get_or_create_session "android")
     tmux_open_window "adblog" "$sessionName" 'until adb logcat && false; do sleep 1; adb logcat -c; done; bash'
-    set +x
 }
 
 tmux_android_hide() {
@@ -167,11 +165,11 @@ f_tmux_open_or_create_session () {
         cwd)
             local defaultSessionName=$(f_tmux_get_session_named_after_current_directory)
             local prefered=${2:-$defaultSessionName}
-            local session=$({ echo "$prefered"; command tmux list-sessions -F "#{session_name}" 2>/dev/null } | fzf --no-multi --cycle --select-1 --print-query)
+            local session=$({ echo "$prefered"; command tmux list-sessions -F "#{session_name}" 2>/dev/null } | fzf --no-multi --cycle --select-1)
             ;;
         interactive)
             local prefered=${2:-"default"}
-            local session=$({ echo "$prefered"; command tmux list-sessions -F "#{session_name}" 2>/dev/null } | fzf --no-multi --cycle --print-query)
+            local session=$({ echo "$prefered"; command tmux list-sessions -F "#{session_name}" 2>/dev/null } | fzf --no-multi --cycle)
             ;;
         *)
             echo "Unsupported 'behaviour' value for f_tmux_open_or_create_session"
