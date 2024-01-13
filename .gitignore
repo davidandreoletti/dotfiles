@@ -247,3 +247,6 @@ data.json
 .wdm/drivers.json
 # android
 .android/analytics.settings
+# systemd
+.config/systemd/user/default.target.wants/homebrew.*
+.config/systemd/user/homebrew.*
