@@ -333,7 +333,7 @@ is_profile_admin_or_similar
 if [ "$?" -eq 0 ];
 then
     homebrew_brew_install      "zsh-completions" \
-    && homebrew_brew_install   "bash-completion"
+    && homebrew_brew_install   "bash-completion2"
 fi
 
 [[ is_profile_admin || is_profile_dev_single || is_profile_dev_multi ]] && tmux_install_tpm
