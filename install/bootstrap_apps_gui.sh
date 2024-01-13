@@ -30,10 +30,6 @@ then
         rpm -ivh http://pkg.cloudflareclient.com/cloudflare-release-el8.rpm
         sed -i 's/dists\/\$releasever\/main/dists/8/main/' /etc/yum.repos.d/cloudflare.repo
 
-        # Github Desktop
-        rpm --import https://rpm.packages.shiftkey.dev/gpg.key
-        sh -c 'echo -e "[shiftkey-packages]\nname=GitHub Desktop\nbaseurl=https://rpm.packages.shiftkey.dev/rpm/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://rpm.packages.shiftkey.dev/gpg.key" > /etc/yum.repos.d/shiftkey-packages.repo'
-
         # VSCode
         # src: https://code.visualstudio.com/docs/setup/linux
         sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -75,8 +71,6 @@ then
     is_fedora  &&  bash_command_curl                       "https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/0fdc2d6d94cc87d57170b0edde49d46ba4731504/jetbrains-toolbox.sh"
     is_macos   &&  homebrew_brew_cask_install              "calibre"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.calibre_ebook.calibre"
-    is_macos   &&  homebrew_brew_cask_install              "sourcetree"
-    is_fedora  &&  fedora_dnf_install                      "github-desktop"
     is_macos   &&  homebrew_brew_cask_install              "transmission"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.transmissionbt.Transmission"
     is_macos   &&  homebrew_brew_cask_install              "dropbox"
@@ -95,7 +89,6 @@ then
                &&  fedora_dnf install                      "7zip-plugins"
     is_macos   &&  homebrew_brew_cask_install              "http-toolkit"
     is_macos   &&  homebrew_brew_cask_install              "textmate"
-    is_fedora  &&  fedora_dnf_install                      "gedit"
     is_macos   &&  homebrew_brew_cask_install              "trailer"            # Github Pull Requests Manager
     is_macos   &&  homebrew_brew_cask_install              "vnc-viewer"
     is_fedora  &&  fedora_flatpak_flathub_install          "org.remmina.Remmina" 
