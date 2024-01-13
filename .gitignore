@@ -53,7 +53,6 @@ qalc.history
 # Pyenv
 .pyenv/cache
 .pyenv/sources
-.config/nvim/pack/kite
 # Vim
 .vim/pack/kite
 .vim/commands
@@ -63,10 +62,25 @@ qalc.history
 .vim/cache
 .vim/cache/undo/neovim/%private%tmp%a.pem
 .vim/bundle
+.vim/bundle2
 .vim/sessions
 .vim/session
 .vim/plugged
 .vim/autoload/plug.vim
+# Neovim
+.config/nvim/pack/kite
+.config/nvim/commands
+.config/nvim/keymap
+.config/nvim/settings
+.config/nvim/ui
+.config/nvim/cache
+.config/nvim/bundle
+.config/nvim/bundle2
+.config/nvim/sessions
+.config/nvim/session
+.config/nvim/plugged
+.config/nvim/autoload/plug.vim
+#
 .config/Webull Desktop/Webull Desktop
 # Libvirt
 .config/libvirt/storage
