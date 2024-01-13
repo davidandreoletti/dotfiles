@@ -35,6 +35,10 @@ Plug 'dstein64/vim-startuptime'
 Plug 'takac/vim-hardtime'
 " Ease motions
 Plug 'Lokaltog/vim-easymotion'
+" Repeat a plugin map with .
+Plug 'tpope/vim-repeat'
+" Working with word viriants
+Plug 'tpope/vim-abolish'
 " Ease aligning things (table, field, etc ...)
 Plug 'junegunn/vim-easy-align'
 " Operations on surroundings
