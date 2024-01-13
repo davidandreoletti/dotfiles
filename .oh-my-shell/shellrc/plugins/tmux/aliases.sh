@@ -19,3 +19,13 @@ alias tmux_kill_server='command tmux kill-server '
 # Start server
 # usage: tmux_start_server
 alias tmux_start_server='command tmux start-server '
+
+# Show/hide news tmux session 
+# usage: tmux_news on
+# usage: tmux_news off
+alias tmux_news='f_tmux_group_switcher news'
+
+# Show/hide android tmux session
+# usage: tmux_android on
+# usage: tmux_android off
+alias tmux_android='f_tmux_group_switcher android'

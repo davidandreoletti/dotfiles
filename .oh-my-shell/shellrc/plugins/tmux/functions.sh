@@ -101,28 +101,27 @@ tmux_show_window() {
     command tmux select-window -t "$sessionName:$windowName"
 }
 
-tmux_news_show() {
+tmux_group_news_on() {
     local sessionName=$(tmux_get_or_create_session "news")
     tmux_open_window "mail" "$sessionName" 'until neomutt && false; do sleep 1; done; $SHELL'
     tmux_open_window "rss" "$sessionName" 'until newsboat && false; do sleep 1; done; $SHELL'
     tmux_open_window "irc" "$sessionName" 'until irssi && false; do sleep 1; done; $SHELL'
-    # Show mail window by default in the current session
     tmux_show_window "$sessionName" "mail"
 }
 
-tmux_news_hide() {
+tmux_group_news_off() {
     local sessionName=$(tmux_find_current_session_name)
     tmux_close_window "mail" "$sessionName"
     tmux_close_window "rss" "$sessionName"
     tmux_close_window "irc" "$sessionName"
 }
 
-tmux_android_show() {
+tmux_group_android_on() {
     local sessionName=$(tmux_get_or_create_session "android")
     tmux_open_window "adblog" "$sessionName" 'until adb logcat && false; do sleep 1; adb logcat -c; done; bash'
 }
 
-tmux_android_hide() {
+tmux_group_android_off() {
     local sessionName=$(tmux_find_current_session_name)
     tmux_close_window "adblog" "$sessionName"
     tmux_show_window "$sessionName" "adblog"
@@ -136,7 +135,12 @@ tmux_session_get_or_create() {
   session=$(command tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) &&  command tmux $change -t "$session" || echo "No sessions found."
 }
 
+f_tmux_group_switcher() {
+    local group="${1:-nogroup}"
+    local action="${2:-on}"
 
+    tmux_group_${group}_$action
+}
 
 f_tmux_get_session_named_after_current_directory() {
     local pathDir="$(pwd)"
