@@ -308,6 +308,7 @@ then
     is_macos && homebrew_brew_install      "trash"               # Move files into macOS user's trash bin (as if done from the Finder)
     homebrew_brew_install                  "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
     homebrew_brew_install                  "so"                  # Query stackoverflow TUI
+    homebrew_brew_install                  "ctags"               # catgs for vim's TagBar
 fi
 
 is_profile_admin

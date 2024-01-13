@@ -9,6 +9,7 @@
 source $HOME/.vim/common/functions.vim
 " Detect what vim variant is being used {{{
 let g:vimFlavor = F_Get_Vim_Flavor()
+let g:vimFlavorRootDir = F_Get_Vim_Flavor_Root_Dir()
 "}}}
 " Vundle{{{
 " Setup: https://github.com/gmarik/vundle
@@ -25,7 +26,7 @@ if pluginManagerInstallationRequired
     call F_VimPlug_Install()
 endif
 
-call plug#begin('~/.vim/bundle')
+call plug#begin(vimFlavorRootDir.'/bundle')
 
 " Managed plugins{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -89,9 +90,6 @@ Plug 'junegunn/fzf.vim'
 " Show a VCS diff using Vim's sign column. 
 Plug 'mhinz/vim-signify'
 " Class outliner
-if pluginManagerInstallationRequired
-   call F_Tagbar_InstallDependencies()
-endif
 Plug 'majutsushi/tagbar'
 " Lightweight status bar
 Plug 'bling/vim-airline'
@@ -223,24 +221,24 @@ syntax on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Backups
 " Move backup files to a central location
-let s:backupDirPath=expand($HOME)."/.vim/cache/backup/".g:vimFlavor
+let s:backupDirPath=vimFlavorRootDir."/cache/backup/".g:vimFlavor
 let &backupdir=s:backupDirPath
 
 " Undo
 " Move undo files to a central location
-let s:undirPath=expand($HOME)."/.vim/cache/undo/".g:vimFlavor."//"
+let s:undirPath=vimFlavorRootDir."/cache/undo/".g:vimFlavor."//"
 let &undodir=s:undirPath
 set undofile
 
 " Swap
 " Move swap to a central location
-let s:directoryPath=expand($HOME)."/.vim/cache/swap/".g:vimFlavor."//"
+let s:directoryPath=vimFlavorRootDir."/cache/swap/".g:vimFlavor."//"
 let &directory=s:directoryPath
 
 " VimInfo
 " Move viminfo to a central location
 " src: https://stackoverflow.com/a/23036077
-let &viminfo="%,<800,\'10,/50,:100,h,f0,n$HOME/.vim/cache/viminfo/".g:vimFlavor.'/viminfo'
+let &viminfo="%,<800,\'10,/50,:100,h,f0,n".vimFlavorRootDir."/cache/viminfo/".g:vimFlavor.'/viminfo'
 "            | |    |   |   |    | |    + viminfo file path
 "            | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
 "            | |    |   |   |    + disable 'hlsearch' loading viminfo

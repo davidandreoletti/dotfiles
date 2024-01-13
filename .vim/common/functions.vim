@@ -50,10 +50,19 @@ function! F_Get_Vim_Flavor ()
     endif
 endfunction
 
+function! F_Get_Vim_Flavor_Root_Dir ()
+    if has('nvim')
+        return expand($HOME)."/.config/nvim"
+    else
+        return expand($HOME)."/.vim"
+    endif
+endfunction
+
 " Indicates if vimplug is installed
 " Return: 
 function! F_VimPlug_IsInstalled ()
-	let vundle_readme=expand('~/.vim/autoload/plug.vim')
+    let vimFlavorRootDir=F_Get_Vim_Flavor_Root_Dir()
+	let vundle_readme=vimFlavorRootDir.'/autoload/plug.vim'
 	return !filereadable(vundle_readme)
 endfunction
 
@@ -63,7 +72,9 @@ function! F_VimPlug_Install ()
 	echo "Installing VimPlug..."
 	echo ""
 	silent !mkdir -p ~/.vim/bundle2
+	silent !mkdir -p ~/.config/nvim/bundle2
 	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endfunction
 
 " Installs bundles via vimplug
@@ -77,7 +88,8 @@ endfunction
 " Indicates if vundle is installed
 " Return: 
 function! F_Vundle_IsInstalled ()
-	let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+    let vimFlavorRootDir=F_Get_Vim_Flavor_Root_Dir()
+	let vundle_readme=vimFlavorRootDir.'/bundle/vundle/README.md'
 	return !filereadable(vundle_readme)
 endfunction
 
@@ -87,7 +99,9 @@ function! F_Vundle_Install ()
 	echo "Installing Vundle..."
 	echo ""
 	silent !mkdir -p ~/.vim/bundle
+	silent !mkdir -p ~/.config/nvim/bundle
 	silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+	silent !git clone https://github.com/gmarik/vundle ~/.config/nvim/bundle/vundle
 endfunction
 
 " Installs bundles via vundle
@@ -152,19 +166,4 @@ function! F_PythonPip_InstallifMissing ()
 	elseif F_OS_IsArchLinuxBasedOS ()
 		silent !sudo pacman -S python-pip
 	endif	
-endfunction
-
-" Installs tagbar's dependencies
-function! F_Tagbar_InstallDependencies ()
-	echo "Installing Tagbar depedencies ..."
-	echo ""
-	if F_OS_IsMacBasedOS ()
-		silent !cd /tmp && curl -L -O http://downloads.sourceforge.net/project/ctags/ctags/5.8/ctags-5.8.tar.gz && tar xzvf ctags-5.8.tar.gz && cd ctags-5.8 && ./configure && make && sudo make install	
-	elseif F_OS_IsDebianBasedOS ()
-		silent !sudo apt-get install exuberant-ctags
-	elseif F_OS_IsArchLinuxBasedOS ()
-		silent !sudo pacman -S ctags
-	else
-		echoerr "Intalling Tagbar dependencies is NOT specified for this platform."	
-	endif
 endfunction
