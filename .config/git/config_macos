@@ -1,0 +1,4 @@
+[credential]
+    # macos credential helper
+    helper = osxkeychain
+
