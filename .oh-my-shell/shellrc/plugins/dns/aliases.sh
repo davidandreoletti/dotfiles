@@ -1,5 +1,5 @@
 # Usage: dnsClearCache
-alias dnsClearCache='f_dns_clear_cache'
+alias dns_clear_cache='f_dns_clear_cache'
 
 # Prefer 'dog' to 'dig' dns client
-alias dig='dog '
+alias dns_query='dog '
