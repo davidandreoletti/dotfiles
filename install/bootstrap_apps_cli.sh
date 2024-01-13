@@ -66,7 +66,7 @@ then
     && pip3_global_install                 "pynvim" 
     
     # RSS
-    homebrew_brew_install                  "newsbeuter"          # RSS/Atom reader
+    homebrew_brew_install                  "newsboat"            # RSS/Atom reader
 
     # File synchronization
     homebrew_brew_install                  "rsync"

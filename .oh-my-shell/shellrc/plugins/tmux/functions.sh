@@ -104,7 +104,7 @@ tmux_show_window() {
 tmux_news_show() {
     local sessionName=$(tmux_get_or_create_session "news")
     tmux_open_window "mail" "$sessionName" 'until mutt && false; do sleep 1; done; $SHELL'
-    tmux_open_window "rss" "$sessionName" 'until newsbeuter && false; do sleep 1; done; $SHELL'
+    tmux_open_window "rss" "$sessionName" 'until newsboat && false; do sleep 1; done; $SHELL'
     tmux_open_window "irc" "$sessionName" 'until irssi && false; do sleep 1; done; $SHELL'
     # Show mail window by default in the current session
     tmux_show_window "$sessionName" "mail"
