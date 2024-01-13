@@ -222,7 +222,7 @@ case $BOOSTRAP_COMMAND in
     "machine") 
         is_macos  && bootstrap_os 'macos';
         is_fedora && bootstrap_os 'fedora';
-        is_debian && bootstrap_os 'debian';
+        #is_debian && bootstrap_os 'debian';
         ;;
     "dotfiles")
         check_new_updates; 
