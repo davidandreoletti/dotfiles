@@ -1,9 +1,7 @@
-if command -v vim >/dev/null 2>&1; then
-  echo "Bootstraping Vim ..."
-  command vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
-fi
-
-if command -v nvim >/dev/null 2>&1; then
-  echo "Bootstraping NeoVim ..."
-  command nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
-fi
+for cmd in vim nvim;
+do
+    if command -v $cmd >/dev/null 2>&1; then
+      echo "Bootstraping $cmd ..."
+      command $cmd '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+    fi
+done
