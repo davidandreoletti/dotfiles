@@ -142,7 +142,7 @@ then
     homebrew_brew_install                  "libvmaf"             # VMAF library
     homebrew_brew_install                  "jpeg-xl"             # JPEG-XL codec library
     homebrew_brew_install                  "zimg"                # Scaling, colorspace conversion, and dithering library
-    homebrew_brew_install                  "ffmpeg \
+    homebrew_brew_install                  "homebrew-ffmpeg/ffmpeg/ffmpeg \
                                             --with-fdk-aac \
                                             --with-openssl \
                                             --with-libvmaf \
