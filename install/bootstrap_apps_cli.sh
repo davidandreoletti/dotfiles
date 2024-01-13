@@ -37,7 +37,7 @@ then
     homebrew_brew_install                  "git-crypt"          # Encrypt git repository
     is_fedora  &&  fedora_dnf_install      "git-credential-libsecret" # git credential helper using GNOME's libsecret backend
     is_fedora  &&  homebrew_brew_install   "git-credential-libsecret" # provide git credential helper with libsecret also for homebrew's installed git 
-    homebrew_brew_install                  "gig"                # Generate .gitignore by programming language. dependency: fzf
+    is_macos   &&  homebrew_brew_install   "shihanng/gig/gig"   # Generate .gitignore by programming language. dependency: fzf
 
     # GUN * utils
     homebrew_brew_install                  "coreutils"          # Apple has outdated unix tooling.
