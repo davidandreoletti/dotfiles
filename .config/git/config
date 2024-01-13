@@ -11,17 +11,17 @@
 	# Requires git 2.9+
 	hooksPath = ~/.config/git/hooks
     # Default pager 
-    pager = "~/bin/git-pager.sh delta"
+    pager = "~/.bin/git-pager.sh delta"
 
 [pager]
     # Color
-	diff = "~/bin/git-pager.sh delta"
-    log =  "~/bin/git-pager.sh delta"
-    show = "~/bin/git-pager.sh delta"
-    blame = "~/bin/git-pager.sh delta"
+	diff = "~/.bin/git-pager.sh delta"
+    log =  "~/.bin/git-pager.sh delta"
+    show = "~/.bin/git-pager.sh delta"
+    blame = "~/.bin/git-pager.sh delta"
 
 [interactive]
-    diffFilter = "~/bin/git-pager.sh delta --color-only --features=interactive"
+    diffFilter = "~/.bin/git-pager.sh delta --color-only --features=interactive"
 
 [commit]
     # Show unified diff between the HEAD commit and what would be committed at the
