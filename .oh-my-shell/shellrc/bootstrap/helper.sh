@@ -130,6 +130,9 @@ function dot_plugin_if_exists() {
     dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/environment.sh"
     dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/functions.sh"
     dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/aliases.sh"
+    dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/private/environment.sh"
+    dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/private/functions.sh"
+    dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/private/aliases.sh"
 
     local stepCompletionFile=$(shell_session_step_file "completions")
     echo "$pluginName" >> "$stepCompletionFile"
