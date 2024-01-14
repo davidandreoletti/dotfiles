@@ -250,3 +250,4 @@ data.json
 # systemd
 .config/systemd/user/default.target.wants/homebrew.*
 .config/systemd/user/homebrew.*
+.config/navi/navi.log
