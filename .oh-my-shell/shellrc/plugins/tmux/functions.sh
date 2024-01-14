@@ -101,21 +101,6 @@ tmux_show_window() {
     command tmux select-window -t "$sessionName:$windowName"
 }
 
-tmux_group_news_on() {
-    local sessionName=$(tmux_get_or_create_session "news")
-    tmux_open_window "mail" "$sessionName" 'until neomutt && false; do sleep 1; done; $SHELL'
-    tmux_open_window "rss" "$sessionName" 'until newsboat && false; do sleep 1; done; $SHELL'
-    tmux_open_window "irc" "$sessionName" 'until irssi && false; do sleep 1; done; $SHELL'
-    tmux_show_window "$sessionName" "mail"
-}
-
-tmux_group_news_off() {
-    local sessionName=$(tmux_find_current_session_name)
-    tmux_close_window "mail" "$sessionName"
-    tmux_close_window "rss" "$sessionName"
-    tmux_close_window "irc" "$sessionName"
-}
-
 tmux_group_android_on() {
     local sessionName=$(tmux_get_or_create_session "android")
     tmux_open_window "adblog" "$sessionName" 'until adb logcat && false; do sleep 1; adb logcat -c; done; bash'
