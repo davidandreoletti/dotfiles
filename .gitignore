@@ -18,8 +18,8 @@
 # Inkspace
 .config/inkscape
 # Music Player daemon
-.mpd/*
-!.mpd/mpd.conf
+.config/mpd/*
+!.config/mpd/mpd.conf
 database
 sticker.sql
 port
