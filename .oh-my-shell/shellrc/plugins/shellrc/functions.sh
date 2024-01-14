@@ -30,6 +30,7 @@ function f_shellrc_plugin_edit() {
     . "$DOTFILES_HOME_LOCAL/install/common/shell/stow.sh"
 
     stow_files "$USER" "$DOTFILES_HOME_LOCAL" "$HOME"
+    stow_files "$USER" "$DOTFILES_PRIVATE_HOME_LOCAL" "$HOME"
 
     # Reload shell
     [ $reload_plugin ] && f_shellrc_plugin_reload "$name"
