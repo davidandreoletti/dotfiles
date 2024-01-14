@@ -176,7 +176,9 @@ then
     homebrew_brew_install                  "fd"                  # A simpler find
 
     # CLI cheatsheet
-    homebrew_brew_install                  "tldr"                # Short manpage version, with example for most comman use cases
+    homebrew_brew_install                  "tlrc"                # Short manpage version, with example for most comman use cases
+                                                                 # tldr: python client
+                                                                 # tlrc: rust client
     homebrew_brew_install                  "cheat"               # Alternative short manpage version, with example for most comman use cases
 
     # DNS client 
