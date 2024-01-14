@@ -209,7 +209,8 @@ then
     homebrew_brew_install                  "ots"                 # Time bound secret sharing
 
     # Docker
-    homebrew_brew_install                  "dive"                # Inspect docker layers
+    homebrew_brew_install                  "dive"                                         # Inspect docker layers
+    homebrew_brew_install                  "jesseduffield/lazydocker/lazydocker"          # TUI docker 
 
     # Kubernetes
     homebrew_brew_install                  "boz/repo/kail"       # kubernetes pods console viewer
