@@ -1,0 +1,4 @@
+gui:
+  scrollHeight: 3
+  # one of 'auto' | 'en' | 'pl' | 'nl' | 'de' | 'tr'
+  language: 'auto' 
