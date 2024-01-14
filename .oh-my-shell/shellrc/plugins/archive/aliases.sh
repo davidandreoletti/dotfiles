@@ -1,26 +1,31 @@
-# Compress nearly anything into an archive
-# usage: archive_compress foo/  foo.tar.gz
+# % archive, compress
+# # Compress nearly anything into an archive
+# ; usage: archive_compress <folder_or_file> <archive_name>
 alias archive_compress='ouch compress'
 
-# Uncompress nearly any archive
-# usage: archive_uncompress foo.tar.gz
+# % archive, decompress
+# # Uncompress nearly any archive
+# ; usage: archive_uncompress <archive_name>
 alias archive_uncompress='unp'
 
-# Archive as zip file each root level folder in the specified path
-# Usage: archive_each_root_folder_separatidely "/path/to/a/folder"
+# % archive, compress, individually
+# # Archive as zip file each root level folder in the specified path
+# ; usage: archive_each_root_folder_separatidely <root_folder>
 alias archive_each_root_folder_separatidely='f_archiveEachFolderSeparatedely'
 
-# Archive as tar.gz the specified folder
-# Usage: archive_folder /path/to/my/folder
-# - Note: archive name is archive.tar.gz
+# % archive, compress, folder, tar.zstd
+# # Archive as tar.gz the specified folder
+# ; Usage: archive_folder <folder_name>
 alias archive_folder='tar -cafv archive.tar.zstd '
 
-# Send a directory over the network fast
-# companion app: archive_receive_from
-# Usage: archive_send_to 192.168.3.101 1234
+# % archive, compress, send, network
+# # Send a directory over the network fast
+# # u companion app: archive_receive_from
+# ; usage: archive_send_to <destination_ip> <destination_port>
 alias archive_send_to='f_archiveSendToNetwork'
 
-# Receive a directory over the network fast
-# companion app: archive_send_to
-# Usage: archive_receive_from 1234
+# % archive, decompress, receive, network
+# # Receive a directory over the network fast
+# # uompanion app: archive_send_to
+# ; usage: archive_receive_from <local_port>
 alias archive_receive_from='f_archiveReceiveFromNetwork'
