@@ -251,3 +251,4 @@ data.json
 .config/systemd/user/default.target.wants/homebrew.*
 .config/systemd/user/homebrew.*
 .config/navi/navi.log
+.config/navi/cheats/perso.cheat
