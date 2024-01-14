@@ -180,6 +180,7 @@ then
                                                                  # tldr: python client
                                                                  # tlrc: rust client
     homebrew_brew_install                  "cheat"               # Alternative short manpage version, with example for most comman use cases
+    homebrew_brew_install                  "navi"                # Execute one liner from cheatsheet
 
     # DNS client 
     homebrew_brew_install                  "dog"                 # Simpler dig 
