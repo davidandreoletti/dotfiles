@@ -1,0 +1,1 @@
+alias shellrc_dotfiles_lint="$DOTFILES_HOME_LOCAL/.self/lint.sh $DOTFILES_HOME_LOCAL/ && $DOTFILES_PRIVATE_HOME_LOCAL/.self/lint.sh $DOTFILES_PRIVATE_HOME_LOCAL/"
