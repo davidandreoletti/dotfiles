@@ -256,7 +256,8 @@ then
     homebrew_brew_install                  "qrencode"            # Generae QR code
 
     # Linter
-    homebrew_brew_install                  "shellcheck"          # Linting for bash/sh shells scripts
+    homebrew_brew_install                  "shellcheck"          # Lint bash/zsh/sh scripts
+    homebrew_brew_install                  "shfmt"               # Format bash/posix scripts
 
     # Wireguard
     homebrew_brew_install                  "wireguard-tools"     # Wireguard tooling. Eg: wg
