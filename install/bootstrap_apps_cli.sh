@@ -24,7 +24,11 @@ then
     is_fedora && fedora_dnf_install        "bzip2-devel"        # dependencies for pyenv installed python versions 
     is_fedora && fedora_dnf_install        "sqlite-devel"       # dependencies for pyenv installed python versions 
     is_fedora && fedora_dnf_install        "tk-devel"           # dependencies for pyenv installed python versions 
-    
+
+    # Programing languages
+    homebrew_brew_install                  "rust"                # Rust + package manager / compiler toolchain
+    homebrew_brew_install                  "java"
+
     # Bash shell
     is_fedora && fedora_dnf_install        "bash"
     is_macos  && homebrew_brew_install     "bash"  &&  sudo  bash  -c  "echo  $(brew  --prefix)/bin/bash >> $SHELLS_FILE";
@@ -256,10 +260,6 @@ then
 
     # Wireguard
     homebrew_brew_install                  "wireguard-tools"     # Wireguard tooling. Eg: wg
-
-    # Programing languages
-    homebrew_brew_install                  "rust"                # Rust + package manager / compiler toolchain
-    homebrew_brew_install                  "java"
 
     # Virtualization
     homebrew_brew_install                  "libvirt"             # KVM/Qemu machine definition / hypervision abstraction
