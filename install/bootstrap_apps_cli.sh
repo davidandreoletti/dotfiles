@@ -296,6 +296,9 @@ then
     homebrew_brew_install                  "watch"               # Run a command at regular interval
     homebrew_brew_install                  "entr"                # Run command on files that have changed
 
+    # Typing
+    # EXPERIMENTAL cargo_global_install                   "thokr"               # Typing tester
+
     # Misc
     homebrew_brew_install                  "fortune"             # Fortune cookie
     homebrew_brew_install                  "imagemagick"         # Required by spaceman-diff
