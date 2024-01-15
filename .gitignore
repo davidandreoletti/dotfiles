@@ -5,6 +5,9 @@
 .cargo/.crates2.json
 .cargo/.crates.toml
 .cargo/env
+# rustup
+.rustup/toolchains
+.rustup/update-hashes
 # Emacs
 .emacs.d/elpa
 .emacs.d/auto-save-list
@@ -224,9 +227,6 @@ data.json
 .parsec/sysinfo.json
 .parsec/*.bin
 .parsec/window.json
-# rustup
-.rustup/toolchains
-.rustup/update-hashes
 # terraform
 .terraform.d/checkpoint_cache
 .terraform.d/checkpoint_signature
