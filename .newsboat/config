@@ -33,7 +33,7 @@ reload-time 30
 ## Go to next unread feed with "next-unread" / "prev-unread"
 goto-next-feed yes
 ## Select firt unread article when entering feed
-goto-first-unread yes :
+goto-first-unread yes
 ## Sort
 feed-sort-order title-dec
 
@@ -70,7 +70,7 @@ display-article-progress yes
 download-full-page yes
 
 # error log
-error-log                   "~/.newsbeuter/error.log"
+error-log      "~/.newsboat/error.log"
 
-include "~/.newsbeuter/config-highlights"
-include "~/.newsbeuter/config-theme"
+include        "~/.newsboat/config-highlights"
+include        "~/.newsboat/config-theme"

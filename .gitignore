@@ -252,3 +252,8 @@ data.json
 .config/systemd/user/homebrew.*
 .config/navi/navi.log
 .config/navi/cheats/perso.cheat
+.newsboat/cache.db
+.newsboat/cache.db.lock
+.newsboat/error.log
+.newsboat/history.cmdline
+.newsboat/history.search
