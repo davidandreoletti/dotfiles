@@ -1,8 +1,8 @@
 f_navi_generate_user_cheatsheet_from_aliases() {
     # Generate cheat file using aliases documentation from ~/.oh-my-shell/shellrc/plugins/*/aliases.sh
-    echo "Not implemented yet: https://github.com/denisidoro/navi/blob/master/docs/cheatsheet_syntax.md#syntax-overview"
+    # Until there is native support for it htts://github.com/denisidoro/navi/blob/master/docs/cheatsheet_syntax.md#syntax-overview"
 
-    PERSO_CHEAT_FILE="$HOME/.config/navi/cheats/perso.cheat"
+    PERSO_CHEAT_FILE="$(navi info cheats-path)/${USER}_local/aliases.cheat"
     mkdir -p "$(dirname $PERSO_CHEAT_FILE)"
 
     #command cat ~/.oh-my-shell/shellrc/plugins/age/aliases.sh | \

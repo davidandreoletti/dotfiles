@@ -11,3 +11,4 @@ profile
 .DS_Store
 .TODO.org
 .stow-local-ignore
+.self

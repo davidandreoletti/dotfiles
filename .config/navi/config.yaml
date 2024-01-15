@@ -15,9 +15,12 @@ finder:
   # overrides: --tac # equivalent to the --fzf-overrides option
   # overrides_var: --tac # equivalent to the --fzf-overrides-var option
 
-cheats:
-  paths:
-    - ~/.config/navi/cheats/perso.cheat
+#cheats:
+#  paths:
+     # Repo managed by oh-my-shellrc
+#    - ~/.config/navi/cheats/<user>_local/perso.cheat
+     # Repo managed by navi
+#    - ~/.local/share/navi/cheats
 
 # search:
 # tags: git,!checkout # equivalent to the --tag-rules option
