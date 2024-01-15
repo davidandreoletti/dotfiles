@@ -107,9 +107,8 @@ tmux_group_android_on() {
 }
 
 tmux_group_android_off() {
-    local sessionName=$(tmux_find_current_session_name)
+    local sessionName="adblog"
     tmux_close_window "adblog" "$sessionName"
-    tmux_show_window "$sessionName" "adblog"
 }
 
 tmux_session_get_or_create() {
