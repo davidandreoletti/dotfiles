@@ -37,5 +37,8 @@ mods = "Control|Shift"
 enabled = true
 mods = "None"
 
-#[debug]
+[debug]
+persistent_logging = false
+log_level = "Warn"
+
 #render_timer = true
