@@ -9,6 +9,7 @@
 # rustup
 .rustup/toolchains
 .rustup/update-hashes
+.rustup/settings.toml
 # Emacs
 .emacs.d/elpa
 .emacs.d/auto-save-list
