@@ -293,6 +293,9 @@ then
     # Timezone
     homebrew_brew_install                  "tz"                  # Timezone helper
 
+    # Mastodon
+    homebrew_brew_install                  "tut"                 # TUI mastodon client
+
     # Run command on event
     homebrew_brew_install                  "watch"               # Run a command at regular interval
     homebrew_brew_install                  "entr"                # Run command on files that have changed
