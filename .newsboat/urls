@@ -3,12 +3,11 @@
 # 1- Add new RSS feed
 # 2- Sort feeds by 1st tag column: 5,$!sort -b -k2 -t " "
 # 3- Save feeds
-http://www.reddit.com/r/EarthPorn/.rss                     "beauty/things"
+https://news.ycombinator.com/                              "cs/lang"                       "biz/startup
 http://blog.ingeniooz.com/feed/                            "biz/app/dev"
 http://feeds2.feedburner.com/monday-note                   "biz/startup"                   "biz/model"
 https://www.techinasia.com/category/start-up/?tag=taiwan   "biz/startup/taipei"
 http://feeds.feedburner.com/BothSidesOfTheTable            "biz/startup/vc"
-https://news.ycombinator.com/                              "cs/lang"                       "biz/startup
 http://c2.com/cgi/wikiRss?min=200&days=7~c2.com"           "cs/lang"                       "biz/startup"
 http://feedpress.me/hiddentao                              "cs/people"
 http://feeds.feedburner.com/nczonline                      "cs/people"
@@ -45,7 +44,6 @@ https://waitbutwhy.com/feed                                "thinking"
 https://www.theschooloflife.com/thebookoflife/feed/        "thinking"
 https://tomtunguz.com/index.xml                            "thinking"
 https://www.thesaascfo.com/feed/                           "thinking/saas"
-http://blog.samaltman.com/posts.atom                       "thinking"
 https://taylorpearson.me/feed/                             "crypto"
 http://stratechery.com/feed/                               "thinking"
 https://fs.blog/feed/                                      "thinking"
