@@ -85,6 +85,7 @@ dot_plugin_if_exists "history"
 dot_plugin_if_exists "homebrew"
 dot_plugin_if_exists "image"
 dot_plugin_if_exists "id"
+dot_plugin_if_exists "iamb"
 dot_plugin_if_exists "java"
 dot_plugin_if_exists "kubernetes"                   # Requires: gnucoreutils
 dot_plugin_if_exists "fastlane"
