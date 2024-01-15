@@ -24,7 +24,8 @@ blinking = "Off"
 size = 14
 
 [[hints.enabled]]
-command = "$HOME/.bin/open"
+command = "~/.bin/opener"
+hyperlinks = true
 post_processing = true
 regex = "(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
 
