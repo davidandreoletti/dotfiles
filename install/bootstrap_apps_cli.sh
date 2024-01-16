@@ -18,12 +18,15 @@ then
     &&  homebrew_brew_link                 "python3" \
     &&  homebrew_postinstall               "python3"	
 
-    # Python version manager for development projects 
+    # Python version manager
     homebrew_brew_install                  "pyenv"              # Manage python version on a per user/folder basis
     homebrew_brew_install                  "pyenv-virtualenv"   # pyenv plugin: virtualenv/venv
     is_fedora && fedora_dnf_install        "bzip2-devel"        # dependencies for pyenv installed python versions 
     is_fedora && fedora_dnf_install        "sqlite-devel"       # dependencies for pyenv installed python versions 
     is_fedora && fedora_dnf_install        "tk-devel"           # dependencies for pyenv installed python versions 
+
+    # Java version manager 
+    homebrew_brew_install                  "volta"              # Manage nodejs version on a per user/folder basis
 
     # Programing languages
     homebrew_brew_install                  "rust"                # Rust + package manager / compiler toolchain
