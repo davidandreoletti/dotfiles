@@ -255,9 +255,14 @@ set shortmess+=I
 :let mapleader = ","
 :let maploacalleader = "\\"
 
-" Python
+" neovim integrations
 if g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
+    " Python
     let g:python3_host_prog = $_NEOVIM_PYENV_PYTHON_PATH . "/bin/python"
+    " NodeJS
+    if executable('volta')
+        let g:node_host_prog = trim(system("volta which neovim-node-host"))
+    endif
 endif
 
 " Hides buffer instead of closing them
