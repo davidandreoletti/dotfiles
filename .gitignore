@@ -259,3 +259,4 @@ data.json
 .newsboat/error.log
 .newsboat/history.cmdline
 .newsboat/history.search
+.config/nvim/lazy-lock.json

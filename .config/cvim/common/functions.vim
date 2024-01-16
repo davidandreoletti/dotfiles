@@ -1,7 +1,15 @@
-" Load plugins settings as (settings/*.vim)
-function! F_Load_PluginsSettings (vimPluginSettingsPath)
-    for fpath in split(globpath(a:vimPluginSettingsPath, '*.vim'), '\n')
-        exe 'source ' . fpath
+" Load plugins settings
+function! F_Load_PluginsSettings (vimFlavor, plugins)
+    for k in keys(a:plugins)
+        let plugin = a:plugins[k]
+
+        if has_key(plugin, 'setting')
+            if a:vimFlavor ==# g:VIM_FLAVOR_VIM
+                exe 'source ' . plugin['setting']
+            elseif a:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
+                " vim plugin settings loaded when plugin loads
+            endif
+        endif
     endfor
 endfunction
 
@@ -166,4 +174,13 @@ function! F_PythonPip_InstallifMissing ()
 	elseif F_OS_IsArchLinuxBasedOS ()
 		silent !sudo pacman -S python-pip
 	endif	
+endfunction
+
+" Source vimL file
+function! F_Source_VimL_File (vimFlavor, file)
+    if a:vimFlavor ==# g:VIM_FLAVOR_VIM
+        source a:file
+    elseif a:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
+        vim.cmd("source ".a:file)
+    endif
 endfunction
