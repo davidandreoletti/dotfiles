@@ -130,6 +130,12 @@ Plug 'junegunn/vim-xmark', { 'do': 'make' }
 Plug 'habamax/vim-rst'
 " Shell script formatting
 Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
+" Central place for cheatsheets:
+" - collect cheatsheets from myself: ~/.vim/cheats/cheat40.txt
+" - collect cheatsheets from other plugins
+Plug 'lifepillar/vim-cheat40'
+" Open up a cheat sheet (from learnXinYminutes) for a given language in a vertical split on the right. 
+Plug 'jdonaldson/vim-cheat-x-in-y'
 " Initialize plugin system
 call plug#end()
 

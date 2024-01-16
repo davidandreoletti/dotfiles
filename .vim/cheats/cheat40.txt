@@ -1,0 +1,19 @@
+Press q to dismiss,
+<Tab> to toggle folds
+F.A.Q {{{1
+Open cheatsheets {{{2
+Display vim cheatsheets  \?            N
+Display learnXinY cheats :ToggleCheat  N
+Display my cheatsheets   \?<<Shift>>g  N
+}}}
+Check runtime values {{{2
+runtime path     :let g:runtimepath    N
+leader           :let g:mapleader      N
+localleader      :let g:maplocalleader N
+view normal mapping         :namp      N
+}}}
+vimrc development {{{2
+Reload vimrc      <leader>rv
+}}}
+}}}
+
