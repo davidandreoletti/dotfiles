@@ -40,13 +40,14 @@ endif
 
 " Managed plugins{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CVIM Plugin Format
-" name: plugin name
-" lazy: 1 => true
-"       0 => false
-" setting: /path/to/plugin/setting.vim
-" cmd: cmd to load plugin on (for plugin manager with async plugin loading only)
-" post_update_hook: cmd to run after a plugin update
+" 'CVIM Plugin'
+"
+" - name             : plugin name
+" - lazy             : 1 => true
+"                    : 0 => false
+" - setting          : /path/to/plugin/setting.vim
+" - cmd              : cmd to load plugin on (for plugin manager with async plugin loading only)
+" - post_update_hook : cmd to run after a plugin update
 let g:cvim_plugins = {}
 
 " Vim Startup time
@@ -253,6 +254,11 @@ set shortmess+=I
 " Map leader + localleader keys
 :let mapleader = ","
 :let maploacalleader = "\\"
+
+" Python
+if g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
+    let g:python3_host_prog = $_NEOVIM_PYENV_PYTHON_PATH . "/bin/python"
+endif
 
 " Hides buffer instead of closing them
 " Consequence: you can have unwritten changes to a file and open
