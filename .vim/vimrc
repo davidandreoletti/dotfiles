@@ -161,7 +161,7 @@ set showcmd
 " Hide Vim startup message
 set shortmess+=I
 
-" Map *leaderkeys
+" Map leader + localleader keys
 :let mapleader = ","
 :let maploacalleader = "\\"
 
