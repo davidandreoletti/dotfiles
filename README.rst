@@ -27,6 +27,15 @@ One central place to manage permanent/recurrent software settings:
 - easy install/update for software (via package manager)
 - support for secrets (via dotfiles-private)
 
+HIGHLIGHTS:
+===========
+
+- `*vim`:
+  - *vim: shared config between vim and nvim
+  - nvim: Fast startup: ~45ms
+  -  vim: Reasonable startup: ~300ms
+- 
+
 GET STARTED:
 =============
 
@@ -221,8 +230,8 @@ Main source repository: https://github.com/davidandreoletti/dotfiles
 CONTRIBUTORS:
 =============
 
-Feel free to read/copy.
-No contribution accepted.
+Feel free to read/copy/suggest.
+No code contribution accepted.
 
 AUTHOR
 ======
