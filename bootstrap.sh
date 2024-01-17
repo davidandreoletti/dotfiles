@@ -150,6 +150,7 @@ function bootstrap_oh_my_shell() {
     #
     # Source: http://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
     #         http://tanguy.ortolo.eu/blog/article25/shrc
+    #         https://apple.stackexchange.com/questions/361870/what-are-the-practical-differences-between-bash-and-zsh
 
     shell_name="$(basename $SHELL)"
     shell_file="/tmp/.unknownrc"
