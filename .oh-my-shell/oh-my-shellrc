@@ -1,6 +1,6 @@
 # Profile shell loading entry point
 # - env var set to enable profiling
-#SHELLRC_PROFILE=0
+#SHELLRC_PROFILE_SPEED=0
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -173,7 +173,7 @@ dot_if_exists "${HOME}/.shellrc.sh"
 
 __endTime=$(_timeNow)
 __runtime=$(_timeInterval $__startTime $__endTime)
-_reportIfSlowerThan "oh-my-shell: loading " $__runtime 1000
+_reportIfSlowerThan "oh-my-shell" "loading" "total" $__runtime 1000
 
 # Load tmux by default
 #if [ -z "$TMUX" ]; then

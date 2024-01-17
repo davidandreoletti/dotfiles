@@ -1,5 +1,5 @@
 function _timeNow() {
-  if [[ -z "$SHELLRC_PROFILE" ]]; 
+  if [[ -z "$SHELLRC_PROFILE_SPEED" ]]; 
   then
     echo "0"
    else
@@ -16,7 +16,7 @@ function _timeNow() {
 }
 
 function _timeInterval() {
-  if [[ -z "$SHELLRC_PROFILE" ]]; 
+  if [[ -z "$SHELLRC_PROFILE_SPEED" ]]; 
   then
     echo "0"
   else
@@ -28,17 +28,19 @@ function _timeInterval() {
 }
 
 function _reportIfSlowerThan() {
-  if [[ ! -z "$SHELLRC_PROFILE" ]]; 
+  if [[ ! -z "$SHELLRC_PROFILE_SPEED" ]]; 
   then
-    local id=$1
-    local measured=$2
-    local max=${3:-200} # in milliseconds
+    local idType=$1
+    local idName=$2
+    local idName2=$3
+    local measured=$4
+    local max=${5:-200} # in milliseconds
 
     # Report scripts loading slower
     if [[ $measured -gt $max ]];
     then
         #echo "$startTime > $endTime"
-        echo "profiling:speed:$id: $measured ms. Expected less than $max ms"
+        printf "profiling:speed:%-8.8s:%-15.15s:%-20.20s:%-6.6s ms. Expected less than %s ms\n" $idType $idName $idName2 $measured $max
     fi 
    fi
 }
@@ -111,7 +113,7 @@ function dot_delayed_plugins_step_if_exists() {
 
         local endTime=$(_timeNow)
         local runtime=$(_timeInterval $startTime $endTime)
-        _reportIfSlowerThan "plugin: $pluginName: $stepName": $runtime $reportSpeedOverDurationMs
+        _reportIfSlowerThan "plugin" "$pluginName" "$stepName" $runtime $reportSpeedOverDurationMs
         unset SHELLRC_CURRENT_PLUGIN_DIR 
     done < "$stepFile"
 
@@ -122,17 +124,27 @@ function dot_delayed_plugins_step_if_exists() {
 function dot_plugin_if_exists() {
     local pluginName="${1:-"none"}"
     local reportSpeedOverDurationMs="${2:-50}"
+    local reportStepSpeedOverDurationMs="${2:-5}"
 
     local startTime=$(_timeNow)
 
     export SHELLRC_CURRENT_PLUGIN_DIR="${SHELLRC_PLUGINS_DIR}/${pluginName}"
     if_dir_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/bin" && path_prepend "${SHELLRC_CURRENT_PLUGIN_DIR}/bin"
-    dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/environment.sh"
-    dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/functions.sh"
-    dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/aliases.sh"
-    dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/private/environment.sh"
-    dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/private/functions.sh"
-    dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/private/aliases.sh"
+
+    for step in "environment.sh" "functions.sh" "aliases.sh" "private/environment.sh" "private/functions.sh" "private/aliases.sh"
+    do
+        local stepStartTime=$(_timeNow)
+        dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/$step"
+        local stepEndTime=$(_timeNow)
+        local stepRuntime=$(_timeInterval $stepStartTime $stepEndTime)
+        _reportIfSlowerThan "plugin" "$pluginName" "$step" $stepRuntime $reportStepSpeedOverDurationMs
+    done
+    #dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/environment.sh"
+    #dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/functions.sh"
+    #dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/aliases.sh"
+    #dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/private/environment.sh"
+    #dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/private/functions.sh"
+    #dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/private/aliases.sh"
 
     local stepCompletionFile=$(shell_session_step_file "completions")
     echo "$pluginName" >> "$stepCompletionFile"
@@ -143,7 +155,7 @@ function dot_plugin_if_exists() {
 
     local endTime=$(_timeNow)
     local runtime=$(_timeInterval $startTime $endTime)
-    _reportIfSlowerThan "plugin: $pluginName" $runtime $reportSpeedOverDurationMs
+    _reportIfSlowerThan "plugin" "$pluginName" "total" $runtime $reportSpeedOverDurationMs
     unset SHELLRC_CURRENT_PLUGIN_DIR 
 }
 
