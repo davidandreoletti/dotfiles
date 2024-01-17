@@ -128,9 +128,15 @@ function dot_plugin_if_exists() {
 
     local startTime=$(_timeNow)
 
+    # plugin's bin dir
+    local binStepStartTime=$(_timeNow)
     export SHELLRC_CURRENT_PLUGIN_DIR="${SHELLRC_PLUGINS_DIR}/${pluginName}"
     if_dir_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/bin" && path_prepend "${SHELLRC_CURRENT_PLUGIN_DIR}/bin"
+    local binStepEndTime=$(_timeNow)
+    local binStepRuntime=$(_timeInterval $binStepStartTime $binStepEndTime)
+    _reportIfSlowerThan "plugin" "$pluginName" "bin" $binStepRuntime $reportStepSpeedOverDurationMs
 
+    # plugin's *.sh files
     for step in "environment.sh" "functions.sh" "aliases.sh" "private/environment.sh" "private/functions.sh" "private/aliases.sh"
     do
         local stepStartTime=$(_timeNow)
@@ -139,18 +145,23 @@ function dot_plugin_if_exists() {
         local stepRuntime=$(_timeInterval $stepStartTime $stepEndTime)
         _reportIfSlowerThan "plugin" "$pluginName" "$step" $stepRuntime $reportStepSpeedOverDurationMs
     done
-    #dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/environment.sh"
-    #dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/functions.sh"
-    #dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/aliases.sh"
-    #dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/private/environment.sh"
-    #dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/private/functions.sh"
-    #dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/private/aliases.sh"
 
+    # plugin's completion.sh file
+    local completionStepStartTime=$(_timeNow)
     local stepCompletionFile=$(shell_session_step_file "completions")
     echo "$pluginName" >> "$stepCompletionFile"
+    local completionStepEndTime=$(_timeNow)
+    local completionStepRuntime=$(_timeInterval $completionStepStartTime $completionStepEndTime)
+    _reportIfSlowerThan "plugin" "$pluginName" "completion" $completionStepRuntime $reportStepSpeedOverDurationMs
 
+    # plugin's post.sh file
+    local postStepStartTime=$(_timeNow)
     local stepPostFile=$(shell_session_step_file "post")
     echo "$pluginName" >> "$stepPostFile"
+    local postStepEndTime=$(_timeNow)
+    local postStepRuntime=$(_timeInterval $postStepStartTime $postStepEndTime)
+    _reportIfSlowerThan "plugin" "$pluginName" "post" $postStepRuntime $reportStepSpeedOverDurationMs
+
     unset SHELLRC_CURRENT_PLUGIN_DIR 
 
     local endTime=$(_timeNow)
@@ -166,4 +177,3 @@ function dot_current_shell_plugin_if_exists() {
     dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/default.sh"
     unset SHELLRC_CURRENT_PLUGIN_DIR 
 }
-
