@@ -12,18 +12,23 @@ local function config()
     })
 
     -- Setup orgmode
+    -- doc: https://github.com/nvim-orgmode/orgmode/blob/master/DOCS.md
     require('orgmode').setup({
+        -- File locations
         org_agenda_files = '~/orgfiles/**/*',
         org_default_notes_file = '~/orgfiles/refile.org',
-        -- Custom keywords for unfinished / finished states
-        org_todo_keywords = {'TODO(t)', 'WIP(w)', 'BLOCKED(b)', '|', 'DONE(d)', 'DELEGATED'},
-        -- Custom color for todo keywords
-        --org_todo_keyword_faces = {
-        --    WAITING = ':foreground blue :weight bold',
-        --    DELEGATED = ':background #FFFFFF :slant italic :underline on',
-        --    TODO = ':background #000000 :foreground red',
-        --}
-        -- Hide leading starts
+        -- Keywords in headings
+        org_todo_keywords = {'TODO(t)', 'WIP(w)', 'BLOCK(b)', '|', 'DONE(d)', 'DELEGATED', 'CANCELLED' },
+        -- Colored keywords
+        org_todo_keyword_faces = {
+            TODO = ':foreground red :background black',
+            WIP = ':foreground yellow :background black',
+            BLOCK = ':foreground blue :background black',
+            DONE = ':foreground lightgreen :background black',
+            DELEGATED = ':foreground green :background black',
+            CANCELLED = ':foreground darkgrey :background black'
+        },
+        -- Hide leading heading starts
         org_hide_leading_stars = true,
         -- Custom mapping
         mappings = {
