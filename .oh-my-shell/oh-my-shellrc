@@ -26,6 +26,9 @@ dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/helper3.sh"
 dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/helper4.sh"
 dot_if_exists "${SHELLRC_BOOTSTRAP_DIR}/init.sh"
 
+# Export HOMEBREW_PACKAGES_INSTALL_DIR_PREFIX (can't be cached from within Posix shell function)
+export HOMEBREW_PACKAGES_INSTALL_DIR_PREFIX=$(homebrew_packages_path_prefix)
+
 # Load shell plugins (part 1)
 dot_current_shell_plugin_if_exists "environment"
 dot_current_shell_plugin_if_exists "history"
