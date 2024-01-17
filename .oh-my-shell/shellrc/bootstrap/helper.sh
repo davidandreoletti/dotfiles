@@ -22,8 +22,7 @@ function _timeInterval() {
   else
     local startTime=$1
     local endTime=$2
-    local runtime=$(echo "$endTime - $startTime" | bc)
-    echo "$runtime"
+    echo $(($endTime-$startTime))
   fi
 }
 
