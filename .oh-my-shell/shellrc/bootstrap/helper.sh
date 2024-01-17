@@ -146,20 +146,26 @@ function dot_plugin_if_exists() {
     done
 
     # plugin's completion.sh file
-    local completionStepStartTime=$(_timeNow)
-    local stepCompletionFile=$(shell_session_step_file "completions")
-    echo "$pluginName" >> "$stepCompletionFile"
-    local completionStepEndTime=$(_timeNow)
-    local completionStepRuntime=$(_timeInterval $completionStepStartTime $completionStepEndTime)
-    _reportIfSlowerThan "plugin" "$pluginName" "completion" $completionStepRuntime $reportStepSpeedOverDurationMs
+    if [ -f "${SHELLRC_CURRENT_PLUGIN_DIR}/completions.sh" ];
+    then
+        local completionStepStartTime=$(_timeNow)
+        local stepCompletionFile=$(shell_session_step_file "completions")
+        echo "$pluginName" >> "$stepCompletionFile"
+        local completionStepEndTime=$(_timeNow)
+        local completionStepRuntime=$(_timeInterval $completionStepStartTime $completionStepEndTime)
+        _reportIfSlowerThan "plugin" "$pluginName" "completion" $completionStepRuntime $reportStepSpeedOverDurationMs
+    fi
 
     # plugin's post.sh file
-    local postStepStartTime=$(_timeNow)
-    local stepPostFile=$(shell_session_step_file "post")
-    echo "$pluginName" >> "$stepPostFile"
-    local postStepEndTime=$(_timeNow)
-    local postStepRuntime=$(_timeInterval $postStepStartTime $postStepEndTime)
-    _reportIfSlowerThan "plugin" "$pluginName" "post" $postStepRuntime $reportStepSpeedOverDurationMs
+    if [ -f "${SHELLRC_CURRENT_PLUGIN_DIR}/post.sh" ];
+    then
+        local postStepStartTime=$(_timeNow)
+        local stepPostFile=$(shell_session_step_file "post")
+        echo "$pluginName" >> "$stepPostFile"
+        local postStepEndTime=$(_timeNow)
+        local postStepRuntime=$(_timeInterval $postStepStartTime $postStepEndTime)
+        _reportIfSlowerThan "plugin" "$pluginName" "post" $postStepRuntime $reportStepSpeedOverDurationMs
+    fi
 
     unset SHELLRC_CURRENT_PLUGIN_DIR 
 
@@ -176,3 +182,4 @@ function dot_current_shell_plugin_if_exists() {
     dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/default.sh"
     unset SHELLRC_CURRENT_PLUGIN_DIR 
 }
+
