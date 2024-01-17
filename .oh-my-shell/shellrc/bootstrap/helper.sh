@@ -99,24 +99,35 @@ function shell_session_step_file () {
 # Usage: dot_delayed_plugins_step_if_exists STEP NAME
 function dot_delayed_plugins_step_if_exists() {
     local stepName="${1:-"none"}"
-    local reportSpeedOverDurationMs="${2:-100}"
+    local background="${2:-1}"
+    local reportSpeedOverDurationMs="${3:-100}"
 
     local stepFile=$(shell_session_step_file "$stepName")
 
-    while IFS= read -r pluginName;
-    do
-        export SHELLRC_CURRENT_PLUGIN_DIR="${SHELLRC_PLUGINS_DIR}/${pluginName}"
-        local startTime=$(_timeNow)
+    {
+        while IFS= read -r pluginName;
+        do
+            export SHELLRC_CURRENT_PLUGIN_DIR="${SHELLRC_PLUGINS_DIR}/${pluginName}"
+            local startTime=$(_timeNow)
 
-        dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/${stepName}.sh"
+            dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/${stepName}.sh"
 
-        local endTime=$(_timeNow)
-        local runtime=$(_timeInterval $startTime $endTime)
-        _reportIfSlowerThan "plugin" "$pluginName" "$stepName" $runtime $reportSpeedOverDurationMs
-        unset SHELLRC_CURRENT_PLUGIN_DIR 
-    done < "$stepFile"
+            local endTime=$(_timeNow)
+            local runtime=$(_timeInterval $startTime $endTime)
+            _reportIfSlowerThan "plugin" "$pluginName" "$stepName" $runtime $reportSpeedOverDurationMs
+            unset SHELLRC_CURRENT_PLUGIN_DIR 
+        done < "$stepFile"
+        command rm -f "$stepFile"
+    } &
 
-    command rm -f "$stepFile"
+    pid=$!
+
+    if test $background -eq 0 ;
+    then
+        :
+    else
+        wait $pid
+    fi
 }
 
 # Usage: dot_plugin_if_exists PLUGIN_NAME
