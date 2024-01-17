@@ -35,6 +35,9 @@ lua << EOF
         })
     end
     vim.opt.rtp:prepend(lazypath)
+    -- Added *.lua file into module search path
+    -- vim.opt.rtp:prepend("$HOME/.config/cvim/settings")
+    package.path = os.getenv("HOME") .. "/.config/cvim/settings/?.lua;" .. package.path
 EOF
 endif
 
@@ -47,7 +50,9 @@ endif
 "                    : 0 => false
 " - setting          : /path/to/plugin/setting.vim
 " - cmd              : cmd to load plugin on (for plugin manager with async plugin loading only)
+" - event            : event to load plugin on (for plugin manager with async plugin loading only)
 " - post_update_hook : cmd to run after a plugin update
+" - dependencies     : {'dep/one': {lazy: 1}, 'dep2/foo': {lazy: 1}}
 let g:cvim_plugins = {}
 
 " Vim Startup time
@@ -115,14 +120,14 @@ let cvim_plugins.vim_airline = { 'name': 'bling/vim-airline', 'lazy': 1, }
 " Org mode
 if g:vimFlavor ==# g:VIM_FLAVOR_VIM
     let cvim_plugins.vim_orgmode = { 'name': 'jceb/vim-orgmode', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/vim-orgmode.vim" }
-elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
-    let cvim_plugins.orgmode = { 'name': 'nvim-orgmode/orgmode'     , 'lazy': 1, }
     " Calendar
     " needed by: vim-orgmode
     let cvim_plugins.calendar_vim = { 'name': 'mattn/calendar-vim', 'lazy': 1, }
     " Use CTRL-A/CTRL-X to increment dates, times, and more
     " needed by: vim-orgmode
     let cvim_plugins.vim_speeddating = { 'name': 'tpope/vim-speeddating', 'lazy': 1, }
+elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
+    let cvim_plugins.orgmode = { 'name': 'nvim-orgmode/orgmode' , 'lazy': 1, 'event': 'VeryLazy', 'dependencies': { 'nvim-treesitter/nvim-treesitter':{'lazy': 1} }, 'setting': "$HOME/.config/cvim/settings/neovim_orgmode.lua" }
 endif
 " Display vertical thin lines at each indentation level for code
 " indented with spaces
@@ -184,6 +189,11 @@ if g:vimFlavor ==# g:VIM_FLAVOR_VIM
                 let options['do'] = hook
             end
 
+            let setting = get(plugin, 'setting', v:null)
+            if setting isnot v:null 
+                -- do nothing here. See F_Load_PluginsSettings
+            end
+
             Plug name, options
         endif
     endfor
@@ -204,9 +214,20 @@ lua << EOF
         local lazy = plugin['lazy']
 
         local configFn = function () end
-        if plugin['config'] ~= nil then
-            configFn = function ()
-                vim.cmd("source " .. config) 
+        if plugin['setting'] ~= nil then
+            local file = plugin['setting']
+            local file_extension = file:match("[^.]+$")
+
+            local file_name = file:match("[^/]+$")
+            local module_name = string.gsub(file_name, "." .. file_extension, "")
+
+            if file_extension == "lua" then
+                local pluginModule = require(module_name)                
+                configFn = pluginModule.config
+            elseif file_extension == "vim" then
+                configFn = function ()
+                    vim.cmd("source " .. file) 
+                end
             end
         end
 
@@ -220,12 +241,31 @@ lua << EOF
             ft = plugin['filetype']
         end
 
+        local evt = nil 
+        if plugin['event'] ~= nil then
+            evt = plugin['event']
+        end
+
+        local dependencies = nil
+        if plugin['dependencies'] ~= nil then
+            dependencies = {} 
+            for dependency_name, dependency in pairs(plugin['dependencies']) do
+                local dependency_lazy = nil
+                if dependency['lazy'] ~= nil then
+                    dependency_lazy = dependency['lazy']
+                end
+
+                table.insert(dependencies, { dependency_name, lazy = dependency_lazy })
+            end 
+        end
         table.insert(cvim_plugins, {
             name,
             lazy = lazy,
             config = configFn,
             cmd = cmd,
-            ft = ft
+            ft = ft,
+            dependencies = dependencies,
+            event = evt
         })
     end
 
