@@ -325,6 +325,7 @@ then
     homebrew_brew_install                  "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
     homebrew_brew_install                  "so"                  # Query stackoverflow TUI
     homebrew_brew_install                  "ctags"               # catgs for vim's TagBar
+    homebrew_brew_install                  "hyperfine"           # benchmarking tool for CLI programs mostly
 fi
 
 is_profile_admin
