@@ -89,8 +89,10 @@ let cvim_plugins.tabular = { 'name': 'godlygeek/tabular', 'lazy': 1, }
 " Syntastic
 " C++/C/X*ML/JSON/Javascript .. syntax checking plugin
 let cvim_plugins.syntastic = { 'name': 'scrooloose/syntastic', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/syntastic.vim" }
-" NeoMake
-let cvim_plugins.neomake={ 'name': 'neomake/neomake', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/neomake.vim" }
+" NeoMake: Run programs asynchronously
+if g:vimFlavor ==# g:VIM_FLAVOR_VIM
+    let cvim_plugins.neomake={ 'name': 'neomake/neomake', 'lazy': 0, 'cmd': 'Neomake', 'setting': "$HOME/.config/cvim/settings/neomake.vim" }
+endif
 " Fast way to reach/search:
 " - buffers (: Buffers)
 " - files (: Files)
@@ -119,7 +121,7 @@ let cvim_plugins.tagbar = { 'name': 'majutsushi/tagbar', 'lazy': 1, }
 let cvim_plugins.vim_airline = { 'name': 'bling/vim-airline', 'lazy': 1, }
 " Org mode
 if g:vimFlavor ==# g:VIM_FLAVOR_VIM
-    let cvim_plugins.vim_orgmode = { 'name': 'jceb/vim-orgmode', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/vim-orgmode.vim" }
+    let cvim_plugins.vim_orgmode = { 'name': 'jceb/vim-orgmode', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/vim_vim-orgmode.vim" }
     " Calendar
     " needed by: vim-orgmode
     let cvim_plugins.calendar_vim = { 'name': 'mattn/calendar-vim', 'lazy': 1, }
@@ -155,7 +157,7 @@ let cvim_plugins.yajs = { 'name': 'othree/yajs.vim', 'lazy': 1, }
 " Continously update vim session files
 let cvim_plugins.vim_obsession = { 'name': 'tpope/vim-obsession', 'lazy': 1, }
 " - Extends tpope/vim-obsession to support 1 vim session per directory
-let cvim_plugins.vim_prosession = { 'name': 'dhruvasagar/vim-prosession', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/vim-prosession.vim" }
+let cvim_plugins.vim_prosession = { 'name': 'dhruvasagar/vim-prosession', 'lazy': 0, 'dependencies': { 'tpope/vim-obsession': {'lazy': 0} } ,'setting': "$HOME/.config/cvim/settings/vim-prosession.vim" }
 " Markdown Live Preview
 let cvim_plugins.vim_xmark = { 'name': 'junegunn/vim-xmark', 'lazy': 1, 'post_update_hook': 'make' }
 " Restructed Text support
@@ -184,6 +186,11 @@ if g:vimFlavor ==# g:VIM_FLAVOR_VIM
                 let options['for'] = ft
             end
 
+            let cmd = get(plugin, 'cmd', v:null)
+            if cmd isnot v:null 
+                let options['on'] = cmd
+            end
+
             let hook = get(plugin, 'post_update_hook', v:null)
             if hook isnot v:null 
                 let options['do'] = hook
@@ -191,7 +198,7 @@ if g:vimFlavor ==# g:VIM_FLAVOR_VIM
 
             let setting = get(plugin, 'setting', v:null)
             if setting isnot v:null 
-                -- do nothing here. See F_Load_PluginsSettings
+                " do nothing here. See F_Load_PluginsSettings
             end
 
             Plug name, options
