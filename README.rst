@@ -34,7 +34,11 @@ HIGHLIGHTS:
   - *vim: shared config between vim and nvim
   - nvim: Fast startup: ~45ms
   -  vim: Reasonable startup: ~300ms
-- 
+- `shellrc`:
+  - Posix shell initialization manager
+  - load duration:
+    - zsh: ~7s load time (all plugins with completions)
+      - measured with `shellrc_benchmark_on_zsh`
 
 GET STARTED:
 =============
