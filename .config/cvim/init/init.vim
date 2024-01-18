@@ -171,9 +171,6 @@ let cvim_plugins.vim_fugitive = { 'name': 'tpope/vim-fugitive', }
 let cvim_plugins.vim_characterize = { 'name': 'tpope/vim-characterize', }
 " Show vim's marks
 let cvim_plugins.vim_signature = { 'name': 'kshenoy/vim-signature', }
-" Enhanced Javascript syntax with support for ES6
-" (based on 'jelera/vim-javascript-syntax')
-let cvim_plugins.yajs = { 'name': 'othree/yajs.vim', 'lazy': 1, }
 " Continously update vim session files
 let cvim_plugins.vim_obsession = { 'name': 'tpope/vim-obsession', 'lazy': 1, }
 " - Extends tpope/vim-obsession to support 1 vim session per directory
