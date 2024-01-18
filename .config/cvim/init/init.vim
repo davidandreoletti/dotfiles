@@ -89,13 +89,7 @@ let cvim_plugins.vim_easy_align = { 'name': 'junegunn/vim-easy-align', 'lazy': 1
 " quotes, XML tags, and more
 let cvim_plugins.vim_surround = { 'name': 'tpope/vim-surround', 'lazy': 1, }
 " Visualize Vim Undo Tree
-if g:vimFlavor ==# g:VIM_FLAVOR_VIM
-    " vim + neovim support, without newer updates
-    let cvim_plugins.gundo = { 'name': 'sjl/gundo.vim', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/gundo.vim" }
-elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
-    " vim + neovim support, with newer updates (gundo.vim fork),
-    let cvim_plugins.vim_mundo = { 'name': 'simnalamburt/vim-mundo'     , 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/mundo.vim" }
-endif
+let cvim_plugins.vim_mundo = { 'name': 'simnalamburt/vim-mundo' , 'lazy': 1, 'cmd': 'MundoToggle' , 'setting': "$HOME/.config/cvim/settings/mundo.vim" }
 " Color schemes
 let cvim_plugins.vim_colorschemes = { 'name': 'vim/colorschemes', 'lazy': 0, }
 " Commenting

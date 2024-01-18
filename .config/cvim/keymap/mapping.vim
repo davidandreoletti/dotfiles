@@ -1,9 +1,5 @@
 " Function Keys {{{
-if g:vimFlavor ==# g:VIM_FLAVOR_VIM
-    nnoremap <F5> :GundoToggle<CR>
-elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
-    nnoremap <F5> :MundoToggle<CR>
-endif
+nnoremap <F5> :MundoToggle<CR>
 
 map <F8> :TagbarToggle<CR>
 " Disable (temporary) all auto indenting/expansion
