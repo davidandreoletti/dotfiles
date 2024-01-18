@@ -97,12 +97,13 @@ let cvim_plugins.nerdcommenter = { 'name': 'scrooloose/nerdcommenter', 'lazy': 1
 " Align things
 let cvim_plugins.tabular = { 'name': 'godlygeek/tabular', 'lazy': 1, 'cmd': 'Tabularize'}
 " Syntastic
-" C++/C/X*ML/JSON/Javascript .. syntax checking plugin
-let cvim_plugins.syntastic = { 'name': 'scrooloose/syntastic', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/syntastic.vim" }
-" NeoMake: Run programs asynchronously
-"if g:vimFlavor ==# g:VIM_FLAVOR_VIM
-"    let cvim_plugins.neomake={ 'name': 'neomake/neomake', 'lazy': 0, 'cmd': 'Neomake', 'setting': "$HOME/.config/cvim/settings/neomake.vim" }
-"endif
+" Syntax checking / semantic error plugin
+if g:vimFlavor ==# g:VIM_FLAVOR_VIM
+    "Lazy load but then ALE works only when typing :ALEInfo first
+    " => let cvim_plugins.ale = { 'name': 'dense-analysis/ale', 'cmd': [ 'ALEFix', 'ALEGoToDefinition', 'ALEFindReferences', 'ALEHover', 'ALESymbolSearch', 'ALEInfo' ] ,'setting': "$HOME/.config/cvim/settings/ale.vim" }
+    "So no lazy load for now 
+    let cvim_plugins.ale = { 'name': 'dense-analysis/ale' ,'setting': "$HOME/.config/cvim/settings/ale.vim" }
+endif
 " Fast way to reach/search:
 " - buffers (: Buffers)
 " - files (: Files)
