@@ -36,8 +36,9 @@ Rename buffer file name :Rename        N
 Marks {{{2
 Add/Remove (Toggle) mark <leader>ma    N
 }}}
-Easy align {{{2
+Easy/Table align {{{2
 Align selection on =     :EasyAlign =  N
+Align selection on rgx  :Tabularize /| N
 }}}
 Surround {{{2
 Add "..." to ...              ysiw"    N

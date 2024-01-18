@@ -95,7 +95,7 @@ let cvim_plugins.vim_colorschemes = { 'name': 'vim/colorschemes', 'lazy': 0, }
 " Commenting
 let cvim_plugins.nerdcommenter = { 'name': 'scrooloose/nerdcommenter', 'lazy': 1, 'keys': '<leader>cc' ,'cmd': [ 'NERDCommenterComment','NERDCommenterNested','NERDCommenterToggle','NERDCommenterMinimal','NERDCommenterInvert','NERDCommenterSexy','NERDCommenterYank','NERDCommenterToEOL','NERDCommenterAppend','NERDCommenterInsert','NERDCommenterAltDelims','NERDCommenterAlignLeft','NERDCommenterAlignBot','NERDCommenterUncomment' ] }
 " Align things
-let cvim_plugins.tabular = { 'name': 'godlygeek/tabular', 'lazy': 1, }
+let cvim_plugins.tabular = { 'name': 'godlygeek/tabular', 'lazy': 1, 'cmd': 'Tabularize'}
 " Syntastic
 " C++/C/X*ML/JSON/Javascript .. syntax checking plugin
 let cvim_plugins.syntastic = { 'name': 'scrooloose/syntastic', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/syntastic.vim" }
