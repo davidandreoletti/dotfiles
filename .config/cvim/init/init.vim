@@ -59,6 +59,7 @@ endif
 " - setting          : /path/to/plugin/setting.vim
 " - cmd              : cmd to load plugin on (for plugin manager with async plugin loading only)
 " - event            : event to load plugin on (for plugin manager with async plugin loading only)
+" - filetype         : filetype to load plugin on (for plugin manager with async plugin loading only)
 " - post_update_hook : cmd to run after a plugin update
 " - dependencies     : {'dep/one': {lazy: 1}, 'dep2/foo': {lazy: 1}}
 let g:cvim_plugins = {}
@@ -160,7 +161,7 @@ let cvim_plugins.vim_multiple_cursors = { 'name': 'mg979/vim-visual-multi', }
 " Rename a buffer within Vim and on the disk
 let cvim_plugins.rename = { 'name': 'danro/rename.vim', 'lazy': 1, }
 " Support for JSON syntax highlighting
-let cvim_plugins.vim_json = { 'name': 'leshill/vim-json', 'lazy': 1, }
+let cvim_plugins.vim_json = { 'name': 'elzr/vim-json', 'lazy': 1, 'filetype': 'json'}
 " Git wrapper
 let cvim_plugins.vim_fugitive = { 'name': 'tpope/vim-fugitive', }
 " Zoom in/out window
