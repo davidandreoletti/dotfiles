@@ -74,11 +74,10 @@ endif
 let cvim_plugins.vim_hardtime = { 'name': 'takac/vim-hardtime', 'lazy': 1,  'cmd': [ 'HardTimeOn', 'HardTimeOff', 'HardTimeToggle'], 'setting': "$HOME/.config/cvim/settings/vim-hardtime.vim" }
 " Ease motions
 if g:vimFlavor ==# g:VIM_FLAVOR_VIM
-
-    let cvim_plugins.vim_easymotion = { 'name': 'Lokaltog/vim-easymotion', 'lazy': 0, }
+    let cvim_plugins.vim_easymotion = { 'name': 'Lokaltog/vim-easymotion', 'setting': "$HOME/.config/cvim/settings/vim-easymotion.vim"}
 elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
     " vim-easymotion not compatible with nvim's LSP. Using hop.nvim instead
-    let cvim_plugins.hop_nvim = { 'name': 'smoka7/hop.nvim', 'setting': "$HOME/.config/cvim/settings/nvim_hop.lua"}
+    let cvim_plugins.hop_nvim = { 'name': 'smoka7/hop.nvim', 'lazy': 1, 'cmd': ['HopChar1', 'HopChar2', 'HopLine', 'HopLineStart', 'HopVertical', 'HopPattern', 'HopWord'] , 'keys': '<Leader><Leader>s' , 'setting': "$HOME/.config/cvim/settings/nvim_hop.lua"}
 endif
 " Repeat a plugin map with .
 let cvim_plugins.vim_repeat = { 'name': 'tpope/vim-repeat', 'lazy': 1, }
