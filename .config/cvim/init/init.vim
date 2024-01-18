@@ -95,9 +95,7 @@ elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
     let cvim_plugins.vim_mundo = { 'name': 'simnalamburt/vim-mundo'     , 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/mundo.vim" }
 endif
 " Color schemes
-let cvim_plugins.vim_colorschemes = { 'name': 'flazz/vim-colorschemes', 'lazy': 1, }
-" Make gvim-only colorscheme work transparently in vim terminal
-let cvim_plugins.csapprox = { 'name': 'vim-scripts/CSApprox', 'lazy': 1, }
+let cvim_plugins.vim_colorschemes = { 'name': 'vim/colorschemes', 'lazy': 0, }
 " Commenting
 let cvim_plugins.nerdcommenter = { 'name': 'scrooloose/nerdcommenter', 'lazy': 1, }
 " Align things
