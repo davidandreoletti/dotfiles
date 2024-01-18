@@ -148,7 +148,9 @@ elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
 endif
 " Display vertical thin lines at each indentation level for code
 " indented with spaces
-let cvim_plugins.indentline = { 'name': 'Yggdroot/indentLine', 'lazy': 1, }
+if g:vimFlavor ==# g:VIM_FLAVOR_VIM
+    let cvim_plugins.vim_indentguides = { 'name': 'thaerkh/vim-indentguides', 'setting': "$HOME/.config/cvim/settings/vim_vim-indent-guides.vim", }
+endif
 " Diff swap and content file
 let cvim_plugins.recover = { 'name': 'chrisbra/Recover.vim', 'lazy': 1, }
 " Sublime Text's muliple selection
