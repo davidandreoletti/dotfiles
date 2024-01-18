@@ -84,7 +84,7 @@ let cvim_plugins.vim_repeat = { 'name': 'tpope/vim-repeat', }
 " Working with word variants
 let cvim_plugins.vim_abolish = { 'name': 'tpope/vim-abolish', 'lazy': 1, 'cmd': ['Abolish', 'Subvert']}
 " Ease aligning things (table, field, etc ...)
-let cvim_plugins.vim_easy_align = { 'name': 'junegunn/vim-easy-align', 'lazy': 1, }
+let cvim_plugins.vim_easy_align = { 'name': 'junegunn/vim-easy-align', 'lazy': 1, 'cmd': 'EasyAlign', 'keys': 'ga' , 'setting': "$HOME/.config/cvim/settings/vim-easy-align.vim"}
 " Operations on surroundings parentheses, brackets, 
 " quotes, XML tags, and more
 let cvim_plugins.vim_surround = { 'name': 'tpope/vim-surround', 'lazy': 1, }
@@ -168,8 +168,8 @@ let cvim_plugins.vim_json = { 'name': 'rhysd/vim-fixjson', 'lazy': 1, 'filetype'
 " Git wrapper
 let cvim_plugins.vim_fugitive = { 'name': 'tpope/vim-fugitive', }
 " Character encoding value
-" (improves over :ga)
-let cvim_plugins.vim_characterize = { 'name': 'tpope/vim-characterize', 'keys': 'ga', 'cmd': 'Characterize' }
+" (improves over vim's builtin ':ga')
+let cvim_plugins.vim_characterize = { 'name': 'tpope/vim-characterize', 'cmd': 'Characterize' } " NOTE: 'ga' key bound by vim-easy-align
 " Show vim's marks
 let cvim_plugins.vim_signature = { 'name': 'kshenoy/vim-signature', }
 " Continously update vim session files
