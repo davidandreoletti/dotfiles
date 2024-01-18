@@ -70,7 +70,13 @@ endif
 " Master Vim's advanced motion and search
 let cvim_plugins.vim_hardtime = { 'name': 'takac/vim-hardtime', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/vim-hardtime.vim" }
 " Ease motions
-let cvim_plugins.vim_easymotion = { 'name': 'Lokaltog/vim-easymotion', 'lazy': 1, }
+if g:vimFlavor ==# g:VIM_FLAVOR_VIM
+
+    let cvim_plugins.vim_easymotion = { 'name': 'Lokaltog/vim-easymotion', 'lazy': 0, }
+elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
+    " vim-easymotion not compatible with nvim's LSP. Using hop.nvim instead
+    let cvim_plugins.hop_nvim = { 'name': 'smoka7/hop.nvim', 'setting': "$HOME/.config/cvim/settings/nvim_hop.lua"}
+endif
 " Repeat a plugin map with .
 let cvim_plugins.vim_repeat = { 'name': 'tpope/vim-repeat', 'lazy': 1, }
 " Working with word viriants
@@ -228,7 +234,10 @@ lua << EOF
     local cvim_plugins = {}
     for k, plugin in pairs(vim.g.cvim_plugins) do
         local name = plugin['name']
-        local lazy = plugin['lazy']
+        local lazy = nil 
+        if plugin['lazy'] ~= nil then
+            lazy = plugin['lazy']
+        end
 
         local configFn = function () end
         if plugin['setting'] ~= nil then
@@ -245,6 +254,8 @@ lua << EOF
                 configFn = function ()
                     vim.cmd("source " .. file) 
                 end
+            else
+                print("No handler for ".. file )
             end
         end
 
@@ -275,6 +286,7 @@ lua << EOF
                 table.insert(dependencies, { dependency_name, lazy = dependency_lazy })
             end 
         end
+
         table.insert(cvim_plugins, {
             name,
             lazy = lazy,
