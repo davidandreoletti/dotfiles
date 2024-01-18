@@ -161,7 +161,7 @@ let cvim_plugins.recover = { 'name': 'chrisbra/Recover.vim', 'lazy': 1, }
 " Sublime Text's muliple selection
 let cvim_plugins.vim_multiple_cursors = { 'name': 'mg979/vim-visual-multi', }
 " Rename a buffer within Vim and on the disk
-let cvim_plugins.rename = { 'name': 'danro/rename.vim', 'lazy': 1, }
+let cvim_plugins.rename = { 'name': 'danro/rename.vim', 'lazy': 1, 'cmd': 'Rename'}
 " Support for JSON syntax highlighting
 let cvim_plugins.vim_json = { 'name': 'elzr/vim-json', 'lazy': 1, 'filetype': 'json'}
 " Support for autofixing JSON files 
