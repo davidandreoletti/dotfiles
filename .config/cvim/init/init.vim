@@ -59,8 +59,9 @@ endif
 " | setting          | ?                       | config             | /path/to/plugin/setting.vim                                                                  |
 " | cmd              | on                      | cmd                | cmd to load plugin on (for plugin manager with async plugin loading only)                    |
 " | event            | ?                       | event              | event to load plugin on (for plugin manager with async plugin loading only)                  |
+" | keys             | ?                       | keys               | keys to load plugin on (for plugin manager with async plugin loading only)                   |
 " | filetype         | for                     | filetype           | filetype to load plugin on (for plugin manager with async plugin loading only)               |
-" | post_update_hook | do                      | build              | cmd to run after a plugin update                                                     |
+" | post_update_hook | do                      | build              | cmd to run after a plugin update                                                             |
 " | dependencies     | ?                       | dependencies       | {'dep/one': {lazy: 1}, 'dep2/foo': {lazy: 1}}                                                |
 " ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 let g:cvim_plugins = {}
@@ -189,7 +190,7 @@ let cvim_plugins.vim_shfmt = { 'name': 'z0mbix/vim-shfmt', 'lazy': 1, 'filetype'
 " Central place for cheatsheets:
 " - collect cheatsheets from myself: ~/.vim/cheats/cheat40.txt
 " - collect cheatsheets from other plugins
-let cvim_plugins.vim_cheat40 = { 'name': 'lifepillar/vim-cheat40', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/cheat40.vim" }
+let cvim_plugins.vim_cheat40 = { 'name': 'lifepillar/vim-cheat40', 'lazy': 1, 'keys': "<leader>?" , 'setting': "$HOME/.config/cvim/settings/cheat40.vim" }
 " Open up a cheat sheet (from learnXinYminutes) for a given language in a vertical split on the right. 
 let cvim_plugins.vim_cheat_x_in_y = { 'name': 'jdonaldson/vim-cheat-x-in-y', 'lazy': 1, }
 
@@ -240,6 +241,7 @@ lua << EOF
     local cvim_plugins = {}
     for k, plugin in pairs(vim.g.cvim_plugins) do
         local name = plugin['name']
+
         local lazy = nil 
         if plugin['lazy'] ~= nil then
             lazy = plugin['lazy']
@@ -275,6 +277,11 @@ lua << EOF
             ft = plugin['filetype']
         end
 
+        local keys = nil 
+        if plugin['keys'] ~= nil then
+            keys = plugin['keys']
+        end
+
         local build = nil 
         if plugin['post_update_hook'] ~= nil then
             build = plugin['post_update_hook']
@@ -303,6 +310,7 @@ lua << EOF
             lazy = lazy,
             config = configFn,
             cmd = cmd,
+            keys = keys,
             build = build,
             ft = ft,
             dependencies = dependencies,
