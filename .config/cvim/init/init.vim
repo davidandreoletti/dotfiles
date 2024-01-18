@@ -128,7 +128,7 @@ let cvim_plugins.syntastic = { 'name': 'scrooloose/syntastic', 'lazy': 1, 'setti
 set rtp +=/usr/local/opt/fzf
 let cvim_plugins.fzf = { 'name': 'junegunn/fzf.vim', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/fzf.vim" }
 " Show a VCS diff using Vim's sign column. 
-let cvim_plugins.vim_signify = { 'name': 'mhinz/vim-signify', 'lazy': 1, }
+let cvim_plugins.vim_signify = { 'name': 'mhinz/vim-signify', 'setting': "$HOME/.config/cvim/settings/vim-signify.vim" }
 " Class outliner
 let cvim_plugins.tagbar = { 'name': 'majutsushi/tagbar', 'lazy': 1, }
 " Lightweight status bar
