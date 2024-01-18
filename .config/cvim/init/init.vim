@@ -162,6 +162,8 @@ let cvim_plugins.vim_multiple_cursors = { 'name': 'mg979/vim-visual-multi', }
 let cvim_plugins.rename = { 'name': 'danro/rename.vim', 'lazy': 1, }
 " Support for JSON syntax highlighting
 let cvim_plugins.vim_json = { 'name': 'elzr/vim-json', 'lazy': 1, 'filetype': 'json'}
+" Support for autofixing JSON files 
+let cvim_plugins.vim_json = { 'name': 'rhysd/vim-fixjson', 'lazy': 1, 'filetype': 'json'}
 " Git wrapper
 let cvim_plugins.vim_fugitive = { 'name': 'tpope/vim-fugitive', }
 " Zoom in/out window
