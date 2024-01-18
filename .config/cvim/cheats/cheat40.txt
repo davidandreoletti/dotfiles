@@ -22,7 +22,13 @@ Reload vimrc      <leader>rv           N
 Org-mode {{{2
 Reload vimrc      <leader>rv           N
 }}}
+Sublime MuliWord {{{2
+Select word under cursor <<Ctr-n>>>    N
+Select same word below n               N
+Select same word above N               N
+}}}
 Easy motion {{{2
 Access anywhere  <leader><leader>s     N
 }}}
 }}}
+

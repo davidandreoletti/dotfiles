@@ -156,7 +156,7 @@ endif
 " Diff swap and content file
 let cvim_plugins.recover = { 'name': 'chrisbra/Recover.vim', 'lazy': 1, }
 " Sublime Text's muliple selection
-let cvim_plugins.vim_multiple_cursors = { 'name': 'terryma/vim-multiple-cursors', 'lazy': 1, }
+let cvim_plugins.vim_multiple_cursors = { 'name': 'mg979/vim-visual-multi', }
 " Rename a buffer within Vim and on the disk
 let cvim_plugins.rename = { 'name': 'danro/rename.vim', 'lazy': 1, }
 " Support for JSON syntax highlighting
