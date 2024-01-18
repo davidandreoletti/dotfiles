@@ -30,5 +30,8 @@ Select same word above N               N
 Easy motion {{{2
 Access anywhere  <leader><leader>s     N
 }}}
+Buffer file {{{2
+rename buffer file name :rename        N
+}}}
 }}}
 
