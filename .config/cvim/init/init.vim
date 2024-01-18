@@ -132,7 +132,8 @@ let cvim_plugins.vim_signify = { 'name': 'mhinz/vim-signify', 'setting': "$HOME/
 " Class outliner
 let cvim_plugins.tagbar = { 'name': 'preservim/tagbar' }
 " Lightweight status bar
-let cvim_plugins.vim_airline = { 'name': 'bling/vim-airline', 'lazy': 1, }
+let cvim_plugins.vim_airline = { 'name': 'vim-airline/vim-airline', 'setting': "$HOME/.config/cvim/settings/vim-airline.vim" }
+let cvim_plugins.vim_airline_themes = { 'name': 'vim-airline/vim-airline-themes' }
 " Org mode
 if g:vimFlavor ==# g:VIM_FLAVOR_VIM
     let cvim_plugins.vim_orgmode = { 'name': 'jceb/vim-orgmode', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/vim_vim-orgmode.vim" }
