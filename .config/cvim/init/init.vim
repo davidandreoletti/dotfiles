@@ -93,7 +93,7 @@ let cvim_plugins.vim_mundo = { 'name': 'simnalamburt/vim-mundo' , 'lazy': 1, 'cm
 " Color schemes
 let cvim_plugins.vim_colorschemes = { 'name': 'vim/colorschemes', 'lazy': 0, }
 " Commenting
-let cvim_plugins.nerdcommenter = { 'name': 'scrooloose/nerdcommenter' }
+let cvim_plugins.nerdcommenter = { 'name': 'scrooloose/nerdcommenter', 'lazy': 1, 'keys': '<leader>cc' ,'cmd': [ 'NERDCommenterComment','NERDCommenterNested','NERDCommenterToggle','NERDCommenterMinimal','NERDCommenterInvert','NERDCommenterSexy','NERDCommenterYank','NERDCommenterToEOL','NERDCommenterAppend','NERDCommenterInsert','NERDCommenterAltDelims','NERDCommenterAlignLeft','NERDCommenterAlignBot','NERDCommenterUncomment' ] }
 " Align things
 let cvim_plugins.tabular = { 'name': 'godlygeek/tabular', 'lazy': 1, }
 " Syntastic
