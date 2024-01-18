@@ -166,8 +166,6 @@ let cvim_plugins.vim_json = { 'name': 'elzr/vim-json', 'lazy': 1, 'filetype': 'j
 let cvim_plugins.vim_json = { 'name': 'rhysd/vim-fixjson', 'lazy': 1, 'filetype': 'json'}
 " Git wrapper
 let cvim_plugins.vim_fugitive = { 'name': 'tpope/vim-fugitive', }
-" Zoom in/out window
-let cvim_plugins.zoomwin = { 'name': 'vim-scripts/ZoomWin', 'lazy': 1, }
 " Character encoding value
 " (improves over :ga)
 let cvim_plugins.vim_characterize = { 'name': 'tpope/vim-characterize', 'lazy': 1, }
