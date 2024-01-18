@@ -22,5 +22,7 @@ Reload vimrc      <leader>rv           N
 Org-mode {{{2
 Reload vimrc      <leader>rv           N
 }}}
+Easy motion {{{2
+Access anywhere  <leader><leader>s     N
 }}}
-
+}}}
