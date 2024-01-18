@@ -168,7 +168,7 @@ let cvim_plugins.vim_json = { 'name': 'rhysd/vim-fixjson', 'lazy': 1, 'filetype'
 let cvim_plugins.vim_fugitive = { 'name': 'tpope/vim-fugitive', }
 " Character encoding value
 " (improves over :ga)
-let cvim_plugins.vim_characterize = { 'name': 'tpope/vim-characterize', 'lazy': 1, }
+let cvim_plugins.vim_characterize = { 'name': 'tpope/vim-characterize', }
 " Show vim's marks
 let cvim_plugins.vim_signature = { 'name': 'kshenoy/vim-signature', 'lazy': 1, }
 " Enhanced Javascript syntax with support for ES6
