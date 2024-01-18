@@ -150,6 +150,8 @@ endif
 " indented with spaces
 if g:vimFlavor ==# g:VIM_FLAVOR_VIM
     let cvim_plugins.vim_indentguides = { 'name': 'thaerkh/vim-indentguides', 'setting': "$HOME/.config/cvim/settings/vim_vim-indent-guides.vim", }
+elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
+    let cvim_plugins.indent_blankline = { 'name': 'lukas-reineke/indent-blankline.nvim', 'setting': "$HOME/.config/cvim/settings/neovim_indent-blankline.lua", }
 endif
 " Diff swap and content file
 let cvim_plugins.recover = { 'name': 'chrisbra/Recover.vim', 'lazy': 1, }
