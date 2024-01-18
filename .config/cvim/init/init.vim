@@ -51,17 +51,18 @@ endif
 
 " Managed plugins{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 'CVIM Plugin'
-"
-" - name             : plugin name
-" - lazy             : 1 => true
-"                    : 0 => false
-" - setting          : /path/to/plugin/setting.vim
-" - cmd              : cmd to load plugin on (for plugin manager with async plugin loading only)
-" - event            : event to load plugin on (for plugin manager with async plugin loading only)
-" - filetype         : filetype to load plugin on (for plugin manager with async plugin loading only)
-" - post_update_hook : cmd to run after a plugin update
-" - dependencies     : {'dep/one': {lazy: 1}, 'dep2/foo': {lazy: 1}}
+" 'Generic Manager'
+" ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+" | Generic Option   | Vim-Plug equiv          | Lazy equiv         | Description                                                                                  |
+" ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+" | lazy             | ?                       | lazy               | 1 => true, 0 => false                                                                        |
+" | setting          | ?                       | config             | /path/to/plugin/setting.vim                                                                  |
+" | cmd              | on                      | cmd                | cmd to load plugin on (for plugin manager with async plugin loading only)                    |
+" | event            | ?                       | event              | event to load plugin on (for plugin manager with async plugin loading only)                  |
+" | filetype         | for                     | filetype           | filetype to load plugin on (for plugin manager with async plugin loading only)               |
+" | post_update_hook | do                      | build              | cmd to run after a plugin update                                                     |
+" | dependencies     | ?                       | dependencies       | {'dep/one': {lazy: 1}, 'dep2/foo': {lazy: 1}}                                                |
+" ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 let g:cvim_plugins = {}
 
 " Vim Startup time
@@ -176,7 +177,11 @@ let cvim_plugins.vim_obsession = { 'name': 'tpope/vim-obsession', 'lazy': 1, }
 " - Extends tpope/vim-obsession to support 1 vim session per directory
 let cvim_plugins.vim_prosession = { 'name': 'dhruvasagar/vim-prosession', 'lazy': 0, 'dependencies': { 'tpope/vim-obsession': {'lazy': 0} } ,'setting': "$HOME/.config/cvim/settings/vim-prosession.vim" }
 " Markdown Live Preview
-let cvim_plugins.vim_xmark = { 'name': 'junegunn/vim-xmark', 'lazy': 1, 'post_update_hook': 'make' }
+if g:vimFlavor ==# g:VIM_FLAVOR_VIM
+    let cvim_plugins.markdown_preview = { 'name': 'iamcco/markdown-preview.nvim', 'lazy': 1, 'cmd': [ "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" ] , 'filetype': 'markdown' , 'post_update_hook': { -> mkdp#util#install() },  }
+elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
+    let cvim_plugins.markdown_preview = { 'name': 'iamcco/markdown-preview.nvim', 'lazy': 1, 'cmd': [ "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" ] , 'filetype': 'markdown' , }
+endif
 " Restructed Text support
 let cvim_plugins.vim_rst = { 'name': 'habamax/vim-rst', 'lazy': 1, }
 " Shell script formatting
@@ -208,9 +213,9 @@ if g:vimFlavor ==# g:VIM_FLAVOR_VIM
                 let options['on'] = cmd
             end
 
-            let hook = get(plugin, 'post_update_hook', v:null)
-            if hook isnot v:null 
-                let options['do'] = hook
+            let F_Hook = get(plugin, 'post_update_hook', v:null)
+            if F_Hook isnot v:null 
+                let options['do'] = F_Hook
             end
 
             let setting = get(plugin, 'setting', v:null)
@@ -270,6 +275,11 @@ lua << EOF
             ft = plugin['filetype']
         end
 
+        local build = nil 
+        if plugin['post_update_hook'] ~= nil then
+            build = plugin['post_update_hook']
+        end
+
         local evt = nil 
         if plugin['event'] ~= nil then
             evt = plugin['event']
@@ -293,6 +303,7 @@ lua << EOF
             lazy = lazy,
             config = configFn,
             cmd = cmd,
+            build = build,
             ft = ft,
             dependencies = dependencies,
             event = evt
