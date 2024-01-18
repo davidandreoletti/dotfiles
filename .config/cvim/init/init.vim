@@ -157,7 +157,7 @@ let cvim_plugins.rename = { 'name': 'danro/rename.vim', 'lazy': 1, }
 " Support for JSON syntax highlighting
 let cvim_plugins.vim_json = { 'name': 'leshill/vim-json', 'lazy': 1, }
 " Git wrapper
-let cvim_plugins.vim_fugitive = { 'name': 'tpope/vim-fugitive', 'lazy': 1, }
+let cvim_plugins.vim_fugitive = { 'name': 'tpope/vim-fugitive', }
 " Zoom in/out window
 let cvim_plugins.zoomwin = { 'name': 'vim-scripts/ZoomWin', 'lazy': 1, }
 " Character encoding value
