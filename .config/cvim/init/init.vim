@@ -81,8 +81,8 @@ elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
 endif
 " Repeat a plugin map with .
 let cvim_plugins.vim_repeat = { 'name': 'tpope/vim-repeat', }
-" Working with word viriants
-let cvim_plugins.vim_abolish = { 'name': 'tpope/vim-abolish', 'lazy': 1, }
+" Working with word variants
+let cvim_plugins.vim_abolish = { 'name': 'tpope/vim-abolish', 'lazy': 1, 'cmd': ['Abolish', 'Subvert']}
 " Ease aligning things (table, field, etc ...)
 let cvim_plugins.vim_easy_align = { 'name': 'junegunn/vim-easy-align', 'lazy': 1, }
 " Operations on surroundings parentheses, brackets, 
