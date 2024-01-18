@@ -39,5 +39,12 @@ Add/Remove (Toggle) mark <leader>ma    N
 Easy align {{{2
 Align selection on =     :EasyAlign =  N
 }}}
+Surround {{{2
+Add "..." to ...              ysiw"    N
+Replace "txt" with 'txt'      cs"'     N
+Replace "txt" with <p>txt</p> cs"<p>   N
+Replace <p>txt<p> with *txt*  cst*     N
+Delete "..."                  ds"      N
+}}}
 }}}
 
