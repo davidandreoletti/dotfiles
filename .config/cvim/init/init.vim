@@ -170,7 +170,7 @@ let cvim_plugins.vim_fugitive = { 'name': 'tpope/vim-fugitive', }
 " (improves over :ga)
 let cvim_plugins.vim_characterize = { 'name': 'tpope/vim-characterize', }
 " Show vim's marks
-let cvim_plugins.vim_signature = { 'name': 'kshenoy/vim-signature', 'lazy': 1, }
+let cvim_plugins.vim_signature = { 'name': 'kshenoy/vim-signature', }
 " Enhanced Javascript syntax with support for ES6
 " (based on 'jelera/vim-javascript-syntax')
 let cvim_plugins.yajs = { 'name': 'othree/yajs.vim', 'lazy': 1, }

@@ -33,5 +33,8 @@ Access anywhere  <leader><leader>s     N
 Buffer file {{{2
 rename buffer file name :rename        N
 }}}
+Marks {{{2
+Add/Remove (Toggle) mark <leader>ma    N
+}}}
 }}}
 
