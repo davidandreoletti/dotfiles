@@ -104,9 +104,9 @@ let cvim_plugins.tabular = { 'name': 'godlygeek/tabular', 'lazy': 1, }
 " C++/C/X*ML/JSON/Javascript .. syntax checking plugin
 let cvim_plugins.syntastic = { 'name': 'scrooloose/syntastic', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/syntastic.vim" }
 " NeoMake: Run programs asynchronously
-if g:vimFlavor ==# g:VIM_FLAVOR_VIM
-    let cvim_plugins.neomake={ 'name': 'neomake/neomake', 'lazy': 0, 'cmd': 'Neomake', 'setting': "$HOME/.config/cvim/settings/neomake.vim" }
-endif
+"if g:vimFlavor ==# g:VIM_FLAVOR_VIM
+"    let cvim_plugins.neomake={ 'name': 'neomake/neomake', 'lazy': 0, 'cmd': 'Neomake', 'setting': "$HOME/.config/cvim/settings/neomake.vim" }
+"endif
 " Fast way to reach/search:
 " - buffers (: Buffers)
 " - files (: Files)
