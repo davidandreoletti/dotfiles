@@ -10,6 +10,14 @@ let g:vimFlavorRootDir = F_Get_Vim_Flavor_Root_Dir()
 set nocompatible
 "}}}
 
+" Leader/Local Leader mapping {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Map leader + localleader keys
+:let mapleader = ","
+:let maploacalleader = "\\"
+"}}}
+
+
 " Package Manager{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Install/load package manager
@@ -297,10 +305,6 @@ set relativenumber
 set showcmd
 " Hide Vim startup message
 set shortmess+=I
-
-" Map leader + localleader keys
-:let mapleader = ","
-:let maploacalleader = "\\"
 
 " neovim integrations
 if g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
