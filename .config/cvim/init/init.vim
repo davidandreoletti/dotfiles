@@ -97,7 +97,7 @@ endif
 " Color schemes
 let cvim_plugins.vim_colorschemes = { 'name': 'vim/colorschemes', 'lazy': 0, }
 " Commenting
-let cvim_plugins.nerdcommenter = { 'name': 'scrooloose/nerdcommenter', 'lazy': 1, }
+let cvim_plugins.nerdcommenter = { 'name': 'scrooloose/nerdcommenter' }
 " Align things
 let cvim_plugins.tabular = { 'name': 'godlygeek/tabular', 'lazy': 1, }
 " Syntastic
