@@ -31,7 +31,7 @@ Easy motion {{{2
 Access anywhere  <leader><leader>s     N
 }}}
 Buffer file {{{2
-rename buffer file name :rename        N
+Rename buffer file name :Rename        N
 }}}
 Marks {{{2
 Add/Remove (Toggle) mark <leader>ma    N
