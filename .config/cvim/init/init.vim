@@ -64,7 +64,9 @@ endif
 let g:cvim_plugins = {}
 
 " Vim Startup time
-let cvim_plugins.vim_startuptime = { 'name': 'dstein64/vim-startuptime', 'lazy': 1, 'cmd': 'StartupTime' }
+if g:vimFlavor ==# g:VIM_FLAVOR_VIM
+    let cvim_plugins.vim_startuptime = { 'name': 'dstein64/vim-startuptime', 'lazy': 1, 'cmd': 'StartupTime' }
+endif
 " Master Vim's advanced motion and search
 let cvim_plugins.vim_hardtime = { 'name': 'takac/vim-hardtime', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/vim-hardtime.vim" }
 " Ease motions
