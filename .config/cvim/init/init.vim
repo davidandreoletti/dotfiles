@@ -80,7 +80,7 @@ elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
     let cvim_plugins.hop_nvim = { 'name': 'smoka7/hop.nvim', 'lazy': 1, 'cmd': ['HopChar1', 'HopChar2', 'HopLine', 'HopLineStart', 'HopVertical', 'HopPattern', 'HopWord'] , 'keys': '<Leader><Leader>s' , 'setting': "$HOME/.config/cvim/settings/nvim_hop.lua"}
 endif
 " Repeat a plugin map with .
-let cvim_plugins.vim_repeat = { 'name': 'tpope/vim-repeat', 'lazy': 1, }
+let cvim_plugins.vim_repeat = { 'name': 'tpope/vim-repeat', }
 " Working with word viriants
 let cvim_plugins.vim_abolish = { 'name': 'tpope/vim-abolish', 'lazy': 1, }
 " Ease aligning things (table, field, etc ...)
