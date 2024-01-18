@@ -1,35 +1,47 @@
-* WIP features:
-** WIP editor
-*** WIP vim [%]
-**** TODO migrate ~/.config/cvim/doc/cheatsheet.txt to ~/.config/cvim/cheats/cheat40.txt
-**** TODO https://github.com/Stormherz/tablify
-**** TODO useful recommandations: https://www.vi-improved.org/recommendations/
-**** Save/Restore session automatically
-**** should I use https://github.com/monokrome/vim-lazy-obsession to get
-**** mapping of simultaneous command : https://www.vim.org/scripts/script.php?script_id=2425
-**** automatic vim session saved/loaded ?
-**** use ale instead of syntastic or neomake ?
-**** use https://vimawesome.com/plugin/sleuth-vim ? automatic
-**** use https://github.com/justinmk/vim-sneak instead of easy-motion or go back to bare vim ?
-**** anything good to take from https://wrotenwrites.com/a_modern_terminal_workflow_2/ (and similar pages)?
-**** https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
-**** browser text area is a vim window! https://github.com/glacambre/firenvim
-** secrets
-** tomb: https://dyne.org/software/tomb/
-** command line password manager
-*** choices:
+* WIP Goals
+** WIP shellrc: 1 keystroke to search personal and community aliases
+*** WIP migrate aliases doc to navi format
+** TODO shellrc: readable shellrc code base
+*** TODO format posix script using shfmt (see 'self' shellrc plugin)
+*** TODO format .oh-my-shell + lint
+** TODO shellrc: Sub 2s load time (currently 7s)
+*** WIP cache stuff: https://registerspill.thorstenball.com/p/how-fast-is-your-shell
+*** TODO https://htr3n.github.io/2018/07/faster-zsh/#lazy-loading
+*** TODO measure measure firt prompt lag, first command lag, command lag, input lag, exit time https://github.com/romkatv/zsh-bench
+** WIP vim: editor [%]
+*** WIP migrate ~/.config/cvim/doc/cheatsheet.txt to ~/.config/cvim/cheats/cheat40.txt
+*** TODO on nvim some plugin can be lazy loaded BUT need a trigger to load:
+**** danro/rename plugin
+**** tpope/vim-characterize plugin
+**** tpope/vim-obsession plugin
+**** tpope/vim-prosession plugin
+*** TODO https://github.com/Stormherz/tablify
+*** TODO useful recommandations: https://www.vi-improved.org/recommendations/
+*** TODO use ale instead of syntastic or neomake 
+*** WIP fix vim-indent-guides not displaying indent on nvim (works on vim)
+
+*** use https://github.com/justinmk/vim-sneak instead of easy-motion or go back to bare vim ?
+*** anything good to take from https://wrotenwrites.com/a_modern_terminal_workflow_2/ (and similar pages)?
+*** https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
+*** browser text area is a vim window! https://github.com/glacambre/firenvim
+** TODO secrets [%]
+*** tomb: https://dyne.org/software/tomb/
+*** command line password manager. choose between:
 **** pass: (default) https://www.passwordstore.org + https://github.com/roddhjav/pass-import#readme
-   * safe: instead of pass ? https://z3bra.org/safe/
-** gitleaks: https://github.com/gitleaks/gitleaks
-* shellrc
-** migrate alias doc to navi format
-** format posix script using shfmt (see 'self' shellrc plugin)
-*** format .oh-my-shell + lint
-** browser:
+**** safe: instead of pass ? https://z3bra.org/safe/
+*** gitleaks: https://github.com/gitleaks/gitleaks
+** TODO browser:
 *** safari:
 **** install vimari + setup again. automate this ?https://github.com/guyht/vimari
 *** chrome:
 **** Current setup likely indicate it is Managed by an admin. Automatically Installed extensions are removed on browser restart. Look into keep those extension installed by whitelisting them or their source: https://www.jamf.com/jamf-nation/discussions/13947/configuring-google-chrome
+** TODO bootstrap
+** macOS
+*** TODO Check admin account have SecureToken enabled (to unlock FileValut2 disks)
+**** https://centrify.force.com/support/Article/KB-10010-FileVault2-fails-to-initiate-for-macOS-10-13-x-High-Sierra-systems-using-Centrify-Group-Policy-and-or-cannot-add-a-mobile-account-as-a-FileVault-unlocker-account/
+**** https://derflounder.wordpress.com/2018/01/20/secure-token-and-filevault-on-apple-file-system/
+**** https://support.apple.com/en-us/HT204837
+* UNSORTED
 ** dotfiles:
 *** https://gist.github.com/rampion/104020
 *** https://github.com/paulirish/dotfiles
@@ -47,11 +59,3 @@
 ** Plug youtube video as audio stream onnly into mpd: https://github.com/mps-youtube/mps-youtube/pulls
 ** PGP:
 *** key publication: https://gist.github.com/terrywang/32a6d285d103b8f9beea94b970b0d16a
-* SHELL PERF IMPROVEMENT: This is a gold mine! :-)
-** https://htr3n.github.io/2018/07/faster-zsh/#lazy-loading
-* bootstrap
-** macOS
-*** Check admin account have SecureToken enabled (to unlock FileValut2 disks)
-**** https://centrify.force.com/support/Article/KB-10010-FileVault2-fails-to-initiate-for-macOS-10-13-x-High-Sierra-systems-using-Centrify-Group-Policy-and-or-cannot-add-a-mobile-account-as-a-FileVault-unlocker-account/
-**** https://derflounder.wordpress.com/2018/01/20/secure-token-and-filevault-on-apple-file-system/
-**** https://support.apple.com/en-us/HT204837

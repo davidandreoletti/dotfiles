@@ -192,7 +192,7 @@ let cvim_plugins.vim_shfmt = { 'name': 'z0mbix/vim-shfmt', 'lazy': 1, 'filetype'
 " - collect cheatsheets from other plugins
 let cvim_plugins.vim_cheat40 = { 'name': 'lifepillar/vim-cheat40', 'lazy': 1, 'keys': "<leader>?" , 'setting': "$HOME/.config/cvim/settings/cheat40.vim" }
 " Open up a cheat sheet (from learnXinYminutes) for a given language in a vertical split on the right. 
-let cvim_plugins.vim_cheat_x_in_y = { 'name': 'jdonaldson/vim-cheat-x-in-y', 'lazy': 1, }
+let cvim_plugins.vim_cheat_x_in_y = { 'name': 'jdonaldson/vim-cheat-x-in-y', 'lazy': 1, 'cmd': 'ToggleCheat' }
 
 " Load plugins ...
 if g:vimFlavor ==# g:VIM_FLAVOR_VIM
