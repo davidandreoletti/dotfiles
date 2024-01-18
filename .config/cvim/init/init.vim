@@ -130,7 +130,7 @@ let cvim_plugins.fzf = { 'name': 'junegunn/fzf.vim', 'lazy': 1, 'setting': "$HOM
 " Show a VCS diff using Vim's sign column. 
 let cvim_plugins.vim_signify = { 'name': 'mhinz/vim-signify', 'setting': "$HOME/.config/cvim/settings/vim-signify.vim" }
 " Class outliner
-let cvim_plugins.tagbar = { 'name': 'majutsushi/tagbar', 'lazy': 1, }
+let cvim_plugins.tagbar = { 'name': 'preservim/tagbar' }
 " Lightweight status bar
 let cvim_plugins.vim_airline = { 'name': 'bling/vim-airline', 'lazy': 1, }
 " Org mode
