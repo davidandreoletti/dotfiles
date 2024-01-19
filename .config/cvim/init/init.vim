@@ -115,7 +115,11 @@ elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
     " lspconfig: LSP client config
     let cvim_plugins.lspconfig = { 'name': 'neovim/nvim-lspconfig', 'dependencies': { 'williamboman/mason-lspconfig.nvim':{'lazy': 1} }, 'setting': "$HOME/.config/cvim/settings/nvim_lspconfig.lua" }
 endif
-" Fast way to reach/search:
+
+" Fuzzy Finder: fzf: binary integration
+" let cvim_plugins.fzf = { 'name': 'junegunn/fzf' }
+let cvim_plugins.fzf = { 'name': '/usr/local/opt/fzf' }
+" Fuzzy Finder: fzf: vim+binary integration
 " - buffers (: Buffers)
 " - files (: Files)
 " - commands
@@ -129,12 +133,10 @@ endif
 " - history
 " - git commits
 " - etc 
-" See details at https://github.com/junegunn/fzf.vim#commands
+" NOTES:
 " - fzf replaces Ctrl-P, FuzzyFinder and Command-T)
 " - fzf is really fast compared to Crtl-P' vimL fuzy finder implementation
-" FIXME: where to move rtp += ...fzf to ?
-set rtp +=/usr/local/opt/fzf
-let cvim_plugins.fzf = { 'name': 'junegunn/fzf.vim', 'lazy': 1, 'setting': "$HOME/.config/cvim/settings/fzf.vim" }
+let cvim_plugins.fzfvim = { 'name': 'junegunn/fzf.vim', 'lazy': 1, 'cmd': ['Files', 'GFiles', 'Buffers', 'Colors', 'Ag', 'Rg', 'RG', 'Lines', 'Blines', 'Tags', 'BTags', 'Changes', 'Marks', 'Jumps', 'Windows', 'Locate', 'History', 'Snippets', 'Commits', 'BCommits', 'Commands', 'Maps', 'Helptags', 'Filetypes' ], 'setting': "$HOME/.config/cvim/settings/fzf.vim" }
 " Show a VCS diff using Vim's sign column. 
 let cvim_plugins.vim_signify = { 'name': 'mhinz/vim-signify', 'setting': "$HOME/.config/cvim/settings/vim-signify.vim" }
 " Class outliner

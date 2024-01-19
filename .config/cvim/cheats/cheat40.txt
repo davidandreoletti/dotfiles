@@ -47,5 +47,21 @@ Replace "txt" with <p>txt</p> cs"<p>   N
 Replace <p>txt<p> with *txt*  cst*     N
 Delete "..."                  ds"      N
 }}}
+Search {{{2
+Find filename in git repo :GFiles      N
+Find filename in cwd      :Files       N
+Find theme                :Colors      N
+Find PATTERN in cwd       :Rg          N
+Find PATTERN in cwd       :Ag          N
+Find buffers              :Buffers     N
+Find lines in buffers     :Lines       N
+Find lines in current buf :BLines      N
+Find tags in cwd          :Tags        N
+Find jumps                :Jumps       N
+Find commits              :Commits     N
+Find commits for cur buf  :BCommits    N
+Find normal mode mapping  :Maps        N
+Find help tags            :Helptags    N
+}}}
 }}}
 
