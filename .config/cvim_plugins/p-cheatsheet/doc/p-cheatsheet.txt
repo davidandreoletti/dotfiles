@@ -2,6 +2,14 @@
 *p-cheatsheet.txt*
 *p-cheatsheet*
 
+   ___           _                _       _               _
+  / _ \      ___| |__   ___  __ _| |_ ___| |__   ___  ___| |_
+ / /_)/____ / __| '_ \ / _ \/ _` | __/ __| '_ \ / _ \/ _ \ __|
+/ ___/_____| (__| | | |  __/ (_| | |_\__ \ | | |  __/  __/ |_
+\/          \___|_| |_|\___|\__,_|\__|___/_| |_|\___|\___|\__|
+
+header -> $ figlet -f orgre "P-cheatsheet"
+
 Extended personal cheatsheet.
 
 ===============================================================================
@@ -12,10 +20,13 @@ CONTENTS
     3. Buffer ...................................|p-cheatsheet-buffer|
     4. Window ...................................|p-cheatsheet-window|
     5. Formatting................................|p-cheatsheet-formatting|
-    5. Random ...................................|p-cheatsheet-random|
+    6. Help file.................................|p-cheatsheet-helpfile|
+    7. Random ...................................|p-cheatsheet-random|
 
 ===============================================================================
 
+
+===============================================================================
 1. Text object                                         *p-cheatsheet-text-object*
 
 Examples
@@ -26,6 +37,7 @@ Examples
     - at					  in tags
     - i"			Select everything in double quotes (except double quotes themselves)
 
+===============================================================================
 2. Motion *p-cheatsheet-motion*
 
 Motion basics
@@ -57,6 +69,7 @@ Operation with motions
 
     - vf{char}		Select from current cursor position to next {char}
 
+===============================================================================
 3. Motion *p-cheatsheet-buffer*
 
 Switching buffer focus
@@ -72,6 +85,7 @@ Buffer list management
     - :e!         Restore original file into hidden buffer
     - :bd!        Remove hidden buffer from buffer list
 
+===============================================================================
 4. Motion *p-cheatsheet-window*
 
     Window splits
@@ -109,6 +123,7 @@ Buffer list management
     - ctrl-w _                Max height for active window 
     - ctrl-w |                Max width for active window 
 
+===============================================================================
 5. Formatting                                         *p-personal-formatting*
 
     Examples
@@ -117,8 +132,13 @@ Buffer list management
     - ==          Re-Indent the line
     - gg=G        Re-indent the whole file
 
+===============================================================================
+7. Help file                                         *p-personal-helpfile*
 
-6. Random                                         *p-personal-random*
+    - :Helptags ALL     Rebuild help file tag index
+
+===============================================================================
+7. Random                                         *p-personal-random*
 
     - :map			List mapped keys
     - ;			Repeat last command

@@ -571,12 +571,6 @@ call F_Load_KeyMappings('$HOME/.config/cvim/keymap')
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call F_Load_UISettings('$HOME/.config/cvim/ui')
 "}}}"
-" Help{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Load custom helps file 
-" - personal cheatsheets
-:helptags ~/.config/cvim/doc
-"}}}"
 " Local vimrc{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call F_Load_LocalVimrc(vimFlavorRootDir.'/local.vim')
