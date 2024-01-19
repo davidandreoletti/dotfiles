@@ -37,7 +37,7 @@ f_all_dotfiles_files_to_format() {
       | sed "s|${dir}|.|g"
 }
 
-PARRALLEL=1
+PARRALLEL=$(nproc)
 for dir in "$DOTFILES_HOME_LOCAL" "$DOTFILES_PRIVATE_HOME_LOCAL"
 do
     # Format scripts
