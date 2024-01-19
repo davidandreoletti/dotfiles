@@ -309,6 +309,13 @@ then
     # Image processing
     homebrew_brew_install                  "imagemagick"         # Required by spaceman-diff
 
+    # Line oriented search tool
+    homebrew_brew_install                  "ripgrep"             # faster grep "rigrep" binary compiled, as nightly build, and including SIMD and all optimizations enabled.
+                                                                 # Required by VIM's fzf.vim plugin
+
+    # Source code search tool
+    homebrew_brew_install                  "ack"                 # Fast file content search too
+
     # Typing
     # EXPERIMENTAL cargo_global_install                   "thokr"               # Typing tester
 
@@ -324,8 +331,6 @@ then
     homebrew_brew_install                  "tree"                # Print directory content as tree structure 
     homebrew_brew_install                  "rlwrap"              # Needed to execute PlistBuddy in command mode
     homebrew_brew_install                  "ngrep"               # grep for network resource
-    homebrew_brew_install                  "ripgrep-bin"         # faster grep "rigrep" binary compiled, as nightly build, and including SIMD and all optimizations enabled.
-    homebrew_brew_install                  "ack"                 # Fast file content search too
     is_macos && homebrew_brew_install      "trash"               # Move files into macOS user's trash bin (as if done from the Finder)
     homebrew_brew_install                  "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
     homebrew_brew_install                  "so"                  # Query stackoverflow TUI
