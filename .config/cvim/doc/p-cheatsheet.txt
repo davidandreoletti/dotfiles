@@ -1,0 +1,126 @@
+" vim: filetype=help foldmethod=marker foldmarker=<<<,>>> modifiable noreadonly
+*p-cheatsheet.txt*
+*p-cheatsheet*
+
+Extended personal cheatsheet.
+
+===============================================================================
+CONTENTS
+
+    1. Text Objects .............................|p-cheatsheet-text-object|
+    2. Motion ...................................|p-cheatsheet-motion|
+    3. Buffer ...................................|p-cheatsheet-buffer|
+    4. Window ...................................|p-cheatsheet-window|
+    5. Formatting................................|p-cheatsheet-formatting|
+    5. Random ...................................|p-cheatsheet-random|
+
+===============================================================================
+
+1. Text object                                         *p-cheatsheet-text-object*
+
+Examples
+--------
+
+    - a"			Select everything in "double quotes (double quote included)"
+    - a]					  in [block bracked included] 
+    - at					  in tags
+    - i"			Select everything in double quotes (except double quotes themselves)
+
+2. Motion *p-cheatsheet-motion*
+
+Motion basics
+-------------
+
+       ^
+       |
+<- h j k l ->
+     |
+     v
+    
+Character motions
+-----------------
+
+    - f{char} 		Go to next {char}
+    - t{cahr}			Go to char before {char}
+
+File motions
+------------
+    - G           Move cursor to the end of the file
+    - gg          Move cursor to the begin of the file
+    - gf			Go to file under cursor
+
+Operation with motions
+----------------------
+    
+    Selections
+    ----------
+
+    - vf{char}		Select from current cursor position to next {char}
+
+3. Motion *p-cheatsheet-buffer*
+
+Switching buffer focus
+----------------------
+
+    - Ctrl-^      Switch to alternate buffer - :ls shows it with buffer with # sign
+    - :bn / :bp   Next or previous buffer
+        
+Buffer list management
+----------------------
+
+    - :ls			Buffer List
+    - :e!         Restore original file into hidden buffer
+    - :bd!        Remove hidden buffer from buffer list
+
+4. Motion *p-cheatsheet-window*
+
+    Window splits
+    -------------
+
+    - ctrl-w s                Split current window horizontal + load buffer in the new window
+    - :sp[lit] filename       idem 
+    - ctrl-w v                Split current window vertical + load buffer in the new window
+    - :vsp[lit] filename      idem
+    - :only                   Close all window except the current active one
+
+    Switching window focus
+    ----------------------
+
+    - ctrl-w w                Cycle between the open windows
+    - ctrl-w h                Focus window on the left
+    - ctrl-w j                Focus window to the down
+    - ctrl-w k                Focus window to the up
+    - ctrl-w l                Focus window to the right
+
+    Moving windows
+    ----------------------
+
+    - ctrl-w r                Rotates 2 windows - max 2 windows
+    - ctrl-w H                Move active window to far left 
+    - ctrl-w J                Move active window to bottom 
+    - ctrl-w K                Move active window to top 
+    - ctrl-w L                Move active window to far right 
+
+    Resizing windows
+    ----------------------
+    
+    - ctrl-w +                Increase height by 1 line
+    - ctrl-w -                Decrease height by 1 line
+    - ctrl-w _                Max height for active window 
+    - ctrl-w |                Max width for active window 
+
+5. Formatting                                         *p-personal-formatting*
+
+    Examples
+    --------
+
+    - ==          Re-Indent the line
+    - gg=G        Re-indent the whole file
+
+
+6. Random                                         *p-personal-random*
+
+    - :map			List mapped keys
+    - ;			Repeat last command
+    - /			Search
+

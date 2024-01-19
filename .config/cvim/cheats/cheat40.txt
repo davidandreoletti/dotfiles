@@ -2,10 +2,11 @@ Press q to dismiss,
 <Tab> to toggle folds
 F.A.Q {{{1
 Open cheatsheets {{{2
-Display vim cheatsheets  \?            N
-Display learnXinY cheats :ToggleCheat  N
-Display my cheatsheets   \?<<Shift>>g  N
-Display all commands/mod :h index      N
+View vim cheatsheets  \?               N
+View learnXinY cheats :ToggleCheat     N
+View my cheatsheets   \?<<Shift>>g     N
+View my cheatsheets+  :h p-cheatsheet  N
+View all commands/mod :h index         N
 }}}
 Check runtime values {{{2
 runtime path     :let g:runtimepath    N
