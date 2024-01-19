@@ -314,7 +314,8 @@ then
                                                                  # Required by VIM's fzf.vim plugin
 
     # Source code search tool
-    homebrew_brew_install                  "ack"                 # Fast file content search too
+    homebrew_brew_install                  "the_silver_searcher" # Faster than 'ack' file content search too
+
 
     # Typing
     # EXPERIMENTAL cargo_global_install                   "thokr"               # Typing tester
