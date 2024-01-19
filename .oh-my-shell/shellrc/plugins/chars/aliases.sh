@@ -10,6 +10,6 @@ alias unicode_lookup='chars '
 # usage: char_lookup '10'
 alias char_lookup='chars '
 
-# Display a control character 
+# Display a control character
 # usage: char_lookup '^C'
 alias controlchar_lookup='chars '

@@ -1,6 +1,6 @@
 # % android, adb
 # # Clear connected device/simulator logs + display new logs
-# ; usage: adb_clog 
+# ; usage: adb_clog
 alias adb_clog='adb logcat -c && adb logcat'
 
 # % android, adb
@@ -15,7 +15,7 @@ alias android_show_manifest='aapt l -a '
 
 # % android, adb
 # # Reset android logs and terminal
-# ; usage: android_reset_adb_terminal 
+# ; usage: android_reset_adb_terminal
 alias android_reset_adb_terminal="clear; tmux clear-history; adb logcat -c; adb logcat"
 
 # % android, adb

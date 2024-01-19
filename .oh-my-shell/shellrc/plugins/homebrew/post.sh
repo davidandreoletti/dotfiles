@@ -8,20 +8,18 @@ HOMEBREW_PACKAGES_UPGRADE_LOG="$HOMEBREW_PACKAGES_UPGRADE_SCRIPT.log"
 HOMEBREW_PACKAGES_UPGRADE_SCRIPT2="$HOMEBREW_POST_BASE.package_upgrade2.sh"
 HOMEBREW_PACKAGES_UPGRADE_LOG2="$HOMEBREW_PACKAGES_UPGRADE_SCRIPT2.log"
 
-
 # 3600*24*30 = 30 days
-if f_run_every_x_seconds "$HOMEBREW_POST_MARKER" "$((3600*24*30))" ;
-then
+if f_run_every_x_seconds "$HOMEBREW_POST_MARKER" "$((3600 * 24 * 30))"; then
 
-function f_isCurrentUserHomebrewCellarDirectoryOwner () {
-	local fileOrDirPath="$1"
-	
-	local resourceOwner="$(stat -c '%U' $fileOrDirPath)"
+    function f_isCurrentUserHomebrewCellarDirectoryOwner() {
+        local fileOrDirPath="$1"
 
-	[ "$USER" = "$resourceOwner" ]
-}
+        local resourceOwner="$(stat -c '%U' $fileOrDirPath)"
 
-cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
+        [ "$USER" = "$resourceOwner" ]
+    }
+
+    cat <<EOF >"$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
     brew update 2>&1;
 
     # Uninstall previous non cask and cask package versions (to save on disk space over time)
@@ -33,7 +31,7 @@ cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT"
     brew upgrade 2>&1;
 EOF
 
-cat <<EOF > "$HOMEBREW_PACKAGES_UPGRADE_SCRIPT2"
+    cat <<EOF >"$HOMEBREW_PACKAGES_UPGRADE_SCRIPT2"
     weeknumber=\`date +%V\`;
     reminder="\$weeknumber % 4"
     if [ \`echo "\$reminder" | bc\` -eq 0 ];
@@ -54,8 +52,7 @@ EOF
     # case: linux
     [ ! -d "$cellarDir" ] && cellarDir="$(brew --prefix)/../Cellar"
 
-    if f_isCurrentUserHomebrewCellarDirectoryOwner "$cellarDir";
-    then
+    if f_isCurrentUserHomebrewCellarDirectoryOwner "$cellarDir"; then
         f_run_exclusive_with_completion "${HOMEBREW_PACKAGES_UPGRADE_SCRIPT2}.lockfile" "$HOMEBREW_PACKAGES_UPGRADE_LOG2" "$HOMEBREW_POST_MARKER" bash $HOMEBREW_PACKAGES_UPGRADE_SCRIPT2
     else
         f_run_exclusive_in_background_with_completion "${HOMEBREW_PACKAGES_UPGRADE_SCRIPT}.lockfile" "$HOMEBREW_PACKAGES_UPGRADE_LOG" "$HOMEBREW_POST_MARKER" bash $HOMEBREW_PACKAGES_UPGRADE_SCRIPT

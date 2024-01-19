@@ -24,4 +24,3 @@ shopt -s no_empty_cmd_completion
 # Match filenames in a case-insensitive fashion when performing
 # filename expansion.
 shopt -s nocaseglob
-

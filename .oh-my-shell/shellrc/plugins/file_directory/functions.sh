@@ -4,8 +4,7 @@
 
 # Swap two files/directory together
 # Usage: f_swap_files file1 file2
-function f_file_directory_swap()
-{
+function f_file_directory_swap() {
     local TMPFILE=tmp.$$
     [ $# -ne 2 ] && echo "swap: 2 arguments needed" && return 1
     [ ! -e $1 ] && echo "swap: $1 does not exist" && return 1
@@ -16,6 +15,6 @@ function f_file_directory_swap()
 function f_file_directory_create_missing_dirs_file() {
     local missing_path="$1"
 
-    mkdir -p "$(dirname $missing_path)" && \
-        command touch "$missing_path"
+    mkdir -p "$(dirname $missing_path)" \
+        && command touch "$missing_path"
 }

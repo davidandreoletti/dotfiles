@@ -6,10 +6,10 @@ f_navi_generate_user_cheatsheet_from_aliases() {
     mkdir -p "$(dirname $PERSO_CHEAT_FILE)"
 
     #command cat ~/.oh-my-shell/shellrc/plugins/age/aliases.sh | \
-    #    awk '/% / {p=1; next}; 
-    #     /alias / {p=0}; 
+    #    awk '/% / {p=1; next};
+    #     /alias / {p=0};
     #     {if (p==1) print $0}'
-    
+
     # INPUT FILE
     # % age, encrypt, message
     # # Encrypt content with a one time generated passphrase
@@ -19,16 +19,16 @@ f_navi_generate_user_cheatsheet_from_aliases() {
     # # Decrypt content with passphrase
     # ; usage: decrypt_message_armored_oneshot message.txt.age
     #alias decrypt_message_armored_oneshot='command age --armor --passphrase '
-    
-    # OUTPUT FILE 
+
+    # OUTPUT FILE
     # % age, encrypt, message
     # # Encrypt content with a one time generated passphrase
     # encrypt_message_armored_oneshot <message_file> > <message_file>.age
     #alias encrypt_message_armored_oneshot='command age --armor --passphrase '
 
     #command cat $SHELLRC_PLUGINS_DIR_LOCAL/*/aliases.sh $SHELLRC_PLUGINS_DIR_LOCAL/*/private/aliases.sh | \
-    command cat $SHELLRC_PLUGINS_DIR_LOCAL/*/aliases.sh | \
-        awk '
+    command cat $SHELLRC_PLUGINS_DIR_LOCAL/*/aliases.sh \
+        | awk '
             BEGIN { 
             }
     
@@ -42,5 +42,5 @@ f_navi_generate_user_cheatsheet_from_aliases() {
     
             END {
             }
-        ' > $PERSO_CHEAT_FILE
+        ' >$PERSO_CHEAT_FILE
 }

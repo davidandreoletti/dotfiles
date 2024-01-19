@@ -13,10 +13,10 @@ f_http_show_in_out_traffic2() {
     local verbs=${3:-"GET|POST|PUT|PATCH|DELETE"}
     echo "Listening to HTTP traffic from/to port $port on interface(s) $interfaces"
 
-    sudo tcpdump -i "$interfaces" -n -s 0  -w - "tcp port $port" | grep -a -o -E \"Host\: .*|$verbs \/.*\"
+    sudo tcpdump -i "$interfaces" -n -s 0 -w - "tcp port $port" | grep -a -o -E \"Host\: .* | $verbs \/.*\"
 }
 
 # Get http headers
-f_http_headers() { 
-    /usr/bin/curl -I -L $@ ; 
+f_http_headers() {
+    /usr/bin/curl -I -L $@
 }

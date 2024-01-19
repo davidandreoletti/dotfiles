@@ -4,7 +4,7 @@
 alias shellrc_plugin_list='l $SHELLRC_PLUGINS_DIR/ | fzf'
 
 # % shellrc, plugin, edit
-# # Edit shellrc plugin function 
+# # Edit shellrc plugin function
 # ; usage: shellrc_plugin_edit 'plugin_name'
 alias shellrc_plugin_edit='f_shellrc_plugin_edit '
 

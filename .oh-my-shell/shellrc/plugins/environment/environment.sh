@@ -3,7 +3,7 @@
 #
 
 # Set default editors
-export EDITOR=`command which --skip-alias --skip-functions nvim`
+export EDITOR=$(command which --skip-alias --skip-functions nvim)
 export VISUAL=$EDITOR
 
 # TERM reports the terminal type. Best to leave the terminal implementation report it
@@ -21,4 +21,3 @@ export VISUAL=$EDITOR
 
 # Load shell specific config
 dot_if_exists "${SHELLRC_CURRENT_SHELL_DIR}/environment.sh"
-

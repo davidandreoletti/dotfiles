@@ -1,6 +1,5 @@
 # Detect which `ls` flavor is in use
-if ls --color > /dev/null 2>&1; 
-then # GNU `ls`
+if ls --color >/dev/null 2>&1; then # GNU `ls`
     colorflag="--color"
 else # OS X `ls`
     colorflag="-G"
@@ -24,4 +23,3 @@ alias ls_dir="command ls ${listingflag} ${colorflag} | grep --color=never '^\d\+
 alias ls_symbolic="command ls ${listingflag} ${colorflag} | grep --color=never '^\d\+ l.*$' "
 # List only fifo files
 alias ls_fifo="command ls ${listingflag} ${colorflag} | grep --color=never '^\d\+ p.*$' "
-

@@ -13,4 +13,3 @@ alias rm_stat="rip --graveyard $RM_GRAVEYARD --seance"
 # Slightly safe rm
 # usage: rm /path/to/file
 alias rmi='command rm -i'
-

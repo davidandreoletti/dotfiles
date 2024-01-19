@@ -1,4 +1,4 @@
-f_timestampToDates () {
+f_timestampToDates() {
     timestamp="$1"
 
     echo "Current device's timezone: "

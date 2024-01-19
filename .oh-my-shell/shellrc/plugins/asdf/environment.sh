@@ -11,4 +11,3 @@
 # src: https://github.com/halcyon/asdf-java#java_home
 #. ~/.asdf/plugins/java/set-java-home.bash
 #. ~/.asdf/plugins/java/set-java-home.zsh
-

@@ -9,7 +9,7 @@ alias docker_ssh_into_container="f_docker_SSHIntoContainer "
 # Usage: docker_prune_specific_dangling_images_layer  <image_id>
 alias docker_prune_specific_dangling_images_layer="docker rmi "
 
-# Usage: docker_prune_all_dangling_images_layers 
+# Usage: docker_prune_all_dangling_images_layers
 alias docker_prune_all_dangling_images_layers="docker rmi \$(docker images -f dangling=true -q)"
 
 # Usage: docker_remove_container_by_volume "(partial) volume name"

@@ -10,10 +10,9 @@
     pyenv virtualenv "${_NEOVIM_PYENV_VIRTUALENV_VERSION}" "${_NEOVIM_PYENV_VIRTUALENV_NAME}"
     # Install neovim python dependencies
     pyenv exec python -m pip install --upgrade pip
-    for pkg in pynvim
-    do
-        pyenv shell "${_NEOVIM_PYENV_VIRTUALENV_NAME}" && \
-            pyenv exec python -m pip install --upgrade "$pkg"
+    for pkg in pynvim; do
+        pyenv shell "${_NEOVIM_PYENV_VIRTUALENV_NAME}" \
+            && pyenv exec python -m pip install --upgrade "$pkg"
     done
 } 1>/dev/null 2>&1 # silent
 

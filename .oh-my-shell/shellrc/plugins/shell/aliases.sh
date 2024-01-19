@@ -7,4 +7,3 @@ alias shell_clear_all="clear; tmux clear-history;"
 
 # Print shell variables
 alias shell_print_variables='(set -o posix; set)'
-

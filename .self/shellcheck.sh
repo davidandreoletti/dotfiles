@@ -11,18 +11,18 @@ mode="${1:-ls}"
 # usage: shellcheck unfixable <dotfile local dir> <shell script>
 
 f_fix() {
-   local dir="$2"
-   local file="$3" 
+    local dir="$2"
+    local file="$3"
 
-   shellcheck -x -f diff "$(realpath "$file")" \
-      | sed "s|${dir}|.|g" \
-      | sed 's|././tests|./tests|g' \
-      | git apply
+    shellcheck -x -f diff "$(realpath "$file")" \
+        | sed "s|${dir}|.|g" \
+        | sed 's|././tests|./tests|g' \
+        | git apply
 }
 
 f_unfixable() {
-   local dir="$2"
-   local file="$3" 
+    local dir="$2"
+    local file="$3"
 
-   shellcheck -x -f tty "$(realpath "$file")"
+    shellcheck -x -f tty "$(realpath "$file")"
 }

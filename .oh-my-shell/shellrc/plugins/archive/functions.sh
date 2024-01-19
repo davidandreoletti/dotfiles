@@ -2,9 +2,8 @@
 # Usage: f_archiveEachFolderSeparatedely "/path/to/a/folder"
 function f_archiveEachFolderSeparatedely() {
     local dirPath="$1"
-    for i in $dirPath/*/; 
-    do 
-        zip -r "${i%/}.zip" "$i"; 
+    for i in $dirPath/*/; do
+        zip -r "${i%/}.zip" "$i"
     done
 }
 
@@ -17,7 +16,7 @@ function f_archiveSendToNetwork() {
     tar czf - "$dirPath" | zstd | pv | nc $host $port
 }
 
-# Receive a tar file from the network and extract it in the provided directory 
+# Receive a tar file from the network and extract it in the provided directory
 function f_archiveReceiveFromNetwork() {
     local dirPath="$1"
     local port="$3"

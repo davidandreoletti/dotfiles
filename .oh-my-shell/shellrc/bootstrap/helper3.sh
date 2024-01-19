@@ -1,5 +1,5 @@
 f_file_modified_date_recently_within() {
-    :    
+    :
 }
 
 f_file_touch_modified_date() {
@@ -15,11 +15,10 @@ f_create_ramfs() {
     local blocksize=$(echo "$sizeinMegabytes * 2048" | bc)
     local device="$(hdiutil attach -nomount "ram://$blocksize" | cut -f1 -d$'\t' | tr -d ' ')"
 
-    if is_macos ; 
-    then
+    if is_macos; then
         # src: https://stackoverflow.com/a/47354885/219728
         # Create RAM disk + Mount point onto RAM disk
-        diskutil partitionDisk $device 1 GPTFormat APFS "$(basename $mountPoint)" '100%' > /dev/null 2>&1
+        diskutil partitionDisk $device 1 GPTFormat APFS "$(basename $mountPoint)" '100%' >/dev/null 2>&1
         echo "$mountPoint"
     else
         echo "f_delete_ramfs unsupported on $OS_TYPE"
@@ -30,12 +29,11 @@ f_create_ramfs() {
 f_delete_ramfs() {
     local mountPoint="$1"
 
-    if is_macos ; 
-    then
+    if is_macos; then
         local device="$(mount | grep "$mountPoint" | cut -f1 -d' ')"
         device="/dev/$(diskutil info /dev/disk5 | grep "APFS Physical Store" | cut -f13 -d' ')"
         # Unmount RAM disk + Release RAM disk
-        diskutil eject "$device" > /dev/null 2>&1
+        diskutil eject "$device" >/dev/null 2>&1
     else
         echo "f_delete_ramfs unsupported on $OS_TYPE"
     fi

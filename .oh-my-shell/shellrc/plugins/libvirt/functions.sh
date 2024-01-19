@@ -13,17 +13,16 @@ function f_libvirt_pool_local_setup {
     local poolPath="$2"
     local poolType="dir"
 
-    if [[ "$poolPath" == "default" ]];
-    then
+    if [[ "$poolPath" == "default" ]]; then
         poolPath="$LIBVIRT_POOL_MANUAL_DEFAULT_DIR/$poolName"
     fi
 
     echo "Creating pool ..."
     #shellcheck disable=SC2086
     virsh ${VIRSH_OPTIONS} pool-define-as \
-            --name "$poolName" \
-            --type "$poolType" \
-            --target "$poolPath" \
+        --name "$poolName" \
+        --type "$poolType" \
+        --target "$poolPath" \
         && virsh ${VIRSH_OPTIONS} pool-build \
             --pool "$poolName" \
         && virsh ${VIRSH_OPTIONS} pool-start \
@@ -50,15 +49,13 @@ function f_libvirt_pool_volume_disk_define {
     local srcFile="$poolPath/$volName.final"
     local dstFile="$poolPath/$volName"
 
-    if [[ "$srcImgPath" == "0" ]];
-    then
+    if [[ "$srcImgPath" == "0" ]]; then
         #shellcheck disable=SC2086
         qemu-img create -f $volFormat \
             -o extended_l2=on,cluster_size=128k,preallocation=metadata,compat=1.1 \
             "$srcFile" $volSize
     else
-        if [[ "$moveSrcImgPath" == "0" ]];
-        then
+        if [[ "$moveSrcImgPath" == "0" ]]; then
             mv -v "$srcImgPath" "$srcFile"
         else
             rsync -av --progress "$srcImgPath" "$srcFile"
@@ -67,8 +64,7 @@ function f_libvirt_pool_volume_disk_define {
     fi
 
     #shellcheck disable=SC2086
-    if virsh ${VIRSH_OPTIONS} vol-key --pool "$poolName" "$volName" >/dev/null 2>&1;
-    then
+    if virsh ${VIRSH_OPTIONS} vol-key --pool "$poolName" "$volName" >/dev/null 2>&1; then
         virsh ${VIRSH_OPTIONS} vol-delete \
             --pool "$poolName" \
             --vol "$volName"
@@ -96,10 +92,8 @@ function f_libvirt_pool_volume_cdrom_define {
     local srcFile="$poolPath/$volName.final"
     local dstFile="$poolPath/$volName"
 
-
     #shellcheck disable=SC2086
-    if virsh ${VIRSH_OPTIONS} vol-key --pool "$poolName" "$volName" >/dev/null 2>&1;
-    then
+    if virsh ${VIRSH_OPTIONS} vol-key --pool "$poolName" "$volName" >/dev/null 2>&1; then
         virsh ${VIRSH_OPTIONS} vol-delete \
             --pool "$poolName" \
             --vol "$volName"
@@ -114,9 +108,6 @@ function f_libvirt_pool_volume_cdrom_define {
         --capacity "700M" \
         --format "raw"
 }
-
-
- 
 
 function f_libvirt_domain_start {
     local domainName="$1"
@@ -138,7 +129,6 @@ function f_libvirt_domain_start {
     echo "SSH(maybe): $sshURL"
 }
 
-
 function f_libvirt_domain_define {
     local domainName="$1"
     local domainXMLFile="$2"
@@ -157,15 +147,15 @@ function f_libvirt_domain_define {
     #shellcheck disable=SC2086
     virsh ${VIRSH_OPTIONS} destroy \
         "$domainXMLFile"
- 
+
     #shellcheck disable=SC2086
     virsh ${VIRSH_OPTIONS} undefine \
         --nvram \
         "$domainXMLFile"
-    
+
     #shellcheck disable=SC2086
     virsh ${VIRSH_OPTIONS} define \
-            --file "$domainXMLFile" \
+        --file "$domainXMLFile" \
         && virsh ${VIRSH_OPTIONS} dumpxml "$domainName" \
         && virsh ${VIRSH_OPTIONS} domuuid "$domainName"
 }
@@ -220,7 +210,7 @@ function f_libvirt_domain_setup_manual {
     # Duplicate template and edit it
     local domainXMLFile="$domainXMLDir/${domainName}.xml"
     mkdir -p "$domainXMLDir"
-    xmlstarlet ed -u "//domain/name" -v "$domainName" "$domainTemplateXMLFile" > "$domainXMLFile"
+    xmlstarlet ed -u "//domain/name" -v "$domainName" "$domainTemplateXMLFile" >"$domainXMLFile"
     sed -i "s/__VCPU__/$vcpu/g" "$domainXMLFile"
     sed -i "s/__MEMORY__/$memory/g" "$domainXMLFile"
     sed -i "s/__HOSTFWD__/$hostForward/g" "$domainXMLFile"
@@ -293,14 +283,12 @@ function f_libvirt_domain_setup_generic_virtual {
     shift
     shift
     shift
-    
+
     # Pick virtualization engine
     local virt_type="qemu"
-    if is_linux ; 
-    then
+    if is_linux; then
         virt_type="kvm"
-    elif is_macos ; 
-    then
+    elif is_macos; then
         virt_type="hvf"
     fi
 
@@ -322,10 +310,8 @@ function f_libvirt_domain_setup_generic_virtual {
         $@
 
     # Copy vm definition
-    virsh dumpxml --domain "$domainName" --inactive > "$domainXMLFile"
+    virsh dumpxml --domain "$domainName" --inactive >"$domainXMLFile"
 }
-
-
 
 function f_libvirt_domain_setup_generic_manual {
     local releaseName="${1}"
@@ -349,8 +335,7 @@ function f_libvirt_domain_setup_generic_manual {
     local domainXMLDir="${16}"
 
     # Basic vm settings
-    if [[ "$desktopMode" == "0" ]];
-    then
+    if [[ "$desktopMode" == "0" ]]; then
         vcpu=4
         memory=4
     else
@@ -396,13 +381,11 @@ function f_libvirt_domain_setup_ubuntu_generic {
     local desktopMode="NO_MODE"
     local hostForward="NO_HOST_FW"
 
-    if [[ "$method" == "manual_install" ]];
-    then
+    if [[ "$method" == "manual_install" ]]; then
         domainName="$5"
         desktopMode="${6:-1}"
         hostForward="$7"
-    elif [[ "$method" == "virt_install" ]];
-    then
+    elif [[ "$method" == "virt_install" ]]; then
         shift # releaseName
         shift # imgURL
         shift # imgLiveCDURL
@@ -413,9 +396,15 @@ function f_libvirt_domain_setup_ubuntu_generic {
 
         while true; do
             case "$1" in
-                --name ) domainName="$2"; shift ;;
-                -- ) shift; break ;;
-                * ) break ;;
+                --name)
+                    domainName="$2"
+                    shift
+                    ;;
+                --)
+                    shift
+                    break
+                    ;;
+                *) break ;;
             esac
         done
 
@@ -435,23 +424,21 @@ function f_libvirt_domain_setup_ubuntu_generic {
     local domainXMLDir="$PWD/${domainName}"
 
     # Download images
-    if [[ "$desktopMode" == "0" ]];
-    then
+    if [[ "$desktopMode" == "0" ]]; then
         wget --no-timestamping -O "$imgOSLiveOriginalFile" -nc "$imgLiveCDURL"
     else
         wget --no-timestamping -O "$imgOSOriginalFile" -nc "$imgURL"
     fi
 
     # Build instance
-    if [[ "$method" == "manual_install" ]];
-    then
+    if [[ "$method" == "manual_install" ]]; then
 
         # Customize Ubuntu OS disk via cloud-init
         # src: https://cloudinit.readthedocs.io/en/latest/topics/examples.html#yaml-examples
         # https://askubuntu.com/a/1081171/226227
         # cloud-init options: https://cloudinit.readthedocs.io/en/latest/topics/modules.html
 
-cat > "$userDataFile" <<EOF
+        cat >"$userDataFile" <<EOF
 #cloud-config
 instance-id: $(uuidgen || echo i-abcdefg)"
 password: ubuntu
@@ -464,7 +451,7 @@ EOF
 
         local domainXMLTemplateFile="$LIBVIRT_THIS_PLUGIN_DIR/image-builder/ubuntu/domain-template.xml"
 
-        f_libvirt_domain_setup_generic_manual  \
+        f_libvirt_domain_setup_generic_manual \
             "$releaseName" \
             "$domainName" \
             "$desktopMode" \
@@ -482,11 +469,10 @@ EOF
             "$domainOSName" \
             "$domainXMLDir"
 
-    elif [[ "$method" == "virt_install" ]];
-    then
+    elif [[ "$method" == "virt_install" ]]; then
         local domainXMLFile="$domainXMLDir/${domainName}.xml"
 
-        f_libvirt_domain_setup_generic_virtual  \
+        f_libvirt_domain_setup_generic_virtual \
             "$releaseName" \
             "$domainName" \
             "$desktopMode" \
@@ -508,8 +494,6 @@ EOF
     fi
 }
 
-
-
 function f_libvirt_domain_setup_ubuntu_2204 {
     f_libvirt_domain_setup_ubuntu_generic \
         "jammy" \
@@ -518,7 +502,6 @@ function f_libvirt_domain_setup_ubuntu_2204 {
         $@
 }
 
-
 function f_libvirt_domain_setup_ubuntu_2004 {
     f_libvirt_domain_setup_ubuntu_generic \
         "focal" \
@@ -526,4 +509,3 @@ function f_libvirt_domain_setup_ubuntu_2004 {
         "https://releases.ubuntu.com/20.04/ubuntu-20.04.5-desktop-amd64.iso" \
         $@
 }
-

@@ -2,6 +2,6 @@
 (
     (
         flock --nonblock 9 || exit 0
-        ( brew services list | grep "mpd" | grep -v "started" && brew services start mpd ) || true
-    ) 9>/tmp/shellrc.mpd.lock > /dev/null & 
+        (brew services list | grep "mpd" | grep -v "started" && brew services start mpd) || true
+    ) 9>/tmp/shellrc.mpd.lock >/dev/null &
 )

@@ -1,34 +1,34 @@
 # Keep is_xxx in sync with install/comman/shell/os.sh
-is_macos () {
+is_macos() {
     case "$(uname -sr)" in
         Darwin*)
-        return 0
-        ;;
+            return 0
+            ;;
         *)
-        return 1
-        ;;
+            return 1
+            ;;
     esac
 }
 
-is_linux () {
+is_linux() {
     case "$(uname -sr)" in
         Linux*)
-        return 0
-        ;;
+            return 0
+            ;;
         *)
-        return 1
-        ;;
+            return 1
+            ;;
     esac
 }
 
-is_fedora () {
+is_fedora() {
     case "$(grep -E '^(ID)=' /etc/os-release | cut -d'=' -f 2)" in
         fedora*)
-        return 0
-        ;;
+            return 0
+            ;;
         *)
-        return 1
-        ;;
+            return 1
+            ;;
     esac
 }
 
@@ -41,11 +41,11 @@ get_os_type() {
     echo "unknown" && return 0
 }
 
-is_bash () {
+is_bash() {
     test -n "$BASH_VERSION"
 }
 
-is_zsh () {
+is_zsh() {
     test -n "$ZSH_VERSION"
 }
 
@@ -57,8 +57,7 @@ get_shell_type() {
 }
 
 homebrew_packages_path_prefix() {
-    if test -z "$HOMEBREW_PACKAGES_INSTALL_DIR_PREFIX"
-    then 
+    if test -z "$HOMEBREW_PACKAGES_INSTALL_DIR_PREFIX"; then
         # Cache homebrew install path prefix to avoid (~1s) slowdown when invoking a new shell
         local homebrew_packages_path="$(brew --prefix)/opt"
         HOMEBREW_PACKAGES_INSTALL_DIR_PREFIX="$homebrew_packages_path"
@@ -105,14 +104,12 @@ manpath_prepend() {
 }
 
 command_exists() {
-  command -v $1 > /dev/null 2>&1
+    command -v $1 >/dev/null 2>&1
 }
 
 exec_if_exists() {
-  if [[ -x $1 ]]
-  then
-    echo exec $*
-    exec $*
-  fi
+    if [[ -x $1 ]]; then
+        echo exec $*
+        exec $*
+    fi
 }
-

@@ -3,9 +3,9 @@
 alias ssh_key_generate_rsa_4096='ssh-keygen -t rsa -b 4096 -C '
 alias ssh_key_generate_ed25519='ssh-keygen -t ed25519 -C '
 
-# Fix SSH key pair. Typically you want: 
-# - .ssh directory permissions to be 700 (drwx------) 
-# - public key (.pub file) to be 644 (-rw-r--r--). 
+# Fix SSH key pair. Typically you want:
+# - .ssh directory permissions to be 700 (drwx------)
+# - public key (.pub file) to be 644 (-rw-r--r--).
 # - private key (id_rsa) should be 600 (-rw-------).
 # Usage: ssh_key_protect /path/to/key.rsa
 alias ssh_key_protect='chmod 700'
@@ -33,5 +33,5 @@ alias ssh_audit_client='docker run -it --rm --name ssh_audit -p 2222:2222 positr
 
 # Run SSH server config audit
 # Usage: ssh_audit_server "some.ssh.server.ip"
-# src: https://github.com/jtesta/ssh-audit#server-standard-audit-example 
+# src: https://github.com/jtesta/ssh-audit#server-standard-audit-example
 alias ssh_audit_server='docker run -it --rm --name sshd_audit positronsecurity/ssh-audit '

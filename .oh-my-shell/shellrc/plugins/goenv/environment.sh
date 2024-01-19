@@ -8,4 +8,3 @@ eval "$(goenv init -)"
 # Let goenv manager GOROOT / GOPATH
 path_append "$GOROOT"
 path_append "$GOPATH"
-

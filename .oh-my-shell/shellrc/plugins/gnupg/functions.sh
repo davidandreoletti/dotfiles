@@ -8,13 +8,16 @@ gnupg_export_public_and_private_key() {
 
     local epheremalStorageDuration="600s"
     local tmpDir="$(f_create_ramfs 10)"
-    ( sleep $epheremalStorageDuration; f_delete_ramfs "$tmpDir" ) &
+    (
+        sleep $epheremalStorageDuration
+        f_delete_ramfs "$tmpDir"
+    ) &
 
     local exportedKeysFile="$tmpDir/$fingerprint.asc"
-    command cat <( GNUPGHOME="$LOCAL_GNUPGHOME" gpg --output - --armor --export --export-options export-backup "$fingerprint" ) \
-                <( echo "@@@THIS_IS_A_SPERATOR_@@@" ) \
-                <( GNUPGHOME="$LOCAL_GNUPGHOME" gpg --output - --armor --export-secret-key --export-options export-backup "$fingerprint" ) \
-                > "$exportedKeysFile"
+    command cat <(GNUPGHOME="$LOCAL_GNUPGHOME" gpg --output - --armor --export --export-options export-backup "$fingerprint") \
+        <(echo "@@@THIS_IS_A_SPERATOR_@@@") \
+        <(GNUPGHOME="$LOCAL_GNUPGHOME" gpg --output - --armor --export-secret-key --export-options export-backup "$fingerprint") \
+        >"$exportedKeysFile"
 
     echo "Exported file available at $exportedKeysFile. PS: File will be deleted in $epheremalStorageDuration."
 }
@@ -28,8 +31,7 @@ gnupg_import_public_and_private_key() {
     local LOCAL_GNUPGHOME="${2:-$GNUPGHOME}"
 
     csplit --quiet "$exportedKeysFile" "/@@@THIS_IS_A_SPERATOR_@@@/"
-    for f in "xx00" "xx01"
-    do
+    for f in "xx00" "xx01"; do
         GNUPGHOME="$LOCAL_GNUPGHOME" gpg --import "$f"
         command rm -fv "$f"
     done
@@ -41,7 +43,7 @@ gnupg_import_public_and_private_key() {
 gnupg_create_ephemeral_gnupghome() {
     local tmpDir="${1:-$(mktemp -d)}"
     local LOCAL_GNUPGHOME="$(mktemp -d --tmpdir="$tmpDir")"
-    echo "$LOCAL_GNUPGHOME" 
+    echo "$LOCAL_GNUPGHOME"
 }
 
 #
@@ -62,8 +64,7 @@ gnupg_create_recommended_master_key() {
     local conffile="${8:-"$LOCAL_GNUPGHOME/tmp_create_master_key_config.conf"}"
     local statusfile="$LOCAL_GNUPGHOME/tmp_create_master_key-$name-$email-$duration-$algo-$capabilities.status"
 
-
-cat >"$conffile" <<EOF
+    cat >"$conffile" <<EOF
         %echo Master GPG key: Begin generating
         Key-Type: eddsa
         Key-Curve: $algo
@@ -84,7 +85,7 @@ EOF
         --status-file "$statusfile" \
         --full-gen-key "$conffile"
 
-        #--faked-system-time "20010101T010101!" 
+    #--faked-system-time "20010101T010101!"
 
     masterKeyFingerprint=$(GNUPGHOME="$LOCAL_GNUPGHOME" gpg --list-options show-only-fpr-mbox --list-secret-keys | awk '{print $1}')
     echo "$masterKeyFingerprint"
@@ -109,7 +110,7 @@ gnupg_create_recommended_sub_key() {
         --status-file "$statusfile" \
         --quick-add-key "$masterKeyFingerprint" "$algo" "$capabilities" "$duration" <<<"$passphrase"
 
-        #--faked-system-time "20010101T010101!" 
+    #--faked-system-time "20010101T010101!"
 
     subKeyFingerprint=$(grep "KEY_CREATED" "$statusfile" | cut -d ' ' -f 4)
     echo "$subKeyFingerprint"
@@ -123,7 +124,7 @@ gnupg_lint_key() {
     GNUPGHOME="$LOCAL_GNUPGHOME" gpg --options "$HOME/.gnupg/gpg.conf" \
         --export "$fingerprint" | hokey lint
 
-    # Note: 
+    # Note:
     # - hokey does not support ECC key well yet: FIXE https://github.com/riseupnet/riseup_help/issues/451
     # - only signing subkey requires embedded cross certification with master key (https://git.gnupg.org/cgi-bin/gitweb.cgi?p=gnupg.git;a=blob;f=g10/keyedit.c;h=1456d286784d32b43d96aa19a9c8b923e2b49a83;hb=e926f30a1cda75f6334b79c303b5134f0441a3dc#l5091)
 }
@@ -144,15 +145,15 @@ gnupg_create_revocation_certificate_for_key() {
     local fingerprint="$key"
 
     if [[ ${isMasterKey} == 1 ]]; then
-		subkey=0
-		exp_confirm='Do you really want to revoke the entire key?'
-	else
-		subkey=${key}
-		exp_confirm='Do you really want to revoke this subkey?'
-	fi
+        subkey=0
+        exp_confirm='Do you really want to revoke the entire key?'
+    else
+        subkey=${key}
+        exp_confirm='Do you really want to revoke this subkey?'
+    fi
 
-	# Note: Use expect -d to debug execution
-	GNUPGHOME="${LOCAL_GNUPGHOME2}" expect  - <<-EOF > /dev/null 2>&1
+    # Note: Use expect -d to debug execution
+    GNUPGHOME="${LOCAL_GNUPGHOME2}" expect - <<-EOF >/dev/null 2>&1
 		set timeout -1
 		match_max 100000
 		spawn gpg --options "$HOME/.gnupg/gpg.conf" --edit-key ${key}
@@ -193,18 +194,18 @@ gnupg_create_revocation_certificate_for_key() {
             \nthe 5 dashes below, before importing and publishing this revocation\
             \ncertificate\
             \n\n:%s" \
-            "$fingerprint" "$keyBlock" > "$fileCert"
+        "$fingerprint" "$keyBlock" >"$fileCert"
     command cp "$fileCert" "$LOCAL_GNUPGHOME_REVOCS_DIR/"
-	return $?
+    return $?
 }
 
-# Create master + sub key with distinct capabilities, with revocation certificate 
+# Create master + sub key with distinct capabilities, with revocation certificate
 # as well as following best practices
-# 
+#
 # Usage: function "John Doe" "john@example.com" "1y"
 #
-# Inspiration: 
-# - master key/sub key: 
+# Inspiration:
+# - master key/sub key:
 # -- https://gist.github.com/fervic/ad30e9f76008eade565be81cef2f8f8c
 # -- https://www.alessandromenti.it/blog/2017/01/transitioning-new-gpg-keypair.html
 # -- https://blog.eleven-labs.com/en/openpgp-almost-perfect-key-pair-part-1/
@@ -214,7 +215,10 @@ gnupg_create_revocation_certificate_for_key() {
 gnupg_create_CSEA_key() {
     local epheremalStorageDuration="600s"
     local tmpDir="$(f_create_ramfs 10)"
-    ( sleep $epheremalStorageDuration; f_delete_ramfs "$tmpDir" ) &
+    (
+        sleep $epheremalStorageDuration
+        f_delete_ramfs "$tmpDir"
+    ) &
     local OUT="$tmpDir/out"
 
     local DAILY_GNUPGHOME="$HOME/.gnupg"
@@ -240,22 +244,21 @@ gnupg_create_CSEA_key() {
 
     echo "Set the master key's + sub keys passphrase:"
     echo "NOTE: You will be asked for the passphrase several times."
-    read -r -s  passphrase
+    read -r -s passphrase
 
     # Master key: certify all sub-keys only
-    local masterKeyFingerprint=$(gnupg_create_recommended_master_key "$LOCAL_GNUPGHOME"                        "$name" "$email" "$duration" "$keyPairAlgo" "cert" "$passphrase")
+    local masterKeyFingerprint=$(gnupg_create_recommended_master_key "$LOCAL_GNUPGHOME" "$name" "$email" "$duration" "$keyPairAlgo" "cert" "$passphrase")
     # Sub-key 1: sign only
-    local subkeyFingerprint1=$(gnupg_create_recommended_sub_key      "$LOCAL_GNUPGHOME" "$masterKeyFingerprint" "$name" "$email" "$duration" "$keyPairAlgo" "sign" "$passphrase")
+    local subkeyFingerprint1=$(gnupg_create_recommended_sub_key "$LOCAL_GNUPGHOME" "$masterKeyFingerprint" "$name" "$email" "$duration" "$keyPairAlgo" "sign" "$passphrase")
     # Sub-key 1: encrypt only
-    local subkeyFingerprint2=$(gnupg_create_recommended_sub_key      "$LOCAL_GNUPGHOME" "$masterKeyFingerprint" "$name" "$email" "$duration" "$keyPairAlgo2" "encrypt" "$passphrase")
+    local subkeyFingerprint2=$(gnupg_create_recommended_sub_key "$LOCAL_GNUPGHOME" "$masterKeyFingerprint" "$name" "$email" "$duration" "$keyPairAlgo2" "encrypt" "$passphrase")
     # Sub-key 1: authenticate only
-    local subkeyFingerprint3=$(gnupg_create_recommended_sub_key      "$LOCAL_GNUPGHOME" "$masterKeyFingerprint" "$name" "$email" "$duration" "$keyPairAlgo" "auth" "$passphrase")
+    local subkeyFingerprint3=$(gnupg_create_recommended_sub_key "$LOCAL_GNUPGHOME" "$masterKeyFingerprint" "$name" "$email" "$duration" "$keyPairAlgo" "auth" "$passphrase")
 
     # Lint master + sub keys
     gnupg_lint_key "$LOCAL_GNUPGHOME" "$masterKeyFingerprint"
 
-    if [ "$confirmStep" -eq "0" ];
-    then
+    if [ "$confirmStep" -eq "0" ]; then
         echo "Confirmation: gpg keys setup (above)."
         echo " - GREEN values: Best practice followed"
         echo " - RED values: Potential security issue"
@@ -278,8 +281,7 @@ gnupg_create_CSEA_key() {
     # Generate revocation certificate for the master/sub keys, in openpgp-revocs.d
     (command cp -R "$LOCAL_GNUPGHOME/." "$LOCAL_GNUPGHOME2/" && mkdir -p "$LOCAL_GNUPGHOME2_REVOCS_DIR") >/dev/null 2>&1
     # Note: Master key revocation certificate ALREADY GENERATED WITH gnupg_create_recommended_master_key
-    for fingerprint in "$subkeyFingerprint1" "$subkeyFingerprint2" "$subkeyFingerprint3"
-    do
+    for fingerprint in "$subkeyFingerprint1" "$subkeyFingerprint2" "$subkeyFingerprint3"; do
         gnupg_create_revocation_certificate_for_key \
             "$LOCAL_GNUPGHOME2" "$LOCAL_GNUPGHOME2_REVOCS_DIR" \
             "$LOCAL_GNUPGHOME" "$LOCAL_GNUPGHOME_REVOCS_DIR" \
@@ -293,18 +295,18 @@ gnupg_create_CSEA_key() {
     local subKeyRevocationCert3="$LOCAL_GNUPGHOME_REVOCS_DIR/$subkeyFingerprint3.rev"
 
     # Verify all revocation certificates have been created
-    [ "$stopOnFailure" -eq "0" ] && [ ! -f "$masterKeyRevocationCert" ] && \
-        echo "ERROR: Revocation cert for master key $masterKeyFingerprint not generated: $masterKeyRevocationCert" && \
-        return
-    [ "$stopOnFailure" -eq "0" ] && [ ! -f "$subKeyRevocationCert1" ] && \
-        echo "ERROR: Revocation cert for sub key $masterKeyFingerprint/$subKeyRevocationCert1 not generated: $subKeyRevocationCert1" && \
-        return
-    [ "$stopOnFailure" -eq "0" ] && [ ! -f "$subKeyRevocationCert2" ] && \
-        echo "ERROR: Revocation cert for sub key $masterKeyFingerprint/$subKeyRevocationCert2 not generated: $subKeyRevocationCert2" && \
-        return
-    [ "$stopOnFailure" -eq "0" ] && [ ! -f "$subKeyRevocationCert3" ] && \
-        echo "ERROR: Revocation cert for sub key $masterKeyFingerprint/$subKeyRevocationCert3 not generated: $subKeyRevocationCert3" && \
-        return
+    [ "$stopOnFailure" -eq "0" ] && [ ! -f "$masterKeyRevocationCert" ] \
+        && echo "ERROR: Revocation cert for master key $masterKeyFingerprint not generated: $masterKeyRevocationCert" \
+        && return
+    [ "$stopOnFailure" -eq "0" ] && [ ! -f "$subKeyRevocationCert1" ] \
+        && echo "ERROR: Revocation cert for sub key $masterKeyFingerprint/$subKeyRevocationCert1 not generated: $subKeyRevocationCert1" \
+        && return
+    [ "$stopOnFailure" -eq "0" ] && [ ! -f "$subKeyRevocationCert2" ] \
+        && echo "ERROR: Revocation cert for sub key $masterKeyFingerprint/$subKeyRevocationCert2 not generated: $subKeyRevocationCert2" \
+        && return
+    [ "$stopOnFailure" -eq "0" ] && [ ! -f "$subKeyRevocationCert3" ] \
+        && echo "ERROR: Revocation cert for sub key $masterKeyFingerprint/$subKeyRevocationCert3 not generated: $subKeyRevocationCert3" \
+        && return
 
     local secretKeysFile="$PWD/$masterKeyFingerprint-master_and_subs_secret-keys.asc"
     local publicKeysFile="$PWD/$masterKeyFingerprint-master_and_subs-public-keys.asc"
@@ -313,45 +315,43 @@ gnupg_create_CSEA_key() {
     GNUPGHOME="$LOCAL_GNUPGHOME" gpg --options "$HOME/.gnupg/gpg.conf" \
         --armor \
         --export --export-options export-backup \
-        --output "$publicKeysFile" "$masterKeyFingerprint" > /dev/null 2>&1
+        --output "$publicKeysFile" "$masterKeyFingerprint" >/dev/null 2>&1
 
     # Export secret keys only (master + all subs) as backup
     GNUPGHOME="$LOCAL_GNUPGHOME" gpg --options "$HOME/.gnupg/gpg.conf" \
         --armor \
         --export-secret-keys --export-options export-backup \
-        --output "$secretKeysFile" "$masterKeyFingerprint" > /dev/null 2>&1
+        --output "$secretKeysFile" "$masterKeyFingerprint" >/dev/null 2>&1
 
     # Change master + sub key passphrase
     # FIXME
 
     # Move all important artefacts (keys)
-    mkdir -p "$OUT" && \
-        command mv "$secretKeysFile"          "$OUT/"   && \
-        command mv "$publicKeysFile"          "$OUT/"
+    mkdir -p "$OUT" \
+        && command mv "$secretKeysFile" "$OUT/" \
+        && command mv "$publicKeysFile" "$OUT/"
 
     secretKeysFile="$OUT/$(basename "$secretKeysFile")"
     publicKeysFile="$OUT/$(basename "$publicKeysFile")"
 
-    # Verify all public / private keys have been exported 
-    for fingerprint in "$masterKeyFingerprint" "$subkeyFingerprint1" "$subkeyFingerprint2" "$subkeyFingerprint3"
-    do
+    # Verify all public / private keys have been exported
+    for fingerprint in "$masterKeyFingerprint" "$subkeyFingerprint1" "$subkeyFingerprint2" "$subkeyFingerprint3"; do
         # Public keys
         GNUPGHOME="$LOCAL_GNUPGHOME" gpg --options "$HOME/.gnupg/gpg.conf" \
-            --with-fingerprint --with-subkey-fingerprint --with-colons "$publicKeysFile" 2>&1 | \
-            grep "$fingerprint" > /dev/null 2>&1
-        [ "$?" -ne "0" ] && [ "$stopOnFailure" -eq "0" ] && echo "ERROR: Exported public key missing: $fingerprint" && return 
+            --with-fingerprint --with-subkey-fingerprint --with-colons "$publicKeysFile" 2>&1 \
+            | grep "$fingerprint" >/dev/null 2>&1
+        [ "$?" -ne "0" ] && [ "$stopOnFailure" -eq "0" ] && echo "ERROR: Exported public key missing: $fingerprint" && return
 
         # Private keys
         GNUPGHOME="$LOCAL_GNUPGHOME" gpg --options "$HOME/.gnupg/gpg.conf" \
             --with-colons --import-options show-only --import --fingerprint \
-            < "$secretKeysFile" 2>&1 | \
-            grep "$fingerprint" > /dev/null 2>&1
-        [ "$?" -ne "0" ] && [ "$stopOnFailure" -eq "0" ] && echo "ERROR: Exported private key missing: $fingerprint" && return 
+            <"$secretKeysFile" 2>&1 \
+            | grep "$fingerprint" >/dev/null 2>&1
+        [ "$?" -ne "0" ] && [ "$stopOnFailure" -eq "0" ] && echo "ERROR: Exported private key missing: $fingerprint" && return
     done
 
     # Verify all revocation certificates have been exported
-    for cert in "$masterKeyRevocationCert" "$subKeyRevocationCert1" "$subKeyRevocationCert2" "$subKeyRevocationCert3"
-    do
+    for cert in "$masterKeyRevocationCert" "$subKeyRevocationCert1" "$subKeyRevocationCert2" "$subKeyRevocationCert3"; do
         command mv "$cert" "$OUT/"
         [ "$?" -ne "0" ] && [ "$stopOnFailure" -eq "0" ] && echo "ERROR: Exported revocation cert missing $cert" && return
     done
@@ -365,26 +365,24 @@ gnupg_create_CSEA_key() {
     # FIXME: https://github.com/torvalds/linux/blob/master/Documentation/process/maintainer-pgp-guide.rst
     # FIXME: https://rudd-o.com/linux-and-free-software/protecting-your-private-master-key-in-gnupg-2-1-and-later
     # FIXME: https://cheatsheets.chaospixel.com/gnupg/
-    if [ "$importIntoDailyKeyring" -eq "0" ]; 
-    then
+    if [ "$importIntoDailyKeyring" -eq "0" ]; then
         # Import keys
         echo "Importing newly created public+secret master/sub keys into $HOME/.gnupg default keyring"
-        GNUPGHOME="$DAILY_GNUPGHOME" gpg --import "$publicKeysFile" 
-        [ "$?" -ne "0" ] && [ "$stopOnFailure" -eq "0" ] && echo "ERROR: Importing new public master/sub keys into $DAILY_GNUPGHOME: $publicKeysFile" && return 
+        GNUPGHOME="$DAILY_GNUPGHOME" gpg --import "$publicKeysFile"
+        [ "$?" -ne "0" ] && [ "$stopOnFailure" -eq "0" ] && echo "ERROR: Importing new public master/sub keys into $DAILY_GNUPGHOME: $publicKeysFile" && return
         GNUPGHOME="$DAILY_GNUPGHOME" gpg --import "$secretKeysFile"
-        [ "$?" -ne "0" ] && [ "$stopOnFailure" -eq "0" ] && echo "ERROR: Importing new private master/sub keys into $DAILY_GNUPGHOME: $secretKeysFile" && return 
+        [ "$?" -ne "0" ] && [ "$stopOnFailure" -eq "0" ] && echo "ERROR: Importing new private master/sub keys into $DAILY_GNUPGHOME: $secretKeysFile" && return
 
         # Import revocation certificates
-        for cert in "$masterKeyRevocationCert" "$subKeyRevocationCert1" "$subKeyRevocationCert2" "$subKeyRevocationCert3"
-        do
+        for cert in "$masterKeyRevocationCert" "$subKeyRevocationCert1" "$subKeyRevocationCert2" "$subKeyRevocationCert3"; do
             command cp "$cert" "$DAILY_GNUPGHOME_REVOCS_DIR/"
             [ "$?" -ne "0" ] && [ "$stopOnFailure" -eq "0" ] && echo "ERROR: Importing revocation cert $cert into $DAILY_GNUPGHOME" && return
         done
     else
-       echo "Generated master + sub keys available at $LOCAL_GNUPGHOME. IMPORTANT: Files be deleted in $epheremalStorageDuration"
-       echo "This directory is a RAM backed directory. Press ENTER to wipe out"
-       echo "Suggestion: Copy the directory elsewhere to not loose the generated keys"
-       read -r 
+        echo "Generated master + sub keys available at $LOCAL_GNUPGHOME. IMPORTANT: Files be deleted in $epheremalStorageDuration"
+        echo "This directory is a RAM backed directory. Press ENTER to wipe out"
+        echo "Suggestion: Copy the directory elsewhere to not loose the generated keys"
+        read -r
     fi
 
     #
@@ -392,7 +390,7 @@ gnupg_create_CSEA_key() {
     # FIXME - https://spin.atomicobject.com/2013/11/24/secure-gpg-keys-guide/
 }
 
-f_gnupg_home_fix_files_and_folders_permissions () {
+f_gnupg_home_fix_files_and_folders_permissions() {
     local gnupgDir="${1:-"$HOME/.gnupg"}"
     chmod 700 "$gnupgDir"
     find -L "$gnupgDir" -type f -exec chmod -v 600 {} \;
@@ -406,7 +404,7 @@ f_gnupg_home_fix_files_and_folders_permissions () {
 # FIXME create utility functions to revoke a key
 # FIXME create utility functions to sig  git commit (always, one off)
 # FIXME setup mutt with pgp
-# - All these above are documented at: 
+# - All these above are documented at:
 # - https://thoughtbot.com/blog/pgp-and-you
 
 # FIXME nonintercative publish/trust keys
@@ -432,15 +430,13 @@ f_gnupg_home_fix_files_and_folders_permissions () {
 # cat <(gpg -K) <(gpg -k) | grep -A1 "ssb\|sec" | sed '/^--$/d' | grep --invert-match "ssb\|sec" | sed '/^--$/d' | xargs -n1 -I {} gpg --batch --yes --delete-keys {} \;
 
 # Encrypt file
-#echo "TEST" > file.txt; gpg --output file.gpg --encrypt --recipient david@andreoletti.net file.txt; 
+#echo "TEST" > file.txt; gpg --output file.gpg --encrypt --recipient david@andreoletti.net file.txt;
 
 # Sign content to be encrypted
-#shasum -a 256 file.txt | awk '{print $1}' > file.txt.sha256sum; gpg --output file.txt.sha256sum.sig --sign file.txt.sha256sum; cat file.txt.sha256sum; 
+#shasum -a 256 file.txt | awk '{print $1}' > file.txt.sha256sum; gpg --output file.txt.sha256sum.sig --sign file.txt.sha256sum; cat file.txt.sha256sum;
 
 # Decrypt file
 #command rm file.txt; gpg --output file.txt --decrypt file.gpg;
 
 # Verify decrypted file was not compromised
 #cat file.txt; gpg --verify file.txt.sha256sum.sig
-
-

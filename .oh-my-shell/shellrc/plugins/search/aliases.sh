@@ -13,7 +13,7 @@ alias search_code_fragment='f_search_code_fragment '
 # % search, any, doc
 # # Find PATTERN in any kind of doc
 # ; search_anything
-alias search_anything ='f_search_anything '
+alias search_anything='f_search_anything '
 
 # FIXME: what to do with this ?
 #function showLargestFilesHeldOpen() {
@@ -26,4 +26,3 @@ alias search_anything ='f_search_anything '
 #    | sort -n -u -r \
 #    | numfmt  --field=1 --to=iec
 #}
-

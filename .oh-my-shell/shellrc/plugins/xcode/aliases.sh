@@ -13,4 +13,3 @@ command rm -rfv /private/var/folders/dk/*/C/com.apple.DeveloperTools/*/
 echo "Delete unused simulators"
 xcrun simctl delete unavailable
 )'
-

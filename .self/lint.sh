@@ -11,46 +11,48 @@ set -euo pipefail
 ##?    --no-bash          Skip bash lints
 
 f_all_dotfiles_files() {
-   local dir="$1"
-   find "$dir/.oh-my-shell" -iname "*.sh" -type f
-   find "$dir/.bin" -executable -type f
-   find "$dir/.self" -iname "*.sh" -type f
-   find "$dir/" -maxdepth 1 -iname "*.sh" -type f
-   find "$dir/" -maxdepth 1 -iname "*.zsh" -type f
-   find "$dir/" -maxdepth 1 -iname "*.bash" -type f
+    local dir="$1"
+    find "$dir/.oh-my-shell" -iname "*.sh" -type f
+    find "$dir/.bin" -executable -type f
+    find "$dir/.self" -iname "*.sh" -type f
+    find "$dir/" -maxdepth 1 -iname "*.sh" -type f
+    find "$dir/" -maxdepth 1 -iname "*.zsh" -type f
+    find "$dir/" -maxdepth 1 -iname "*.bash" -type f
 }
 
 f_dedupe() {
-   sort -u
+    sort -u
 }
 
 f_filter() {
-   grep -v '.py\|beautify\|docopts\|node_modules\|modules\|clojure/compile\|info/bar\|vscode\|hushlogin\|DS_S\|bin/dot|themes/core.zsh'
+    grep -v '.py\|beautify\|docopts\|node_modules\|modules\|clojure/compile\|info/bar\|vscode\|hushlogin\|DS_S\|bin/dot|themes/core.zsh'
 }
 
 f_all_dotfiles_files_to_format() {
-   local dir="$1"
+    local dir="$1"
 
-   f_all_dotfiles_files "$dir" \
-      | f_dedupe \
-      | f_filter \
-      | sed "s|${dir}|.|g"
+    f_all_dotfiles_files "$dir" \
+        | f_dedupe \
+        | f_filter \
+        | sed "s|${dir}|.|g"
 }
 
 PARRALLEL=$(nproc)
-for dir in "$DOTFILES_HOME_LOCAL" "$DOTFILES_PRIVATE_HOME_LOCAL"
-do
+for dir in "$DOTFILES_HOME_LOCAL" "$DOTFILES_PRIVATE_HOME_LOCAL"; do
+    echo "Formatting ..."
     # Format scripts
     f_all_dotfiles_files_to_format "$dir" \
         | f_dedupe \
-        | xargs -I% -n1 -P${PARRALLEL} $DOTFILES_HOME_LOCAL/.self/format.sh list "%"
+        | xargs -I% -n1 -P${PARRALLEL} $DOTFILES_HOME_LOCAL/.self/format.sh write "%"
 
+    echo "Fixing ..."
     # Fix posix scripts only
     f_all_dotfiles_files_to_format "$dir" \
         | f_dedupe \
         | grep "\.sh$" \
         | xargs -I% -n1 -P${PARRALLEL} $DOTFILES_HOME_LOCAL/.self/shellcheck.sh fix "$dir" "%"
 
+    echo "Manual fix requried:"
     # Print unfixable posix scripts only
     f_all_dotfiles_files_to_format "$dir" \
         | f_dedupe \

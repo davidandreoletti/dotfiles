@@ -1,4 +1,4 @@
-function f_shareFile () {
+function f_shareFile() {
     local exiration="$1" # eg: 1d, 2w, 3y
     local filePath="$2"
 

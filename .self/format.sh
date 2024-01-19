@@ -13,4 +13,4 @@ mode="${1:-list}" # accepted: list,write,diff
 filename="$2"
 
 SHFMT_OPTIONS="--indent 4 --case-indent --binary-next-line"
- shfmt --${mode} $SHFMT_OPTIONS "$filename"
+shfmt --${mode} $SHFMT_OPTIONS "$filename"

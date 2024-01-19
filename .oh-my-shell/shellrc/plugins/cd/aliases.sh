@@ -22,4 +22,3 @@ alias cd_stack='dirs -v'
 # Clear directory stack
 # usage: cd_stack_clear
 alias cd_stack_clear='dirs -c'
-

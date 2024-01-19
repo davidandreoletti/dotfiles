@@ -45,4 +45,3 @@ function f_shellrc_plugin_reload() {
 
     dot_plugin_if_exists "$name"
 }
-

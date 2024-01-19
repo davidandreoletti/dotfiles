@@ -11,4 +11,3 @@ alias http_show_traffic="f_http_show_in_out_traffic "
 # (ues tcpdump)
 # Usage: http_show_traffic2 any 80 "GET|POST"
 alias http_show_traffic2="f_http_show_in_out_traffic2 "
-

@@ -1,14 +1,12 @@
 f_run_every_x_seconds() {
     local markerFile="$1"
     local duration="$2"
-    if [ -f "$markerFile" ];
-    then
-        ts1=$(stat -c %Y "$markerFile"); 
-        now=$(date '+%s'); 
-        ts2=$((now - duration)); 
-        if [ "$ts1" -lt "$ts2" ];
-        then 
-            command rm -f "$markerFile" > /dev/null 2>&1;
+    if [ -f "$markerFile" ]; then
+        ts1=$(stat -c %Y "$markerFile")
+        now=$(date '+%s')
+        ts2=$((now - duration))
+        if [ "$ts1" -lt "$ts2" ]; then
+            command rm -f "$markerFile" >/dev/null 2>&1
             return 0
         else
             return 1
@@ -34,7 +32,7 @@ f_run_exclusive() {
         # why 9 ? reason: https://unix.stackexchange.com/a/475427/45954
         flock --exclusive --nonblock --verbose 9 || exit 1
         #exec > >(tee "$logFile") 2>&1;
-        exec "${@:3}";
+        exec "${@:3}"
     ) 9>>"$lockFile"
 }
 
@@ -55,7 +53,7 @@ f_run_exclusive_in_background() {
 
     (
         f_run_exclusive "$lockFile" "$logFile" "${@:3}"
-    ) > "$logFile" 2>&1 &
+    ) >"$logFile" 2>&1 &
 }
 
 f_run_exclusive_in_background_with_completion() {
@@ -67,6 +65,5 @@ f_run_exclusive_in_background_with_completion() {
     (
         f_run_exclusive "$lockFile" "$logFile" "${@:4}"
         f_run_completed "$markerFile"
-    ) > "$logFile" 2>&1 &
+    ) >"$logFile" 2>&1 &
 }
-
