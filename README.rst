@@ -14,37 +14,43 @@ dotfiles can:
   - personal environments
   - work environments
 
-
-*Looking for secrets ? Conf files with secrets are stored elsewhere.*
-
 MOTIVATION:
 ===========
 
 One central place to manage permanent/recurrent software settings:
 
-- simple dotfiles file structure 
-- easy update for config files (everything is a symbolic link)
-- easy install/update for software (via package manager)
-- support for secrets (via dotfiles-private)
+- simple dotfiles file structure
+- easy update for config files
+  - everything is a symbolic link
+- easy install/update for software
+  - package managers do most of the work
+- support for secrets 
+  - everything is stored elsewhere
 
 HIGHLIGHTS:
 ===========
 
-- `*vim`:
-  - *vim: shared config between vim and nvim
-  - nvim: Fast startup: ~45ms
-  -  vim: Reasonable startup: ~300ms
+- `*vim as fast+light featured editor`:
+  - fast startup:
+    - nvim: ~150ms
+    -  vim: ~300ms
+  - vim/nvim common config
 - `shellrc`:
-  - Posix shell initialization manager
-  - load duration:
-    - zsh: ~7s load time (all plugins with completions)
+  - is a POSIX shell plugin initialisation manager
+  - total initialization duration:
+    - zsh:  ~7s (w/ plugins + completions)
       - measured with `shellrc_benchmark_on_zsh`
+    - bash: ~7s (w/ plugins + completions)
+- binaries
+  - rely on GNU binaries when available
+  - prefer virtualenv over global for programming related tools (sdk, runtime, etc)
+  - rolling release - always (ie no pinned binaries)
 
 GET STARTED:
 =============
 
-Overview
----------
+Workflow for a new machine
+---------------------------
 
 1. Bootstrap a machine
 2. Bootstrap conf files (+ updates plugins)
