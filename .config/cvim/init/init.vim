@@ -103,6 +103,17 @@ if g:vimFlavor ==# g:VIM_FLAVOR_VIM
     " => let cvim_plugins.ale = { 'name': 'dense-analysis/ale', 'cmd': [ 'ALEFix', 'ALEGoToDefinition', 'ALEFindReferences', 'ALEHover', 'ALESymbolSearch', 'ALEInfo' ] ,'setting': "$HOME/.config/cvim/settings/ale.vim" }
     "So no lazy load for now 
     let cvim_plugins.ale = { 'name': 'dense-analysis/ale' ,'setting': "$HOME/.config/cvim/settings/ale.vim" }
+elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
+    " Auto completion 
+    let cvim_plugins.nvim_cmp = { 'name': 'hrsh7th/nvim-cmp', 'setting': "$HOME/.config/cvim/settings/nvim_nvim-cmp.lua" }
+    " LSP source for auto completion
+    let cvim_plugins.nvim_cmp = { 'name': 'hrsh7th/cmp-nvim-lsp', 'lazy': 1, 'dependencies': { 'hrsh7th/nvim-cmp':{'lazy': 1} }, }
+    " mason: Language Server Protocols binary installer
+    let cvim_plugins.mason = { 'name': 'williamboman/mason.nvim', 'setting': "$HOME/.config/cvim/settings/nvim_mason.lua" }
+    " Bridge layer between lspconfig and mason
+    let cvim_plugins.mason_lspconfig = { 'name': 'williamboman/mason-lspconfig.nvim', 'dependencies': { 'williamboman/mason.nvim':{'lazy': 1} }, 'setting': "$HOME/.config/cvim/settings/nvim_mason-lspconfig.lua" }
+    " lspconfig: LSP client config
+    let cvim_plugins.lspconfig = { 'name': 'neovim/nvim-lspconfig', 'dependencies': { 'williamboman/mason-lspconfig.nvim':{'lazy': 1} }, 'setting': "$HOME/.config/cvim/settings/nvim_lspconfig.lua" }
 endif
 " Fast way to reach/search:
 " - buffers (: Buffers)
