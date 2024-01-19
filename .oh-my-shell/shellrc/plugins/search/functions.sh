@@ -1,6 +1,15 @@
-# Searching for file content
-#https://github.com/junegunn/fzf/wiki/examples#searching-file-contents
-#grep --line-buffered --color=never -r "" * | fzf
+function f_search_code_fragment() {
+    local pattern="$1"
+    local dir="${2:-.}"
 
-# with ag - respects .agignore and .gitignore
-#ag --nobreak --nonumbers --noheading . | fzf
+    # with ag - respects .agignore and .gitignore
+    ag --nobreak --nonumbers --noheading "$pattern" $dir 
+}
+
+function f_search_anything () {
+    local pattern="$1"
+    local dir="${2:-.}"
+
+    # with ag - respects .agignore and .gitignore
+    rga --rga-accurate "$pattern" $dir
+}

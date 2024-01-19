@@ -1,27 +1,21 @@
+# % search, directory, largest
+# # Find largest directory, sorted by largest to smaller
+# # https://serverfault.com/a/156648
+# # regquires gnu coreutils
+# ; search_largest_dirs_asc
+alias search_largest_dirs_asc='du -hs * | sort -h'
 
-# ff:  to find a file under the current directory
-ff () { find . -name "$@" ; }
+# % search, code
+# # Find PATTERN code fragment
+# ; search_code_fragment
+alias search_code_fragment='f_search_code_fragment '
 
-# grepfind: to grep through files found by find, e.g. grepf pattern '*.c'
-# note that 'grep -r pattern dir_name' is an alternative if want all files 
-ffwithPattern_() { find . -type f -name "$2" -print0 | xargs -0 grep "$1" ; }
-# I often can't recall what I named this alias, so make it work either way: 
-alias ffp='ffwithPattern_'
+# % search, any, doc
+# # Find PATTERN in any kind of doc
+# ; search_anything
+alias search_anything ='f_search_anything '
 
-# grepfind: grep the whole dir
-alias ffpg='egrep -R $1'
-
-## Finds directory sizes and lists them for the current directory
-function dirsize_()
-{
-du -shx * .[a-zA-Z0-9_]* 2> /dev/null | \
-egrep '^ *[0-9.]*[MG]' | sort -n > /tmp/list
-egrep '^ *[0-9.]*M' /tmp/list
-egrep '^ *[0-9.]*G' /tmp/list
-command rm /tmp/list
-}
-alias dirsize='dirsize_'
-
+# FIXME: what to do with this ?
 #function showLargestFilesHeldOpen() {
 #    lsof \
 #    | grep REG \

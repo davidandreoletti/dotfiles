@@ -313,6 +313,11 @@ then
     homebrew_brew_install                  "ripgrep"             # faster grep "rigrep" binary compiled, as nightly build, and including SIMD and all optimizations enabled.
                                                                  # Required by VIM's fzf.vim plugin
 
+    # Search any kind of doc
+    homebrew_brew_install                  "rga"                 # "rigrep" extended to most file formats: PDF, ebooks, office documents, zip, tar.gz, etc
+    homebrew_brew_install                  "pandoc"              # required by 'rga'
+    homebrew_brew_install                  "poppler"             # required by 'rga'
+
     # Source code search tool
     homebrew_brew_install                  "the_silver_searcher" # Faster than 'ack' file content search too
 

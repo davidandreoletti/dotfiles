@@ -11,16 +11,11 @@
 ** WIP vim: editor [%]
 *** WIP migrate ~/.config/cvim/doc/cheatsheet.txt to ~/.config/cvim/cheats/cheat40.txt
 *** TODO on nvim some plugin can be lazy loaded BUT need a trigger to load:
-**** danro/rename plugin
-**** tpope/vim-characterize plugin
 **** tpope/vim-obsession plugin
 **** tpope/vim-prosession plugin
 *** TODO https://github.com/Stormherz/tablify
 *** TODO useful recommandations: https://www.vi-improved.org/recommendations/
-*** TODO use ale instead of syntastic or neomake 
 *** WIP fix vim-indent-guides not displaying indent on nvim (works on vim)
-
-*** use https://github.com/justinmk/vim-sneak instead of easy-motion or go back to bare vim ?
 *** anything good to take from https://wrotenwrites.com/a_modern_terminal_workflow_2/ (and similar pages)?
 *** https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
 *** browser text area is a vim window! https://github.com/glacambre/firenvim
