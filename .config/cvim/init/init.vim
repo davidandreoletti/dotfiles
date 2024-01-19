@@ -191,7 +191,9 @@ elseif g:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
     let cvim_plugins.markdown_preview = { 'name': 'iamcco/markdown-preview.nvim', 'lazy': 1, 'cmd': [ "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" ] , 'filetype': 'markdown' , }
 endif
 " Restructed Text support
-let cvim_plugins.vim_rst = { 'name': 'habamax/vim-rst', 'lazy': 1, }
+if g:vimFlavor ==# g:VIM_FLAVOR_VIM
+    let cvim_plugins.vim_rst = { 'name': 'habamax/vim-rst', }
+endif
 " Shell script formatting
 let cvim_plugins.vim_shfmt = { 'name': 'z0mbix/vim-shfmt', 'lazy': 1, 'filetype': 'sh' }
 " Central place for cheatsheets:
