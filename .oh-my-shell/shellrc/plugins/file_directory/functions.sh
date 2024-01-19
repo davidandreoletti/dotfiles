@@ -13,8 +13,13 @@ function f_file_directory_swap() {
 }
 
 function f_file_directory_create_missing_dirs_file() {
-    local missing_path="$1"
+    local mode=$1
+    local missing_path="$2"
 
     mkdir -p "$(dirname $missing_path)" \
         && command touch "$missing_path"
+
+    if test $1 -eq 0; then
+        $EDITOR "$missing_path"
+    fi
 }

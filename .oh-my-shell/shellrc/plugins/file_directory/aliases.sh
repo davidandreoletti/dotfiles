@@ -4,4 +4,8 @@ alias swap='f_file_directory_swap '
 
 # Create file and possibly missing parent
 # usage: touch /path/to/missing/dir/file.txt
-alias touch='f_file_directory_create_missing_dirs_file '
+alias touch='f_file_directory_create_missing_dirs_file 1 '
+
+# Create file and possibly missing parent, then edit
+# usage: touch /path/to/missing/dir/file.txt
+alias edit='f_file_directory_create_missing_dirs_file 0 '
