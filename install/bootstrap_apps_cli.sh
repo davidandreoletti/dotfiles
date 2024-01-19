@@ -303,12 +303,17 @@ then
     homebrew_brew_install                  "watch"               # Run a command at regular interval
     homebrew_brew_install                  "entr"                # Run command on files that have changed
 
+    # Benchmarking 
+    homebrew_brew_install                  "hyperfine"           # benchmarking tool for CLI programs mostly
+
+    # Image processing
+    homebrew_brew_install                  "imagemagick"         # Required by spaceman-diff
+
     # Typing
     # EXPERIMENTAL cargo_global_install                   "thokr"               # Typing tester
 
     # Misc
     homebrew_brew_install                  "fortune"             # Fortune cookie
-    homebrew_brew_install                  "imagemagick"         # Required by spaceman-diff
     homebrew_brew_install                  "jp2a"                # Convert images to ASCII. Required by spaceman-diff
     homebrew_brew_install                  "hub"                 # Unofficial Github CLI (for Pull Requests, etc)
     homebrew_brew_install                  "pv"                  # pipe data flow speed progress indicator
@@ -325,7 +330,6 @@ then
     homebrew_brew_install                  "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
     homebrew_brew_install                  "so"                  # Query stackoverflow TUI
     homebrew_brew_install                  "universal-ctags"     # catgs for vim's TagBar
-    homebrew_brew_install                  "hyperfine"           # benchmarking tool for CLI programs mostly
 fi
 
 is_profile_admin
