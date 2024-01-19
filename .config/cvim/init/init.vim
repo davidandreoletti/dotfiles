@@ -179,9 +179,9 @@ let cvim_plugins.vim_characterize = { 'name': 'tpope/vim-characterize', 'cmd': '
 " Show vim's marks
 let cvim_plugins.vim_signature = { 'name': 'kshenoy/vim-signature', }
 " Continously update vim session files
-let cvim_plugins.vim_obsession = { 'name': 'tpope/vim-obsession', 'lazy': 1, }
+let cvim_plugins.vim_obsession = { 'name': 'tpope/vim-obsession' , 'setting': "$HOME/.config/cvim/settings/vim-obsession.vim" }
 " - Extends tpope/vim-obsession to support 1 vim session per directory
-let cvim_plugins.vim_prosession = { 'name': 'dhruvasagar/vim-prosession', 'lazy': 0, 'dependencies': { 'tpope/vim-obsession': {'lazy': 0} } ,'setting': "$HOME/.config/cvim/settings/vim-prosession.vim" }
+let cvim_plugins.vim_prosession = { 'name': 'dhruvasagar/vim-prosession', 'dependencies': { 'tpope/vim-obsession': {'lazy': 0} } ,'setting': "$HOME/.config/cvim/settings/vim-prosession.vim" }
 " Markdown Live Preview
 if g:vimFlavor ==# g:VIM_FLAVOR_VIM
     let cvim_plugins.markdown_preview = { 'name': 'iamcco/markdown-preview.nvim', 'lazy': 1, 'cmd': [ "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" ] , 'filetype': 'markdown' , 'post_update_hook': { -> mkdp#util#install() },  }
