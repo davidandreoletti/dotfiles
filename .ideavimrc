@@ -1,0 +1,404 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer:
+"       David Andreoletti
+"       http://david.andreoletti.net
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""-
+
+" IntelliJ action list available with: 
+" - Run :actionlist
+" - Run :actionlist Console For console keymap
+"
+" IntelliJ recursive mapping syntax:
+" - https://github.com/JetBrains/ideavim/discussions/303#discussioncomment-4508992
+"
+" IntelliJ support :set commands
+" - https://github.com/JetBrains/ideavim/wiki/set-commands
+"
+" IDEAVim vs IDE keymap conflict resolver
+" - https://github.com/JetBrains/ideavim/wiki/sethandler
+"
+" ideavimrc configuration samples: https://github.com/JetBrains/ideavim/discussions/303
+"
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" IDEAVim
+"
+
+" IDEAVIM strict mode: Undocumented option for internal use.
+ --------------------------------------
+"
+" If there is a bug in IdeaVim code and after some command,
+" IdeaVim calculates that the caret should be located at 1000000 offset in a short file,
+" we have a protection that would put the caret just at the file end.
+" This way the actual error is hidden from the user.
+"
+" With this option enabled, an exception will be thrown and IJ will show a notification
+" that something is wrong.
+" src: https://github.com/JetBrains/ideavim/discussions/303#discussioncomment-655651
+set ideastrictmode
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+"
+" FIXME source vim file using F_Load_Viml or equivalent from cvim
+"
+
+" Legend
+" + present
+" - absent
+" ? undecided 
+"
+" ++ cvim+ ideavim+
+" +- cvim+ ideavim-
+" -? cvim- ideavim?
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" ++ let mapleader = ","
+" +? :let maploacalleader = "\\"
+source ~/.config/cvim/feature/leader.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" ++ set timeoutlen=1000
+source ~/.config/cvim/feature/mapping_timeout.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" ++ set showmatch
+" +- set matchtime=2
+source ~/.config/cvim/feature/search.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" ++ set hlsearch
+" ++ set incsearch
+" ++ set ignorecase
+" ++ set smartcase
+source ~/.config/cvim/feature/search.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" ++ set history=10000
+source ~/.config/cvim/feature/cmdline_history.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" ++ set showmode
+source ~/.config/cvim/feature/mode.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" easymotion-plugin (Jetbrains' implementation)
+" src: https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
+
+" FIXME load via cvim's abstract package manager ?
+" FIXME Activation also requires to install plugins in Jetbrains' IDE:
+" - IdeaVIm-EasyMotion: https://plugins.jetbrains.com/plugin/13360-ideavim-easymotion
+" - AceJump: https://plugins.jetbrains.com/plugin/7086-acejump
+Plugin 'easymotion/vim-easymotion'
+" - same as 'set easymotion'
+"
+" Mapping: 
+" - same as the original vimL plugin: https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" vim-surround (Jetbrains' implementation)
+" src: https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
+
+" FIXME load via cvim's abstract package manager ?
+" NOTe Activation requires no plugins installation in Jetbrains' IDE
+Plugin 'tpope/vim-surround'
+" - same as 'set surround'
+"
+" Mapping: 
+" - same as the original vimL plugin such as __cs"'__
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" vim-multiple-cursors (Jetbrains' implementation)
+" src: https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
+
+" FIXME Ctrl-n does not select the same work one line below. Is this plugin
+" working ??
+" FIXME load via cvim's abstract package manager ?
+" NOTe Activation requires no plugins installation in Jetbrains' IDE
+"Plugin 'terryma/vim-multiple-cursors'
+" - same as 'set multi-cursors' (or its neovim successor xxxx/vim-visual-multi in my vimrc)
+"
+" Mapping: 
+" - same as the original vimL plugin ?
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" vim-multiple-cursors (Jetbrains' implementation)
+" src: https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
+
+" FIXME load via cvim's abstract package manager ?
+" NOTe Activation requires no plugins installation in Jetbrains' IDE
+Plug 'chrisbra/matchit'
+" - same as 'set matchit' 
+"
+" Mapping: 
+" - same as the original vimL plugin ?
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" quick-scope (Jetbrains' implementation)
+" src: https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
+
+" FIXME load via cvim's abstract package manager ?
+" FIXME Activation requires plugins installation in Jetbrains' IDE
+" - IdeaVim-Quickscope: https://plugins.jetbrains.com/plugin/19417-ideavim-quickscope
+set quickscope
+"
+" Mapping: 
+" - None 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" Sync IntelliJ bookmarks and Vim marks: 
+" - creation of global mark will trigger creation of IDE's bookmark
+set ideamarks
+"
+" Mapping: 
+" - None 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" which-key (Jetbrains' implementation)
+" src: https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
+
+" FIXME load via cvim's abstract package manager ?
+" FIXME Activation requires plugins installation in Jetbrains' IDE
+" - Which-Key: https://plugins.jetbrains.com/plugin/15976-which-key
+set which-key
+let g:WhichKey_FontSize = 16
+let g:WhichKey_CommandColor = "#41ead4"
+let g:WhichKey_PrefixColor = "#f335b2"
+let g:WhichKey_SortOrder = "by_key_prefix_first"
+let g:WhichKeyDesc_leader = "Leader key: <leader>"
+let g:WhichKey_DefaultDelay = 200
+let g:WhichKey_ShowVimActions = "true"
+let g:WhichKey_ProcessUnknownMappings = "false"
+" Requires notimeout otherwise windows stay on for until |timeout| expires
+"set notimeout
+set timeoutlen=5000
+"
+" Mapping: 
+" - None 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" Show number line
+set number
+" Show relative number
+set relativenumber
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+" Show command
+set showcmd
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
+
+"---------------------  Keymaps: shared with cvim -----------------------------
+
+" Motions
+" - Move between methods
+"map [f <Action>(MethodUp)
+"map ]f <Action>(MethodDown)
+"  - Move line up/down
+map <A-k> <Action>(MoveLineUp)
+map <A-j> <Action>(MoveLineDown)
+
+" Conceal
+" - Code fold/expand
+map zm <Action>(CollapseRegion)
+map za <Action>(ExpandRegion)
+map zM <Action>(CollapseAllRegions)
+map zR <Action>(ExpandAllRegions)
+
+" Search
+" - Cancel search highlight
+map <Leader>/ :noh<CR>
+
+" Switch to normal mode
+vmap i <Esc>
+imap jk <Esc>
+
+" View mode
+map <Leader>vf <Action>(ToggleFullScreen)
+map <Leader>vv <Action>(ToggleDistractionFreeMode)
+map <Leader>vp <Action>(TogglePresentationMode)
+
+" Tab
+" - Tab switch
+map gT <Action>(PreviousTab)
+map gt <Action>(NextTab)
+" - Pin/unpin tab
+map <Leader>P <Action>(PinActiveEditorTab)
+" - Close current tab
+"map <Leader>xx <Action>(CloseContent)              --> :q
+" - Close all tabs
+"map <Leader>xa <Action>(CloseAllEditors)           --> Not closing for me
+" - Close all others tabs
+"map <Leader>xo <Action>(CloseAllEditorsButActive)  --> Not closing for me
+" - Close all others unpinned tabs
+"map <Leader>xp <Action>(CloseAllUnpinnedEditors)   --> Not closing for me
+
+" Pane
+" - Unsplit pane
+" map ? <Action>(Unsplit)                           --> :q
+" - Unsplit all panes
+map <C-W><C-O> <Action>(UnsplitAll)
+
+" Comment
+" - Comment by line
+map <Leader>cc <Action>(CommentByLineComment)
+
+" Terminal
+" - Display terminal
+nmap <Leader>t <Action>(ActivateTerminalToolWindow)
+" - Open terminal with current dir (from active file pane)
+map <Leader>tc <Action>(Terminal.OpenInTerminal)
+
+" Todo/Fixme
+" - Show todo/fixme
+map <Leader>td <Action>(ActivateTODOToolWindow)
+
+"---------------------  Keymaps: NOT (yet) shared with cvim -----------------------------
+
+" System clipboard
+" - copy inner word to system clipboard
+vmap <leader>yiw "+yiw
+nmap <leader>yiw "+yiw
+" - Copy line to system clipboard
+vmap <leader>y "+y
+" - Delete without saving deleted line to a register
+vmap <leader>d "_d
+" - Copy to system clipboard (ie register "+)
+nmap <leader>y "+yy
+" - Copy from system clipboard, paste after cursor
+vmap <leader>P "+P
+nmap <leader>P "+P
+" - Copy from system clipboard, paste before cursor
+nmap <leader>p "+p
+vmap <leader>p "+p
+
+
+" Refactor
+" - Rename element
+map <Leader>ra <Action>(RenameElement)
+" - Refactor menu actions
+map <Leader>rr <Action>(Refactorings.QuickListPopupAction)
+
+" Build
+" - Build menu
+map <Leader>b <Action>(BuildMenu)
+
+" Run Context
+" - Run current context
+map <Leader>rc <Action>(ContextRun)
+" - Choose current context + run
+map <Leader>rf <Action>(ChooseRunConfiguration)
+" - Run again
+map <Leader>rr <Action>(Rerun)
+" - Stop run
+map <Leader>rs <Action>(Stop)
+" - Run tests
+map <Leader>rt <Action>(RerunFailedTests)
+" - Run failed tests
+map <Leader>rft <Action>(RerunFailedTests)
+
+" Debug Context
+" - Run current debug context
+map <Leader>dc <Action>(ContextDebug)
+" - Choose current debug context + debug
+map <Leader>df <Action>(ChooseDebugConfiguration)
+
+" Debugger
+noremap  <leader>dqe :action QuickEvaluateExpression<CR>
+noremap  <leader>dee :action EvaluateExpression<CR>
+vnoremap <leader>dai :action Debugger.AddInlineWatch<CR>
+vnoremap <leader>daw :action Debugger.AddToWatch<CR>
+nnoremap <leader>drf :action Debugger.RemoveAllBreakpointsInFile<CR>
+nnoremap <leader>ddR :action Debugger.RemoveAllBreakpoints<CR>
+nnoremap <leader>ddm :action XDebugger.MuteBreakpoints<CR>
+nnoremap <leader>dtc :action ForceRunToCursor<CR>
+nnoremap <C-j> :action StepOver<CR>
+nnoremap <C-k> :action Resume<CR>
+nnoremap <C-h> :action StepOut<CR>
+nnoremap <C-l> :action ForceStepInto<CR>
+sethandler <C-j> n:vim i-x:ide
+sethandler <C-k> n:vim i-x:ide
+sethandler <C-h> n:vim i-x:ide
+sethandler <C-l> n:vim i-x:ide
+
+" Bytecode
+nnoremap <leader>bv <Action>(ByteCodeViewer)
+
+
+" Breakpoint 
+map bp <Action>(ToggleLineBreakpoint)
+map bpe <Action>(EditBreakpoint)
+map bpa <Action>(ViewBreakpoints)
+map bpc <Action>(ViewBreakpoints)
+
+" Pick action/class/symbol/file/recent change file/recent file
+map <Leader>a <Action>(GotoAction)
+map <Leader>c <Action>(GotoClass)
+map <Leader>s <Action>(GotoSymbol)
+map <Leader>ff <Action>(GotoFile)
+map <Leader>fc <Action>(RecentChangedFiles)
+map <Leader>fo <Action>(RecentFiles)
+
+" Goto
+" FIXME: Added WhichKey description like https://github.com/JaimeArboleda/jet_brains_settings/blob/cb5323c35ed0a0c4859eaf5c3bb9db95c9ad9a9c/.ideavimrc#L157
+map gu <Action>(GotoSuperMethod)
+map gi <Action>(GotoImplementation)
+map gd <Action>(GotoDeclaration)
+map REMAP_MEgt <Action>(GotoTest)
+map gj <Action>(GotoNextError)
+map gk <Action>(GotoPreviousError)
+"
+map gh <Action>(QuickJavaDoc)
+map gH <Action>(QuickActions)
+map gr <Action>(RefactoringMenu)
+map ga <Action>(ShowIntentionActions)
+map gf <Action>(ShowUsages)
+map gF <Action>(FindUsages)
+
+" Caches
+map <Leader>xc <Action>(InvalidateCaches)
+
+" Notifications
+map <Leader>xn <Action>(CloseAllNotifications)
+
+" Windows
+map <Leader>xw <Action>(HideAllWindows)
+
+" Restart
+" - Restart IDE
+map <Leader>rs <Action>(RestartIde)
+
+" Context Menu
+" - Right click 
+map <Leader>ge <Action>(EditorPopupMenu) 
+
+" IntelJ specific keymaps
+if has('ide')
+    if &ide =~? 'Android Studio'
+        nmap <leader>ac <Action>(android.deploy.ApplyChanges)
+    endif
+    if &ide =~? 'IntelliJ IDEA'
+        " Later
+    endif
+    if &ide =~? 'PyCharm'
+        " Later
+    endif
+endif

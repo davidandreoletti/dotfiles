@@ -5,8 +5,10 @@
 *** WIP cache stuff: https://registerspill.thorstenball.com/p/how-fast-is-your-shell
 *** TODO https://htr3n.github.io/2018/07/faster-zsh/#lazy-loading
 *** TODO measure measure firt prompt lag, first command lag, command lag, input lag, exit time https://github.com/romkatv/zsh-bench
-** TODO: shllrc: Store file permission in git too
-*** TODO: https://github.com/danny0838/git-store-meta
+** TODO: shllrc: Enforce shell script have execution bit set
+*** TODO: https://adamj.eu/tech/2023/01/31/git-add-remove-execute-permissions/#:~:text=Git%20doesn%27t%20store%20per,run%20them%20when%20checked%20out.
+** WIP IDEAVim
+*** Create initial config
 ** WIP vim: editor [%]
 *** TODO on nvim some plugin can be lazy loaded BUT need a trigger to load:
 **** tpope/vim-obsession plugin
@@ -17,6 +19,8 @@
 *** anything good to take from https://wrotenwrites.com/a_modern_terminal_workflow_2/ (and similar pages)?
 *** https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
 *** browser text area is a vim window! https://github.com/glacambre/firenvim
+*** IDEAVIM [%]
+**** TODO Go through FIXME in ideavimrc
 ** TODO secrets [%]
 *** tomb: https://dyne.org/software/tomb/
 *** command line password manager. choose between:
