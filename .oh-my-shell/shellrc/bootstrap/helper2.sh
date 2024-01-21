@@ -56,6 +56,28 @@ get_shell_type() {
     echo "unknow-shell" && return 0
 }
 
+#
+# Get terminal application type
+#
+is_kitty_terminal_app() {
+    test -n "$KITTY_WINDOW_ID"
+}
+
+is_alacritty_terminal_app() {
+    test -n "$ALACRITTY_SOCKET"
+}
+
+is_apple_terminal_app() {
+    test "$TERM_PROGRAM" = "Apple_Terminal"
+}
+
+get_terminal_app_type() {
+    is_kitty_terminal_app && echo "kitty" && return 0
+    is_alacritty_terminal_app && echo "alacritty" && return 0
+    is_apple_terminal_app && echo "apple_terminal" && return 0
+    echo "unknown-terminal-app" && return 0
+}
+
 homebrew_packages_path_prefix() {
     if test -z "$HOMEBREW_PACKAGES_INSTALL_DIR_PREFIX"; then
         # Cache homebrew install path prefix to avoid (~1s) slowdown when invoking a new shell
