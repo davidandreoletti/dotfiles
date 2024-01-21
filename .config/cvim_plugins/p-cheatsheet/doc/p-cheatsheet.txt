@@ -22,6 +22,7 @@ CONTENTS
     5. Formatting................................|p-cheatsheet-formatting|
     6. Help file.................................|p-cheatsheet-helpfile|
     7. Random ...................................|p-cheatsheet-random|
+    8. VimL .....................................|p-cheatsheet-vimL|
 
 ===============================================================================
 
@@ -133,7 +134,7 @@ Buffer list management
     - gg=G        Re-indent the whole file
 
 ===============================================================================
-7. Help file                                         *p-personal-helpfile*
+6. Help file                                         *p-personal-helpfile*
 
     - :Helptags ALL     Rebuild help file tag index
 
@@ -144,3 +145,8 @@ Buffer list management
     - ;			Repeat last command
     - /			Search
 
+8. VimL
+
+    - VimL in a nutshell: https://learnxinyminutes.com/docs/vimscript/
+    - VimL "hard" mode: https://learnvimscriptthehardway.stevelosh.com
+    - Viml: https://learnvim.irian.to/vimscript/vimscript_conditionals_and_loops

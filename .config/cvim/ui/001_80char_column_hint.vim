@@ -1,5 +1,4 @@
 " Show 80th column (Vim 7.3+ only) 
-" Show 80th column (Vim 7.3+ only) Show 80th column (Vim 7.3+ only) Show 80th column (Vim 7.3+ only) Show 80th column (Vim 7.3+ only)
 " option 1: highligh pieces of text over the limit
 "  - https://www.youtube.com/watch?v=aHm36-na4-4
 " option 0: static column

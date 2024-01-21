@@ -1,12 +1,13 @@
+
 " Load plugins settings
-function! F_Load_PluginsSettings (vimFlavor, plugins)
+function! F_Load_PluginsSettings (vimDistribution, plugins)
     for k in keys(a:plugins)
         let plugin = a:plugins[k]
 
         if has_key(plugin, 'setting')
-            if a:vimFlavor ==# g:VIM_FLAVOR_VIM
+            if a:vimDistribution ==# g:VIM_FLAVOR_VIM
                 exe 'source ' . plugin['setting']
-            elseif a:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
+            elseif a:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
                 " vim plugin settings loaded when plugin loads
             endif
         endif
@@ -16,6 +17,7 @@ endfunction
 " Load key mapping "plugins" (keymap/*.vim)
 function! F_Load_KeyMappings (vimKeyMappingsPath)
     for fpath in split(globpath(a:vimKeyMappingsPath, '*.vim'), '\n')
+        "call F_Source (, fpath)
         exe 'source ' . fpath
     endfor
 endfunction
@@ -41,36 +43,12 @@ function! F_Load_LocalVimrc (localVIMRCPath)
     endif
 endfunction
 
-let g:VIM_FLAVOR_VIM = 'vim'
-let g:VIM_FLAVOR_NEOVIM = 'neovim'
-let g:VIM_FLAVOR_UNKNOWN = 'unknown'
-
-" Get VIM flavor
-" Returns:
-" - vim
-" - neovim  
-" - unknown
-function! F_Get_Vim_Flavor ()
-    if has('nvim')
-        return g:VIM_FLAVOR_NEOVIM
-    else
-        return g:VIM_FLAVOR_VIM
-    endif
-endfunction
-
-function! F_Get_Vim_Flavor_Root_Dir ()
-    if has('nvim')
-        return expand($HOME)."/.config/nvim"
-    else
-        return expand($HOME)."/.vim"
-    endif
-endfunction
 
 " Indicates if vimplug is installed
 " Return: 
 function! F_VimPlug_IsInstalled ()
-    let vimFlavorRootDir=F_Get_Vim_Flavor_Root_Dir()
-	let vundle_readme=vimFlavorRootDir.'/autoload/plug.vim'
+    let vimDistributionRootDir=F_Get_Vim_Distribution_Root_Dir()
+	let vundle_readme=vimDistributionRootDir.'/autoload/plug.vim'
 	return !filereadable(vundle_readme)
 endfunction
 
@@ -96,8 +74,8 @@ endfunction
 " Indicates if vundle is installed
 " Return: 
 function! F_Vundle_IsInstalled ()
-    let vimFlavorRootDir=F_Get_Vim_Flavor_Root_Dir()
-	let vundle_readme=vimFlavorRootDir.'/bundle/vundle/README.md'
+    let vimDistributionRootDir=F_Get_Vim_Distribution_Root_Dir()
+	let vundle_readme=vimDistributionRootDir.'/bundle/vundle/README.md'
 	return !filereadable(vundle_readme)
 endfunction
 
@@ -177,10 +155,10 @@ function! F_PythonPip_InstallifMissing ()
 endfunction
 
 " Source vimL file
-function! F_Source_VimL_File (vimFlavor, file)
-    if a:vimFlavor ==# g:VIM_FLAVOR_VIM
+function! F_Source_VimL_File (vimDistribution, file)
+    if a:vimDistribution ==# g:VIM_FLAVOR_VIM
         source a:file
-    elseif a:vimFlavor ==# g:VIM_FLAVOR_NEOVIM
+    elseif a:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
         vim.cmd("source ".a:file)
     endif
 endfunction

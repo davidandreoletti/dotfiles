@@ -3,10 +3,4 @@
 "       David Andreoletti
 "       http://david.andreoletti.net
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Load VIM functions {{{
-" FIXME: move functions to .config/cvim/common
-source $HOME/.config/cvim/common/functions.vim
-"}}}
-" Init VIM {{{
 source $HOME/.config/cvim/init/init.vim
-"}}}

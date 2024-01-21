@@ -7,6 +7,7 @@ View learnXinY cheats :ToggleCheat     N
 View my cheatsheets   \?<<Shift>>g     N
 View my cheatsheets+  :h p-cheatsheet  N
 View all commands/mod :h index         N
+View vim's quickref   :h quickref      N
 }}}
 Check runtime values {{{2
 runtime path     :let g:runtimepath    N
@@ -64,5 +65,7 @@ Find commits for cur buf  :BCommits    N
 Find normal mode mapping  :Maps        N
 Find help tags            :Helptags    N
 }}}
+Keycodes {{{2
+All keycodes like <S-..>, :keycodes    N
 }}}
-
+}}}
