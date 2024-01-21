@@ -8,8 +8,8 @@ if is_macos; then
     # Register JDK with jenv
     (
         # Register already installed JDKs
-        find "/Library/Java/JavaVirtualMachines" -mindepth 1 -maxdepth 1 -type d -name "*jdk*" -exec bash -c "yes | jenv add \"{}/Contents/Home\" > /dev/null 2>&1" \;
-        find "/Library/Java/JavaVirtualMachines" -mindepth 1 -maxdepth 1 -xtype d -name "*jdk*" -exec bash -c "yes | jenv add \"{}/Contents/Home\" > /dev/null 2>&1" \;
+        find "/Library/Java/JavaVirtualMachines" -mindepth 1 -maxdepth 1 -type d -name "*jdk*" -exec bash -c "yes | jenv add \"{}/Contents/Home\"" \;
+        find "/Library/Java/JavaVirtualMachines" -mindepth 1 -maxdepth 1 -xtype d -name "*jdk*" -exec bash -c "yes | jenv add \"{}/Contents/Home\"" \;
         # Register perhaps not already registered JDKs
         for directory in $HOMEBREW_CELLAR/openjdk*; do
             find $directory -depth -maxdepth 4 -type d -regex ".*openjdk.jdk$" -exec bash -c "yes | jenv add {}/Contents/Home" \;
