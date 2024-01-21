@@ -30,11 +30,13 @@ One central place to manage permanent/recurrent software settings:
 HIGHLIGHTS:
 ===========
 
-- `*vim as fast+light featured editor`:
+- `*vim as fast+light+consistent featured editor`:
   - fast startup:
     - nvim: ~150ms
     -  vim: ~300ms
-  - vim/nvim common config
+  - vim/nvim/ideavim shared config - experimental
+    - feature (when supported)
+    - keymap (when supported)
 - `shellrc`:
   - is a POSIX shell plugin initialisation manager
   - total initialization duration:
@@ -43,7 +45,7 @@ HIGHLIGHTS:
     - bash: ~7s (w/ plugins + completions)
 - binaries
   - rely on GNU binaries when available
-  - prefer virtualenv over global for programming related tools (sdk, runtime, etc)
+  - prefer virtual env binaries over global for programming related tools (sdk, runtime, etc)
   - rolling release - always (ie no pinned binaries)
 
 GET STARTED:
