@@ -200,9 +200,9 @@ gnupg_create_revocation_certificate_for_key() {
 }
 
 # Create master + sub key with distinct capabilities, with revocation certificate
-# as well as following best practices
+# as well as following best practices, on a RAM backed folder
 #
-# Usage: function "John Doe" "john@example.com" "1y"
+# Usage: function "John Doe" "john@example.com" "1y" ...
 #
 # Inspiration:
 # - master key/sub key:
@@ -308,8 +308,8 @@ gnupg_create_CSEA_key() {
         && echo "ERROR: Revocation cert for sub key $masterKeyFingerprint/$subKeyRevocationCert3 not generated: $subKeyRevocationCert3" \
         && return
 
-    local secretKeysFile="$PWD/$masterKeyFingerprint-master_and_subs_secret-keys.asc"
-    local publicKeysFile="$PWD/$masterKeyFingerprint-master_and_subs-public-keys.asc"
+    local secretKeysFile="$PWD/$masterKeyFingerprint-keys-private.asc"
+    local publicKeysFile="$PWD/$masterKeyFingerprint-keys-public.asc"
 
     # Export public keys only (master + all subs) as backup
     GNUPGHOME="$LOCAL_GNUPGHOME" gpg --options "$HOME/.gnupg/gpg.conf" \
@@ -324,7 +324,7 @@ gnupg_create_CSEA_key() {
         --output "$secretKeysFile" "$masterKeyFingerprint" >/dev/null 2>&1
 
     # Change master + sub key passphrase
-    # FIXME
+    # TODO (later)
 
     # Move all important artefacts (keys)
     mkdir -p "$OUT" \
@@ -380,8 +380,10 @@ gnupg_create_CSEA_key() {
         done
     else
         echo "Generated master + sub keys available at $LOCAL_GNUPGHOME. IMPORTANT: Files be deleted in $epheremalStorageDuration"
-        echo "This directory is a RAM backed directory. Press ENTER to wipe out"
+        echo "This directory is a RAM backed directory."
         echo "Suggestion: Copy the directory elsewhere to not loose the generated keys"
+	echo ""
+        echo "Press ENTER to **wipe out** $LOCAL_GNUPGHOME"
         read -r
     fi
 

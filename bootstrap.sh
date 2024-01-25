@@ -191,9 +191,9 @@ function bootstrap_dotfiles_private() {
         return
     fi
 
-    if [ "$($DOTFILES_PRIVATE_DIR_PATH/bin/dotfiles_private_locked_status $DOTFILES_PRIVATE_DIR_PATH)" = "LOCKED" ]; then
+    if [ "$($DOTFILES_PRIVATE_DIR_PATH/.bin/dotfiles_private_locked_status $DOTFILES_PRIVATE_DIR_PATH)" = "LOCKED" ]; then
         echo "WARNING: $DOTFILES_PRIVATE_DIR_PATH's files are LOCKED (ie ENCRYPTED). Symlinking files requires unlocked files."
-        echo "To unlock files, run: bash $DOTFILES_PRIVATE_DIR_PATH/bin/dotfiles_private_unlock \"$DOTFILES_PRIVATE_DIR_PATH\""
+        echo "To unlock files, run: bash $DOTFILES_PRIVATE_DIR_PATH/.bin/dotfiles_private_unlock \"$DOTFILES_PRIVATE_DIR_PATH\""
     else
         echo "NOTE: $DOTFILES_PRIVATE_DIR_PATH's files are UNLOCKED (ie DECRYPTED)."
         stow_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
