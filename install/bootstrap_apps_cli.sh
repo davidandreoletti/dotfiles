@@ -321,6 +321,8 @@ then
     # Source code search tool
     homebrew_brew_install                  "the_silver_searcher" # Faster than 'ack' file content search too
 
+    # Keychain
+    homebrew_brew_install                  "pass" 		         # Password storage
 
     # Typing
     # EXPERIMENTAL cargo_global_install                   "thokr"               # Typing tester
