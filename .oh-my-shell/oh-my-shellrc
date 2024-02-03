@@ -102,7 +102,8 @@ dot_plugin_if_exists "navi"
 dot_plugin_if_exists "network"
 #dot_plugin_if_exists "nvm"                          # Node.js environment manager    FIXME: remove plugin
 #dot_plugin_if_exists "npm"                          # Loading dependency: nvm plugin FIXME: remove plugin
-dot_plugin_if_exists "notebook"                     # Requires: dotfiles plugin
+dot_plugin_if_exists "notebook"                      # Requires: dotfiles plugin
+dot_plugin_if_exists "nnn"                           
 dot_plugin_if_exists "open"
 dot_plugin_if_exists "oraclecloud"
 dot_plugin_if_exists "ots"
