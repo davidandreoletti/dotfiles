@@ -5,10 +5,9 @@
 *** WIP cache stuff: https://registerspill.thorstenball.com/p/how-fast-is-your-shell
 *** TODO https://htr3n.github.io/2018/07/faster-zsh/#lazy-loading
 *** TODO measure measure firt prompt lag, first command lag, command lag, input lag, exit time https://github.com/romkatv/zsh-bench
-** TODO: shllrc: Enforce shell script have execution bit set
-*** TODO: https://adamj.eu/tech/2023/01/31/git-add-remove-execute-permissions/#:~:text=Git%20doesn%27t%20store%20per,run%20them%20when%20checked%20out.
-** WIP IDEAVim
-*** Create initial config
+** TODO shllrc: Enforce shell script have execution bit set
+*** TODO https://adamj.eu/tech/2023/01/31/git-add-remove-execute-permissions/#:~:text=Git%20doesn%27t%20store%20per,run%20them%20when%20checked%20out.
+** TODO Shell history analysis: https://github.com/bamos/zsh-history-analysis/tree/master
 ** WIP vim: editor [%]
 *** TODO on nvim some plugin can be lazy loaded BUT need a trigger to load:
 **** tpope/vim-obsession plugin
@@ -23,10 +22,10 @@
 **** TODO Go through FIXME in ideavimrc
 ** TODO secrets [%]
 *** tomb: https://dyne.org/software/tomb/
-*** command line password manager. choose between:
-**** pass: (default) https://www.passwordstore.org + https://github.com/roddhjav/pass-import#readme
-**** safe: instead of pass ? https://z3bra.org/safe/
 *** gitleaks: https://github.com/gitleaks/gitleaks
+** TODO PGP [%]
+*** key + identity publication: https://gist.github.com/terrywang/32a6d285d103b8f9beea94b970b0d16a
+*** Send updated pgp keys to hardware keyring
 ** TODO browser:
 *** safari:
 **** install vimari + setup again. automate this ?https://github.com/guyht/vimari
@@ -38,6 +37,8 @@
 **** https://centrify.force.com/support/Article/KB-10010-FileVault2-fails-to-initiate-for-macOS-10-13-x-High-Sierra-systems-using-Centrify-Group-Policy-and-or-cannot-add-a-mobile-account-as-a-FileVault-unlocker-account/
 **** https://derflounder.wordpress.com/2018/01/20/secure-token-and-filevault-on-apple-file-system/
 **** https://support.apple.com/en-us/HT204837
+* AI Copilot:
+** Try Tabbly ?: https://tabby.tabbyml.com/docs/extensions/installation/vim
 * UNSORTED
 ** dotfiles:
 *** https://gist.github.com/rampion/104020
@@ -54,5 +55,3 @@
 *** xprofile: https://github.com/tony/.dot-config/blob/master/.xprofile
 *** any good useful item from: https://github.com/tony/.dot-config ?
 ** Plug youtube video as audio stream onnly into mpd: https://github.com/mps-youtube/mps-youtube/pulls
-** PGP:
-*** key publication: https://gist.github.com/terrywang/32a6d285d103b8f9beea94b970b0d16a

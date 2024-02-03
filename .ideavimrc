@@ -132,12 +132,12 @@ Plugin 'tpope/vim-surround'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''''"
-" vim-multiple-cursors (Jetbrains' implementation)
+" matchit (Jetbrains' implementation)
 " src: https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
 
 " FIXME load via cvim's abstract package manager ?
 " NOTe Activation requires no plugins installation in Jetbrains' IDE
-Plug 'chrisbra/matchit'
+"Plug 'chrisbra/matchit'
 " - same as 'set matchit' 
 "
 " Mapping: 
@@ -176,7 +176,8 @@ set ideamarks
 " FIXME load via cvim's abstract package manager ?
 " FIXME Activation requires plugins installation in Jetbrains' IDE
 " - Which-Key: https://plugins.jetbrains.com/plugin/15976-which-key
-set which-key
+" DISABLED since breaking b motion for some reason
+"set which-key
 let g:WhichKey_FontSize = 16
 let g:WhichKey_CommandColor = "#41ead4"
 let g:WhichKey_PrefixColor = "#f335b2"
