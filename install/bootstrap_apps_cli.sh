@@ -313,6 +313,8 @@ then
     # Line oriented search tool
     homebrew_brew_install                  "ripgrep"             # faster grep "rigrep" binary compiled, as nightly build, and including SIMD and all optimizations enabled.
                                                                  # Required by VIM's fzf.vim plugin
+    # Terminal Image protocol
+    homebrew_brew_install                  "libsixel"            #
 
     # Search any kind of doc
     homebrew_brew_install                  "rga"                 # "rigrep" extended to most file formats: PDF, ebooks, office documents, zip, tar.gz, etc
