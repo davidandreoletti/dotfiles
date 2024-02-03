@@ -177,6 +177,8 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
     let cvim_plugins.mason_lspconfig = { 'name': 'williamboman/mason-lspconfig.nvim', 'dependencies': { 'williamboman/mason.nvim':{'lazy': 1} }, 'setting': "$HOME/.config/cvim/settings/nvim_mason-lspconfig.lua" }
     " lspconfig: LSP client config
     let cvim_plugins.lspconfig = { 'name': 'neovim/nvim-lspconfig', 'dependencies': { 'williamboman/mason-lspconfig.nvim':{'lazy': 1} }, 'setting': "$HOME/.config/cvim/settings/nvim_lspconfig.lua" }
+    " treesitter
+    let cvim_plugins.treesitter = { 'name': 'nvim-treesitter/nvim-treesitter', 'post_update_hook': ':TSUpdate', 'setting': "$HOME/.config/cvim/settings/nvim_treesitter.lua" }
 endif
 
 " Fuzzy Finder: fzf: binary integration
@@ -253,9 +255,12 @@ if g:vimDistribution ==# g:VIM_FLAVOR_VIM
 elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
     let cvim_plugins.markdown_preview = { 'name': 'iamcco/markdown-preview.nvim', 'lazy': 1, 'cmd': [ "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" ] , 'filetype': 'markdown' , }
 endif
+
 " Restructed Text support
 if g:vimDistribution ==# g:VIM_FLAVOR_VIM
     let cvim_plugins.vim_rst = { 'name': 'habamax/vim-rst', }
+elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
+    " -- Treesitter
 endif
 " Shell script formatting
 let cvim_plugins.vim_shfmt = { 'name': 'z0mbix/vim-shfmt', 'lazy': 1, 'filetype': 'sh' }
