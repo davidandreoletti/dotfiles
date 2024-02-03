@@ -2,7 +2,7 @@
 
 # Export master+sub keys' public + private key as a single file
 # Usage: function "master key fingerprint"
-gnupg_export_public_and_private_key() {
+f_gnupg_export_public_and_private_key() {
     local fingerprint="$(tr -d ' ' <<<"$1")"
     local LOCAL_GNUPGHOME="${2:-$GNUPGHOME}"
 
@@ -23,10 +23,10 @@ gnupg_export_public_and_private_key() {
 }
 
 # Import master+sub keys public/private keys file
-# This function takes a single key file, created from gnupg_export_public_and_private_key
+# This function takes a single key file, created from f_gnupg_export_public_and_private_key
 #
 # Usage: function /path/to/keys.file
-gnupg_import_public_and_private_key() {
+f_gnupg_import_public_and_private_key() {
     local exportedKeysFile="${1}"
     local LOCAL_GNUPGHOME="${2:-$GNUPGHOME}"
 
@@ -40,7 +40,7 @@ gnupg_import_public_and_private_key() {
 #
 # Creates an ephemeral GNUPGHOME
 #
-gnupg_create_ephemeral_gnupghome() {
+f_gnupg_create_ephemeral_gnupghome() {
     local tmpDir="${1:-$(mktemp -d)}"
     local LOCAL_GNUPGHOME="$(mktemp -d --tmpdir="$tmpDir")"
     echo "$LOCAL_GNUPGHOME"
@@ -52,7 +52,7 @@ gnupg_create_ephemeral_gnupghome() {
 
 # Create master key with passphrase
 # Usage: function "John Doe" "me@example.com" "1y" "capabilities" "passphrase" "/path/to/random/file.conf"
-gnupg_create_recommended_master_key() {
+f_gnupg_create_recommended_master_key() {
     # Create key
     local LOCAL_GNUPGHOME="$1"
     local name="$2"
@@ -91,7 +91,7 @@ EOF
     echo "$masterKeyFingerprint"
 }
 
-gnupg_create_recommended_sub_key() {
+f_gnupg_create_recommended_sub_key() {
     local LOCAL_GNUPGHOME="$1"
     local masterKeyFingerprint="${2:-NONE}"
     local name="$3"
@@ -116,7 +116,7 @@ gnupg_create_recommended_sub_key() {
     echo "$subKeyFingerprint"
 }
 
-gnupg_lint_key() {
+f_gnupg_lint_key() {
     # Use hopenpgp-tools to verify generated keys follow best practices
     local LOCAL_GNUPGHOME="$1"
     local fingerprint="$2"
@@ -129,7 +129,7 @@ gnupg_lint_key() {
     # - only signing subkey requires embedded cross certification with master key (https://git.gnupg.org/cgi-bin/gitweb.cgi?p=gnupg.git;a=blob;f=g10/keyedit.c;h=1456d286784d32b43d96aa19a9c8b923e2b49a83;hb=e926f30a1cda75f6334b79c303b5134f0441a3dc#l5091)
 }
 
-gnupg_create_revocation_certificate_for_key() {
+f_gnupg_create_revocation_certificate_for_key() {
     # Inspiration: https://github.com/mgorny/gen-revoke/blob/master/gen-revoke.bash
 
     local LOCAL_GNUPGHOME2="$1"
@@ -212,7 +212,7 @@ gnupg_create_revocation_certificate_for_key() {
 # -- https://alexcabal.com/creating-the-perfect-gpg-keypair
 # - misc:
 # -- https://gist.github.com/fervic/ad30e9f76008eade565be81cef2f8f8c
-gnupg_create_CSEA_key() {
+f_gnupg_create_CSEA_key() {
     local epheremalStorageDuration="600s"
     local tmpDir="$(f_create_ramfs 10)"
     (
@@ -226,10 +226,10 @@ gnupg_create_CSEA_key() {
     mkdir -p "$DAILY_GNUPGHOME_REVOCS_DIR"
 
     # Use ephermeral directory for key manipulation, away from daily keyring
-    local LOCAL_GNUPGHOME="$(gnupg_create_ephemeral_gnupghome "$tmpDir")"
+    local LOCAL_GNUPGHOME="$(f_gnupg_create_ephemeral_gnupghome "$tmpDir")"
     local LOCAL_GNUPGHOME_REVOCS_DIR="$LOCAL_GNUPGHOME/openpgp-revocs.d"
 
-    local LOCAL_GNUPGHOME2="$(gnupg_create_ephemeral_gnupghome "$tmpDir")"
+    local LOCAL_GNUPGHOME2="$(f_gnupg_create_ephemeral_gnupghome "$tmpDir")"
     local LOCAL_GNUPGHOME2_REVOCS_DIR="$LOCAL_GNUPGHOME2/openpgp-revocs.d"
 
     local name="${1:-John Doe}"
@@ -247,16 +247,16 @@ gnupg_create_CSEA_key() {
     read -r -s passphrase
 
     # Master key: certify all sub-keys only
-    local masterKeyFingerprint=$(gnupg_create_recommended_master_key "$LOCAL_GNUPGHOME" "$name" "$email" "$duration" "$keyPairAlgo" "cert" "$passphrase")
+    local masterKeyFingerprint=$(f_gnupg_create_recommended_master_key "$LOCAL_GNUPGHOME" "$name" "$email" "$duration" "$keyPairAlgo" "cert" "$passphrase")
     # Sub-key 1: sign only
-    local subkeyFingerprint1=$(gnupg_create_recommended_sub_key "$LOCAL_GNUPGHOME" "$masterKeyFingerprint" "$name" "$email" "$duration" "$keyPairAlgo" "sign" "$passphrase")
+    local subkeyFingerprint1=$(f_gnupg_create_recommended_sub_key "$LOCAL_GNUPGHOME" "$masterKeyFingerprint" "$name" "$email" "$duration" "$keyPairAlgo" "sign" "$passphrase")
     # Sub-key 1: encrypt only
-    local subkeyFingerprint2=$(gnupg_create_recommended_sub_key "$LOCAL_GNUPGHOME" "$masterKeyFingerprint" "$name" "$email" "$duration" "$keyPairAlgo2" "encrypt" "$passphrase")
+    local subkeyFingerprint2=$(f_gnupg_create_recommended_sub_key "$LOCAL_GNUPGHOME" "$masterKeyFingerprint" "$name" "$email" "$duration" "$keyPairAlgo2" "encrypt" "$passphrase")
     # Sub-key 1: authenticate only
-    local subkeyFingerprint3=$(gnupg_create_recommended_sub_key "$LOCAL_GNUPGHOME" "$masterKeyFingerprint" "$name" "$email" "$duration" "$keyPairAlgo" "auth" "$passphrase")
+    local subkeyFingerprint3=$(f_gnupg_create_recommended_sub_key "$LOCAL_GNUPGHOME" "$masterKeyFingerprint" "$name" "$email" "$duration" "$keyPairAlgo" "auth" "$passphrase")
 
     # Lint master + sub keys
-    gnupg_lint_key "$LOCAL_GNUPGHOME" "$masterKeyFingerprint"
+    f_gnupg_lint_key "$LOCAL_GNUPGHOME" "$masterKeyFingerprint"
 
     if [ "$confirmStep" -eq "0" ]; then
         echo "Confirmation: gpg keys setup (above)."
@@ -280,9 +280,9 @@ gnupg_create_CSEA_key() {
 
     # Generate revocation certificate for the master/sub keys, in openpgp-revocs.d
     (command cp -R "$LOCAL_GNUPGHOME/." "$LOCAL_GNUPGHOME2/" && mkdir -p "$LOCAL_GNUPGHOME2_REVOCS_DIR") >/dev/null 2>&1
-    # Note: Master key revocation certificate ALREADY GENERATED WITH gnupg_create_recommended_master_key
+    # Note: Master key revocation certificate ALREADY GENERATED WITH f_gnupg_create_recommended_master_key
     for fingerprint in "$subkeyFingerprint1" "$subkeyFingerprint2" "$subkeyFingerprint3"; do
-        gnupg_create_revocation_certificate_for_key \
+        f_gnupg_create_revocation_certificate_for_key \
             "$LOCAL_GNUPGHOME2" "$LOCAL_GNUPGHOME2_REVOCS_DIR" \
             "$LOCAL_GNUPGHOME" "$LOCAL_GNUPGHOME_REVOCS_DIR" \
             "$fingerprint" 0 "$passphrase"
