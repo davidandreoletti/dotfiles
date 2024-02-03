@@ -261,3 +261,5 @@ data.json
 .newsboat/history.cmdline
 .newsboat/history.search
 .config/nvim/lazy-lock.json
+# nnn
+.config/nnn/plugins-*.tar.gz
