@@ -263,3 +263,4 @@ data.json
 .config/nvim/lazy-lock.json
 # nnn
 .config/nnn/plugins-*.tar.gz
+.config/nnn
