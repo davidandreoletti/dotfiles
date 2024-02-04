@@ -8,7 +8,8 @@ f_navi_install_repo() {
     local cheatpath="$(navi info cheats-path)"
     local dir="$cheatpath/$name"
 
-    git -C "$dir" pull || git clone "$url" "$dir"
+    git -C "$dir" pull 1>/dev/null 2>&1 \
+        || git clone "$url" "$dir" 1>/dev/null 2>&1
 
 }
 
