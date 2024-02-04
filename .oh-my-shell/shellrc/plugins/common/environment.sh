@@ -1,9 +1,4 @@
-# Homebrew
-# Note: Use homebrew in priority (outside the homebrew plugin because some plugins called before homebrew plugin is called need 'brew' to be in the PATH)
-is_macos && [ -d "/usr/local/bin" ] && path_prepend "/usr/local/bin"
-is_linux && [ -d "/home/linuxbrew/.linuxbrew/bin" ] && path_prepend "/home/linuxbrew/.linuxbrew/bin"
-
-# Check XDG directories exist
+# Create missing XDG folders
 if is_macos; then
     # Keep synced with .config/launch/org.david.environment.plist's XDG_xxxx var
     for xdg in "XDG_CONFIG_HOME" "XDG_CACHE_HOME" "XDG_DATA_HOME" "XDG_STATE_HOME"; do

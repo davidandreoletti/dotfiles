@@ -78,10 +78,30 @@ get_terminal_app_type() {
     echo "unknown-terminal-app" && return 0
 }
 
+homebrew_init() {
+    if is_macos; then
+        # ARM Silicon
+        dir0="/opt/Homebrew/bin"
+        # x86 arch                   
+        dir1="/usr/local/Homebrew/bin/"
+    elif is_linux; then
+        dir0="/home/linuxbrew/.linuxbrew/bin"
+    fi
+
+    # Homebrew installation added to
+    # - PATH
+    # - MANPATH
+    # - INFOPATH
+    for dir in $dir0 $dir1
+    do
+        test -x "$dir" && eval "$($dir/brew shellenv $SHELL_NAME)" && break
+    done
+}
+
 homebrew_packages_path_prefix() {
     if test -z "$HOMEBREW_PACKAGES_INSTALL_DIR_PREFIX"; then
         # Cache homebrew install path prefix to avoid (~1s) slowdown when invoking a new shell
-        local homebrew_packages_path="$(brew --prefix)/opt"
+        local homebrew_packages_path="$HOMEBREW_PREFIX/opt"
         HOMEBREW_PACKAGES_INSTALL_DIR_PREFIX="$homebrew_packages_path"
     fi
     echo "$HOMEBREW_PACKAGES_INSTALL_DIR_PREFIX"
