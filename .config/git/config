@@ -29,6 +29,7 @@
     # by reminding what changes the commit has
     # src: https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---verbose
     verbose = true
+    gpgsign = false
 
 [push]
     # Push CURRENT branch to upstream branch
@@ -149,9 +150,6 @@
     subjectPrefix = "PATCH"
     # Certify you have the rights to submit this work under the project's guidelines
     signOff = true
-
-[commit]
-    gpgsign = false
 
 [gpg]
     # Default key format when signing
