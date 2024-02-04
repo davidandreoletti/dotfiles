@@ -1,0 +1,5 @@
+[include]
+    # Popular git aliases
+    path = ~/.config/git/aliases/gitaliases
+    # Common profile git aliases
+    path = ~/.config/git/aliases/common

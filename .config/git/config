@@ -203,11 +203,8 @@
     #
     # Aliases
     #
-    # Popular git aliases
-    path = ~/.config/git/aliases/gitaliases
-    # Common profile git aliases
-    path = ~/.config/git/aliases/common
-
+    path = ~/.config/git/aliases/config_all
+    
     #
     # Profiles
     #
