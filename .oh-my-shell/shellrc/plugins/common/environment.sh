@@ -1,3 +1,11 @@
+# On linux, define XDG_ env vars since XDG_ are optional env variables as per the spec
+if is_linux; then
+    export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+    export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+    export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+    export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+fi
+
 # Create missing XDG folders
 if is_macos; then
     # Keep synced with .config/launch/org.david.environment.plist's XDG_xxxx var
