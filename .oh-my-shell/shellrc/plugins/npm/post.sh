@@ -1,3 +1,6 @@
+# Export Bash/ZSH completion
+command_exists 'npm' && npm completion > "$SHELLRC_COMPLETION_USER_DIR/_npm"
+
 NPM_POST_BASE="$HOME/.oh-my-shell/tmp/npm_post"
 NPM_POST_MARKER="${NPM_POST_BASE}.marker"
 
