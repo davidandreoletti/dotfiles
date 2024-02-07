@@ -5,6 +5,12 @@
 HOMEBREW_PROFILED_COMPLETION_FILE=$(homebrew_package_path_prefix "/bash-completion@2/etc/profile.d/bash_completion.sh")
 dot_if_exists "$HOMEBREW_PROFILED_COMPLETION_FILE"
 
+# Suite of complettions from oh-my-shellrc plugins
+for f in $BASH_COMPLETION_USER_DIR/*;
+do
+    dot_if_exists "$f"
+done
+
 # Completion for installed homebrew packages, without completion profile.d support
 HOMEBREW_FZF_COMPLETION_DIR=$(homebrew_package_path_prefix "/fzf/shell/completion.bash")
 dot_if_exists "$HOMEBREW_FZF_COMPLETION_DIR"

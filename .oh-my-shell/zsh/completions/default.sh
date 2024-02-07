@@ -1,6 +1,8 @@
 # Suite of completions from "zsh-completion" homebrew package 
 # - must be set before "compinit"
 FPATH=$(homebrew_package_path_prefix "/zsh-completions/share/zsh-completions"):$FPATH
+# Suite of complettions from oh-my-shellrc plugins
+FPATH=$ZSH_COMPLETION_USER_DIR:$FPATH
 
 # compinit is now loaded by zsh-autocomplete.plugin.zsh
 ## Initialize completion system

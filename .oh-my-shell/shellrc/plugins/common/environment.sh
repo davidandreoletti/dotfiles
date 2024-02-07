@@ -1,4 +1,5 @@
 # On linux, define XDG_ env vars since XDG_ are optional env variables as per the spec
+# On macOS, XDG_ env vars defined via launchd
 if is_linux; then
     export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
     export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
@@ -24,3 +25,14 @@ if is_macos; then
         fi
     done
 fi
+
+# Define user local shell completion
+if is_zsh; then
+    export ZSH_COMPLETION_USER_DIR="$XDG_DATA_HOME/zsh-completion.d"
+    export SHELLRC_COMPLETION_USER_DIR="$ZSH_COMPLETION_USER_DIR"
+elif is_bash; then
+    export BASH_COMPLETION_USER_DIR="$XDG_DATA_HOME/bash-completion.d"
+    export SHELLRC_COMPLETION_USER_DIR="$BASH_COMPLETION_USER_DIR"
+fi
+
+! test -d "$SHELLRC_COMPLETION_USER_DIR" && mkdir -p "$SHELLRC_COMPLETION_USER_DIR"
