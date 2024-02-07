@@ -1,6 +1,6 @@
 # Suite of completions from "zsh-completion" homebrew package 
 # - must be set before "compinit"
-FPATH=/usr/local/share/zsh-completions:$FPATH
+FPATH=$(homebrew_package_path_prefix "/zsh-completions/share/zsh-completions"):$FPATH
 
 # Initialize completion system
 # -U 
