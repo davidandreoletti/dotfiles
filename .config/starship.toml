@@ -1,0 +1,140 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = false
+# Follows symlinks to check if they're directories; used in modules such as git.
+# - If you have symlinks to networked filesystems, consider setting follow_symlinks to false.
+follow_symlinks = false
+
+format = '''
+(⏱️@$cmd_duration)
+${custom.delimiter}
+\[$username@$hostname\]\[$time\]
+\[$directory\]
+$character
+'''
+
+right_format = '''
+$git_branch@$git_commit$git_status ${custom.git_message}
+'''
+
+[package]
+# No packge version displayed for the current directory
+disabled = true
+
+[os]
+# No OS displayed
+disabled = true
+
+[username]
+show_always = true
+format = '[$user]($style)'
+
+[hostname]
+ssh_only = false
+trim_at = ''
+format = '[$hostname]($style)'
+
+[localip]
+disabled = false
+ssh_only = true
+
+[time]
+disabled = false
+format = '[$time]($style)'
+use_12hr = false
+time_format= '%G/%m/%d@%T%z/%Vw/%jd'
+
+[status]
+disabled = false
+format = '[$status]($style)'
+
+[memory_usage]
+disabled = true
+
+[kubernetes]
+disabled = false
+
+[jobs]
+disabled = true
+
+[git_status]
+disabled = false
+ignore_submodules = false
+conflicted = '∉'
+
+[git_metrics]
+disabled = true
+
+[git_commit]
+disabled = false
+commit_hash_length = 8
+only_detached = false
+tag_disabled = true
+format = '[$hash]($style)'
+
+[git_branch]
+disabled = false
+truncation_length = 64
+only_attached = false
+format = 'git:[$branch]($style)'
+
+[git_state]
+disabled = true
+
+[custom.git_message]
+disabled = false
+command = 'git log -1 --format=%s'
+when = true
+require_repo = true
+description = 'Get git commit message'
+style = 'bold green'
+ignore_timeout = false
+format = '[$output]($style)'
+
+[env_var]
+disabled = true
+
+[directory]
+disabled = false
+use_os_path_sep = true
+truncate_to_repo = false
+truncation_length = 20
+use_logical_path = true
+format = '[$path]($style)'
+
+[cmd_duration]
+disabled = false
+min_time = 100
+show_milliseconds = true
+show_notifications = true
+min_time_to_notify = 60_000
+format = '[$duration]($style)'
+
+[character]
+disabled = false
+format = '$symbol'
+success_symbol = '[\$](bold green)'
+error_symbol = '[\$](bold red)'
+
+[battery]
+disabled = true
+
+[custom.delimiter]
+disabled = false
+description = 'print --- across terminal width'
+when = true
+command = 'printf "%*s" "$COLUMNS" "" | tr " " "-"'
+style = 'bold white'
+format = '[$output]($style)'
+ignore_timeout = true
+
+[custom.k8_prod_warning]
+disabled = false
+description='Shows an indicator when the name of the current kubectl context contains the string `prod` anywhere.'
+when='kubectl config current-context | grep -q prod'
+command='echo " on PROD"'
+symbol='⚠️ '
+style='bold red'
+format='[$symbol($output )]($style)'
