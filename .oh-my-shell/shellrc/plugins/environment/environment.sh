@@ -9,7 +9,7 @@ export VISUAL=$EDITOR
 # TERM reports the terminal type. Best to leave the terminal implementation report it
 # - Apple's Terminal: xterm-256color
 # - Alacritty: xterm-256color
-# - kitty: ?
+# - kitty: xterm-kitty
 #
 # Set 256 capable color
 # Reported with:  find /lib/terminfo /usr/share/terminfo -name "*256*"
