@@ -132,6 +132,7 @@ min_time = 100
 show_milliseconds = true
 show_notifications = true
 min_time_to_notify = 60_000
+style = 'white'
 format = '[$duration]($style)'
 
 [character]
