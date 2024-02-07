@@ -136,15 +136,18 @@ function dot_plugin_if_exists() {
 
     # plugin's *.sh files
     for step in "environment.sh" "functions.sh" "aliases.sh" "private/environment.sh" "private/functions.sh" "private/aliases.sh"; do
-        local stepStartTime=$(_timeNow)
-        dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/$step"
-        local stepEndTime=$(_timeNow)
-        local stepRuntime=$(_timeInterval $stepStartTime $stepEndTime)
-        _reportIfSlowerThan "plugin" "$pluginName" "$step" $stepRuntime $reportStepSpeedOverDurationMs
+        local fileStep="${SHELLRC_CURRENT_PLUGIN_DIR}/$step"
+        if test -f "$fileStep"; then
+            local stepStartTime=$(_timeNow)
+            dot_if_exists "$fileStep"
+            local stepEndTime=$(_timeNow)
+            local stepRuntime=$(_timeInterval $stepStartTime $stepEndTime)
+            _reportIfSlowerThan "plugin" "$pluginName" "$step" $stepRuntime $reportStepSpeedOverDurationMs
+        fi
     done
 
     # plugin's completion.sh file
-    if [ -f "${SHELLRC_CURRENT_PLUGIN_DIR}/completions.sh" ]; then
+    if test -f "${SHELLRC_CURRENT_PLUGIN_DIR}/completions.sh"; then
         local completionStepStartTime=$(_timeNow)
         local stepCompletionFile=$(shell_session_step_file "completions")
         echo "$pluginName" >>"$stepCompletionFile"
@@ -154,7 +157,7 @@ function dot_plugin_if_exists() {
     fi
 
     # plugin's post.sh file
-    if [ -f "${SHELLRC_CURRENT_PLUGIN_DIR}/post.sh" ]; then
+    if test -f "${SHELLRC_CURRENT_PLUGIN_DIR}/post.sh"; then
         local postStepStartTime=$(_timeNow)
         local stepPostFile=$(shell_session_step_file "post")
         echo "$pluginName" >>"$stepPostFile"
