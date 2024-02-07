@@ -364,6 +364,7 @@ is_profile_admin_or_similar
 if [ "$?" -eq 0 ];
 then
     homebrew_brew_install                  "zsh-autosuggestions"
+    homebrew_brew_install                  "zsh-autocomplete"
 
     homebrew_brew_install                  "zsh-completions"
     homebrew_brew_install                  "bash-completion@2"    # bash-completion support pre bash v4. bash-completion@2 support bash v4+
