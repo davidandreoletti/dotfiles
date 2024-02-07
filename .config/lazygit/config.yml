@@ -1,4 +1,17 @@
 notARepository: quit
+disableStartupPopups: true
+update:
+  method: never
 git:
   update:
     days: 0
+gui:
+  windowSize : 'normal'
+  language: 'en'
+keybinding:
+  universal:
+    select: 's' # was '<space>'
+  files:
+    # select: 's' conflicts with
+    stashAllChanges: 's'
+    #viewStashOptions: 'S'
