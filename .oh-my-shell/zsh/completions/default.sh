@@ -36,3 +36,5 @@ dot_if_exists "$HOMEBREW_FZF_COMPLETION_DIR"
 HOMEBREW_FZF_KEYBINDINGS_DIR=$(homebrew_package_path_prefix "/fzf/shell/key-bindings.zsh")
 dot_if_exists "$HOMEBREW_FZF_KEYBINDINGS_DIR"
 
+# Suggestions
+dot_if_exists "$(homebrew_package_path_prefix "/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh")"
