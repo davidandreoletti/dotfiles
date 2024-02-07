@@ -179,7 +179,3 @@ __endTime=$(_timeNow)
 __runtime=$(_timeInterval $__startTime $__endTime)
 _reportIfSlowerThan "oh-my-shell" "loading" "total" $__runtime 1000
 
-# Load tmux by default
-#if [ -z "$TMUX" ]; then
-#    tmux "cwd"  # Requires: tmux plugin
-#fi
