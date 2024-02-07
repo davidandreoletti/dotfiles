@@ -10,14 +10,19 @@ follow_symlinks = false
 format = '''
 (⏱️@$cmd_duration)
 ${custom.delimiter}
-\[$username@$hostname\]\[$time\]
-\[$directory\]
+\[$username@$hostname\]\[$time\] $fill $git_branch@$git_commit$git_status ${custom.git_message}
+\[$directory\](\\n@${custom.k8s_prod_warning}) $fill ${custom.ssh_no_keys}${custom.ssh_keys}
 $character
 '''
 
 right_format = '''
-$git_branch@$git_commit$git_status ${custom.git_message}
+aaa
 '''
+
+[fill]
+disabled = false
+symbol = ' '
+style = 'white'
 
 [package]
 # No packge version displayed for the current directory
@@ -28,13 +33,19 @@ disabled = true
 disabled = true
 
 [username]
+disabled = false
 show_always = true
+style_root = 'bold red'
+style_user = 'white'
 format = '[$user]($style)'
 
 [hostname]
+disabled = false
 ssh_only = false
+ssh_symbol = '[ssh:](red)'
 trim_at = ''
-format = '[$hostname]($style)'
+style = 'white'
+format = '[$ssh_symbol$hostname]($style)'
 
 [localip]
 disabled = false
@@ -42,9 +53,10 @@ ssh_only = true
 
 [time]
 disabled = false
-format = '[$time]($style)'
 use_12hr = false
 time_format= '%G/%m/%d@%T%z/%Vw/%jd'
+style = 'white'
+format = '[$time]($style)'
 
 [status]
 disabled = false
@@ -62,7 +74,12 @@ disabled = true
 [git_status]
 disabled = false
 ignore_submodules = false
-conflicted = '∉'
+conflicted = '[∉](bold red)'
+diverged = '[⇕](red)'
+modified = '[!](red)'
+renamed = '[»](red)'
+deleted = '[✘](red)'
+style = 'white'
 
 [git_metrics]
 disabled = true
@@ -72,12 +89,14 @@ disabled = false
 commit_hash_length = 8
 only_detached = false
 tag_disabled = true
+style = 'white'
 format = '[$hash]($style)'
 
 [git_branch]
 disabled = false
 truncation_length = 64
 only_attached = false
+style = 'white'
 format = 'git:[$branch]($style)'
 
 [git_state]
@@ -89,7 +108,7 @@ command = 'git log -1 --format=%s'
 when = true
 require_repo = true
 description = 'Get git commit message'
-style = 'bold green'
+style = 'white'
 ignore_timeout = false
 format = '[$output]($style)'
 
@@ -130,11 +149,31 @@ style = 'bold white'
 format = '[$output]($style)'
 ignore_timeout = true
 
-[custom.k8_prod_warning]
+[custom.k8s_prod_warning]
 disabled = false
 description='Shows an indicator when the name of the current kubectl context contains the string `prod` anywhere.'
 when='kubectl config current-context | grep -q prod'
-command='echo " on PROD"'
+command='echo "PROD"'
 symbol='⚠️ '
 style='bold red'
-format='[$symbol($output )]($style)'
+format='[$symbol($output)]($style)'
+
+[custom.ssh_no_keys]
+disabled = false
+description = "SSH missing keys"
+when = "ssh-add -l | grep -q 'no identities'"
+command = "echo 🚫"
+format = "$symbol[$output]($style) "
+shell = ["bash", "--noprofile", "--norc"]
+symbol = "🔑"
+style = "bold fg:red"
+
+[custom.ssh_keys]
+disabled = false
+description = "SSH key count"
+when = "ssh-add -l | grep -v -q 'no identities'"
+command = "ssh-add -l | grep -v 'no identities' | wc -l"
+format = "$symbol[$output]($style) "
+shell = ["bash", "--noprofile", "--norc"]
+symbol = "🔑"
+style = "bold fg:green"
