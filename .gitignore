@@ -26,6 +26,8 @@
 # Music Player daemon
 .config/mpd/*
 !.config/mpd/mpd.conf
+.mpd/*
+!./mpd.conf
 database
 sticker.sql
 port
