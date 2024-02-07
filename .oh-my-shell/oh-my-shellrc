@@ -164,7 +164,7 @@ dot_plugin_if_exists "boris"
 dot_plugin_if_exists "conda"
 
 # Load shell plugins (part 2)
-dot_current_shell_plugin_if_exists "completion" # Requires: gnucoreutils 
+dot_current_shell_plugin_if_exists "completions" # Requires: gnucoreutils 
 dot_delayed_plugins_step_if_exists "completions" 1
 dot_current_shell_plugin_if_exists "correction"
 dot_current_shell_plugin_if_exists "custom"
