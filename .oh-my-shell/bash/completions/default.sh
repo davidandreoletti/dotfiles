@@ -15,8 +15,6 @@ fi
 HOMEBREW_FZF_COMPLETION_DIR=$(homebrew_package_path_prefix "/fzf/shell/completion.bash")
 dot_if_exists "$HOMEBREW_FZF_COMPLETION_DIR"
 
-HOMEBREW_FZF_COMPLETION_DIR=$(homebrew_package_path_prefix "/fzf/shell/completion.bash")
-dot_if_exists "$HOMEBREW_FZF_COMPLETION_DIR"
 # Enables:
 # - CTRL-T as fzf file chooser.
 # -- Eg: vim <ctrl-t>
