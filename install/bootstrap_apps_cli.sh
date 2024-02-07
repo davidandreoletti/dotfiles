@@ -327,6 +327,9 @@ then
     # Keychain
     homebrew_brew_install                  "pass" 		         # Password storage
 
+    # Shell prompt
+    homebrew_brew_install                  "starship" 		     # Cross platfrom shell prompt
+
     # terminfo database
     is_fedora && fedora_dnf_install        "ncurses-term"        # ncurses v6.2+'s terminfo database with kitty/alacritty terminal support
     is_macos  && homebrew_brew_install     "ncurses" 		     # Starting with macOS Sonoma's built-in ncurses, kitty/alacritty terminal is supported
