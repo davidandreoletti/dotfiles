@@ -359,23 +359,12 @@ then
     is_macos && brew autoupdate start "86400" --upgrade --cleanup 
 fi
 
-# Install *-completions at the end to prevent the error below when installing other packages
-#
-# Error: Cannot install util-linux because conflicting formulae are installed.
-#   bash-completion: because both install `mount`, `rfkill`, and `rtcwake` completions
-#   rename: because both install `rename` binaries
-# 
-# Please `brew unlink bash-completion rename` before continuing.
-# 
-# Unlinking removes a formula's symlinks from /home/linuxbrew/.linuxbrew. You can
-# link the formula again after the install finishes. You can --force this
-# install, but the build may fail or cause obscure side effects in the
-# resulting software.
+# Install (bash/zsh)-completions
 is_profile_admin_or_similar
 if [ "$?" -eq 0 ];
 then
-    homebrew_brew_install      "zsh-completions" \
-    && homebrew_brew_install   "bash-completion2"
+    homebrew_brew_install                  "zsh-completions"
+    homebrew_brew_install                  "bash-completion@2"    # bash-completion support pre bash v4. bash-completion@2 support bash v4+
 fi
 
 [[ is_profile_admin || is_profile_dev_single || is_profile_dev_multi ]] && tmux_install_tpm
