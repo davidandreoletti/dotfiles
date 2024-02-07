@@ -34,6 +34,17 @@ then
         # src: https://code.visualstudio.com/docs/setup/linux
         sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
         sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+
+        # Google Cloud SDK
+        sudo tee -a /etc/yum.repos.d/google-cloud-sdk.repo << EOM
+        [google-cloud-cli]
+        name=Google Cloud CLI
+        baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el9-x86_64
+        enabled=1
+        gpgcheck=1
+        repo_gpgcheck=0
+        gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+        EOM
     fi
 
     is_fedora  &&  fedora_flatpak_remote_add               "flathub"     "https://flathub.org/repo/flathub.flatpakrepo"
@@ -121,6 +132,8 @@ then
     is_macos   &&  homebrew_brew_cask_install              "google-cloud-sdk" \
                &&  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.$(basename \"echo $SHELL\").inc" \
                &&  gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab 
+    is_fedora  &&  fedora_dnf_install                      "google-cloud-cli"
+
     is_macos   &&  homebrew_brew_install                   "mas"         #  Mac App Store command line too
     is_macos   &&  homebrew_mas_install                    "1451685025"  #  Wireguard
     is_macos   &&  homebrew_mas_install                    "539883307"   #  LINE Inc
