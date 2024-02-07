@@ -15,4 +15,7 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --inline-info --multi --n
 
 # Fzf uses ripgrep as default command to search for files
 # FIXME: Fallback to find if rg is not available
-export FZF_DEFAULT_COMMAND='rg --files 2> /dev/null'
+if command_exists rg;
+then
+    export FZF_DEFAULT_COMMAND='rg --files 2> /dev/null'
+fi
