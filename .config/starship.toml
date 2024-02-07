@@ -8,7 +8,7 @@ add_newline = false
 follow_symlinks = false
 
 format = '''
-(⏱️@$cmd_duration)
+($status)(⏱️@$cmd_duration)
 ${custom.delimiter}
 \[$username@$hostname\]\[$time\] $fill $git_branch@$git_commit$git_status ${custom.git_message}
 \[$directory\](\\n@${custom.k8s_prod_warning}) $fill ${custom.ssh_no_keys}${custom.ssh_keys}
@@ -59,7 +59,11 @@ format = '[$time]($style)'
 
 [status]
 disabled = false
-format = '[$status]($style)'
+recognize_signal_code = true
+pipestatus = true
+pipestatus_separator = '|'
+pipestatus_format = '\[$pipestatus\] => [$common_meaning$signal_name$maybe_int]($style)'
+format = '[$symbol$status]($style)'
 
 [memory_usage]
 disabled = true
