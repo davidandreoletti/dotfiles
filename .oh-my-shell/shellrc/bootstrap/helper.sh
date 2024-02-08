@@ -94,27 +94,36 @@ function dot_delayed_plugins_step_if_exists() {
 
     local stepFile=$(shell_session_step_file "$stepName")
 
-    {
-        while IFS= read -r pluginName; do
-            export SHELLRC_CURRENT_PLUGIN_DIR="${SHELLRC_PLUGINS_DIR}/${pluginName}"
-            local startTime=$(_timeNow)
+    if test -f "$stepFile"; then
+        (
+            {
+                exec {lock_fd}>/tmp/$USER.oh_my_shellrc.$stepName.lock || exit 1
+                flock -n "$lock_fd" || { echo "oh-myshellrc post lock failed." >&2; exit 1; }
 
-            dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/${stepName}.sh"
+                while IFS= read -r pluginName; do
+                    export SHELLRC_CURRENT_PLUGIN_DIR="${SHELLRC_PLUGINS_DIR}/${pluginName}"
+                    local startTime=$(_timeNow)
 
-            local endTime=$(_timeNow)
-            local runtime=$(_timeInterval $startTime $endTime)
-            _reportIfSlowerThan "plugin" "$pluginName" "$stepName" $runtime $reportSpeedOverDurationMs
-            unset SHELLRC_CURRENT_PLUGIN_DIR
-        done <"$stepFile"
-        command rm -f "$stepFile"
-    } &
+                    dot_if_exists "${SHELLRC_CURRENT_PLUGIN_DIR}/${stepName}.sh"
 
-    pid=$!
+                    local endTime=$(_timeNow)
+                    local runtime=$(_timeInterval $startTime $endTime)
+                    _reportIfSlowerThan "plugin" "$pluginName" "$stepName" $runtime $reportSpeedOverDurationMs
+                    unset SHELLRC_CURRENT_PLUGIN_DIR
+                done <"$stepFile"
+                command rm -f "$stepFile"
 
-    if test $background -eq 0; then
-        :
-    else
-        wait $pid
+                flock -u "$lock_fd"
+            } &
+
+            pid=$!
+
+            if test $background -eq 0; then
+                :
+            else
+                wait $pid
+            fi
+        )
     fi
 }
 
