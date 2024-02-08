@@ -4,7 +4,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>org.david.xdg.environment</string>
+	<string>org.__USER__.xdg.environment</string>
 	<key>LimitLoadToSessionType</key>
 	<array>
 	    <string>Aqua</string>
