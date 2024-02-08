@@ -35,6 +35,7 @@ dot_current_shell_plugin_if_exists "history"
 __startTime=$(_timeNow)
 
 # Load app plugins 
+dot_plugin_if_exists "launchd"                      # macOS: defines XDG_ env vars needed by 'common' plugin
 dot_plugin_if_exists "common"
 dot_plugin_if_exists "locale"
 dot_plugin_if_exists "gnuwhich"                     # Expose standard GNU tools, including to .oh-my-shellrc
@@ -80,7 +81,6 @@ dot_plugin_if_exists "gnused"
 dot_plugin_if_exists "gnupg"
 dot_plugin_if_exists "gdb"
 dot_plugin_if_exists "goenv"
-dot_plugin_if_exists "launchd"
 dot_plugin_if_exists "libiconv"
 dot_plugin_if_exists "lsof"
 dot_plugin_if_exists "history"
