@@ -8,7 +8,7 @@ add_newline = false
 follow_symlinks = false
 
 format = '''
-($status)(⏱️@$cmd_duration)
+((exit_code:$status)(duration:$cmd_duration))
 ${custom.delimiter}
 \[$username@$hostname\]\[$time\] $fill ($git_branch@$git_commit$git_status ${custom.git_message})($hg_branch)($fossil_branch)
 \[$directory\](k8s:$kubernetes ${custom.k8s_prod_warning})(docker:$docker_context)(container:$container)(azure:$azure)(aws:$aws) $fill (ssh_keys:${custom.ssh_no_keys}${custom.ssh_keys}(rust:$rust)(python:$python)(conda:$conda))
