@@ -29,7 +29,7 @@ f_homebrew_bcp() {
 
   if [[ $uninst ]]; then
     for prog in $(echo $uninst);
-    do; brew uninstall $prog; done;
+    do brew uninstall $prog; done;
   fi
 }
 
