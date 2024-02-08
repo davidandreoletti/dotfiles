@@ -23,15 +23,19 @@ if is_macos; then
             command ln --symbolic --force "$job" "$target_job"
         fi
 
-        # Permanently enable job to launch at login, even if disabled
-        launchctl load -w "$target_job"
+        # Verify job is well formed
+        if ! plutil -lint "$target_job"; then
+            break
+        fi
 
-        # Load job, even if disabled
-        launchctl load -F "$target_job"
+        # Permanently enable job to launch at login, even if disabled
+        # Load job
+        launchctl load -w -F "$target_job"
 
         # Run job immediately
         launchctl start "$job_name"
 
-        launchctl list 
+        # Check job is launched
+        launchctl list | grep "$job_name"
     done
 fi
