@@ -15,8 +15,7 @@ if is_macos; then
 
         if test -z "$xdg_path";
         then
-            echo "$xdg is not defined."
-            is_kitty_terminal_app && echo "Do not use this terminal as daily driver"
+            echo "$xdg is not defined. Forgot to load ~/Library/LaunchAgents/or.$USER.xdg.environment.plist ?"
             echo "Existing in 15s. Press Ctrl-C to cancel"
             sleep 15 && exit 1
         else
