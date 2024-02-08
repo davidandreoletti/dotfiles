@@ -10,7 +10,7 @@ follow_symlinks = false
 format = '''
 ($status)(⏱️@$cmd_duration)
 ${custom.delimiter}
-\[$username@$hostname\]\[$time\] $fill $git_branch@$git_commit$git_status ${custom.git_message}
+\[$username@$hostname\]\[$time\] $fill ($git_branch@$git_commit$git_status ${custom.git_message})
 \[$directory\](\\n@${custom.k8s_prod_warning}) $fill ${custom.ssh_no_keys}${custom.ssh_keys}
 $character
 '''
