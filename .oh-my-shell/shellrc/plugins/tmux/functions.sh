@@ -153,11 +153,11 @@ f_tmux_open_or_create_session () {
         cwd)
             local defaultSessionName=$(f_tmux_get_session_named_after_current_directory)
             local prefered=${2:-$defaultSessionName}
-            local session=$({ echo "$prefered"; command tmux list-sessions -F "#{session_name}" 2>/dev/null } | fzf --no-multi --cycle --select-1)
+            local session=$(a="$prefered"; b=command tmux list-sessions -F "#{session_name}" 2>/dev/null; printf "$a\n$b" | fzf --no-multi --cycle --select-1)
             ;;
         interactive)
             local prefered=${2:-"default"}
-            local session=$({ echo "$prefered"; command tmux list-sessions -F "#{session_name}" 2>/dev/null } | fzf --no-multi --cycle)
+            local session=$(a="$prefered"; b=command tmux list-sessions -F "#{session_name}" 2>/dev/null; printf "$a\n$b" | fzf --no-multi --cycle)
             ;;
         *)
             echo "Unsupported 'behaviour' value for f_tmux_open_or_create_session"
