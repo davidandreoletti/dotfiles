@@ -78,6 +78,27 @@ get_terminal_app_type() {
     echo "unknown-terminal-app" && return 0
 }
 
+#
+# Login/interactive shell type
+#
+is_interactive_shell() {
+    # support bash/zsh
+    case $- in
+        *i*) return 0;;
+        *) return 1;;
+    esac
+}
+
+is_login_shell() {
+    if is_bash; then
+        shopt -q login_shell && return 0
+    elif is_zsh; then
+        [[ -o login ]] && return 0
+    else
+        return 1
+    fi
+}
+
 homebrew_init() {
     if is_macos; then
         # ARM Silicon
