@@ -26,6 +26,15 @@ FPATH=$ZSH_COMPLETION_USER_DIR:$FPATH
 #zstyle ':completion:*' use-compctl false
 #zstyle ':completion:*' verbose true
 
+# Pass args to compinit, despite being called by zsh-autocomplete
+#zstyle '*:compinit' arguments -D -i -u -C -w
+# -D: do not produce dumped configuration
+# -u: use all files including file not owned by root/current user.
+# -i: silent ignore all insecure file
+# -C: bypass check for rebuilding dump file + bypass call to compaudit
+# -w: indicate why dumpfile is being regenerated
+zstyle '*:compinit' arguments -u -i -C -w
+
 # Completion for installed homebrew packages, without completion profile.d support  
 HOMEBREW_FZF_COMPLETION_DIR=$(homebrew_package_path_prefix "/fzf/shell/completion.zsh")
 dot_if_exists "$HOMEBREW_FZF_COMPLETION_DIR"
