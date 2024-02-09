@@ -1,8 +1,6 @@
 # Install daemons/applications/processes/scripts on macOS(launchctl)
 # https://www.launchd.info
 
-set -x
-
 if test -n "$PLUGIN_LAUNCHD_POST_PLIST"; then
     PLISTS="$PLUGIN_LAUNCHD_POST_PLIST"
 else
@@ -99,4 +97,3 @@ if is_macos; then
         done
     done
 fi
-set +x

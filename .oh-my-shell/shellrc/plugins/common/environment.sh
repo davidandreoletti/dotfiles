@@ -6,11 +6,25 @@ if is_linux; then
     export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
     export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 elif is_macos; then
-    PLUGIN_LAUNCHD_POST_PLIST="org.__USER__.xdg.environment.plist"
-    PLUGIN_LAUNCHD_POST_WAIT_DURATION="1"
-    . $SHELLRC_PLUGINS_DIR/launchd/post.sh
-    unset -v "PLUGIN_LAUNCHD_POST_PLIST"
-    unset -v "PLUGIN_LAUNCHD_POST_WAIT_DURATION"
+    if test "$USER" = "administrator" && is_interactive_shell && is_login_shell && test -n "$ADMINISTRATOR_SHELL_OPEN"; then
+        # Context:
+        #  - 'adminstrator_open_shell' alias executed 
+        #   - macOS's WindowServer does not start a GUI Login session for administrator 
+        #     - launchd has no session for this user
+        #       - org.__USER__.xdg.environment.plist will not be loaded
+        # Solution:
+        #  - define XDG_ env vars only for this case
+        export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+        export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+        export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+        export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+    else
+        PLUGIN_LAUNCHD_POST_PLIST="org.__USER__.xdg.environment.plist"
+        PLUGIN_LAUNCHD_POST_WAIT_DURATION="1"
+        . $SHELLRC_PLUGINS_DIR/launchd/post.sh
+        unset -v "PLUGIN_LAUNCHD_POST_PLIST"
+        unset -v "PLUGIN_LAUNCHD_POST_WAIT_DURATION"
+    fi
 fi
 
 # Create missing XDG folders
