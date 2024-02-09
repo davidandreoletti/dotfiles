@@ -6,9 +6,11 @@ f_dd_verify() {
     # - no write to disk for non input/output data
     local input="$1"
     local output="$2"
-    local bs="${3:-4M}"
-    local buffer="${3:-8m}"
+    local compression="${3:-none}"
+    local bs="${4:-4M}"
+    local buffer="${5:-8m}"
 
+    # Detect if input is compressed
     file $input | grep "compressed"
     # compressed=0 -> file is compressed
     compressed="${PIPESTATUS}${pipestatus}" # bash/zsh
@@ -22,24 +24,28 @@ f_dd_verify() {
     FIFO0="/tmp/$$.dd_to_disk.0"
     FIFO1="/tmp/$$.dd_to_disk.1"
     FIFO2="/tmp/$$.dd_to_disk.2"
+    FIFO3="/tmp/$$.dd_to_disk.3"
     FIFOS="/tmp/$$.dd_to_disk.size"
     FIFOH="/tmp/$$.dd_to_disk.hash"
 
     command rm -f $FIFO0
     command rm -f $FIFO1
     command rm -f $FIFO2
+    command rm -f $FIFO3
     command rm -f $FIFOS
     command rm -f $FIFOH
 
     mkfifo $FIFO0
     mkfifo $FIFO1
     mkfifo $FIFO2
+    mkfifo $FIFO3
 
     local catPID
     local ucatPID
     local hashPID
     local ddPID
     local sizePID
+    local compressPID
 
     local hash
     local hash2
@@ -80,12 +86,21 @@ f_dd_verify() {
     (command cat $FIFO0 | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "wc" | wc --bytes --total=only >$FIFOS) 1>/dev/null 2>&1 &
     catPID=$!
 
-    command cat $FIFO2 | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "writing $output" --force | $output_sudo command dd of="$output" bs=$bs status=none
+    FIFOLAST="$FIFO2"
+    compressPID=$catPID
+    if test "$compression" = "zstd"; then
+        (cat $FIFOLAST | zstd -z -c -f -q | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "compression" > $FIFO3) 1>/dev/null 2>&1 &
+        compressPID=$!
+        FIFOLAST="$FIFO3"
+    fi
+
+    # Write to output
+    command cat $FIFOLAST | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "writing $output" --force | $output_sudo command dd of="$output" bs=$bs status=none
 
     #
     # Wait for all FIFO to be closed
     #
-    for pid in $ucatPID $hashPID $catPID; do
+    for pid in $ucatPID $hashPID $catPID $compressPID; do
         wait $pid
         code=$?
 
@@ -104,6 +119,7 @@ f_dd_verify() {
     command rm -f $FIFO0
     command rm -f $FIFO1
     command rm -f $FIFO2
+    command rm -f $FIFO3
     command rm -f $FIFOS
 
     echo "verify: $input == $output ..."
@@ -121,8 +137,18 @@ f_dd_verify() {
     #
     # Compute + read output hash
     #
-    #(sudo command dd if="$output" bs=$bs status=none | pv --progress --rate --bytes --wait --buffer-size $buffer --stop-at-size --size $sizeWrittenBytes --name "verification" | sha256sum) > $FIFOH 2>/dev/null &
-    $output_sudo command dd if="$output" bs=$bs status=none | pv --progress --rate --bytes --wait --buffer-size $buffer --stop-at-size --size $sizeWrittenBytes --name "verification" | sha256sum >$FIFOH
+    
+    command rm -f $FIFO0
+    mkfifo $FIFO0
+
+    FIFOFIRST="$output"
+    if test "$compression" != "none"; then
+        ($output_sudo command ucat "$output" > "$FIFO0") 1>/dev/null 2>&1 &
+        ucatPID=$!
+        FIFOFIRST="$FIFO0"
+    fi
+
+    $output_sudo command dd if="$FIFOFIRST" bs=$bs status=none | pv --progress --rate --bytes --wait --buffer-size $buffer --stop-at-size --size $sizeWrittenBytes --name "verification" | sha256sum >$FIFOH
     hash2="$(command cat $FIFOH)"
 
     command rm -f $FIFOH
