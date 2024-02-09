@@ -9,12 +9,12 @@ if is_macos; then
         job_file="$(basename $job)"
 
         job_file2="$(echo "$job_file" | sed "s/__USER__/$USER/g")"
-        sed "s/__USER__/$USER/g" "$job" > "$launch_dir/$job_file2"
-        job="$launch_dir/${job_file2}"
+        job_new="$launch_dir/$job_file2"
+        sed "s/__USER__/$USER/g" "$job" > "$job_new"
+        job="$job_new"
         job_file="$job_file2"
 
         job_name="$(echo $job_file | sed -E 's/\.plist//')"
-
         target_job="$target_dir/$job_file"
 
         if ! test -d "$target_dir"; then
@@ -28,8 +28,16 @@ if is_macos; then
             :
         else
             # use short options for macOS's ln
-            command ln -s -f "$job" "$target_job"
+            command rsync "$job" "$target_job"
         fi
+
+        for j in "$target_job";
+        do
+            if ! test -s "$j"; then
+                echo "warn:launchd $j is missing OR empty"
+                continue
+            fi
+        done
 
         # Verify job is well formed
         # - plutil requries a file rather than symlink
@@ -39,12 +47,18 @@ if is_macos; then
 
         # Permanently enable job to launch at login, even if disabled
         # Load job
-        launchctl load -w -F "$target_job"
+        #old syntax:launchctl load -w -F "$target_job"
+        if launchctl list | grep "$job_name" >/dev/null 2>&1; then
+            launchctl bootout gui/$(id -u) "$target_job"
+        fi
+        launchctl bootstrap gui/$(id -u) "$target_job"
 
         # Run job immediately
         launchctl start "$job_name"
 
         # Check job is launched
-        launchctl list | grep "$job_name"
+        if ! launchctl list | grep "$job_name" >/dev/null 2>&1; then
+            echo "warn:launchd $job_name not loaded/started"
+        fi
     done
 fi
