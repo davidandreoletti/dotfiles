@@ -55,9 +55,19 @@ f_dd_verify() {
     #Write to multiple FIFO files
     #
 
+    input_sudo=''
+    if test -b "$input" || test -c "$input"; then
+        input_sudo='sudo'
+    fi
+
+    output_sudo=''
+    if test -b "$output" || test -c "$output"; then
+        output_sudo='sudo'
+    fi
+
     # Use pee instead of tee, to prevent tee from getting stuck randomly on macOS
     #command $catBin "$input" | env tee -p $FIFO0 | env tee -p $FIFO1 > $FIFO2 &
-    (command $catBin "$input" | pee "cat > $FIFO0" "cat > $FIFO1" "cat > $FIFO2") >/dev/null 2>&1 &
+    ($input_sudo command $catBin "$input" | pee "cat > $FIFO0" "cat > $FIFO1" "cat > $FIFO2") >/dev/null 2>&1 &
     ucatPID=$!
 
     #
@@ -70,7 +80,7 @@ f_dd_verify() {
     (command cat $FIFO0 | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "wc" | wc --bytes --total=only >$FIFOS) 1>/dev/null 2>&1 &
     catPID=$!
 
-    command cat $FIFO2 | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "writing $output" --force | sudo command dd of="$output" bs=$bs status=none
+    command cat $FIFO2 | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "writing $output" --force | $output_sudo command dd of="$output" bs=$bs status=none
 
     #
     # Wait for all FIFO to be closed
@@ -112,7 +122,7 @@ f_dd_verify() {
     # Compute + read output hash
     #
     #(sudo command dd if="$output" bs=$bs status=none | pv --progress --rate --bytes --wait --buffer-size $buffer --stop-at-size --size $sizeWrittenBytes --name "verification" | sha256sum) > $FIFOH 2>/dev/null &
-    sudo command dd if="$output" bs=$bs status=none | pv --progress --rate --bytes --wait --buffer-size $buffer --stop-at-size --size $sizeWrittenBytes --name "verification" | sha256sum >$FIFOH
+    $output_sudo command dd if="$output" bs=$bs status=none | pv --progress --rate --bytes --wait --buffer-size $buffer --stop-at-size --size $sizeWrittenBytes --name "verification" | sha256sum >$FIFOH
     hash2="$(command cat $FIFOH)"
 
     command rm -f $FIFOH
