@@ -30,6 +30,9 @@ then
         rpm -ivh http://pkg.cloudflareclient.com/cloudflare-release-el8.rpm
         sed -i 's/dists\/\$releasever\/main/dists/8/main/' /etc/yum.repos.d/cloudflare.repo
 
+        # Tailscale
+        sudo dnf config-manager --add-repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+
         # VSCode
         # src: https://code.visualstudio.com/docs/setup/linux
         sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -127,6 +130,11 @@ then
     # Cloudflare-WARP
     is_macos   &&  homebrew_brew_cask_install              "cloudflare-warp"    # Cloudflare WARP client
     is_fedora  &&  fedora_dnf_install                      "cloudflare-warp"
+
+    # Tailscale
+    is_macos   &&  homebrew_mas_install                    "1475387142"         # Tailscale client
+    is_fedora  &&  fedora_dnf_install                      "tailscale" \
+               &&  sudo systemctl enable tailscale
 
     is_macos   &&  homebrew_brew_cask_install              "google-earth-pro"   # Google Earth
     is_macos   &&  homebrew_brew_cask_install              "google-cloud-sdk" \
