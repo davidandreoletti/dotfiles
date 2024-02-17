@@ -39,6 +39,13 @@
     # Push tags assoctiod to the pushed branch
     # - equivalent to --follow-tags 
     followTags = true
+    # Add --set-upstream on default push when no upstream tracking exists for the current branch.
+    # - takes effect with push.default options simple, upstream, and current
+    #
+    # It is useful if by default you want new branches to be pushed to the default remote 
+    # (like the behavior of push.default=current) and you also want the upstream tracking 
+    # to be set. 
+    autoSetupRemote = true
 
 [color]
     # By default, all non machine oriented outputs are colored
