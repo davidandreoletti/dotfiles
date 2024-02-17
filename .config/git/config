@@ -203,6 +203,21 @@
     # - never guess the user/email from the environment
     useConfigOnly = true
 
+[transfer]
+    # Prevent as much data corruption case as possible
+    # When set, the fetch or receive will abort in the case of:
+    # - a malformed object
+    # - a link to a nonexistent object. 
+    # - various other issues  checked for, including legacy issues:
+    #   - (see fsck.<msg-id>)
+    # - potential security issues like:
+    #   - the existence of a .GIT directory
+    #   - a malicious .gitmodules file (see the release notes for v2.2.1 and v2.17.1 for details). 
+    # - Other sanity and security checks may be added in future releases.
+    #
+    # Set fetch.fsckObjects = true or receive.fsckObjects = true when undefined
+    fsckObjects = true
+
 [init]
     # "master" as default branch name.
     defaultBranch = "master"
