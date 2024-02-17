@@ -14,7 +14,7 @@
     pager = "~/.bin/git-pager.sh delta"
 
 [pager]
-    # Color
+    # Color/Syntax highlighting support
 	diff = "~/.bin/git-pager.sh delta"
     log =  "~/.bin/git-pager.sh delta"
     show = "~/.bin/git-pager.sh delta"
