@@ -114,7 +114,9 @@
 [merge]
     # Merge conflict tool, in order of preference
     # Defaults: git mergetool --tool-help
-    tool = opendiff,vimdiff
+    # - *vimdiff2: Use *vim with a 3 panes layout (LOCAL, MERGED and REMOTE)
+    tool = nvimdiff2,vimdiff2
+    guitool = opendiff
     # Show common ancestor in conflicts markers
     # - text in between ||||||| marker and ======= marker represent the command ancestor code
     # - more common lines out of these markers
