@@ -20,6 +20,16 @@
     show = "~/.bin/git-pager.sh delta"
     blame = "~/.bin/git-pager.sh delta"
 
+    # Turns on pagination for cmd='git difftool' when writing to a tty.
+    # Otherwise, turns on pagination for the subcommand using the pager 
+    # specified by the value of pager.<cmd>. 
+    #
+    # If --paginate or --no-pager is specified on the command line, it 
+    # takes precedence over this option.
+    #
+    # To disable pagination for all commands, set core.pager or GIT_PAGER to cat.
+    difftool = true
+
 [interactive]
     diffFilter = "~/.bin/git-pager.sh delta --color-only --features=interactive"
 
@@ -76,6 +86,17 @@
     colorMoved = default
     # "log" format lists the commits in the range like git-submodule[1] summary does
     submodule = "log"
+    # Use difftastic instead of 'merge.tool'
+    tool = difftastic
+
+[difftool]
+    # Prompt before each invocation of the diff tool.
+    prompt = false
+    # Exit difftool when the invoked diff tool returns a non-zero exit status.
+    trustExitCode = true
+
+[diff "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
 
 [diff "spaceman-diff"]
     # Diff images as ASCII like images
