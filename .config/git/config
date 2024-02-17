@@ -117,7 +117,8 @@
     tool = opendiff,vimdiff
     # Show common ancestor in conflicts markers
     # - text in between ||||||| marker and ======= marker represent the command ancestor code
-    conflictstyle = diff3
+    # - more common lines out of these markers
+    conflictstyle = zdiff3
 
 [log]
 	date = iso
