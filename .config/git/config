@@ -74,6 +74,8 @@
     context = 6
     # color moved
     colorMoved = default
+    # "log" format lists the commits in the range like git-submodule[1] summary does
+    submodule = "log"
 
 [diff "spaceman-diff"]
     # Diff images as ASCII like images
