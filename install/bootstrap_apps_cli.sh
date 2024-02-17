@@ -46,6 +46,10 @@ then
     is_fedora  &&  homebrew_brew_install   "git-credential-libsecret" # provide git credential helper with libsecret also for homebrew's installed git 
     is_macos   &&  homebrew_brew_install   "shihanng/gig/gig"   # Generate .gitignore by programming language. dependency: fzf
 
+    # Diff tools
+    homebrew_brew_install                  "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
+    homebrew_brew_install                  "difftastic"          # Langauge syntax aware diff
+
     # GUN * utils
     homebrew_brew_install                  "coreutils"          # Apple has outdated unix tooling.
     homebrew_brew_install                  "findutils"          # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
@@ -350,7 +354,6 @@ then
     homebrew_brew_install                  "rlwrap"              # Needed to execute PlistBuddy in command mode
     homebrew_brew_install                  "ngrep"               # grep for network resource
     is_macos && homebrew_brew_install      "trash"               # Move files into macOS user's trash bin (as if done from the Finder)
-    homebrew_brew_install                  "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
     homebrew_brew_install                  "so"                  # Query stackoverflow TUI
     homebrew_brew_install                  "universal-ctags"     # catgs for vim's TagBar
 fi
