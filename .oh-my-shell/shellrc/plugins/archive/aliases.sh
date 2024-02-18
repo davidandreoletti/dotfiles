@@ -1,7 +1,13 @@
+# Define compression levels / parallelism for several compressors
+# such as ouch(+zstd),etc
+export ZSTD_CLEVEL=5
+export ZSTD_NBTHREADS=0
+
 # % archive, compress
 # # Compress nearly anything into an archive
-# ; usage: archive_compress <folder_or_file> <archive_name>
-alias archive_compress='ouch compress'
+# ; usage: archive_compress <folder_or_file> <archive_name.zst>
+# ; usage: archive_compress <folder_or_file> <archive_name.tar.zst>
+alias archive_compress='ouch compress '
 
 # % archive, decompress
 # # Uncompress nearly any archive
@@ -16,7 +22,7 @@ alias archive_each_root_folder_separatidely='f_archiveEachFolderSeparatedely '
 # % archive, compress, folder, tar.zst
 # # Archive as tar.gz the specified folder
 # ; Usage: archive_folder <folder_name>
-alias archive_folder='tar -cafv archive.tar.zst '
+alias archive_folder='f_archiveFolder '
 
 # % archive, compress, send, network
 # # Send a directory over the network fast

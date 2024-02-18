@@ -23,3 +23,14 @@ function f_archiveReceiveFromNetwork() {
 
     nc -l -p $port | zstdcat | pv | tar -xz -C "$dirPath"
 }
+
+function f_archiveFolder() {
+    local contentPath="$1"
+    local parentDir="$(dirname $contentPath)"
+    local leafDir="$(basename $contentPath)"
+    local archivePath="${leafDir}.tar.zst"
+
+    pushd "$parentDir"
+        tar -c -a -v -f "$archivePath" "$leafDir"
+    popd
+}
