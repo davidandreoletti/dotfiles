@@ -25,7 +25,11 @@ blinking = "Off"
 size = 14
 
 [[hints.enabled]]
-command = "~/.bin/opener"
+# This requires an absolute path to work, until if ever, $HOME is supported: https://github.com/alacritty/alacritty/issues/7743#event-11836817470
+# NOT SUPPORTED: command = { program = "bash", args = [ "$HOME/.bin/opener" ] } 
+# NOT SUPPORTED: ommand = { program = "$HOME/.bin/openner" } 
+command = { program = "bash", args = [ "/absolute/path/to/dotfiles/.bin/opener" ] } 
+
 hyperlinks = true
 post_processing = true
 regex = "(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
