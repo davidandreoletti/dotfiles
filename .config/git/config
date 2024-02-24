@@ -220,6 +220,31 @@
     line-numbers-minus-style = 124
     line-numbers-plus-style = 28
 
+[absorb]
+    # git-absord configuration
+    # - https://github.com/tummychow/git-absorb
+
+    # Workflow
+    # $ git log
+    # aaaa commit_file_a
+    # bbbb commit_file_b
+    # $ vim file_a
+    # $ git add file_a
+    # $ git-absorb
+    #   ccccc fixup! commit_file_a
+    # $ git git rebase --interactive --autosquash HEAD~10
+    # $ git log
+    # aaaa commit_file_a         <<<< file_a has the new modifications
+    # bbbb commit_file_b#
+
+    # max range to search for candidate commits to fixup
+    maxStack = 25
+    # Create multiple fixup commit for the same candidate commit rather than 1 fixup commits for all hunks 
+    # to be absorbed in the same candidate commit
+    oneFixupPerCommit = false
+    # Hunks to be fixup always come from staged area 
+    autoStageIfNothingStage = false
+
 [user]
     # Setup no default signing key
     signingkey = NO_DEFAULT_KEY_FINGERPRINT
