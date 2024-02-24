@@ -130,7 +130,7 @@
     #  - git commit -m "add parsing code"
     #  - git commit --fixup OLD_COMMIT_ID =>  new commit has commit message "fixup! add parsing code"`
     #  - git rebase --autosquash main     =>  automatically combine all the fixup! commits with THEIR targets
-    autosquash  =true
+    autosquash = true
 
 [merge]
     # Merge conflict tool, in order of preference
