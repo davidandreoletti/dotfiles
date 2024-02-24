@@ -42,6 +42,7 @@ then
     homebrew_brew_install                  "lazygit"            # git TUI easy interactive rebase 
     homebrew_brew_install                  "git-delta"          # Better diff output for git
     homebrew_brew_install                  "git-crypt"          # Encrypt git repository
+    homebrew_brew_install                  "git-fixup"          # Automated "fixup!"" git commit creation
     is_fedora  &&  fedora_dnf_install      "git-credential-libsecret" # git credential helper using GNOME's libsecret backend
     is_fedora  &&  homebrew_brew_install   "git-credential-libsecret" # provide git credential helper with libsecret also for homebrew's installed git 
     is_macos   &&  homebrew_brew_install   "shihanng/gig/gig"   # Generate .gitignore by programming language. dependency: fzf
