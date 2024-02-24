@@ -245,6 +245,40 @@
     # Hunks to be fixup always come from staged area 
     autoStageIfNothingStage = false
 
+[fixup]
+    # git-fixup configuration
+    # - https://github.com/keis/git-fixup
+
+    # Workflow
+    # $ git log
+    # aaaa commit_file_a
+    # bbbb commit_file_b
+    # $ vim file_a
+    # $ git add file_a
+    # $ git-fixup
+    #   ccccc fixup! commit_file_a
+    # $ git git rebase --interactive --autosquash HEAD~10
+    # $ git log
+    # aaaa commit_file_a         <<<< file_a has the new modifications
+    # bbbb commit_file_b#
+
+    # Use closest ancestor branch by default
+    # - allows to create fixup commit for stuff already committed on a feature branch
+    #base = closest
+    # Create fixup commit by default
+    # - easier to review fixup commits
+    action = fixup
+    # (true) display commit menu instead commit list by default
+    commit = true
+    # (false) no git rebase call after git commit call 
+    rebase = false
+    # Enable fzf based commit menu, instead of commit list
+    menu = fzf --height '60%' \
+                --bind 'tab:toggle-preview' \
+                --preview 'git show --color {+1}' \
+                --preview-window=up:80% \
+                --prompt 'Select commit: '
+
 [user]
     # Setup no default signing key
     signingkey = NO_DEFAULT_KEY_FINGERPRINT
