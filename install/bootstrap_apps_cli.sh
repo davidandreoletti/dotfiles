@@ -132,6 +132,10 @@ then
     is_macos  && homebrew_brew_install     "rbenv"               # Ruby Version Installer and manager
     is_fedora && fedora_dnf_install        "rbenv"
 
+    # Clipboard management
+    is_fedora && fedora_dnf_install        "xclip"               #
+    is_fedora && fedora_dnf_install        "xsel"                #
+
     # Network data transfer
     homebrew_brew_install                  "wget"
     homebrew_brew_install                  "curl"
