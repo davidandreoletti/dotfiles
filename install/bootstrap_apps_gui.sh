@@ -132,7 +132,7 @@ then
     is_fedora  &&  fedora_dnf_install                      "cloudflare-warp"
 
     # Tailscale
-    is_macos   &&  homebrew_mas_install                    "1475387142"         # Tailscale client
+    is_macos   &&  homebrew_brew_cask_install              "tailscale"         # Tailscale client
     is_fedora  &&  fedora_dnf_install                      "tailscale" \
                &&  sudo systemctl enable tailscale
 
