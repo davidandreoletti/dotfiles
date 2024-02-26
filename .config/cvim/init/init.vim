@@ -183,8 +183,16 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
 endif
 
 " Fuzzy Finder: fzf: binary integration
-" let cvim_plugins.fzf = { 'name': 'junegunn/fzf' }
-let cvim_plugins.fzf = { 'name': 'junegunn/fzf', 'dir': '/usr/local/opt/fzf' }
+" - provides fzf binary location per platform
+"                 macOS x86_64          macOS arm64              # Linux x86_64/arm64
+let fzf_dir_path="/tmp/does/not/exists"
+for dir_path in [ '/usr/local/opt/fzf', '/opt/homebrew/opt/fzf', '/home/linuxbrew/.linuxbrew/opt/fzf' ]
+    if isdirectory(dir_path)
+        let fzf_dir_path=dir_path
+        break
+    endif
+endfor
+let cvim_plugins.fzf = { 'name': 'junegunn/fzf', 'dir': dir_path }
 " Fuzzy Finder: fzf: vim+binary integration
 " - buffers (: Buffers)
 " - files (: Files)
