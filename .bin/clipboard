@@ -1,6 +1,4 @@
-#!/bin/env sh
-
-exit 1
+#!/usr/bin/env sh
 
 while :; do
     case $1 in
@@ -21,6 +19,22 @@ while :; do
                 exit 1
             fi
             ;;
+        --from-system)
+            #
+            # Paste from system clipboard
+            #
+
+            if command -v 'pbpaste' >/dev/null 2>&1; then
+                pbpaste | /dev/stdout
+            elif command -v 'xclip' >/dev/null 2>&1; then
+                xclip --selection clipboard -o | /dev/stdout
+            elif command -v 'xsel' >/dev/null 2>&1; then
+                xsel --clipboard --output | /dev/stdout
+            else
+                echo "ERROR: No clipboard provider available"
+                exit 1
+            fi
+            ;;
         -?*)
             printf 'ERROR: Unknown option (ignored): %s\n' "$1" >&2
             exit 1
@@ -32,4 +46,3 @@ while :; do
 
     shift
 done
-
