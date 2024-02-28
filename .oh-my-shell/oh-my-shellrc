@@ -57,7 +57,6 @@ dot_plugin_if_exists "buku"                         # Depends on: dropbox
 dot_plugin_if_exists "cat"
 dot_plugin_if_exists "cargo"
 dot_plugin_if_exists "cd"
-dot_plugin_if_exists "clipboard"
 dot_plugin_if_exists "chars"
 dot_plugin_if_exists "cron"
 dot_plugin_if_exists "date"
