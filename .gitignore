@@ -120,6 +120,7 @@ qalc.history
 .docker/config.json
 .docker/features.json
 .docker/sbom
+.docker/mutagen/daemon/daemon.lock
 # Docker Desktop
 .docker/desktop/log
 .docker/desktop/vms
