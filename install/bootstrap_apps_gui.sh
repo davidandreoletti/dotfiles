@@ -25,10 +25,7 @@ if is_profile_admin_or_similar; then
         fedora_dnf_install "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
 
         # Cloudflare WARP client
-        # src: https://community.cloudflare.com/t/setup-warp-in-fedora-34/277475/7
-        # src: https://linuxspin.com/install-and-configure-cloudflare-warp-on-linux/#install-cloudflare-warp-on-fedora
-        rpm -ivh http://pkg.cloudflareclient.com/cloudflare-release-el8.rpm
-        sed -i 's/dists\/\$releasever\/main/dists/8/main/' /etc/yum.repos.d/cloudflare.repo
+	    fedora_dnf_config_manager_add_repo "https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo"
 
         # Tailscale
         sudo dnf config-manager --add-repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
