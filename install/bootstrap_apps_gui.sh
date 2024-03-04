@@ -142,11 +142,13 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "trailer"            # Github Pull Requests Manager
     # Remote desktop
     is_macos   &&  homebrew_brew_cask_install              "vnc-viewer"
-    is_fedora  &&  fedora_flatpak_flathub_install          "org.remmina.Remmina" 
+    is_fedora  &&  fedora_dnf_install                      "remmina"
+    is_macos   &&  homebrew_brew_cask_install              "parsec"             # Local/Remote LAN stream
+
     # ToS
     is_macos   &&  homebrew_brew_cask_install              "thinkorswim"
     is_fedora  &&  app_disabled && bash_command_curl       "https://mediaserver.thinkorswim.com/installer/InstFiles/thinkorswim_installer.sh"
-    
+
     # Data Science
     #is_macos   &&  homebrew_brew_cask_install              "spyder"             # Python/R datasciense IDE
     #is_fedora  &&  fedora_dnf_install                      "python3-spyder"
@@ -157,7 +159,7 @@ if is_profile_admin_or_similar; then
 
     # X11
     is_macos   &&  homebrew_brew_cask_install              "xquartz"            # X.Org X Window System
-    is_macos   &&  homebrew_brew_cask_install              "parsec"             # Local/Remote LAN stream
+
     is_macos   &&  homebrew_brew_cask_install              "qlvideo"            # Additional supported format for Finder's  Quicklook
 
 
