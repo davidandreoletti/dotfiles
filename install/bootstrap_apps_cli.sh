@@ -210,6 +210,7 @@ then
     # OpenSSH client / server
     homebrew_brew_install                  "openssh"             # OpenSSH client and server
     fedora_dnf_install                     "openssh-server" \
+              &&  fedora_dnf_install "__commit_aggregated__" \
               &&  sudo systemctl enable sshd \
               &&  sudo systemctl start sshd
 
@@ -362,6 +363,8 @@ then
     is_macos && homebrew_brew_install      "trash"               # Move files into macOS user's trash bin (as if done from the Finder)
     homebrew_brew_install                  "so"                  # Query stackoverflow TUI
     homebrew_brew_install                  "universal-ctags"     # catgs for vim's TagBar
+
+    fedora_dnf_install    "__commit_aggregated__"
 fi
 
 is_profile_admin
@@ -380,6 +383,8 @@ then
 
     homebrew_brew_install                  "zsh-completions"
     homebrew_brew_install                  "bash-completion@2"    # bash-completion support pre bash v4. bash-completion@2 support bash v4+
+
+    homebrew_brew_install "__commit_aggregated__"
 fi
 
 [[ is_profile_admin || is_profile_dev_single || is_profile_dev_multi ]] && tmux_install_tpm

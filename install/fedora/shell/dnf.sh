@@ -4,9 +4,38 @@
 
 # param1: package name
 fedora_dnf_install() {
-    message_info_show "$1 install ..."
-    # Must use default sudo setting. Hence no: -u <user_name>
-    sudo ${SUDO_OPTIONS} dnf -y install $@
+    local pkgs_file="/tmp/bootstrap.$$.fedora.pkgs"
+
+    if test ${HOMEBREW_BREW_INSTALL_AGGREGATED:-1} -eq 0; then
+        local install_aggregated=0
+    else
+        local install_aggregated=1
+    fi
+
+    case "$1" in
+       *'://'*) 
+           # Package is a URL to probably a RPM file
+           local pre_args1="__commit_aggregated__"
+           ;;
+    esac
+
+    for args in $pre_args0 $pre_args1 "$@";
+    do
+        if test "$1" = "__commit_aggregated__"; then
+            if test "$args" = "__commit_aggregated__"; then
+                message_info_show "$pkgs_file install ..."
+                sudo ${SUDO_OPTIONS} dnf -y install $(<"$pkgs_file")
+                rm -fv "$pkgs_file"
+            fi
+        elif test $install_aggregated -eq 0; then
+            message_info_show "$1 install delayed ..."
+            echo -n " $@" >> "$pkgs_file"
+        else
+            message_info_show "$1 install ..."
+            # Must use default sudo setting. Hence no: -u <user_name>
+            sudo ${SUDO_OPTIONS} dnf -y install $@
+        fi
+    done
 }
 
 fedora_dnf_group_install() {
@@ -14,7 +43,6 @@ fedora_dnf_group_install() {
     # Must use default sudo setting. Hence no: -u <user_name>
     sudo ${SUDO_OPTIONS} dnf -y group install "$1"
 }
-
 
 fedora_dnf_update_repo_metadata() {
     message_info_show "Update repositories metadata..."

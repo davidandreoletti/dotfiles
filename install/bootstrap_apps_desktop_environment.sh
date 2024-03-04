@@ -12,12 +12,14 @@ then
                &&  fedora_dnf_install "rpmfusion-free-release-tainted" \
                &&  fedora_dnf_install "rpmfusion-nonfree-release-tainted"
 
+    is_fedora  &&  fedora_dnf_install "__commit_aggregated__"
 
     # Gnome shell Desktop enviroment
     # - required package for minimal gnome desktop
     is_fedora  &&  fedora_dnf_install "gdm"
     is_fedora  &&  fedora_dnf_install "gnome-shell"
     is_fedora  &&  fedora_dnf_install "gnome-terminal"
+    is_fedora  &&  fedora_dnf_install "__commit_aggregated__"
 
     # Enable login using graphical interface
     is_fedora  &&  sudo ${SUDO_OPTIONS} systemctl enable gdm; 
@@ -40,4 +42,6 @@ then
 
     # Wallpaper
     is_fedora  &&  fedora_dnf_install "variety"
+
+    is_fedora  &&  fedora_dnf_install "__commit_aggregated__"
 fi

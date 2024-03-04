@@ -65,14 +65,13 @@ then
     #  - fedora: 
     #  -- https://docs.docker.com/engine/install/fedora/#install-using-the-repository
     #  -- https://docs.docker.com/engine/install/linux-postinstall/
-    is_fedora  &&  fedora_dnf_config_manager_add_repo      "https://download.docker.com/linux/fedora/docker-ce.repo"
-    is_fedora  &&  fedora_dnf_install                      "docker-ce" \
-               &&  fedora_dnf_install                      "docker-ce-cli" \
-               &&  fedora_dnf_install                      "containerd.io" \
-               &&  fedora_dnf_install                      "docker-compose-plugin"
-               &&  sudo usermod -a -G docker $(whoami) \
-               &&  newgrp docker \
-               &&  sudo systemctl enable docker.service \
+    is_fedora  &&  fedora_dnf_install                      "docker-ce"             \
+               &&  fedora_dnf_install                      "docker-ce-cli"         \
+               &&  fedora_dnf_install                      "containerd.io"         \
+               &&  fedora_dnf_install                      "docker-compose-plugin" \
+               &&  fedora_dnf_install                      "__commit_aggregated__" \
+               &&  sudo usermod -a -G docker $(whoami)                             \
+               &&  sudo systemctl enable docker.service                            \
                &&  sudo systemctl start docker.service
     is_macos   &&  echo "FIXME: Install docker-desktop (required) with https://docs.docker.com/desktop/install/mac-install/#install-from-the-command-line. Then automate the installation"
 
@@ -149,8 +148,9 @@ then
 
     # Tailscale
     is_macos   &&  homebrew_brew_cask_install              "tailscale"         # Tailscale client
-    is_fedora  &&  fedora_dnf_install                      "tailscale" \
-               &&  sudo systemctl enable tailscale
+    is_fedora  &&  fedora_dnf_install                      "tailscale"             \
+               &&  fedora_dnf_install                      "__commit_aggregated__" \
+               &&  sudo systemctl enable --now tailscaled
 
     # Geography
     is_macos   &&  homebrew_brew_cask_install              "google-earth-pro"   # Google Earth
@@ -158,6 +158,9 @@ then
                &&  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.$(basename \"echo $SHELL\").inc" \
                &&  gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab 
     is_fedora  &&  fedora_dnf_install                      "google-cloud-cli"
+
+
+    is_fedora  &&  fedora_dnf_install                      "__commit_aggregated__"
 
     is_macos   &&  homebrew_brew_install                   "mas"         #  Mac App Store command line too
     is_macos   &&  homebrew_mas_install                    "1451685025"  #  Wireguard
@@ -167,5 +170,4 @@ then
     is_macos   &&  homebrew_mas_install                    "1295203466"  #  Microsoft Remote Desktop
     is_macos   &&  homebrew_mas_install                    "1388020431"  #  DevCleaner For Xcode (remove simulator & associated caches)
 fi
-
 

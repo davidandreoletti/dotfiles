@@ -72,6 +72,7 @@ onexit() {
 
 trap onexit EXIT
 
+FEDORA_DNF_INSTALL_AGGREGATED=0
 ## Package managers
 ### Install homebrew prerequisites
 fedora_dnf_group_install "Development Tools"
@@ -79,6 +80,8 @@ fedora_dnf_install "procps-ng"
 fedora_dnf_install "curl"
 fedora_dnf_install "file"
 fedora_dnf_install "git"
+
+fedora_dnf_install "__commit_aggregated__"
 
 ## Package manager
 message_info_show "Homebrew install ..."
@@ -92,10 +95,10 @@ fedora_dnf_install "snapd"
 
 # Fedora's official 3rd party reposititories
 fedora_dnf_install fedora-workstation-repositories
-
 # Hardware drivers (eg: nvidia)
 fedora_dnf_group_install "Hardware Support"
 
+fedora_dnf_install "__commit_aggregated__"
 
 # Applications
 SHELLS_FILE="/etc/shells"
