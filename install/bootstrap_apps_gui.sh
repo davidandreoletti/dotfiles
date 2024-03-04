@@ -36,19 +36,20 @@ if is_profile_admin_or_similar; then
         sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 
         # Google Cloud SDK
-        sudo tee -a /etc/yum.repos.d/google-cloud-sdk.repo << EOM
-        [google-cloud-cli]
-        name=Google Cloud CLI
-        baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el9-x86_64
-        enabled=1
-        gpgcheck=1
-        repo_gpgcheck=0
-        gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-        EOM
 	# Google Chrome
 	# src: https://docs.fedoraproject.org/en-US/quick-docs/installing-chromium-or-google-chrome-browsers
 	fedora_dnf_install "fedora-workstation-repositories" \
 	&& sudo dnf config-manager --set-enabled google-chrome
+		sudo tee -a /etc/yum.repos.d/google-cloud-sdk.repo <<-EOM
+		[google-cloud-cli]
+		name=Google Cloud CLI
+		baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el9-x86_64
+		enabled=1
+		gpgcheck=1
+		repo_gpgcheck=0
+		gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+		EOM
+
     fi
 
     # Alternative stores
