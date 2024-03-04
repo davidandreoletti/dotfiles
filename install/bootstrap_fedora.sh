@@ -24,6 +24,7 @@ source "${BOOSTRAP_DIR}/common/shell/python.sh"
 source "${BOOSTRAP_DIR}/common/shell/pipx.sh"
 source "${BOOSTRAP_DIR}/common/shell/rust.sh"
 source "${BOOSTRAP_DIR}/common/shell/tmux.sh"
+source "${BOOSTRAP_DIR}/common/shell/sudo.sh"
 source "${BOOSTRAP_DIR}/fedora/shell/sudoers.sh"
 source "${BOOSTRAP_DIR}/fedora/shell/vnc.sh"
 source "${BOOSTRAP_DIR}/fedora/shell/ssh.sh"
@@ -51,8 +52,8 @@ chmod 700 "${SUDO_ASKPASS}"
 
 ## Update existing sudo time stamp if set, otherwise do nothing.
 ## https://gist.github.com/cowboy/3118588
-## Unsecure but it's ok
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+## Unsecure and it's ok
+sudo_refresh
 
 ## Give current user sudo rights
 account_has_administration_permission || message_error_show "Account with admin group required for user management"
