@@ -86,8 +86,6 @@ if is_profile_admin_or_similar; then
 
     # Anaconda
     is_macos   &&  homebrew_brew_cask_install              "miniconda"
-    is_macos   &&  homebrew_brew_cask_install              "cyberduck"
-    is_fedora  &&  fedora_flatpak_flathub_install          "org.filezillaproject.Filezilla"
     #is_fedora  &&  fedora_dnf_install                      "conda"                  \
     #           &&  fedora_dnf_install                      "__commit_aggregated__"  \
     #           && (echo "Install conda shell profiles"; sudo conda init --quiet)
@@ -97,6 +95,7 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  fedora_dnf_install                      "google-chrome-beta"
     is_macos   &&  homebrew_brew_cask_install               "firefox"
     is_fedora  &&  fedora_dnf_install                      "firefox"
+
     # Video player
     is_macos   &&  homebrew_brew_cask_install              "vlc"
     is_fedora  &&  fedora_dnf_install                      "vlc"
@@ -118,6 +117,8 @@ if is_profile_admin_or_similar; then
     # File transfer
     is_macos   &&  homebrew_brew_cask_install              "dropbox"
     is_fedora  &&  fedora_dnf_install                      "dropbox"
+    is_macos   &&  homebrew_brew_cask_install              "cyberduck"
+    is_fedora  &&  fedora_dnf_install                      "filezilla"
     is_macos   &&  homebrew_brew_cask_install              "grandperspective"   # Disk usage GUI
 
     # Password manager
