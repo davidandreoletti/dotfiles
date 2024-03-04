@@ -58,8 +58,11 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_tap_install               "homebrew/cask"        \
                &&  homebrew_brew_tap_install              "__commit_aggregated__"
 
+    # Terminal
     is_macos   &&  homebrew_brew_cask_install              "kitty"
     is_fedora  &&  fedora_dnf_install                      "kitty"
+    is_macos   &&  homebrew_brew_cask_install              "alacritty"
+    is_fedora  &&  fedora_dnf_install                      "alacritty"
 
     # Docker repository 
     # - from upstream rather than distribution packages
