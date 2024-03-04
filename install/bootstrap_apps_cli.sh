@@ -16,6 +16,11 @@ if is_profile_admin_or_similar; then
     &&  homebrew_brew_link                 "python3" \
     &&  homebrew_postinstall               "python3"
 
+    # Python global apps in virtual envs
+    homebrew_brew_install                  "pipx"                   \
+    && homebrew_brew_install               "__commit_aggregated__"  \
+    && pipx ensurepath
+
     # Python version manager
     homebrew_brew_install                  "pyenv"              # Manage python version on a per user/folder basis
     homebrew_brew_install                  "pyenv-virtualenv"   # pyenv plugin: virtualenv/venv
@@ -292,12 +297,12 @@ if is_profile_admin_or_similar; then
     #homebrew_brew_install                  "tdsmith/ham/chirp"   # CHIRP software to configure HAM radios
 
     # Bookmarks
-    pip3_global_install                    "buku[server]"        # Browser independent bookmark manager, with standalone server
+    #pipx_pipx_install                      "buku[server]"        # Browser independent bookmark manager, with standalone server
 
     # Scrum
     # Daily standup manager
     # Task manager
-    pip3_global_install                    "tasklog"             # Install tasklog cli
+    pipx_pipx_install                      "tasklog"             # Install tasklog cli
     homebrew_brew_install                  "task"                # Taskwarrior
 
     # AWS SDK
