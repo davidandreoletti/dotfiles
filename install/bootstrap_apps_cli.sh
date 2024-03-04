@@ -16,16 +16,16 @@ then
     # Python version for OS & utilities
     homebrew_brew_install                  "python3" \
     &&  homebrew_brew_link                 "python3" \
-    &&  homebrew_postinstall               "python3"	
+    &&  homebrew_postinstall               "python3"
 
     # Python version manager
     homebrew_brew_install                  "pyenv"              # Manage python version on a per user/folder basis
     homebrew_brew_install                  "pyenv-virtualenv"   # pyenv plugin: virtualenv/venv
-    is_fedora && fedora_dnf_install        "bzip2-devel"        # dependencies for pyenv installed python versions 
-    is_fedora && fedora_dnf_install        "sqlite-devel"       # dependencies for pyenv installed python versions 
-    is_fedora && fedora_dnf_install        "tk-devel"           # dependencies for pyenv installed python versions 
+    is_fedora && fedora_dnf_install        "bzip2-devel"        # dependencies for pyenv installed python versions
+    is_fedora && fedora_dnf_install        "sqlite-devel"       # dependencies for pyenv installed python versions
+    is_fedora && fedora_dnf_install        "tk-devel"           # dependencies for pyenv installed python versions
 
-    # Java version manager 
+    # Java version manager
     homebrew_brew_install                  "volta"              # Manage nodejs version on a per user/folder basis
 
     # Programing languages
@@ -39,13 +39,13 @@ then
     # Git
     homebrew_brew_install                  "git"                # Get more recent version than the one shipped in Xcode
     homebrew_brew_install                  "gitui"              # git TUI for large patch set to deal with on a console
-    homebrew_brew_install                  "lazygit"            # git TUI easy interactive rebase 
+    homebrew_brew_install                  "lazygit"            # git TUI easy interactive rebase
     homebrew_brew_install                  "git-delta"          # Better diff output for git
     homebrew_brew_install                  "git-crypt"          # Encrypt git repository
     homebrew_brew_install                  "git-fixup"          # Automated "fixup!"" git commit creation
     homebrew_brew_install                  "git-absorb"         # Automated "fixup!"" git commit creation too
     is_fedora  &&  fedora_dnf_install      "git-credential-libsecret" # git credential helper using GNOME's libsecret backend
-    is_fedora  &&  homebrew_brew_install   "git-credential-libsecret" # provide git credential helper with libsecret also for homebrew's installed git 
+    is_fedora  &&  homebrew_brew_install   "git-credential-libsecret" # provide git credential helper with libsecret also for homebrew's installed git
     is_macos   &&  homebrew_brew_install   "shihanng/gig/gig"   # Generate .gitignore by programming language. dependency: fzf
 
     # Diff tools
@@ -60,11 +60,11 @@ then
     homebrew_brew_install                  "netcat"             # Apple has outdated unix tooling. netcat is one of them
     homebrew_brew_install                  "util-linux"         # Collection of linux utilies such as flock
     homebrew_brew_install                  "usbutils"           # List USB devices via lsusb
-    homebrew_brew_install                  "moreutils"          # parallel, elekdo, etc    
+    homebrew_brew_install                  "moreutils"          # parallel, elekdo, etc
     homebrew_brew_install                  "gnu-sed"            # GNU `sed`, overwriting the built-in `sed`
     is_macos && homebrew_brew_install      "proctools"          # GNU pkill, pgrep
     homebrew_brew_install                  "inetutils"          # GNU ftp comand and more
-    homebrew_brew_install                  "gnu-which"          # GNU which comand 
+    homebrew_brew_install                  "gnu-which"          # GNU which comand
 
     # Zsh shell
     # Use as default shell for current user
@@ -155,11 +155,11 @@ then
     # - Postgres
     homebrew_brew_install                  "postgresql@14"       # Postgresql DB and standard command line utils like psql. PG db not started at runtime.
     homebrew_brew_install                  "pspg"                # Pager for psql official client
- 
+
     # Multimedia tools
     homebrew_brew_install                  "fdk-aac"             # Fraunhofer FDK AAC library
     homebrew_brew_install                  "openssl"             # Openssl library
-    homebrew_brew_install                  "libvmaf"             # VMAF library
+    homebrew_brew_install                  "libvmaf"             # VMAF brary
     homebrew_brew_install                  "jpeg-xl"             # JPEG-XL codec library
     homebrew_brew_install                  "zimg"                # Scaling, colorspace conversion, and dithering library
     homebrew_brew_install                  "homebrew-ffmpeg/ffmpeg/ffmpeg \
@@ -200,12 +200,12 @@ then
     homebrew_brew_install                  "cheat"               # Alternative short manpage version, with example for most comman use cases
     homebrew_brew_install                  "navi"                # Execute one liner from cheatsheet
 
-    # DNS client 
-    homebrew_brew_install                  "dog"                 # Simpler dig 
+    # DNS client
+    homebrew_brew_install                  "dog"                 # Simpler dig
 
-    # Local system monitoring 
-    homebrew_brew_install                  "htop"                # 
-    homebrew_brew_install                  "glances"             # Extensive system monitoring 
+    # Local system monitoring
+    homebrew_brew_install                  "htop"                #
+    homebrew_brew_install                  "glances"             # Extensive system monitoring
 
     # OpenSSH client / server
     homebrew_brew_install                  "openssh"             # OpenSSH client and server
@@ -213,7 +213,7 @@ then
               &&  sudo systemctl enable sshd \
               &&  sudo systemctl start sshd
 
-    is_macos  &&  homebrew_brew_install    "fwknop"              # Firewall port knocking 
+    is_macos  &&  homebrew_brew_install    "fwknop"              # Firewall port knocking
     is_fedora &&  fedora_dnf_install       "fwknop"
 
     # De/Encryption
@@ -228,7 +228,7 @@ then
 
     # Docker
     homebrew_brew_install                  "dive"                                         # Inspect docker layers
-    homebrew_brew_install                  "jesseduffield/lazydocker/lazydocker"          # TUI docker 
+    homebrew_brew_install                  "jesseduffield/lazydocker/lazydocker"          # TUI docker
 
     # Kubernetes
     homebrew_brew_install                  "boz/repo/kail"       # kubernetes pods console viewer
@@ -284,7 +284,7 @@ then
 
     # ISO
     homebrew_brew_install                  "xorriso"             # ISO9660+RR manipulation tool to kickstart a fedora vm with virt-install
-    
+
     # Software defined radio
     #homebrew_brew_install                  "tdsmith/ham/xastir"  # HAM Station Tracking / Info reporting
     #homebrew_brew_install                  "tdsmith/ham/chirp"   # CHIRP software to configure HAM radios
@@ -314,7 +314,7 @@ then
     homebrew_brew_install                  "watch"               # Run a command at regular interval
     homebrew_brew_install                  "entr"                # Run command on files that have changed
 
-    # Benchmarking 
+    # Benchmarking
     homebrew_brew_install                  "hyperfine"           # benchmarking tool for CLI programs mostly
 
     # Image processing
@@ -356,7 +356,7 @@ then
     homebrew_brew_install                  "libfaketime"         # Freeze system clock for a given application (eg: shell script)
     homebrew_brew_install                  "expect"              # Automate interactive program interactions
     homebrew_brew_install                  "xdg-ninja"           # Recommands where to move files per program when programs support XDG directories structures
-    homebrew_brew_install                  "tree"                # Print directory content as tree structure 
+    homebrew_brew_install                  "tree"                # Print directory content as tree structure
     homebrew_brew_install                  "rlwrap"              # Needed to execute PlistBuddy in command mode
     homebrew_brew_install                  "ngrep"               # grep for network resource
     is_macos && homebrew_brew_install      "trash"               # Move files into macOS user's trash bin (as if done from the Finder)

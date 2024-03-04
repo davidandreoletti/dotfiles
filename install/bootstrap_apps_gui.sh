@@ -50,6 +50,7 @@ then
         EOM
     fi
 
+    # Alternative stores
     is_fedora  &&  fedora_flatpak_remote_add               "flathub"     "https://flathub.org/repo/flathub.flatpakrepo"
     is_fedora  &&  fedora_flatpak_remote_add               "fedora"      "oci+https://registry.fedoraproject.org"
     is_fedora  &&  fedora_snap_install                     "snap-store"
@@ -58,7 +59,8 @@ then
     is_macos   &&  homebrew_brew_cask_install              "kitty"
     is_fedora  &&  fedora_dnf_install                      "kitty"
 
-    # Docker repository (from upstream rather than distribution packages)
+    # Docker repository 
+    # - from upstream rather than distribution packages
     # src:
     #  - fedora: 
     #  -- https://docs.docker.com/engine/install/fedora/#install-using-the-repository
@@ -91,29 +93,43 @@ then
     is_fedora  &&  fedora_flatpak_flathub_install          "com.dropbox.Client"
     is_macos   &&  homebrew_brew_cask_install              "cyberduck"
     is_fedora  &&  fedora_flatpak_flathub_install          "org.filezillaproject.Filezilla"
+
     is_macos   &&  homebrew_brew_cask_install              "grandperspective"   # Disk usage GUI
+
+    # Password manager
     is_macos   &&  homebrew_brew_cask_install              "1password"
     is_macos   &&  homebrew_brew_cask_install              "keepassxc"
     is_fedora  &&  fedora_dnf_install                      "keepassxc"
     is_macos   &&  homebrew_brew_cask_install              "onyx"
+
+    # Postman
     is_macos   &&  homebrew_brew_cask_install              "postman"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.getpostman.Postman"
     is_macos   &&  homebrew_brew_cask_install              "keka"               # File Archiver with support for zst,zip,etc
     is_fedora  &&  fedora_dnf_install                      "p7zip" \
-               &&  fedora_dnf install                      "7zip-plugins"
+               &&  fedora_dnf_install                      "p7zip-plugins"
+    # HTTP forgery
     is_macos   &&  homebrew_brew_cask_install              "http-toolkit"
+    # Text editor
     is_macos   &&  homebrew_brew_cask_install              "textmate"
     is_macos   &&  homebrew_brew_cask_install              "trailer"            # Github Pull Requests Manager
+    # Remote desktop
     is_macos   &&  homebrew_brew_cask_install              "vnc-viewer"
     is_fedora  &&  fedora_flatpak_flathub_install          "org.remmina.Remmina" 
+    # ToS
     is_macos   &&  homebrew_brew_cask_install              "thinkorswim"
     is_fedora  &&  bash_command_curl                       "https://mediaserver.thinkorswim.com/installer/InstFiles/thinkorswim_installer.sh"
+    
+    # Data Science
     #is_macos   &&  homebrew_brew_cask_install              "spyder"             # Python/R datasciense IDE
     #is_fedora  &&  fedora_dnf_install                      "python3-spyder"
+
+    # Tabular data
     is_macos   &&  homebrew_brew_cask_install              "saulpw/vd/visidata" # Visualize tabular data in the terminal
     is_fedora  &&  fedora_dnf_install                      "visidata"
     is_macos   &&  homebrew_brew_cask_install              "ngrok"
     is_fedora  &&  fedora_snap_install                     "ngrok"
+    # X11
     is_macos   &&  homebrew_brew_cask_install              "xquartz"            # X.Org X Window System
     is_macos   &&  homebrew_brew_cask_install              "parsec"             # Local/Remote LAN stream
     is_macos   &&  homebrew_brew_cask_install              "qlvideo"            # Additional supported format for Finder's  Quicklook
@@ -136,6 +152,7 @@ then
     is_fedora  &&  fedora_dnf_install                      "tailscale" \
                &&  sudo systemctl enable tailscale
 
+    # Geography
     is_macos   &&  homebrew_brew_cask_install              "google-earth-pro"   # Google Earth
     is_macos   &&  homebrew_brew_cask_install              "google-cloud-sdk" \
                &&  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.$(basename \"echo $SHELL\").inc" \
