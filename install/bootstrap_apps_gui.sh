@@ -141,9 +141,10 @@ if is_profile_admin_or_similar; then
 
     # HTTP forgery
     is_macos   &&  homebrew_brew_cask_install              "http-toolkit"
+
     # Text editor
     is_macos   &&  homebrew_brew_cask_install              "textmate"
-    is_macos   &&  homebrew_brew_cask_install              "trailer"            # Github Pull Requests Manager
+
     # Remote desktop
     is_macos   &&  homebrew_brew_cask_install              "vnc-viewer"
     is_fedora  &&  fedora_dnf_install                      "remmina"
