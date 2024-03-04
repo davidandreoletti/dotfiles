@@ -306,8 +306,8 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "task"                # Taskwarrior
 
     # AWS SDK
-    pip3_global_install                    "awscli"              # AWS CLI
-    
+    homebrew_brew_install                  "awscli"              # AWS CLI
+
     # Oracle Cloud SDK
     is_macos && homebrew_brew_install      "oci-cli"             # Oracle Cloud CLI
 
