@@ -82,8 +82,8 @@ if is_profile_admin_or_similar; then
     # Neovim, neovim python package, neovim python bindings package
     homebrew_brew_install                  "neovim"  \
     && pip3_global_install                 "neovim"  \
-    && pip3_global_install                 "pynvim" 
-    
+    && pip3_global_install                 "pynvim"
+
     # RSS
     homebrew_brew_install                  "newsboat"            # RSS/Atom reader
 
