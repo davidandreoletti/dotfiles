@@ -40,9 +40,9 @@ HIGHLIGHTS:
 - `shellrc`:
   - is a POSIX shell plugin initialisation manager
   - total initialization duration:
-    - zsh:  ~7s (w/ plugins + completions)
+    - zsh:  ~4s (w/ plugins + completions)
       - measured with `shellrc_benchmark_on_zsh`
-    - bash: ~7s (w/ plugins + completions)
+    - bash: ~5s (w/ plugins + completions)
 - binaries
   - rely on GNU binaries when available
   - prefer virtual env binaries over global for programming related tools (sdk, runtime, etc)
@@ -110,21 +110,23 @@ Bootstrap macOS machine
 
 3. Run bootstrap script with the profile
 
+   NOTE: dotfile-private can be encrypted while bootstraping.
+
    Current user will be a **macOS standard user**:
 
-       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s normal -p "`pwd`/../dotfiles-private"
+       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s normal -p "$(pwd)/../dotfiles-private"
 
    Current user will be a **macOS Administrator privileges user**
 
-       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine macosx -s admin -p "`pwd`/../dotfiles-private"
+       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine macosx -s admin -p "$(pwd)/../dotfiles-private"
 
    Current user will be a  **primary developer account on the machine**
 
-       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine macosx -s dev_single -p "`pwd`/../dotfiles-private"
+       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine macosx -s dev_single -p "$(pwd)/../dotfiles-private"
 
    Current user will be a  **one of the secondaries developer accounts on the machine**
 
-       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine macosx -s dev_multi -p "`pwd`/../dotfiles-private"
+       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine macosx -s dev_multi -p "$(pwd)/../dotfiles-private"
 
 
 Bootstrap Fedora machine
@@ -165,19 +167,19 @@ Bootstrap Fedora machine
 
    Current user will be a **Fedora standard user**:
 
-       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s normal -p "`pwd`/../dotfiles-private"
+       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s normal -p "$(pwd)/../dotfiles-private"
 
    Current user will be a **Fedora Administrator privileges user**
 
-       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s admin -p "`pwd`/../dotfiles-private"
+       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s admin -p "$(pwd)/../dotfiles-private"
 
    Current user will be a  **primary developer account on the machine**
 
-       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s dev_single -p "`pwd`/../dotfiles-private"
+       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s dev_single -p "$(pwd)/../dotfiles-private"
 
    Current user will be a  **one of the secondaries developer accounts on the machine**
 
-       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s dev_multi -p "`pwd`/../dotfiles-private"
+       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s dev_multi -p "$(pwd)/../dotfiles-private"
 
 
 
@@ -216,7 +218,7 @@ Bootstrap configuration files
 
    #. (if boostrap config script has never been called) Install conf files into your HOME dir:
 
-       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash bootstrap.sh -b dotfiles -s perso -p "`pwd`/../dotfiles-private"
+       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash bootstrap.sh -b dotfiles -s perso -p "$(pwd)/../dotfiles-private"
 
    #. Update existing conf files (overwritten):
 
