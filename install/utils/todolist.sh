@@ -6,7 +6,9 @@ TODOLIST_FILE="${BOOSTRAP_DIR}/TODO-bootstrap-machine.txt"
 
 todolist_show_read_todolist() {
     message_warning_show "Some things MUST be setup up at manually. Read $TODOLIST_FILE for details or alternatively look hereafter"
-    cat "$TODOLIST_FILE"
+    if test -f "$TODOLIST_FILE"; then
+        cat "$TODOLIST_FILE"
+    fi
 }
 
 #param1: append text in todo list
