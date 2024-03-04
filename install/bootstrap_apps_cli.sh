@@ -150,7 +150,6 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "curl"
     homebrew_brew_install                  "httpie"              # Curl simplified
     homebrew_brew_install                  "tcpdump"             # TCP traffic sniffing
-    homebrew_brew_install                  "mitmproxy"           # Charles Proxy in command line
 
     # Network topology discovery
     homebrew_brew_install                  "nmap"                # Network Mapper

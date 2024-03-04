@@ -169,6 +169,8 @@ if is_profile_admin_or_similar; then
                &&  gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab 
     is_fedora  &&  fedora_dnf_install                      "google-cloud-cli"
 
+    # Traffic shaping
+    is_macos   &&  homebrew_brew_cask_install              "mitmproxy"           # Charles Proxy in command line
 
     is_fedora  &&  fedora_dnf_install                      "__commit_aggregated__"
 
