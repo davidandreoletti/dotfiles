@@ -50,6 +50,8 @@ if is_profile_admin_or_similar; then
 		gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 		EOM
 
+        # Docker
+        fedora_dnf_config_manager_add_repo      "https://download.docker.com/linux/fedora/docker-ce.repo"
     fi
 
     # Alternative stores
@@ -65,10 +67,10 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "alacritty"
     is_fedora  &&  fedora_dnf_install                      "alacritty"
 
-    # Docker repository 
+    # Docker repository
     # - from upstream rather than distribution packages
     # src:
-    #  - fedora: 
+    #  - fedora:
     #  -- https://docs.docker.com/engine/install/fedora/#install-using-the-repository
     #  -- https://docs.docker.com/engine/install/linux-postinstall/
     is_fedora  &&  fedora_dnf_install                      "docker-ce"             \
