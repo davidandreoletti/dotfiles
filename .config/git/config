@@ -10,7 +10,7 @@
 	# Centralized Git hooks
 	# Requires git 2.9+
 	hooksPath = ~/.config/git/hooks
-    # Default pager 
+    # Default pager
     pager = "~/.bin/git-pager.sh delta"
 
 [pager]
@@ -21,10 +21,10 @@
     blame = "~/.bin/git-pager.sh delta"
 
     # Turns on pagination for cmd='git difftool' when writing to a tty.
-    # Otherwise, turns on pagination for the subcommand using the pager 
-    # specified by the value of pager.<cmd>. 
+    # Otherwise, turns on pagination for the subcommand using the pager
+    # specified by the value of pager.<cmd>.
     #
-    # If --paginate or --no-pager is specified on the command line, it 
+    # If --paginate or --no-pager is specified on the command line, it
     # takes precedence over this option.
     #
     # To disable pagination for all commands, set core.pager or GIT_PAGER to cat.
@@ -35,7 +35,7 @@
 
 [commit]
     # Show unified diff between the HEAD commit and what would be committed at the
-    # bottom of the commit message template to help the user describe the commit 
+    # bottom of the commit message template to help the user describe the commit
     # by reminding what changes the commit has
     # src: https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---verbose
     verbose = true
@@ -47,14 +47,14 @@
     # http://longair.net/blog/2011/02/27/an-asymmetry-between-git-pull-and-git-push/
     default = "upstream"
     # Push tags assoctiod to the pushed branch
-    # - equivalent to --follow-tags 
+    # - equivalent to --follow-tags
     followTags = true
     # Add --set-upstream on default push when no upstream tracking exists for the current branch.
     # - takes effect with push.default options simple, upstream, and current
     #
-    # It is useful if by default you want new branches to be pushed to the default remote 
-    # (like the behavior of push.default=current) and you also want the upstream tracking 
-    # to be set. 
+    # It is useful if by default you want new branches to be pushed to the default remote
+    # (like the behavior of push.default=current) and you also want the upstream tracking
+    # to be set.
     autoSetupRemote = true
 
 [color]
@@ -110,12 +110,12 @@
 
 [branch]
     # By default, "git pull" will REBASE (instead merge) the local branch created with "git checkout" / "git branch" when the local branche tracking these branches:
-    # - remote branches 
+    # - remote branches
     # - local branches
     autoSetupRebase = always
     # By default, track branches created with "git checkout" / "git branch" when starting from these branches:
-    # - remote branches 
-    # - local branches 
+    # - remote branches
+    # - local branches
     autoSetupMerge = always
 
 [pull]
@@ -156,13 +156,13 @@
 
 [mergetool]
     # Delete merge backup files (as .orig files)
-    # After performing a merge, the original file with conflict markers can be saved as a file with a .orig extension. 
+    # After performing a merge, the original file with conflict markers can be saved as a file with a .orig extension.
     keepBackup = false
     # Do not prompt before each invocation of the merge resolution program
     prompt = false
 
 [repack]
-    # Use delta offset when repacking 
+    # Use delta offset when repacking
     # Requires: git 1.4.4+
     usedeltabaseoffset = true
 
@@ -239,10 +239,10 @@
 
     # max range to search for candidate commits to fixup
     maxStack = 25
-    # Create multiple fixup commit for the same candidate commit rather than 1 fixup commits for all hunks 
+    # Create multiple fixup commit for the same candidate commit rather than 1 fixup commits for all hunks
     # to be absorbed in the same candidate commit
     oneFixupPerCommit = false
-    # Hunks to be fixup always come from staged area 
+    # Hunks to be fixup always come from staged area
     autoStageIfNothingStage = false
 
 [fixup]
@@ -270,7 +270,7 @@
     action = fixup
     # (true) display commit menu instead commit list by default
     commit = true
-    # (false) no git rebase call after git commit call 
+    # (false) no git rebase call after git commit call
     rebase = false
     # Enable fzf based commit menu, instead of commit list
     menu = fzf --height '60%' \
@@ -290,12 +290,12 @@
     # Prevent as much data corruption case as possible
     # When set, the fetch or receive will abort in the case of:
     # - a malformed object
-    # - a link to a nonexistent object. 
+    # - a link to a nonexistent object.
     # - various other issues  checked for, including legacy issues:
     #   - (see fsck.<msg-id>)
     # - potential security issues like:
     #   - the existence of a .GIT directory
-    #   - a malicious .gitmodules file (see the release notes for v2.2.1 and v2.17.1 for details). 
+    #   - a malicious .gitmodules file (see the release notes for v2.2.1 and v2.17.1 for details).
     # - Other sanity and security checks may be added in future releases.
     #
     # Set fetch.fsckObjects = true or receive.fsckObjects = true when undefined
@@ -317,7 +317,7 @@
     # Aliases
     #
     path = ~/.config/git/aliases/config_all
-    
+
     #
     # Profiles
     #
