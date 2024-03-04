@@ -119,6 +119,8 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  fedora_dnf_install                      "dropbox"
     is_macos   &&  homebrew_brew_cask_install              "cyberduck"
     is_fedora  &&  fedora_dnf_install                      "filezilla"
+
+    # Disk usage
     is_macos   &&  homebrew_brew_cask_install              "grandperspective"   # Disk usage GUI
 
     # Password manager
@@ -129,7 +131,8 @@ if is_profile_admin_or_similar; then
 
     # Postman
     is_macos   &&  homebrew_brew_cask_install              "postman"
-    is_fedora  &&  fedora_flatpak_flathub_install          "com.getpostman.Postman"
+    #is_fedora  &&  fedora_flatpak_flathub_install          "com.getpostman.Postman"
+
     # Archive
     is_macos   &&  homebrew_brew_cask_install              "keka"               # File Archiver with support for zst,zip,etc
     is_fedora  &&  fedora_dnf_install                      "p7zip" \
