@@ -1,7 +1,9 @@
 #!/bin/sh
 ###############################################################################
 # Sudo/sudoers related functions
-###############################################################################
+##############################################################################
+
+source "${BOOSTRAP_DIR}/common/shell/sudoers.sh"
 
 SUDO_OPTIONS=${SUDO_OPTIONS:-""}
 SUDOERS_ORIGINAL_FILE="/etc/sudoers"
@@ -54,21 +56,5 @@ function sudoers_user_no_password_unset() {
     local username="$1"
     echo "sed \"/$username ALL = NOPASSWD : ALL/d\"  >> \"${SUDOERS_ORIGINAL_FILE}\"" | sudo ${SUDO_OPTIONS} sh
     visudo -c
-}
-
-function sudoers_add_user() {
-    sudo visudo -c
-
-    local sudoersFile="/etc/sudoers.d/bootstrap-machine" # file name must not contain '.' or '~'
-    local current_user="$1"
-    local pattern="$ a\\
-    # Added by boostrap-machine script\\
-    $current_user	ALL=\(ALL\) ALL"
-
-    sudo touch "$sudoersFile"
-    sudo chmod 0440 "$sudoersFile"
-    sudo sed -i.bak -e "$pattern" "$sudoersFile"
-
-    sudo visudo -c
 }
 
