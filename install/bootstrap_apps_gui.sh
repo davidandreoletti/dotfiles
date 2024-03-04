@@ -194,7 +194,7 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "google-cloud-sdk"       \
                &&  homebrew_brew_cask_install              "__commit_aggregated__"  \
                &&  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.$(basename \"echo $SHELL\").inc" \
-               &&  gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab 
+               &&  gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab
     is_fedora  &&  fedora_dnf_install                      "google-cloud-cli"
 
     # Traffic shaping
@@ -210,4 +210,3 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_mas_install                    "1295203466"  #  Microsoft Remote Desktop
     is_macos   &&  homebrew_mas_install                    "1388020431"  #  DevCleaner For Xcode (remove simulator & associated caches)
 fi
-
