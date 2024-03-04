@@ -146,8 +146,7 @@ if is_profile_admin_or_similar; then
     # Tabular data
     is_macos   &&  homebrew_brew_cask_install              "saulpw/vd/visidata" # Visualize tabular data in the terminal
     is_fedora  &&  fedora_dnf_install                      "visidata"
-    is_macos   &&  homebrew_brew_cask_install              "ngrok"
-    is_fedora  &&  fedora_snap_install                     "ngrok"
+
     # X11
     is_macos   &&  homebrew_brew_cask_install              "xquartz"            # X.Org X Window System
     is_macos   &&  homebrew_brew_cask_install              "parsec"             # Local/Remote LAN stream
@@ -158,6 +157,9 @@ if is_profile_admin_or_similar; then
     #is_macos   &&  homebrew_brew_cask_install              "visual-studio-code"
     #is_fedora  &&  fedora_dnf_install                      "code"
 
+    # Ngrok
+    is_macos   &&  homebrew_brew_cask_install              "ngrok"
+    #is_fedora  &&  fedora_snap_install                     "ngrok"
 
     # Cloudflare-WARP
     is_macos   &&  homebrew_brew_cask_install              "cloudflare-warp"    # Cloudflare WARP client
