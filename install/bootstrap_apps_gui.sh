@@ -84,8 +84,6 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "miniconda"
     is_macos   &&  homebrew_brew_cask_install              "google-chrome"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.google.Chrome"
-    is_macos   &&  homebrew_brew_cask_install              "vlc"
-    is_fedora  &&  fedora_flatpak_flathub_install          "org.videolan.VLC"
     is_macos   &&  homebrew_brew_cask_install              "utm"                  # Qemu GUI
     is_macos   &&  homebrew_brew_cask_install              "calibre"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.calibre_ebook.calibre"
@@ -99,6 +97,9 @@ if is_profile_admin_or_similar; then
     #           &&  fedora_dnf_install                      "__commit_aggregated__"  \
     #           && (echo "Install conda shell profiles"; sudo conda init --quiet)
 
+    # Video player
+    is_macos   &&  homebrew_brew_cask_install              "vlc"
+    is_fedora  &&  fedora_dnf_install                      "vlc"
 
     # IDE
     is_macos   &&  homebrew_brew_cask_install              "jetbrains-toolbox"
