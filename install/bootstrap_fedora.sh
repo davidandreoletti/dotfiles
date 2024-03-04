@@ -73,6 +73,8 @@ onexit() {
 trap onexit EXIT
 
 FEDORA_DNF_INSTALL_AGGREGATED=0
+HOMEBREW_BREW_INSTALL_AGGREGATED=0
+
 ## Package managers
 ### Install homebrew prerequisites
 fedora_dnf_group_install "Development Tools"

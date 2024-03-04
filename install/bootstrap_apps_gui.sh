@@ -54,7 +54,9 @@ then
     is_fedora  &&  fedora_flatpak_remote_add               "flathub"     "https://flathub.org/repo/flathub.flatpakrepo"
     is_fedora  &&  fedora_flatpak_remote_add               "fedora"      "oci+https://registry.fedoraproject.org"
     is_fedora  &&  fedora_snap_install                     "snap-store"
-    is_macos   &&  homebrew_brew_tap_install               "homebrew/cask"
+
+    is_macos   &&  homebrew_brew_tap_install               "homebrew/cask"        \
+               &&  homebrew_brew_tap_install              "__commit_aggregated__"
 
     is_macos   &&  homebrew_brew_cask_install              "kitty"
     is_fedora  &&  fedora_dnf_install                      "kitty"
@@ -75,8 +77,8 @@ then
                &&  sudo systemctl start docker.service
     is_macos   &&  echo "FIXME: Install docker-desktop (required) with https://docs.docker.com/desktop/install/mac-install/#install-from-the-command-line. Then automate the installation"
 
+    # Anaconda
     is_macos   &&  homebrew_brew_cask_install              "miniconda"
-    is_fedora  &&  fedora_dnf_install                      "conda"  && (echo "Install conda shell profiles"; sudo conda init --quiet)
     is_macos   &&  homebrew_brew_cask_install              "google-chrome"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.google.Chrome"
     is_macos   &&  homebrew_brew_cask_install              "vlc"
@@ -92,6 +94,9 @@ then
     is_fedora  &&  fedora_flatpak_flathub_install          "com.dropbox.Client"
     is_macos   &&  homebrew_brew_cask_install              "cyberduck"
     is_fedora  &&  fedora_flatpak_flathub_install          "org.filezillaproject.Filezilla"
+    #is_fedora  &&  fedora_dnf_install                      "conda"                  \
+    #           &&  fedora_dnf_install                      "__commit_aggregated__"  \
+    #           && (echo "Install conda shell profiles"; sudo conda init --quiet)
 
     is_macos   &&  homebrew_brew_cask_install              "grandperspective"   # Disk usage GUI
 
@@ -154,7 +159,10 @@ then
 
     # Geography
     is_macos   &&  homebrew_brew_cask_install              "google-earth-pro"   # Google Earth
-    is_macos   &&  homebrew_brew_cask_install              "google-cloud-sdk" \
+
+    # Google Cloud SDK
+    is_macos   &&  homebrew_brew_cask_install              "google-cloud-sdk"       \
+               &&  homebrew_brew_cask_install              "__commit_aggregated__"  \
                &&  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.$(basename \"echo $SHELL\").inc" \
                &&  gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab 
     is_fedora  &&  fedora_dnf_install                      "google-cloud-cli"

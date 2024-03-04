@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 ###############################################################################
 # Boostrap new macOS 
@@ -84,6 +85,8 @@ message_info_show "Xcode Command Line Tools install ..."
 xcode_show_command_line_tool_install_request
 message_info_show "Press any key to continue install"
 read
+
+HOMEBREW_BREW_INSTALL_AGGREGATED=0
 
 ## Package manager
 message_info_show "Homebrew install ..."

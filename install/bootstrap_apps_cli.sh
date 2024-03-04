@@ -69,7 +69,10 @@ then
     # Zsh shell
     # Use as default shell for current user
     is_fedora && fedora_dnf_install        "zsh"
-    is_macos  && homebrew_brew_install     "zsh"   && sudo bash -c "echo $(brew --prefix)/bin/zsh >> $SHELLS_FILE" && sudo chsh -s $(brew --prefix)/bin/zsh $USER;
+    is_macos  && homebrew_brew_install     "zsh" \
+              && homebrew_brew_install     "__commit_aggregated__" \
+              && sudo bash -c "echo $(brew --prefix)/bin/zsh >> $SHELLS_FILE" \
+              && sudo chsh -s $(brew --prefix)/bin/zsh $USER;
     homebrew_brew_install                  "tmux"
     homebrew_brew_install                  "vim"
     
@@ -365,6 +368,7 @@ then
     homebrew_brew_install                  "universal-ctags"     # catgs for vim's TagBar
 
     fedora_dnf_install    "__commit_aggregated__"
+    homebrew_brew_install "__commit_aggregated__"
 fi
 
 is_profile_admin
