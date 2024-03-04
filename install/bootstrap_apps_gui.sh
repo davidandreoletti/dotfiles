@@ -86,8 +86,6 @@ if is_profile_admin_or_similar; then
 
     # Anaconda
     is_macos   &&  homebrew_brew_cask_install              "miniconda"
-    is_macos   &&  homebrew_brew_cask_install              "dropbox"
-    is_fedora  &&  fedora_flatpak_flathub_install          "com.dropbox.Client"
     is_macos   &&  homebrew_brew_cask_install              "cyberduck"
     is_fedora  &&  fedora_flatpak_flathub_install          "org.filezillaproject.Filezilla"
     #is_fedora  &&  fedora_dnf_install                      "conda"                  \
@@ -117,6 +115,9 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "transmission"
     is_fedora  &&  fedora_dnf_install                      "transmission"
 
+    # File transfer
+    is_macos   &&  homebrew_brew_cask_install              "dropbox"
+    is_fedora  &&  fedora_dnf_install                      "dropbox"
     is_macos   &&  homebrew_brew_cask_install              "grandperspective"   # Disk usage GUI
 
     # Password manager
