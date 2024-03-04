@@ -52,7 +52,7 @@ echo "$p" | sudo -S echo ""
 ## Temporarily prevent sudo from asking password
 ramdisk_create_and_mount_storage "secrets"
 export SUDO_OPTIONS="-A"
-export SUDO_ASKPASS="/Volumes/secrets/askpass.sh"
+export SUDO_ASKPASS="$CURRENT_RAM_DISK/askpass.sh"
 echo -e "#!/bin/bash\necho \"${p}\"" > "${SUDO_ASKPASS}"
 chmod 700 "${SUDO_ASKPASS}"
 
