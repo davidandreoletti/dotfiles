@@ -86,8 +86,6 @@ if is_profile_admin_or_similar; then
 
     # Anaconda
     is_macos   &&  homebrew_brew_cask_install              "miniconda"
-    is_macos   &&  homebrew_brew_cask_install              "calibre"
-    is_fedora  &&  fedora_flatpak_flathub_install          "com.calibre_ebook.calibre"
     is_macos   &&  homebrew_brew_cask_install              "transmission"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.transmissionbt.Transmission"
     is_macos   &&  homebrew_brew_cask_install              "dropbox"
@@ -113,6 +111,10 @@ if is_profile_admin_or_similar; then
     # IDE
     is_macos   &&  homebrew_brew_cask_install              "jetbrains-toolbox"
     is_fedora  &&  bash_command_curl_no_sudo               "https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/20c25238c4c1c5a2f1807c200ac3a68e4d1cd3c3/jetbrains-toolbox.sh"
+    # Books
+    is_macos   &&  homebrew_brew_cask_install              "calibre"
+    is_fedora  &&  fedora_dnf_install                      "calibre"
+
     is_macos   &&  homebrew_brew_cask_install              "grandperspective"   # Disk usage GUI
 
     # Password manager
