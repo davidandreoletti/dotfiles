@@ -84,8 +84,6 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "vlc"
     is_fedora  &&  fedora_flatpak_flathub_install          "org.videolan.VLC"
     is_macos   &&  homebrew_brew_cask_install              "utm"                  # Qemu GUI
-    is_macos   &&  homebrew_brew_cask_install              "jetbrains-toolbox"
-    is_fedora  &&  bash_command_curl                       "https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/0fdc2d6d94cc87d57170b0edde49d46ba4731504/jetbrains-toolbox.sh"
     is_macos   &&  homebrew_brew_cask_install              "calibre"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.calibre_ebook.calibre"
     is_macos   &&  homebrew_brew_cask_install              "transmission"
@@ -98,6 +96,10 @@ if is_profile_admin_or_similar; then
     #           &&  fedora_dnf_install                      "__commit_aggregated__"  \
     #           && (echo "Install conda shell profiles"; sudo conda init --quiet)
 
+
+    # IDE
+    is_macos   &&  homebrew_brew_cask_install              "jetbrains-toolbox"
+    is_fedora  &&  bash_command_curl_no_sudo               "https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/20c25238c4c1c5a2f1807c200ac3a68e4d1cd3c3/jetbrains-toolbox.sh"
     is_macos   &&  homebrew_brew_cask_install              "grandperspective"   # Disk usage GUI
 
     # Password manager
@@ -122,7 +124,7 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  fedora_flatpak_flathub_install          "org.remmina.Remmina" 
     # ToS
     is_macos   &&  homebrew_brew_cask_install              "thinkorswim"
-    is_fedora  &&  bash_command_curl                       "https://mediaserver.thinkorswim.com/installer/InstFiles/thinkorswim_installer.sh"
+    is_fedora  &&  app_disabled && bash_command_curl       "https://mediaserver.thinkorswim.com/installer/InstFiles/thinkorswim_installer.sh"
     
     # Data Science
     #is_macos   &&  homebrew_brew_cask_install              "spyder"             # Python/R datasciense IDE
