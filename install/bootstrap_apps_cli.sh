@@ -320,6 +320,9 @@ if is_profile_admin_or_similar; then
     # AWS SDK
     homebrew_brew_install                  "awscli"              # AWS CLI
 
+    # Digital Ocean
+    homebrew_brew_install                  "doctl"               # Digital Ocean CLI
+
     # Oracle Cloud SDK
     is_macos && homebrew_brew_install      "oci-cli"             # Oracle Cloud CLI
 
