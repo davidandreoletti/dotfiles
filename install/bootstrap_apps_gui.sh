@@ -57,7 +57,6 @@ if is_profile_admin_or_similar; then
     # Alternative stores
     is_fedora  &&  fedora_flatpak_remote_add               "flathub"     "https://flathub.org/repo/flathub.flatpakrepo"
     is_fedora  &&  fedora_flatpak_remote_add               "fedora"      "oci+https://registry.fedoraproject.org"
-    is_fedora  &&  fedora_snap_install                     "snap-store"
 
     is_macos   &&  homebrew_brew_tap_install               "homebrew/cask"        \
                &&  homebrew_brew_tap_install              "__commit_aggregated__"
@@ -106,6 +105,7 @@ if is_profile_admin_or_similar; then
     # IDE
     is_macos   &&  homebrew_brew_cask_install              "jetbrains-toolbox"
     is_fedora  &&  bash_command_curl_no_sudo               "https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/20c25238c4c1c5a2f1807c200ac3a68e4d1cd3c3/jetbrains-toolbox.sh"
+
     # Books
     is_macos   &&  homebrew_brew_cask_install              "calibre"
     is_fedora  &&  fedora_dnf_install                      "calibre"
@@ -130,6 +130,7 @@ if is_profile_admin_or_similar; then
     # Postman
     is_macos   &&  homebrew_brew_cask_install              "postman"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.getpostman.Postman"
+    # Archive
     is_macos   &&  homebrew_brew_cask_install              "keka"               # File Archiver with support for zst,zip,etc
     is_fedora  &&  fedora_dnf_install                      "p7zip" \
                &&  fedora_dnf_install                      "p7zip-plugins"
