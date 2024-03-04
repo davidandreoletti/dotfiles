@@ -129,6 +129,9 @@ if is_profile_admin_or_similar; then
     # IRC client
     homebrew_brew_install                  "irssi"               # IRC client. Note: --with-perl=yes --with-proxy included since brew irssi formula v1.2.3
 
+    # Cron
+    is_fedora && fedora_dnf_install        "cronie"              # crontab support
+
     # Programming language SDK manager
     homebrew_brew_install                  "jenv"                # Java JDK manager
     homebrew_brew_install                  "nvm"                 # Node SDK manager
