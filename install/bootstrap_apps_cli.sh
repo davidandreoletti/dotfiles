@@ -353,6 +353,10 @@ if is_profile_admin_or_similar; then
     is_fedora && fedora_dnf_install        "ncurses-term"        # ncurses v6.2+'s terminfo database with kitty/alacritty terminal support
     is_macos  && homebrew_brew_install     "ncurses" 		     # Starting with macOS Sonoma's built-in ncurses, kitty/alacritty terminal is supported
 
+    is_fedora && fedora_dnf_install        "pcsc-lite"           # Smart card access middleware for SCard API (PC/SC)
+    is_fedora && fedora_dnf_install        "pcsc-lite-ccid"      # Generic USB CCCID (Chip/Smart Card Interface Driver) and ICC (Integrated Circuit Interface driver)
+    is_fedora && fedora_dnf_install        "pcsc-tools"          # Scan smart cards
+
     # Typing
     # EXPERIMENTAL cargo_global_install                   "thokr"               # Typing tester
 
