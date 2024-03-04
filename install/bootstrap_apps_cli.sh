@@ -8,7 +8,13 @@ if is_profile_admin_or_similar; then
     homebrew_brew_tap_install              "burntsushi/ripgrep"  "https://github.com/BurntSushi/ripgrep.git"
     homebrew_brew_tap_install              "boz/repo"
     homebrew_brew_tap_install              "mopidy/mopidy"
-    homebrew_brew_tap_install              "homebrew-ffmpeg/ffmpeg"
+    # Note: use standard ffmpeg due to it being a
+    #       dependency of many other package (eg: modpidy, mpd, etc ...)
+    #
+    # FIXME: investigate how to install this package as keg-only,
+    #        in addition to homebrew's provided ffmepg package
+    #homebrew_brew_tap_install              "homebrew-ffmpeg/ffmpeg"
+
     #homebrew_brew_tap_install              "arthurk/homebrew-virt-manager"
 
     # Python version for OS & utilities
@@ -78,7 +84,7 @@ if is_profile_admin_or_similar; then
               && sudo chsh -s $(brew --prefix)/bin/zsh $USER;
     homebrew_brew_install                  "tmux"
     homebrew_brew_install                  "vim"
-    
+
     # Neovim, neovim python package, neovim python bindings package
     homebrew_brew_install                  "neovim"  \
     && pip3_global_install                 "neovim"  \
@@ -170,12 +176,13 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "libvmaf"             # VMAF brary
     homebrew_brew_install                  "jpeg-xl"             # JPEG-XL codec library
     homebrew_brew_install                  "zimg"                # Scaling, colorspace conversion, and dithering library
-    homebrew_brew_install                  "homebrew-ffmpeg/ffmpeg/ffmpeg \
-                                            --with-fdk-aac \
-                                            --with-openssl \
-                                            --with-libvmaf \
-                                            --with-jpeg-xl \
-                                            --with-zimg"         # FFMPEG (using https://github.com/homebrew-ffmpeg/homebrew-ffmpeg's tap + dependencies above this line)
+
+    #homebrew_brew_install                  "homebrew-ffmpeg/ffmpeg/ffmpeg \
+    #                                        --with-fdk-aac \
+    #                                        --with-openssl \
+    #                                        --with-libvmaf \
+    #                                        --with-jpeg-xl \
+    #                                        --with-zimg"         # FFMPEG (using https://github.com/homebrew-ffmpeg/homebrew-ffmpeg's tap + dependencies above this line)
 
     # Multimedia players
     homebrew_brew_install                  "mpc"                 # Music player (CLI) client
