@@ -38,13 +38,9 @@ function account_guest_enable {
 	# Does guest already exist?
 	if id "guest" &>/dev/null; then
 		echo "Guest already created!"
-		exit 0
 	else
 		sudo ${SUDO_OPTIONS} useradd guest -s /bin/zsh -m
-
 		logger -s "$0: Guest created"
-
-		exit 0
 	fi
 }
 
@@ -53,7 +49,5 @@ function account_guest_disable {
 	sudo ${SUDO_OPTIONS} usermod -L guest
 
 	logger -s "$0: Guest account disabled"
-
-	exit 0
 }
 
