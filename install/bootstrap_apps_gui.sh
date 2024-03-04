@@ -84,7 +84,6 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "miniconda"
     is_macos   &&  homebrew_brew_cask_install              "google-chrome"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.google.Chrome"
-    is_macos   &&  homebrew_brew_cask_install              "utm"                  # Qemu GUI
     is_macos   &&  homebrew_brew_cask_install              "calibre"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.calibre_ebook.calibre"
     is_macos   &&  homebrew_brew_cask_install              "transmission"
@@ -100,6 +99,9 @@ if is_profile_admin_or_similar; then
     # Video player
     is_macos   &&  homebrew_brew_cask_install              "vlc"
     is_fedora  &&  fedora_dnf_install                      "vlc"
+
+    # Virtualization
+    is_macos   &&  homebrew_brew_cask_install              "utm"                  # Qemu GUI
 
     # IDE
     is_macos   &&  homebrew_brew_cask_install              "jetbrains-toolbox"
