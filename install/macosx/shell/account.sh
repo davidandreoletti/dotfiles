@@ -57,14 +57,14 @@ function account_guest_enable {
 	else
 		# Lion+ has a different procedure for enabling the guest account
 		if [ "$(sw_vers | grep -o '10\.6')" != "" ]; then
-			logger -s "$0: Not implemented"
+			message_warning_show "$0: Not implemented"
 
 			exit 0
 		fi
 
 		# Lion+ procedure
 		if [ "$(sw_vers | grep -o '10\.[7-8]')" != "" ]; then
-			logger "$0: Enabling 10.7/10.8 Guest"
+			message_warning_show "$0: Enabling 10.7/10.8 Guest"
 			sudo ${SUDO_OPTIONS} $DSCL . -create /Users/Guest
 			sudo ${SUDO_OPTIONS} $DSCL . -create /Users/Guest dsAttrTypeNative:_defaultLanguage en
 			sudo ${SUDO_OPTIONS} $DSCL . -create /Users/Guest dsAttrTypeNative:_guest true
@@ -96,7 +96,7 @@ function account_guest_enable {
 			#sudo ${SUDO_OPTIONS} defaults write /Library/Preferences/com.apple.loginwindow DisableGuestAccount -bool FALSE
 			#sudo ${SUDO_OPTIONS} defaults write /Library/Preferences/com.apple.loginwindow EnableGuestAccount -bool TRUE
 
-			logger -s "$0: Guest created"
+			message_info_show "$0: Guest created"
 
 			exit 0
 		fi
@@ -115,7 +115,7 @@ function account_guest_disable {
 	#sudo ${SUDO_OPTIONS} defaults write /Library/Preferences/com.apple.loginwindow DisableGuestAccount -bool TRUE
 	#sudo ${SUDO_OPTIONS} defaults write /Library/Preferences/com.apple.loginwindow EnableGuestAccount -bool FALSE
 
-	logger -s "$0: Guest account disabled"
+	message_info_show "$0: Guest account disabled"
 
 	exit 0
 }
