@@ -133,6 +133,8 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "keka"               # File Archiver with support for zst,zip,etc
     is_fedora  &&  fedora_dnf_install                      "p7zip" \
                &&  fedora_dnf_install                      "p7zip-plugins"
+    is_macos   &&  homebrew_brew_cask_install              "rar"                # RAR files
+
     # HTTP forgery
     is_macos   &&  homebrew_brew_cask_install              "http-toolkit"
     # Text editor
@@ -157,7 +159,7 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "xquartz"            # X.Org X Window System
     is_macos   &&  homebrew_brew_cask_install              "parsec"             # Local/Remote LAN stream
     is_macos   &&  homebrew_brew_cask_install              "qlvideo"            # Additional supported format for Finder's  Quicklook
-    is_macos   &&  homebrew_brew_cask_install              "rar"                # RAR files
+
 
     # VSCode
     #is_macos   &&  homebrew_brew_cask_install              "visual-studio-code"
