@@ -28,7 +28,7 @@ if is_profile_admin_or_similar; then
 	    fedora_dnf_config_manager_add_repo "https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo"
 
         # Tailscale
-        sudo dnf config-manager --add-repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+        fedora_dnf_config_manager_add_repo "https://pkgs.tailscale.com/stable/fedora/tailscale.repo"
 
         # VSCode
         # src: https://code.visualstudio.com/docs/setup/linux
