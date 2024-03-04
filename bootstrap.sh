@@ -1,4 +1,7 @@
 #!/bin/bash
+
+source $PWD/install/utils/message.sh
+
 BOOSTRAP_COMMAND=""
 DOTFILES_PROFILE="perso"
 DOTFILES_DEFAULT_SHELL="zsh"
@@ -106,7 +109,7 @@ while getopts 'db:s:t:p:h' flag; do
             echo -e ""
             ;;
         ?)
-            echo "Unsupported option. Exit."
+            message_error_show "Unsupported option. Exit."
             exit
             ;;
     esac
@@ -122,13 +125,13 @@ function check_new_updates() {
 
 function check_new_shell_exists() {
     [ -f "$(which $DOTFILES_DEFAULT_SHELL)" ] || (
-        echo "Shell $DOTFILES_DEFAULT_SHELL does not exist. EXITING now before trashinng your new setup"
+        message_error_show "Shell $DOTFILES_DEFAULT_SHELL does not exist. EXITING now before trashinng your new setup"
         exit 1
     )
 }
 
 function change_default_shell() {
-    echo "INFO: $USER wants a new shell: $(which $DOTFILES_DEFAULT_SHELL)"
+    message_info_show "$USER wants a new shell: $(which $DOTFILES_DEFAULT_SHELL)"
     chsh -s $(which $DOTFILES_DEFAULT_SHELL)
 }
 
@@ -163,7 +166,7 @@ function bootstrap_oh_my_shell() {
     elif [ "$shell_name" = "zsh" ]; then
         shell_file="$HOME/.zshrc"
     else
-        echo "Error: Shell not supported: $SHELL. Exiting"
+        message_info_show "Error: Shell not supported: $SHELL. Exiting"
         exit 1
     fi
 
@@ -177,7 +180,7 @@ function bootstrap_oh_my_shell() {
         echo "Configuring loading oh-my-shell at shell startup: $load_statment ---> $shell_file"
         echo "$load_statment" >>"$shell_file"
     else
-        echo "Already configured loading oh-my-shell at shell startup: $load_statment ---> $shell_file"
+        message_info_show "Already configured loading oh-my-shell at shell startup: $load_statment ---> $shell_file"
     fi
 }
 
@@ -187,21 +190,21 @@ function bootstrap_dotfiles() {
 
 function bootstrap_dotfiles_private() {
     if [ ${DOTFILES_PRIVATE_DIR_PATH_SET} == false ]; then
-        echo "WARNING: No dotfiles-private dir set."
+        message_warning_show "WARNING: No dotfiles-private dir set."
         return
     fi
 
     if [ "$($DOTFILES_PRIVATE_DIR_PATH/.bin/dotfiles_private_locked_status $DOTFILES_PRIVATE_DIR_PATH)" = "LOCKED" ]; then
-        echo "WARNING: $DOTFILES_PRIVATE_DIR_PATH's files are LOCKED (ie ENCRYPTED). Symlinking files requires unlocked files."
-        echo "To unlock files, run: bash $DOTFILES_PRIVATE_DIR_PATH/.bin/dotfiles_private_unlock \"$DOTFILES_PRIVATE_DIR_PATH\""
+        message_warning_show "WARNING: $DOTFILES_PRIVATE_DIR_PATH's files are LOCKED (ie ENCRYPTED). Symlinking files requires unlocked files."
+        message_info_show "To unlock files, run: bash $DOTFILES_PRIVATE_DIR_PATH/.bin/dotfiles_private_unlock \"$DOTFILES_PRIVATE_DIR_PATH\""
     else
-        echo "NOTE: $DOTFILES_PRIVATE_DIR_PATH's files are UNLOCKED (ie DECRYPTED)."
+        message_info_show "NOTE: $DOTFILES_PRIVATE_DIR_PATH's files are UNLOCKED (ie DECRYPTED)."
         stow_files "$USER" "$DOTFILES_PRIVATE_DIR_PATH" "$HOME"
     fi
 }
 
 function oh_my_shell_ready() {
-    echo "oh_my_shell is ready. Open a new terminal to start using it"
+    message_info_show "oh_my_shell is ready. Open a new terminal to start using it"
 }
 
 function bootstrap_vim_plugins() {
