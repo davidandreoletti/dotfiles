@@ -57,6 +57,9 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  homebrew_brew_install   "git-credential-libsecret" # provide git credential helper with libsecret also for homebrew's installed git
     is_macos   &&  homebrew_brew_install   "shihanng/gig/gig"   # Generate .gitignore by programming language. dependency: fzf
 
+    # Github
+    homebrew_brew_install                  "gh"                 # Automated "fixup!"" git commit creation
+
     # Diff tools
     homebrew_brew_install                  "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
     homebrew_brew_install                  "difftastic"          # Langauge syntax aware diff
@@ -370,7 +373,6 @@ if is_profile_admin_or_similar; then
     # Misc
     homebrew_brew_install                  "fortune"             # Fortune cookie
     homebrew_brew_install                  "jp2a"                # Convert images to ASCII. Required by spaceman-diff
-    homebrew_brew_install                  "hub"                 # Unofficial Github CLI (for Pull Requests, etc)
     homebrew_brew_install                  "pv"                  # pipe data flow speed progress indicator
     homebrew_brew_install                  "pstree"              # Show ps output as a tree
     homebrew_brew_install                  "libfaketime"         # Freeze system clock for a given application (eg: shell script)
