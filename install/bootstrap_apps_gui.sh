@@ -48,6 +48,10 @@ if is_profile_admin_or_similar; then
         repo_gpgcheck=0
         gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
         EOM
+	# Google Chrome
+	# src: https://docs.fedoraproject.org/en-US/quick-docs/installing-chromium-or-google-chrome-browsers
+	fedora_dnf_install "fedora-workstation-repositories" \
+	&& sudo dnf config-manager --set-enabled google-chrome
     fi
 
     # Alternative stores
@@ -82,8 +86,6 @@ if is_profile_admin_or_similar; then
 
     # Anaconda
     is_macos   &&  homebrew_brew_cask_install              "miniconda"
-    is_macos   &&  homebrew_brew_cask_install              "google-chrome"
-    is_fedora  &&  fedora_flatpak_flathub_install          "com.google.Chrome"
     is_macos   &&  homebrew_brew_cask_install              "calibre"
     is_fedora  &&  fedora_flatpak_flathub_install          "com.calibre_ebook.calibre"
     is_macos   &&  homebrew_brew_cask_install              "transmission"
@@ -96,6 +98,11 @@ if is_profile_admin_or_similar; then
     #           &&  fedora_dnf_install                      "__commit_aggregated__"  \
     #           && (echo "Install conda shell profiles"; sudo conda init --quiet)
 
+    # Browser
+    is_macos   &&  homebrew_brew_cask_install              "google-chrome"
+    is_fedora  &&  fedora_dnf_install                      "google-chrome-beta"
+    is_macos   &&  homebrew_brew_cask_install               "firefox"
+    is_fedora  &&  fedora_dnf_install                      "firefox"
     # Video player
     is_macos   &&  homebrew_brew_cask_install              "vlc"
     is_fedora  &&  fedora_dnf_install                      "vlc"
@@ -151,9 +158,6 @@ if is_profile_admin_or_similar; then
     #is_macos   &&  homebrew_brew_cask_install              "visual-studio-code"
     #is_fedora  &&  fedora_dnf_install                      "code"
 
-    # Firefox
-    is_macos   && homebrew_brew_cask_install               "firefox" 
-    is_fedora  &&  fedora_dnf_install                      "firefox"
 
     # Cloudflare-WARP
     is_macos   &&  homebrew_brew_cask_install              "cloudflare-warp"    # Cloudflare WARP client
