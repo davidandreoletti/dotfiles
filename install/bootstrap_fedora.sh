@@ -95,7 +95,6 @@ homebrew_is_installed || exit 1
 fedora_dnf_install "flatpak"
 ### Install snaps prerequisites
 fedora_dnf_install "snapd"
-
 # Fedora's official 3rd party reposititories
 fedora_dnf_install fedora-workstation-repositories
 # Hardware drivers (eg: nvidia)

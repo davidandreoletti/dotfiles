@@ -6,10 +6,19 @@
 ###############################################################################
 
 # FIXME dummy value + restore to UNKNOWN
-CONFIG_MACOSX_VNC_PASSWORD="ASUNKNOWN"
-CONFIG_MACOSX_USER_ADMIN_PASSWORD="dummy"
-CONFIG_MACOSX_TIMEMACHINE_USERNAME="davidandreoletti"
-CONFIG_MACOSX_TIMEMACHINE_PASSWORD="dummy"
+case "$(uname -a)" in
+    Dardwin*)
+        CONFIG_MACOSX_VNC_PASSWORD="ASUNKNOWN"
+        CONFIG_MACOSX_USER_ADMIN_PASSWORD="dummy"
+        CONFIG_MACOSX_TIMEMACHINE_USERNAME="davidandreoletti"
+        CONFIG_MACOSX_TIMEMACHINE_PASSWORD="dummy"
+        ;;
+    Linux*)
+        ;;
+    *)
+        echo "Unsupported platform"
+        ;;
+esac
 
 is_config_key_set() {
     s=$1
