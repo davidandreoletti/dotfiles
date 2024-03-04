@@ -9,9 +9,9 @@ if is_profile_admin_or_similar; then
         # Add Anaconda repository
         # src: https://docs.conda.io/projects/conda/en/latest/user-guide/install/rpm-debian.html
         # Import GPG public key
-        rpm --import https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc
+        sudo rpm --import https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc
 
-	    cat <<-EOF > /etc/yum.repos.d/conda.repo
+		sudo tee -a /etc/yum.repos.d/conda.repo <<-EOF
 		[conda]
 		name=Conda
 		baseurl=https://repo.anaconda.com/pkgs/misc/rpmrepo/conda
