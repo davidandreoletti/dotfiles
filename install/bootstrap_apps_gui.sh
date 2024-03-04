@@ -1,11 +1,11 @@
-## GUI applications
-is_profile_admin_or_similar
-if [ "$?" -eq 0 ];
-then
+app_disabled() {
+    return 1
+}
 
-    is_fedora
-    if [ "$?" -eq 0 ];
-    then
+## GUI applications
+if is_profile_admin_or_similar; then
+
+    if is_fedora; then
         # Add Anaconda repository
         # src: https://docs.conda.io/projects/conda/en/latest/user-guide/install/rpm-debian.html
         # Import GPG public key

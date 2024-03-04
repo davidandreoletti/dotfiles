@@ -1,7 +1,5 @@
 ## Desktop environments
-is_profile_admin_or_similar
-if [ "$?" -eq 0 ];
-then
+if is_profile_admin_or_similar; then
     # NVIDA drivers support
     is_fedora  &&  fedora_dnf_install "fedora-workstation-repositories"
     # Non Fedora Core packages support

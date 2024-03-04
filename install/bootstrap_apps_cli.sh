@@ -3,9 +3,7 @@
 ##  - http://braumeister.org/
 ##  - http://brewformulas.org/A
 
-is_profile_admin_or_similar
-if [ "$?" -eq 0 ];
-then
+if is_profile_admin_or_similar; then
     homebrew_brew_tap_install              "homebrew/services"  # Launch services in background.
     homebrew_brew_tap_install              "burntsushi/ripgrep"  "https://github.com/BurntSushi/ripgrep.git"
     homebrew_brew_tap_install              "boz/repo"
@@ -371,17 +369,13 @@ then
     homebrew_brew_install "__commit_aggregated__"
 fi
 
-is_profile_admin
-if [ "$?" -eq 0 ];
-then
-    is_macos && homebrew_brew_tap_install "homebrew/autoupdate"  # Auto update homebrew packages every 1d
-    is_macos && brew autoupdate start "86400" --upgrade --cleanup 
+if is_profile_admin; then
+    is_macos && homebrew_brew_tap_install "homebrew/autoupdate"  # Auto update homebrew packages every 31d
+    is_macos && brew autoupdate start "2678400" --upgrade --cleanup
 fi
 
 # Install (bash/zsh)-completions
-is_profile_admin_or_similar
-if [ "$?" -eq 0 ];
-then
+if is_profile_admin_or_similar; then
     homebrew_brew_install                  "zsh-autosuggestions"
     homebrew_brew_install                  "zsh-autocomplete"
 
@@ -391,4 +385,6 @@ then
     homebrew_brew_install "__commit_aggregated__"
 fi
 
-[[ is_profile_admin || is_profile_dev_single || is_profile_dev_multi ]] && tmux_install_tpm
+if is_profile_admin || is_profile_dev_single || is_profile_dev_multi; then
+    tmux_install_tpm
+fi
