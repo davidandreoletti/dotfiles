@@ -14,8 +14,3 @@ pip3_global_install() {
     return $?
 }
 
-pip2_global_install() {
-    pip2=$(which pip2)
-    sudo ${SUDO_OPTIONS} $pip2 install $@
-    return $?
-}
