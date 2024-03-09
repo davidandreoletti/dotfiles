@@ -1,4 +1,5 @@
-#
+# See cron for neovim plugin updates
+
 # Python + neovim env integration
 # src: https://neovim.io/doc/user/provider.html#provider-python
 #
