@@ -185,7 +185,12 @@ function bootstrap_oh_my_shell() {
 }
 
 function bootstrap_dotfiles() {
+    # Symlink config files
     stow_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
+
+    # Special case: synlink dotfile folder itself
+    # - some upgrade scripts from cron rely on it
+    ln -s -f "$DOTFILES_DIR_PATH" "$HOME/.dotfiles"
 }
 
 function bootstrap_dotfiles_private() {
