@@ -65,10 +65,13 @@ local function setup_lsp(lspconfig, lsp_capabilities, lsp_name)
 end
 
 local function config()
-    -- Setup lspconfig
+    -- Setup Language servers
     local lspconfig = require('lspconfig')
 
-    -- Request to install + setup these LSPs
+    -- IMPORTANT: Each call to setup_lsp() trigers:
+    --            - a request to install the language server binaries (via mason)
+--  --            - setup the LSP
+--  --
     -- - mapping between a lspconfig's LSP name and Mason's LSP name found here:
     --   - https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
 
@@ -100,9 +103,6 @@ local function config()
     setup_lsp(lspconfig, lsp_cmp_capabilities, "clojure_lsp")
     -- astrojs
     setup_lsp(lspconfig, lsp_cmp_capabilities, "astro")
-
-    mapping_diagnostics()
-    mapping_goto()
 
     mapping_diagnostics()
     mapping_goto()
