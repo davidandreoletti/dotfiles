@@ -1,12 +1,18 @@
 local function config()
-    -- Setup hop
+    -- Setup lspconfig-mason based on ':h masson-lspconfig automatic-server-setup'
     require('mason-lspconfig').setup({
-         -- Which LSPs to install is defined by lspconfig's nvim_mason_lspconfig.lua.
-         -- So no need configure these settings
+         -- LSPs to install is defined in lspconfig's nvim_lspconfig.lua.
+         -- So no need configure these settings here:
          -- - ensure_installed = {},
-         -- - automatic_installation = false,
+         automatic_installation = true
     })
 
+    -- However, define a default handler for LSPs not defined in nvim_lspconfig.lua
+    require('mason-lspconfig').setup_handlers({
+        function (server_name) -- default handler
+            require("lspconfig")[server_name].setup {}
+        end,
+    })
 end
 
 return {config = config}
