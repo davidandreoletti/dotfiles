@@ -99,7 +99,6 @@ dot_plugin_if_exists "mv"
 dot_plugin_if_exists "navi"
 dot_plugin_if_exists "network"
 #dot_plugin_if_exists "nvm"                          # Node.js environment manager    FIXME: remove plugin
-#dot_plugin_if_exists "npm"                          # Loading dependency: nvm plugin FIXME: remove plugin
 dot_plugin_if_exists "notebook"                      # Requires: dotfiles plugin
 dot_plugin_if_exists "nnn"                           
 dot_plugin_if_exists "open"
@@ -149,6 +148,7 @@ dot_plugin_if_exists "vim"
 dot_plugin_if_exists "neovim"
 dot_plugin_if_exists "vivid"
 dot_plugin_if_exists "volta"
+dot_plugin_if_exists "javascript"                          # Loading dependency: volta plugin 
 dot_plugin_if_exists "weather"
 dot_plugin_if_exists "whence"
 dot_plugin_if_exists "xcode"
