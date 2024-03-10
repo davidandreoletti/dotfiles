@@ -1,0 +1,59 @@
+name: Bootstrap
+"on":
+  push:
+    branches:
+      - master
+
+# To test on a new OS version, update the 'os_version' field.
+jobs:
+  bootstrap_macos:
+    strategy:
+      max-parallel: 1
+      fail-fast: true
+      matrix:
+       platform: ['macos']
+       bootstrap_type: ['machine+dotfiles'] 
+       user_profile: ['admin', 'dev_single'] # debug: 'machine','dotfiles'
+       include:
+          - os_version: 'macos-13'
+            platform: 'macos'
+
+    name: 'Bootstrap ${{ matrix.platform }}/${{ matrix.os_version }} machine'
+    secrets: inherit
+    uses: davidandreoletti/dotfiles/.github/workflows/bootstrap_on_macos.yaml@master
+    with:
+      platform: ${{ matrix.platform }}
+      bootstrap_type: ${{ matrix.bootstrap_type }}
+      user_profile: ${{ matrix.user_profile }}
+      os_version: ${{ matrix.os_version }}
+
+    concurrency:
+      group: ${{ matrix.platform }}
+      cancel-in-progress: true
+
+  bootstrap_linux:
+      strategy:
+        max-parallel: 1
+        fail-fast: true
+        matrix:
+         platform: ['linux']
+         bootstrap_type: ['machine+dotfiles'] 
+         user_profile: ['admin', 'dev_single'] # debug: 'machine','dotfiles'
+         include:
+            - os_version: 'fedora/fedora:39'
+              platform: 'linux'
+          #- os_version: 'archlinux/archlinux:latest'
+          #  platform: 'linux'
+  
+      name: '${{ matrix.platform }}/${{ matrix.os_version }}'
+      secrets: inherit
+      uses: davidandreoletti/dotfiles/.github/workflows/bootstrap_on_linux.yaml@master
+      with:
+        platform: ${{ matrix.platform }}
+        bootstrap_type: ${{ matrix.bootstrap_type }}
+        user_profile: ${{ matrix.user_profile }}
+        os_version: ${{ matrix.os_version }}
+  
+      concurrency:
+        group: ${{ matrix.platform }}
+        cancel-in-progress: true

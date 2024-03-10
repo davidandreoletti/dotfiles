@@ -1,0 +1,28 @@
+on:
+  workflow_call:
+    inputs:
+      platform:
+        required: true
+        type: string
+      os_version:
+        required: true
+        type: string
+      bootstrap_type:
+        required: true
+        type: string
+      user_profile:
+        required: true
+        type: string
+
+jobs:
+  bootstrap:
+    if: ${{ inputs.platform == 'macos' }}
+    runs-on: ${{ inputs.os_version }}
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Bootstrap machine
+        if: contains(inputs.bootstrap_type, 'machine')
+        run: bash bootstrap.sh -d -b machine -s ${{ inputs.user_profile }} 
+      - name: Bootstrap dotfiles
+        if: contains(inputs.bootstrap_type, 'dotfiles')
+        run: bash bootstrap.sh -d -b dotfiles -s ${{ inputs.user_profile }} 
