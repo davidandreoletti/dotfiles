@@ -25,8 +25,8 @@ jobs:
       - uses: actions/checkout@v4.1.1
       - name: Remove pre-installed homebrew packages
         run: |
-          brew remove --force $(brew list --formula)
-          brew remove --force python3
+          brew uninstall --quiet --force --ignore-dependencies python3
+          brew uninstall --quiet --force --ignore-dependencies $(brew list --formula)
       - name: Bootstrap machine
         if: contains(inputs.bootstrap_type, 'machine')
         run: bash bootstrap.sh -d -b machine -s ${{ inputs.user_profile }} 
