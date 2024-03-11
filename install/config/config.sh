@@ -5,6 +5,14 @@
 # Key1=Value1
 ###############################################################################
 
+is_bootstrap_noninteractive() {
+    if test BOOTSTRAP_MODE = "noninteractive"; then
+        return 0
+    else 
+        return 1
+    fi
+}
+
 # FIXME dummy value + restore to UNKNOWN
 platfrom="$(uname -a)"
 case "$platform" in
@@ -41,7 +49,7 @@ done
 
 # ask for confirmation
 printf "Satisfied with configuration values ? (y/n)"
-if test BOOTSTRAP_MODE != "noninteractive"; then
+if is_bootstrap_noninteractive; then
     accept="Y"
 else
     read -n 1 -r accept

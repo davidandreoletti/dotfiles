@@ -42,7 +42,11 @@ source "${BOOSTRAP_DIR}/macosx/shell/timemachine.sh"
 # Enable Full Disk Access for the terminal (no way to automate this nor detect it programmatically: https://apple.stackexchange.com/a/398405
 # echo "Enable Full Disk Access to the Terminal: System > Preferences > Security & Privacy > Privacy Tab > Full Disk Access > Enable Terminal > Restart the terminal"
 # echo "Press any key to continue, ALTHOUGH YOU MUST KILL THE TERMINAL and RUN THE SCRIPT AGAIN FOR THE CHANGES TO TAKE EFFECT
-read -s nothing
+if is_bootstrap_noninteractive; then
+    :
+else
+    read -s nothing
+fi
 
 # Bootstrap setup
 ## Ask sudo password for askpass. Required to work around sudo timeout within 
