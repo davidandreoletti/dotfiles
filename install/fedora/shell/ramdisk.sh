@@ -11,7 +11,7 @@ ramdisk_create_and_mount_storage() {
     local name="$1"
     local mount_path="$HOME/$name"
 
-    mkdir -p "$mount_path"
+    sudo mkdir -p "$mount_path"
     sudo mount -t tmpfs -o size=128M,uid=$(id -u),gid=$(id -g),mode=700 "$name" "$mount_path"
 
     export CURRENT_MOUNT_DIR="$mount_path"
