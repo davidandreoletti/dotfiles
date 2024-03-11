@@ -14,7 +14,9 @@ DOTFILES_PRIVATE_DIR_PATH="$DOTFILES_DIR_PATH/../dotfiles-private"
 for bin in "/usr/local/bin/greadlink";
 do
     if [ ! -f "$bin" ]; then
-        GREADLINK_BIN="$(which readlink)"
+        if command -v 'which' >/dev/null 2>&1 && command -v 'readlink' >/dev/null 2>&1; then
+            GREADLINK_BIN="$(which readlink)"
+        fi
 
         message_warning_show "$DOTFILES_PRIVATE_DIR_PATH will not canonicalized" 
     else
