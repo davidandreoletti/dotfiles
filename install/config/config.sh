@@ -15,7 +15,7 @@ is_bootstrap_noninteractive() {
 
 # FIXME dummy value + restore to UNKNOWN
 platfrom="$(uname -a)"
-case "$platform" in
+case $platform in
     Darwin*)
         CONFIG_MACOSX_VNC_PASSWORD="dummy"
         CONFIG_MACOSX_USER_ADMIN_PASSWORD="dummy"
