@@ -5,14 +5,23 @@
 
 xcode_is_installed() {
     # Method 1
-    xcodebuild -version
-    local isXcodeInstalled=`echo $?`
-    [[ $? == 0 ]] || return 1 
-    return 0
+    if xcodebuild -version; then
+        return 0
+    else
+        return 1
+    fi
     
     # Method 2
     # which xcode-select && [ -d `xcode-select --print-path` ];
     # return $?;
+}
+
+xcode_cli_is_installed() {
+    if test -e "/Library/Developer/CommandLineTools/usr/bin/git"; then
+        return 0
+    else
+        return 1
+    fi
 }
 
 xcode_show_not_installed_message() {

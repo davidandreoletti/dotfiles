@@ -86,12 +86,19 @@ onexit() {
 
 trap onexit EXIT
 
-xcode_is_installed || xcode_show_not_installed_message
-xcode_is_installed || exit 1
-message_info_show "Xcode Command Line Tools install ..."
-xcode_show_command_line_tool_install_request
-message_info_show "Press any key to continue install"
-read
+if xcode_is_installed; then
+    if xcode_cli_is_installed; then
+        message_info_show "Xcode Command Line Tools already installed"
+    else
+        message_info_show "Xcode Command Line Tools install ..."
+        xcode_show_command_line_tool_install_request
+        message_info_show "Press any key to continue install"
+        read
+    fi
+else
+    xcode_show_not_installed_message
+    exit 1
+fi
 
 HOMEBREW_BREW_INSTALL_AGGREGATED=0
 
