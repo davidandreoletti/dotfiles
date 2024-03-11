@@ -6,9 +6,10 @@
 ###############################################################################
 
 # FIXME dummy value + restore to UNKNOWN
-case "$(uname -a)" in
-    Dardwin*)
-        CONFIG_MACOSX_VNC_PASSWORD="ASUNKNOWN"
+platfrom="$(uname -a)"
+case "$platform" in
+    Darwin*)
+        CONFIG_MACOSX_VNC_PASSWORD="dummy"
         CONFIG_MACOSX_USER_ADMIN_PASSWORD="dummy"
         CONFIG_MACOSX_TIMEMACHINE_USERNAME="davidandreoletti"
         CONFIG_MACOSX_TIMEMACHINE_PASSWORD="dummy"
@@ -16,7 +17,7 @@ case "$(uname -a)" in
     Linux*)
         ;;
     *)
-        echo "Unsupported platform"
+        echo "Unsupported platform: $platfrom"
         ;;
 esac
 
