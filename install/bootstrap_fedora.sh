@@ -41,7 +41,11 @@ source "${BOOSTRAP_DIR}/fedora/shell/snap.sh"
 # Bootstrap setup
 ## Ask sudo password for askpass. Required to work around sudo timeout within 
 ## this script process
-p="$(ask_user_password)"
+if is_bootstrap_noninteractive; then
+    p=""
+else
+    p="$(ask_user_password)"
+fi
 
 ## Temporarily prevent sudo from asking password
 ramdisk_create_and_mount_storage "secrets"
