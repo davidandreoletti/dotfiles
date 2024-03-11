@@ -26,6 +26,7 @@ source "${BOOSTRAP_DIR}/common/shell/pipx.sh"
 source "${BOOSTRAP_DIR}/common/shell/rust.sh"
 source "${BOOSTRAP_DIR}/common/shell/tmux.sh"
 source "${BOOSTRAP_DIR}/common/shell/sudo.sh"
+source "${BOOSTRAP_DIR}/common/shell/user_password.sh"
 source "${BOOSTRAP_DIR}/fedora/shell/sudoers.sh"
 source "${BOOSTRAP_DIR}/fedora/shell/vnc.sh"
 source "${BOOSTRAP_DIR}/fedora/shell/ssh.sh"
@@ -40,9 +41,7 @@ source "${BOOSTRAP_DIR}/fedora/shell/snap.sh"
 # Bootstrap setup
 ## Ask sudo password for askpass. Required to work around sudo timeout within 
 ## this script process
-message_info_show "Enter password for $(whoami) (required):"
-read -s p
-echo "$p" | sudo -S echo ""
+p="$(ask_user_password)"
 
 ## Temporarily prevent sudo from asking password
 ramdisk_create_and_mount_storage "secrets"
