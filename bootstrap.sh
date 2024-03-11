@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 source $PWD/install/utils/message.sh
 
@@ -9,14 +10,18 @@ DOTFILES_DIR_PATH="$(pwd)"
 DOTFILES_PRIVATE_DIR_PATH_SET=false
 DOTFILES_PRIVATE_DIR_PATH="$DOTFILES_DIR_PATH/../dotfiles-private"
 
-# Get GNU readlink avaiable
-GREADLINK_BIN="/usr/local/bin/greadlink"
-if [ ! -f "$GREADLINK_BIN" ]; then
-    GREADLINK_BIN="$(which readlink)"
-fi
+# Use GNU readlink when available
+for bin in "/usr/local/bin/greadlink";
+do
+    if [ ! -f "$bin" ]; then
+        GREADLINK_BIN="$(which readlink)"
 
-# Simplify private dir path
-DOTFILES_PRIVATE_DIR_PATH="$($GREADLINK_BIN --canonicalize "$DOTFILES_PRIVATE_DIR_PATH")"
+        message_warning_show "$DOTFILES_PRIVATE_DIR_PATH will not canonicalized" 
+    else
+        # Simplify private dir path
+        DOTFILES_PRIVATE_DIR_PATH="$($bin --canonicalize "$DOTFILES_PRIVATE_DIR_PATH")"
+    fi
+done
 
 . "$DOTFILES_DIR_PATH/install/common/shell/os.sh"
 . "$DOTFILES_DIR_PATH/install/common/shell/stow.sh"
