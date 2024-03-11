@@ -9,11 +9,18 @@ export CURRENT_MOUNT_DIR="none"
 # storage mounted at /Volume/ramdiskname
 ramdisk_create_and_mount_storage() {
     local name="$1"
-    local mount_path="$HOME/$name"
 
-    mkdir -p "$mount_path"
     uid=$(sudo id -u)
     gid=$(sudo id -g)
+
+    if test $uid -eq 0; then
+        # Github CI test case only
+        local mount_path="/tmp/$name"
+    else
+        local mount_path="$HOME/$name"
+    fi
+
+    mkdir -p "$mount_path"
     sudo mount -t tmpfs -o size=128M,uid=$uid,gid=$gid,mode=700 "$name" "$mount_path"
 
     export CURRENT_MOUNT_DIR="$mount_path"
