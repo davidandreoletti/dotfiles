@@ -40,7 +40,7 @@ jobs:
          bootstrap_type: ['machine+dotfiles'] 
          user_profile: ['admin', 'dev_single'] # debug: 'machine','dotfiles'
          include:
-            - os_version: 'fedora/fedora:39'
+            - os_version: 'fedora:40'
               platform: 'linux'
           #- os_version: 'archlinux/archlinux:latest'
           #  platform: 'linux'
