@@ -40,10 +40,14 @@ do
 done
 
 # ask for confirmation
-echo "Satisfied with configuration values ? (y/n)"
-read -p "" -n 1 -r
+printf "Satisfied with configuration values ? (y/n)"
+if test BOOTSTRAP_MODE != "noninteractive"; then
+    accept="Y"
+else
+    read -n 1 -r accept
+fi
 echo    # (optional) move to a new line
-if [[ ! $REPLY =~ ^[Yy]$ ]]
+if [[ ! $accept =~ ^[Yy]$ ]]
 then
     message_info_show "Cancelled"
     exit 0
