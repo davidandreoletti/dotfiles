@@ -125,7 +125,7 @@ homebrew_brew_linkapps() {
 homebrew_brew_link() {
     homebrew_brew_install "__commit_aggregated__"
 
-    message_info_show "brew link $1 ..."
+    message_info_show "brew link $@ ..."
     brew=$(which brew)
     sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew link $@
 }

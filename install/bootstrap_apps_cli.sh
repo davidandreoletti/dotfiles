@@ -19,7 +19,7 @@ if is_profile_admin_or_similar; then
 
     # Python version for OS & utilities
     homebrew_brew_install                  "python3" \
-    &&  homebrew_brew_link                 "python3" \
+    &&  homebrew_brew_link   "--overwrite" "python3" \
     &&  homebrew_postinstall               "python3"
 
     # Python global apps in virtual envs
