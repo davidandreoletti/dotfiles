@@ -17,6 +17,10 @@ if is_profile_admin_or_similar; then
 
     #homebrew_brew_tap_install              "arthurk/homebrew-virt-manager"
 
+    # Upgrade existing packages to avoid brew install failing
+    # on outdated packages with a linking step, like 'python'
+    homebrew_brew_upgrade
+
     # Python version for OS & utilities
     homebrew_brew_install                  "python3" \
     &&  homebrew_brew_link   "--overwrite" "python3" \

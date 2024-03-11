@@ -130,6 +130,28 @@ homebrew_brew_link() {
     sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew link $@
 }
 
+homebrew_brew_upgrade() {
+    brew=$(which brew)
+
+    local stderr_file="/tmp/$$.brew.upgrade.stderr"
+
+    while :; 
+    do
+        message_info_show "brew upgrade ..."
+        if sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew upgrade 2>${stderr_file}; then
+            break
+        else
+            if grep "Too many open files" "$stderr_file"; then
+                message_warning_show "restart install due to transcient error"
+                continue
+            else
+                cat "$stderr_file"
+                exit 1
+            fi
+        fi
+    done
+}
+
 # param1: tapname
 # param2: tapSourceURL
 homebrew_brew_tap_install() {
