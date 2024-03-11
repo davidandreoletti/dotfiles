@@ -80,8 +80,8 @@ if is_profile_admin_or_similar; then
                &&  fedora_dnf_install                      "docker-compose-plugin" \
                &&  fedora_dnf_install                      "__commit_aggregated__" \
                &&  sudo usermod -a -G docker $(whoami)                             \
-               &&  sudo systemctl enable docker.service                            \
-               &&  sudo systemctl start docker.service
+               &&  systemd_systemctl_enable docker.service                            \
+               &&  systemd_systemctl_start docker.service
     is_macos   &&  echo "FIXME: Install docker-desktop (required) with https://docs.docker.com/desktop/install/mac-install/#install-from-the-command-line. Then automate the installation"
 
     # Anaconda
@@ -185,7 +185,7 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "tailscale"         # Tailscale client
     is_fedora  &&  fedora_dnf_install                      "tailscale"             \
                &&  fedora_dnf_install                      "__commit_aggregated__" \
-               &&  sudo systemctl enable --now tailscaled
+               &&  systemd_systemctl_enable --now tailscaled
 
     # Geography
     is_macos   &&  homebrew_brew_cask_install              "google-earth-pro"   # Google Earth

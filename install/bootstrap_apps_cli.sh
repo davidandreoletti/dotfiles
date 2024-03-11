@@ -233,8 +233,8 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "openssh"             # OpenSSH client and server
     fedora_dnf_install                     "openssh-server" \
               &&  fedora_dnf_install "__commit_aggregated__" \
-              &&  sudo systemctl enable sshd \
-              &&  sudo systemctl start sshd
+              &&  systemd_systemctl_enable sshd \
+              &&  systemd_systemctl_start  sshd
 
     is_macos  &&  homebrew_brew_install    "fwknop"              # Firewall port knocking
     is_fedora &&  fedora_dnf_install       "fwknop"
