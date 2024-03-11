@@ -9,23 +9,17 @@ export CURRENT_MOUNT_DIR="none"
 # storage mounted at /Volume/ramdiskname
 ramdisk_create_and_mount_storage() {
     local name="$1"
+    local mount_path="$HOME/$name"
 
     uid=$(sudo id -u)
     gid=$(sudo id -g)
 
-    if test $uid -eq 0; then
-        # Github CI test case only
-        local mount_path="/tmp/$name"
-    else
-        local mount_path="$HOME/$name"
-    fi
-
     mkdir -p "$mount_path"
-    if sudo mount -t tmpfs -o size=128M,uid=$uid,gid=$gid,mode=700 "$name" "$mount_path"; then
+    if container_is_running; then
+        # CI case: No mount support in containers
         :
     else
-        dmesg
-        exit 1
+        sudo mount -t tmpfs -o size=128M,uid=$uid,gid=$gid,mode=700 "$name" "$mount_path"
     fi
 
     export CURRENT_MOUNT_DIR="$mount_path"
