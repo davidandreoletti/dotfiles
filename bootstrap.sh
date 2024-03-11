@@ -10,7 +10,7 @@ DOTFILES_DIR_PATH="$(pwd)"
 DOTFILES_PRIVATE_DIR_PATH_SET=false
 DOTFILES_PRIVATE_DIR_PATH="$DOTFILES_DIR_PATH/../dotfiles-private"
 
-# Use GNU readlink when available
+# Prefer GNU readlink when available
 for bin in "/usr/local/bin/greadlink";
 do
     if [ ! -f "$bin" ]; then
