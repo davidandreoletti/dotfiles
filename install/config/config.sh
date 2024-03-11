@@ -6,7 +6,7 @@
 ###############################################################################
 
 is_bootstrap_noninteractive() {
-    if test BOOTSTRAP_MODE = "noninteractive"; then
+    if test "$BOOTSTRAP_MODE" = "noninteractive"; then
         return 0
     else 
         return 1
