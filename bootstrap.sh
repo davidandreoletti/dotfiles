@@ -18,7 +18,7 @@ do
             GREADLINK_BIN="$(which readlink)"
         fi
 
-        message_warning_show "$DOTFILES_PRIVATE_DIR_PATH will not canonicalized" 
+        message_warning_show "$DOTFILES_PRIVATE_DIR_PATH will not be canonicalized" 
     else
         # Simplify private dir path
         DOTFILES_PRIVATE_DIR_PATH="$($bin --canonicalize "$DOTFILES_PRIVATE_DIR_PATH")"
