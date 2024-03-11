@@ -21,7 +21,12 @@ ramdisk_create_and_mount_storage() {
     fi
 
     mkdir -p "$mount_path"
-    sudo mount -t tmpfs -o size=128M,uid=$uid,gid=$gid,mode=700 "$name" "$mount_path"
+    if sudo mount -t tmpfs -o size=128M,uid=$uid,gid=$gid,mode=700 "$name" "$mount_path"; then
+        :
+    else
+        dmesg
+        exit 1
+    fi
 
     export CURRENT_MOUNT_DIR="$mount_path"
 }
