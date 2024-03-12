@@ -6,6 +6,10 @@ app_disabled() {
 if is_profile_admin_or_similar; then
 
     if is_fedora; then
+        # Install missing DNF plugins core
+        fedora_dnf_install "dnf-plugins-core"
+        fedora_dnf_install "__commit_aggregated__"
+
         # Add Anaconda repository
         # src: https://docs.conda.io/projects/conda/en/latest/user-guide/install/rpm-debian.html
         # Import GPG public key
