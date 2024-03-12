@@ -1,8 +1,16 @@
 function sudoers_add_user() {
-    sudo visudo -c
+    local current_user="$1"
+    local stderr_file="/tmp/bootstrap.$$.sudoers.log"
+
+    if sudo visudo -c 1>${stderr_file} 2>&1; then
+        if grep "bad permission" "${stderr_file}"; then
+            rm -fv "$stderr_file"
+        else
+            exit 1
+        fi
+    fi
 
     local sudoersFile="/etc/sudoers.d/bootstrap-machine" # file name must not contain '.' or '~'
-    local current_user="$1"
     local pattern="$ a\\
     # Added by boostrap-machine script\\
     $current_user	ALL=\(ALL\) ALL"
@@ -11,5 +19,11 @@ function sudoers_add_user() {
     sudo chmod 0440 "$sudoersFile"
     sudo sed -i.bak -e "$pattern" "$sudoersFile"
 
-    sudo visudo -c
+    if sudo visudo -c 1>${stderr_file} 2>&1; then
+        if grep "bad permission" "${stderr_file}"; then
+            rm -fv "$stderr_file"
+        else
+            exit 1
+        fi
+    fi
 }
