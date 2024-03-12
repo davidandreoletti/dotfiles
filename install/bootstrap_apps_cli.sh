@@ -179,7 +179,6 @@ if is_profile_admin_or_similar; then
     # - Redis
     homebrew_brew_install                  "redis"               # Redis Key-Value Storage
     # - Postgres
-    homebrew_brew_install                  "postgresql@14"       # Postgresql DB and standard command line utils like psql. PG db not started at runtime.
     homebrew_brew_install                  "pspg"                # Pager for psql official client
 
     # Multimedia tools
