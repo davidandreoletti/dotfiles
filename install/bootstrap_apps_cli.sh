@@ -395,7 +395,7 @@ if is_profile_admin_or_similar; then
     is_fedora && fedora_dnf_install        "fuse"                # Hardware smartcard requirements
     is_fedora && fedora_dnf_install        "fuse-devel"
 
-    fedora_dnf_install    "__commit_aggregated__"
+    is_fedora && fedora_dnf_install    "__commit_aggregated__"
     homebrew_brew_install "__commit_aggregated__"
 fi
 
