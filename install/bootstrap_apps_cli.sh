@@ -22,10 +22,8 @@ if is_profile_admin_or_similar; then
     homebrew_brew_upgrade
 
     # Python version for OS & utilities
-    if test -n "$CI"; then
+    if ci_is_ci; then
         python_args="--overwrite"
-    else
-        python_args=""
     fi
 
     homebrew_brew_install    $python_args "python3" \
@@ -326,7 +324,14 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "task"                # Taskwarrior
 
     # AWS SDK
-    homebrew_brew_install                  "awscli"              # AWS CLI
+    if ci_is_ci; then
+        # awscli dependes on python3.11 which
+        # cannot be symlink to /usr/bin/2to3 witouth
+        # error. Skipping dependencies for now
+        awscli_args="--ignore-dependencies"
+    fi
+
+    homebrew_brew_install   $awscli_args   "awscli"              # AWS CLI
 
     # Digital Ocean
     homebrew_brew_install                  "doctl"               # Digital Ocean CLI

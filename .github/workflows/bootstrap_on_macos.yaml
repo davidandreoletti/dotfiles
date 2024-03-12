@@ -25,6 +25,7 @@ jobs:
       - uses: actions/checkout@v4.1.1
       - name: Remove pre-installed homebrew packages
         run: |
+          brew uninstall --quiet --force --ignore-dependencies $(brew list --formula | grep 'awscli')
           brew uninstall --quiet --force --ignore-dependencies $(brew list --formula | grep 'python@3')
           brew uninstall --quiet --force --ignore-dependencies $(brew list --formula)
       - name: Bootstrap machine
