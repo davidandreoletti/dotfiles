@@ -3,7 +3,7 @@ ABOUT
 
 dotfiles can:
 
-- bootstrap a machine:
+- bootstrap a machine: |bootstrapmachine|_
 
   - macOS
   - Fedora
@@ -13,6 +13,9 @@ dotfiles can:
 
   - personal environments
   - work environments
+
+.. |bootstrapmachine| image:: https://github.com/davidandreoletti/dotfiles/actions/workflows/test_bootstrap.yml/badge.svg
+.. _bootstrapmachine: https://github.com/davidandreoletti/dotfiles/actions/workflows/test_bootstrap.yml
 
 MOTIVATION:
 ===========
