@@ -328,7 +328,7 @@ if is_profile_admin_or_similar; then
         # awscli dependes on python3.11 which
         # cannot be symlink to /usr/bin/2to3 witouth
         # error. Skipping dependencies for now
-        awscli_args="--ignore-dependencies"
+        awscli_args="--ignore-dependencies --overwrite"
     fi
 
     homebrew_brew_install   $awscli_args   "awscli"              # AWS CLI
