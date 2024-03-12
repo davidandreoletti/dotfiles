@@ -22,8 +22,14 @@ if is_profile_admin_or_similar; then
     homebrew_brew_upgrade
 
     # Python version for OS & utilities
-    homebrew_brew_install                  "python3" \
-    &&  homebrew_brew_link   "--overwrite" "python3" \
+    if test -n "$CI"; then
+        python_args="--overwrite"
+    else
+        python_args=""
+    fi
+
+    homebrew_brew_install    $python_args "python3" \
+    &&  homebrew_brew_link   $python_args "python3" \
     &&  homebrew_postinstall               "python3"
 
     # Python global apps in virtual envs

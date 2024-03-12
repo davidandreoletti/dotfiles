@@ -56,18 +56,14 @@ homebrew_fix_writable_dirs() {
     done
 }
 
-# param1: package name
+#Usages: 
+# homebrew_brew_install appname
+# homebrew_brew_install --overwrite appname#
 homebrew_brew_install() {
     local pkgs_file="/tmp/bootstrap.$$.brew.pkgs"
     local stderr_file="${pkgs_file}.stderr"
 
     brew=$(which brew)
-
-    # Complex brew invocation requires immediate 
-    # install of previsouly delayed packages
-    if test $# -ge 2; then
-       local pre_args0="__commit_aggregated__"	   
-    fi
 
     if test ${HOMEBREW_BREW_INSTALL_AGGREGATED:-1} -eq 0; then
         local install_aggregated=0
@@ -75,7 +71,14 @@ homebrew_brew_install() {
         local install_aggregated=1
     fi
 
-    for args in $pre_args0 $pre_args1 "$@";
+    # Complex brew invocation requires immediate 
+    # install of previsouly delayed packages
+    if test $# -ge 2; then
+       local pre_args0="__commit_aggregated__"	   
+       local install_aggregated=1
+    fi
+
+    for args in $pre_args0 "$@";
     do
         if test "$args" = "__commit_aggregated__"; then
             if test -f "$pkgs_file"; then
@@ -101,7 +104,7 @@ homebrew_brew_install() {
             message_info_show "$1 install delayed ..."
             echo -n " $@" >> "$pkgs_file"
         else
-            message_info_show "$1 install ..."
+            message_info_show "$@ install ..."
             sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew install $@
         fi
     done
@@ -190,7 +193,9 @@ homebrew_brew_cask_workaround0() {
 #    set +x
 }
 
-#param1: appname
+#Usages: 
+# homebrew_brew_cask_install appname
+# homebrew_brew_cask_install --overwrite appname
 homebrew_brew_cask_install() {
     local pkgs_file="/tmp/bootstrap.$$.brew.casks"
     local stderr_file="${pkgs_file}.stderr"
@@ -203,7 +208,7 @@ homebrew_brew_cask_install() {
 
     brew=$(which brew)
 
-    for args in $pre_args0 $pre_args1 "$@";
+    for args in $pre_args0 "$@";
     do
         if test "$args" = "__commit_aggregated__"; then
             if test -f "$pkgs_file"; then
