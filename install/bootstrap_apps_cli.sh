@@ -141,7 +141,6 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "gdb"                 # versatile debugger
 
     # Email client
-    homebrew_brew_install                  "neomutt"
     homebrew_brew_install                  "aerc"
     homebrew_brew_install                  "himalaya"
 
