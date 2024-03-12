@@ -235,7 +235,7 @@ if is_profile_admin_or_similar; then
 
     # OpenSSH client / server
     homebrew_brew_install                  "openssh"             # OpenSSH client and server
-    fedora_dnf_install                     "openssh-server" \
+    is_fedora &&  fedora_dnf_install       "openssh-server"  \
               &&  fedora_dnf_install "__commit_aggregated__" \
               &&  systemd_systemctl_enable sshd \
               &&  systemd_systemctl_start  sshd
