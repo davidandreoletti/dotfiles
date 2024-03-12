@@ -82,18 +82,17 @@ homebrew_brew_install() {
                 while :; 
                 do
                     message_info_show "$pkgs_file install ..."
-                    sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew install $(<"$pkgs_file") 2>${stderr_file}
-                    local exit_code=$?
-                    if test $exit_code -eq 0; then
+                    if sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew install $(<"$pkgs_file") 2>${stderr_file}; then
                         rm -fv "$pkgs_file"
                         break
                     else
                        if grep "Too many open files" "$stderr_file"; then
+                           rm -fv "$stderr_file"
                            message_warning_show "restart install due to transcient error"
                            continue
                        else
                           cat "$stderr_file"
-                          exit $exit_code
+                          exit 1
                        fi
                     fi
                 done
@@ -194,6 +193,7 @@ homebrew_brew_cask_workaround0() {
 #param1: appname
 homebrew_brew_cask_install() {
     local pkgs_file="/tmp/bootstrap.$$.brew.casks"
+    local stderr_file="${pkgs_file}.stderr"
 
     if test ${HOMEBREW_BREW_INSTALL_AGGREGATED:-1} -eq 0; then
         local install_aggregated=0
@@ -207,16 +207,44 @@ homebrew_brew_cask_install() {
     do
         if test "$args" = "__commit_aggregated__"; then
             if test -f "$pkgs_file"; then
-                message_info_show "$pkgs_file install ..."
-                sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew install $(<"$pkgs_file")
-                rm -fv "$pkgs_file"
+                while :; 
+                do
+                    message_info_show "$pkgs_file install ..."
+                    if sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew install --cask $(<"$pkgs_file") 2>${stderr_file}; then
+                        rm -fv "$pkgs_file"
+                        break
+                    else
+                        if grep "Too many open files" "$stderr_file"; then
+                            rm -fv "$stderr_file"
+                            message_warning_show "restart install due to transcient error"
+                            continue
+                        else
+                            cat "$stderr_file"
+                            exit 1
+                        fi
+                    fi
+                done
             fi
         elif test $install_aggregated -eq 0; then
             message_info_show "$1 install delayed ..."
             echo -n " $@" >> "$pkgs_file"
         else
-            message_info_show "$1 install ..."
-	    sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew install --cask "$@"
+            while :; 
+            do
+                message_info_show "$1 install ..."
+                if sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew install --cask "$@" 2>${stderr_file}; then
+                    break
+                else
+                    if grep "Too many open files" "$stderr_file"; then
+                        rm -fv "$stderr_file"
+                        message_warning_show "restart install due to transcient error"
+                        continue
+                    else
+                        cat "$stderr_file"
+                        exit 1
+                    fi
+                fi
+            done
         fi
     done
 }
