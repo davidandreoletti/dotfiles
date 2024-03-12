@@ -1,7 +1,7 @@
 ## Command line applications
 ## - List of available packages
 ##  - http://braumeister.org/
-##  - http://brewformulas.org/A
+##  - http://brewformulas.org/
 
 if is_profile_admin_or_similar; then
     homebrew_brew_tap_install              "homebrew/services"  # Launch services in background.
@@ -274,7 +274,7 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "xmlstarlet"          # Command XML utilities (eg: xmlstarlet)
 
     # CSV Manipulation/query
-    is_macos  && hhomebrew_brew_install    "csvkit"              # Swiss army knife for csv files
+    is_macos  && homebrew_brew_install     "csvkit"              # Swiss army knife for csv files
 
     # JSON Manipulation/query
     homebrew_brew_install                  "jq"                  # JSON manipulator
