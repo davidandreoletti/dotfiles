@@ -18,7 +18,7 @@ jobs:
           - os_version: 'macos-13'
             platform: 'macos'
 
-    name: 'Bootstrap ${{ matrix.platform }}/${{ matrix.os_version }} machine'
+    name: '${{ matrix.platform }}/${{ matrix.os_version }}'
     secrets: inherit
     uses: davidandreoletti/dotfiles/.github/workflows/bootstrap_on_macos.yaml@master
     with:
