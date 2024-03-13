@@ -215,6 +215,10 @@ function bootstrap_dotfiles_private() {
     fi
 }
 
+bootstrap_dotfiles_binaries() {
+    chmod 700 ~/.bin/*
+}
+
 function oh_my_shell_ready() {
     message_info_show "oh_my_shell is ready. Open a new terminal to start using it"
 }
@@ -244,6 +248,7 @@ case $BOOSTRAP_COMMAND in
         bootstrap_dotfiles
         bootstrap_oh_my_shell
         bootstrap_dotfiles_private
+        bootstrap_dotfiles_binaries
         bootstrap_vim_plugins
         oh_my_shell_ready
         ;;
