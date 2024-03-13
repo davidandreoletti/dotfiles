@@ -9,7 +9,7 @@ jobs:
   bootstrap_macos:
     strategy:
       #max-parallel: 4
-      fail-fast: true
+      #fail-fast: true
       matrix:
        platform: ['macos']
        bootstrap_type: ['machine+dotfiles'] 
@@ -32,7 +32,7 @@ jobs:
   bootstrap_linux:
       strategy:
         #max-parallel: 6
-        fail-fast: true
+        #fail-fast: true
         matrix:
          platform: ['linux']
          bootstrap_type: ['machine+dotfiles'] 
