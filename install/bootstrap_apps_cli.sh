@@ -238,7 +238,8 @@ if is_profile_admin_or_similar; then
               &&  systemd_systemctl_enable sshd \
               &&  systemd_systemctl_start  sshd
 
-    is_macos  &&  homebrew_brew_install    "fwknop"              # Firewall port knocking
+    # Firewall port knocking
+    #is_macos  &&  homebrew_brew_install    "fwknop"             # Disabled by brew upstream
     is_fedora &&  fedora_dnf_install       "fwknop"
 
     # De/Encryption
