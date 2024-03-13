@@ -96,10 +96,9 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "tmux"
     homebrew_brew_install                  "vim"
 
-    # Neovim, neovim python package, neovim python bindings package
-    homebrew_brew_install                  "neovim"  \
-    && pip3_global_install                 "neovim"  \
-    && pip3_global_install                 "pynvim"
+    # Neovim
+    # - neovim python package, neovim python bindings are installed by shellrc's neovim plugin
+    homebrew_brew_install                  "neovim"
 
     # RSS
     homebrew_brew_install                  "newsboat"            # RSS/Atom reader
