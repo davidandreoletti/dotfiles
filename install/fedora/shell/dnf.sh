@@ -5,6 +5,8 @@
 # param1: package name
 fedora_dnf_install() {
     local pkgs_file="/tmp/bootstrap.$$.fedora.pkgs"
+    local stderr_file="${pkgs_file}.stderr"
+    local retry_file="${pkgs_file}.retry"
 
     if test ${HOMEBREW_BREW_INSTALL_AGGREGATED:-1} -eq 0; then
         local install_aggregated=0
@@ -24,8 +26,22 @@ fedora_dnf_install() {
         if test "$1" = "__commit_aggregated__"; then
             if test "$args" = "__commit_aggregated__"; then
                 message_info_show "$pkgs_file install ..."
-                sudo ${SUDO_OPTIONS} dnf -y install $(<"$pkgs_file")
-                rm -fv "$pkgs_file"
+                while :;
+                do
+                    if sudo ${SUDO_OPTIONS} dnf -y install $(<"$pkgs_file") 2>"${stderr_file}"; then
+                        rm -fv "$pkgs_file"
+                        rm -fv "${retry_file}"
+                        break
+                    else
+                        if test -f "${retry_file}"; then
+                            rm -fv "${retry_file}"
+                            exit 1
+                        else
+                            touch "${retry_file}"
+                            continue
+                        fi
+                    fi
+                done
             fi
         elif test $install_aggregated -eq 0; then
             message_info_show "$1 install delayed ..."
@@ -33,7 +49,22 @@ fedora_dnf_install() {
         else
             message_info_show "$1 install ..."
             # Must use default sudo setting. Hence no: -u <user_name>
-            sudo ${SUDO_OPTIONS} dnf -y install $@
+
+            while :;
+            do
+                if sudo ${SUDO_OPTIONS} dnf -y install $@ 2>"${stderr_file}"; then
+                    rm -fv "$pkgs_file"
+                    rm -fv "${retry_file}"
+                    break
+                else
+                    if test -f "${retry_file}"; then
+                        exit 1
+                    else
+                        touch "${retry_file}"
+                        continue
+                    fi
+                fi
+            done
         fi
     done
 }
