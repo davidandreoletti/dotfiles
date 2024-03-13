@@ -63,8 +63,12 @@ chmod 700 "${SUDO_ASKPASS}"
 sudo_refresh
 
 ## Give current user sudo rights
-account_has_administration_permission || message_error_show "Account with admin group required for user management"
-account_has_administration_permission || exit 1
+if account_has_administration_permission; then
+    :
+else
+    message_error_show "Account with admin group required for user management"
+    exit 1
+fi
 is_profile_dev_single && sudoers_add_user "$(whoami)"
 
 onexit() {
