@@ -40,6 +40,10 @@ jobs:
          bootstrap_type: ['machine+dotfiles'] 
          user_profile: ['admin', 'dev_single'] # debug: 'machine','dotfiles'
          include:
+            # Stable
+            - os_version: 'fedora:39'
+              platform: 'linux'
+            # Rawhide
             - os_version: 'fedora:40'
               platform: 'linux'
           #- os_version: 'archlinux/archlinux:latest'
