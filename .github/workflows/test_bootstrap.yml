@@ -16,7 +16,7 @@ jobs:
        user_profile: ['admin', 'dev_single'] # debug: 'machine','dotfiles'
        os_version: ['macos-13', macos-14']
 
-    name: '${{ matrix.platform }}/${{ matrix.os_version }}'
+    name: '${{ matrix.platform }}/${{ matrix.os_version }}/${{ matrix.user_profile }}'
     secrets: inherit
     uses: davidandreoletti/dotfiles/.github/workflows/bootstrap_on_macos.yaml@master
     with:
@@ -39,7 +39,7 @@ jobs:
          user_profile: ['admin', 'dev_single'] # debug: 'machine','dotfiles'
          os_version: ['fedora:39', 'fedora:40', 'archlinux:lastest']
   
-      name: '${{ matrix.platform }}/${{ matrix.os_version }}'
+      name: '${{ matrix.platform }}/${{ matrix.os_version }}/${{ matrix.user_profile }}'
       secrets: inherit
       uses: davidandreoletti/dotfiles/.github/workflows/bootstrap_on_linux.yaml@master
       with:
