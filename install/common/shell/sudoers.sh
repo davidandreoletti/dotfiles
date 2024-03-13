@@ -3,9 +3,12 @@ function sudoers_add_user() {
     local stderr_file="/tmp/bootstrap.$$.sudoers.log"
 
     if sudo visudo -c 1>${stderr_file} 2>&1; then
+        :
+    else
         if grep "bad permission" "${stderr_file}"; then
             rm -fv "$stderr_file"
         else
+            cat "$stderr_file"
             exit 1
         fi
     fi
@@ -20,9 +23,12 @@ function sudoers_add_user() {
     sudo sed -i.bak -e "$pattern" "$sudoersFile"
 
     if sudo visudo -c 1>${stderr_file} 2>&1; then
+        :
+    else
         if grep "bad permission" "${stderr_file}"; then
             rm -fv "$stderr_file"
         else
+            cat "$stderr_file"
             exit 1
         fi
     fi
