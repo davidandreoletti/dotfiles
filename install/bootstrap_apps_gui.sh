@@ -63,8 +63,7 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  fedora_flatpak_remote_add               "flathub"     "https://flathub.org/repo/flathub.flatpakrepo"
     is_fedora  &&  fedora_flatpak_remote_add               "fedora"      "oci+https://registry.fedoraproject.org"
 
-    is_macos   &&  homebrew_brew_tap_install               "homebrew/cask"        \
-               &&  homebrew_brew_tap_install              "__commit_aggregated__"
+    is_macos   &&  homebrew_brew_tap_install               "homebrew/cask"
 
     # Terminal
     is_macos   &&  homebrew_brew_cask_install              "kitty"
