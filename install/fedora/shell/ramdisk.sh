@@ -26,8 +26,13 @@ ramdisk_create_and_mount_storage() {
 }
 
 ramdisk_umount_and_destroy_storage() {
-    sudo umount "$CURRENT_MOUNT_DIR"
-    sudo rm -rf "$CURRENT_MOUNT_DIR"
+    if container_is_running; then
+        # CI case: No mount support in containers
+        :
+    else
+        sudo umount "$CURRENT_MOUNT_DIR"
+        sudo rm -rf "$CURRENT_MOUNT_DIR"
+    fi
 
     export CURRENT_MOUNT_DIR="none"
 }
