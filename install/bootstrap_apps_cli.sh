@@ -198,13 +198,18 @@ if is_profile_admin_or_similar; then
 
     # Multimedia servers
     homebrew_brew_install                  "mpd"                 # Music player daemon
-    homebrew_brew_install                  "mopidy"              # Music server with cloud music support plugins
-    homebrew_brew_install                  "mopidy-mpd"          # Mopidi plugin to mpd clients
-    homebrew_brew_install                  "mopidy-local"        # Mopidi plugin to play local music
-    homebrew_brew_install                  "mopidy-somafm"       # Mopidi plugin to play somafm music
-    homebrew_brew_install                  "mopidy-soundcloud"   # Mopidi plugin to play soundcloud music
-    homebrew_brew_install                  "mopidy-spotify"      # Mopidi plugin to play spotify music
-    homebrew_brew_install                  "mopidy-tunein"       # Mopidi plugin to play tune-in music
+    if is_macos || is_fedora; then
+        # Wait for PR fix: https://github.com/mopidy/homebrew-mopidy/issues/44 
+        :
+    else
+        homebrew_brew_install                  "mopidy"              # Music server with cloud music support plugins
+        homebrew_brew_install                  "mopidy-mpd"          # Mopidi plugin to mpd clients
+        homebrew_brew_install                  "mopidy-local"        # Mopidi plugin to play local music
+        homebrew_brew_install                  "mopidy-somafm"       # Mopidi plugin to play somafm music
+        homebrew_brew_install                  "mopidy-soundcloud"   # Mopidi plugin to play soundcloud music
+        homebrew_brew_install                  "mopidy-spotify"      # Mopidi plugin to play spotify music
+        homebrew_brew_install                  "mopidy-tunein"       # Mopidi plugin to play tune-in music
+    fi
 
     # Archive decompression
     homebrew_brew_install                  "unp"                 # Decompress anything
