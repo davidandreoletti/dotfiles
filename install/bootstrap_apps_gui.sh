@@ -133,9 +133,8 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  fedora_dnf_install                      "keepassxc"
     is_macos   &&  homebrew_brew_cask_install              "onyx"
 
-    # Postman
-    is_macos   &&  homebrew_brew_cask_install              "postman"
-    #is_fedora  &&  fedora_flatpak_flathub_install          "com.getpostman.Postman"
+    # REST Client
+    # FIXME: Replace postman
 
     # Archive
     is_macos   &&  homebrew_brew_cask_install              "keka"               # File Archiver with support for zst,zip,etc
