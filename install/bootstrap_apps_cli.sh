@@ -388,6 +388,11 @@ if is_profile_admin_or_similar; then
     is_fedora && fedora_dnf_install        "pcsc-lite-ccid"      # Generic USB CCCID (Chip/Smart Card Interface Driver) and ICC (Integrated Circuit Interface driver)
     is_fedora && fedora_dnf_install        "pcsc-tools"          # Scan smart cards
 
+    # Tabular data
+    is_macos  &&  homebrew_brew_tap_install  "saulpw/vd" \
+              &&  homebrew_brew_install      "saulpw/vd/visidata" # Visualize tabular data in the terminal
+    is_fedora &&  fedora_dnf_install         "visidata"
+
     # Typing
     # EXPERIMENTAL cargo_global_install                   "thokr"               # Typing tester
 
