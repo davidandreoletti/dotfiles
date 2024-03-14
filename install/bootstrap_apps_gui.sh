@@ -204,9 +204,11 @@ if is_profile_admin_or_similar; then
     # Traffic shaping
     is_macos   &&  homebrew_brew_cask_install              "mitmproxy"           # Charles Proxy in command line
 
+    is_macos   &&  homebrew_brew_cask_install              "__commit_aggregated__"
     is_fedora  &&  fedora_dnf_install                      "__commit_aggregated__"
 
     is_macos   &&  homebrew_brew_install                   "mas"         #  Mac App Store command line too
+    is_macos   &&  homebrew_brew_install                   "__commit_aggregated__"
     is_macos   &&  homebrew_mas_install                    "1451685025"  #  Wireguard
     is_macos   &&  homebrew_mas_install                    "539883307"   #  LINE Inc
     is_macos   &&  homebrew_mas_install                    "409203825"   #  Numbers
