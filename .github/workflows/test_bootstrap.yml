@@ -8,7 +8,7 @@ name: Bootstrap
 jobs:
   bootstrap_macos:
     strategy:
-      #max-parallel: 4
+      max-parallel: 16
       fail-fast: false
       matrix:
        platform: ['macos']
@@ -31,7 +31,7 @@ jobs:
 
   bootstrap_linux:
       strategy:
-        #max-parallel: 6
+        max-parallel: 16
         fail-fast: false
         matrix:
          platform: ['linux']
