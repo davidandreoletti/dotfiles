@@ -52,7 +52,9 @@ homebrew_fix_writable_dirs() {
     local owner="$1"
     for dir_path in "/usr/local/Homebrew" "/usr/local/etc/bash_completion.d" "/usr/local/share/doc" "/usr/local/share/man" "/usr/local/share/man/man1" "/usr/local/share/zsh" "/usr/local/share/zsh/site-functions" "/usr/local/var/homebrew/locks";
     do
-       sudo chown -R "$owner:admin" "$dir_path"
+        if test -d "$dir_path"; then
+            sudo chown -R "$owner:admin" "$dir_path"
+        fi
     done
 }
 
