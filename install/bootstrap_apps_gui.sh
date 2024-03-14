@@ -189,10 +189,16 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "google-earth-pro"   # Google Earth
 
     # Google Cloud SDK
-    is_macos   &&  homebrew_brew_cask_install              "google-cloud-sdk"       \
-               &&  homebrew_brew_cask_install              "__commit_aggregated__"  \
-               &&  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.$(basename \"echo $SHELL\").inc" \
-               &&  gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab
+    if ci_is_ci; then
+        # google-cloud-sdk rely on non default python version.
+        # Bug: it fails to link 2to3
+        :
+    else
+        is_macos   &&  homebrew_brew_cask_install          "google-cloud-sdk"       \
+                   &&  homebrew_brew_cask_install          "__commit_aggregated__"  \
+                   &&  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.$(basename \"echo $SHELL\").inc" \
+                   &&  gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab
+    fi
     is_fedora  &&  fedora_dnf_install                      "google-cloud-cli"
 
     # Traffic shaping
