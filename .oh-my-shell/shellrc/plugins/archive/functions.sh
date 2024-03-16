@@ -19,7 +19,7 @@ function f_archiveSendToNetwork() {
 # Receive a tar file from the network and extract it in the provided directory
 function f_archiveReceiveFromNetwork() {
     local dirPath="$1"
-    local port="$3"
+    local port="$2"
 
     nc -l -p $port | zstdcat | pv | tar -xz -C "$dirPath"
 }
