@@ -90,7 +90,7 @@ if is_macos; then
 
             # Check job is launched
             if ! launchctl list | grep "$job_name" >/dev/null 2>&1; then
-                retryAfter=10
+                retryAfter=60
                 echo "warn:launchd $job_name not loaded/started. Waiting ${retryAfter}s"
                 sleep $retryAfter
             else
