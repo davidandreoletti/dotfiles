@@ -100,6 +100,9 @@ if is_profile_admin_or_similar; then
     # - neovim python package, neovim python bindings are installed by shellrc's neovim plugin
     homebrew_brew_install                  "neovim"
 
+    # Local Large Language Model 
+    homebrew_brew_install                  "ollama"              # Fetch/Run Large Language Models locally
+
     # RSS
     homebrew_brew_install                  "newsboat"            # RSS/Atom reader
 
