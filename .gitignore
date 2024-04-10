@@ -270,3 +270,11 @@ data.json
 # Launchd
 .config/launch/org.*.xdg.environment.plist
 !.config/launch/org.__USER__.xdg.environment.plist
+# Continue
+.continue/.migrations
+.continue/dev_data
+.continue/index
+.continue/server
+.continue/types/core
+.continue/telemetry.log
+.continue/continue.log
