@@ -171,8 +171,17 @@ if is_profile_admin_or_similar; then
 
 
     # VSCode
-    #is_macos   &&  homebrew_brew_cask_install              "visual-studio-code"
-    #is_fedora  &&  fedora_dnf_install                      "code"
+    is_macos   &&  homebrew_brew_cask_install              "visual-studio-code"
+    is_fedora  &&  fedora_dnf_install                      "code"
+
+    # VSCode Extensions
+    vscode_install_extension                               "ms-vscode-remote.remote-ssh" # Remote SSH Extension: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh
+    vscode_install_extension                               "eamodio.gitlens"             # Git Explorater Extension
+    vscode_install_extension                               "ms-python.python"            # Python Extension
+    vscode_install_extension                               "ms-toolsai.jupyter"          # Jupyter Extension
+    vscode_install_extension                               "ms-toolsai.datawrangler"     # Data wrangler for Jupyter Notebook
+    vscode_install_extension                               "ms-azuretools.vscode-docker" # Docker Extension
+    vscode_install_extension                               "continue.continue"           # LLM autopilot
 
     # Ngrok
     is_macos   &&  homebrew_brew_cask_install              "ngrok"
