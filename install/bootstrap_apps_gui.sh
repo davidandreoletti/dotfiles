@@ -182,6 +182,7 @@ if is_profile_admin_or_similar; then
     vscode_install_extension                               "ms-toolsai.datawrangler"     # Data wrangler for Jupyter Notebook
     vscode_install_extension                               "ms-azuretools.vscode-docker" # Docker Extension
     vscode_install_extension                               "continue.continue"           # LLM autopilot
+    vscode_install_extension                               "vscodevim.vim"               # VIM extension
 
     # Ngrok
     is_macos   &&  homebrew_brew_cask_install              "ngrok"
