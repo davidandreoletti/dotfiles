@@ -31,9 +31,13 @@ if is_profile_admin_or_similar; then
     &&  homebrew_postinstall               "python3"
 
     # Python global apps in virtual envs
-    homebrew_brew_install                  "pipx"                   \
-    && homebrew_brew_install               "__commit_aggregated__"  \
-    && pipx ensurepath
+    is_macos && homebrew_brew_install      "pipx"                   \
+             && homebrew_brew_install      "__commit_aggregated__"  \
+             && pipx ensurepath
+
+    is_fedora && fedora_dnf_install        "pipx"                   \
+              && fedora_dnf_install        "__commit_aggregated__"  \
+              && pipx ensurepath
 
     # Python version manager
     homebrew_brew_install                  "pyenv"              # Manage python version on a per user/folder basis
