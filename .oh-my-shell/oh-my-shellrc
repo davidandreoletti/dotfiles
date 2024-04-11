@@ -45,6 +45,7 @@ dot_plugin_if_exists "util_linux"                   # Expose other linux tools, 
 dot_plugin_if_exists "dotfiles"                     # Expose DOTFILES_HOME, DOTFILES_PRIVATE_HOME to other plugins
 dot_plugin_if_exists "android"
 dot_plugin_if_exists "administrator"
+dot_plugin_if_exists "ai"
 dot_plugin_if_exists "alacritty"
 dot_plugin_if_exists "asdf"
 dot_plugin_if_exists "archive"
