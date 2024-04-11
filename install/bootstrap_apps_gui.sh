@@ -178,6 +178,7 @@ if is_profile_admin_or_similar; then
     vscode_install_extension                               "ms-vscode-remote.remote-ssh" # Remote SSH Extension: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh
     vscode_install_extension                               "eamodio.gitlens"             # Git Explorater Extension
     vscode_install_extension                               "ms-python.python"            # Python Extension
+    vscode_install_extension                               "donjayamanne.python-environment-manager"            # Python Virtual Env manager Extension
     vscode_install_extension                               "ms-toolsai.jupyter"          # Jupyter Extension
     vscode_install_extension                               "ms-toolsai.datawrangler"     # Data wrangler for Jupyter Notebook
     vscode_install_extension                               "ms-azuretools.vscode-docker" # Docker Extension
