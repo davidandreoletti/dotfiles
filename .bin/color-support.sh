@@ -6,7 +6,7 @@ printf "\x1b[38;2;255;100;0mTRUECOLOR\x1b[0m\n"
 echo "y/n ?"
 read answer
 
-if [ "$answer" != "${answer#[Yy]}" ] ;then 
+if [ "$answer" != "${answer#[Yy]}" ]; then
     PROGRAM="$TERM_PROGRAM ( $TERM )"
     echo "True color/24bit supported on $PROGRAM"
 else
@@ -29,7 +29,7 @@ else
 
     echo "y/n ?"
     read answer
-    if [ "$answer" != "${answer#[Yy]}" ] ;then 
+    if [ "$answer" != "${answer#[Yy]}" ]; then
         echo "True color/24bit supported"
     else
         echo "True color/24bit NOT supported"

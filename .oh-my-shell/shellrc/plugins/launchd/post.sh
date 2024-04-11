@@ -24,14 +24,14 @@ if is_macos; then
         job_file2="$(echo "$job_file" | sed "s/__USER__/$USER/g")"
 
         # Check if template based job
-        test "$job_file" != "$job_file2";
+        test "$job_file" != "$job_file2"
         templated=$?
 
         # Fill template
         if test $templated -eq 0; then
             # Template launchd job
             job_new="$launch_dir/$job_file2"
-            sed "s/__USER__/$USER/g" "$job" > "$job_new"
+            sed "s/__USER__/$USER/g" "$job" >"$job_new"
             job="$job_new"
             job_file="$job_file2"
         fi
@@ -46,9 +46,9 @@ if is_macos; then
 
         # Link job to user agent location
         if test -e "$target_job"; then
-            # target job exist 
+            # target job exist
             :
-            # Job exist but definition possibly outdated. 
+            # Job exist but definition possibly outdated.
             # - Consider not waiting at all
             WAIT_DURATION=0
         else
@@ -69,7 +69,7 @@ if is_macos; then
 
         # Verify job is well formed
         # - plutil requries a file rather than symlink
-        if ! plutil -lint "$(realpath $target_job)" >/dev/null 2>&1 ; then
+        if ! plutil -lint "$(realpath $target_job)" >/dev/null 2>&1; then
             break
         fi
 

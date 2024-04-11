@@ -8,7 +8,7 @@ f_dns_clear_cache() {
         if test "$(ps --no-headers -o comm 1)" = "systemd"; then
             sudo systemd-resolve --flush-caches
         else
-        echo "ERROR: systemd not supported. dns cache not cleared"
+            echo "ERROR: systemd not supported. dns cache not cleared"
         fi
     else
         echo "ERROR: clearing dns cache not supported on this system"

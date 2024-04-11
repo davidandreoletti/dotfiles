@@ -382,7 +382,7 @@ f_gnupg_create_CSEA_key() {
         echo "Generated master + sub keys available at $LOCAL_GNUPGHOME. IMPORTANT: Files be deleted in $epheremalStorageDuration"
         echo "This directory is a RAM backed directory."
         echo "Suggestion: Copy the directory elsewhere to not loose the generated keys"
-	echo ""
+        echo ""
         echo "Press ENTER to **wipe out** $LOCAL_GNUPGHOME"
         read -r
     fi

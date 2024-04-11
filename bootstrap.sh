@@ -11,14 +11,13 @@ DOTFILES_PRIVATE_DIR_PATH_SET=false
 DOTFILES_PRIVATE_DIR_PATH="$DOTFILES_DIR_PATH/../dotfiles-private"
 
 # Prefer GNU readlink when available
-for bin in "/usr/local/bin/greadlink";
-do
+for bin in "/usr/local/bin/greadlink"; do
     if [ ! -f "$bin" ]; then
         if command -v 'which' >/dev/null 2>&1 && command -v 'readlink' >/dev/null 2>&1; then
             GREADLINK_BIN="$(which readlink)"
         fi
 
-        message_warning_show "$DOTFILES_PRIVATE_DIR_PATH will not be canonicalized" 
+        message_warning_show "$DOTFILES_PRIVATE_DIR_PATH will not be canonicalized"
     else
         # Simplify private dir path
         DOTFILES_PRIVATE_DIR_PATH="$($bin --canonicalize "$DOTFILES_PRIVATE_DIR_PATH")"

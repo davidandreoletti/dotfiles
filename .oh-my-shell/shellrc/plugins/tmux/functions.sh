@@ -2,9 +2,9 @@
 # Usage: tmux_has_window_with_name "session name" "window name"
 # return 0 if yes. 1 otherwise
 tmux_has_window_with_name() {
-    local sessionName=$1 
+    local sessionName=$1
     local windowName=$2
-    command tmux list-windows -t "$sessionName" | grep "$windowName" > /dev/null
+    command tmux list-windows -t "$sessionName" | grep "$windowName" >/dev/null
 }
 
 # Usage: tmux_find_windowname_by_index "session name" "window name"
@@ -44,10 +44,10 @@ tmux_get_or_create_session() {
     if [ ! -z "$TMUX" ]; then # refactor with tmux_is_in_tmux_environement
         # In Tmux session
         sessionName=$(tmux_find_current_session_name)
-    else 
+    else
         # Not in Tmux session
         command tmux start-server
-        command tmux new-session -d -n "shell" -s "$sessionName" "$SHELL" > /dev/null
+        command tmux new-session -d -n "shell" -s "$sessionName" "$SHELL" >/dev/null
     fi
     echo "$sessionName"
 }
@@ -59,7 +59,7 @@ tmux_is_in_tmux_environement() {
     if [ ! -z "$TMUX" ]; then
         # In Tmux session
         true
-    else 
+    else
         # Not in Tmux session
         false
     fi
@@ -73,7 +73,7 @@ tmux_open_window() {
     local cmd="$3"
 
     # Create Tmux window
-    tmux_has_window_with_name "$sessionName" "$windowName" || command tmux new-window -t "$sessionName" -n "$windowName" "$cmd" 
+    tmux_has_window_with_name "$sessionName" "$windowName" || command tmux new-window -t "$sessionName" -n "$windowName" "$cmd"
 
     # http://stackoverflow.com/questions/5311583/tmux-how-to-make-new-window-stay-when-start-shell-command-quits
     # Keep bash running once initial command finished
@@ -112,11 +112,12 @@ tmux_group_android_off() {
 }
 
 tmux_session_get_or_create() {
-  [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
-  if [ $1 ]; then 
-     command tmux $change -t "$1" 2>/dev/null || (command tmux new-session -d -s $1 && command tmux $change -t "$1"); return
-  fi
-  session=$(command tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) &&  command tmux $change -t "$session" || echo "No sessions found."
+    [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+    if [ $1 ]; then
+        command tmux $change -t "$1" 2>/dev/null || (command tmux new-session -d -s $1 && command tmux $change -t "$1")
+        return
+    fi
+    session=$(command tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) && command tmux $change -t "$session" || echo "No sessions found."
 }
 
 f_tmux_group_switcher() {
@@ -129,19 +130,19 @@ f_tmux_group_switcher() {
 f_tmux_get_session_named_after_current_directory() {
     local pathDir="$(pwd)"
     local name="$(basename $pathDir)"
-    # Remove all characters not allowed as session name by tmux 
+    # Remove all characters not allowed as session name by tmux
     name=$(echo $name | tr -d .)
     echo $name
 }
 
 # Open/switch existing session or create tmux session
-# Usage: f_tmux_open_or_create_session BEHAVIOUR OPTIONAL_SESSION_NAME 
-# - BEHAVIOUR : 
+# Usage: f_tmux_open_or_create_session BEHAVIOUR OPTIONAL_SESSION_NAME
+# - BEHAVIOUR :
 #       - interactive: Session named after interactively selecting one session
 #       - cwd (default): Session named after current directory name, unless OPTIONAL_SESSION_NAME is specified
 # - OPTIONAL_SESSION_NAME : someName
 # modified src: https://github.com/junegunn/fzf/wiki/examples#tmux
-f_tmux_open_or_create_session () {
+f_tmux_open_or_create_session() {
     # Open exiting session:
     # - manually when 2+ session partially match the session name
     # - automatically when 1 session partially match the session name
@@ -153,11 +154,19 @@ f_tmux_open_or_create_session () {
         cwd)
             local defaultSessionName=$(f_tmux_get_session_named_after_current_directory)
             local prefered=${2:-$defaultSessionName}
-            local session=$(a="$prefered"; b=command tmux list-sessions -F "#{session_name}" 2>/dev/null; printf "$a\n$b" | fzf --no-multi --cycle --select-1)
+            local session=$(
+                a="$prefered"
+                b=command tmux list-sessions -F "#{session_name}" 2>/dev/null
+                printf "$a\n$b" | fzf --no-multi --cycle --select-1
+            )
             ;;
         interactive)
             local prefered=${2:-"default"}
-            local session=$(a="$prefered"; b=command tmux list-sessions -F "#{session_name}" 2>/dev/null; printf "$a\n$b" | fzf --no-multi --cycle)
+            local session=$(
+                a="$prefered"
+                b=command tmux list-sessions -F "#{session_name}" 2>/dev/null
+                printf "$a\n$b" | fzf --no-multi --cycle
+            )
             ;;
         *)
             echo "Unsupported 'behaviour' value for f_tmux_open_or_create_session"
@@ -165,8 +174,7 @@ f_tmux_open_or_create_session () {
             ;;
     esac
 
-    if [ -z "$session" ];
-    then
+    if [ -z "$session" ]; then
         echo "No session named choosen."
         echo "No tmux started"
         return
@@ -175,7 +183,10 @@ f_tmux_open_or_create_session () {
     # Inside tmux, try switch current client's session to session. Otherwise fallback to (create) + attach to the session
     [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
 
-    command tmux $change -t "$session" 2>/dev/null || (command tmux new-session -d -s "$session"; command tmux $change -t "$session"); 
+    command tmux $change -t "$session" 2>/dev/null || (
+        command tmux new-session -d -s "$session"
+        command tmux $change -t "$session"
+    )
 }
 
 # ftpane - switch pane (@george-b)
@@ -194,8 +205,8 @@ f_tmux_pane_switcher() {
     if [[ $current_window -eq $target_window ]]; then
         command tmux select-pane -t ${target_window}.${target_pane}
     else
-        command tmux select-pane -t ${target_window}.${target_pane} &&
-            command tmux select-window -t $target_window
+        command tmux select-pane -t ${target_window}.${target_pane} \
+            && command tmux select-window -t $target_window
     fi
 }
 

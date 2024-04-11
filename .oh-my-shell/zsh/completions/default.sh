@@ -1,4 +1,4 @@
-# Suite of completions from "zsh-completion" homebrew package 
+# Suite of completions from "zsh-completion" homebrew package
 # - must be set before "compinit"
 FPATH=$(homebrew_package_path_prefix "/zsh-completions/share/zsh-completions"):$FPATH
 # Suite of complettions from oh-my-shellrc plugins
@@ -6,10 +6,10 @@ FPATH=$ZSH_COMPLETION_USER_DIR:$FPATH
 
 # compinit is now loaded by zsh-autocomplete.plugin.zsh
 ## Initialize completion system
-## -U 
+## -U
 #autoload -Uz compinit
 ## -u use completion scripts files not owned by the current user or root.
-##    Rationale: Homebrew install completions scripts with owner sometimes set as different from the current user 
+##    Rationale: Homebrew install completions scripts with owner sometimes set as different from the current user
 #compinit -u
 #
 #zstyle ':completion:*' auto-description 'specify: %d'
@@ -35,7 +35,7 @@ FPATH=$ZSH_COMPLETION_USER_DIR:$FPATH
 # -w: indicate why dumpfile is being regenerated
 zstyle '*:compinit' arguments -u -i -C -w
 
-# Completion for installed homebrew packages, without completion profile.d support  
+# Completion for installed homebrew packages, without completion profile.d support
 HOMEBREW_FZF_COMPLETION_DIR=$(homebrew_package_path_prefix "/fzf/shell/completion.zsh")
 dot_if_exists "$HOMEBREW_FZF_COMPLETION_DIR"
 

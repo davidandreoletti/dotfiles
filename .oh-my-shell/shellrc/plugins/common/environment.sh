@@ -8,8 +8,8 @@ if is_linux; then
 elif is_macos; then
     if test "$USER" = "administrator" && is_interactive_shell && is_login_shell && test -n "$ADMINISTRATOR_SHELL_OPEN"; then
         # Context:
-        #  - 'adminstrator_open_shell' alias executed 
-        #   - macOS's WindowServer does not start a GUI Login session for administrator 
+        #  - 'adminstrator_open_shell' alias executed
+        #   - macOS's WindowServer does not start a GUI Login session for administrator
         #     - launchd has no session for this user
         #       - org.__USER__.xdg.environment.plist will not be loaded
         # Solution:
@@ -33,8 +33,7 @@ if is_macos; then
     for xdg in "XDG_CONFIG_HOME" "XDG_CACHE_HOME" "XDG_DATA_HOME" "XDG_STATE_HOME"; do
         xdg_path="$(eval "echo \"\$$xdg\"")"
 
-        if test -z "$xdg_path";
-        then
+        if test -z "$xdg_path"; then
             echo "$xdg is not defined. Forgot to load ~/Library/LaunchAgents/org.$USER.xdg.environment.plist ?"
             echo "Existing in 15s. Press Ctrl-C to cancel"
             sleep 15 && exit 1

@@ -98,7 +98,10 @@ function dot_delayed_plugins_step_if_exists() {
         (
             {
                 exec {lock_fd}>/tmp/$USER.oh_my_shellrc.$stepName.lock || exit 1
-                flock -n "$lock_fd" || { echo "oh-myshellrc post lock failed." >&2; exit 1; }
+                flock -n "$lock_fd" || {
+                    echo "oh-myshellrc post lock failed." >&2
+                    exit 1
+                }
 
                 while IFS= read -r pluginName; do
                     export SHELLRC_CURRENT_PLUGIN_DIR="${SHELLRC_PLUGINS_DIR}/${pluginName}"

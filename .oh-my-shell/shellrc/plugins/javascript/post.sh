@@ -1,11 +1,11 @@
 # Install LTS npm/node
 if command_exists 'volta'; then
-	volta install node >/dev/null 2>&1
-	volta install npm >/dev/null 2>&1
+    volta install node >/dev/null 2>&1
+    volta install npm >/dev/null 2>&1
 fi
 
 # Export Bash/ZSH completion
-command_exists 'npm' && npm completion > "$SHELLRC_COMPLETION_USER_DIR/_npm"
+command_exists 'npm' && npm completion >"$SHELLRC_COMPLETION_USER_DIR/_npm"
 
 #NPM_POST_BASE="$HOME/.oh-my-shell/tmp/npm_post"
 #NPM_POST_MARKER="${NPM_POST_BASE}.marker"

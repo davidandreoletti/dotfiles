@@ -1,6 +1,6 @@
 # % gnupg, key, perfect
 # # Create master key with (C)ertify capability + one different sub key for (S)ign, (E)ncrypt, (A)uthenticate
-# ; usage: gnupg_create_CSEA_perfect_key "John Doe" "john@doe.com" "1y" 
+# ; usage: gnupg_create_CSEA_perfect_key "John Doe" "john@doe.com" "1y"
 alias gnupg_create_CSEA_perfect_key='f_gnupg_create_CSEA_key '
 
 # % gnupg, key, export, public, private

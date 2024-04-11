@@ -89,7 +89,7 @@ f_dd_verify() {
     FIFOLAST="$FIFO2"
     compressPID=$catPID
     if test "$compression" = "zstd"; then
-        (cat $FIFOLAST | zstd -z -c -f -q | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "compression" > $FIFO3) 1>/dev/null 2>&1 &
+        (cat $FIFOLAST | zstd -z -c -f -q | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "compression" >$FIFO3) 1>/dev/null 2>&1 &
         compressPID=$!
         FIFOLAST="$FIFO3"
     fi
@@ -137,13 +137,13 @@ f_dd_verify() {
     #
     # Compute + read output hash
     #
-    
+
     command rm -f $FIFO0
     mkfifo $FIFO0
 
     FIFOFIRST="$output"
     if test "$compression" != "none"; then
-        ($output_sudo command ucat "$output" > "$FIFO0") 1>/dev/null 2>&1 &
+        ($output_sudo command ucat "$output" >"$FIFO0") 1>/dev/null 2>&1 &
         ucatPID=$!
         FIFOFIRST="$FIFO0"
     fi

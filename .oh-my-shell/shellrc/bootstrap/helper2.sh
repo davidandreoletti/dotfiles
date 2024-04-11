@@ -84,8 +84,8 @@ get_terminal_app_type() {
 is_interactive_shell() {
     # support bash/zsh
     case $- in
-        *i*) return 0;;
-        *) return 1;;
+        *i*) return 0 ;;
+        *) return 1 ;;
     esac
 }
 
@@ -103,7 +103,7 @@ homebrew_init() {
     if is_macos; then
         # ARM Silicon
         dir0="/opt/Homebrew/bin"
-        # x86 arch                   
+        # x86 arch
         dir1="/usr/local/Homebrew/bin/"
     elif is_linux; then
         dir0="/home/linuxbrew/.linuxbrew/bin"
@@ -113,8 +113,7 @@ homebrew_init() {
     # - PATH
     # - MANPATH
     # - INFOPATH
-    for dir in $dir0 $dir1
-    do
+    for dir in $dir0 $dir1; do
         test -x "$dir" && eval "$($dir/brew shellenv $SHELL_NAME)" && break
     done
 }

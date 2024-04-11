@@ -31,6 +31,6 @@ function f_archiveFolder() {
     local archivePath="${leafDir}.tar.zst"
 
     pushd "$parentDir"
-        tar -c -a -v -f "$archivePath" "$leafDir"
+    tar -c -a -v -f "$archivePath" "$leafDir"
     popd
 }
