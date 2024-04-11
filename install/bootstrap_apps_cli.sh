@@ -418,6 +418,9 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "so"                  # Query stackoverflow TUI
     homebrew_brew_install                  "universal-ctags"     # catgs for vim's TagBar
 
+    # Shell formatter
+    homebrew_brew_install                  "shfmt"               # Shell script formatter
+
     is_fedora && fedora_dnf_install        "fuse"                # Hardware smartcard requirements
     is_fedora && fedora_dnf_install        "fuse-devel"
 
