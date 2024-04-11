@@ -28,11 +28,16 @@ f_ai_opendevin_run() {
         sed -i "s/WORKSPACE_DIR=.*/WORKSPACE_DIR=\"${workspace_dir}\"/" config.toml
     fi
 
+    # Download ollama model
+    if echo "$model_name" | grep "ollama/"; then
+        ollama pull "$model_name"
+    fi
+
     # Launch ollama is not running
     if curl --fail http://localhost:11434/api/tags; then
         :
     else
-        echo "ollama is not serving"
+        echo "ERROR: ollama is not serving"
         return 1
     fi
 
