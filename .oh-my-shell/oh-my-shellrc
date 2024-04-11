@@ -112,6 +112,7 @@ dot_plugin_if_exists "progress"
 dot_plugin_if_exists "postgres"
 dot_plugin_if_exists "python"
 dot_plugin_if_exists "pipx"
+dot_plugin_if_exists "poetry"                        # Requires: pipx
 dot_plugin_if_exists "pyenv"
 dot_plugin_if_exists "qemu"
 dot_plugin_if_exists "rbenv"
