@@ -235,9 +235,6 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "cheat"               # Alternative short manpage version, with example for most comman use cases
     homebrew_brew_install                  "navi"                # Execute one liner from cheatsheet
 
-    # DNS client
-    homebrew_brew_install                  "dog"                 # Simpler dig
-
     # Local system monitoring
     homebrew_brew_install                  "htop"                #
     homebrew_brew_install                  "glances"             # Extensive system monitoring
