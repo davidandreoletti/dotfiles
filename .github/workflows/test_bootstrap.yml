@@ -29,7 +29,7 @@ jobs:
       group: ${{ matrix.platform }}-${{ matrix.os_version}}-${{ matrix.bootstrap_type}}-${{ matrix.user_profile }}
       cancel-in-progress: true
 
-  bootstrap_linux:
+  bootstrap_fedora:
       strategy:
         max-parallel: 16
         fail-fast: false
@@ -37,17 +37,36 @@ jobs:
          platform: ['linux']
          bootstrap_type: ['machine+dotfiles'] 
          user_profile: ['admin', 'dev_single'] # debug: 'machine','dotfiles'
-         os_version: ['fedora:39', 'fedora:40', 'archlinux:latest']
+         os_version: ['fedora:39', 'fedora:40']
   
       name: '${{ matrix.platform }}/${{ matrix.os_version }}/${{ matrix.user_profile }}'
       secrets: inherit
-      uses: davidandreoletti/dotfiles/.github/workflows/bootstrap_on_linux.yaml@master
+      uses: davidandreoletti/dotfiles/.github/workflows/bootstrap_on_fedora.yaml@master
       with:
         platform: ${{ matrix.platform }}
         bootstrap_type: ${{ matrix.bootstrap_type }}
         user_profile: ${{ matrix.user_profile }}
         os_version: ${{ matrix.os_version }}
+ 
+  bootstrap_archlinux:
+      strategy:
+        max-parallel: 16
+        fail-fast: false
+        matrix:
+         platform: ['linux']
+         bootstrap_type: ['machine+dotfiles'] 
+         user_profile: ['admin', 'dev_single'] # debug: 'machine','dotfiles'
+         os_version: ['archlinux:latest']
   
+      name: '${{ matrix.platform }}/${{ matrix.os_version }}/${{ matrix.user_profile }}'
+      secrets: inherit
+      uses: davidandreoletti/dotfiles/.github/workflows/bootstrap_on_archlinux.yaml@master
+      with:
+        platform: ${{ matrix.platform }}
+        bootstrap_type: ${{ matrix.bootstrap_type }}
+        user_profile: ${{ matrix.user_profile }}
+        os_version: ${{ matrix.os_version }}
+
       concurrency:
         group: ${{ matrix.platform }}-${{ matrix.os_version}}-${{ matrix.bootstrap_type}}-${{ matrix.user_profile }}
         cancel-in-progress: true
