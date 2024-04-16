@@ -239,6 +239,7 @@ case $BOOSTRAP_COMMAND in
     "machine")
         is_macos && bootstrap_os 'macos'
         is_fedora && bootstrap_os 'fedora'
+        is_archlinux && bootstrap_os 'archlinux'
         #is_debian && bootstrap_os 'debian';
         ;;
     "dotfiles")
