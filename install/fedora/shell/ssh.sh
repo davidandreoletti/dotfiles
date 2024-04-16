@@ -2,8 +2,6 @@
 # SSH related functions
 ###############################################################################
 
-DSCL='/usr/bin/dscl'
-
 #param: on OR off
 ssh_set_remote_login() {
 	:

@@ -8,7 +8,7 @@ fedora_dnf_install() {
     local stderr_file="${pkgs_file}.stderr"
     local retry_file="${pkgs_file}.retry"
 
-    if test ${HOMEBREW_BREW_INSTALL_AGGREGATED:-1} -eq 0; then
+    if test ${FEDORA_DNF_INSTALL_AGGREGATED:-1} -eq 0; then
         local install_aggregated=0
     else
         local install_aggregated=1
