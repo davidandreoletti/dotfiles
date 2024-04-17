@@ -142,7 +142,9 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "vivid"               # Customize LS_COLORS
 
     # Debugger
-    homebrew_brew_install                  "gdb"                 # versatile debugger
+    if is_arch_x86_64; then
+        homebrew_brew_install              "gdb"                 # versatile debugger
+    fi
 
     # Email client
     homebrew_brew_install                  "aerc"
