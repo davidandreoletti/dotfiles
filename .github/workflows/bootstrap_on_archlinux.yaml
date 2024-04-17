@@ -30,7 +30,7 @@ jobs:
           echo "do nothing for now"
       - name: Bootstrap machine prerequisites
         run: |
-          LC_ALL=en_US.UTF-8 pacman --sync --refresh --sysupgrade --noconfirm git
+          LC_ALL=en_US.UTF-8 pacman --sync --refresh --sysupgrade --noconfirm git sudo
       - name: Bootstrap machine
         if: contains(inputs.bootstrap_type, 'machine')
         run: bash bootstrap.sh -d -b machine -s ${{ inputs.user_profile }} 
