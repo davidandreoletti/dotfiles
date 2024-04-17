@@ -3,5 +3,5 @@
 # Sudo/sudoers related functions
 ##############################################################################
 
-source "${BOOSTRAP_DIR}/fedora/shell/sudoers.sh"
+source "${BOOSTRAP_DIR}/fedora/shell/account.sh"
 
