@@ -171,9 +171,9 @@ if is_profile_admin_or_similar; then
 
 
     # VSCode
-    is_macos   &&  homebrew_brew_cask_install              "visual-studio-code" \ 
+    is_macos   &&  homebrew_brew_cask_install              "visual-studio-code"  \
                &&  homebrew_brew_cask_install              "__commit_aggregated__"
-    is_fedora  &&  fedora_dnf_install                      "code" \
+    is_fedora  &&  fedora_dnf_install                      "code"                \
                &&  fedora_dnf_install                      "__commit_aggregated__"
 
     # VSCode Extensions
