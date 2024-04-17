@@ -150,6 +150,7 @@ dot_plugin_if_exists "vim"
 dot_plugin_if_exists "neovim"
 dot_plugin_if_exists "vivid"
 dot_plugin_if_exists "volta"
+dot_plugin_if_exists "vnc"
 dot_plugin_if_exists "javascript"                          # Loading dependency: volta plugin 
 dot_plugin_if_exists "weather"
 dot_plugin_if_exists "whence"
