@@ -106,10 +106,6 @@ homebrew_is_installed || exit 1
 archlinux_pacman_install "flatpak"
 ### Install snaps prerequisites
 archlinux_pacman_install "snapd"
-# Fedora's official 3rd party reposititories
-archlinux_pacman_install fedora-workstation-repositories
-# Hardware drivers (eg: nvidia)
-archlinux_pacman_group_install "Hardware Support"
 
 archlinux_pacman_install "__commit_aggregated__"
 
