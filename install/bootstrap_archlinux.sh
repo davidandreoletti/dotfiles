@@ -89,6 +89,7 @@ HOMEBREW_BREW_INSTALL_AGGREGATED=0
 
 ## Package managers
 ### Install homebrew prerequisites
+archlinux_pacman_install "base-devel"
 archlinux_pacman_install "procps-ng"
 archlinux_pacman_install "curl"
 archlinux_pacman_install "file"
