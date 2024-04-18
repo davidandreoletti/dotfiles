@@ -15,7 +15,7 @@ archlinux_pacman_install() {
     fi
 
     case "$1" in
-       *'://'*) 
+       *'://'*)
            # Package is a URL to probably a RPM file
            local pre_args1="__commit_aggregated__"
            ;;
@@ -69,18 +69,32 @@ archlinux_pacman_install() {
     done
 }
 
-#archlinux_pacman_group_install() {
-#    message_info_show "$1 group install ..."
-#    # Must use default sudo setting. Hence no: -u <user_name>
-#    sudo ${SUDO_OPTIONS} dnf -y group install "$1"
-#}
+# param1: package name
+archlinux_pacman_aur_install() {
+    # https://wiki.archlinux.org/title/Arch_User_Repository#Prerequisites
+    local pkg_name="$1"
+    local pkg_dir="/tmp/aur/${pkg_name}"
+
+    mkdir -p "$pkg_dir"
+    pushd "$pkg_dir"
+        git clone --depth=1 "https://aur.archlinux.org/${pkg_name}" "package.git"
+        pushd "package.git"
+            chmod -R 777 .
+            git config --global --add safe.directory $PWD
+            ls -alh ./
+            sudo su - builduser -c "cd $pkg_dir/package.git; makepkg --syncdeps --install --noconfirm"
+            ls -alh ./
+            pacman -U *.pkg.tar.zst
+        popd
+    popd
+}
 
 archlinux_pacman_update_repo_metadata() {
     message_info_show "Update repositories metadata..."
     sudo ${SUDO_OPTIONS} pacman --sync --refresh
 }
 
-# param1: repo url 
+# param1: repo url
 #archlinux_pacman_config_manager_add_repo() {
 #    message_info_show "$1 repo to add ..."
 #    # Must use default sudo setting. Hence no: -u <user_name>

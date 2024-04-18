@@ -105,9 +105,7 @@ homebrew_is_installed || exit 1
 ### Install flatpak prerequisites
 archlinux_pacman_install "flatpak"
 ### Install snaps prerequisites
-archlinux_pacman_install "snapd"
-
-archlinux_pacman_install "__commit_aggregated__"
+archlinux_pacman_aur_install "snapd"
 
 # Applications
 SHELLS_FILE="/etc/shells"
