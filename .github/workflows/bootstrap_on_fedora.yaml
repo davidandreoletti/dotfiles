@@ -53,6 +53,10 @@ jobs:
           sudo apt-get autoremove -y >/dev/null 2>&1 || true
           sudo apt-get autoclean -y >/dev/null 2>&1 || true
           echo "some packages purged"
+      - name: Set env vars
+        run: |
+            echo "BOOTSTRAP_SKIP_APPS_GUI_INSTALL=0" >> "$GITHUB_ENV"
+            echo "BOOTSTRAP_SKIP_APPS_DESKTOP_ENVIRONMENT_INSTALL=0" >> "$GITHUB_ENV"
       - name: Bootstrap machine
         if: contains(inputs.bootstrap_type, 'machine')
         run: bash bootstrap.sh -d -b machine -s ${{ inputs.user_profile }} 

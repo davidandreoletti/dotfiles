@@ -244,7 +244,7 @@ case $BOOSTRAP_COMMAND in
         ;;
     "dotfiles")
         check_new_updates
-        # macOS: skippable shell change to prevent this issue on macOS CI runner: 
+        # macOS: skippable shell change to prevent this issue on macOS CI runner:
         # - "Password for runner: chsh: Credentials could not be verified, user name or password is invalid.
         #    Credentials could not be verified, user name or password is invalid."
         test "${BOOTSTRAP_SKIP_SHELL_CHANGE}" = "0" || check_new_shell_exists && change_default_shell
