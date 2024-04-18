@@ -31,9 +31,19 @@ jobs:
       - name: Bootstrap machine prerequisites
         run: |
           LC_ALL=en_US.UTF-8 pacman --sync --refresh --sysupgrade --noconfirm git sudo
+      - name: Bootstrap machine prerequisites "userbuild"
+        # https://dev.to/cloudx/testing-our-package-build-in-the-docker-world-34p0
+        run: |
+          useradd builduser -m
+          passwd -d builduser
+          printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
+      - name: Set env vars
+        run: |
+            echo "BOOTSTRAP_SKIP_APPS_GUI_INSTALL=0" >> "$GITHUB_ENV"
+            echo "BOOTSTRAP_SKIP_APPS_DESKTOP_ENVIRONMENT_INSTALL=0" >> "$GITHUB_ENV"
       - name: Bootstrap machine
         if: contains(inputs.bootstrap_type, 'machine')
-        run: bash bootstrap.sh -d -b machine -s ${{ inputs.user_profile }} 
+        run: bash bootstrap.sh -d -b machine -s ${{ inputs.user_profile }}
       - name: Bootstrap dotfiles
         if: contains(inputs.bootstrap_type, 'dotfiles')
-        run: bash bootstrap.sh -d -b dotfiles -s ${{ inputs.user_profile }} 
+        run: bash bootstrap.sh -d -b dotfiles -s ${{ inputs.user_profile }}
