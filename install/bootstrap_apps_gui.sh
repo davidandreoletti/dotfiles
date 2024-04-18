@@ -147,7 +147,7 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "textmate"
 
     # Remote desktop
-    is_macos   &&  homebrew_brew_cask_install              "tiger-vnc"
+    is_macos   &&  homebrew_brew_install                   "tiger-vnc"
     is_fedora  &&  fedora_dnf_install                      "remmina"
     is_macos   &&  homebrew_brew_cask_install              "parsec"             # Local/Remote LAN stream
 
