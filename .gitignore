@@ -33,7 +33,10 @@ sticker.sql
 port
 .config/gtk-2.0
 .config/gcloud/logs
+# configstore
+.config/configstore/update-notifier-npm-check-updates.json
 .config/configstore/update-notifier-npm.json
+# qalc
 qalc.history
 # Irssi files obtained somewhere else
 .irssi/config
