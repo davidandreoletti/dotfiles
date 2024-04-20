@@ -8,6 +8,7 @@ if is_profile_admin_or_similar; then
     homebrew_brew_tap_install              "burntsushi/ripgrep"  "https://github.com/BurntSushi/ripgrep.git"
     homebrew_brew_tap_install              "boz/repo"
     homebrew_brew_tap_install              "mopidy/mopidy"
+    is_macos  &&  homebrew_brew_tap_install  "saulpw/vd"
     # Note: use standard ffmpeg due to it being a
     #       dependency of many other package (eg: modpidy, mpd, etc ...)
     #
@@ -39,6 +40,10 @@ if is_profile_admin_or_similar; then
               && fedora_dnf_install        "__commit_aggregated__"  \
               && pipx ensurepath
 
+    is_archl && homebrew_brew_install      "pipx"                   \
+             && homebrew_brew_install      "__commit_aggregated__"  \
+             && pipx ensurepath
+
     # Python version manager
     homebrew_brew_install                  "pyenv"              # Manage python version on a per user/folder basis
     homebrew_brew_install                  "pyenv-virtualenv"   # pyenv plugin: virtualenv/venv
@@ -56,6 +61,7 @@ if is_profile_admin_or_similar; then
     # Bash shell
     is_fedora && fedora_dnf_install        "bash"
     is_macos  && homebrew_brew_install     "bash"  &&  sudo  bash  -c  "echo  $(brew  --prefix)/bin/bash >> $SHELLS_FILE";
+    is_archl  && homebrew_brew_install     "bash" 
 
     # Git
     homebrew_brew_install                  "git"                # Get more recent version than the one shipped in Xcode
@@ -97,6 +103,7 @@ if is_profile_admin_or_similar; then
               && homebrew_brew_install     "__commit_aggregated__" \
               && sudo bash -c "echo $(brew --prefix)/bin/zsh >> $SHELLS_FILE" \
               && sudo chsh -s $(brew --prefix)/bin/zsh $USER;
+    is_archl  && homebrew_brew_install     "zsh"
     homebrew_brew_install                  "tmux"
     homebrew_brew_install                  "vim"
 
@@ -164,10 +171,13 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "tfenv"               # Terraform version manager like rbenv
     is_macos  && homebrew_brew_install     "rbenv"               # Ruby Version Installer and manager
     is_fedora && fedora_dnf_install        "rbenv"
+    is_archl  && archlinux_pacman_aur_install  "rbenv"
 
     # Clipboard management
     is_fedora && fedora_dnf_install        "xclip"               #
     is_fedora && fedora_dnf_install        "xsel"                #
+    is_archl  && archlinux_pacman_install  "xclip"               #
+    is_archl  && archlinux_pacman_install  "xsel"                #
 
     # Network data transfer
     homebrew_brew_install                  "wget"
@@ -207,7 +217,7 @@ if is_profile_admin_or_similar; then
 
     # Multimedia servers
     homebrew_brew_install                  "mpd"                 # Music player daemon
-    if is_macos || is_fedora; then
+    if is_macos || is_fedora || is_archl; then
         # Wait for PR fix: https://github.com/mopidy/homebrew-mopidy/issues/44 
         :
     else
@@ -242,20 +252,26 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "glances"             # Extensive system monitoring
 
     # OpenSSH client / server
-    homebrew_brew_install                  "openssh"             # OpenSSH client and server
+    is_macos  &&  homebrew_brew_install    "openssh"             # OpenSSH client and server
     is_fedora &&  fedora_dnf_install       "openssh-server"  \
               &&  fedora_dnf_install "__commit_aggregated__" \
+              &&  systemd_systemctl_enable sshd \
+              &&  systemd_systemctl_start  sshd
+    is_archl  &&  archlinux_pacman_install "openssh" \
+              &&  archlinux_pacman_install "__commit_aggregated__" \
               &&  systemd_systemctl_enable sshd \
               &&  systemd_systemctl_start  sshd
 
     # Firewall port knocking
     #is_macos  &&  homebrew_brew_install    "fwknop"             # Disabled by brew upstream
-    is_fedora &&  fedora_dnf_install       "fwknop"
+    #is_fedora &&  fedora_dnf_install       "fwknop"
 
     # De/Encryption
     homebrew_brew_install                  "gnupg"               # GNU implementation of PGP
     homebrew_brew_install                  "hopenpgp-tools"      # Verify PGP key setup best practice
     is_macos && homebrew_brew_install      "pinentry-mac"        # Connect gpg-agent to OSX keychain
+    is_fedora && fedora_dnf_install        "pinentry"            #
+    is_archl && archlinux_pacman_install   "pinentry"            #
     homebrew_brew_install                  "pgpdump"             # PGP packet/key analyser
     homebrew_brew_install                  "age"                 # File encryption for the masses
 
@@ -281,7 +297,7 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "xmlstarlet"          # Command XML utilities (eg: xmlstarlet)
 
     # CSV Manipulation/query
-    is_macos  && homebrew_brew_install     "csvkit"              # Swiss army knife for csv files
+    homebrew_brew_install                  "csvkit"              # Swiss army knife for csv files
 
     # JSON Manipulation/query
     homebrew_brew_install                  "jq"                  # JSON manipulator
@@ -315,8 +331,9 @@ if is_profile_admin_or_similar; then
     # Virtualization
     homebrew_brew_install                  "libvirt"             # KVM/Qemu machine definition / hypervision abstraction
     homebrew_brew_install                  "qemu"
-    is_macos && homebrew_brew_install      "virt-manager"        # QEMU Manager
-    #homebrew_brew_install                  "virt-viewer"         # QEMU Virt Manager/Viewer for macOS Monterey
+    is_macos  && homebrew_brew_install     "virt-manager"        # QEMU Manager
+    is_fedora && fedora_dnf_install        "virt-manager"
+    is_archl  && archlinux_pacman_install  "virt-manager"
 
     # ISO
     homebrew_brew_install                  "xorriso"             # ISO9660+RR manipulation tool to kickstart a fedora vm with virt-install
@@ -324,9 +341,6 @@ if is_profile_admin_or_similar; then
     # Software defined radio
     #homebrew_brew_install                  "tdsmith/ham/xastir"  # HAM Station Tracking / Info reporting
     #homebrew_brew_install                  "tdsmith/ham/chirp"   # CHIRP software to configure HAM radios
-
-    # Bookmarks
-    #pipx_pipx_install                      "buku[server]"        # Browser independent bookmark manager, with standalone server
 
     # Scrum
     # Daily standup manager
@@ -389,15 +403,26 @@ if is_profile_admin_or_similar; then
     # terminfo database
     is_fedora && fedora_dnf_install        "ncurses-term"        # ncurses v6.2+'s terminfo database with kitty/alacritty terminal support
     is_macos  && homebrew_brew_install     "ncurses" 		     # Starting with macOS Sonoma's built-in ncurses, kitty/alacritty terminal is supported
+    is_archl  && archlinux_pacman_install  "ncurses"             # ncurses v6.2+'s terminfo database with kitty/alacritty terminal support
 
-    is_fedora && fedora_dnf_install        "pcsc-lite"           # Smart card access middleware for SCard API (PC/SC)
-    is_fedora && fedora_dnf_install        "pcsc-lite-ccid"      # Generic USB CCCID (Chip/Smart Card Interface Driver) and ICC (Integrated Circuit Interface driver)
-    is_fedora && fedora_dnf_install        "pcsc-tools"          # Scan smart cards
+    is_macos  && homebrew_brew_install     "pcsc-lite"           # Smart card access middleware for SCard API (PC/SC)
+    is_fedora && fedora_dnf_install        "pcsc-lite"
+    is_archl  && archlinux_pacman_install  "pcsclite"
+    is_macos  && homebrew_brew_install     "pcsc-lite-ccid"      # Generic USB CCCID (Chip/Smart Card Interface Driver) and ICC (Integrated Circuit Interface driver)
+    is_fedora && fedora_dnf_install        "pcsc-lite-ccid"      
+    is_archl  && archlinux_pacman_install  "ccid"      
+    is_macos  && homebrew_brew_install     "pcsc-tools"          # Scan smart cards
+    is_fedora && fedora_dnf_install        "pcsc-tools"
+
+    is_fedora && systemd_systemctl_enable  "pcscd" \
+              && systemd_systemctl_start   "pcscd"
+    is_archl  && systemd_systemctl_enable  "pcsclite" \
+              && systemd_systemctl_start   "pcsclite"
 
     # Tabular data
-    is_macos  &&  homebrew_brew_tap_install  "saulpw/vd" \
-              &&  homebrew_brew_install      "saulpw/vd/visidata" # Visualize tabular data in the terminal
-    is_fedora &&  fedora_dnf_install         "visidata"
+    is_macos  && homebrew_brew_install      "saulpw/vd/visidata" # Visualize tabular data in the terminal
+    is_fedora && fedora_dnf_install         "visidata"
+    is_archl  && archlinux_pacman_install   "visidata"
 
     # Typing
     # EXPERIMENTAL cargo_global_install                   "thokr"               # Typing tester
@@ -420,11 +445,13 @@ if is_profile_admin_or_similar; then
     # Shell formatter
     homebrew_brew_install                  "shfmt"               # Shell script formatter
 
-    is_fedora && fedora_dnf_install        "fuse"                # Hardware smartcard requirements
-    is_fedora && fedora_dnf_install        "fuse-devel"
+    is_fedora && fedora_dnf_install        "fuse3"               # Hardware smartcard requirements
+    is_archl  && archlinux_pacman_install  "fuse3"
+    is_fedora && fedora_dnf_install        "fuse3-devel"
 
-    is_fedora && fedora_dnf_install    "__commit_aggregated__"
-    homebrew_brew_install "__commit_aggregated__"
+    homebrew_brew_install                  "__commit_aggregated__"
+    is_fedora && fedora_dnf_install        "__commit_aggregated__"
+    is_archl  && archlinux_pacman_install  "__commit_aggregated__"
 fi
 
 if is_profile_admin; then
