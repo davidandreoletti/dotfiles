@@ -78,13 +78,18 @@ archlinux_pacman_aur_install() {
     mkdir -p "$pkg_dir"
     pushd "$pkg_dir"
         git clone --depth=1 "https://aur.archlinux.org/${pkg_name}" "package.git"
+
+        # Prevent error obtaining VCS status: exit status 128. Use -buildvcs=false to disable VCS stamping.
+        # src: https://www.reddit.com/r/archlinux/comments/uqq6uu/comment/i8te37n/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+        chmod -Rv 777 package.git
+        chown -Rv builduser:root package.git
+        git config --global --add safe.directory '*'
+
         pushd "package.git"
-            chmod -R 777 .
-            git config --global --add safe.directory $PWD
             ls -alh ./
             sudo su - builduser -c "cd $pkg_dir/package.git; makepkg --syncdeps --install --noconfirm"
             ls -alh ./
-            pacman -U *.pkg.tar.zst
+            pacman --upgrade --noconfirm *.pkg.tar.zst
         popd
     popd
 }
