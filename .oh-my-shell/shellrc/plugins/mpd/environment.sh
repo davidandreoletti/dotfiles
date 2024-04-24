@@ -1,4 +1,4 @@
-MPD_CONF_FILE="$HOME/.config/mpd/mpd.conf"
+export MPD_CONF_FILE="$HOME/.config/mpd/mpd.conf"
 
 # Export MPD host/port for mpd clients to communicate with: mpc, ncmpc, pms
 export MPD_PORT=$(command cat $MPD_CONF_FILE | grep "^port" | cut -d\" -f2)
