@@ -61,7 +61,7 @@ if is_profile_admin_or_similar; then
     # Bash shell
     is_fedora && fedora_dnf_install        "bash"
     is_macos  && homebrew_brew_install     "bash"  &&  sudo  bash  -c  "echo  $(brew  --prefix)/bin/bash >> $SHELLS_FILE";
-    is_archl  && homebrew_brew_install     "bash" 
+    is_archl  && homebrew_brew_install     "bash"
 
     # Git
     homebrew_brew_install                  "git"                # Get more recent version than the one shipped in Xcode
@@ -111,7 +111,7 @@ if is_profile_admin_or_similar; then
     # - neovim python package, neovim python bindings are installed by shellrc's neovim plugin
     homebrew_brew_install                  "neovim"
 
-    # Local Large Language Model 
+    # Local Large Language Model
     homebrew_brew_install                  "ollama"              # Fetch/Run Large Language Models locally
 
     # RSS
@@ -218,7 +218,7 @@ if is_profile_admin_or_similar; then
     # Multimedia servers
     homebrew_brew_install                  "mpd"                 # Music player daemon
     if is_macos || is_fedora || is_archl; then
-        # Wait for PR fix: https://github.com/mopidy/homebrew-mopidy/issues/44 
+        # Wait for PR fix: https://github.com/mopidy/homebrew-mopidy/issues/44
         :
     else
         homebrew_brew_install                  "mopidy"              # Music server with cloud music support plugins
@@ -409,8 +409,8 @@ if is_profile_admin_or_similar; then
     is_fedora && fedora_dnf_install        "pcsc-lite"
     is_archl  && archlinux_pacman_install  "pcsclite"
     is_macos  && homebrew_brew_install     "pcsc-lite-ccid"      # Generic USB CCCID (Chip/Smart Card Interface Driver) and ICC (Integrated Circuit Interface driver)
-    is_fedora && fedora_dnf_install        "pcsc-lite-ccid"      
-    is_archl  && archlinux_pacman_install  "ccid"      
+    is_fedora && fedora_dnf_install        "pcsc-lite-ccid"
+    is_archl  && archlinux_pacman_install  "ccid"
     is_macos  && homebrew_brew_install     "pcsc-tools"          # Scan smart cards
     is_fedora && fedora_dnf_install        "pcsc-tools"
 
