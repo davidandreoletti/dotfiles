@@ -7,7 +7,7 @@ if is_profile_admin_or_similar; then
     homebrew_brew_tap_install              "homebrew/services"  # Launch services in background.
     homebrew_brew_tap_install              "burntsushi/ripgrep"  "https://github.com/BurntSushi/ripgrep.git"
     homebrew_brew_tap_install              "boz/repo"
-    homebrew_brew_tap_install              "mopidy/mopidy"
+    #homebrew_brew_tap_install              "mopidy/mopidy"
     is_macos  &&  homebrew_brew_tap_install  "saulpw/vd"
     # Note: use standard ffmpeg due to it being a
     #       dependency of many other package (eg: modpidy, mpd, etc ...)
@@ -217,17 +217,19 @@ if is_profile_admin_or_similar; then
 
     # Multimedia servers
     homebrew_brew_install                  "mpd"                 # Music player daemon
+    # - not using mopidy - prefer mpd
     if is_macos || is_fedora || is_archl; then
         # Wait for PR fix: https://github.com/mopidy/homebrew-mopidy/issues/44
         :
     else
-        homebrew_brew_install                  "mopidy"              # Music server with cloud music support plugins
-        homebrew_brew_install                  "mopidy-mpd"          # Mopidi plugin to mpd clients
-        homebrew_brew_install                  "mopidy-local"        # Mopidi plugin to play local music
-        homebrew_brew_install                  "mopidy-somafm"       # Mopidi plugin to play somafm music
-        homebrew_brew_install                  "mopidy-soundcloud"   # Mopidi plugin to play soundcloud music
-        homebrew_brew_install                  "mopidy-spotify"      # Mopidi plugin to play spotify music
-        homebrew_brew_install                  "mopidy-tunein"       # Mopidi plugin to play tune-in music
+        :
+        #homebrew_brew_install                  "mopidy"              # Music server with cloud music support plugins
+        #homebrew_brew_install                  "mopidy-mpd"          # Mopidi plugin to mpd clients
+        #homebrew_brew_install                  "mopidy-local"        # Mopidi plugin to play local music
+        #homebrew_brew_install                  "mopidy-somafm"       # Mopidi plugin to play somafm music
+        #homebrew_brew_install                  "mopidy-soundcloud"   # Mopidi plugin to play soundcloud music
+        #homebrew_brew_install                  "mopidy-spotify"      # Mopidi plugin to play spotify music
+        #homebrew_brew_install                  "mopidy-tunein"       # Mopidi plugin to play tune-in music
     fi
 
     # Archive decompression
