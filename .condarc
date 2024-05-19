@@ -1,4 +1,4 @@
-report_errors: False
+report_errors: false
 channels:
   - conda-forge
   - defaults
