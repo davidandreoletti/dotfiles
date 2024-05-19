@@ -6,6 +6,7 @@
 .cargo/.crates.toml
 .cargo/env
 .cargo/.package-cache-mutate
+.cargo/.global-cache
 # rustup
 .rustup/toolchains
 .rustup/update-hashes
