@@ -42,4 +42,6 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  fedora_dnf_install "variety"
 
     is_fedora  &&  fedora_dnf_install "__commit_aggregated__"
+
+    true
 fi
