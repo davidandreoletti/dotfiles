@@ -534,9 +534,9 @@ defaults write com.torusknot.SourceTreeNotMAS analyticsHasAgreed 0
 ###############################################################################
 # Samba Client
 ###############################################################################
-if test -f"$USER/Library/Preferences/nsmb.conf"; then
+if test -f "$USER/Library/Preferences/nsmb.conf"; then
     # Move original file
-    mv $USER/Library/Preferences/{nsmb.conf,nsmb.conf.original}
+    mv $USER/Library/Preferences/nsmb.conf{,.original}
     # New file will be symlinked with stow
 fi
 echo "Done. Note that some of these changes require a logout/restart to take effect."
