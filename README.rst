@@ -70,9 +70,13 @@ Bootstrap macOS machine
        sudo xcodebuild -license
 
    - bash
-   - Grant Terminal Full Disk Access:
+   - Grant "Files and Folders" permission:
+       System Preferences > Security & Privacy > Privacy tab > Files and Folders >  + Terminal.app
+       Kill terminals
+   - Grant "Full Disk Access" permission:
        System Preferences > Security & Privacy > Privacy tab > Full Disk Access >  + Terminal.app
-       Kill Terminal
+       Kill terminals
+
 
 2. Select bootstrap profile matching the user's account purpose
 
@@ -131,6 +135,18 @@ Bootstrap macOS machine
 
        git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s dev_multi -p "$(pwd)/../dotfiles-private"
 
+4. Postrequisites
+
+   - Grant "Files and Folders" permission:
+       System Preferences > Security & Privacy > Privacy tab > Files and Folders >  + Alacritty.app + kitty.app
+       Kill terminals
+   - Grant "Full Disk Access" permission:
+       System Preferences > Security & Privacy > Privacy tab > Full Disk Access >  + Alacritty.app + kitty.app
+       Kill terminals
+   - Grant "Developer tools" permission:
+       System Preferences > Security & Privacy > Privacy tab > Developer tools >  + Alacritty.app + kitty.app
+       Kill terminals
+ 
 
 Bootstrap Fedora machine
 -------------------------
