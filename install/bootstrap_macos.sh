@@ -172,8 +172,12 @@ fi
 
 # Services administration
 ## SSD perf
-fs_has_volume "/" || message_info_show "No volume / to enable noatime flag on" 
-fs_has_volume "/" && fs_enable_flag_noatime_on_filesystem "/" "com.david.andreoletti.ssd.noatime.volumeroot"
+if fs_has_volume "/"; then
+    fs_enable_flag_noatime_on_filesystem "/" "com.david.andreoletti.ssd.noatime.volumeroot"
+else
+    message_info_show "No volume / to enable noatime flag on" 
+fi
+
 # TRIM enabled by default since at least macOS High Sierra
 
 ## Remote SSH
