@@ -126,7 +126,7 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "grandperspective"   # Disk usage GUI
 
     # Password manager
-    is_macos   &&  homebrew_brew_cask_install              "1password"
+    is_macos   &&  homebrew_brew_cask_install              "1password@7"
     is_macos   &&  homebrew_brew_cask_install              "keepassxc"
     is_fedora  &&  fedora_dnf_install                      "keepassxc"
     is_macos   &&  homebrew_brew_cask_install              "onyx"
