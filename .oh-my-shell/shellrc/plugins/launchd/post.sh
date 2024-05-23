@@ -40,8 +40,8 @@ if is_macos; then
         target_job="$target_dir/$job_file"
 
         if ! test -d "$target_dir"; then
-            # Most likely not on the relevant platfrom
-            continue
+            # macOS Sonoma brand new install: ~/Library/LaunchAgents does not exist
+            mkdir -p "$target_dir"
         fi
 
         # Link job to user agent location
