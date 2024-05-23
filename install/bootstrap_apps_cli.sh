@@ -63,6 +63,9 @@ if is_profile_admin_or_similar; then
     is_macos  && homebrew_brew_install     "bash"  &&  sudo  bash  -c  "echo  $(brew  --prefix)/bin/bash >> $SHELLS_FILE";
     is_archl  && homebrew_brew_install     "bash"
 
+    # Symlink manager
+    homebrew_brew_install                  "stow"              # Symlink manager
+
     # Git
     homebrew_brew_install                  "git"                # Get more recent version than the one shipped in Xcode
     homebrew_brew_install                  "gitui"              # git TUI for large patch set to deal with on a console
