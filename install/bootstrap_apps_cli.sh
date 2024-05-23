@@ -425,7 +425,7 @@ if is_profile_admin_or_similar; then
               && systemd_systemctl_start   "pcsclite"
 
     # Tabular data
-    is_macos  && homebrew_brew_install      "saulpw/vd/visidata" # Visualize tabular data in the terminal
+    is_macos  && homebrew_brew_install      "visidata"           # Visualize tabular data in the terminal
     is_fedora && fedora_dnf_install         "visidata"
     is_archl  && archlinux_pacman_install   "visidata"
 

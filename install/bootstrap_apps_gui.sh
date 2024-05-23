@@ -159,11 +159,6 @@ if is_profile_admin_or_similar; then
     #is_macos   &&  homebrew_brew_cask_install              "spyder"             # Python/R datasciense IDE
     #is_fedora  &&  fedora_dnf_install                      "python3-spyder"
 
-    # Tabular data
-    is_macos   &&  homebrew_brew_tap_install               "saulpw/vd/visidata" \
-               &&  homebrew_brew_cask_install              "saulpw/vd/visidata" # Visualize tabular data in the terminal
-    is_fedora  &&  fedora_dnf_install                      "visidata"
-
     # X11
     is_macos   &&  homebrew_brew_cask_install              "xquartz"            # X.Org X Window System
 
