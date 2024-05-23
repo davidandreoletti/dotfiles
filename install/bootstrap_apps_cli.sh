@@ -413,10 +413,10 @@ if is_profile_admin_or_similar; then
     is_macos  && homebrew_brew_install     "pcsc-lite"           # Smart card access middleware for SCard API (PC/SC)
     is_fedora && fedora_dnf_install        "pcsc-lite"
     is_archl  && archlinux_pacman_install  "pcsclite"
-    is_macos  && homebrew_brew_install     "pcsc-lite-ccid"      # Generic USB CCCID (Chip/Smart Card Interface Driver) and ICC (Integrated Circuit Interface driver)
+    #is_macos  && homebrew_brew_install     "pcsc-lite-ccid"      # Generic USB CCCID (Chip/Smart Card Interface Driver) and ICC (Integrated Circuit Interface driver)
     is_fedora && fedora_dnf_install        "pcsc-lite-ccid"
     is_archl  && archlinux_pacman_install  "ccid"
-    is_macos  && homebrew_brew_install     "pcsc-tools"          # Scan smart cards
+    #is_macos  && homebrew_brew_install     "pcsc-tools"          # Scan smart cards
     is_fedora && fedora_dnf_install        "pcsc-tools"
 
     is_fedora && systemd_systemctl_enable  "pcscd" \
