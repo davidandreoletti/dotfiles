@@ -228,7 +228,7 @@ if g:vimDistribution ==# g:VIM_FLAVOR_VIM
     " needed by: vim-orgmode
     let cvim_plugins.vim_speeddating = { 'name': 'tpope/vim-speeddating', 'lazy': 1, }
 elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
-    let cvim_plugins.orgmode = { 'name': 'nvim-orgmode/orgmode' , 'lazy': 1, 'event': 'VeryLazy', 'dependencies': { 'nvim-treesitter/nvim-treesitter':{'lazy': 1} }, 'setting': "$HOME/.config/cvim/settings/neovim_orgmode.lua" }
+    let cvim_plugins.orgmode = { 'name': 'nvim-orgmode/orgmode' , 'lazy': 1, 'event': 'VeryLazy', 'setting': "$HOME/.config/cvim/settings/neovim_orgmode.lua" }
 endif
 " Display vertical thin lines at each indentation level for code
 " indented with spaces
