@@ -23,6 +23,10 @@ is_linux () {
 }
 
 is_fedora () {
+    if ! test -f /etc/os-release; then
+        return 1
+    fi
+
     case "$(grep -E '^(ID)=' /etc/os-release | cut -d'=' -f 2)" in
         fedora*)
         return 0
@@ -34,6 +38,10 @@ is_fedora () {
 }
 
 is_archl () {
+    if ! test -f /etc/os-release; then
+        return 1
+    fi
+
     case "$(grep -E '^(ID)=' /etc/os-release | cut -d'=' -f 2)" in
         arch*)
         return 0
