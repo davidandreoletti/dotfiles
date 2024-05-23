@@ -55,8 +55,11 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "volta"              # Manage nodejs version on a per user/folder basis
 
     # Programing languages
-    homebrew_brew_install                  "rust"                # Rust + package manager / compiler toolchain
     homebrew_brew_install                  "java"
+
+    # Rust
+    homebrew_brew_install                  "rust"                # Default Rust + package manager / compiler toolchain
+    homebrew_brew_install                  "rustup-init"         # Tools to install other compiler toolchain / channels
 
     # Bash shell
     is_fedora && fedora_dnf_install        "bash"
