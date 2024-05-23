@@ -5,7 +5,7 @@ timemachine_has_entry_value() {
     local value="$2"
     local file="$3"
 
-    sudo /usr/libexec/PlistBuddy -c "Print $path" "$file" | grep "$3" 
+    sudo /usr/libexec/PlistBuddy -c "Print $path" "$file" | grep "$value" 
 }
 
 timemachine_add_unique_exclusion_entry() {
