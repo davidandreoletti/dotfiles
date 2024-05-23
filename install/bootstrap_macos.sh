@@ -189,7 +189,7 @@ assistive_enable_accessibility_api
 
 message_info_show "Softwares updates checks / installations ..."
 softwareupdate_list_pending_updates
-softwareupdate_updates_install
+softwareupdate_install_updates
 
 # Users Administration
 ## Enable Guest

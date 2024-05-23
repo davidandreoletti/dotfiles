@@ -7,9 +7,6 @@ softwareupdate_list_pending_updates() {
     sudo ${SUDO_OPTIONS} softwareupdate -l
 }
 
-softwareupdate_updates_install() {
-    # Install ALL software update (may require sudo)
-    todolist_add_new_entry "Install software updates" \
-    "with: sudo softwareupdate --install -all" \
-    "(restart required)"
+softwareupdate_install_updates() {
+    sudo softwareupdate --install -all
 }
