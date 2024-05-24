@@ -125,10 +125,6 @@ shift $((OPTIND - 1))
 
 # boostrap_*
 
-function check_new_updates() {
-    git pull
-}
-
 function check_new_shell_exists() {
     [ -f "$(which $DOTFILES_DEFAULT_SHELL)" ] || (
         message_error_show "Shell $DOTFILES_DEFAULT_SHELL does not exist. EXITING now before trashinng your new setup"
@@ -243,7 +239,6 @@ case $BOOSTRAP_COMMAND in
         #is_debian && bootstrap_os 'debian';
         ;;
     "dotfiles")
-        check_new_updates
         # macOS: skippable shell change to prevent this issue on macOS CI runner:
         # - "Password for runner: chsh: Credentials could not be verified, user name or password is invalid.
         #    Credentials could not be verified, user name or password is invalid."
