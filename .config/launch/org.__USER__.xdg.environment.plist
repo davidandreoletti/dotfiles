@@ -15,15 +15,15 @@
 	<array>
 		<string>sh</string>
 		<string>-c</string>
-        <!-- 
+        <!--
          XDG directories difference between Linux and macOS.
          https://practical.li/blog/posts/adopt-FreeDesktop.org-XDG-standard-for-configuration-files/
-         
+
          On macOS, env var should be set as follow
           XDG_CONFIG_HOME -︎ ~/Library/Preferences/ using reverse domain name notation: com.apple.AppStore.appname
           XDG_DATA_HOME -︎ ~/Library/
           XDG_CACHE_HOME -︎ ~/Library/Caches/
-         
+
          Preference for putting config files in ~/.config rather than ~/Library/Preferences
         -->
 		<string>
@@ -46,6 +46,18 @@
 		    launchctl setenv WEBIDE_PROPERTIES $HOME/.jetbrains/webstorm/idea.properties
 		    launchctl setenv GOLAND_PROPERTIES $HOME/.jetbrains/goland/idea.properties
 		    launchctl setenv RUSTOVER_PROPERTIES $HOME/.jetbrains/rustover/idea.properties
+
+			<!-- Jetbrains .vmoptions default location
+			     https://www.jetbrains.com/help/idea/tuning-the-ide.html#locate-jvm-options-file
+			-->
+		    launchctl setenv IDEA_VM_OPTIONS $HOME/.jetbrains/intellij/ide.vmoptions
+		    launchctl setenv CLION_VM_OPTIONS $HOME/.jetbrains/clion/ide.vmoptions
+		    launchctl setenv APPCODE_VM_OPTIONS $HOME/.jetbrains/appcode/ide.vmoptions
+		    launchctl setenv DATAGRIP_VM_OPTIONS $HOME/.jetbrains/datagrip/ide.vmoptions
+		    launchctl setenv STUDIO_VM_OPTIONS $HOME/.jetbrains/android_studio/ide.vmoptions
+		    launchctl setenv WEBIDE_VM_OPTIONS $HOME/.jetbrains/webstorm/ide.vmoptions
+		    launchctl setenv GOLAND_VM_OPTIONS $HOME/.jetbrains/goland/ide.vmoptions
+		    launchctl setenv RUSTOVER_VM_OPTIONS $HOME/.jetbrains/rustover/ide.vmoptions
 		</string>
 		<!--
 		    launchctl setenv ANDROID_SDK_HOME $HOME/.local/share/android
