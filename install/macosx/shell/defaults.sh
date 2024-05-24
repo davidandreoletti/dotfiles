@@ -231,6 +231,8 @@ defaults write com.apple.Safari TabCreationPolicy -int 2
 defaults write com.apple.Safari DownloadsClearingPolicy -int 2
 # Save downloded files to
 defaults write com.apple.Safari DownloadsPath -string '~/Downloads'
+# Never start with all windows from last session
+defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool false
 # Enable the Develop menu and the Web Inspector in Safari
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
