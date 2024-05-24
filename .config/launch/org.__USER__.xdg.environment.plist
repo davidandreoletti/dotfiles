@@ -19,15 +19,15 @@
          XDG directories difference between Linux and macOS.
          https://practical.li/blog/posts/adopt-FreeDesktop.org-XDG-standard-for-configuration-files/
          
-         On masOS, env var should be set as follow
+         On macOS, env var should be set as follow
           XDG_CONFIG_HOME -︎ ~/Library/Preferences/ using reverse domain name notation: com.apple.AppStore.appname
           XDG_DATA_HOME -︎ ~/Library/
           XDG_CACHE_HOME -︎ ~/Library/Caches/
          
          Preference for putting config files in ~/.config rather than ~/Library/Preferences
         -->
-        <!-- Keep synced with .oh-my-shell/shellrc/plugins/common/environment.sh -->
 		<string>
+            <!-- Keep synced with .oh-my-shell/shellrc/plugins/common/environment.sh -->
 			launchctl setenv XDG_CONFIG_HOME $HOME/.config
 			launchctl setenv XDG_CACHE_HOME $HOME/.cache
 			launchctl setenv XDG_DATA_HOME $HOME/.local/share
