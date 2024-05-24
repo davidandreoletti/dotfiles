@@ -34,6 +34,18 @@
 			launchctl setenv XDG_STATE_HOME $HOME/.local/state
 
 			launchctl setenv NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
+
+			<!-- Jetbrains idea.properties default location
+			     https://intellij-support.jetbrains.com/hc/en-us/articles/207240985-Changing-IDE-default-directories-used-for-config-plugins-and-caches-storage
+			-->
+		    launchctl setenv IDEA_PROPERTIES $HOME/.jetbrains/intellij/idea.properties
+		    launchctl setenv CLION_PROPERTIES $HOME/.jetbrains/clion/idea.properties
+		    launchctl setenv APPCODE_PROPERTIES $HOME/.jetbrains/appcode/idea.properties
+		    launchctl setenv DATAGRIP_PROPERTIES $HOME/.jetbrains/datagrip/idea.properties
+		    launchctl setenv STUDIO_PROPERTIES $HOME/.jetbrains/android_studio/idea.properties
+		    launchctl setenv WEBIDE_PROPERTIES $HOME/.jetbrains/webstorm/idea.properties
+		    launchctl setenv GOLAND_PROPERTIES $HOME/.jetbrains/goland/idea.properties
+		    launchctl setenv RUSTOVER_PROPERTIES $HOME/.jetbrains/rustover/idea.properties
 		</string>
 		<!--
 		    launchctl setenv ANDROID_SDK_HOME $HOME/.local/share/android
