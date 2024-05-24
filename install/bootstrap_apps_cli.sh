@@ -453,6 +453,10 @@ if is_profile_admin_or_similar; then
     # Shell formatter
     homebrew_brew_install                  "shfmt"               # Shell script formatter
 
+    # K8s
+    is_fedora &&  homebrew_brew_install    "kubectl"             # K8s client only
+    is_archl  &&  homebrew_brew_install    "kubectl"             
+
     is_fedora && fedora_dnf_install        "fuse3"               # Hardware smartcard requirements
     is_archl  && archlinux_pacman_install  "fuse3"
     is_fedora && fedora_dnf_install        "fuse3-devel"
