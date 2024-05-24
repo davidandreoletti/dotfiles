@@ -211,6 +211,26 @@ defaults write com.apple.Safari AutoFillCreditCardData -bool false
 defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
 # Warn about fraudulent websites
 defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
+# Setup new window and tab behvior
+# 0: Homepage
+# 1: Empty Page
+# 2: Same Page
+# 3: Bookmarks
+# 4: Top Sites
+defaults write com.apple.Safari NewTabBehavior -int 1
+defaults write com.apple.Safari NewWindowBehavior -int 1
+# Open pages in tabs instead of windows:
+# 0: Never
+# 1: Automatically
+# 2: Always
+defaults write com.apple.Safari TabCreationPolicy -int 2
+# Remove downloads list items
+# 0: Manually
+# 1: When Safari Quits
+# 2: Upon Successful Download
+defaults write com.apple.Safari DownloadsClearingPolicy -int 2
+# Save downloded files to
+defaults write com.apple.Safari DownloadsPath -string '~/Downloads'
 # Enable the Develop menu and the Web Inspector in Safari
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
