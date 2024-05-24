@@ -170,10 +170,6 @@ defaults write com.apple.screencapture com.apple.Grab "PNG"
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
 ###############################################################################
-# Wallpaper #
-###############################################################################
-#defaults write com.apple.desktop Background { spaces =     { "" =         { 69676480 =             { Change = Never; ImageFilePath = "/Library/Desktop Pictures/Earth and Moon.jpg"; NoImage = 0; Placement = Crop; Random = 0; }; 722481101 =             { Change = Never; ImageFilePath = "/Users/isymbion/Library/Safari/Safari Desktop Picture.jpg"; NoImage = 0; Placement = Crop; Random = 0; }; default =             { Change = Never; ImageFilePath = "/Users/isymbion/Library/Safari/Safari Desktop Picture.jpg"; NoImage = 0; Placement = Crop; Random = 0; }; }; }; } 
-###############################################################################
 # Safari & WebKit #
 ###############################################################################
 # Privacy: don’t send search queries to Apple
