@@ -196,6 +196,9 @@ if is_profile_admin_or_similar; then
                &&  fedora_dnf_install                      "__commit_aggregated__" \
                &&  systemd_systemctl_enable --now tailscaled
 
+    # Personal knowledge base
+    is_macos   &&  homebrew_brew_cask_install              "notion"             # Notion 
+
     # Geography
     is_macos   &&  homebrew_brew_cask_install              "google-earth-pro"   # Google Earth
 
