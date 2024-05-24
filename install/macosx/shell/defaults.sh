@@ -257,6 +257,8 @@ defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder QLEnableTextSelection -bool true
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+# Finder: show all files
+defaults write NSGlobalDomain AppleShowAllFiles -bool true
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 # Disable the warning when changing a file extension
