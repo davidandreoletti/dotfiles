@@ -272,6 +272,8 @@ defaults write NSGlobalDomain com.apple.springing.delay -float 0
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 # Do not empty Trash securely by default
 defaults write com.apple.finder EmptyTrashSecurely -bool false
+# Warn before emptying Trash
+defaults write com.apple.finder WarnOnEmptyTrash -bool true
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
