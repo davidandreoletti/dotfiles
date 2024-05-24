@@ -215,6 +215,10 @@ if is_profile_admin_or_similar; then
     # Traffic shaping
     is_macos   &&  homebrew_brew_cask_install              "mitmproxy"           # Charles Proxy in command line
 
+    # AI Frontend
+    is_macos   &&  is_arch_aarch64 \
+               &&  homebrew_brew_cask_install              "lm-studio"           # Run inference LLM model
+
     is_macos   &&  homebrew_brew_cask_install              "__commit_aggregated__"
     is_fedora  &&  fedora_dnf_install                      "__commit_aggregated__"
 
