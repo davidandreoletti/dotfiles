@@ -270,8 +270,8 @@ defaults write NSGlobalDomain com.apple.springing.delay -float 0
 # Use list view in all Finder windows by default
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
-# Empty Trash securely by default
-#defaults write com.apple.finder EmptyTrashSecurely -bool true
+# Do not empty Trash securely by default
+defaults write com.apple.finder EmptyTrashSecurely -bool false
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
