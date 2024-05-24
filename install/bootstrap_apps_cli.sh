@@ -238,6 +238,9 @@ if is_profile_admin_or_similar; then
         #homebrew_brew_install                  "mopidy-tunein"       # Mopidi plugin to play tune-in music
     fi
 
+    # Music download
+    pipx_pipx_install                      "ytmdl"               # Youtube music downloader
+
     # Archive decompression
     homebrew_brew_install                  "unp"                 # Decompress anything
     homebrew_brew_install                  "ouch"                # Compress/decompress anything
