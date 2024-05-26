@@ -9,9 +9,9 @@ while :; do
 
             # inspiration: https://fernandobasso.dev/shell/copy-paste-from-command-line-xclip-xsel-clipboard.html
             if command -v 'pbcopy' >/dev/null 2>&1; then
-                cat /dev/stdin | pbcopy 
+                cat /dev/stdin | pbcopy
             elif command -v 'xclip' >/dev/null 2>&1; then
-                cat /dev/stdin | xclip --selection clipboard 
+                cat /dev/stdin | xclip --selection clipboard
             elif command -v 'xsel' >/dev/null 2>&1; then
                 cat /dev/stdin | xsel --clipboard #--input
             else
@@ -42,6 +42,7 @@ while :; do
         *)
             # Default case: If no more options then break out of the loop.
             break
+            ;;
     esac
 
     shift

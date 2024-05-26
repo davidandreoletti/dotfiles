@@ -15,16 +15,15 @@
 exit_code=1
 opener_found=1
 for opener in xdg-open open; do
-	if command -v $opener >/dev/null 2>&1; then
+    if command -v $opener >/dev/null 2>&1; then
         opener_found=0
         command $opener "$@"
         exit_code=$?
         [ $exit_code -eq 0 ] && break
-	fi
+    fi
 done
 
-if [ ! $opener_found ];
-then
+if [ ! $opener_found ]; then
     echo "Error: No platform 'opener' binary found."
 fi
 exit ${exit_code}

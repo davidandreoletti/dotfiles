@@ -3,23 +3,21 @@
 f_mpd_update_database() {
     echo "Updating playlists ..."
     # Create/Update playlists
-    command pushd "$HOME/.playlists" > /dev/null 2>&1
-        # Download music m3u files
-        $SHELL to_m3u.sh *.playlist
+    command pushd "$HOME/.playlists" >/dev/null 2>&1
+    # Download music m3u files
+    $SHELL to_m3u.sh *.playlist
 
-        for m3u_file in *.m3u;
-        do
-            playlist_name="$(basename $m3u_file .m3u)"
+    for m3u_file in *.m3u; do
+        playlist_name="$(basename $m3u_file .m3u)"
 
-            # Convert stream urls into new playlist
-            if [[ "$playlist_name" == "programming" ]];
-            then
-                command cat <($SHELL convert.sh $m3u_file) > "$HOME/.mpd/playlists/${playlist_name}.m3u"
-            else
-                mv "$PWD/$m3u_file" "$HOME/.mpd/playlists/${playlist_name}.m3u"
-            fi
-        done
-    command popd > /dev/null 2>&1
+        # Convert stream urls into new playlist
+        if [[ "$playlist_name" == "programming" ]]; then
+            command cat <($SHELL convert.sh $m3u_file) >"$HOME/.mpd/playlists/${playlist_name}.m3u"
+        else
+            mv "$PWD/$m3u_file" "$HOME/.mpd/playlists/${playlist_name}.m3u"
+        fi
+    done
+    command popd >/dev/null 2>&1
 
     # Remove duplicate musics
     #mpc playlist | sort | uniq -d -c | while read song; do count=$(echo "$song" | sed -e "s/^[ \t]*//" | cut -d" " -f1); song=$(echo "$song" | sed -e "s/^[ \t]*//" | cut -d" " -f2-); for (( i = 2 ; i <= $count; i++ )); do mpc playlist | grep -n "$song" | tail -n 1 | cut -d: -f1 | mpc del; done; done
@@ -37,17 +35,17 @@ f_mpd_play() {
 
 while true; do
     case "$1" in
-        --update ) 
-            f_mpd_update_database; shift 
+        --update)
+            f_mpd_update_database
+            shift
             ;;
-        -- ) 
+        --)
             shift
             break
             ;;
-        * )
+        *)
             f_mpd_play
             break
             ;;
     esac
 done
-

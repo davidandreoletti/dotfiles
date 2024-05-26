@@ -9,9 +9,8 @@ if test -d "$HOME/.rustup/toolchains"; then
 else
     rustup-init -y --verbose
 
-    # Install toolchains 
-    for name in stable beta nightly
-    do
-        rustup toolchain install $name 1>/dev/null 2>&1 
+    # Install toolchains
+    for name in stable beta nightly; do
+        rustup toolchain install $name 1>/dev/null 2>&1
     done
 fi

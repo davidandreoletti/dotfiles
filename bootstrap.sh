@@ -233,9 +233,9 @@ pushd "$(dirname "${BASH_SOURCE}")" 1>/dev/null 2>&1
 ## Args preconditions
 case $BOOSTRAP_COMMAND in
     "machine")
-        is_macos  && bootstrap_os 'macos'
+        is_macos && bootstrap_os 'macos'
         is_fedora && bootstrap_os 'fedora'
-        is_archl  && bootstrap_os 'archlinux'
+        is_archl && bootstrap_os 'archlinux'
         #is_debian && bootstrap_os 'debian';
         ;;
     "dotfiles")

@@ -1,319 +1,321 @@
 #!/usr/bin/env sh
 
 {
-set -e
-#set -x
+    set -e
+    #set -x
 
-# DEBUG
-f_register_signal_handlers() {
-    func="$1" ; shift
-    for sig ; do
-        trap "$func $sig" "$sig"
-    done
-}
-
-f_cleanup() {
-    echo "Trapped: $1 -> code $?"
-}
-
-f_register_signal_handlers f_cleanup INT TERM EXIT
-
-# Binary availability
-
-f_binary_available() {
-    local name="$1"
-
-    if command -v "$name" >/dev/null 2>&1; then
-        :
-    else
-        echo "No $name"
-        exit 1
-    fi
-}
-
-# Network interface
-
-f_wireguard_get_interface_name() {
-    local name_only=$1
-    local interface_prefix="$2"
-    local interface_suffix="$3"
-   
-    local uid="$(echo "${interface_prefix}-${interface_suffix}" | sha256sum | cut -d' ' -f1 | cut -c60-64)"
-    if test $name_only -eq 0; then
-        echo "$(basename $interface_prefix)${uid}"
-    else
-        echo "${interface_prefix}${uid}"
-    fi
-}
-
-# Proccess lifetime
-
-f_wait_for_pid_to_die() {
-    local process_id="$1"
-    if command -v "tail" >/dev/null 2>&1; then
-        tail --pid=${process_id} -f /dev/null
-    else
-        # Use Posix solution with "poll" ?
-        # - https://unix.stackexchange.com/a/626632/45954
-        echo "ERROR: cannot wait for process id ${process_id}to die"
-        exit 1
-    fi
-}
-
-f_find_pid_to_wait_on() {
-    local arg="$1"
-
-    if test "$arg" == "ssh-remote-hostname"; then
-        arg_hostname="$3"
+    # DEBUG
+    f_register_signal_handlers() {
+        func="$1"
         shift
+        for sig; do
+            trap "$func $sig" "$sig"
+        done
+    }
 
-        # Find ssh process with arg_hostname, and if more than one pick the one owned 
-        # by this process parent process id, since the ssh client calls this script.
-        PIDS="$(f_pids_for_ssh_hostname "$USER" "$arg_hostname")"
+    f_cleanup() {
+        echo "Trapped: $1 -> code $?"
+    }
 
-        if test $ORIGINAL_PPID != 1; then
-            TARGET_PID=$(echo "$PIDS" | grep "$ORIGINAL_PPID")
+    f_register_signal_handlers f_cleanup INT TERM EXIT
+
+    # Binary availability
+
+    f_binary_available() {
+        local name="$1"
+
+        if command -v "$name" >/dev/null 2>&1; then
+            :
         else
-            # ssh process already dead.
-            TARGET_PID=""
+            echo "No $name"
+            exit 1
         fi
-    else
-        # assume pid
-        TARGET_PID=$arg
-    fi
+    }
 
-    echo "$TARGET_PID"
-}
+    # Network interface
 
-f_on_last_instance_only() {
-    while :; do
-        # Wait for parent process, if relevant
-        case "$TARGET_PID" in
-            ''|*[!0-9]*)
-                :
-                ;;
-            *)
-                f_wait_for_pid_to_die ${TARGET_PID}
-                ;;
-        esac
-        
+    f_wireguard_get_interface_name() {
+        local name_only=$1
+        local interface_prefix="$2"
+        local interface_suffix="$3"
+
+        local uid="$(echo "${interface_prefix}-${interface_suffix}" | sha256sum | cut -d' ' -f1 | cut -c60-64)"
+        if test $name_only -eq 0; then
+            echo "$(basename $interface_prefix)${uid}"
+        else
+            echo "${interface_prefix}${uid}"
+        fi
+    }
+
+    # Proccess lifetime
+
+    f_wait_for_pid_to_die() {
+        local process_id="$1"
+        if command -v "tail" >/dev/null 2>&1; then
+            tail --pid=${process_id} -f /dev/null
+        else
+            # Use Posix solution with "poll" ?
+            # - https://unix.stackexchange.com/a/626632/45954
+            echo "ERROR: cannot wait for process id ${process_id}to die"
+            exit 1
+        fi
+    }
+
+    f_find_pid_to_wait_on() {
+        local arg="$1"
+
         if test "$arg" == "ssh-remote-hostname"; then
-            # Update known set of PIDS (case: new ssh commands issue since this script started)
-            PIDS="$(f_pids_for_ssh_hostname "$USER" "$arg_hostname" || true)"
+            arg_hostname="$3"
+            shift
 
-            if test -n "$PIDS" && test -n "$TARGET_PID"; then
-                # Pick new target, except the current one
-                TARGET_PID=$(echo "$PIDS" | grep -v "$TARGET_PID" | head -n 1)
-                count=$(echo "$PIDS" | wc -l)
-                echo "INFO: $count ssh session using $TUNNEL_PROVIDER_NAME connection. Not auto closing the tunnel yet."
+            # Find ssh process with arg_hostname, and if more than one pick the one owned
+            # by this process parent process id, since the ssh client calls this script.
+            PIDS="$(f_pids_for_ssh_hostname "$USER" "$arg_hostname")"
+
+            if test $ORIGINAL_PPID != 1; then
+                TARGET_PID=$(echo "$PIDS" | grep "$ORIGINAL_PPID")
             else
+                # ssh process already dead.
                 TARGET_PID=""
             fi
         else
-            echo "Missing application protocol case ?"
-            exit 2
+            # assume pid
+            TARGET_PID=$arg
         fi
 
-        if test -z "$TARGET_PID"; then
-            # Proceed to next condition (--on-xxx) / action (--tunnel-close)
-            break
-        fi
+        echo "$TARGET_PID"
+    }
+
+    f_on_last_instance_only() {
+        while :; do
+            # Wait for parent process, if relevant
+            case "$TARGET_PID" in
+                '' | *[!0-9]*)
+                    :
+                    ;;
+                *)
+                    f_wait_for_pid_to_die ${TARGET_PID}
+                    ;;
+            esac
+
+            if test "$arg" == "ssh-remote-hostname"; then
+                # Update known set of PIDS (case: new ssh commands issue since this script started)
+                PIDS="$(f_pids_for_ssh_hostname "$USER" "$arg_hostname" || true)"
+
+                if test -n "$PIDS" && test -n "$TARGET_PID"; then
+                    # Pick new target, except the current one
+                    TARGET_PID=$(echo "$PIDS" | grep -v "$TARGET_PID" | head -n 1)
+                    count=$(echo "$PIDS" | wc -l)
+                    echo "INFO: $count ssh session using $TUNNEL_PROVIDER_NAME connection. Not auto closing the tunnel yet."
+                else
+                    TARGET_PID=""
+                fi
+            else
+                echo "Missing application protocol case ?"
+                exit 2
+            fi
+
+            if test -z "$TARGET_PID"; then
+                # Proceed to next condition (--on-xxx) / action (--tunnel-close)
+                break
+            fi
+        done
+    }
+
+    # Tunnel process search
+
+    f_pids_for_ssh_hostname() {
+        local user="$1"
+        local hostname="$2"
+
+        # Find ssh process with arg_hostname, and if more than one pick the one owned
+        # by this process parent process id, since the ssh client calls this script.
+        PIDS=$(pgrep -u "$user" -f "ssh .*${arg_hostname}.*")
+
+        echo "$PIDS"
+    }
+
+    # Main
+
+    echo "INPUT: $0 $@"
+
+    PID=$$
+
+    ORIGINAL_PPID=$PPID
+    PIDS=""
+    TARGET_PID=""
+    TUNNEL_PROVIDER_NAME="unknown"
+
+    # Fork to backgound if needed
+    while :; do
+        case $1 in
+            --in-background)
+                shift
+
+                nohup $0 --parent-pid $ORIGINAL_PPID $@ &
+                exit 0
+                ;;
+            *)
+                break
+                ;;
+        esac
     done
-}
 
-# Tunnel process search
-
-f_pids_for_ssh_hostname() {
-    local user="$1"
-    local hostname="$2"
-
-    # Find ssh process with arg_hostname, and if more than one pick the one owned 
-    # by this process parent process id, since the ssh client calls this script.
-    PIDS=$(pgrep -u "$user" -f "ssh .*${arg_hostname}.*")
-
-    echo "$PIDS"
-}
-
-# Main
-
-echo "INPUT: $0 $@"
-
-PID=$$
-
-ORIGINAL_PPID=$PPID
-PIDS=""
-TARGET_PID=""
-TUNNEL_PROVIDER_NAME="unknown"
-
-# Fork to backgound if needed
-while :; do
-    case $1 in
-        --in-background)
-            shift
-
-            nohup $0 --parent-pid $ORIGINAL_PPID $@ &
-            exit 0
-            ;;
-        *)
-            break
-            ;;
-    esac
-done
-
-while :; do
-    case $1 in
-        --parent-pid)
-            ORIGINAL_PPID=$2
-            shift
-            ;;
-        --tailscale)
-            #
-            # Tailscale zero-trust network
-            #
-            # Usage: Connect to tailscale's tailnet
-            # $1 --tailscale --tunnel-open
-            # - exit 0: connected
-            # Usage: Disconnect from tailscale's tailnet
-            # $1 --tailscale --tunnel-close
-            # - exit 0: disconnected
-            # Usage: Disconnect from tailscale's tailnet once <PID> died
-            # $1 --tailscale --on-pid-dead 1234 --tunnel-close
-            # - exit 0: disconnected
-            # Usage: Disconnect from tailscale's tailnet once last <PID> associated to "ssh-remote-hostname host-name" died
-            # $1 --tailscale  --on-pid-dead ssh-remote-hostname "host-name" --on-last-instance-only --tunnel-close
-            # - exit 0: disconnected
-
-            TUNNEL_PROVIDER_NAME="tailscale"
-            TAILSCALE_BIN_NAME="tailscale"
-            while :; do
-                case $2 in
-                    --tunnel-open)
-                        f_binary_available "$TAILSCALE_BIN_NAME" && tailscale up
-                        ;;
-                    --tunnel-close)
-                        f_binary_available "$TAILSCALE_BIN_NAME" && tailscale down
-                        ;;
-                    --on-pid-dead)
-                        arg="$3"
-                        shift
-
-                        TARGET_PID=$(f_find_pid_to_wait_on "$arg" "$4")
-                        case "$4" in
-                            "--"*) shift ;;
-                            *) ;;
-                        esac
-                        ;;
-                    --on-last-instance-only)
-                        f_on_last_instance_only
-                        ;;
-                    -?*)
-                        printf 'ERROR: Unknown option (ignored): %s\n' "$2" >&2
-                        exit 1
-                        ;;
-                    *)
-                        break
-                esac
-
+    while :; do
+        case $1 in
+            --parent-pid)
+                ORIGINAL_PPID=$2
                 shift
-            done
-            ;;
-        --wireguard)
-            #
-            # Wireguard tunnel network
-            #
-            # Usage: Connect to wireguard's network
-            # $1 --wireguard --conf /path/to/wg/conf/file --tunnel-open
-            # - exit 0: connected
-            # Usage: Disconnect from wireguard's network
-            # $1 --wireguard --conf /path/to/wg/conf/file --tunnel-close
-            # - exit 0: disconnected
-            # Usage: Disconnect from wireguard's network once <PID> died
-            # $1 --wireguard --conf /path/to/wg/conf/file --on-pid-dead 1234 --tunnel-close
-            # - exit 0: disconnected
-            # Usage: Disconnect from wireguard's network once last <PID> associated to "ssh-remote-hostname host-name" died
-            # $1 --wireguard --conf /path/to/wg/conf/file --on-pid-dead ssh-remote-hostname "host-name" --on-last-instance-only --tunnel-close
-            # - exit 0: disconnected
+                ;;
+            --tailscale)
+                #
+                # Tailscale zero-trust network
+                #
+                # Usage: Connect to tailscale's tailnet
+                # $1 --tailscale --tunnel-open
+                # - exit 0: connected
+                # Usage: Disconnect from tailscale's tailnet
+                # $1 --tailscale --tunnel-close
+                # - exit 0: disconnected
+                # Usage: Disconnect from tailscale's tailnet once <PID> died
+                # $1 --tailscale --on-pid-dead 1234 --tunnel-close
+                # - exit 0: disconnected
+                # Usage: Disconnect from tailscale's tailnet once last <PID> associated to "ssh-remote-hostname host-name" died
+                # $1 --tailscale  --on-pid-dead ssh-remote-hostname "host-name" --on-last-instance-only --tunnel-close
+                # - exit 0: disconnected
 
-            TUNNEL_PROVIDER_NAME="wireguard"
-            WG_BIN_NAME="wg"
-            WG_QUICK_BIN_NAME="wg-quick"
-            WG_TUNNEL_CONF_PATH="/tmp/no/wg/conf/file"
-            WG_INTERFACE_CONF_FILE="/tmp/$USER.$$.wgX.conf"
-            while :; do
-                case $2 in
-                    --tunnel-open)
-                        if f_binary_available "$WG_QUICK_BIN_NAME"; then
-                            dev="$(f_wireguard_get_interface_name 0 '/dev/wg' "$WG_TUNNEL_CONF_PATH")"
-                            ln -s -f "$WG_TUNNEL_CONF_PATH" "$WG_TUNNEL_CONF_DIR/${dev}.conf"
-                            conf_link_path="$WG_TUNNEL_CONF_DIR/${dev}.conf"
-                            for f in "$conf_link_path" "$(readlink -f $conf_link_path)";
-                            do
-                                chmod 600 "$f"
-                            done
-                            
-                            result="$(sudo $WG_QUICK_BIN_NAME up "$conf_link_path" 2>&1 || true)"
+                TUNNEL_PROVIDER_NAME="tailscale"
+                TAILSCALE_BIN_NAME="tailscale"
+                while :; do
+                    case $2 in
+                        --tunnel-open)
+                            f_binary_available "$TAILSCALE_BIN_NAME" && tailscale up
+                            ;;
+                        --tunnel-close)
+                            f_binary_available "$TAILSCALE_BIN_NAME" && tailscale down
+                            ;;
+                        --on-pid-dead)
+                            arg="$3"
+                            shift
 
-                            echo "-----------------"
-                            echo "$result"
-                            echo "-----------------"
+                            TARGET_PID=$(f_find_pid_to_wait_on "$arg" "$4")
+                            case "$4" in
+                                "--"*) shift ;;
+                                *) ;;
+                            esac
+                            ;;
+                        --on-last-instance-only)
+                            f_on_last_instance_only
+                            ;;
+                        -?*)
+                            printf 'ERROR: Unknown option (ignored): %s\n' "$2" >&2
+                            exit 1
+                            ;;
+                        *)
+                            break
+                            ;;
+                    esac
 
-                            tun="$(expr "$result" : '.*\(utun[0-9,a-z]\+\).*')"
-                            if test -z "$tun"; then
-                                echo "wg-quick failed with conf: $conf_link_path"
-                                exit 1
+                    shift
+                done
+                ;;
+            --wireguard)
+                #
+                # Wireguard tunnel network
+                #
+                # Usage: Connect to wireguard's network
+                # $1 --wireguard --conf /path/to/wg/conf/file --tunnel-open
+                # - exit 0: connected
+                # Usage: Disconnect from wireguard's network
+                # $1 --wireguard --conf /path/to/wg/conf/file --tunnel-close
+                # - exit 0: disconnected
+                # Usage: Disconnect from wireguard's network once <PID> died
+                # $1 --wireguard --conf /path/to/wg/conf/file --on-pid-dead 1234 --tunnel-close
+                # - exit 0: disconnected
+                # Usage: Disconnect from wireguard's network once last <PID> associated to "ssh-remote-hostname host-name" died
+                # $1 --wireguard --conf /path/to/wg/conf/file --on-pid-dead ssh-remote-hostname "host-name" --on-last-instance-only --tunnel-close
+                # - exit 0: disconnected
+
+                TUNNEL_PROVIDER_NAME="wireguard"
+                WG_BIN_NAME="wg"
+                WG_QUICK_BIN_NAME="wg-quick"
+                WG_TUNNEL_CONF_PATH="/tmp/no/wg/conf/file"
+                WG_INTERFACE_CONF_FILE="/tmp/$USER.$$.wgX.conf"
+                while :; do
+                    case $2 in
+                        --tunnel-open)
+                            if f_binary_available "$WG_QUICK_BIN_NAME"; then
+                                dev="$(f_wireguard_get_interface_name 0 '/dev/wg' "$WG_TUNNEL_CONF_PATH")"
+                                ln -s -f "$WG_TUNNEL_CONF_PATH" "$WG_TUNNEL_CONF_DIR/${dev}.conf"
+                                conf_link_path="$WG_TUNNEL_CONF_DIR/${dev}.conf"
+                                for f in "$conf_link_path" "$(readlink -f $conf_link_path)"; do
+                                    chmod 600 "$f"
+                                done
+
+                                result="$(sudo $WG_QUICK_BIN_NAME up "$conf_link_path" 2>&1 || true)"
+
+                                echo "-----------------"
+                                echo "$result"
+                                echo "-----------------"
+
+                                tun="$(expr "$result" : '.*\(utun[0-9,a-z]\+\).*')"
+                                if test -z "$tun"; then
+                                    echo "wg-quick failed with conf: $conf_link_path"
+                                    exit 1
+                                fi
+                                sudo $WG_BIN_NAME show "$tun"
                             fi
-                            sudo $WG_BIN_NAME show "$tun"
-                        fi
-                        ;;
-                    --tunnel-close)
-                        if f_binary_available "$WG_QUICK_BIN_NAME"; then
-                            dev="$(f_wireguard_get_interface_name 0 '/dev/wg' "$WG_TUNNEL_CONF_PATH")"
-                            conf_link_path="$WG_TUNNEL_CONF_DIR/${dev}.conf"
+                            ;;
+                        --tunnel-close)
+                            if f_binary_available "$WG_QUICK_BIN_NAME"; then
+                                dev="$(f_wireguard_get_interface_name 0 '/dev/wg' "$WG_TUNNEL_CONF_PATH")"
+                                conf_link_path="$WG_TUNNEL_CONF_DIR/${dev}.conf"
 
-                            sudo $WG_QUICK_BIN_NAME down "$conf_link_path"
-                        fi
-                        ;;
-                    --conf)
-                        WG_TUNNEL_CONF_PATH="$3"
-                        shift
+                                sudo $WG_QUICK_BIN_NAME down "$conf_link_path"
+                            fi
+                            ;;
+                        --conf)
+                            WG_TUNNEL_CONF_PATH="$3"
+                            shift
 
-                        WG_TUNNEL_CONF_DIR="$(dirname "$WG_TUNNEL_CONF_PATH")"
-                        ;;
-                    --on-pid-dead)
-                        arg="$3"
-                        shift
+                            WG_TUNNEL_CONF_DIR="$(dirname "$WG_TUNNEL_CONF_PATH")"
+                            ;;
+                        --on-pid-dead)
+                            arg="$3"
+                            shift
 
-                        TARGET_PID=$(f_find_pid_to_wait_on "$arg" "$4")
-                        case "$4" in
-                            "--"*) shift;;
-                            *) ;;
-                        esac
-                        ;;
-                    --on-last-instance-only)
-                        f_on_last_instance_only
-                        ;;
-                    -?*)
-                        printf 'ERROR: Unknown option (ignored): %s\n' "$2" >&2
-                        exit 1
-                        ;;
-                    *)
-                        break
-                esac
+                            TARGET_PID=$(f_find_pid_to_wait_on "$arg" "$4")
+                            case "$4" in
+                                "--"*) shift ;;
+                                *) ;;
+                            esac
+                            ;;
+                        --on-last-instance-only)
+                            f_on_last_instance_only
+                            ;;
+                        -?*)
+                            printf 'ERROR: Unknown option (ignored): %s\n' "$2" >&2
+                            exit 1
+                            ;;
+                        *)
+                            break
+                            ;;
+                    esac
 
-                shift
-            done
-            ;;
-        -?*)
-            printf 'ERROR: Unknown option (ignored): %s\n' "$1" >&2
-            exit 1
-            ;;
-        *)
-            # Default case: If no more options then break out of the main loop.
-            break
-    esac
+                    shift
+                done
+                ;;
+            -?*)
+                printf 'ERROR: Unknown option (ignored): %s\n' "$1" >&2
+                exit 1
+                ;;
+            *)
+                # Default case: If no more options then break out of the main loop.
+                break
+                ;;
+        esac
 
-    shift
-done
+        shift
+    done
 
-} > /dev/null 2>&1 # DEBUG WITH: {...}  > /tmp/0.$$.stdout 2>/tmp/0.$$.stderr
-
+} >/dev/null 2>&1 # DEBUG WITH: {...}  > /tmp/0.$$.stdout 2>/tmp/0.$$.stderr
