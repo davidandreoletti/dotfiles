@@ -148,6 +148,8 @@ defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 # Set a blazingly fast keyboard repeat rate (For OSX Sierra only)
 defaults write NSGlobalDomain KeyRepeat -int 1 # Fastest official speed: 2
 defaults write NSGlobalDomain IninialKeyRepeat -int 10
+# Enable repeating key
+defaults write -g ApplePressAndHoldEnabled -bool false
 # Automatically illuminate built-in MacBook keyboard in low light
 defaults write com.apple.BezelServices kDim -bool true
 # Turn off keyboard illumination when computer is not used for 5 minutes
