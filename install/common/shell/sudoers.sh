@@ -16,7 +16,7 @@ function sudoers_add_user() {
     local sudoersFile="/etc/sudoers.d/bootstrap-machine" # file name must not contain '.' or '~'
     sudo touch "$sudoersFile"
     # needed to create a empty file with 1 empty line for sed to append after the last line
-    echo "" > "$sudoersFile" 
+    sudo echo "" > "$sudoersFile" 
     local pattern="$ a\\
     # Added by boostrap-machine script\\
     $current_user	ALL=\(ALL\) ALL"
