@@ -124,10 +124,14 @@ source "${BOOSTRAP_DIR}/bootstrap_apps.sh"
 
 
 ## Browser add-ons
-pushd "$BOOSTRAP_DIR"
-is_profile_admin_or_similar && $SHELL -x ../install/browsers/chrome/extensions/install.sh
-is_profile_admin_or_similar && $SHELL -x ../install/browsers/firefox/extensions/install.sh
-popd
+if test "$BOOTSTRAP_SKIP_BROWSER_EXTENSION_SETUP" = "0"; then
+    message_info_show "Skip Browser extensions setup"
+else
+    pushd "$BOOSTRAP_DIR"
+    is_profile_admin_or_similar && $SHELL -x ../install/browsers/chrome/extensions/install.sh
+    is_profile_admin_or_similar && $SHELL -x ../install/browsers/firefox/extensions/install.sh
+    popd
+fi
 
 # Set user/system defaults
 bash "${BOOSTRAP_DIR}/macosx/shell/defaults.sh"
