@@ -186,6 +186,14 @@ function bootstrap_oh_my_shell() {
     fi
 }
 
+function bootstrap_homebrew_path() {
+    # Load homebrew function dependencies
+    . $PWD/.oh-my-shell/shellrc/bootstrap/helper.sh
+    . $PWD/.oh-my-shell/shellrc/bootstrap/helper2.sh
+    # Set homebrew path in PATH
+    homebrew_init
+}
+
 function bootstrap_dotfiles() {
     # Symlink config files
     stow_files "$USER" "$DOTFILES_DIR_PATH" "$HOME"
@@ -243,6 +251,7 @@ case $BOOSTRAP_COMMAND in
         # - "Password for runner: chsh: Credentials could not be verified, user name or password is invalid.
         #    Credentials could not be verified, user name or password is invalid."
         test "${BOOTSTRAP_SKIP_SHELL_CHANGE}" = "0" || check_new_shell_exists && change_default_shell
+        bootstrap_homebrew_path
         bootstrap_dotfiles
         bootstrap_oh_my_shell
         bootstrap_dotfiles_private
