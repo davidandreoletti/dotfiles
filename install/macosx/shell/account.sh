@@ -9,9 +9,13 @@ SECURITY='/usr/bin/security'
 function account_has_administration_permission() {
     # Can use sudo
     sudo -n true
-    [[ $? -eq 0 ]] && return 0
+    if test "$?" = "0"; then
+        return 0
+    fi
     # Has admin group
-    groups | grep "\(^\| \)admin\( \|$\)" && return 0
+    if groups | grep "\(^\| \)admin\( \|$\)"; then
+        return 0
+    fi
     return 1 
 }
 
@@ -24,7 +28,11 @@ function account_user_remove_group() {
 #param1: username
 function account_exists() {
     local USERNAME="$1"
-    $DSCL . read /Users/$USERNAME >/dev/null 2>&1 && return 0 || return 1
+    if $DSCL . read /Users/$USERNAME >/dev/null 2>&1; then
+        return 0
+    else
+        return 1
+    fi
 }
 
 # param1: username

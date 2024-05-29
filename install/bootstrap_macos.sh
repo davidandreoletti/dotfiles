@@ -211,8 +211,10 @@ account_exists "administrator" || account_admin_create "administrator" "Administ
 ##   DO NOT CHANGE the /usr/local/* group to something - that's futile and agaisnt homebrew's recommendation
 is_profile_dev_single && account_user_remove_group "$(whoami)" "admin"
 ## Change administrator password
-$is_admin_available || message_info_show "Change Administrator password"
-$is_admin_available || sudo ${SUDOERS_OPTIONS} passwd administrator
+if test "$is_admin_available" != "0"; then
+    message_info_show "Change Administrator password"
+    sudo ${SUDOERS_OPTIONS} passwd administrator
+fi
 
 popd
 
