@@ -2,7 +2,7 @@
 set -e
 
 ###############################################################################
-# Boostrap new macOS 
+# Boostrap new macOS
 # Prerequisites:
 # - Xcode installed
 ###############################################################################
@@ -54,7 +54,7 @@ else
 fi
 
 # Bootstrap setup
-## Ask sudo password for askpass. Required to work around sudo timeout within 
+## Ask sudo password for askpass. Required to work around sudo timeout within
 ## this script process
 if is_bootstrap_noninteractive; then
     p=""
@@ -164,7 +164,7 @@ else
         read -p nothing
 
         if sudo tmutil setdestination -a "$smb_volume"
-        then 
+        then
             # TimeMachine backup set but not auto mounted ?
             sudo tmutil destinationinfo
         else
@@ -179,7 +179,7 @@ fi
 if fs_has_volume "/"; then
     fs_enable_flag_noatime_on_filesystem "/" "com.david.andreoletti.ssd.noatime.volumeroot"
 else
-    message_info_show "No volume / to enable noatime flag on" 
+    message_info_show "No volume / to enable noatime flag on"
 fi
 
 # TRIM enabled by default since at least macOS High Sierra
@@ -206,7 +206,7 @@ account_exists "administrator" || account_admin_create "administrator" "Administ
 ## - macOS
 ## -- OS asks for Administrator password every time something has to be done (least privileges for day to day tasks)
 ## - Homebrew:
-## -- /usr/local/*' folders have group admin. In multi user setup, 
+## -- /usr/local/*' folders have group admin. In multi user setup,
 ##   users with the "admin" group are the only one allowed to "brew install"
 ##   DO NOT CHANGE the /usr/local/* group to something - that's futile and agaisnt homebrew's recommendation
 is_profile_dev_single && account_user_remove_group "$(whoami)" "admin"
