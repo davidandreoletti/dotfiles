@@ -199,8 +199,12 @@ softwareupdate_install_updates
 ## Enable Guest
 is_profile_admin_or_similar && account_guest_enable
 ## Create new Administrator account
-is_admin_available=$(account_exists "administrator")
-account_exists "administrator" || account_admin_create "administrator" "Administrator" "$CONFIG_MACOSX_USER_ADMIN_PASSWORD"
+if account_exists "administrator"; then
+    message_info_show "Administrator account already exists"
+else
+    message_info_show "Creating Administrator account"
+    account_admin_create "administrator" "Administrator" "$CONFIG_MACOSX_USER_ADMIN_PASSWORD"
+fi
 ## Remove current user from admin group
 ## Consequences:
 ## - macOS
@@ -209,9 +213,11 @@ account_exists "administrator" || account_admin_create "administrator" "Administ
 ## -- /usr/local/*' folders have group admin. In multi user setup,
 ##   users with the "admin" group are the only one allowed to "brew install"
 ##   DO NOT CHANGE the /usr/local/* group to something - that's futile and agaisnt homebrew's recommendation
-is_profile_dev_single && account_user_remove_group "$(whoami)" "admin"
+if is_profile_dev_single; then
+    account_user_remove_group "$(whoami)" "admin"
+fi
 ## Change administrator password
-if test "$is_admin_available" != "0"; then
+if account_exists "administrator"; then
     message_info_show "Change Administrator password"
     sudo ${SUDOERS_OPTIONS} passwd administrator
 fi
@@ -220,4 +226,3 @@ popd
 
 message_info_show "Machine setup almost complete"
 todolist_show_read_todolist
-
