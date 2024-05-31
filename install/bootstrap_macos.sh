@@ -81,7 +81,9 @@ else
     message_error_show "Account with admin group required for user management"
     exit 1
 fi
-is_profile_dev_single && sudoers_add_user "$(whoami)"
+if is_profile_dev_single; then
+    sudoers_add_user "$(whoami)"
+fi
 
 onexit() {
     # FIXME remove config file with passwords ...
@@ -115,7 +117,11 @@ HOMEBREW_BREW_INSTALL_AGGREGATED=0
 message_info_show "Homebrew install ..."
 homebrew_package_manager_install
 homebrew_is_installed && is_profile_admin_or_similar && homebrew_fix_writable_dirs "$(whoami)"
-homebrew_is_installed || exit 1
+if homebrew_is_installed; then
+    :
+else
+    exit 1
+fi
 #homebrew_brew_cask_workaround0
 
 # Applications
@@ -128,8 +134,10 @@ if test "$BOOTSTRAP_SKIP_BROWSER_EXTENSION_SETUP" = "0"; then
     message_info_show "Skip Browser extensions setup"
 else
     pushd "$BOOSTRAP_DIR"
-    is_profile_admin_or_similar && $SHELL -x ../install/browsers/chrome/extensions/install.sh
-    is_profile_admin_or_similar && $SHELL -x ../install/browsers/firefox/extensions/install.sh
+        if is_profile_admin_or_similar; then
+            $SHELL -x ../install/browsers/chrome/extensions/install.sh
+            $SHELL -x ../install/browsers/firefox/extensions/install.sh
+        fi
     popd
 fi
 
@@ -197,7 +205,9 @@ softwareupdate_install_updates
 
 # Users Administration
 ## Enable Guest
-is_profile_admin_or_similar && account_guest_enable
+if is_profile_admin_or_similar; then
+    account_guest_enable
+fi
 ## Create new Administrator account
 if account_exists "administrator"; then
     message_info_show "Administrator account already exists"

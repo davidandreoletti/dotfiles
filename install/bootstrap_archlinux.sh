@@ -70,7 +70,9 @@ else
     message_error_show "Account with admin group required for user management"
     exit 1
 fi
-is_profile_dev_single && sudoers_add_user "$(whoami)"
+if is_profile_dev_single; then
+    sudoers_add_user "$(whoami)"
+fi
 
 onexit() {
     # FIXME remove config file with passwords ...
@@ -100,7 +102,11 @@ archlinux_pacman_install "__commit_aggregated__"
 ## Package manager
 message_info_show "Homebrew install ..."
 homebrew_package_manager_install
-homebrew_is_installed || exit 1
+if homebrew_is_installed; then
+    :
+else
+    exit 1
+fi
 
 ### Install flatpak prerequisites
 archlinux_pacman_install "flatpak"
@@ -136,7 +142,9 @@ softwareupdate_updates_install
 
 # Users Administration
 ## Enable Guest
-is_profile_admin_or_similar && account_guest_enable
+if is_profile_admin_or_similar; then
+    account_guest_enable
+fi
 ## Create new Administrator account
 ### Use root
 
