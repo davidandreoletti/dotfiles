@@ -250,7 +250,11 @@ case $BOOSTRAP_COMMAND in
         # macOS: skippable shell change to prevent this issue on macOS CI runner:
         # - "Password for runner: chsh: Credentials could not be verified, user name or password is invalid.
         #    Credentials could not be verified, user name or password is invalid."
-        test "${BOOTSTRAP_SKIP_SHELL_CHANGE}" = "0" || check_new_shell_exists && change_default_shell
+        if test "${BOOTSTRAP_SKIP_SHELL_CHANGE}" = "0"; then
+            message_info_show "Skip changing default shell"
+        else
+            check_new_shell_exists && change_default_shell
+        fi
         bootstrap_homebrew_path
         bootstrap_dotfiles
         bootstrap_oh_my_shell
