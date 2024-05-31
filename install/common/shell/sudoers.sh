@@ -14,14 +14,11 @@ function sudoers_add_user() {
     fi
 
     local sudoersFile="/etc/sudoers.d/bootstrap-machine" # file name must not contain '.' or '~'
-    sudo touch "$sudoersFile"
-    # needed to create a empty file with 1 empty line for sed to append after the last line
-    sudo echo "" > "$sudoersFile" 
-    local pattern="$ a\\
-    # Added by boostrap-machine script\\
-    $current_user	ALL=\(ALL\) ALL"
 
-    sudo sed -i.bak -e "$pattern" "$sudoersFile"
+    sudo cat <<-EOF > "$sudoersFile" 
+	# Added by dotfiles's boostrap.sh script
+	$current_user	ALL=(ALL) ALL
+	EOF
     sudo chmod 0440 "$sudoersFile"
 
     if sudo visudo -c 1>${stderr_file} 2>&1; then
