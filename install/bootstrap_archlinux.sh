@@ -136,9 +136,13 @@ smb_volume="/Volumes/NAS_Timeshift"
 ## Remote VNC
 #vnc_user_enable "$(whoami)" "$CONFIG_fedora_VNC_PASSWORD"
 
-message_info_show "Softwares updates checks / installations ..."
-softwareupdate_list_pending_updates
-softwareupdate_updates_install
+if test "$BOOTSTRAP_SKIP_OS_SOFTWARE_UPDATE_SETUP" = "0"; then
+    message_info_show "Skip OS software updates"
+else
+    message_info_show "Softwares updates checks / installations ..."
+    softwareupdate_list_pending_updates
+    softwareupdate_updates_install
+fi
 
 # Users Administration
 ## Enable Guest

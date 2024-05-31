@@ -199,9 +199,13 @@ fi
 ## Accessibility API
 assistive_enable_accessibility_api
 
-message_info_show "Softwares updates checks / installations ..."
-softwareupdate_list_pending_updates
-softwareupdate_install_updates
+if test "$BOOTSTRAP_SKIP_OS_SOFTWARE_UPDATE_SETUP" = "0"; then
+    message_info_show "Skip OS software updates"
+else
+    message_info_show "Softwares updates checks / installations ..."
+    softwareupdate_list_pending_updates
+    softwareupdate_install_updates
+fi
 
 # Users Administration
 ## Enable Guest
