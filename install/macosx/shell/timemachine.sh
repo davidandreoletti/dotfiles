@@ -31,6 +31,10 @@ timemachine_defaults() {
     ## Per User home directory excludes
     timemachine_add_unique_exclusion_entry "SkipPaths" "$HOME/Downloads" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     timemachine_add_unique_exclusion_entry "SkipPaths" "$HOME/Applications" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
+    ### NOTE: add directory not in the output of this command:
+    ###       sudo mdfind "com_apple_backup_excludeItem = 'com.apple.backupd'"
+    timemachine_add_unique_exclusion_entry "SkipPaths" "$HOME/.cache" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
+    timemachine_add_unique_exclusion_entry "SkipPaths" "$HOME/Library/Caches" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     sudo cat "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     sudo plutil -convert binary1 "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     sudo tmutil enable
