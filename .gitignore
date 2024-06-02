@@ -274,3 +274,14 @@ data.json
 # Launchd
 .config/launch/org.*.xdg.environment.plist
 !.config/launch/org.__USER__.xdg.environment.plist
+# Colima
+.colima/**/*.log
+.colima/**/*.pid
+.colima/**/*.iso
+.colima/**/lima-version
+.colima/**/basedisk
+.colima/**/diffdisk
+.colima/_lima/*.*
+.colima/_lima/*
+.colima/ssh_config
+.colima/default/*
