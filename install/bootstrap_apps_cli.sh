@@ -289,11 +289,17 @@ if is_profile_admin_or_similar; then
 	# Secret sharing
     homebrew_brew_install                  "ots"                 # Time bound secret sharing
 
-    # Docker
+    # Container setup: docker
+    homebrew_brew_install                  "docker"                                 # Container runtime engine. No need for macOS's Docker Desktop
+    homebrew_brew_install                  "docker-buildx"                          # BuildKit extension
+    homebrew_brew_install                  "docker-docker-credential-helpers"       # docker login support
+    homebrew_brew_install                  "lazydocker"                             # TUI docker
+
     # Container setup: colima
     homebrew_brew_install                  "colima"              # Container runtime engine
+
+    # Container: any
     homebrew_brew_install                  "dive"                # Inspect docker layers
-    homebrew_brew_install                  "lazydocker"          # TUI docker
 
     # Kubernetes
     homebrew_brew_install                  "boz/repo/kail"       # kubernetes pods console viewer
@@ -460,7 +466,7 @@ if is_profile_admin_or_similar; then
 
     # K8s
     is_fedora &&  homebrew_brew_install    "kubectl"             # K8s client only
-    is_archl  &&  homebrew_brew_install    "kubectl"             
+    is_archl  &&  homebrew_brew_install    "kubectl"
 
     is_fedora && fedora_dnf_install        "fuse3"               # Hardware smartcard requirements
     is_archl  && archlinux_pacman_install  "fuse3"
