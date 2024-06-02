@@ -290,6 +290,8 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "ots"                 # Time bound secret sharing
 
     # Docker
+    # Container setup: colima
+    homebrew_brew_install                  "colima"              # Container runtime engine
     homebrew_brew_install                  "dive"                # Inspect docker layers
     homebrew_brew_install                  "lazydocker"          # TUI docker
 
