@@ -4,7 +4,7 @@ alias docker_show_containers_in_network="f_docker_showContainersInNetwork $1"
 
 # SSH into a running docker container
 # Usage: docker_ssh_into_container "my-container-name", where my-container-name is taken from docker ps's CONTAINER NAME column
-alias docker_ssh_into_container="f_docker_SSHIntoContainer "
+alias docker_shell_into_container="f_docker_ShellIntoContainer "
 
 # Usage: docker_prune_specific_dangling_images_layer  <image_id>
 alias docker_prune_specific_dangling_images_layer="docker rmi "

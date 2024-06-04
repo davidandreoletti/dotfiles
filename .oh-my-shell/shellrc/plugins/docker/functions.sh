@@ -3,9 +3,9 @@ f_docker_showContainersInNetwork() {
     docker network inspect $1 -f "{{json .Containers }}"
 }
 
-f_docker_SSHIntoContainer() {
+f_docker_ShellIntoContainer() {
     local containerName="$1"
-    local dockerContainerID="$(docker ps -a | grep \"$containerName\" | cut -d ' ' -f 1)"
+    local dockerContainerID="$(docker ps -a | grep $containerName | cut -d ' ' -f 1)"
     docker exec -it "$dockerContainerID" /bin/sh
 }
 
