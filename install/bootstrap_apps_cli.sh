@@ -446,6 +446,9 @@ if is_profile_admin_or_similar; then
     # Typing
     # EXPERIMENTAL cargo_global_install                   "thokr"               # Typing tester
 
+    # LLM client
+    homebrew_brew_install                  "aichat"              # LLM client
+
     # Misc
     homebrew_brew_install                  "fortune"             # Fortune cookie
     homebrew_brew_install                  "jp2a"                # Convert images to ASCII. Required by spaceman-diff
