@@ -285,3 +285,4 @@ data.json
 .colima/_lima/*
 .colima/ssh_config
 .colima/default/*
+.cache
