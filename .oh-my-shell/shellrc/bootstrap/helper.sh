@@ -97,9 +97,10 @@ function dot_delayed_plugins_step_if_exists() {
     if test -f "$stepFile"; then
         (
             {
-                exec {lock_fd}>/tmp/$USER.oh_my_shellrc.$stepName.lock || exit 1
+                local stepLockFile="/tmp/$USER.oh_my_shellrc.$stepName.lock"
+                exec {lock_fd}>"$stepLockFile" || exit 1
                 flock -n "$lock_fd" || {
-                    echo "oh-myshellrc post lock failed." >&2
+                    echo "$stepName post.sh lock failed: $stepLockFile" >&2
                     exit 1
                 }
 
