@@ -12,12 +12,12 @@ set -euo pipefail
 
 f_all_dotfiles_files() {
     local dir="$1"
-    find "$dir/.oh-my-shell" -iname "*.sh" -type f
-    find "$dir/.bin" -executable -type f
-    find "$dir/.self" -iname "*.sh" -type f
-    find "$dir/" -maxdepth 1 -iname "*.sh" -type f
-    find "$dir/" -maxdepth 1 -iname "*.zsh" -type f
-    find "$dir/" -maxdepth 1 -iname "*.bash" -type f
+    test -d "$dir/.oh-my-shell" && find "$dir/.oh-my-shell" -iname "*.sh" -type f
+    test -d "$dir/.bin" && find "$dir/.bin" -executable -type f
+    test -d "$dir/.self" && find "$dir/.self" -iname "*.sh" -type f
+    test -d "$dir/" && find "$dir/" -maxdepth 1 -iname "*.sh" -type f
+    test -d "$dir/" && find "$dir/" -maxdepth 1 -iname "*.zsh" -type f
+    test -d "$dir/" && find "$dir/" -maxdepth 1 -iname "*.bash" -type f
 }
 
 f_dedupe() {
@@ -39,29 +39,36 @@ f_all_dotfiles_files_to_format() {
 
 PARRALLEL=$(nproc)
 for dir in "$DOTFILES_HOME_LOCAL" "$DOTFILES_PRIVATE_HOME_LOCAL"; do
-    echo "Formatting ..."
+    pushd "$dir" >/dev/null
+    echo "=> $dir"
+    #echo "- files"
+    #f_all_dotfiles_files_to_format "$dir"
+    echo "- formatting"
     # Format scripts
     f_all_dotfiles_files_to_format "$dir" \
         | f_dedupe \
         | xargs -I% -n1 -P${PARRALLEL} $DOTFILES_HOME_LOCAL/.self/format.sh write "%"
 
-    echo "Fixing ..."
+    echo "- fixing"
     # Fix posix scripts only
     f_all_dotfiles_files_to_format "$dir" \
         | f_dedupe \
         | grep "\.sh$" \
         | xargs -I% -n1 -P${PARRALLEL} $DOTFILES_HOME_LOCAL/.self/shellcheck.sh fix "$dir" "%"
 
-    echo "Manual fix requried:"
+    echo "- manual fixes required"
     # Print unfixable posix scripts only
     f_all_dotfiles_files_to_format "$dir" \
         | f_dedupe \
         | grep "\.sh$" \
         | xargs -I% -n1 -P${PARRALLEL} $DOTFILES_HOME_LOCAL/.self/shellcheck.sh unfixable "$dir" "%"
 
+    echo "- done"
+
     # Test posix scripts only
     #f_all_dotfiles_files_to_format "$dir" \
     #    | f_dedupe \
     #    | grep "\.sh$" \
     #    | xargs -I% -n1 -P${PARRALLEL} $DOTFILES_HOME_LOCAL/.self/shellcheck.sh fix "%"
+    popd >/dev/null
 done
