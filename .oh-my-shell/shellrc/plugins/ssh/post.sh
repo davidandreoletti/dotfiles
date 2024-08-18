@@ -41,25 +41,23 @@ EOF
 # Create a single ssh-agent instance across all terminal sessions, for each predefined agent
 # src: https://stackoverflow.com/a/32592488/219728
 
-
 USER_SSH_AGENT_DIR="$HOME/.ssh/.agent"
 USER_SSH_AGENT_ENV_0="$USER_SSH_AGENT_DIR/env_default"
 USER_SSH_AGENT_ENV_1="$USER_SSH_AGENT_DIR/env_unsecure"
 
-for f in "$USER_SSH_AGENT_ENV_0" "$USER_SSH_AGENT_ENV_1";
-do
-	flock --exclusive --unlock \
-	"${f}.lock" \
-	-c "bash -x $SSH_AGENT_SETUP_SCRIPT $f"
+for f in "$USER_SSH_AGENT_ENV_0" "$USER_SSH_AGENT_ENV_1"; do
+    flock --exclusive --unlock \
+        "${f}.lock" \
+        -c "bash -x $SSH_AGENT_SETUP_SCRIPT $f"
 
-	if test "$f" != "$USER_SSH_AGENT_ENV_0"; then
-		continue
-	fi
+    if test "$f" != "$USER_SSH_AGENT_ENV_0"; then
+        continue
+    fi
 
-	# Load pre-configured 'default' ssh-agent instance
-	if ! test -f "$f"; then
-		echo "WARNING: No SSH Agent instance were found"
-	else
-		. "$f"
-	fi
+    # Load pre-configured 'default' ssh-agent instance
+    if ! test -f "$f"; then
+        echo "WARNING: No SSH Agent instance were found"
+    else
+        . "$f"
+    fi
 done

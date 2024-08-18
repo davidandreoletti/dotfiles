@@ -39,4 +39,3 @@ alias ssh_audit_server='docker run -it --rm --name sshd_audit positronsecurity/s
 # Print SSH host config after all match evaluations
 # Usage: ssh_print_host_config "some_host_name"
 alias ssh_print_host_config='ssh -G '
-

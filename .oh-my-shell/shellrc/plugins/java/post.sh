@@ -1,5 +1,5 @@
 if is_macos; then
-    FIND_BIN="/usr/bin/find" 
+    FIND_BIN="/usr/bin/find"
 
     #
     # Initialize jenv

@@ -1,7 +1,7 @@
 if is_macos; then
-    FIND_BIN="/usr/bin/find" 
+    FIND_BIN="/usr/bin/find"
 
-    if /usr/libexec/java_home -F > /dev/null 2>&1; then
+    if /usr/libexec/java_home -F >/dev/null 2>&1; then
         DEFAULT_JAVA_HOME="$(/usr/libexec/java_home)"
     else
         # Since macOS 13+, java is not installed by default
