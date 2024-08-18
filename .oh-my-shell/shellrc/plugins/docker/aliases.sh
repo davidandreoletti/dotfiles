@@ -16,7 +16,7 @@ alias docker_prune_all_dangling_images_layers="docker rmi \$(docker images -f da
 alias docker_remove_container_by_volume="f_docker_RemoveContainerByVolume "
 
 # Usage: docker_prune_all
-alias docker_prune_all="docker system prune --all --force --volumes"
+alias docker_prune_all="docker system prune --all --force --volumes; docker builder prune --all"
 
 # Kill all running containers
 # Usage: docker_kill_all
