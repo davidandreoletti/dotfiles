@@ -1,13 +1,11 @@
 function f_music_flac_to_alac() {
     # get the input / output directories
-    FLAC_DIR="$1"
-    ALAC_DIR="$2"
+    local flac_dir="$1"
+    local alac_dir="$2"
 
-    mkdir -p "$ALAC_DIR"
+    mkdir -p "$alac_dir"
 
-    pushd "$FLAC_DIR"
-    set -x
-
+    pushd "$flac_dir"
     while read -r f; do
         f2="$(basename $f)"
         d2="$(dirname $f)"
@@ -20,7 +18,5 @@ function f_music_flac_to_alac() {
 
         docker run --rm --name flac_to_alac -v "$d2:/data/in" -v "$d3:/data/out" linuxserver/ffmpeg:version-7.0-cli -i "/data/in/$f2" -c:v copy -c:a alac "/data/out/$f3"
     done <<<"$(find . -type f -name '*.flac')"
-
-    set +x
     popd
 }
