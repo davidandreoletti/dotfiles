@@ -20,3 +20,18 @@ function f_music_flac_to_alac() {
     done <<<"$(find . -type f -name '*.flac')"
     popd
 }
+
+function f_music_download_from_youtube() {
+    local dir="$1"
+    local query="$2"
+
+    for dir in "$HOMELAB_NAS_MUSIC_DIR" "$HOMELAB_NAS_MUSIC_DIR_LOCAL"; do
+        if test -d "$dir"; then
+            ytmdl --output-dir "$dir" \
+                --format mp3 \
+                --title-as-name \
+                "$query"
+            break
+        fi
+    done
+}

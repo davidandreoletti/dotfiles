@@ -99,6 +99,7 @@ dot_plugin_if_exists "man"
 dot_plugin_if_exists "mpd"
 dot_plugin_if_exists "misc"
 dot_plugin_if_exists "minikube"
+dot_plugin_if_exists "music"                        # Requires: homelab
 dot_plugin_if_exists "mv"
 dot_plugin_if_exists "navi"
 dot_plugin_if_exists "network"
