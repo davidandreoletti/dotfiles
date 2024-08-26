@@ -292,7 +292,7 @@ if is_profile_admin_or_similar; then
     # Container setup: docker
     homebrew_brew_install                  "docker"                                 # Container runtime engine. No need for macOS's Docker Desktop
     homebrew_brew_install                  "docker-buildx"                          # BuildKit extension
-    homebrew_brew_install                  "docker-docker-credential-helpers"       # docker login support
+    homebrew_brew_install                  "docker-credential-helper"               # docker login support
     homebrew_brew_install                  "lazydocker"                             # TUI docker
 
     # Container setup: colima
