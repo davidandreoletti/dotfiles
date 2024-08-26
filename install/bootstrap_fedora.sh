@@ -92,7 +92,7 @@ HOMEBREW_BREW_INSTALL_AGGREGATED=0
 
 ## Package managers
 ### Install homebrew prerequisites
-fedora_dnf_group_install "Development Tools"
+fedora_dnf_install "@development-tools"
 fedora_dnf_install "procps-ng"
 fedora_dnf_install "curl"
 fedora_dnf_install "file"
