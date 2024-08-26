@@ -59,7 +59,7 @@ if is_profile_admin_or_similar; then
 
     # Rust
     homebrew_brew_install                  "rust"                # Default Rust + package manager / compiler toolchain
-    homebrew_brew_install                  "rustup-init"         # Tools to install other compiler toolchain / channels
+    homebrew_brew_install                  "rustup"              # Tools to install other compiler toolchain / channels
 
     # Bash shell
     is_fedora && fedora_dnf_install        "bash"
