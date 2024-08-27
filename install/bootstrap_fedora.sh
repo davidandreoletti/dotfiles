@@ -116,7 +116,7 @@ fedora_dnf_install "snapd"
 # Fedora's official 3rd party reposititories
 fedora_dnf_install fedora-workstation-repositories
 # Hardware drivers (eg: nvidia)
-fedora_dnf_group_install "Hardware Support"
+fedora_dnf_install "@hardware-support"
 
 fedora_dnf_install "__commit_aggregated__"
 
