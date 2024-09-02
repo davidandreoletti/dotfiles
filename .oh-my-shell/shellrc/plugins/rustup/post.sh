@@ -4,13 +4,11 @@ if test -d "$HOME/.rustup/toolchains"; then
     # NO need for 'rustup self update'
     :
 
-    # Update toolchains
-    rustup update 1>/dev/null 2>&1 # silence updates
-else
-    rustup-init -y --verbose
-
-    # Install toolchains
+    # Install/Update toolchains without updating rustup itself
     for name in stable beta nightly; do
-        rustup toolchain install $name 1>/dev/null 2>&1
+        rustup toolchain install --no-self-update $name 1>/dev/null 2>&1
     done
+else
+    # Install/update default toolchain
+    rustup-init -y --verbose
 fi
