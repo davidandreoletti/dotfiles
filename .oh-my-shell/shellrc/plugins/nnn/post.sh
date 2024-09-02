@@ -1,2 +1,2 @@
-# Install nnn's plugins
-sh -c "$(curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs)"
+# Install nnn's plugins, overwriting them when needed
+yes 'm' | sh -c "$(curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs)"
