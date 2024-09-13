@@ -122,9 +122,6 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "cyberduck"
     #is_fedora  &&  fedora_dnf_install                      "filezilla"         # Filezilla may have adware. Never install this https://en.wikipedia.org/wiki/FileZilla#Bundled_adware_issues
 
-    # Disk usage
-    is_macos   &&  homebrew_brew_cask_install              "grandperspective"   # Disk usage GUI
-
     # Password manager
     is_macos   &&  homebrew_brew_cask_install              "1password@7"
     is_macos   &&  homebrew_brew_cask_install              "keepassxc"
