@@ -88,7 +88,7 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "spaceman-diff"       # Git can now diff images as colourfull ASCII approximation
     homebrew_brew_install                  "difftastic"          # Langauge syntax aware diff
 
-    # GUN * utils
+    # GNU * utils
     homebrew_brew_install                  "coreutils"          # Apple has outdated unix tooling.
     homebrew_brew_install                  "findutils"          # GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
     homebrew_brew_install                  "inetutils"          # GNU `ftp`, `sftp`
