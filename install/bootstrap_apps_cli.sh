@@ -132,8 +132,8 @@ if is_profile_admin_or_similar; then
     # File explorer
     homebrew_brew_install                  "z"                   # Smarter cd
     homebrew_brew_install                  "zoxide"              # like z but better
-    homebrew_brew_install                  "xplr"                # File explorer with many integrations
-    homebrew_brew_install                  "nnn"                 # required by xplr
+    #homebrew_brew_install                  "xplr"                # File explorer with many integrations
+    #homebrew_brew_install                  "nnn"                 # required by xplr
 
     # File size explorer
     homebrew_brew_install                  "ncdu"                # du TUI (aka Grandperspective for terminal)
