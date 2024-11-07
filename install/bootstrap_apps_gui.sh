@@ -219,6 +219,13 @@ if is_profile_admin_or_similar; then
     is_macos   &&  is_arch_aarch64 \
                &&  homebrew_brew_cask_install              "lm-studio"         # Run inference LLM model
 
+
+    # Mecanical Computer Aided Design
+    is_macos   &&  homebrew_brew_cask_install              "freecad"           # Physical object design
+
+    # Electronic Design
+    is_macos   &&  homebrew_brew_cask_install              "kicad"             # Electronic circuit design
+
     is_macos   &&  homebrew_brew_cask_install              "__commit_aggregated__"
     is_fedora  &&  fedora_dnf_install                      "__commit_aggregated__"
 
