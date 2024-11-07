@@ -1,3 +1,4 @@
+[general]
 # Auto reload config when changed
 live_config_reload = true
 
