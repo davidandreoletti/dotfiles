@@ -102,7 +102,7 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  fedora_dnf_install                      "vlc"
 
     # Virtualization
-    is_macos   &&  homebrew_brew_cask_install              "utm"                  # Qemu GUI
+    is_macos   &&  homebrew_brew_cask_install              "utm@beta"             # Qemu GUI
 
     # IDE
     is_macos   &&  homebrew_brew_cask_install              "jetbrains-toolbox"
