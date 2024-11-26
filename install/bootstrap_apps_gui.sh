@@ -223,6 +223,8 @@ if is_profile_admin_or_similar; then
     # Mecanical Computer Aided Design
     is_macos   &&  homebrew_brew_cask_install              "freecad"           # Physical object design
 
+    # 3D creation suite
+    is_macos   &&  homebrew_brew_cask_install              "blender"           # General purpose 3D editor
     # Electronic Design
     is_macos   &&  homebrew_brew_cask_install              "kicad"             # Electronic circuit design
 
