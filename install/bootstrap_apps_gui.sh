@@ -225,6 +225,10 @@ if is_profile_admin_or_similar; then
 
     # 3D creation suite
     is_macos   &&  homebrew_brew_cask_install              "blender"           # General purpose 3D editor
+    # Embedded development
+    is_macos   &&  homebrew_brew_cask_install              "platformio"        # Embedded software dev platform
+    is_fedora  &&  homebrew_brew_cask_install              "platformio"
+
     # Electronic Design
     is_macos   &&  homebrew_brew_cask_install              "kicad"             # Electronic circuit design
 
