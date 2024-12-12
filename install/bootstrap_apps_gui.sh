@@ -178,6 +178,7 @@ if is_profile_admin_or_similar; then
     vscode_install_extension                               "ms-azuretools.vscode-docker" # Docker Extension
     vscode_install_extension                               "continue.continue"           # LLM autopilot
     vscode_install_extension                               "vscodevim.vim"               # VIM extension
+    vscode_install_extension                               "platformio.platformio-ide"   # PlatformIO extension
 
     # Ngrok
     is_macos   &&  homebrew_brew_cask_install              "ngrok"
@@ -225,6 +226,14 @@ if is_profile_admin_or_similar; then
 
     # 3D creation suite
     is_macos   &&  homebrew_brew_cask_install              "blender"           # General purpose 3D editor
+
+    # https://www.eddy3d.com + https://www.grasshopper3d.com + https://www.rhino3d.com
+    # Whole building Energy analysis / thermal load simulation program to maintain thermal control setpoint: https://energyplus.net/quick-start
+    # # Simulate daylight ingress OpenStudio + Radiance: https://openstudiocoalition.org/tutorials/radiance_tutorial/
+    # # Radiance: analysis / visualisation of lighting in design: https://www.radiance-online.org/about
+    # # Ladybug plugin for Grasshopper: analysis of climate data to produce interactive visualization for environmentlly
+    #                                   informed design: https://www.ladybug.tools/ladybug.html
+
     # Embedded development
     is_macos   &&  homebrew_brew_cask_install              "platformio"        # Embedded software dev platform
     is_fedora  &&  homebrew_brew_cask_install              "platformio"
