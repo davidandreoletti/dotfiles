@@ -471,6 +471,9 @@ if is_profile_admin_or_similar; then
     # Shell formatter
     homebrew_brew_install                  "shfmt"               # Shell script formatter
 
+    # UART/Serial terminal
+    homebrew_brew_install                  "tio"                 # Simple UART terminal
+
     # K8s
     is_fedora &&  homebrew_brew_install    "kubectl"             # K8s client only
     is_archl  &&  homebrew_brew_install    "kubectl"
