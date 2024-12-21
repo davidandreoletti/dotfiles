@@ -79,7 +79,7 @@ local function config()
     local lsp_cmp_capabilities = cmp.default_capabilities()
 
     -- Python
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "ruff_lsp")
+    setup_lsp(lspconfig, lsp_cmp_capabilities, "ruff")
     setup_lsp(lspconfig, lsp_cmp_capabilities, "pylsp")
     -- vimL
     setup_lsp(lspconfig, lsp_cmp_capabilities, "vimls")
