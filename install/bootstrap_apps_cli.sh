@@ -451,7 +451,9 @@ if is_profile_admin_or_similar; then
     # EXPERIMENTAL cargo_global_install                   "thokr"               # Typing tester
 
     # LLM client
-    homebrew_brew_install                  "aichat"              # LLM client
+    #                                                            # Lx: https://prompt.16x.engineer/blog/ai-coding-l1-l5
+    homebrew_brew_install                  "aichat"              # L1: Code completion / question
+    homebrew_brew_install                  "aider"               # L2: Task level completion / Ticket to code
 
     # Misc
     homebrew_brew_install                  "fortune"             # Fortune cookie
