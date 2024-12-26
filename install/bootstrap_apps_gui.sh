@@ -180,6 +180,8 @@ if is_profile_admin_or_similar; then
     vscode_install_extension                               "vscodevim.vim"               # VIM extension
     vscode_install_extension                               "platformio.platformio-ide"   # PlatformIO extension
 
+    homebrew_brew_cask_install                             "discord"
+
     # Ngrok
     is_macos   &&  homebrew_brew_cask_install              "ngrok"
     #is_fedora  &&  fedora_snap_install                     "ngrok"
