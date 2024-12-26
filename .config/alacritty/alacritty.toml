@@ -10,6 +10,7 @@ import = [
 [window]
 startup_mode = "Maximized"
 dynamic_title = true
+decorations = "Full"
 
 [scrolling]
 history = 100000
