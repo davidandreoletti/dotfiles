@@ -471,6 +471,9 @@ if is_profile_admin_or_similar; then
     # Shell formatter
     homebrew_brew_install                  "shfmt"               # Shell script formatter
 
+    # Matrix
+    homebrew_brew_install                  "iamb"                # Matrix client CLI with vim bindings
+
     # UART/Serial terminal
     homebrew_brew_install                  "tio"                 # Simple UART terminal
 
