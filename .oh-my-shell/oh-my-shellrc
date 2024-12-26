@@ -59,6 +59,7 @@ dot_plugin_if_exists "dns"
 dot_plugin_if_exists "buku"                         # Depends on: dropbox
 dot_plugin_if_exists "cat"
 dot_plugin_if_exists "cd"
+dot_plugin_if_exists "cleanup"
 dot_plugin_if_exists "chars"
 dot_plugin_if_exists "colima"
 dot_plugin_if_exists "cron"
