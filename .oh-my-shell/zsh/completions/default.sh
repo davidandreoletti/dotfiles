@@ -49,5 +49,16 @@ dot_if_exists "$HOMEBREW_FZF_KEYBINDINGS_DIR"
 # Real time completion
 dot_if_exists "$(homebrew_package_path_prefix "/zsh-autocomplete/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh")"
 
+# First insert the common substring
+# - all Tab widgets
+zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
+# - all history widgets
+zstyle ':autocomplete:*history*:*' insert-unambiguous yes
+# - ^S
+zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
+# Make Tab and ShiftTab go to the menu
+bindkey              '^I' menu-select
+bindkey "$terminfo[kcbt]" menu-select
+
 # Suggestions
 dot_if_exists "$(homebrew_package_path_prefix "/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh")"
