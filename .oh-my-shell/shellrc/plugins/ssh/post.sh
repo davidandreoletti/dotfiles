@@ -46,9 +46,10 @@ USER_SSH_AGENT_ENV_0="$USER_SSH_AGENT_DIR/env_default"
 USER_SSH_AGENT_ENV_1="$USER_SSH_AGENT_DIR/env_unsecure"
 
 for f in "$USER_SSH_AGENT_ENV_0" "$USER_SSH_AGENT_ENV_1"; do
+    # Run ssh agent setup script
     flock --exclusive --unlock \
         "${f}.lock" \
-        -c "bash -x $SSH_AGENT_SETUP_SCRIPT $f"
+        -c "bash $SSH_AGENT_SETUP_SCRIPT $f"
 
     if test "$f" != "$USER_SSH_AGENT_ENV_0"; then
         continue
