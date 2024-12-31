@@ -120,6 +120,7 @@ dot_plugin_if_exists "python"
 dot_plugin_if_exists "pipx"
 dot_plugin_if_exists "poetry"                        # Requires: pipx
 dot_plugin_if_exists "pyenv"
+dot_plugin_if_exists "qalc"
 dot_plugin_if_exists "qemu"
 dot_plugin_if_exists "rbenv"
 dot_plugin_if_exists "ripgrep"
