@@ -527,6 +527,9 @@ defaults write org.mozilla.firefox AppleEnableSwipeNavigateWithScrolls -bool fal
 ###############################################################################
 # Disable signing emails by default
 defaults write ~/Library/Preferences/org.gpgtools.gpgmail SignNewEmailsByDefault -bool false
+# Uncheck by default "Save in keychain" option in pinentry dialog
+# src: https://apple.stackexchange.com/a/420882
+defaults write org.gpgtools.common UseKeychain NO
 ###############################################################################
 # Transmission.app #
 ###############################################################################
