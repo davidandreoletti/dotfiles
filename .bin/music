@@ -1,20 +1,25 @@
 #!/bin/bash
 
+SOURCE_PLAYLIST_DIR="$HOME/.playlists"
+DESTINATION_PLAYLIST_DIR="$HOME/.config/mpd/playlists"
+
 f_mpd_update_database() {
     echo "Updating playlists ..."
     # Create/Update playlists
-    command pushd "$HOME/.playlists" >/dev/null 2>&1
+    command pushd "$SOURCE_PLAYLIST_DIR" >/dev/null 2>&1
     # Download music m3u files
     $SHELL to_m3u.sh *.playlist
+    # Create missing dir if any
+    mkdir -p "$DESTINATION_PLAYLIST_DIR"
 
     for m3u_file in *.m3u; do
         playlist_name="$(basename $m3u_file .m3u)"
 
         # Convert stream urls into new playlist
         if [[ "$playlist_name" == "programming" ]]; then
-            command cat <($SHELL convert.sh $m3u_file) >"$HOME/.mpd/playlists/${playlist_name}.m3u"
+            command cat <($SHELL convert.sh $m3u_file) >"$DESTINATION_PLAYLIST_DIR/${playlist_name}.m3u"
         else
-            mv "$PWD/$m3u_file" "$HOME/.mpd/playlists/${playlist_name}.m3u"
+            mv "$PWD/$m3u_file" "$DESTINATION_PLAYLIST_DIR/${playlist_name}.m3u"
         fi
     done
     command popd >/dev/null 2>&1
