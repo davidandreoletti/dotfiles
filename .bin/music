@@ -49,6 +49,10 @@ while true; do
             break
             ;;
         *)
+            if ! test -d "$DESTINATION_PLAYLIST_DIR";
+            then
+                f_mpd_update_database
+            fi
             f_mpd_play
             break
             ;;
