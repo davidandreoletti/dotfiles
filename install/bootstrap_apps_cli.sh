@@ -451,7 +451,7 @@ if is_profile_admin_or_similar; then
     is_archl  && archlinux_pacman_install   "visidata"
 
     # Typing
-    # EXPERIMENTAL cargo_global_install                   "thokr"               # Typing tester
+    cargo_global_install                   "thokr"               # Typing tester
 
     # LLM client
     #                                                            # Lx: https://prompt.16x.engineer/blog/ai-coding-l1-l5
