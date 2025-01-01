@@ -405,6 +405,9 @@ if is_profile_admin_or_similar; then
 
     # Line oriented search tool
     homebrew_brew_install                  "ripgrep"             # faster grep "rigrep" binary compiled, as nightly build, and including SIMD and all optimizations enabled.
+
+    # AST oriented search tool
+    homebrew_brew_install                  "ast-grep"            # AST based code structural search
                                                                  # Required by VIM's fzf.vim plugin
     # Terminal Image protocol
     homebrew_brew_install                  "libsixel"            #
