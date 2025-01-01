@@ -6,6 +6,13 @@ function f_search_code_fragment() {
     ag --nobreak --nonumbers --noheading "$pattern" $dir
 }
 
+function f_search_code_structure() {
+    local pattern="$1"
+    local dir="${2:-.}"
+
+    sg $pattern $dir
+}
+
 function f_search_anything() {
     local pattern="$1"
     local dir="${2:-.}"

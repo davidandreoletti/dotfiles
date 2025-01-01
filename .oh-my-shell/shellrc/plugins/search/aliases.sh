@@ -7,8 +7,13 @@ alias search_largest_dirs_asc='du -hs * | sort -h'
 
 # % search, code
 # # Find PATTERN code fragment
-# ; search_code_fragment
+# ; search_code_fragment "main()" ./
 alias search_code_fragment='f_search_code_fragment '
+
+# % search, code, structure
+# # Find PATTERN code structure
+# ; search_code_structure "-p '$A && A()' -r '$A?.()'" ./
+alias search_code_structuret='f_search_code_structure '
 
 # % search, any, doc
 # # Find PATTERN in any kind of doc
