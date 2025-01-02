@@ -10,6 +10,6 @@ then
     then
         echo "$USER_CRONTAB_FILE is not a valid crontab file."
     else
-        crontab "$USER_CRONTAB_FILE"
+        crontab "$USER_CRONTAB_FILE" > /dev/null 2>&1
     fi
 fi
