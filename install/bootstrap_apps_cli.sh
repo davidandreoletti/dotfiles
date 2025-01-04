@@ -103,7 +103,7 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "gnu-which"          # GNU which comand
 
     # Disk usage
-    homebrew_brew_install                  "dua"                # faster ncdu with interactive support
+    homebrew_brew_install                  "dua-cli"            # faster ncdu with interactive support
 
     # Zsh shell
     # Use as default shell for current user
