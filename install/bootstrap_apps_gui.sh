@@ -181,6 +181,7 @@ if is_profile_admin_or_similar; then
     vscode_install_extension                               "vscodevim.vim"               # VIM extension
     vscode_install_extension                               "platformio.platformio-ide"   # PlatformIO extension
     vscode_install_extension                               "ms-vscode-remote.remote-containers" # Dev Container
+    vscode_install_extension                               "tootone.org-mode"                   # Org-mode
     vscode_uninstall_extension                             "eamodio.gitlens" 
 
     homebrew_brew_cask_install                             "discord"
