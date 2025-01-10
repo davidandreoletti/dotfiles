@@ -285,4 +285,15 @@ data.json
 .colima/_lima/*
 .colima/ssh_config
 .colima/default/*
+# VSCode
+Library/Application Support/Code/User/History
+Library/Application Support/Code/User/sync
+Library/Application Support/Code/User/workspaceStorage
+Library/Application Support/Code/User/globalStorage/storage.json
+Library/Application Support/Code/User/globalStorage/state.vscdb.backup
+Library/Application Support/Code/User/globalStorage/state.vscdb
+Library/Application Support/Code/User/globalStorage/vscodevim.vim
+Library/Application Support/Code/User/globalStorage/ms-vscode-remote.remote-containers/cli-bin
+Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand
+Library/Application Support/Code/User/globalStorage/github.copilot-chat
 .cache

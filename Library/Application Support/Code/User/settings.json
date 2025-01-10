@@ -1,0 +1,7 @@
+{
+    // https://code.visualstudio.com/docs/getstarted/settings
+    "debug.onTaskErrors": "showErrors",
+    "typescript.inlayHints.parameterNames.enabled": "all",
+    "application.shellEnvironmentResolutionTimeout": 30,
+    "git.openRepositoryInParentFolders": "never"
+}
