@@ -1,17 +1,17 @@
 notARepository: quit
 disableStartupPopups: true
 update:
-  method: never
+    method: never
 git:
-  update:
-    days: 0
+    update:
+        days: 0
 gui:
-  windowSize : 'normal'
-  language: 'en'
+    screenMode: 'normal'
+    language: 'en'
 keybinding:
-  universal:
-    select: 's' # was '<space>'
-  files:
-    # select: 's' conflicts with
-    stashAllChanges: 's'
-    #viewStashOptions: 'S'
+    universal:
+        select: 's' # was '<space>'
+    files:
+        # select: 's' conflicts with
+        stashAllChanges: 's'
+        #viewStashOptions: 'S'
