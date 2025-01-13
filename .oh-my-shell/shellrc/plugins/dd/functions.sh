@@ -1,4 +1,5 @@
 f_dd_verify() {
+    # FIXME: Use https://github.com/yoctoproject/bmaptool/issues/42
     #echo "This is not working as expected yet"
     #return 1
 
