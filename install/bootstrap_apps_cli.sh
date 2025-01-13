@@ -405,6 +405,7 @@ if is_profile_admin_or_similar; then
 
     # Line oriented search tool
     homebrew_brew_install                  "ripgrep"             # faster grep "rigrep" binary compiled, as nightly build, and including SIMD and all optimizations enabled.
+    homebrew_brew_install                  "ripgrep-all"         # "rigrep" binary for additional file types
 
     # AST oriented search tool
     homebrew_brew_install                  "ast-grep"            # AST based code structural search
