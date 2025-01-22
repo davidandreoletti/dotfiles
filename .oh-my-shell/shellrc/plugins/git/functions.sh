@@ -7,3 +7,11 @@ function f_git_pullUpdatesForAllRepositoriesAtPath() {
     local dirPath="$1"
     find $dirPath -type d -name '*.git' -maxdepth 1 -mindepth 1 | xargs -n1 -I % bash -x -c 'cd %; cd $(git rev-parse --show-toplevel) && git pull'
 }
+
+# Set file's user execubable bit and save change in git
+function f_git_setUserExecutableBit() {
+    local file="$1"
+
+    chmod u+x "$file"
+    git update-index --verbose --chmod=+x "$file"
+}

@@ -9,3 +9,7 @@ alias lazygit="XDG_CONFIG_HOME=$HOME/.config lazygit"
 # Display git TUI
 # Usage: tgit
 alias tgit=lazygit
+
+# Change user executable and save change in git
+# USage: git_set_user_executable_bit /path/to/file
+alias git_set_user_executable_bit='f_git_setUserExecutableBit'
