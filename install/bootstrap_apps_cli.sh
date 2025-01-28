@@ -357,6 +357,7 @@ if is_profile_admin_or_similar; then
     is_macos  && homebrew_brew_install     "virt-manager"        # QEMU Manager
     is_fedora && fedora_dnf_install        "virt-manager"
     is_archl  && archlinux_pacman_install  "virt-manager"
+    is_macos  && homebrew_brew_install     "multipass"           # Ubuntu's multipass
 
     # ISO
     homebrew_brew_install                  "xorriso"             # ISO9660+RR manipulation tool to kickstart a fedora vm with virt-install
