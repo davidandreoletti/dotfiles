@@ -12,3 +12,8 @@ alias gnupg_export_public_and_private_key='f_gnupg_export_public_and_private_key
 # # Import both public + private keys
 # ; usage: gnupg_import_public_and_private_key "GPG keyfingerprint"
 alias gnupg_import_public_and_private_key='f_gnupg_import_public_and_private_key'
+
+# % gnupg, key, expire, public, private
+# # Extend expiry key to 2y in the future for both public + private keys
+# ; usage: gnupg_extend_expiry_public_and_private_key "GPG keyfingerprint" "2y"
+alias gnupg_extend_expiry_public_and_private_key='f_gnupg_extend_expiry_public_and_private_key'

@@ -1,9 +1,13 @@
 # shellcheck disable=SC2181,2155,SC2039
 
+f_gnupg_fingerprint() {
+    echo "$(tr -d ' ' <<<"$1")"
+}
+
 # Export master+sub keys' public + private key as a single file
 # Usage: function "master key fingerprint"
 f_gnupg_export_public_and_private_key() {
-    local fingerprint="$(tr -d ' ' <<<"$1")"
+    local fingerprint="$(f_gnupg_fingerprint "$1")"
     local LOCAL_GNUPGHOME="${2:-$GNUPGHOME}"
 
     local epheremalStorageDuration="600s"
@@ -397,6 +401,30 @@ f_gnupg_home_fix_files_and_folders_permissions() {
     chmod 700 "$gnupgDir"
     find -L "$gnupgDir" -type f -exec chmod -v 600 {} \;
     find -L "$gnupgDir" -type d -exec chmod -v 700 {} \;
+}
+
+# Usage: function "master key fingerprint" "1"
+f_gnupg_extend_expiry_public_and_private_key() {
+    local fingerprint="$(f_gnupg_fingerprint "$1")"
+    local duration="${2:-1y}"
+    local includeSubKeys="${3:-0}"
+    local LOCAL_GNUPGHOME="${4:-$GNUPGHOME}"
+
+    for fpr in $(command gpg --verbose --with-subkey-fingerprints --with-colons --fingerprint "$fingerprint" 2>&1 | command grep fpr | command cut -d':' -f10); do
+        if test "$fpr" = "$fingerprint"; then
+            # Renew expiry date for master key
+            GNUPGHOME="$LOCAL_GNUPGHOME" command gpg \
+                --verbose --quick-set-expire \
+                "$fingerprint" "$duration"
+        else
+            # Renew expiry date for sub key
+            if test "$includeSubKeys" = "0"; then
+                GNUPGHOME="$LOCAL_GNUPGHOME" command gpg \
+                    --verbose --quick-set-expire \
+                    "$fingerprint" "$duration" "$fpr"
+            fi
+        fi
+    done
 }
 
 # FIXME create utility functions to publish sub keys
