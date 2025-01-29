@@ -1,10 +1,8 @@
 export MPD_CONF_DIR="$HOME/.config/mpd"
 export MPD_COMMON_CONF_FILE="$MPD_CONF_DIR/common.conf"
-if is_linux;
-then
+if is_linux; then
     export MPD_CONF_FILE="$MPD_CONF_DIR/mpd_linux.conf"
-elif is_macos;
-then
+elif is_macos; then
     export MPD_CONF_FILE="$MPD_CONF_DIR/mpd_macos.conf"
 else
     export MPD_CONF_FILE="$MPD_CONF_DIR/mpd_missing.conf"

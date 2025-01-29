@@ -11,10 +11,10 @@ alias music_download_from_youtube='f_music_download_from_youtube auto '
 
 # % music, play, local
 # # Play music from local playlists
-# ; usage: music_play_local 
+# ; usage: music_play_local
 alias music_play_local='$HOME/.bin/music'
 
 # % music, update, local
 # # Update music local playlists
-# ; usage: music_update_local 
+# ; usage: music_update_local
 alias music_play_local='$HOME/.bin/music --update'

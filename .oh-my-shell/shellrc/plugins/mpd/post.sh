@@ -9,7 +9,7 @@
             # "brew services start mpd" unknow on linux
             # "brew services run mpd" unknow on linux
             pgrep mpd || mpd "$MPD_CONF_FILE"
-        else 
+        else
             if brew services list | grep "mpd" | grep -v "started"; then
                 if brew services start mpd; then
                     :

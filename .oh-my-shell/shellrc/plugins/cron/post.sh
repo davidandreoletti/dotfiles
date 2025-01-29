@@ -4,12 +4,10 @@
 #    Therefore not running crontab
 
 USER_CRONTAB_FILE="$HOME/.crontab"
-if is_linux;
-then
-    if ! crontab -T "$USER_CRONTAB_FILE" > /dev/null 2>&1;
-    then
+if is_linux; then
+    if ! crontab -T "$USER_CRONTAB_FILE" >/dev/null 2>&1; then
         echo "$USER_CRONTAB_FILE is not a valid crontab file."
     else
-        crontab "$USER_CRONTAB_FILE" > /dev/null 2>&1
+        crontab "$USER_CRONTAB_FILE" >/dev/null 2>&1
     fi
 fi

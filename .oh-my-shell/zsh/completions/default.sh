@@ -57,7 +57,7 @@ zstyle ':autocomplete:*history*:*' insert-unambiguous yes
 # - ^S
 zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
 # Make Tab and ShiftTab go to the menu
-bindkey              '^I' menu-select
+bindkey '^I' menu-select
 bindkey "$terminfo[kcbt]" menu-select
 
 # Suggestions
