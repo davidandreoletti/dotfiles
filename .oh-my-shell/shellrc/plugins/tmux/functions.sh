@@ -41,10 +41,12 @@ tmux_attach_session() {
 # Usage: tmux_get_or_create_session "session name"
 tmux_get_or_create_session() {
     local sessionName="$1"
-    if [ ! -z "$TMUX" ]; then # refactor with tmux_is_in_tmux_environement
+    local sessionNameFound=""
+    if tmux_is_in_tmux_environement; then
         # In Tmux session
-        sessionName=$(tmux_find_current_session_name)
-    else
+        sessionNameFound=$(tmux_find_current_session_name)
+    fi
+    if test "$sessionNameFound" != "$sessionName"; then
         # Not in Tmux session
         command tmux start-server
         command tmux new-session -d -n "shell" -s "$sessionName" "$SHELL" >/dev/null
@@ -101,16 +103,6 @@ tmux_show_window() {
     command tmux select-window -t "$sessionName:$windowName"
 }
 
-tmux_group_android_on() {
-    local sessionName=$(tmux_get_or_create_session "android")
-    tmux_open_window "adblog" "$sessionName" 'until adb logcat && false; do sleep 1; adb logcat -c; done; bash'
-}
-
-tmux_group_android_off() {
-    local sessionName="adblog"
-    tmux_close_window "adblog" "$sessionName"
-}
-
 tmux_session_get_or_create() {
     [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
     if [ $1 ]; then
@@ -118,6 +110,15 @@ tmux_session_get_or_create() {
         return
     fi
     session=$(command tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) && command tmux $change -t "$session" || echo "No sessions found."
+}
+
+# Usage: tmux_send_command_to_pane "session name" "window" "pane number" "command"
+tmux_send_command_to_pane() {
+    local sessionName="$1"
+    local windowName="$2"
+    local paneIndex="$3"
+    local cmd="$4"
+    command tmux send-keys -t "${sessionName}:${windowName}.${paneIndex}" "$cmd" "Enter"
 }
 
 f_tmux_group_switcher() {
