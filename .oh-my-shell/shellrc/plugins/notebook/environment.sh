@@ -1,1 +1,1 @@
-export NOTEBOOK_HOME=$(readlink -f $DOTFILES_HOME/../notebook)
+export NOTEBOOK_HOME="$(readlink -f $DOTFILES_HOME/../notebook*)"
