@@ -296,4 +296,11 @@ Library/Application Support/Code/User/globalStorage/vscodevim.vim
 Library/Application Support/Code/User/globalStorage/ms-vscode-remote.remote-containers/cli-bin
 Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand
 Library/Application Support/Code/User/globalStorage/github.copilot-chat
+# Aider
+.aider.chat.history.md
+.aider.input.history
+# w3m
+.w3m/history
+.w3m/cookie
+# Random
 .cache
