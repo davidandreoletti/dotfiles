@@ -13,3 +13,7 @@ alias tgit=lazygit
 # Change user executable and save change in git
 # USage: git_set_user_executable_bit /path/to/file
 alias git_set_user_executable_bit='f_git_setUserExecutableBit'
+
+# Reset author for the current and child commit
+# USage: git_reset_author "some hash"
+alias git_reset_author='f_git_resetAuthor'

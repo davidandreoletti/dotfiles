@@ -15,3 +15,12 @@ function f_git_setUserExecutableBit() {
     chmod u+x "$file"
     git update-index --verbose --chmod=+x "$file"
 }
+
+# Reset commit author for child commits starting (inclusive) at the given commit
+function f_git_resetAuthor() {
+    local commitHash="$1"
+
+    # src: https://stackoverflow.com/a/1320317/219728
+    git rebase --root -r "$commitHash" \
+        --exec 'git commit --amend --no-edit --reset-author'
+}
