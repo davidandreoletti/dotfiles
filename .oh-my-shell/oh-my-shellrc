@@ -168,6 +168,7 @@ dot_plugin_if_exists "zip"
 dot_plugin_if_exists "zoxide"
 dot_plugin_if_exists "zshbench"
 dot_plugin_if_exists "libvirt"
+dot_plugin_if_exists "libguestfs_tools"
 dot_plugin_if_exists "boris"
 dot_plugin_if_exists "conda"
 dot_plugin_if_exists "starship" # Must be near the end of the shell initialization
