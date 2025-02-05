@@ -15,3 +15,21 @@ keybinding:
         # select: 's' conflicts with
         stashAllChanges: 's'
         #viewStashOptions: 'S'
+
+customCommands:
+  # Blame via tig
+  - key: b
+    command: tig blame -- {{.SelectedFile.Name}}
+    context: files
+    description: blame file at tree
+    subprocess: yes
+  - key: b
+    command: tig blame {{.SelectedCommit.Sha}} -- {{.SelectedCommitFile.Name}}
+    context: commitFiles
+    description: blame file at revision
+    subprocess: yes
+  - key: B
+    command: tig blame -- {{.SelectedCommitFile.Name}}
+    context: commitFiles
+    description: blame file at tree
+    subprocess: yes
