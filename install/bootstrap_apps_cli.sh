@@ -73,6 +73,7 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "git"                # Get more recent version than the one shipped in Xcode
     homebrew_brew_install                  "gitui"              # git TUI for large patch set to deal with on a console
     homebrew_brew_install                  "lazygit"            # git TUI easy interactive rebase
+    homebrew_brew_install                  "tig"                # git text mode 
     homebrew_brew_install                  "git-delta"          # Better diff output for git
     homebrew_brew_install                  "git-crypt"          # Encrypt git repository
     homebrew_brew_install                  "git-fixup"          # Automated "fixup!"" git commit creation
