@@ -202,6 +202,9 @@ if is_profile_admin_or_similar; then
     # Network performance
     homebrew_brew_install                  "iperf3"              # Network performance measurement
 
+    # Network monitoring
+    homebrew_brew_install                  "bandwhich"
+
     # Database/cache engines
     # - Redis
     homebrew_brew_install                  "redis"               # Redis Key-Value Storage
