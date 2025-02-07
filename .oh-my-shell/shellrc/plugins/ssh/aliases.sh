@@ -39,3 +39,7 @@ alias ssh_audit_server='docker run -it --rm --name sshd_audit positronsecurity/s
 # Print SSH host config after all match evaluations
 # Usage: ssh_print_host_config "some_host_name"
 alias ssh_print_host_config='ssh -G '
+
+# Print SSH (private or public) key fingerprint
+# Usage: ssh_show_key_fingerprint /path/to/public/or/private/key
+alias ssh_show_key_fingerprint='ssh-keygen -l -f '
