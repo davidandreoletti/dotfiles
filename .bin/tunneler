@@ -317,5 +317,4 @@
 
         shift
     done
-
-} >/dev/null 2>&1 # DEBUG WITH: {...}  > /tmp/0.$$.stdout 2>/tmp/0.$$.stderr
+} >/dev/null 2>&1 # DEBUG WITH: {...}  > /tmp/$USER.tunneler.$$.stdout 2>/tmp/$USER.tunneler.$$.stderr
