@@ -8,8 +8,9 @@ f_dd_verify() {
     local input="$1"
     local output="$2"
     local compression="${3:-none}"
-    local bs="${4:-4M}"
-    local buffer="${5:-8m}"
+    local ibs="${4:-4M}"
+    local obs="${5:-512}"
+    local buffer="${6:-8m}"
 
     # Detect if input is compressed
     file $input | grep "compressed"
@@ -96,7 +97,7 @@ f_dd_verify() {
     fi
 
     # Write to output
-    command cat $FIFOLAST | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "writing $output" --force | $output_sudo command dd of="$output" bs=$bs status=none
+    command cat $FIFOLAST | command pv --progress --rate --bytes --wait --buffer-size $buffer --name "writing $output" --force | $output_sudo command dd of="$output" ibs=$ibs obs=$obs conv=sparse,fdatasync status=none
 
     #
     # Wait for all FIFO to be closed
@@ -149,7 +150,7 @@ f_dd_verify() {
         FIFOFIRST="$FIFO0"
     fi
 
-    $output_sudo command dd if="$FIFOFIRST" bs=$bs status=none | pv --progress --rate --bytes --wait --buffer-size $buffer --stop-at-size --size $sizeWrittenBytes --name "verification" | sha256sum >$FIFOH
+    $output_sudo command dd if="$FIFOFIRST" ibs=$ibs obs=$obs conv=sparse,fdatasync status=none | pv --progress --rate --bytes --wait --buffer-size $buffer --stop-at-size --size $sizeWrittenBytes --name "verification" | sha256sum >$FIFOH
     hash2="$(command cat $FIFOH)"
 
     command rm -f $FIFOH
