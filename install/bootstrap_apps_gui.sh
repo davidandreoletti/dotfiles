@@ -140,6 +140,9 @@ if is_profile_admin_or_similar; then
     # HTTP forgery
     is_macos   &&  homebrew_brew_cask_install              "http-toolkit"
 
+    # Network Traffic Capture
+    homebrew_brew_cask_install                             "wireshark"
+
     # Text editor
     is_macos   &&  homebrew_brew_cask_install              "textmate"
 
