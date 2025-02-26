@@ -54,3 +54,8 @@ elif is_bash; then
 fi
 
 ! test -d "$SHELLRC_COMPLETION_USER_DIR" && mkdir -p "$SHELLRC_COMPLETION_USER_DIR"
+
+if is_macos; then
+    # Bring macOS built-in apps such as PlistBuddy 
+    path_prepend "/usr/libexec"
+fi
