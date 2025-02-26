@@ -146,6 +146,9 @@ if is_profile_admin_or_similar; then
     # Text editor
     is_macos   &&  homebrew_brew_cask_install              "textmate"
 
+    # Markdown editor
+    is_macos   &&  homebrew_brew_cask_install              "mark-text"
+
     # Remote desktop
     is_macos   &&  homebrew_brew_install                   "tiger-vnc"
     is_fedora  &&  fedora_dnf_install                      "remmina"
