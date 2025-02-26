@@ -367,6 +367,7 @@ defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnab
 defaults write com.apple.Siri SiriPrefStashedStatusMenuVisible -bool false
 #Disable Siri voice activation
 defaults write com.apple.Siri VoiceTriggerUserEnabled -bool false
+###############################################################################
 # Spotlight #
 ###############################################################################
 # Hide Spotlight tray-icon (and subsequent helper)
@@ -396,8 +397,9 @@ defaults write com.apple.spotlight orderedItems -array \
     '{"enabled" = 0;"name" = "MENU_OTHER";}' \
     '{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
     '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
-    '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
-    '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
+#   DISABLED
+#   '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
+#   '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
 # Load new settings before rebuilding the index
 killall mds > /dev/null 2>&1
 # Make sure indexing is enabled for the main volume
