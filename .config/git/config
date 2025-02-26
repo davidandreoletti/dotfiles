@@ -302,8 +302,8 @@
     fsckObjects = true
 
 [init]
-    # "master" as default branch name.
-    defaultBranch = "master"
+    # "main" as default branch name.
+    defaultBranch = "main"
     # Files and folders copied to GIT_DIR after it is created (ie git clone)
     templatedir = ~/.config/git/templates
 
