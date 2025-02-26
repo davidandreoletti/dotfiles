@@ -173,6 +173,8 @@
 [rerere]
     # Enable rerere by default (instead of on first use of git rerere)
     enabled = true
+    # Update the index with the resulting content (after clean resolution of conflicts using previously recorded resolutions)
+    autoupdate = false
 
 [status]
     # Show relative path, relative to current directory (instead of repository root)
