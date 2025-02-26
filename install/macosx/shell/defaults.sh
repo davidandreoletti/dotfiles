@@ -361,6 +361,12 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 # Disable automatic spell checking
 defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"
 ###############################################################################
+# Siri #
+###############################################################################
+#Disable Siri menu
+defaults write com.apple.Siri SiriPrefStashedStatusMenuVisible -bool false
+#Disable Siri voice activation
+defaults write com.apple.Siri VoiceTriggerUserEnabled -bool false
 # Spotlight #
 ###############################################################################
 # Hide Spotlight tray-icon (and subsequent helper)
