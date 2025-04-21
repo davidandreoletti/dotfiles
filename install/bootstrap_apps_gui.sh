@@ -129,7 +129,7 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "onyx"
 
     # REST Client
-    # FIXME: Replace postman
+    is_macos   &&  homebrew_brew_cask_install              "hoppscotch"         # Postman like
 
     # Archive
     is_macos   &&  homebrew_brew_cask_install              "keka"               # File Archiver with support for zst,zip,etc
