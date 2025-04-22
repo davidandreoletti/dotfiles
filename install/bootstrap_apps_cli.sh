@@ -356,8 +356,10 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "wireguard-tools"     # Wireguard tooling. Eg: wg
 
     # Virtualization
-    homebrew_brew_install                  "libvirt"             # KVM/Qemu machine definition / hypervision abstraction
-    homebrew_brew_install                  "qemu"
+    is_macos  && homebrew_brew_install     "libvirt"             # KVM/Qemu machine definition / hypervision abstraction
+    is_fedora && fedora_dnf_install        "libvirt"
+    is_macos  && homebrew_brew_install     "qemu"
+    is_fedora && fedora_dnf_install        "qemu"
     is_macos  && homebrew_brew_install     "virt-manager"        # QEMU Manager
     is_fedora && fedora_dnf_install        "virt-manager"
     is_archl  && archlinux_pacman_install  "virt-manager"
