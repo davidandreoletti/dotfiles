@@ -201,6 +201,7 @@ if is_profile_admin_or_similar; then
 
     # Network topology discovery
     homebrew_brew_install                  "nmap"                # Network Mapper
+    homebrew_brew_install                  "fping"               # Parralel ping
 
     # Network performance
     homebrew_brew_install                  "iperf3"              # Network performance measurement
