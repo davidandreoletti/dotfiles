@@ -122,6 +122,9 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "cyberduck"
     #is_fedora  &&  fedora_dnf_install                      "filezilla"         # Filezilla may have adware. Never install this https://en.wikipedia.org/wiki/FileZilla#Bundled_adware_issues
 
+    # Video Game Platform
+    #is_macos   &&  homebrew_brew_cask_install              "steam"              # Valve Steam
+
     # Password manager
     is_macos   &&  homebrew_brew_cask_install              "1password@7"
     is_macos   &&  homebrew_brew_cask_install              "keepassxc"
@@ -189,7 +192,7 @@ if is_profile_admin_or_similar; then
     vscode_install_extension                               "ms-vscode-remote.remote-containers" # Dev Container
     vscode_install_extension                               "tootone.org-mode"                   # Org-mode
     vscode_install_extension                               "HashiCorp.terraform"                # Terraform
-    vscode_uninstall_extension                             "eamodio.gitlens" 
+    vscode_uninstall_extension                             "eamodio.gitlens"
 
     homebrew_brew_cask_install                             "discord"
 
