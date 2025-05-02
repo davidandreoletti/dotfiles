@@ -493,6 +493,9 @@ if is_profile_admin_or_similar; then
     # UART/Serial terminal
     homebrew_brew_install                  "tio"                 # Simple UART terminal
 
+    # File system file content hashing
+    homebrew_brew_install                  "md5deep"             # Hashdeep for to check against  whole file system corruption
+
     # K8s
     is_fedora &&  homebrew_brew_install    "kubectl"             # K8s client only
     is_archl  &&  homebrew_brew_install    "kubectl"
