@@ -5,7 +5,7 @@ FILE="/tmp/$$.auditfile"
 
 echo "Audit file: $FILE"
 # Generate the audit file
-hashdeep -c sha256 -o fl -r "$DIR"  > "$FILE"
+time hashdeep -c sha256 -o fl -r "$DIR"  > "$FILE"
 # Test the audit
-hashdeep -c sha256 -o fl -a -v -v -k "$FILE" -r "$DIR"
+time hashdeep -c sha256 -o fl -a -v -v -k "$FILE" -r "$DIR"
 
