@@ -103,9 +103,6 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "inetutils"          # GNU ftp comand and more
     homebrew_brew_install                  "gnu-which"          # GNU which comand
 
-    # Disk usage
-    homebrew_brew_install                  "dua-cli"            # faster ncdu with interactive support
-
     # S3 compatible File transfer
     homebrew_brew_install                  "duck"               # CLI companion to Cyberduck
 
@@ -136,12 +133,14 @@ if is_profile_admin_or_similar; then
     # File explorer
     homebrew_brew_install                  "z"                   # Smarter cd
     homebrew_brew_install                  "zoxide"              # like z but better
-    #homebrew_brew_install                  "xplr"                # File explorer with many integrations
-    #homebrew_brew_install                  "nnn"                 # required by xplr
+    #homebrew_brew_install                  "xplr"               # File explorer with many integrations
+    #homebrew_brew_install                  "nnn"                # required by xplr
     homebrew_brew_install                  "yazi"                # Simpler xplr replacement
 
     # File size explorer
+    homebrew_brew_install                  "dua-cli"             # faster ncdu with interactive support
     homebrew_brew_install                  "ncdu"                # du TUI (aka Grandperspective for terminal)
+
     homebrew_brew_install                  "bat"                 # cat with highlighting, paging, line numbers support
 
     # File type detection
