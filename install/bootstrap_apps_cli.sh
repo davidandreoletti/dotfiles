@@ -4,7 +4,6 @@
 ##  - http://brewformulas.org/
 
 if is_profile_admin_or_similar; then
-    homebrew_brew_tap_install              "homebrew/services"  # Launch services in background.
     homebrew_brew_tap_install              "burntsushi/ripgrep"  "https://github.com/BurntSushi/ripgrep.git"
     homebrew_brew_tap_install              "boz/repo"
     #homebrew_brew_tap_install              "mopidy/mopidy"
