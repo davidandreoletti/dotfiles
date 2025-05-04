@@ -192,6 +192,7 @@ if is_profile_admin_or_similar; then
     vscode_install_extension                               "ms-vscode-remote.remote-containers" # Dev Container
     vscode_install_extension                               "tootone.org-mode"                   # Org-mode
     vscode_install_extension                               "HashiCorp.terraform"                # Terraform
+    vscode_install_extension                               "ms-vscode.cpptools-extension-pack"  # C++ support
     vscode_uninstall_extension                             "eamodio.gitlens"
 
     homebrew_brew_cask_install                             "discord"
