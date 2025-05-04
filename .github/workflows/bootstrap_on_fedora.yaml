@@ -58,6 +58,7 @@ jobs:
             echo "BOOTSTRAP_SKIP_APPS_GUI_INSTALL=0" >> "$GITHUB_ENV"
             echo "BOOTSTRAP_SKIP_APPS_DESKTOP_ENVIRONMENT_INSTALL=0" >> "$GITHUB_ENV"
             echo "BOOTSTRAP_SKIP_BROWSER_EXTENSION_SETUP=0" >> "$GITHUB_ENV"
+            echo "BOOTSTRAP_SKIP_UNSUPPORTED_CPU_SETUP=0" >> "$GITHUB_ENV"
       - name: Bootstrap machine
         if: contains(inputs.bootstrap_type, 'machine')
         run: bash bootstrap.sh -d -b machine -s ${{ inputs.user_profile }} 
