@@ -501,6 +501,8 @@ if is_profile_admin_or_similar; then
 
     # MQTT client
     homebrew_brew_install                  "emqx/mqttx/mqttx-cli" # mqtt cli client
+    homebrew_brew_install                  "mqttui"               # mqtt tui client
+
     # File system file content hashing
     homebrew_brew_install                  "md5deep"             # Hashdeep for to check against  whole file system corruption
 
