@@ -499,6 +499,8 @@ if is_profile_admin_or_similar; then
     homebrew_brew_install                  "grok"                # Grok for HTTP(s)/TCP - no UDP!
     homebrew_brew_install                  "zrok"                # Grok like for HTTP(s)/TCP/UDP
 
+    # MQTT client
+    homebrew_brew_install                  "emqx/mqttx/mqttx-cli" # mqtt cli client
     # File system file content hashing
     homebrew_brew_install                  "md5deep"             # Hashdeep for to check against  whole file system corruption
 
