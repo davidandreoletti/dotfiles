@@ -3,5 +3,18 @@
     "debug.onTaskErrors": "showErrors",
     "typescript.inlayHints.parameterNames.enabled": "all",
     "application.shellEnvironmentResolutionTimeout": 30,
-    "git.openRepositoryInParentFolders": "never"
+    "git.openRepositoryInParentFolders": "never",
+    "[cpp]": {
+        "editor.wordBasedSuggestions": "off",
+        "editor.semanticHighlighting.enabled": true,
+        "editor.stickyScroll.defaultModel": "foldingProviderModel",
+        "editor.suggest.insertMode": "replace"
+    },
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "scminput": false,
+        "cpp": true
+    }
 }
