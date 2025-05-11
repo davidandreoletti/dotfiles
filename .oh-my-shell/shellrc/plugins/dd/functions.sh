@@ -1,3 +1,17 @@
+f_dd_create_then_copy_file() {
+    local src="$1"
+    local dst="$2"
+    local bmapFile="/tmp/$$.$RANDOM.bmap"
+
+    if bmaptool create "$bmapFile" "$src"; then
+    else
+        echo "EXIT: bmap file "$bmapFile" failed for $src."
+        return 1
+    fi
+
+    bmaptool copy --bmap "$bmapFile" --no-sig-verify "$dst"
+}
+
 f_dd_verify() {
     # FIXME: Use https://github.com/yoctoproject/bmaptool/issues/42
     #echo "This is not working as expected yet"
