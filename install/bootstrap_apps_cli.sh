@@ -357,6 +357,9 @@ if is_profile_admin_or_similar; then
     # Wireguard
     homebrew_brew_install                  "wireguard-tools"     # Wireguard tooling. Eg: wg
 
+    # bmaptool
+    pipx_pipx_install                      "https://github.com/yoctoproject/bmaptool/archive/refs/tags/v3.9.0.zip"               # Create file block map to speed up copying large image file
+
     # Virtualization
     is_macos  && homebrew_brew_install     "libvirt"             # KVM/Qemu machine definition / hypervision abstraction
     is_fedora && fedora_dnf_install        "libvirt"
