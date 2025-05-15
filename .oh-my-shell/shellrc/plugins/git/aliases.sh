@@ -15,5 +15,13 @@ alias tgit=lazygit
 alias git_set_user_executable_bit='f_git_setUserExecutableBit'
 
 # Reset author for the current and child commit
-# USage: git_reset_author "some hash"
+# Usage: git_reset_author "some hash"
 alias git_reset_author='f_git_resetAuthor'
+
+# Export git commit as a patch file 
+# Usage: git_export_commit_patch "some hash" "/path/to/file.patch"
+alias git_export_commit_patch='f_git_export_commit_patch '
+
+# Import git patch file for a given commit
+# Usage: git_import_commit_patch "/path/to/file.patch"
+alias git_import_commit_patch='f_git_import_commit_patch '

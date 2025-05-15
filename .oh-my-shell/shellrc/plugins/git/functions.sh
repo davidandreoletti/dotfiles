@@ -24,3 +24,16 @@ function f_git_resetAuthor() {
     git rebase --root -r "$commitHash" \
         --exec 'git commit --amend --no-edit --reset-author'
 }
+
+function f_git_export_commit_patch() {
+    local commitHash="$1"
+    local patchFile="$2"
+
+    git show "$commitHash" > "$patchFile"
+}
+
+function f_git_import_commit_patch() {
+    local patchFile="$1"
+
+    git apply "$patchFile"
+}
