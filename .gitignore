@@ -296,6 +296,7 @@ Library/Application Support/Code/User/globalStorage/vscodevim.vim
 Library/Application Support/Code/User/globalStorage/ms-vscode-remote.remote-containers/cli-bin
 Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand
 Library/Application Support/Code/User/globalStorage/github.copilot-chat
+Library/Application Support/Code/User/globalStorage/ms-python.python/pythonLocator/*.json
 # Aider
 .aider.chat.history.md
 .aider.input.history
