@@ -92,7 +92,8 @@ if is_profile_admin_or_similar; then
     #           && (echo "Install conda shell profiles"; sudo conda init --quiet)
 
     # Browser
-    is_macos   &&  homebrew_brew_cask_install              "google-chrome"
+    is_macos   &&  homebrew_brew_cask_install              "google-chrome"              # Day to day
+    is_macos   &&  homebrew_brew_cask_install              "google-chrome-beta"         # Web dev
     is_fedora  &&  fedora_dnf_install                      "google-chrome-beta"
     is_macos   &&  homebrew_brew_cask_install               "firefox"
     is_fedora  &&  fedora_dnf_install                      "firefox"
