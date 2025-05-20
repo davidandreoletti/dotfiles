@@ -37,7 +37,7 @@ jobs:
          platform: ['linux']
          bootstrap_type: ['machine+dotfiles']
          user_profile: ['admin', 'dev_single'] # debug: 'machine','dotfiles'
-         os_version: ['fedora:40', 'fedora:41']
+         os_version: ['fedora:41', 'fedora:latest']
 
       name: '${{ matrix.platform }}/${{ matrix.os_version }}/${{ matrix.user_profile }}'
       secrets: inherit
