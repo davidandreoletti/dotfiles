@@ -145,6 +145,11 @@ fi
 # Set user/system defaults
 bash "${BOOSTRAP_DIR}/macosx/shell/defaults.sh"
 timemachine_defaults
+if test "$BOOTSTRAP_SKIP_MACOS_TIMEMACHINE_START_BACKUP" = "0"; then
+    message_info_show "Skip Timemachine start backup"
+else
+    timemachine_start_backup
+fi
 
 # Set TimeMachine backup
 # tmutil destinationinfo

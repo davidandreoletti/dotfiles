@@ -38,5 +38,8 @@ timemachine_defaults() {
     sudo cat "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     sudo plutil -convert binary1 "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     sudo tmutil enable
+}
+
+timemachine_start_backup() {
     sudo tmutil startbackup
 }
