@@ -107,6 +107,8 @@ local function config()
     setup_lsp(lspconfig, lsp_cmp_capabilities, "clojure_lsp")
     -- astrojs
     setup_lsp(lspconfig, lsp_cmp_capabilities, "astro")
+    -- harper-js
+    setup_lsp(lspconfig, lsp_cmp_capabilities, 'harper_ls')
 
     mapping_diagnostics()
     mapping_goto()

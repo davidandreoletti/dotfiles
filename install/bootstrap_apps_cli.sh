@@ -513,6 +513,9 @@ if is_profile_admin_or_similar; then
     # File system file content hashing
     is_cli_priority "optional" && homebrew_brew_install                  "md5deep"             # Hashdeep for to check against  whole file system corruption
 
+    # Grammer checker
+    is_cli_priority "optional" && homebrew_brew_install                  "harper"              # Fast grammar checker
+
     # K8s
     is_cli_priority "optional" && is_fedora &&  homebrew_brew_install    "kubectl"             # K8s client only
     is_cli_priority "optional" && is_archl  &&  homebrew_brew_install    "kubectl"
