@@ -97,6 +97,8 @@ local function config()
     setup_lsp(lspconfig, lsp_cmp_capabilities, "ltex")
     -- json
     setup_lsp(lspconfig, lsp_cmp_capabilities, "jsonls")
+    -- yaml
+    setup_lsp(lspconfig, lsp_cmp_capabilities, "yamlls")
     -- html
     setup_lsp(lspconfig, lsp_cmp_capabilities, "html")
     -- dockerfile
