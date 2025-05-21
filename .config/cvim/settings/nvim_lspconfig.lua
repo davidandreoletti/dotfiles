@@ -58,22 +58,24 @@ end
 
 local function setup_lsp(lspconfig, lsp_capabilities, lsp_name)
     -- Install + Setup LSP
-    lspconfig[lsp_name].setup({
+    vim.lsp.config(lsp_name,{
         -- Enable LSP with additional completion capabilities
         capabilities = lsp_capabilities,
     })
+
+    -- Mason's automatic_enable call this function
+    -- vim.lsp.enable(lsp_name)
 end
 
 local function config()
     -- Setup Language servers
-    local lspconfig = require('lspconfig')
 
     -- IMPORTANT: Each call to setup_lsp() trigers:
     --            - a request to install the language server binaries (via mason)
---  --            - setup the LSP
---  --
+    --            - setup the LSP
+    --
     -- - mapping between a lspconfig's LSP name and Mason's LSP name found here:
-    --   - https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
+    --   - https://github.com/mason-org/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
 
     local cmp = require('cmp_nvim_lsp')
     local lsp_cmp_capabilities = cmp.default_capabilities()

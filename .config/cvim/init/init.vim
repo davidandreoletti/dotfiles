@@ -173,11 +173,12 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
     " LSP source for auto completion
     let cvim_plugins.nvim_cmp = { 'name': 'hrsh7th/cmp-nvim-lsp', 'lazy': 1, 'dependencies': { 'hrsh7th/nvim-cmp':{'lazy': 1} }, }
     " mason: Language Server Protocols binary installer
-    let cvim_plugins.mason = { 'name': 'williamboman/mason.nvim', 'setting': "$HOME/.config/cvim/settings/nvim_mason.lua" }
+    let cvim_plugins.mason = { 'name': 'mason-org/mason.nvim', 'setting': "$HOME/.config/cvim/settings/nvim_mason.lua" }
     " Bridge layer between lspconfig and mason
-    let cvim_plugins.mason_lspconfig = { 'name': 'williamboman/mason-lspconfig.nvim', 'dependencies': { 'williamboman/mason.nvim':{'lazy': 1} }, 'setting': "$HOME/.config/cvim/settings/nvim_mason-lspconfig.lua" }
+    let cvim_plugins.mason_lspconfig = { 'name': 'mason-org/mason-lspconfig.nvim', 'dependencies': { 'mason-org/mason.nvim':{'lazy': 1} }, 'setting': "$HOME/.config/cvim/settings/nvim_mason-lspconfig.lua" }
     " lspconfig: LSP client config
-    let cvim_plugins.lspconfig = { 'name': 'neovim/nvim-lspconfig', 'dependencies': { 'williamboman/mason-lspconfig.nvim':{'lazy': 1} }, 'setting': "$HOME/.config/cvim/settings/nvim_lspconfig.lua" }
+    "let cvim_plugins.lspconfig = { 'name': 'neovim/nvim-lspconfig', 'dependencies': { 'mason-org/mason-lspconfig.nvim':{'lazy': 1} }, 'setting': "$HOME/.config/cvim/settings/nvim_lspconfig.lua" }
+    let cvim_plugins.lspconfig = { 'name': 'neovim/nvim-lspconfig', 'dependencies': { 'mason-org/mason-lspconfig.nvim':{'lazy': 1} }, 'setting': "$HOME/.config/cvim/settings/nvim_lspconfig.lua" }
     " treesitter
     let cvim_plugins.treesitter = { 'name': 'nvim-treesitter/nvim-treesitter', 'post_update_hook': ':TSUpdate', 'setting': "$HOME/.config/cvim/settings/nvim_treesitter.lua" }
 endif
