@@ -1,0 +1,69 @@
+# Test thoughput with 1MB io size in sequential testing (larger than actual disk io size)
+# - actual io size to sent to the device will be lower (see iostat's avgrq-sz where 1sector=512bytes)
+# -- actual io size determined by
+# --- 1. sector
+# ---- cat /sys/block/sdX/queue/max_sectors_kb - max size in KB to be passed down. 
+# ---- Max sector IO: 512KB (ie 1024 sector)
+# ---- echo "1024" > /..../max_sectors_kb to see if avgrq-sz increase with the same fio test
+# --- 2. segments
+# ---- cat /sys/block/sdX/queue/max_segments - max hardware scatter-gather memory buffers (unitless)
+# ---- cat /sys/block/sdX/queue/max_segment_size - max segment size (in K)
+# ---- Max segment IO: max_segments (unitless) * max_segment_size (K) = 128 x 4 = 512K
+#
+# FIXME: what about hugepage impact ? https://www.n0derunner.com/why-does-my-ssd-not-issue-1mb-ios/
+
+# https://www.n0derunner.com/why-does-my-ssd-not-issue-1mb-ios/
+[global]
+ioengine=${FIO_IOENGINE}
+direct=1
+invalidate=${FIO_INVALIDATE_CACHE_LAYER}
+ramp_time=30
+iodepth=64
+runtime=120
+time_based
+numjobs=4
+size=1G
+exitall_on_error
+group_reporting
+
+[write-1024k-seq]
+stonewall
+bs=1024k
+rw=write
+write_bw_log=${FIO_TEST_FILE_NAME}-1024k-${FIO_TARGET_NAME}-write-seq.results
+write_iops_log=${FIO_TEST_FILE_NAME}-1024k-${FIO_TARGET_NAME}-write-seq.results
+
+[randwrite-1024k-seq]
+stonewall
+bs=1024k
+rw=randwrite
+write_bw_log=${FIO_TEST_FILE_NAME}-1024k-${FIO_TARGET_NAME}-randwrite-seq.results
+write_iops_log=${FIO_TEST_FILE_NAME}-1024k-${FIO_TARGET_NAME}-randwrite-seq.results
+
+[read-1024k-seq]
+stonewall
+bs=1024k
+rw=read
+write_bw_log=${FIO_TEST_FILE_NAME}-1024k-${FIO_TARGET_NAME}-read-seq.results
+write_iops_log=${FIO_TEST_FILE_NAME}-1024k-${FIO_TARGET_NAME}-read-seq.results
+
+[randread-1024k-seq]
+stonewall
+bs=1024k
+rw=randread
+write_bw_log=${FIO_TEST_FILE_NAME}-1024k-${FIO_TARGET_NAME}-randread-seq.results
+write_iops_log=${FIO_TEST_FILE_NAME}-1024k-${FIO_TARGET_NAME}-randread-seq.results
+
+[rw-1024k-seq]
+stonewall
+bs=1024k
+rw=rw
+write_bw_log=${FIO_TEST_FILE_NAME}-1024k-${FIO_TARGET_NAME}-rw-seq.results
+write_iops_log=${FIO_TEST_FILE_NAME}-1024k-${FIO_TARGET_NAME}-rw-seq.results
+
+[randrw-1024k-seq]
+stonewall
+bs=1024k
+rw=randrw
+write_bw_log=${FIO_TEST_FILE_NAME}-1024k-${FIO_TARGET_NAME}-randrw-seq.results
+write_iops_log=${FIO_TEST_FILE_NAME}-1024k-${FIO_TARGET_NAME}-randrw-seq.results
