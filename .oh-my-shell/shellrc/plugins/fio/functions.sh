@@ -19,7 +19,7 @@ f_fio_run_mounted_disk_perf() {
         io_engine="posixaio"
     elif is_linux; then
         # Prefer io_uring
-        if grep io_uring_setup /proc/kallsyms; then
+        if grep -q io_uring_setup /proc/kallsyms; then
             io_engine="io_uring"
         else
             io_engine="libaio"
