@@ -163,6 +163,9 @@ if is_profile_admin_or_similar; then
     # File listing color customization
     is_cli_priority "critical" && homebrew_brew_install                  "vivid"               # Customize LS_COLORS
 
+    # Disk performance
+    is_cli_priority "optional" && homebrew_brew_install                  "fio"
+
     # Debugger
     if is_arch_x86_64; then
         is_cli_priority "optional" && homebrew_brew_install              "gdb"                 # versatile debugger
