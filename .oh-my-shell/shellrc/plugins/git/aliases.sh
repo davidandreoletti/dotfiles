@@ -18,7 +18,7 @@ alias git_set_user_executable_bit='f_git_setUserExecutableBit'
 # Usage: git_reset_author "some hash"
 alias git_reset_author='f_git_resetAuthor'
 
-# Export git commit as a patch file 
+# Export git commit as a patch file
 # Usage: git_export_commit_patch "some hash" "/path/to/file.patch"
 alias git_export_commit_patch='f_git_export_commit_patch '
 

@@ -5,4 +5,3 @@ if command_exists 'dua'; then
 elif command_exists 'ncdu'; then
     alias tdisk_usage_analyzer='ncdu '
 fi
-

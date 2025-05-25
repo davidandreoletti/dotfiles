@@ -3,4 +3,3 @@ if f_is_macos; then
 elif f_is_linux; then
     alias mdns_browse='avahi-browse --all'
 fi
-

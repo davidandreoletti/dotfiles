@@ -29,7 +29,7 @@ function f_git_export_commit_patch() {
     local commitHash="$1"
     local patchFile="$2"
 
-    git show "$commitHash" > "$patchFile"
+    git show "$commitHash" >"$patchFile"
 }
 
 function f_git_import_commit_patch() {
