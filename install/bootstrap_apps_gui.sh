@@ -99,7 +99,7 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  fedora_dnf_install                      "firefox"
 
     # Video player
-    is_macos   &&  homebrew_brew_cask_install              "vlc"
+    is_macos   &&  homebrew_brew_cask_install              "vlc@nightly"
     is_fedora  &&  fedora_dnf_install                      "vlc"
 
     # Virtualization
