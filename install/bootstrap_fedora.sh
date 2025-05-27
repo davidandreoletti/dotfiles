@@ -148,8 +148,9 @@ if test "$BOOTSTRAP_SKIP_OS_SOFTWARE_UPDATE_SETUP" = "0"; then
     message_info_show "Skip OS software updates"
 else
     message_info_show "Softwares updates checks / installations ..."
-    softwareupdate_list_pending_updates
-    softwareupdate_updates_install
+    if softwareupdate_list_pending_updates; then
+        softwareupdate_updates_install
+    fi
 fi
 
 # Users Administration
