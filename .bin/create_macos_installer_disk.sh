@@ -4,4 +4,3 @@ macOSVersionName="${1:-Ventura}"
 volumeToCreateImgOnto="${2:-/Volumes/Missing}"
 
 sudo /Applications/Install\ macOS\ ${macOSVersionName}.app/Contents/Resources/createinstallmedia --volume "$volumeToCreateImgOnto"
-
