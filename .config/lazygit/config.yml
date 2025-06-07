@@ -1,35 +1,31 @@
 notARepository: quit
 disableStartupPopups: true
 update:
-    method: never
+  method: never
 git:
-    update:
-        days: 0
+  update:
+    days: 0
 gui:
-    screenMode: 'normal'
-    language: 'en'
+  screenMode: 'normal'
+  language: 'en'
 keybinding:
-    universal:
-        select: 's' # was '<space>'
-    files:
-        # select: 's' conflicts with
-        stashAllChanges: 's'
-        #viewStashOptions: 'S'
-
+  universal:
+    select: 's' # was '<space>'
+  files:
+    # select: 's' conflicts with
+    stashAllChanges: 's'
+    #viewStashOptions: 'S'
 customCommands:
   # Blame via tig
   - key: b
     command: tig blame -- {{.SelectedFile.Name}}
     context: files
     description: blame file at tree
-    subprocess: yes
   - key: b
     command: tig blame {{.SelectedCommit.Sha}} -- {{.SelectedCommitFile.Name}}
     context: commitFiles
     description: blame file at revision
-    subprocess: yes
   - key: B
     command: tig blame -- {{.SelectedCommitFile.Name}}
     context: commitFiles
     description: blame file at tree
-    subprocess: yes
