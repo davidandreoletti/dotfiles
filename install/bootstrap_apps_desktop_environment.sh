@@ -26,6 +26,9 @@ if is_profile_admin_or_similar; then
 
     # File Manager
     is_fedora  &&  fedora_dnf_install "nautilus"
+    is_fedora  &&  fedora_dnf_install "gvfs"
+    is_fedora  &&  fedora_dnf_install "gvfs-smb"
+    is_fedora  &&  fedora_dnf_install "gvfs-fuse"
     # - show user directories in file manager side bar
     is_fedora  &&  fedora_dnf_install "xdg-user-dirs"
     is_fedora  &&  fedora_dnf_install "xdg-user-dirs-gtk"
