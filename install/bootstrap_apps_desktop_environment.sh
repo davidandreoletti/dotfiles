@@ -44,6 +44,9 @@ if is_profile_admin_or_similar; then
     # Wallpaper
     is_fedora  &&  fedora_dnf_install "variety"
 
+    # USB-IP
+    is_fedora  &&  fedora_dnf_install "usbip"
+
     is_fedora  &&  fedora_dnf_install "__commit_aggregated__"
 
     true
