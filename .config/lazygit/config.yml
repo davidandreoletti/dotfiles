@@ -1,5 +1,6 @@
 notARepository: quit
 disableStartupPopups: true
+useHunkModeInStagingView: false
 update:
   method: never
 git:
