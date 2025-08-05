@@ -1,3 +1,140 @@
 {
-    "packages": []
+    "packages": [
+        {
+            "current_version": "0.5",
+            "install_timestamp": 1751439287,
+            "package": {
+                "author": {
+                    "contact": {
+                        "web": "https://github.com/Sajitha-Aldeniya"
+                    },
+                    "name": "Sajitha Aldeniya"
+                },
+                "description": "User-friendly library package for beginners",
+                "description_full": "Simple Libraries library pack is a collection of common electronic components libraries for the free and open-source KiCAD PCB design software. The goal of Simple Libraries is to provide a user-friendly library package  for beginners. Components like resistors and capacitors are name base on the values like 10k,100ohm, 22uF… So users can directly search for the value and directly add it to their design. ",
+                "identifier": "com.github.Sajitha-Aldeniya.KiCad-Simple-Libraries",
+                "license": "CC-BY-SA-4.0",
+                "maintainer": {
+                    "contact": {
+                        "web": "https://github.com/Sajitha-Aldeniya/KiCad-Simple-Libraries"
+                    },
+                    "name": "Sajitha Aldeniya"
+                },
+                "name": "Simple Libraries",
+                "resources": {
+                    "GitHub": "https://github.com/Sajitha-Aldeniya/KiCad-Simple-Libraries"
+                },
+                "type": "library",
+                "versions": [
+                    {
+                        "download_sha256": "ce506a2c13bd9284470fb76d9399f40f06e4d942ff38812c0f108234056602f8",
+                        "download_size": 32873247,
+                        "download_url": "https://github.com/Sajitha-Aldeniya/KiCad-Simple-Libraries/releases/download/v0.5/KiCad_Simple_Libraries_v0.5.zip",
+                        "install_size": 168306828,
+                        "kicad_version": "7",
+                        "status": "development",
+                        "version": "0.5"
+                    }
+                ]
+            },
+            "pinned": false,
+            "repository_id": "46f88614eade3439",
+            "repository_name": "KiCad official repository"
+        },
+        {
+            "current_version": "1.0.2",
+            "install_timestamp": 1751439287,
+            "package": {
+                "author": {
+                    "contact": {
+                        "web": "https://www.pcbway.com"
+                    },
+                    "name": "PCBWay.com"
+                },
+                "description": "Start prototype and assembly by sending files to PCBWay with just one click.",
+                "description_full": "Click this plugin for high quality prototyping and assembly services, PCBWay will commit to meeting your needs to the greatest extent.\n\nWhen you click PCBWay Plug-in button, we will export these files in your project:\n\n1. Gerber files in correct format for production\n2. IPC-Netlist file\n3. Bom-file that includes all information of components (please note designator, quantity, MPN/part number, package/footprint are necessary)\n4. Pick and Place-file used in assembly\n\nYou can click \"Save to Cart\" to place an order immediately after uploading the files ( usually only takes a few seconds), our engineers will double check the files before the production.\n\nAbout PCBWay:\n\nPCBWay is a Chinese company specializing in PCB prototyping and assembly, devotes to offer one-stop service. The build-time for standard PCBs is 24hrs. Our upgraded material with TG150-160 costs as low as $5/10pcs while our remarkable after-sale services are standing by for any questions you may encounter. As a sponsor of KiCad, we will always support its development.",
+                "identifier": "com.github.pcbway.PCBWay-Plug-in-for-Kicad",
+                "license": "MIT",
+                "maintainer": {
+                    "contact": {
+                        "web": "https://www.pcbway.com"
+                    },
+                    "name": "PCBWay.com"
+                },
+                "name": "PCBWay Plug-in for KiCad",
+                "resources": {
+                    "homepage": "https://github.com/pcbway/PCBWay-Plug-in-for-Kicad"
+                },
+                "type": "fab",
+                "versions": [
+                    {
+                        "download_sha256": "69355ae2356b664b05ad7438b8004f823300f75b4496d198c5c38cf6af686e67",
+                        "download_size": 13320,
+                        "download_url": "https://github.com/pcbway/PCBWay-Plug-in-for-Kicad/releases/download/v1.0.2/KiCadToPCBWay_v1.0.2.zip",
+                        "install_size": 27954,
+                        "kicad_version": "6.00",
+                        "status": "stable",
+                        "version": "1.0.2"
+                    }
+                ]
+            },
+            "pinned": false,
+            "repository_id": "46f88614eade3439",
+            "repository_name": "KiCad official repository"
+        },
+        {
+            "current_version": "2.10.0",
+            "install_timestamp": 1751439983,
+            "package": {
+                "author": {
+                    "contact": {
+                        "email": "mail@qu1ck.org"
+                    },
+                    "name": "qu1ck"
+                },
+                "description": "Generate interactive html BOM to assist with manual pcb assembly",
+                "description_full": "This plugin generates a convenient Bill of Materials (BOM) listing with the ability to visually correlate and easily search for components and their placements on the PCB. It is particularly useful when hand-soldering a prototype, as it allows users to quickly find locations of components groups on the board. It is also possible to reverse lookup the component group by clicking on a footprint on the board drawing.\nThe plugin utilizes Pcbnew python API to read PCB data and render silkscreen, fab layer, footprint pads, text, and drawings. BOM table fields and grouping is fully configurable, additional columns, such as a manufacturer ID, can be added in Schematic editor and imported either through the netlist file, XML file generated by Eeschema's internal BOM tool, or from board file itself.\nThere is an option to include tracks/zones data as well as netlist information allowing dynamic highlight of nets on the board.",
+                "identifier": "org.openscopeproject.InteractiveHtmlBom",
+                "keep_on_update": [
+                    ".*/config\\.ini",
+                    ".*/web/user.*"
+                ],
+                "license": "MIT",
+                "name": "Interactive Html Bom",
+                "resources": {
+                    "Demos": "https://openscopeproject.org/InteractiveHtmlBomDemo/",
+                    "Forum": "https://forum.kicad.info/t/interactive-html-bom-plugin-for-kicad-5-0/11713",
+                    "Github": "https://github.com/openscopeproject/InteractiveHtmlBom",
+                    "Wiki": "https://github.com/openscopeproject/InteractiveHtmlBom/wiki"
+                },
+                "tags": [
+                    "bom",
+                    "pcbnew",
+                    "html",
+                    "assembly",
+                    "documentation"
+                ],
+                "type": "plugin",
+                "versions": [
+                    {
+                        "download_sha256": "f40d509ba74bc2c879d1c39e3535f1551bb63dd4014ca28242632fb12a107c55",
+                        "download_size": 150310,
+                        "download_url": "https://github.com/openscopeproject/InteractiveHtmlBom/releases/download/v2.10.0/InteractiveHtmlBom_v2.10.0_pcm.zip",
+                        "install_size": 733010,
+                        "kicad_version": "6.0",
+                        "platforms": [
+                            "linux",
+                            "macos",
+                            "windows"
+                        ],
+                        "status": "stable",
+                        "version": "2.10.0"
+                    }
+                ]
+            },
+            "pinned": false,
+            "repository_id": "46f88614eade3439",
+            "repository_name": "KiCad official repository"
+        }
+    ]
 }

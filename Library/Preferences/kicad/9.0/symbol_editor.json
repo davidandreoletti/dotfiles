@@ -58,7 +58,9 @@
       "Item",
       "Description"
     ],
-    "open_libs": []
+    "open_libs": [
+      "MCU_Microchip_PIC32"
+    ]
   },
   "library": {
     "sort_mode": 0
