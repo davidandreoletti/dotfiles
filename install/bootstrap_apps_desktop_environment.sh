@@ -20,9 +20,9 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  fedora_dnf_install "__commit_aggregated__"
 
     # Enable login using graphical interface
-    is_fedora  &&  sudo ${SUDO_OPTIONS} systemctl enable gdm; 
+    is_fedora  &&  sudo ${SUDO_OPTIONS} systemctl enable gdm;
     # Boot to graphical interface as default
-    is_fedora  &&  sudo ${SUDO_OPTIONS} systemctl set-default graphical.target; 
+    is_fedora  &&  sudo ${SUDO_OPTIONS} systemctl set-default graphical.target;
 
     # File Manager
     is_fedora  &&  fedora_dnf_install "nautilus"
@@ -46,6 +46,8 @@ if is_profile_admin_or_similar; then
 
     # USB-IP
     is_fedora  &&  fedora_dnf_install "usbip"
+    is_fedora  &&  sudo ${SUDO_OPTIONS} systemctl enable "usbip-client"
+    is_fedora  &&  sudo ${SUDO_OPTIONS} systemctl enable "usbip-server"
 
     is_fedora  &&  fedora_dnf_install "__commit_aggregated__"
 
