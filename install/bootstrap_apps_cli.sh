@@ -378,6 +378,7 @@ if is_profile_admin_or_similar; then
     if ! test "$BOOTSTRAP_SKIP_UNSUPPORTED_CPU_SETUP" = "0"
     then
         is_cli_priority "optional" && is_macos  && homebrew_brew_install     "multipass"       # Ubuntu's multipass
+        is_cli_priority "optional" && is_macos  && homebrew_brew_install     "quickemu"
     fi
 
     # ISO
