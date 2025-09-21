@@ -166,6 +166,9 @@ if is_profile_admin_or_similar; then
     #is_macos   &&  homebrew_brew_cask_install              "spyder"             # Python/R datasciense IDE
     #is_fedora  &&  fedora_dnf_install                      "python3-spyder"
 
+    # Encryption container
+    is_macos   &&  homebrew_brew_cask_install              "veracrypt"          # Disk encryption software
+
     # X11
     is_macos   &&  homebrew_brew_cask_install              "xquartz"            # X.Org X Window System
 
