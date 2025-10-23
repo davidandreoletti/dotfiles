@@ -175,6 +175,9 @@ if is_profile_admin_or_similar; then
     is_cli_priority "optional" && homebrew_brew_install                  "aerc"
     is_cli_priority "optional" && homebrew_brew_install                  "himalaya"
 
+    # Email filter
+    is_cli_priority "optional" && homebrew_brew_install                  "imapfilter"          # Run filters to move/delete emails on remote email servers
+
     # IRC client
     is_cli_priority "optional" && homebrew_brew_install                  "irssi"               # IRC client. Note: --with-perl=yes --with-proxy included since brew irssi formula v1.2.3
 
