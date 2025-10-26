@@ -89,4 +89,4 @@ for f in "$USER_SSH_AGENT_ENV_0" "$USER_SSH_AGENT_ENV_1"; do
     fi
 done
 
-rm -f "$SSH_AGENT_SETUP_SCRIPT"
+command rm -f "$SSH_AGENT_SETUP_SCRIPT"
