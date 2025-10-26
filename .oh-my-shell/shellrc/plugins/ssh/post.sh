@@ -13,6 +13,11 @@
 SSH_AGENT_SETUP_SCRIPT="/tmp/$USER.ssh_agent_setup.sh"
 
 cat <<EOF >$SSH_AGENT_SETUP_SCRIPT
+    #Debug script
+    #set -x
+    #exec >> /tmp/\$USER.\$PID.ssh.agent.setup.log
+    #exec 2>&1
+
     USER_SSH_AGENT_ENV="\$1"
     USER_SSH_AGENT_ENV_NAME="\$(basename \$1)"
 
@@ -51,6 +56,9 @@ cat <<EOF >$SSH_AGENT_SETUP_SCRIPT
     # Add new ssh-agent environment configuration
     echo 'export SSH_AUTH_SOCK'=\$SSH_AUTH_SOCK >>"\$USER_SSH_AGENT_ENV"
     echo 'export SSH_AGENT_PID'=\$SSH_AGENT_PID >>"\$USER_SSH_AGENT_ENV"
+
+    # Link ssh-agent socket to normalized paths
+    ln -s -f "\$SSH_AUTH_SOCK" "\$HOME/.ssh/agent/env/\$USER_SSH_AGENT_ENV_NAME.socket"
 EOF
 
 # Create a single ssh-agent instance across all terminal sessions, for each predefined agent
