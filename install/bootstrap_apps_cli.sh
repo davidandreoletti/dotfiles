@@ -178,6 +178,9 @@ if is_profile_admin_or_similar; then
     # Email filter
     is_cli_priority "optional" && homebrew_brew_install                  "imapfilter"          # Run filters to move/delete emails on remote email servers
 
+    # Email backend
+    is_cli_priority "optional" && homebrew_brew_install                  "isync"               # Sync Maildir to IMAP server
+
     # IRC client
     is_cli_priority "optional" && homebrew_brew_install                  "irssi"               # IRC client. Note: --with-perl=yes --with-proxy included since brew irssi formula v1.2.3
 
