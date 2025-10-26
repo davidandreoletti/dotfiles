@@ -204,7 +204,7 @@ format='[$symbol($output)]($style)'
 [custom.ssh_no_keys]
 disabled = false
 description = "SSH missing keys"
-when = "ssh-add -l | grep -q 'no identities'"
+when = ". ~/.ssh/agent/env/default; ssh-add -l | grep -q 'no identities'"
 command = "echo 0"
 format = "$symbol[$output]($style) "
 shell = ["bash", "--noprofile", "--norc"]
@@ -214,8 +214,8 @@ style = "bold fg:red"
 [custom.ssh_keys]
 disabled = false
 description = "SSH key count"
-when = "ssh-add -l | grep -v -q 'no identities'"
-command = "ssh-add -l | grep -v 'no identities' | wc -l"
+when = ". ~/.ssh/agent/env/default; ssh-add -l | grep -v -q 'no identities'"
+command = ". ~/.ssh/agent/env/default; ssh-add -l | grep -v 'no identities' | wc -l"
 format = "$symbol[$output]($style) "
 shell = ["bash", "--noprofile", "--norc"]
 symbol = ""
