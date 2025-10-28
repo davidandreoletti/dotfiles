@@ -45,6 +45,7 @@ dot_plugin_if_exists "util_linux"                   # Expose other linux tools, 
 dot_plugin_if_exists "dotfiles"                     # Expose DOTFILES_HOME, DOTFILES_PRIVATE_HOME to other plugins
 dot_plugin_if_exists "android"
 dot_plugin_if_exists "administrator"
+dot_plugin_if_exists "aerc"
 dot_plugin_if_exists "rustup"
 dot_plugin_if_exists "cargo"                        # Depends on: rustup. Exposes function to install rust applications from crates
 dot_plugin_if_exists "ai"
