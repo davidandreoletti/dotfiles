@@ -181,6 +181,9 @@ if is_profile_admin_or_similar; then
     # Email backend
     is_cli_priority "optional" && homebrew_brew_install                  "isync"               # Sync Maildir to IMAP server
 
+    # Email tooling
+    #is_cli_priority "optional" && homebrew_brew_install                  "gmailctl"            # Modify Gmail filters with CLI
+
     # IRC client
     is_cli_priority "optional" && homebrew_brew_install                  "irssi"               # IRC client. Note: --with-perl=yes --with-proxy included since brew irssi formula v1.2.3
 
