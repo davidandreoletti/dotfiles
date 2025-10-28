@@ -5,7 +5,7 @@ timemachine_has_entry_value() {
     local value="$2"
     local file="$3"
 
-    sudo /usr/libexec/PlistBuddy -c "Print $path" "$file" | grep "$value" 
+    sudo /usr/libexec/PlistBuddy -c "Print $path" "$file" | grep "$value"
 }
 
 timemachine_add_unique_exclusion_entry() {
@@ -24,7 +24,7 @@ timemachine_add_new_array_entry() {
 timemachine_defaults() {
     sudo tmutil disable
     # Excludes additional folders from Time Machine
-    sudo plutil -convert xml1 "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE" 
+    sudo plutil -convert xml1 "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     ## System wide excludes
     timemachine_has_entry_value "SkipPaths" "/Applications" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE" || timemachine_add_new_array_entry "SkipPaths" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     timemachine_add_unique_exclusion_entry "SkipPaths" "/Applications" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
@@ -35,6 +35,7 @@ timemachine_defaults() {
     ###       sudo mdfind "com_apple_backup_excludeItem = 'com.apple.backupd'"
     timemachine_add_unique_exclusion_entry "SkipPaths" "$HOME/.cache" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     timemachine_add_unique_exclusion_entry "SkipPaths" "$HOME/Library/Caches" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
+    timemachine_add_unique_exclusion_entry "SkipPaths" "$HOME/.mail" "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     sudo cat "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     sudo plutil -convert binary1 "$DEFAULT_TIMEMACHINE_EXCLUSION_LIST_FILE"
     sudo tmutil enable
