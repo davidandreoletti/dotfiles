@@ -29,6 +29,9 @@ if f_run_every_x_seconds "$HOMEBREW_POST_MARKER" "$((3600 * 24 * 30))"; then
     # Upgrade non cask packages
     # - upgrade non casks
     brew upgrade 2>&1;
+
+    # Reinstall pipx packages whenever brew's installed python versions are updated
+    pipx reinstall-all
 EOF
 
     cat <<EOF >"$HOMEBREW_PACKAGES_UPGRADE_SCRIPT2"
