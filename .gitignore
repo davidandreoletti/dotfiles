@@ -285,6 +285,7 @@ data.json
 .colima/_lima/*
 .colima/ssh_config
 .colima/default/*
+.colima/_store/*
 # VSCode
 Library/Application Support/Code/User/History
 Library/Application Support/Code/User/sync
