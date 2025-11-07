@@ -156,6 +156,7 @@ if is_profile_admin_or_similar; then
     # Remote desktop
     is_macos   &&  homebrew_brew_install                   "tiger-vnc"
     is_fedora  &&  fedora_dnf_install                      "remmina"
+    is_macos   &&  homebrew_brew_cask_install              "moonlight"          # Client for Sunshine
     is_macos   &&  homebrew_brew_cask_install              "parsec"             # Local/Remote LAN stream
 
     # ToS
