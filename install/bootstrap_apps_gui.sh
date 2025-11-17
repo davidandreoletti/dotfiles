@@ -66,8 +66,10 @@ if is_profile_admin_or_similar; then
     # Terminal
     is_macos   &&  homebrew_brew_cask_install              "kitty"
     is_fedora  &&  fedora_dnf_install                      "kitty"
+    is_archl   &&  archlinux_pacman_install                "kitty"
     is_macos   &&  homebrew_brew_cask_install              "alacritty"
     is_fedora  &&  fedora_dnf_install                      "alacritty"
+    is_archl   &&  archlinux_pacman_install                "alacritty"
 
     # Docker repository
     # - from upstream rather than distribution packages
@@ -84,23 +86,31 @@ if is_profile_admin_or_similar; then
                &&  systemd_systemctl_enable docker.service                            \
                &&  systemd_systemctl_start docker.service
     is_macos   &&  echo "FIXME: Install docker-desktop (required) with https://docs.docker.com/desktop/install/mac-install/#install-from-the-command-line. Then automate the installation"
+    is_archl   &&  archlinux_pacman_install                "docker" \
+               &&  archlinux_pacman_install                "containerd" \
+               &&  archlinux_pacman_install                "docker-compose" \
+               &&  archlinux_pacman_install                "__commit_aggregated__"
 
     # Anaconda
     is_macos   &&  homebrew_brew_cask_install              "miniconda"
     #is_fedora  &&  fedora_dnf_install                      "conda"                  \
     #           &&  fedora_dnf_install                      "__commit_aggregated__"  \
     #           && (echo "Install conda shell profiles"; sudo conda init --quiet)
+    is_archl   &&  archlinux_pacman_install                "miniconda"
 
     # Browser
     is_macos   &&  homebrew_brew_cask_install              "google-chrome"              # Day to day
     is_macos   &&  homebrew_brew_cask_install              "google-chrome-beta"         # Web dev
     is_fedora  &&  fedora_dnf_install                      "google-chrome-beta"
+    is_archl   &&  archlinux_pacman_install                "google-chrome"
     is_macos   &&  homebrew_brew_cask_install               "firefox"
     is_fedora  &&  fedora_dnf_install                      "firefox"
+    is_archl   &&  archlinux_pacman_install                "firefox"
 
     # Video player
     is_macos   &&  homebrew_brew_cask_install              "vlc@nightly"
     is_fedora  &&  fedora_dnf_install                      "vlc"
+    is_archl   &&  archlinux_pacman_install                "vlc"
 
     # Virtualization
     is_macos   &&  homebrew_brew_cask_install              "utm@beta"             # Qemu GUI
@@ -108,18 +118,22 @@ if is_profile_admin_or_similar; then
     # IDE
     is_macos   &&  homebrew_brew_cask_install              "jetbrains-toolbox"
     is_fedora  &&  bash_command_curl_no_sudo               "https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/20c25238c4c1c5a2f1807c200ac3a68e4d1cd3c3/jetbrains-toolbox.sh"
+    is_archl   &&  archlinux_pacman_install                "jetbrains-toolbox"
 
     # Books
     is_macos   &&  homebrew_brew_cask_install              "calibre"
     is_fedora  &&  fedora_dnf_install                      "calibre"
+    is_archl   &&  archlinux_pacman_install                "calibre"
 
     # Torrent
     is_macos   &&  homebrew_brew_cask_install              "transmission"
     is_fedora  &&  fedora_dnf_install                      "transmission"
+    is_archl   &&  archlinux_pacman_install                "transmission"
 
     # File transfer
     is_macos   &&  homebrew_brew_cask_install              "dropbox"
     is_fedora  &&  fedora_dnf_install                      "dropbox"
+    is_archl   &&  archlinux_pacman_install                "dropbox"
     is_macos   &&  homebrew_brew_cask_install              "cyberduck"
     #is_fedora  &&  fedora_dnf_install                      "filezilla"         # Filezilla may have adware. Never install this https://en.wikipedia.org/wiki/FileZilla#Bundled_adware_issues
 
@@ -130,6 +144,9 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "1password@7"
     is_macos   &&  homebrew_brew_cask_install              "keepassxc"
     is_fedora  &&  fedora_dnf_install                      "keepassxc"
+    is_archl   &&  archlinux_pacman_install                "keepassxc"
+
+    # Clean OS temp files
     is_macos   &&  homebrew_brew_cask_install              "onyx"
 
     # REST Client
@@ -140,6 +157,7 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  fedora_dnf_install                      "p7zip" \
                &&  fedora_dnf_install                      "p7zip-plugins"
     is_macos   &&  homebrew_brew_cask_install              "rar"                # RAR files
+    is_archl   &&  archlinux_pacman_install                "p7zip"
 
     # HTTP forgery
     is_macos   &&  homebrew_brew_cask_install              "http-toolkit"
@@ -156,12 +174,15 @@ if is_profile_admin_or_similar; then
     # Remote desktop
     is_macos   &&  homebrew_brew_install                   "tiger-vnc"
     is_fedora  &&  fedora_dnf_install                      "remmina"
+    is_archl   &&  archlinux_pacman_install                "remmina"
     is_macos   &&  homebrew_brew_cask_install              "moonlight"          # Client for Sunshine
+    is_archl   &&  archlinux_pacman_install                "moonlight-qt"
     is_macos   &&  homebrew_brew_cask_install              "parsec"             # Local/Remote LAN stream
 
     # ToS
     is_macos   &&  homebrew_brew_cask_install              "thinkorswim"
     is_fedora  &&  app_disabled && bash_command_curl       "https://mediaserver.thinkorswim.com/installer/InstFiles/thinkorswim_installer.sh"
+    is_archl   &&  app_disabled && bash_command_curl       "https://mediaserver.thinkorswim.com/installer/InstFiles/thinkorswim_installer.sh"
 
     # Data Science
     #is_macos   &&  homebrew_brew_cask_install              "spyder"             # Python/R datasciense IDE
@@ -175,13 +196,14 @@ if is_profile_admin_or_similar; then
 
     is_macos   &&  homebrew_brew_cask_install              "qlvideo"            # Additional supported format for Finder's  Quicklook
 
-
     # VSCode
     is_macos   &&  homebrew_brew_cask_install              "visual-studio-code"  \
     is_macos   &&  homebrew_brew_cask_install              "visual-studio-code@insiders"  \
                &&  homebrew_brew_cask_install              "__commit_aggregated__"
     is_fedora  &&  fedora_dnf_install                      "code"                \
                &&  fedora_dnf_install                      "__commit_aggregated__"
+    is_archl   &&  archlinux_pacman_install                "visual-studio-code-bin" \
+               &&  archlinux_pacman_install                "__commit_aggregated__"
 
     # VSCode Extensions
     vscode_install_extension                               "ms-vscode-remote.remote-ssh"        # Remote SSH Extension: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh
@@ -209,15 +231,19 @@ if is_profile_admin_or_similar; then
     # Cloudflare-WARP
     is_macos   &&  homebrew_brew_cask_install              "cloudflare-warp"    # Cloudflare WARP client
     is_fedora  &&  fedora_dnf_install                      "cloudflare-warp"
+    is_archl   &&  archlinux_pacman_install                "Cloudflare-warp-bin"
 
     # Tailscale
     is_macos   &&  homebrew_brew_cask_install              "tailscale"         # Tailscale client
     is_fedora  &&  fedora_dnf_install                      "tailscale"             \
                &&  fedora_dnf_install                      "__commit_aggregated__" \
                &&  systemd_systemctl_enable --now tailscaled
+    is_archl   &&  archlinux_pacman_install                "tailscale" \
+               &&  archlinux_pacman_install                "__commit_aggregated__"
 
     # Personal knowledge base
     is_macos   &&  homebrew_brew_cask_install              "notion"             # Notion
+    is_archl   &&  archlinux_pacman_install                "notion"
 
     # Geography
     is_macos   &&  homebrew_brew_cask_install              "google-earth-pro"   # Google Earth
@@ -234,6 +260,7 @@ if is_profile_admin_or_similar; then
                    &&  gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab
     fi
     is_fedora  &&  fedora_dnf_install                      "google-cloud-cli"
+    is_archl   &&  archlinux_pacman_install                "google-cloud-cli"
 
     # Traffic shaping
     is_macos   &&  homebrew_brew_cask_install              "mitmproxy"         # Charles Proxy in command line
@@ -259,12 +286,15 @@ if is_profile_admin_or_similar; then
     # Embedded development
     is_macos   &&  homebrew_brew_cask_install              "platformio"        # Embedded software dev platform
     is_fedora  &&  homebrew_brew_cask_install              "platformio"
+    is_archl   &&  archlinux_pacman_install                "platformio-core" \
+               &&  archlinux_pacman_install                "platformio-core-udev"
 
     # Electronic Design
     is_macos   &&  homebrew_brew_cask_install              "kicad"             # Electronic circuit design
 
     is_macos   &&  homebrew_brew_cask_install              "__commit_aggregated__"
     is_fedora  &&  fedora_dnf_install                      "__commit_aggregated__"
+    is_archl   &&  archlinux_pacman_install                "__commit_aggregated__"
 
     is_macos   &&  homebrew_brew_install                   "mas"         #  Mac App Store command line too
     is_macos   &&  homebrew_brew_install                   "__commit_aggregated__"
