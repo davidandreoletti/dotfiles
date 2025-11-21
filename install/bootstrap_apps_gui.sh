@@ -57,6 +57,9 @@ if is_profile_admin_or_similar; then
 	    # src: https://docs.fedoraproject.org/en-US/quick-docs/installing-chromium-or-google-chrome-browsers
 	    fedora_dnf_install "fedora-workstation-repositories" \
 	    && sudo dnf config-manager --set-enabled google-chrome
+
+	    # Sunshine
+	    fedora_dnf_copr_enable "lizardbyte/stable"
     fi
 
     # Alternative stores
@@ -170,6 +173,13 @@ if is_profile_admin_or_similar; then
 
     # Markdown editor
     is_macos   &&  homebrew_brew_cask_install              "mark-text"
+
+    # Remote screen
+    # setcaap: Allow sunshine to capture KMS without root
+    is_fedora  && fedora_dnf_install                       "Sunshine" \
+               && sudo setcap cap_sys_admin+p $(readlink -f $(which sunshine)) \
+               && systemd_systemctl_enable sunshine.service
+
 
     # Remote desktop
     is_macos   &&  homebrew_brew_install                   "tiger-vnc"

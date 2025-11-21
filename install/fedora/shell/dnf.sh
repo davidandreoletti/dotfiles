@@ -86,3 +86,10 @@ fedora_dnf_config_manager_add_repo() {
     # Must use default sudo setting. Hence no: -u <user_name>
     sudo ${SUDO_OPTIONS} dnf -y config-manager --add-repo $@
 }
+
+fedora_dnf_copr_enable() {
+    local repo="$1"
+    message_info_show "Enabling dnf copr  $1  ..."
+    # Must use default sudo setting. Hence no: -u <user_name>
+    sudo ${SUDO_OPTIONS} dnf -y copr enable "$repo"
+}
