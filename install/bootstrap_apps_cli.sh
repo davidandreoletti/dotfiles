@@ -46,6 +46,7 @@ if is_profile_admin_or_similar; then
     # Python version manager
     is_cli_priority "critical" && homebrew_brew_install                  "pyenv"              # Manage python version on a per user/folder basis
     is_cli_priority "critical" && homebrew_brew_install                  "pyenv-virtualenv"   # pyenv plugin: virtualenv/venv
+    is_cli_priority "critical" && homebrew_brew_install                  "uv"                 # Faster python version manager
     is_cli_priority "critical" && is_fedora && fedora_dnf_install        "bzip2-devel"        # dependencies for pyenv installed python versions
     is_cli_priority "critical" && is_fedora && fedora_dnf_install        "sqlite-devel"       # dependencies for pyenv installed python versions
     is_cli_priority "critical" && is_fedora && fedora_dnf_install        "tk-devel"           # dependencies for pyenv installed python versions
