@@ -1,0 +1,7 @@
+min_log_level = info
+address_family = both
+port = 47989
+origin_web_ui_allowed = lan
+lan_encryption_mode = 0
+sw_preset = superfast
+
