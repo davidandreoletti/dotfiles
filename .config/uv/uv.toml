@@ -1,0 +1,7 @@
+compile-bytecode = false
+concurrent-downloads = 100
+python-downloads = "automatic"
+python-preference = "managed"
+resolution = "highest"
+[pip]
+verify-hashes = true
