@@ -1,5 +1,11 @@
 source "${BOOSTRAP_DIR}/bootstrap_apps_cli.sh"
 
+if test "$BOOTSTRAP_SKIP_APPS_OS_ENVIRONMENT_INSTALL" = "0"; then
+   message_info_show "Skip OS Environment installation"
+else
+    source "${BOOSTRAP_DIR}/bootstrap_apps_os_environment.sh"
+fi
+
 if test "$BOOTSTRAP_SKIP_APPS_GUI_INSTALL" = "0"; then
    message_info_show "Skip GUI apps installion"
 else
