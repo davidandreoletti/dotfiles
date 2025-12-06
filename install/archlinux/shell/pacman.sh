@@ -77,19 +77,37 @@ archlinux_pacman_aur_install() {
 
     mkdir -p "$pkg_dir"
     pushd "$pkg_dir"
-        git clone --depth=1 "https://aur.archlinux.org/${pkg_name}" "package.git"
+        if test -d "package.git"; then
+		pushd "package.git"
+			: #git pull;
+		popd
+	else
+        	git clone --depth=1 "https://aur.archlinux.org/${pkg_name}" "package.git"
+	fi
 
         # Prevent error obtaining VCS status: exit status 128. Use -buildvcs=false to disable VCS stamping.
         # src: https://www.reddit.com/r/archlinux/comments/uqq6uu/comment/i8te37n/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
         chmod -Rv 777 package.git
-        chown -Rv builduser:root package.git
+	if id "builduser" &>/dev/null; then
+		chown -Rv builduser:root package.git
+	else
+		chown -Rv $USER:$USER package.git
+	fi
         git config --global --add safe.directory '*'
 
         pushd "package.git"
             ls -alh ./
-            sudo su - builduser -c "cd $pkg_dir/package.git; makepkg --syncdeps --install --noconfirm"
+	    if id "builduser" &>/dev/null; then
+		    sudo su - builduser -c "cd $pkg_dir/package.git; makepkg --syncdeps --install --noconfirm"
+            else
+		    cd $pkg_dir/package.git; makepkg --syncdeps --install --noconfirm
+	    fi
             ls -alh ./
-            pacman --upgrade --noconfirm *.pkg.tar.zst
+	    if id "builduser" &>/dev/null; then
+		    pacman --upgrade --noconfirm *.pkg.tar.zst
+	    else
+		    sudo pacman --upgrade --noconfirm *.pkg.tar.zst
+	    fi
         popd
     popd
 }
