@@ -157,7 +157,7 @@ if is_profile_admin_or_similar; then
     is_cli_priority "optional" && homebrew_brew_install                  "progress"            # Report cp,mv,dd,tar,gzip,gunzip,cat's % of copied data
 
     # LSP servers
-    is_cli_priority "optional" && homebrew_brew_install                  "brew install yaml-language-server"            # YAML support
+    is_cli_priority "optional" && homebrew_brew_install                  "yaml-language-server"            # YAML support
 
     # File deletion
     is_cli_priority "critical" && homebrew_brew_install                  "rm-improved"         # Undo rm operations -sometimes-
