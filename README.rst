@@ -58,7 +58,7 @@ Workflow for a new machine
 ---------------------------
 
 1. Bootstrap a machine
-2. Bootstrap conf files (+ updates plugins)
+2. Bootstrap configuration files (+ updates apps plugins)
 
 Bootstrap macOS machine
 -------------------------
@@ -191,6 +191,59 @@ Bootstrap Fedora machine
        git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s normal -p "$(pwd)/../dotfiles-private"
 
    Current user will be a **Fedora Administrator privileges user**
+
+       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s admin -p "$(pwd)/../dotfiles-private"
+
+   Current user will be a  **primary developer account on the machine**
+
+       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s dev_single -p "$(pwd)/../dotfiles-private"
+
+   Current user will be a  **one of the secondaries developer accounts on the machine**
+
+       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s dev_multi -p "$(pwd)/../dotfiles-private"
+
+
+Bootstrap Archlinux machine
+-------------------------
+
+1. Prerequisites:
+
+   - bash
+   - pacman
+
+2. Select bootstrap profile matching the user's account purpose
+
+   IMPORTANT: Your most recents fedora user setup was build in this order:
+
+   - (account) davidandreoletti: (profile) primary_dev
+   - (account) administrator:    (profile) admin
+   - (account) davidis:          (profile) dev_multi
+
+
+   +----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+   | Feature                          | Archlinux standard user | Archlinux Administrator | Archlinux Primary Dev | Archlinux Nthy Developer  |
+   +==================================+======================+======================+====================+=======================+
+   | Homebrew install                 | y                    | y                    | y                  | y                     |
+   +----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+   | Homebrew packages installation   | n                    | y                    | y                  | n                     |
+   +----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+   | Browser addons installation      | n                    | y                    | y                  | n                     |
+   +----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+   | Tmux plugins                     | n                    | y                    | y                  | y                     |
+   +----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+   | Enable Guest Account             | n                    | y                    | y                  | n                     |
+   +----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+   | Create Administrator account     | n                    | n                    | y                  | n                     |
+   +----------------------------------+----------------------+----------------------+--------------------+-----------------------+
+
+
+3. Run bootstrap script with the profile
+
+   Current user will be a **Archlinux standard user**:
+
+       git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s normal -p "$(pwd)/../dotfiles-private"
+
+   Current user will be a **Archlinux Administrator privileges user**
 
        git clone --recursive https://github.com/davidandreoletti/dotfiles.git && cd dotfiles && bash -x bootstrap.sh -b machine -s admin -p "$(pwd)/../dotfiles-private"
 
