@@ -486,7 +486,7 @@ if is_profile_admin_or_similar; then
     is_cli_priority "optional" && is_archl  && archlinux_pacman_install   "visidata"
 
     # Typing
-    is_cli_priority "optional" && cargo_global_install                   "thokr"               # Typing tester
+    is_cli_priority "optional" && cargo_install                           "thokr"               # Typing tester
 
     # LLM client
     #                                                            # Lx: https://prompt.16x.engineer/blog/ai-coding-l1-l5
