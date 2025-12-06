@@ -74,8 +74,9 @@ else
     exit 1
 fi
 if is_profile_dev_single; then
-    sudoers_add_user "$(whoami)"
+    sudoers_add_profile "dotfiles_dev" "$(whoami)"
 fi
+sudoers_add_profile "dotfiles_bootstrap" "$(whoami)" "bootstrap_permission"
 
 onexit() {
     # FIXME remove config file with passwords ...
@@ -85,6 +86,7 @@ onexit() {
     unset SUDO_OPTIONS
 
     ramdisk_umount_and_destroy_storage "secrets"
+    sudoers_remove_profile "dotfiles_bootstrap" "$(whoami)"
 }
 
 trap onexit EXIT
