@@ -15,11 +15,16 @@ ramdisk_create_and_mount_storage() {
     gid=$(sudo id -g)
 
     mkdir -p "$mount_path"
+
+
+    chown -R $USER:$USER "$mount_path"
     if container_is_running; then
         # CI case: No mount support in containers
         :
     else
-        sudo mount -t tmpfs -o size=128M,uid=$uid,gid=$gid,mode=700 "$name" "$mount_path"
+        sudo mount -t tmpfs -o size=128M,uid=$uid,gid=$gid,mode=0700 "$name" "$mount_path"
+	# Fix permission
+        sudo chmod -R 777 "$mount_path"
     fi
 
     export CURRENT_MOUNT_DIR="$mount_path"
