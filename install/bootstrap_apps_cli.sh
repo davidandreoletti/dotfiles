@@ -191,6 +191,7 @@ if is_profile_admin_or_similar; then
 
     # Cron
     is_cli_priority "critical" && is_fedora && fedora_dnf_install        "cronie"              # crontab support
+    is_cli_priority "critical" && is_archl && archlinux_pacman_install   "cronie"
 
     # Programming language SDK manager
     is_cli_priority "critical" && homebrew_brew_install                  "jenv"                # Java JDK manager
