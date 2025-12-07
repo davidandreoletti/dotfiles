@@ -1,9 +1,9 @@
 ## Desktop environments
 if is_profile_admin_or_similar; then
     # NVIDA drivers support
-    is_fedora  &&  fedora_dnf_install "fedora-workstation-repositories"
-    is_archl   &&  archlinux_pacman_install "nvidia-open" \
-               &&  archlinux_pacman_install "nvidia-open-dkms" \
+    is_fedora  &&  has_gpu_nvidia && fedora_dnf_install "fedora-workstation-repositories"
+    is_archl   &&  has_gpu_nvidia &&  archlinux_pacman_install "nvidia-open" \
+                                  &&  archlinux_pacman_install "nvidia-open-dkms" \
     # Non Fedora Core packages support
     # src: https://rpmfusion.org/FAQ#What_packages_are_available_from_RPM_Fusion.3F
     is_fedora  &&  fedora_dnf_install "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
