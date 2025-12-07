@@ -65,12 +65,11 @@ if is_profile_admin_or_similar; then
     # USB-IP
     is_fedora  &&  fedora_dnf_install "usbip"
     is_archl   &&  archlinux_pacman_install "usbip"
+    is_fedora  &&  fedora_dnf_install "__commit_aggregated__"
+    is_archl   &&  archlinux_pacman_install "__commit_aggregated__"
     is_fedora  &&  sudo ${SUDO_OPTIONS} systemctl enable "usbip-client"
     is_fedora  &&  sudo ${SUDO_OPTIONS} systemctl enable "usbip-server"
-    is_archl   &&  sudo ${SUDO_OPTIONS} systemctl enable "usbip-client"
-    is_archl   &&  sudo ${SUDO_OPTIONS} systemctl enable "usbip-server"
-
-    is_fedora  &&  fedora_dnf_install "__commit_aggregated__"
+    is_archl   &&  sudo ${SUDO_OPTIONS} systemctl enable "usbipd"
 
     true
 fi
