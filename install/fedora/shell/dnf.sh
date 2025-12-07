@@ -35,6 +35,7 @@ fedora_dnf_install() {
                     else
                         if test -f "${retry_file}"; then
                             rm -fv "${retry_file}"
+                            cat "${stderr_file}"
                             exit 1
                         else
                             touch "${retry_file}"
@@ -58,6 +59,7 @@ fedora_dnf_install() {
                     break
                 else
                     if test -f "${retry_file}"; then
+                        cat "${stderr_file}"
                         exit 1
                     else
                         touch "${retry_file}"
