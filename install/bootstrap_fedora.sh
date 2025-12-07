@@ -45,6 +45,8 @@ source "${BOOSTRAP_DIR}/fedora/shell/dnf.sh"
 source "${BOOSTRAP_DIR}/fedora/shell/flatpak.sh"
 source "${BOOSTRAP_DIR}/fedora/shell/snap.sh"
 
+init_config
+
 # Bootstrap setup
 ## Ask sudo password for askpass. Required to work around sudo timeout within 
 ## this script process

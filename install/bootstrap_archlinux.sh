@@ -44,6 +44,8 @@ source "${BOOSTRAP_DIR}/archlinux/shell/backup.sh"
 source "${BOOSTRAP_DIR}/archlinux/shell/pacman.sh"
 source "${BOOSTRAP_DIR}/archlinux/shell/snap.sh"
 
+init_config
+
 # Bootstrap setup
 ## Ask sudo password for askpass. Required to work around sudo timeout within 
 ## this script process
