@@ -32,6 +32,21 @@ is_fedora() {
     esac
 }
 
+is_archl () {
+    if ! test -f /etc/os-release; then
+        return 1
+    fi
+
+    case "$(grep -E '^(ID)=' /etc/os-release | cut -d'=' -f 2)" in
+        arch*)
+        return 0
+        ;;
+        *)
+        return 1
+        ;;
+    esac
+}
+
 #
 # Get os type
 #
