@@ -1,0 +1,2 @@
+# Move go shim to the front of PATH
+export GOENV_PATH_ORDER=front
