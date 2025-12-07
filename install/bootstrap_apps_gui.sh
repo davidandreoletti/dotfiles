@@ -99,14 +99,15 @@ if is_profile_admin_or_similar; then
     #is_fedora  &&  fedora_dnf_install                      "conda"                  \
     #           &&  fedora_dnf_install                      "__commit_aggregated__"  \
     #           && (echo "Install conda shell profiles"; sudo conda init --quiet)
-    is_archl   &&  archlinux_pacman_install                "miniconda"
+    is_archl   &&  archlinux_pacman_aur_install                "miniconda3"
 
     # Browser
     is_macos   &&  homebrew_brew_cask_install              "google-chrome"              # Day to day
+    is_archl   &&  archlinux_pacman_aur_install            "google-chrome"
     is_macos   &&  homebrew_brew_cask_install              "google-chrome-beta"         # Web dev
     is_fedora  &&  fedora_dnf_install                      "google-chrome-beta"
-    is_archl   &&  archlinux_pacman_install                "google-chrome"
-    is_macos   &&  homebrew_brew_cask_install               "firefox"
+    is_archl   &&  archlinux_pacman_aur_install            "google-chrome-canary"
+    is_macos   &&  homebrew_brew_cask_install              "firefox"
     is_fedora  &&  fedora_dnf_install                      "firefox"
     is_archl   &&  archlinux_pacman_install                "firefox"
 
@@ -121,7 +122,7 @@ if is_profile_admin_or_similar; then
     # IDE
     is_macos   &&  homebrew_brew_cask_install              "jetbrains-toolbox"
     is_fedora  &&  bash_command_curl_no_sudo               "https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/20c25238c4c1c5a2f1807c200ac3a68e4d1cd3c3/jetbrains-toolbox.sh"
-    is_archl   &&  archlinux_pacman_install                "jetbrains-toolbox"
+    is_archl   &&  archlinux_pacman_aur_install            "jetbrains-toolbox"
 
     # Books
     is_macos   &&  homebrew_brew_cask_install              "calibre"
@@ -131,7 +132,7 @@ if is_profile_admin_or_similar; then
     # Torrent
     is_macos   &&  homebrew_brew_cask_install              "transmission"
     is_fedora  &&  fedora_dnf_install                      "transmission"
-    is_archl   &&  archlinux_pacman_install                "transmission"
+    is_archl   &&  archlinux_pacman_install                "transmission-qt"
 
     # File transfer
     is_macos   &&  homebrew_brew_cask_install              "dropbox"
@@ -241,7 +242,7 @@ if is_profile_admin_or_similar; then
     # Cloudflare-WARP
     is_macos   &&  homebrew_brew_cask_install              "cloudflare-warp"    # Cloudflare WARP client
     is_fedora  &&  fedora_dnf_install                      "cloudflare-warp"
-    is_archl   &&  archlinux_pacman_install                "Cloudflare-warp-bin"
+    is_archl   &&  archlinux_pacman_aur_install            "cloudflare-warp-bin"
 
     # Tailscale
     is_macos   &&  homebrew_brew_cask_install              "tailscale"         # Tailscale client
@@ -270,7 +271,7 @@ if is_profile_admin_or_similar; then
                    &&  gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab
     fi
     is_fedora  &&  fedora_dnf_install                      "google-cloud-cli"
-    is_archl   &&  archlinux_pacman_install                "google-cloud-cli"
+    is_archl   &&  archlinux_pacman_aur_install            "google-cloud-cli"
 
     # Traffic shaping
     is_macos   &&  homebrew_brew_cask_install              "mitmproxy"         # Charles Proxy in command line
@@ -278,7 +279,6 @@ if is_profile_admin_or_similar; then
     # AI Frontend
     is_macos   &&  is_arch_aarch64 \
                &&  homebrew_brew_cask_install              "lm-studio"         # Run inference LLM model
-
 
     # Mecanical Computer Aided Design
     is_macos   &&  homebrew_brew_cask_install              "freecad"           # Physical object design
