@@ -15,8 +15,6 @@ ramdisk_create_and_mount_storage() {
     gid=$(sudo id -g)
 
     mkdir -p "$mount_path"
-
-
     chown -R $USER:$USER "$mount_path"
     if container_is_running; then
         # CI case: No mount support in containers

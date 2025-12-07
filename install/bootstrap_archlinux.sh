@@ -133,7 +133,7 @@ smb_volume="/Volumes/NAS_Timeshift"
 
 # Services administration
 ## SSD perf
-# TRIM enabled by default since at least macOS High Sierra
+# FIXME: TRIM enabled by default since at least macOS High Sierra
 
 ## Remote SSH
 #ssh_user_enable "$(whoami)"  &&  ssh_set_remote_login "on"
