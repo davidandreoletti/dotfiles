@@ -28,7 +28,7 @@ archlinux_pacman_install() {
                 message_info_show "$pkgs_file install ..."
                 while :;
                 do
-                    if sudo ${SUDO_OPTIONS} pacman --sync --refresh --sysupgrade --noconfirm $(<"$pkgs_file") 2>"${stderr_file}"; then
+                    if sudo ${SUDO_OPTIONS} pacman --sync --refresh --sysupgrade --needed --noconfirm $(<"$pkgs_file") 2>"${stderr_file}"; then
                         rm -fv "$pkgs_file"
                         rm -fv "${retry_file}"
                         break
@@ -54,7 +54,7 @@ archlinux_pacman_install() {
 
             while :;
             do
-                if sudo ${SUDO_OPTIONS} pacman --sync --refresh --sysupgrade --noconfirm $@ 2>"${stderr_file}"; then
+                if sudo ${SUDO_OPTIONS} pacman --sync --refresh --sysupgrade --needed --noconfirm $@ 2>"${stderr_file}"; then
                     rm -fv "$pkgs_file"
                     rm -fv "${retry_file}"
                     break
@@ -108,9 +108,9 @@ archlinux_pacman_aur_install() {
 	    fi
             ls -alh ./
 	    if id "builduser" &>/dev/null; then
-		    pacman --upgrade --noconfirm *.pkg.tar.zst
+		    pacman --upgrade --needed --noconfirm *.pkg.tar.zst
 	    else
-		    sudo pacman --upgrade --noconfirm *.pkg.tar.zst
+		    sudo pacman --upgrade --needed --noconfirm *.pkg.tar.zst
 	    fi
         popd
     popd
