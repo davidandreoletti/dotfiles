@@ -34,9 +34,11 @@ archlinux_pacman_install() {
                         break
                     else
                         if test -f "${retry_file}"; then
+                            cat "$stderr_file"
                             rm -fv "${retry_file}"
                             exit 1
                         else
+                            cat "$stderr_file"
                             touch "${retry_file}"
                             continue
                         fi
@@ -58,8 +60,10 @@ archlinux_pacman_install() {
                     break
                 else
                     if test -f "${retry_file}"; then
+                        cat "$stderr_file"
                         exit 1
                     else
+                        cat "$stderr_file"
                         touch "${retry_file}"
                         continue
                     fi
