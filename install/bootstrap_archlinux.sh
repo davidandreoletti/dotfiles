@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -x
 
 ###############################################################################
 # Boostrap new ArchLinux
@@ -124,7 +125,7 @@ SHELLS_FILE="/etc/shells"
 source "${BOOSTRAP_DIR}/bootstrap_apps.sh"
 
 # Set user/system defaults
-bash "${BOOSTRAP_DIR}/fedora/shell/defaults.sh"
+bash "${BOOSTRAP_DIR}/archlinux/shell/defaults.sh"
 
 # Set Timeshift backup. WARNING: backup only system files https://teejeetech.com/timeshift/
 
