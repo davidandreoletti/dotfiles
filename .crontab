@@ -19,11 +19,11 @@
 #=====================================================================#
 #  Min  |  Hour  |  Mday  |  Month  |  Wday  |  Command               #
 #=====================================================================#
-   0       3        *        *         *        test -x $HOME/.cron/daily-night.sh && $HOME/.cron/daily-night.sh > /dev/null 2>&1
-   */5     *        *        *         *        test -x $HOME/.cron/5min-any.sh && $HOME/.cron/5min-any.sh > /dev/null 2>&1
-   0       *        *        *         *        test -x $HOME/.cron/hourly-any.sh && $HOME/.cron/hourly-any.sh > /dev/null 2>&1
-   20      17       *        *         1-5      test -x $HOME/.cron/weekday-afternoon.sh  && $HOME/.cron/weekday-afternoon.sh > /dev/null 2>&1
-   0       17       *        *         0        test -x $HOME/.cron/daily-afternoon.sh && $HOME/.cron/daily-afternoon.sh > /dev/null 2>&1
-   0       7        *        *         0        test -x $HOME/.cron/daily-morning.sh && $HOME/.cron/daily-morning.sh > /dev/null 2>&1
-   0       0        *        *         5        test -x $HOME/.cron/weekend-any.sh && $HOME/.cron/weekend-any.sh > /dev/null 2>&1
+   0       3        *        *         *        sh $HOME/.bin/cron-run-dir.sh "$HOME/.cron/daily-night" > /dev/null 2>&1
+   */5     *        *        *         *        sh $HOME/.bin/cron-run-dir.sh "$HOME/.cron/5min-any" > /dev/null 2>&1
+   0       *        *        *         *        sh $HOME/.bin/cron-run-dir.sh "$HOME/.cron/hourly-any" > /dev/null 2>&1
+   20      17       *        *         1-5      sh $HOME/.bin/cron-run-dir.sh "$HOME/.cron/weekday-afternoon" > /dev/null 2>&1
+   0       17       *        *         0        sh $HOME/.bin/cron-run-dir.sh "$HOME/.cron/daily-afternoon" > /dev/null 2>&1
+   0       7        *        *         0        sh $HOME/.bin/cron-run-dir.sh "$HOME/.cron/daily-morning" > /dev/null 2>&1
+   0       0        *        *         5        sh $HOME/.bin/cron-run-dir.sh "$HOME/.cron/weekend-any" > /dev/null 2>&1
 #=====================================================================#
