@@ -20,6 +20,11 @@ alias search_code_structuret='f_search_code_structure '
 # ; search_anything
 alias search_anything='f_search_anything '
 
+# % search, any, doc
+# # Find PATTERN in any kind of doc
+# ; search_by_filename "post.sh" "in/this/dir"
+alias search_by_filename='fd '
+
 # FIXME: what to do with this ?
 #function showLargestFilesHeldOpen() {
 #    lsof \
