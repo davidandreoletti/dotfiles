@@ -172,8 +172,21 @@ let cvim_plugins.vim_surround = {
     \ 'lazy': 1,
     \ }
 " Show available keybindings.
-" FIXME: To enable with https://github.com/AckslD/nvim-whichkey-setup.lua for neovim
-"let cvim_plugins.vim_which_key = { 'name': 'liuchengxu/vim-which-key', 'lazy': 1, 'cmd': ['WhichKey'] ,'setting': "$HOME/.config/cvim/settings/vim-which-key.vim" }""
+let cvim_plugins.vim_which_key = {
+    \ 'name': 'liuchengxu/vim-which-key',
+    \ 'cmd': ['WhichKey'] ,
+    \ 'setting': "$HOME/.config/cvim/settings/vim-which-key.vim"
+    \ }""
+if g:vimDistribution ==# g:VIM_FLAVOR_VIM
+    " no custom plugin needed
+elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
+    " WhichKey requires this plugin to work on neovim
+    let cvim_plugins.vim_which_key = {
+        \ 'name': 'AckslD/nvim-whichkey-setup.lua',
+        \ 'setting': "$HOME/.config/cvim/settings/nvim-which-key-setup.lua" ,
+        \ 'dependencies': { 'liuchengxu/vim-which-key':{'lazy': 1} }
+        \ }""
+endif
 " Visualize Vim Undo Tree
 let cvim_plugins.vim_mundo = {
     \ 'name': 'simnalamburt/vim-mundo' ,
