@@ -1,4 +1,4 @@
-function! F_FeatureEnabledOn(distrib, distribVIM, distribNVIM, distribIDEAVIM, distribUnknown)
+function! F_FeatureMatrix (distrib, distribVIM, distribNVIM, distribIDEAVIM, distribUnknown)
         if a:distrib ==# g:VIM_FLAVOR_VIM
             return a:distribVIM
         elseif a:distrib ==# g:VIM_FLAVOR_NEOVIM
@@ -27,7 +27,7 @@ function! F_IsFeatureEnabled (featureFlags, vim_distribution, feature)
 endfunction
 
 " Load feature + associated settings when enabled
-function! F_Feature (featureFlags, vim_distribution, feature)
+function! F_FeatureLoad (featureFlags, vim_distribution, feature)
     if F_IsFeatureEnabled(a:featureFlags, a:vim_distribution, a:feature)
             let path = g:cvimFeaturePath . "/" . a:feature . ".vim"
             if g:cvimFeatureDebugLoading
