@@ -60,6 +60,9 @@ if is_profile_admin_or_similar; then
 
 	    # Sunshine
 	    fedora_dnf_copr_enable "lizardbyte/stable"
+
+        # Ghostty
+	    fedora_dnf_copr_enable "scottames/ghostty"
     fi
 
     # Alternative stores
@@ -67,12 +70,9 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  fedora_flatpak_remote_add               "fedora"      "oci+https://registry.fedoraproject.org"
 
     # Terminal
-    is_macos   &&  homebrew_brew_cask_install              "kitty"
-    is_fedora  &&  fedora_dnf_install                      "kitty"
-    is_archl   &&  archlinux_pacman_install                "kitty"
-    is_macos   &&  homebrew_brew_cask_install              "alacritty"
-    is_fedora  &&  fedora_dnf_install                      "alacritty"
-    is_archl   &&  archlinux_pacman_install                "alacritty"
+    is_macos   &&  homebrew_brew_cask_install              "ghostty"
+    is_fedora  &&  fedora_dnf_install                      "ghostty"
+    is_archl   &&  archlinux_pacman_install                "ghostty"
 
     # Docker repository
     # - from upstream rather than distribution packages
