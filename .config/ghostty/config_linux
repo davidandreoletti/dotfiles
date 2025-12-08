@@ -1,0 +1,6 @@
+# Single process improves perf/memory usage
+# src: https://michaelbommarito.com/wiki/programming/tools/ghostty-configuration/
+# - startup time: 500ms → 50ms
+# - memory usage: 50mb per window → 5mb per window
+gtk-single-instance = desktop
+

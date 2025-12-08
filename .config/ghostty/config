@@ -1,0 +1,14 @@
+background-opacity = 1.0
+scrollback-limit = 100000000  # ~100mb per terminal
+scrollbar = system
+
+# Automatically injected for bash, zsh, fish, and elvish
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
+
+# Window theme
+window-theme = system
+
+# Shadder
+custom-shader-animation = false
+
