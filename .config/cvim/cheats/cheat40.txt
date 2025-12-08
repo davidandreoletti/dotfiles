@@ -65,6 +65,14 @@ Find commits for cur buf  :BCommits    N
 Find normal mode mapping  :Maps        N
 Find help tags            :Helptags    N
 }}}
+Search within files and replace{{{
+Search within files matching "my-file-pattern' containing "pattern" :grep my-pattern my-file-pattern
+View search's grep result                                          :copen
+Keep only grep's result in files FOO/bar                           :cfilter FOO/bar
+Filter out all grep's result in files FOO/bar                      :cfilter! FOO/bar
+Filter out the result under the quickfix cursor from grep's result :x
+Replace FOO with BAR in grep results                               :cfdo %s/FOO/BAR/g
+}}}
 Keycodes {{{2
 All keycodes like <S-..>, :keycodes    N
 }}}
