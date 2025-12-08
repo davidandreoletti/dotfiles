@@ -463,7 +463,7 @@ if is_profile_admin_or_similar; then
     is_cli_priority "critical" && homebrew_brew_install                  "starship" 		     # Cross platfrom shell prompt
 
     # terminfo database
-    is_cli_priority "critical" && is_fedora && fedora_dnf_install        "ncurses-term"        # ncurses v6.2+'s terminfo database with kitty/alacritty terminal support
+    is_cli_priority "critical" && is_fedora && fedora_dnf_install        "ncurses-term"        # ncurses v6.2+'s terminfo database with kitty/alacritty/ghostty terminal support
     is_cli_priority "critical" && is_macos  && homebrew_brew_install     "ncurses" 		     # Starting with macOS Sonoma's built-in ncurses, kitty/alacritty terminal is supported
     is_cli_priority "critical" && is_archl  && archlinux_pacman_install  "ncurses"             # ncurses v6.2+'s terminfo database with kitty/alacritty terminal support
 
