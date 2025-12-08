@@ -195,8 +195,12 @@ let cvim_plugins.vim_mundo = {
     \ 'cmd': 'MundoToggle' , 'setting': "$HOME/.config/cvim/settings/mundo.vim"
     \ }
 " Easymotion equivalent for the current line only, always on.
-" DISABLED UNTIL this issue is fixed: https://github.com/unblevable/quick-scope/issues/98
-"let cvim_plugins.quickscope = { 'name': 'unblevable/quick-scope', 'lazy': 1, 'keys': 'f' ,'setting': "$HOME/.config/cvim/settings/quick-scope.vim" }"
+let cvim_plugins.quickscope = {
+    \ 'name': 'unblevable/quick-scope',
+    \ 'lazy': 1,
+    \ 'keys': 'f' ,
+    \ 'setting': "$HOME/.config/cvim/settings/quick-scope.vim"
+    \ }"
 " Color schemes
 let cvim_plugins.vim_colorschemes = {
     \ 'name': 'vim/colorschemes',
