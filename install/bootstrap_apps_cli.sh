@@ -134,8 +134,6 @@ if is_profile_admin_or_similar; then
     # File explorer
     is_cli_priority "critical" && homebrew_brew_install                  "z"                   # Smarter cd
     is_cli_priority "critical" && homebrew_brew_install                  "zoxide"              # like z but better
-    #is_cli_priority "critical" && homebrew_brew_install                  "xplr"               # File explorer with many integrations
-    #is_cli_priority "critical" && homebrew_brew_install                  "nnn"                # required by xplr
     is_cli_priority "optional" && homebrew_brew_install                  "yazi"                # Simpler xplr replacement
 
     # File size explorer
