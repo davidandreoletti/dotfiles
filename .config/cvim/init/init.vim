@@ -265,6 +265,13 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
         \ 'setting': "$HOME/.config/cvim/settings/nvim_treesitter.lua"
         \ }
 endif
+" AI Code assistant
+let cvim_plugins.copilot = {
+    \ 'name': 'github/copilot.vim',
+    \ 'lazy': 1,
+    \ 'cmd': 'Copilot',
+    \ 'setting': '$HOME/.config/cvim/settings/vim_copilot.vim'
+    \ }
 
 " Fuzzy Finder: fzf: binary integration
 " - provides fzf binary location per platform
