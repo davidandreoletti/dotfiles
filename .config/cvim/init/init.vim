@@ -38,6 +38,7 @@ let g:commonFeatureFlags = {
     \    'command':               F_FeatureMatrix(g:vimDistribution, v:true, v:true, v:true, v:false),
     \    'keymap':                F_FeatureMatrix(g:vimDistribution, v:true, v:true, v:true, v:false),
     \    'ui_enhancement':        F_FeatureMatrix(g:vimDistribution, v:true, v:true, v:true, v:false),
+    \    'grep':                  F_FeatureMatrix(g:vimDistribution, v:true, v:true, v:true, v:false),
     \    'local_vimrc':           F_FeatureMatrix(g:vimDistribution, v:true, v:true, v:false, v:false),
     \}
 
@@ -636,4 +637,5 @@ call F_FeatureLoad(g:commonFeatureFlags, g:vimDistribution, "mode")
 call F_FeatureLoad(g:commonFeatureFlags, g:vimDistribution, "mapping_timeout")
 call F_FeatureLoad(g:commonFeatureFlags, g:vimDistribution, "keymap")
 call F_FeatureLoad(g:commonFeatureFlags, g:vimDistribution, "ui_enhancement")
+call F_FeatureLoad(g:commonFeatureFlags, g:vimDistribution, "grep")
 call F_FeatureLoad(g:commonFeatureFlags, g:vimDistribution, "local_vimrc")
