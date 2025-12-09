@@ -324,6 +324,21 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
         \ },
         \ 'setting': "$HOME/.config/cvim/settings/nvim_lspconfig.lua"
         \ }
+    " Bridge layer between dap and mason
+    let cvim_plugins.mason_nvim_dap = {
+        \ 'name': 'jay-babu/mason-nvim-dap.nvim',
+        \ 'dependencies': {
+        \    'mason-org/mason.nvim':{'lazy': 1},
+        \    'mfussenegger/nvim-dap':{'lazy': 1},
+        \ },
+        \ 'setting': "$HOME/.config/cvim/settings/nvim_mason_nvim_dap.lua"
+        \ }
+    " dap: Dap client
+    let cvim_plugins.nvim_dap = {
+        \ 'name': 'mfussenegger/nvim-dap',
+        \ 'lazy': 1,
+        \ 'setting': "$HOME/.config/cvim/settings/nvim_dap.lua"
+        \ }
     " treesitter: parser generator to provide syntax highliting
     let cvim_plugins.treesitter = {
         \ 'name': 'nvim-treesitter/nvim-treesitter',
