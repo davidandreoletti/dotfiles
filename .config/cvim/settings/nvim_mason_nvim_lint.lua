@@ -13,8 +13,13 @@ local function config()
             'shellharden',
             'yamllint',
         }, 
-        -- avoid trying to install an unknown linter
-        ignore_install = {}
+        -- Avoid trying to install an unknown linter
+        ignore_install = {
+            'ruby',
+            'clj-kondo',
+            'inko',
+            'janet'
+        }
     })
 end
 
