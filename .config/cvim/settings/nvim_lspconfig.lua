@@ -56,11 +56,15 @@ local function setup_keybinding_when_lspserver_attach_to_buffer()
     })
 end
 
-local function setup_lsp(vim_lsp, client_lsp_capabilities, lsp_name)
+local function setup_lsp(vim_lsp, lsp_name, client_lsp_capabilities, settings, flags)
     -- Extend config for a language
     vim_lsp.config(lsp_name,{
         -- Enable LSP with additional completion capabilities
         capabilities = client_lsp_capabilities,
+        -- LSP setting
+        settings = settings,
+        -- LSP flags
+        flags = flags,
     })
 
     -- Enable the config
@@ -86,35 +90,175 @@ local function config()
     -- the LSP client support so that the LSP server can serve those completion canditates 
     local client_lsp_cmp_capabilities = cmp.default_capabilities()
 
-    -- Python
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "ruff")
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "pylsp")
+    -- python
+    setup_lsp(
+        vim_lsp,
+        "ruff",
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
+    setup_lsp(
+        vim_lsp,
+        "pylsp",
+        client_lsp_cmp_capabilities,
+        {
+          black = { enabled = false },
+          autopep8 = { enabled = false },
+          yapf = { enabled = false },
+          -- linter options
+          pylint = { enabled = false, executable = "pylint" },
+          ruff = { enabled = true },
+          pyflakes = { enabled = false },
+          pycodestyle = { enabled = false },
+          -- type checker
+          pylsp_mypy = {
+            enabled = true,
+            overrides = { "--python-executable", py_path, true },
+            report_progress = true,
+            live_mode = false
+          },
+          -- auto-completion options
+          jedi_completion = { fuzzy = true },
+          -- import sorting
+          isort = { enabled = false },
+        },
+        {
+            debounce_text_changes = 200
+        }
+    )
     -- vimL
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "vimls")
+    setup_lsp(
+        vim_lsp,
+        "vimls",
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
     -- terraform
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "terraformls")
+    setup_lsp(
+        vim_lsp,
+        "terraformls",
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
     -- rust
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "rust_analyzer")
+    setup_lsp(
+        vim_lsp,
+        "rust_analyzer",
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
     -- markdown
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "marksman")
+    setup_lsp(
+        vim_lsp,
+        "marksman",
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
     -- lua
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "lua_ls")
+    setup_lsp(
+        vim_lsp,
+        "lua_ls",
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
     -- latex
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "ltex")
+    setup_lsp(
+        vim_lsp,
+        "ltex",
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
     -- json
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "jsonls")
+    setup_lsp(
+        vim_lsp,
+        "jsonls",
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
     -- yaml
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "yamlls")
+    setup_lsp(
+        vim_lsp,
+        "yamlls",
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
     -- html
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "html")
+    setup_lsp(
+        vim_lsp,
+        "html",
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
     -- dockerfile
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "dockerls")
+    setup_lsp(
+        vim_lsp,
+        "dockerls",
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
     -- clojure
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "clojure_lsp")
+    setup_lsp(
+        vim_lsp,
+        "clojure_lsp",
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
     -- astrojs
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "astro")
+    setup_lsp(
+        vim_lsp,
+        "astro",
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
     -- harper-js
-    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, 'harper_ls')
+    setup_lsp(
+        vim_lsp,
+        'harper_ls',
+        client_lsp_cmp_capabilities,
+        {},
+        {
+            debounce_text_changes = 200
+        }
+    )
 
     mapping_diagnostics()
     setup_keybinding_when_lspserver_attach_to_buffer()
