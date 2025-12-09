@@ -79,31 +79,40 @@ local function config()
     --            - a request to install the language server binaries (via mason)
     --            - setup the LSP
     --
-    -- - mapping between a lspconfig's LSP name and Mason's LSP name found here:
-    --   - https://github.com/mason-org/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
+    -- IMPORTANT: Mapping between a lspconfig's LSP name and Mason's LSP name found here:
+    --   - https://mason-registry.dev/registry/list
 
     local vim_lsp = vim.lsp
+    local default_capabilities = vim_lsp.protocol.make_client_capabilities()
     local cmp = require('cmp_nvim_lsp')
     -- cmp-nvim supports different completion results (ie capabilities) on top of 
     -- neovim's omnifunc capability.
     -- cmp-nvim is a LSP client, it must indicate to the LSP server what capabilities 
     -- the LSP client support so that the LSP server can serve those completion canditates 
-    local client_lsp_cmp_capabilities = cmp.default_capabilities()
+    local client_lsp_capabilties = cmp.default_capabilities(default_capabilities)
 
-    -- python
+    -- default
     setup_lsp(
         vim_lsp,
-        "ruff",
-        client_lsp_cmp_capabilities,
+        "*",
+        default_capabilities,
         {},
         {
             debounce_text_changes = 200
         }
+    ) 
+    -- python
+    setup_lsp(
+        vim_lsp,
+        "ruff",
+        client_lsp_capabilties,
+        {},
+        {}
     )
     setup_lsp(
         vim_lsp,
         "pylsp",
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {
           black = { enabled = false },
           autopep8 = { enabled = false },
@@ -125,139 +134,111 @@ local function config()
           -- import sorting
           isort = { enabled = false },
         },
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
     -- vimL
     setup_lsp(
         vim_lsp,
         "vimls",
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {},
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
     -- terraform
     setup_lsp(
         vim_lsp,
         "terraformls",
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {},
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
     -- rust
     setup_lsp(
         vim_lsp,
         "rust_analyzer",
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {},
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
     -- markdown
     setup_lsp(
         vim_lsp,
         "marksman",
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {},
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
     -- lua
     setup_lsp(
         vim_lsp,
         "lua_ls",
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {},
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
     -- latex
     setup_lsp(
         vim_lsp,
         "ltex",
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {},
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
     -- json
     setup_lsp(
         vim_lsp,
         "jsonls",
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {},
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
     -- yaml
     setup_lsp(
         vim_lsp,
         "yamlls",
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {},
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
     -- html
     setup_lsp(
         vim_lsp,
         "html",
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {},
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
     -- dockerfile
     setup_lsp(
         vim_lsp,
         "dockerls",
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {},
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
     -- clojure
     setup_lsp(
         vim_lsp,
         "clojure_lsp",
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {},
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
     -- astrojs
     setup_lsp(
         vim_lsp,
         "astro",
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {},
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
     -- harper-js
     setup_lsp(
         vim_lsp,
         'harper_ls',
-        client_lsp_cmp_capabilities,
+        client_lsp_capabilties,
         {},
-        {
-            debounce_text_changes = 200
-        }
+        {}
     )
 
     mapping_diagnostics()
