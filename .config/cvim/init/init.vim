@@ -310,14 +310,16 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
     " Bridge layer between lspconfig and mason
     let cvim_plugins.mason_lspconfig = {
         \ 'name': 'mason-org/mason-lspconfig.nvim',
-        \ 'dependencies': { 'mason-org/mason.nvim':{'lazy': 1} },
+        \ 'dependencies': {
+        \    'mason-org/mason.nvim':{'lazy': 1},
+        \    'neovim/nvim-lspconfig':{'lazy': 1},
+        \ },
         \ 'setting': "$HOME/.config/cvim/settings/nvim_mason-lspconfig.lua"
         \ }
     " lspconfig: LSP client config
     let cvim_plugins.lspconfig = {
         \ 'name': 'neovim/nvim-lspconfig',
         \ 'dependencies': { 
-        \   'mason-org/mason-lspconfig.nvim':{'lazy': 1},
         \   'hrsh7th/nvim-cmp':{'lazy': 1},
         \ },
         \ 'setting': "$HOME/.config/cvim/settings/nvim_lspconfig.lua"
