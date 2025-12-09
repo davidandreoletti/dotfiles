@@ -1,7 +1,7 @@
 let g:list_of_normal_keys = [ "h", "j", "k", "l", "-", "+" ]
 let g:list_of_visual_keys = [ "h", "j", "k", "l", "-", "+" ]
-" Enable hardtime by default
-let g:hardtime_default_on = 1
+" Disable hardtime by default
+let g:hardtime_default_on = 0
 " Max time a char can be repeated within |hardtime_timeout| duration
 " eg: j   -> ok
 "     jj  -> ok

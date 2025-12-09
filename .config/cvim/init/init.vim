@@ -650,3 +650,6 @@ call F_FeatureLoad(g:commonFeatureFlags, g:vimDistribution, "keymap")
 call F_FeatureLoad(g:commonFeatureFlags, g:vimDistribution, "ui_enhancement")
 call F_FeatureLoad(g:commonFeatureFlags, g:vimDistribution, "grep")
 call F_FeatureLoad(g:commonFeatureFlags, g:vimDistribution, "local_vimrc")
+
+" Post setup 
+HardTimeOn
