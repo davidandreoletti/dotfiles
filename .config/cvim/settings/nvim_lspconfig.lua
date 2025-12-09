@@ -50,9 +50,12 @@ local function setup_keybinding_when_lspserver_attach_to_buffer()
         vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
         -- Lists all the references
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        -- Set some key bindings conditional on server capabilities
         vim.keymap.set('n', '<space>f', function()
-        vim.lsp.buf.format { async = true }
+            vim.lsp.buf.format { async = true }
         end, opts)
+
+        -- FIXME: Continue with https://github.com/jdhao/nvim-config/blob/4d8ef868ad0ef7f6433d91332aa6649186d9a2fb/lua/config/lsp.lua
     end,
     })
 end
