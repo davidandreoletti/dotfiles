@@ -12,7 +12,7 @@ local function mapping_diagnostics()
 end
 
 -- src: https://github.com/neovim/nvim-lspconfig
-local function mapping_goto()
+local function setup_keybinding_when_lspserver_attach_to_buffer()
     -- Use LspAttach autocommand to only map the following keys
     -- after the language server attaches to the current buffer
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -56,15 +56,16 @@ local function mapping_goto()
     })
 end
 
-local function setup_lsp(lspconfig, lsp_capabilities, lsp_name)
-    -- Install + Setup LSP
-    vim.lsp.config(lsp_name,{
+local function setup_lsp(vim_lsp, client_lsp_capabilities, lsp_name)
+    -- Extend config for a language
+    vim_lsp.config(lsp_name,{
         -- Enable LSP with additional completion capabilities
-        capabilities = lsp_capabilities,
+        capabilities = client_lsp_capabilities,
     })
 
-    -- Mason's automatic_enable call this function
-    -- vim.lsp.enable(lsp_name)
+    -- Enable the config
+    -- - Mason's automatic_enable call: vim.lsp.enable(lsp_name)
+    -- - NOTE: To check a LSP configuratio is enabled, run :checkhealth vim.lsp and expect to find it under "Active Configurations"
 end
 
 local function config()
@@ -77,41 +78,46 @@ local function config()
     -- - mapping between a lspconfig's LSP name and Mason's LSP name found here:
     --   - https://github.com/mason-org/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
 
+    local vim_lsp = vim.lsp
     local cmp = require('cmp_nvim_lsp')
-    local lsp_cmp_capabilities = cmp.default_capabilities()
+    -- cmp-nvim supports different completion results (ie capabilities) on top of 
+    -- neovim's omnifunc capability.
+    -- cmp-nvim is a LSP client, it must indicate to the LSP server what capabilities 
+    -- the LSP client support so that the LSP server can serve those completion canditates 
+    local client_lsp_cmp_capabilities = cmp.default_capabilities()
 
     -- Python
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "ruff")
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "pylsp")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "ruff")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "pylsp")
     -- vimL
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "vimls")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "vimls")
     -- terraform
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "terraformls")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "terraformls")
     -- rust
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "rust_analyzer")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "rust_analyzer")
     -- markdown
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "marksman")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "marksman")
     -- lua
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "lua_ls")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "lua_ls")
     -- latex
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "ltex")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "ltex")
     -- json
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "jsonls")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "jsonls")
     -- yaml
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "yamlls")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "yamlls")
     -- html
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "html")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "html")
     -- dockerfile
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "dockerls")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "dockerls")
     -- clojure
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "clojure_lsp")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "clojure_lsp")
     -- astrojs
-    setup_lsp(lspconfig, lsp_cmp_capabilities, "astro")
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, "astro")
     -- harper-js
-    setup_lsp(lspconfig, lsp_cmp_capabilities, 'harper_ls')
+    setup_lsp(vim_lsp, client_lsp_cmp_capabilities, 'harper_ls')
 
     mapping_diagnostics()
-    mapping_goto()
+    setup_keybinding_when_lspserver_attach_to_buffer()
 end
 
 return {config = config}

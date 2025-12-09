@@ -232,14 +232,76 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
     " Auto completion
     let cvim_plugins.nvim_cmp = {
         \ 'name': 'hrsh7th/nvim-cmp',
-        \ 'setting': "$HOME/.config/cvim/settings/nvim_nvim-cmp.lua"
+        \ 'setting': "$HOME/.config/cvim/settings/nvim_nvim-cmp.lua",
+        \ 'dependencies': { 
+        \   'hrsh7th/cmp-nvim-lsp':{'lazy': 1},
+        \   'hrsh7th/cmp-buffer':{'lazy': 1},
+        \   'hrsh7th/cmp-path':{'lazy': 1},
+        \   'hrsh7th/cmp-cmdline':{'lazy': 1},
+        \   'rasulomaroff/cmp-bufname':{'lazy': 1},
+        \   'amarakon/nvim-cmp-buffer-lines':{'lazy': 1},
+        \   'hrsh7th/cmp-calc':{'lazy': 1},
+        \   'PhilRunninger/cmp-rpncalc':{'lazy': 1},
+        \   'uga-rosa/cmp-dictionary':{'lazy': 1},
+        \   'hrsh7th/cmp-omni':{'lazy': 1},
+        \   'f3fora/cmp-spell':{'lazy': 1},
+        \  },
         \ }
-    " LSP source for auto completion
-    let cvim_plugins.nvim_cmp = {
+    " Auto completion source: LSP
+    let cvim_plugins.nvim_cmp_lsp = {
         \ 'name': 'hrsh7th/cmp-nvim-lsp',
         \ 'lazy': 1,
-        \ 'dependencies': { 'hrsh7th/nvim-cmp':{'lazy': 1} }
         \ }
+    " Auto completion source: vim's buffer
+    let cvim_plugins.nvim_cmp_buffer = {
+        \ 'name': 'hrsh7th/cmp-buffer',
+        \ 'lazy': 1,
+        \ }
+    " Auto completion source: vim's file/dir path
+    let cvim_plugins.nvim_cmp_path = {
+        \ 'name': 'hrsh7th/cmp-path',
+        \ 'lazy': 1,
+        \ }
+    " Auto completion source: command line
+    let cvim_plugins.nvim_cmp_cmdline = {
+        \ 'name': 'hrsh7th/cmp-cmdline',
+        \ 'lazy': 1,
+        \ }
+    " Auto completion source: vim's buffer name
+    let cvim_plugins.nvim_cmp_bufname = {
+        \ 'name': 'rasulomaroff/cmp-bufname',
+        \ 'lazy': 1,
+        \ }
+    " Auto completion source: vim's buffer lines
+    let cvim_plugins.nvim_cmp_buflines = {
+        \ 'name': 'amarakon/nvim-cmp-buffer-lines',
+        \ 'lazy': 1,
+        \ }
+    " Auto completion source: vim's evaluating math expression
+    let cvim_plugins.nvim_cmp_calc = {
+        \ 'name': 'hrsh7th/cmp-calc',
+        \ 'lazy': 1,
+        \ }
+    " Auto completion source: vim's evaluating reverse polish math expression
+    let cvim_plugins.nvim_cmp_rpncalc = {
+        \ 'name': 'PhilRunninger/cmp-rpncalc',
+        \ 'lazy': 1,
+        \ }
+    " Auto completion source: vim's dictionary
+    let cvim_plugins.nvim_cmp_dictionary = {
+        \ 'name': 'uga-rosa/cmp-dictionary',
+        \ 'lazy': 1,
+        \ }     
+    " Auto completion source: vim's omni
+    let cvim_plugins.nvim_cmp_omni = {
+        \ 'name': 'hrsh7th/cmp-omni',
+        \ 'lazy': 1,
+        \ }     
+    " Auto completion source: vim's spell
+    let cvim_plugins.nvim_cmp_spell = {
+        \ 'name': 'f3fora/cmp-spell',
+        \ 'lazy': 1,
+        \ }     
     " mason: Language Server Protocols binary installer
     let cvim_plugins.mason = {
         \ 'name': 'mason-org/mason.nvim',
@@ -252,13 +314,15 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
         \ 'setting': "$HOME/.config/cvim/settings/nvim_mason-lspconfig.lua"
         \ }
     " lspconfig: LSP client config
-    "let cvim_plugins.lspconfig = { 'name': 'neovim/nvim-lspconfig', 'dependencies': { 'mason-org/mason-lspconfig.nvim':{'lazy': 1} }, 'setting': "$HOME/.config/cvim/settings/nvim_lspconfig.lua" }
     let cvim_plugins.lspconfig = {
         \ 'name': 'neovim/nvim-lspconfig',
-        \ 'dependencies': { 'mason-org/mason-lspconfig.nvim':{'lazy': 1} },
+        \ 'dependencies': { 
+        \   'mason-org/mason-lspconfig.nvim':{'lazy': 1},
+        \   'hrsh7th/nvim-cmp':{'lazy': 1},
+        \ },
         \ 'setting': "$HOME/.config/cvim/settings/nvim_lspconfig.lua"
         \ }
-    " treesitter
+    " treesitter: parser generator to provide syntax highliting
     let cvim_plugins.treesitter = {
         \ 'name': 'nvim-treesitter/nvim-treesitter',
         \ 'post_update_hook': ':TSUpdate',
