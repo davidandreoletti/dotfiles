@@ -1,14 +1,15 @@
 -- src: https://github.com/neovim/nvim-lspconfig
-local function mapping_diagnostics()
+local function setup_keybinding_diagnostic()
     -- Global mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
     -- Show diagnostics in a floating window
-    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+    --vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+    -- Show diagnostics in a bottom window
+    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
     -- Move to the previous diagnostic
     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
     -- Move to the next diagnostic
     vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 end
 
 -- src: https://github.com/neovim/nvim-lspconfig
@@ -241,7 +242,7 @@ local function config()
         {}
     )
 
-    mapping_diagnostics()
+    setup_keybinding_diagnostic()
     setup_keybinding_when_lspserver_attach_to_buffer()
 end
 
