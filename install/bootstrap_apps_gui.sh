@@ -69,10 +69,13 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  fedora_flatpak_remote_add               "flathub"     "https://flathub.org/repo/flathub.flatpakrepo"
     is_fedora  &&  fedora_flatpak_remote_add               "fedora"      "oci+https://registry.fedoraproject.org"
 
-    # Terminal
+    # Generic terminal
     is_macos   &&  homebrew_brew_cask_install              "ghostty"
     is_fedora  &&  fedora_dnf_install                      "ghostty"
     is_archl   &&  archlinux_pacman_install                "ghostty"
+
+    # Specialized terminal
+    is_macos   &&  homebrew_brew_cask_install              "warp"        # Terminal with AI agent as first class primitive
 
     # Docker repository
     # - from upstream rather than distribution packages
