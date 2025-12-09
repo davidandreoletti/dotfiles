@@ -301,6 +301,7 @@ Library/Application Support/Code/User/globalStorage/ms-python.python/pythonLocat
 # Aider
 .aider.chat.history.md
 .aider.input.history
+.aider*
 # w3m
 .w3m/history
 .w3m/cookie
