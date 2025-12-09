@@ -240,6 +240,7 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
         \   'hrsh7th/cmp-buffer':{'lazy': 1},
         \   'hrsh7th/cmp-path':{'lazy': 1},
         \   'hrsh7th/cmp-cmdline':{'lazy': 1},
+        \   'hrsh7th/cmp-nvim-lsp-signature-help':{'lazy': 1},
         \   'rasulomaroff/cmp-bufname':{'lazy': 1},
         \   'amarakon/nvim-cmp-buffer-lines':{'lazy': 1},
         \   'hrsh7th/cmp-calc':{'lazy': 1},
@@ -267,6 +268,11 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
     " Auto completion source: command line
     let cvim_plugins.nvim_cmp_cmdline = {
         \ 'name': 'hrsh7th/cmp-cmdline',
+        \ 'lazy': 1,
+        \ }
+    " Auto completion source: function signature
+    let cvim_plugins.nvim_cmp_lsp_signature_help = {
+        \ 'name': 'hrsh7th/cmp-nvim-lsp-signature-help',
         \ 'lazy': 1,
         \ }
     " Auto completion source: vim's buffer name
