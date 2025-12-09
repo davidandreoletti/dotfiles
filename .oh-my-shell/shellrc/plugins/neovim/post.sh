@@ -11,7 +11,7 @@
     pyenv install --skip-existing "${_NEOVIM_PYENV_VIRTUALENV_VERSION}"
     # Create python environement for neovim only
     pyenv virtualenv "${_NEOVIM_PYENV_VIRTUALENV_VERSION}" "${_NEOVIM_PYENV_VIRTUALENV_NAME}"
-    # Install neovim's python dependencies for vim.provider-python to detect a valid 
+    # Install neovim's python dependencies for vim.provider-python to detect a valid
     # python environment
     pyenv exec python -m pip install --upgrade pip
     for pkg in pynvim; do

@@ -362,7 +362,7 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
     " treesitter: parser generator to provide syntax highliting
     let cvim_plugins.treesitter = {
         \ 'name': 'nvim-treesitter/nvim-treesitter',
-        \ 'event': 'BufReadPost',
+        \ 'eventDISABLED': 'BufReadPost',
         \ 'cmd': ["TSInstall", "TSUpdate", "TSInstallInfo", "TSEnable", "TSDisable", "TSModuleInfo", "TSUninstall"],
         \ 'post_update_hook': ':TSUpdate',
         \ 'setting': "$HOME/.config/cvim/settings/nvim_treesitter.lua"
