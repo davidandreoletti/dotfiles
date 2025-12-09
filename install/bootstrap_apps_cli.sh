@@ -510,6 +510,9 @@ if is_profile_admin_or_similar; then
     # Shell formatter
     is_cli_priority "critical" && homebrew_brew_install                  "shfmt"               # Shell script formatter
 
+    # Language syntax parser
+    is_cli_priority "critical" && homebrew_brew_install                  "tree-sitter-cli"     # Parser generator for neovim's treesiter plugin
+
     # Matrix
     is_cli_priority "optional" && homebrew_brew_install                  "iamb"                # Matrix client CLI with vim bindings
 
