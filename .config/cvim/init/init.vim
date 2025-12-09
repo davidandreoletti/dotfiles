@@ -176,7 +176,8 @@ let cvim_plugins.vim_surround = {
 " Show available keybindings.
 let cvim_plugins.vim_which_key = {
     \ 'name': 'liuchengxu/vim-which-key',
-    \ 'cmd': ['WhichKey'] ,
+    \ 'event': 'VeryLazy',
+    \ 'cmd': ['WhichKey'],
     \ 'setting': "$HOME/.config/cvim/settings/vim-which-key.vim"
     \ }""
 if g:vimDistribution ==# g:VIM_FLAVOR_VIM
@@ -306,11 +307,14 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
     " mason: Language Server Protocols binary installer
     let cvim_plugins.mason = {
         \ 'name': 'mason-org/mason.nvim',
+        \ 'post_update_hook': ':MasonUpdate',
+        \ 'cmd': ["Mason","MasonInstall","MasonUninstall","MasonUninstallAll","MasonLog"],
         \ 'setting': "$HOME/.config/cvim/settings/nvim_mason.lua"
         \ }
     " Bridge layer between lspconfig and mason
     let cvim_plugins.mason_lspconfig = {
         \ 'name': 'mason-org/mason-lspconfig.nvim',
+        \ 'event': 'BufReadPost',
         \ 'dependencies': {
         \    'mason-org/mason.nvim':{'lazy': 1},
         \    'neovim/nvim-lspconfig':{'lazy': 1},
@@ -358,6 +362,8 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
     " treesitter: parser generator to provide syntax highliting
     let cvim_plugins.treesitter = {
         \ 'name': 'nvim-treesitter/nvim-treesitter',
+        \ 'event': 'BufReadPost',
+        \ 'cmd': ["TSInstall", "TSUpdate", "TSInstallInfo", "TSEnable", "TSDisable", "TSModuleInfo", "TSUninstall"],
         \ 'post_update_hook': ':TSUpdate',
         \ 'setting': "$HOME/.config/cvim/settings/nvim_treesitter.lua"
         \ }
@@ -447,7 +453,8 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
     let cvim_plugins.orgmode = {
         \ 'name': 'nvim-orgmode/orgmode' ,
         \ 'lazy': 1,
-        \ 'event': 'VeryLazy', 'setting': "$HOME/.config/cvim/settings/neovim_orgmode.lua"
+        \ 'event': 'VeryLazy',
+        \ 'setting': "$HOME/.config/cvim/settings/neovim_orgmode.lua"
         \ }
 endif
 " Display vertical thin lines at each indentation level for code
