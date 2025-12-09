@@ -339,6 +339,21 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
         \ 'lazy': 1,
         \ 'setting': "$HOME/.config/cvim/settings/nvim_dap.lua"
         \ }
+    " Bridge layer between linter and mason
+    let cvim_plugins.mason_nvim_lint = {
+        \ 'name': 'rshkarin/mason-nvim-lint',
+        \ 'dependencies': {
+        \    'mason-org/mason.nvim':{'lazy': 1},
+        \    'mfussenegger/nvim-lint':{'lazy': 1},
+        \ },
+        \ 'setting': "$HOME/.config/cvim/settings/nvim_mason_nvim_lint.lua"
+        \ }
+    " dap: Dap client
+    let cvim_plugins.nvim_lint = {
+        \ 'name': 'mfussenegger/nvim-lint',
+        \ 'lazy': 1,
+        \ 'setting': "$HOME/.config/cvim/settings/nvim_lint.lua"
+        \ }
     " treesitter: parser generator to provide syntax highliting
     let cvim_plugins.treesitter = {
         \ 'name': 'nvim-treesitter/nvim-treesitter',
