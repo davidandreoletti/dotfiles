@@ -13,7 +13,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- NOTE:
         -- Q1: How to know if vim.lsp.protocol.Methods.textDocument_completion is defined ?
         -- A1: See https://raw.githubusercontent.com/neovim/neovim/d2e445e1bd321ea43b976d6aa7759d90b826ce62/runtime/lua/vim/lsp/protocol.lua
-
+        -- Q2: How to know the LSP method name ?
+        -- Q2: See https://microsoft.github.io/language-server-protocol/specifications/lsp/3.18/specification/#textDocument_codeAction
 
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
         local buffer = ev.buf
@@ -34,16 +35,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 }
             )
         end
-
         -- Enable LLM-based completion support
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion) then
             vim.opt.completeopt = {'menu', 'menuone', 'noinsert', 'fuzzy', 'popup'}
-            vim.lsp.inline.completion.enable(true, client.id, buffer, {autotrigger = true})
+            vim.lsp.inline_completion.enable(true, { client_id = client.id, buffer = buffer})
             vim.keymap.set(
                 'i', '<Tab>', 
                 function()
                     -- Retrieve LSP completion candidates
-                    if not vim.lsp.completion.get() then
+                    if not vim.lsp.inline_completion.get() then
                         return "<Tab>"
                     end
                 end,
@@ -53,8 +53,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
                     buffer = buffer
                 }
             )
-
-            -- Show next inline completion suggestion
             vim.keymap.set(
                 'i', '<M-n>',
                 function()
@@ -65,7 +63,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
                     buffer = buffer
                 }
             )
-            -- Show previous inline completion suggestion
             vim.keymap.set(
                 'i', '<M-p>',
                 function()
@@ -77,7 +74,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 }
             )
         end
-
+        -- Enable code lens support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens) then
+            local gid = vim.api.nvim_create_augroup("UserLSPDocumentCodeLens", { clear = true })
+            vim.api.nvim_create_autocmd({"CursorHold","InsertLeave"}, {
+                group = gid,
+                buffer = buffer,
+                callback = function()
+                    vim.lsp.codelens.refresh({ bufnr = buffer })
+                end,
+                desc = "Display code lens"
+            })
+        end
+        -- Enable diagonstic support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_diagnostic) then
+            -- FIXME what to do ?
+        end
         -- Enable declaration support
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration) then
             vim.keymap.set(
@@ -221,7 +233,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 end,
                 desc = "Highlight current variable and usage in buffer"
             })
-
             vim.api.nvim_create_autocmd("CursorMoved", {
                 group = gid,
                 buffer = bufnr,
@@ -230,6 +241,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 end,
                 desc = "Clear references"
             })
+        end
+        -- Enable document color support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentColor) then
+            vim.lsp.document_color.enable(true, buffer)
         end
         -- Enable Inlay hint support
         if client.server_capabilities.inlayHintProvider then
@@ -280,6 +295,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
                     buffer = buffer 
                 }
             )
+        end
+        -- Enable linked editing range support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_linkedEditingRange) then
+            vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
+        end
+        -- Enable semantic token support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_semanticTokens_full) then
+            vim.lsp.semantic_tokens.enable(true, { client_id = client.id, buffer = buffer })
         end
     end,
     nested = true,

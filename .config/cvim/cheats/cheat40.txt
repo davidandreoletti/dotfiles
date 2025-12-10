@@ -92,6 +92,18 @@ Select code action (under cursor)                       <space>ca    N
 Rename symbol (under cursor)                            <space>rn    N
 Format symbol (under cursor)                            <space>f     N
 }}}
+Code completion {{{2
+Offer definition/macro completion                 CTRL-X_CTRL-D    I
+Offer whole line completion                       CTRL-X_CTRL-L    I
+Offer current file keyword completion             CTRL-X_CTRL-N    I
+Offer current+included files keyword completion   CTRL-X_CTRL-I    I
+Offer file names completion                       CTRL-X_CTRL-F    I
+Offer vim command line completion                 CTRL-X_CTRL-V    I
+Offer omni completion                             CTRL-X_CTRL-O    I
+Select next completion                            C-n              I
+Select previous completion                        C-p              I
+Aceept current completion                         C-y              I
+}}}
 Code diagnostics {{{2
 Show diagnostics in floating window       <space>e    N
 Show diagnostics in bottom window         <space>q    N

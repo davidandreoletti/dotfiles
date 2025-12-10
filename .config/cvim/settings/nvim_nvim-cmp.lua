@@ -1,4 +1,6 @@
 local function config()
+    -- NOTE: Completion mapping documented at :h ins-completion
+
     -- A comma-separated list of options for Insert mode completion
     vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
@@ -75,9 +77,6 @@ local function config()
         }
     )
     -- View cmp sources status with :CmpStatus
-
-    -- 
-    --vim.keymap.set({'n','i'}, '<M-]>', vim.lsp.inline_completion.select({count=1}), opts)
 end
 
 return {config = config}
