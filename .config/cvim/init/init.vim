@@ -173,23 +173,23 @@ let cvim_plugins.vim_surround = {
     \ 'name': 'tpope/vim-surround',
     \ 'lazy': 1,
     \ }
-" Show available keybindings.
-let cvim_plugins.vim_which_key = {
-    \ 'name': 'liuchengxu/vim-which-key',
-    \ 'event': 'VeryLazy',
-    \ 'cmd': ['WhichKey'],
-    \ 'setting': "$HOME/.config/cvim/settings/vim-which-key.vim"
-    \ }""
-if g:vimDistribution ==# g:VIM_FLAVOR_VIM
-    " no custom plugin needed
-elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
-    " WhichKey requires this plugin to work on neovim
-    let cvim_plugins.vim_which_key = {
-        \ 'name': 'AckslD/nvim-whichkey-setup.lua',
-        \ 'setting': "$HOME/.config/cvim/settings/nvim-which-key-setup.lua" ,
-        \ 'dependencies': { 'liuchengxu/vim-which-key':{'lazy': 1} }
-        \ }""
-endif
+"" Show available keybindings.
+"let cvim_plugins.vim_which_key = {
+"    \ 'name': 'liuchengxu/vim-which-key',
+"    \ 'event': 'VeryLazy',
+"    \ 'cmd': ['WhichKey'],
+"    \ 'setting': "$HOME/.config/cvim/settings/vim-which-key.vim"
+"    \ }""
+"if g:vimDistribution ==# g:VIM_FLAVOR_VIM
+"    " no custom plugin needed
+"elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
+"    " WhichKey requires this plugin to work on neovim
+"    let cvim_plugins.vim_which_key = {
+"        \ 'name': 'AckslD/nvim-whichkey-setup.lua',
+"        \ 'setting': "$HOME/.config/cvim/settings/nvim-which-key-setup.lua" ,
+"        \ 'dependencies': { 'liuchengxu/vim-which-key':{'lazy': 1} }
+"        \ }""
+"endif
 " Visualize Vim Undo Tree
 let cvim_plugins.vim_mundo = {
     \ 'name': 'simnalamburt/vim-mundo' ,
@@ -461,6 +461,16 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
         \ 'lazy': 1,
         \ 'event': 'VeryLazy',
         \ 'setting': "$HOME/.config/cvim/settings/neovim_orgmode.lua"
+        \ }
+endif
+if g:vimDistribution ==# g:VIM_FLAVOR_VIM
+    " no support
+elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
+    let cvim_plugins.lensline = {
+        \ 'name': 'oribarilan/lensline.nvim' ,
+        \ 'lazy': 1,
+        \ 'event': 'LspAttach',
+        \ 'setting': "$HOME/.config/cvim/settings/nvim_lensline.lua"
         \ }
 endif
 " Display vertical thin lines at each indentation level for code
