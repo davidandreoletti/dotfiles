@@ -39,7 +39,9 @@ local function config()
         vim_lsp,
         "*",
         default_capabilities,
-        {},
+        {
+            root_markers = {".git" } 
+        },
         {
             debounce_text_changes = 200
         }
@@ -183,6 +185,14 @@ local function config()
     setup_lsp(
         vim_lsp,
         'harper_ls',
+        client_lsp_capabilties,
+        {},
+        {}
+    )
+    -- Github Copilot
+    setup_lsp(
+        vim_lsp,
+        'copilot',
         client_lsp_capabilties,
         {},
         {}

@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
                     end
                 end,
                 {
-                    desc = 'Apply the currently displayed completion suggestion',
+                    desc = 'Apply the current inline completion suggestion',
                     expr = true,
                     buffer = buffer
                 }
