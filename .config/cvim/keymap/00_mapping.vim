@@ -2,16 +2,6 @@
 "             Content editing: Vim at the speed of thoughts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function! F_IsKeymapOn(mode, feature, variant) 
-    let features = g:distribKeymapFlags[a:mode]
-    let enabled = F_IsFeatureEnabled(features, g:vimDistribution, a:feature)     
-    if a:variant == v:null
-        return enabled
-    else
-        return enabled && a:variant ==# g:vimDistribution 
-    endif
-endfunction
-
 " Faster Command mode access   {{{
 " - eg: :w  becomes ;w
 "   - effectively reducing stroke count from S-; w (5 strokes) to ;w (3 strokes)
@@ -34,14 +24,11 @@ if F_IsKeymapOn('n', '*', v:null) | map <F8> :TagbarToggle<CR> | endif
 " }}}
 
 " Content editing: Vim at the speed of thoughts {{{
-
 " Force to master Vim's advanced motion and search functionnality 
 " by disabling some/all arrow keys, hjkl keys, page up/down  and others
-"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardTimeOn()
-
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardTimeOn()
 " Mode switching alternative: Back to Normal Mode from Insert Mode
 if F_IsKeymapOn('i', 'fast_switch_to_normal_mode', v:null) | :imap jj <Esc> | endif
-
 " Search and replace selected text in VISUAL mode
 if F_IsKeymapOn('n', '*', v:null) | vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left> | endif
 "}}}
@@ -160,9 +147,3 @@ if F_IsKeymapOn('n', '*', v:null) | map <Leader>tc :term ~/.bin/vim-term-cwd.sh 
 " Todo/Fixme
 " - Show todo/fixme
 if F_IsKeymapOn('n', '*', v:null) | map <Leader>td :Ag TODO\|FIXME | endif
-
-" Refactor
-" - Rename element
-" FIXME add support via LSP ?
-" - Refactor menu actions
-" No support

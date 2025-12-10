@@ -14,11 +14,14 @@ function! F_Load_PluginsSettings (vimDistribution, plugins)
     endfor
 endfunction
 
-" Load key mapping "plugins" (keymap/*.vim)
+" Load key mapping "plugins" (keymap/*.vim, keymap/*.lua)
 function! F_Load_KeyMappings (vimKeyMappingsPath)
     for fpath in split(globpath(a:vimKeyMappingsPath, '*.vim'), '\n')
         "call F_Source (, fpath)
         exe 'source ' . fpath
+    endfor
+    for fpath in split(globpath(a:vimKeyMappingsPath, '*.lua'), '\n')
+        exe 'luafile ' . fpath
     endfor
 endfunction
 
@@ -160,5 +163,16 @@ function! F_Source_VimL_File (vimDistribution, file)
         source a:file
     elseif a:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
         vim.cmd("source ".a:file)
+    endif
+endfunction
+
+" Check if keymap should be set
+function! F_IsKeymapOn(mode, feature, variant) 
+    let features = g:distribKeymapFlags[a:mode]
+    let enabled = F_IsFeatureEnabled(features, g:vimDistribution, a:feature)     
+    if a:variant == v:null
+        return enabled
+    else
+        return enabled && a:variant ==# g:vimDistribution 
     endif
 endfunction

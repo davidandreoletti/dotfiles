@@ -73,6 +73,31 @@ Filter out all grep's result in files FOO/bar                      :cfilter! FOO
 Filter out the result under the quickfix cursor from grep's result :x
 Replace FOO with BAR in grep results                               :cfdo %s/FOO/BAR/g
 }}}
+Code Symbol Browsing {{{2
+Jump to symbol (under cursor) declaration               gD           N
+Jump to symbol (under cursor) definition                gd           N
+View symbol (under cursor) info                         K            N
+List symbol (under cursor) implementation               gi           N
+View symbol (under cursor) signature                    <C-K>        N
+Add folder to workspace                                 <space>wa    N
+Remove folder from workspace                            <space>wr    N
+List workspace folders                                  <space>wl    N
+Jump to type symbol (under cursor) definition           <space>D     N
+List symbol (under cursor) references                   gr           N
+List symbol (under cursor) incoming calls               gri          N
+List symbol (under cursor) outgoing calls               gro          N
+}}}
+Code Symbol Editing {{{2
+Select code action (under cursor)                       <space>ca    N
+Rename symbol (under cursor)                            <space>rn    N
+Format symbol (under cursor)                            <space>f     N
+}}}
+Code diagnostics {{{2
+Show diagnostics in floating window       <space>e    N
+Show diagnostics in bottom window         <space>q    N
+Jump to next diagnostic                   [d          N
+Jump to previous diagnostic               ]d          N
+}}}
 Keycodes {{{2
 All keycodes like <S-..>, :keycodes    N
 }}}
