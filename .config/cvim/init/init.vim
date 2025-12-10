@@ -507,6 +507,17 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
         \ 'setting': "$HOME/.config/cvim/settings/neovim_indent-blankline.lua",
         \ }
 endif
+" File manager
+if g:vimDistribution ==# g:VIM_FLAVOR_VIM
+    " no support
+elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
+    let cvim_plugins.nvim_yazi = {
+        \ 'name': 'mikavilpas/yazi.nvim',
+        \ 'event': 'VeryLazy',
+        \ 'dependencies': { 'nvim-lua/plenary.nvim': {'lazy': 1} } ,
+        \ 'setting': "$HOME/.config/cvim/settings/nvim_yazi.lua",
+        \ }
+endif
 " Diff swap and content file
 let cvim_plugins.recover = {
     \ 'name': 'chrisbra/Recover.vim',

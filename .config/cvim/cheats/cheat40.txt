@@ -110,6 +110,11 @@ Show diagnostics in bottom window         <space>q    N
 Jump to next diagnostic                   [d          N
 Jump to previous diagnostic               ]d          N
 }}}
+File manager {{{2
+Open file manager at current file         <leader>-   N
+Open file manager at work dir             <leader>cw  N
+Resume last file manager session          <C-up>      N
+}}}
 Keycodes {{{2
 All keycodes like <S-..>, :keycodes    N
 }}}
