@@ -4,50 +4,284 @@ vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
         -- Enable completion triggered by <c-x><c-o>
-        -- -- ommi-func: manual completion
+        -- -- ommi-func : manual completion
         -- -- nvim-cmp  : auto completion
         -- - Disable ommi-func for nvim-cmp: https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
         -- vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+        -- NOTE: See `:help vim.lsp.*` for functions definition
 
-        -- Buffer local mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local opts = { buffer = ev.buf }
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-        -- Jump to the definition
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-        -- Displays hover information about the symbol under the cursor
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-        -- Lists all the implementations for the symbol under the cursor
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-        -- Displays a function's signature information
-        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-        -- Add to workspace 
-        vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-        -- Remove from workspace 
-        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-        -- List workspaces 
-        vim.keymap.set('n', '<space>wl', function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, opts)
-        -- Jumps to the definition of the type symbol
-        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-        -- Renames all references to the symbol under the cursor
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-        -- Selects a code action available at the current cursor position
-        vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-        -- Lists all the references
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        -- Lists all incoming call sites of the symbol under the cursor in the quickfix window
-        -- User can pick one site in the input list
-        vim.keymap.set('n', 'gri', vim.lsp.buf.incoming_calls, opts)
-        -- Lists all outgoing call sites of the symbol under the cursor in the quickfix window
-        -- User can pick one site in the input list
-        vim.keymap.set('n', 'gro', vim.lsp.buf.outgoing_calls, opts)
-        -- Set some key bindings conditional on server capabilities
-        vim.keymap.set('n', '<space>f', function()
-            vim.lsp.buf.format { async = true }
-        end, opts)
+        -- NOTE:
+        -- Q1: How to know if vim.lsp.protocol.Methods.textDocument_completion is defined ?
+        -- A1: See https://raw.githubusercontent.com/neovim/neovim/d2e445e1bd321ea43b976d6aa7759d90b826ce62/runtime/lua/vim/lsp/protocol.lua
 
-        -- FIXME: Continue with https://github.com/jdhao/nvim-config/blob/4d8ef868ad0ef7f6433d91332aa6649186d9a2fb/lua/config/lsp.lua
+
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        local buffer = ev.buf
+        local opts = { buffer = buffer }
+
+        -- Enable completion support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
+            vim.opt.completeopt = {'menu', 'menuone', 'noinsert', 'fuzzy', 'popup'}
+            vim.lsp.completion.enable(true, client.id, buffer, {autotrigger = true})
+            vim.keymap.set(
+                'i', '<C-Space>',
+                function()
+                    -- Retrieve LSP completion candidates
+                    vim.lsp.completion.get()
+                end, 
+                {
+                    desc = 'Trigger LSP completion'
+                }
+            )
+        end
+
+        -- Enable LLM-based completion support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion) then
+            vim.opt.completeopt = {'menu', 'menuone', 'noinsert', 'fuzzy', 'popup'}
+            vim.lsp.inline.completion.enable(true, client.id, buffer, {autotrigger = true})
+            vim.keymap.set(
+                'i', '<Tab>', 
+                function()
+                    -- Retrieve LSP completion candidates
+                    if not vim.lsp.completion.get() then
+                        return "<Tab>"
+                    end
+                end,
+                {
+                    desc = 'Apply the currently displayed completion suggestion',
+                    expr = true,
+                    buffer = buffer
+                }
+            )
+
+            -- Show next inline completion suggestion
+            vim.keymap.set(
+                'i', '<M-n>',
+                function()
+                    vim.lsp.inline_completion.select({})
+                end,
+                {
+                    desc = 'Show next inline completion suggestion',
+                    buffer = buffer
+                }
+            )
+            -- Show previous inline completion suggestion
+            vim.keymap.set(
+                'i', '<M-p>',
+                function()
+                    vim.lsp.inline_completion.select({count = -1})
+                end,
+                {
+                    desc = 'Show previous inline completion suggestion',
+                    buffer = buffer
+                }
+            )
+        end
+
+        -- Enable declaration support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration) then
+            vim.keymap.set(
+                'n', 'gD',
+                vim.lsp.buf.declaration,
+                {
+                    desc = "Jump to declaration",
+                    buffer = buffer
+                }
+            )
+        end
+
+        -- Enable definition support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_definition) then
+            vim.keymap.set(
+                'n', 'gd',
+                vim.lsp.buf.definition,
+                {
+                    desc = "Jump to definition",
+                    buffer = buffer
+                }
+            )
+        end
+        -- Enable hover support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_hover) then
+            vim.keymap.set(
+                'n', 'K',
+                vim.lsp.buf.hover,
+                {
+                    desc = "Display symbol info",
+                    buffer = buffer
+                }
+            )
+        end
+        -- Enable implementation support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_implementation) then
+            vim.keymap.set(
+                'n', 'gi',
+                vim.lsp.buf.implementation,
+                {
+                    desc = "List symbol implementations",
+                    buffer = buffer
+                }
+            )
+        end
+        -- Enable signature help completion support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_signatureHelp) then
+            -- Displays a function's signature information
+            vim.keymap.set(
+                'n', '<C-k>', 
+                vim.lsp.buf.signature_help,
+                {
+                    desc = "Trigger LSP signature help",
+                    buffer = buffer
+                }
+            )
+        end
+        -- Enable workspace support
+        if client:supports_method(vim.lsp.protocol.Methods.workspace_didChangeWorkspaceFolders) then
+            vim.keymap.set(
+                'n', '<space>wa',
+                vim.lsp.buf.add_workspace_folder,
+                {
+                    desc = "Add workspace folder",
+                    buffer = buffer
+                }
+            )
+            vim.keymap.set(
+                'n', '<space>wr',
+                vim.lsp.buf.remove_workspace_folder,
+                {
+                    desc = "Remove workspace folder",
+                    buffer = buffer
+                }
+            )
+        end
+        if client:supports_method(vim.lsp.protocol.Methods.workspace_workspaceFolders) then
+            vim.keymap.set(
+                'n', '<space>wl',
+                function()
+                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                end,
+                {
+                    desc = "List workspaces",
+                    buffer = buffer
+                }
+            )
+        end
+        -- Enable definition support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_definition) then
+            vim.keymap.set(
+                'n', '<space>D',
+                vim.lsp.buf.type_definition,
+                {
+                    desc = "Jumps to type symbol definition",
+                    buffer = buffer
+                }
+            )
+        end
+        -- Enable rename support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_rename) then
+            vim.keymap.set(
+                'n', '<space>rn',
+                vim.lsp.buf.rename,
+                {
+                    desc = "Renames all references",
+                    buffer = buffer
+                }
+            )
+        end
+        -- Enable code action support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_codeAction) then
+            vim.keymap.set(
+                { 'n', 'v' }, '<space>ca', 
+                vim.lsp.buf.code_action,
+                {
+                    desc = "Selects a code action", 
+                    buffer = buffer
+                }
+            )
+        end
+        -- Enable references support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_references) then
+            vim.keymap.set(
+                'n', 'gr',
+                vim.lsp.buf.references,
+                {
+                    desc = "List all references",
+                    buffer = buffer
+                }
+            )
+        end
+        -- Enable Document Highlight support
+        if client.server_capabilities.documentHighlightProvider then
+            local gid = vim.api.nvim_create_augroup("UserLSPDocumentHighlight", { clear = true })
+            vim.api.nvim_create_autocmd("CursorHold", {
+                group = gid,
+                buffer = buffer,
+                callback = function()
+                    vim.lsp.buf.document_highlight()
+                end,
+                desc = "Highlight current variable and usage in buffer"
+            })
+
+            vim.api.nvim_create_autocmd("CursorMoved", {
+                group = gid,
+                buffer = bufnr,
+                callback = function()
+                vim.lsp.buf.clear_references()
+                end,
+                desc = "Clear references"
+            })
+        end
+        -- Enable Inlay hint support
+        if client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint.enable(true, {buffer = buffer})
+            local gid = vim.api.nvim_create_augroup("UserLSPDocumentHighlight", { clear = true })
+            vim.keymap.set(
+                "n", "<leader>h",
+                function()
+                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                end,
+                {
+                    desc = "Toggel inlay hint",
+                    buffer = buffer,
+                }
+            )
+        end
+        -- Enable Call Hierarchy support
+        if client:supports_method(vim.lsp.protocol.Methods.callHierarchy_incomingCalls) then
+            vim.keymap.set(
+                'n', 'gri',
+                vim.lsp.buf.incoming_calls,
+                {
+                    desc = "Lists all incoming call sites",
+                    buffer = buffer
+                }
+            )
+        end
+        -- Enable call hierarchy support
+        if client:supports_method(vim.lsp.protocol.Methods.callHierarchy_outgoingCalls) then
+            vim.keymap.set(
+                'n', 'gro',
+                vim.lsp.buf.outgoing_calls,
+                {
+                    desc = "Lists all outgoing call sites",
+                    buffer = buffer
+                }
+            )
+        end
+        -- Enable formatting support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_formatting) then
+            vim.keymap.set(
+                'n', '<space>f', 
+                function()
+                    vim.lsp.buf.format { async = true }
+                end,
+                { 
+                    desc = "Format buffer",
+                    buffer = buffer 
+                }
+            )
+        end
     end,
+    nested = true,
+    desc = "Configure buffer keymap and LSP based behaviour"
 })
