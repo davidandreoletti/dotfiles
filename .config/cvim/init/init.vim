@@ -341,13 +341,34 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
         \ 'dependencies': {
         \    'mason-org/mason.nvim':{'lazy': 1},
         \    'mfussenegger/nvim-dap':{'lazy': 1},
+        \    'mfussenegger/nvim-dap-python':{'lazy': 1},
         \ },
         \ 'setting': "$HOME/.config/cvim/settings/nvim_mason_nvim_dap.lua"
+        \ }
+    " DAP client: python
+    let cvim_plugins.nvim_dap_python = {
+        \ 'name': 'mfussenegger/nvim-dap-python',
+        \ 'setting': "$HOME/.config/cvim/settings/nvim_nvim_dap_python.lua"
+        \ }
+    " DAP UI
+    let cvim_plugins.nvim_dap_ui = {
+        \ 'name': 'rcarriga/nvim-dap-ui',
+        \ 'lazy': 1,
+        \ 'dependencies': {
+        \    'mfussenegger/nvim-dap':{'lazy': 1},
+        \    'nvim-neotest/nvim-nio':{'lazy': 1},
+        \ },
+        \ 'setting': "$HOME/.config/cvim/settings/nvim_nvim_dap_ui.lua"
         \ }
     " dap: Dap client
     let cvim_plugins.nvim_dap = {
         \ 'name': 'mfussenegger/nvim-dap',
         \ 'lazy': 1,
+        \ 'dependencies': {
+        \    'nvim-lua/plenary.nvim': {'lazy': 1},
+        \    'rcarriga/nvim-dap-ui': {'lazy': 1},
+        \    'theHamsta/nvim-dap-virtual-text': {'lazy': 1}
+        \ },
         \ 'setting': "$HOME/.config/cvim/settings/nvim_dap.lua"
         \ }
     " Bridge layer between linter and mason
