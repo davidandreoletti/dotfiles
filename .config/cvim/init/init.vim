@@ -413,33 +413,47 @@ for dir_path in [ '/usr/local/opt/fzf', '/opt/homebrew/opt/fzf', '/home/linuxbre
         break
     endif
 endfor
-let cvim_plugins.fzf = {
-    \ 'name': 'junegunn/fzf',
-    \ 'dir': dir_path
-    \ }
-" Fuzzy Finder: fzf: vim+binary integration
-" - buffers (: Buffers)
-" - files (: Files)
-" - commands
-" - bookmarks
-" - tags
-" - lines
-" - projects
-" - help
-" - pages
-" - commands
-" - history
-" - git commits
-" - etc
-" NOTES:
-" - fzf replaces Ctrl-P, FuzzyFinder and Command-T)
-" - fzf is really fast compared to Crtl-P' vimL fuzy finder implementation
-let cvim_plugins.fzfvim = {
-    \ 'name': 'junegunn/fzf.vim',
-    \ 'lazy': 1,
-    \ 'cmd': ['Files', 'GFiles', 'Buffers', 'Colors', 'Ag', 'Rg', 'RG', 'Lines', 'Blines', 'Tags', 'BTags', 'Changes', 'Marks', 'Jumps', 'Windows', 'Locate', 'History', 'Snippets', 'Commits', 'BCommits', 'Commands', 'Maps', 'Helptags', 'Filetypes' ],
-    \ 'setting': "$HOME/.config/cvim/settings/fzf.vim"
-    \ }
+if g:vimDistribution ==# g:VIM_FLAVOR_VIM
+    let cvim_plugins.fzf = {
+        \ 'name': 'junegunn/fzf',
+        \ 'dir': dir_path
+        \ }
+    " Fuzzy Finder: fzf: vim+binary integration
+    " - buffers (: Buffers)
+    " - files (: Files)
+    " - commands
+    " - bookmarks
+    " - tags
+    " - lines
+    " - projects
+    " - help
+    " - pages
+    " - commands
+    " - history
+    " - git commits
+    " - etc
+    " NOTES:
+    " - fzf replaces Ctrl-P, FuzzyFinder and Command-T)
+    " - fzf is really fast compared to Crtl-P' vimL fuzy finder implementation
+    let cvim_plugins.fzfvim = {
+        \ 'name': 'junegunn/fzf.vim',
+        \ 'lazy': 1,
+        \ 'cmd': ['Files', 'GFiles', 'Buffers', 'Colors', 'Ag', 'Rg', 'RG', 'Lines', 'Blines', 'Tags', 'BTags', 'Changes', 'Marks', 'Jumps', 'Windows', 'Locate', 'History', 'Snippets', 'Commits', 'BCommits', 'Commands', 'Maps', 'Helptags', 'Filetypes' ],
+        \ 'setting': "$HOME/.config/cvim/settings/fzf.vim"
+        \ }
+elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
+    let cvim_plugins.fzf = {
+        \ 'name': 'junegunn/fzf',
+        \ 'dir': dir_path
+        \ }
+    " Same as junegunn/fzf.vim but in Lua
+    let cvim_plugins.nvim_fzf_lua = {
+        \ 'name': 'ibhagwan/fzf-lua',
+        \ 'lazy': 1,
+        \ 'cmd': ['Files', 'GFiles', 'Buffers', 'Colors', 'Ag', 'Rg', 'RG', 'Lines', 'Blines', 'Tags', 'BTags', 'Changes', 'Marks', 'Jumps', 'Windows', 'Locate', 'History', 'Snippets', 'Commits', 'BCommits', 'Commands', 'Maps', 'Helptags', 'Filetypes' ],
+        \ 'setting': "$HOME/.config/cvim/settings/nvim_fzf_lua.lua"
+        \ }
+endif
 " Show a VCS diff using Vim's sign column.
 let cvim_plugins.vim_signify = {
     \ 'name': 'mhinz/vim-signify',
