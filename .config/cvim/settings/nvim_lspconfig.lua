@@ -30,7 +30,8 @@ local function config()
     -- cmp-nvim supports different completion results (ie capabilities) on top of 
     -- neovim's omnifunc capability.
     -- cmp-nvim is a LSP client, it must indicate to the LSP server what capabilities 
-    -- the LSP client support so that the LSP server can serve those completion canditates 
+    -- the LSP client support so that the LSP server can serve those completion canditates,
+    -- in addition to the default capabilities
     local client_lsp_capabilties = cmp.default_capabilities(default_capabilities)
 
     -- default
@@ -115,7 +116,11 @@ local function config()
         vim_lsp,
         "lua_ls",
         client_lsp_capabilties,
-        {},
+        {
+            Lua = {
+                hint = { enable = true, semicolon = "Disable" }
+            }
+        },
         {}
     )
     -- latex
