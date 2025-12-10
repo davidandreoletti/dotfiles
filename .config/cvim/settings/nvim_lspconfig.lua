@@ -120,7 +120,20 @@ local function config()
         client_lsp_capabilties,
         {
             Lua = {
-                hint = { enable = true, semicolon = "Disable" }
+                hint = { enable = true, semicolon = "Disable" },
+                diagnostics = {
+                    globals = {
+                        -- recognize 'vim' as global variable
+                        "vim",
+                    }
+                },
+                workspace = {
+                    library = {
+                        -- lua runtime
+                        vim.api.nvim_get_runtime_file("", true)
+                    }
+                },
+                telemetry = { enable = false }
             }
         },
         {}
