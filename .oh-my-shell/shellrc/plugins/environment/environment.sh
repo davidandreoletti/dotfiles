@@ -10,6 +10,7 @@ export VISUAL=$EDITOR
 # - Apple's Terminal: xterm-256color
 # - Alacritty: xterm-256color
 # - kitty: xterm-kitty
+# - kitty: xterm-ghostty
 #
 # Set 256 capable color
 # Reported with:  find /lib/terminfo /usr/share/terminfo -name "*256*"

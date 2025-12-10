@@ -138,13 +138,13 @@ Bootstrap macOS machine
 4. Postrequisites
 
    - Grant "Files and Folders" permission:
-       System Preferences > Security & Privacy > Privacy tab > Files and Folders >  + Alacritty.app + kitty.app
+       System Preferences > Security & Privacy > Privacy tab > Files and Folders >  + Alacritty.app + kitty.app + Ghostty.app
        Kill terminals
    - Grant "Full Disk Access" permission:
-       System Preferences > Security & Privacy > Privacy tab > Full Disk Access >  + Alacritty.app + kitty.app
+       System Preferences > Security & Privacy > Privacy tab > Full Disk Access >  + Alacritty.app + kitty.app + Ghostty.app
        Kill terminals
    - Grant "Developer tools" permission:
-       System Preferences > Security & Privacy > Privacy tab > Developer tools >  + Alacritty.app + kitty.app
+       System Preferences > Security & Privacy > Privacy tab > Developer tools >  + Alacritty.app + kitty.app + Ghostty.app
        Kill terminals
 
    - Drag *mounted* NAS_Home/NAS_Shared/NAS_TimeMachine network drives into System Preferences > Login Items > Open At Login
