@@ -101,7 +101,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 }
             )
         end
-
         -- Enable definition support
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_definition) then
             vim.keymap.set(
@@ -272,7 +271,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 }
             )
         end
-        -- Enable call hierarchy support
         if client:supports_method(vim.lsp.protocol.Methods.callHierarchy_outgoingCalls) then
             vim.keymap.set(
                 'n', 'gro',
@@ -293,6 +291,29 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 { 
                     desc = "Format buffer",
                     buffer = buffer 
+                }
+            )
+        end
+        -- Enable incremental selection support
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_selectionRange) then
+            vim.keymap.set(
+                'n', '<space>+',
+                function()
+                    vim.lsp.buf.section_range('outer', 1000) { async = true }
+                end,
+                {
+                    desc = "LSP select outward",
+                    buffer = buffer
+                }
+            )
+            vim.keymap.set(
+                'n', '<space>-',
+                function()
+                    vim.lsp.buf.section_range('inner', 1000) { async = true }
+                end,
+                {
+                    desc = "LSP select inward",
+                    buffer = buffer
                 }
             )
         end
