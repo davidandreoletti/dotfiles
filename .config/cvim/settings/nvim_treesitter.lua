@@ -2,9 +2,9 @@ local function config()
     local configs = require("nvim-treesitter.configs")
 
     configs.setup({
-        ensure_installed = { 
-            "lua", 
-            "vim", 
+        ensure_installed = {
+            "lua",
+            "vim",
             "vimdoc",
             "typescript",
             "markdown",
@@ -21,14 +21,17 @@ local function config()
         -- Automatically install missing parsers when entering buffer
         -- Recommendation: set to false if you don't have `treesitter` CLI installed locally
         auto_install = true,
-        highlight = { 
+        highlight = {
             enable = true,
             additional_vim_regex_highlighting = false,
             disable = { 'help' } -- List of language to disable for
         },
-        indent = { 
+        indent = {
           enable = true
-        },  
+        },
+        autotags = {
+          enable = true
+        },
         incremental_selection = {
           enable = true,
           keymaps = {

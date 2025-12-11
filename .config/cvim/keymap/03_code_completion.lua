@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 function()
                     -- Retrieve LSP completion candidates
                     vim.lsp.completion.get()
-                end, 
+                end,
                 {
                     desc = 'Trigger LSP completion'
                 }
@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.opt.completeopt = {'menu', 'menuone', 'noinsert', 'fuzzy', 'popup'}
             vim.lsp.inline_completion.enable(true, { client_id = client.id, buffer = buffer})
             vim.keymap.set(
-                'i', '<Tab>', 
+                'i', '<Tab>',
                 function()
                     -- Retrieve LSP completion candidates
                     if not vim.lsp.inline_completion.get() then
@@ -138,7 +138,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_signatureHelp) then
             -- Displays a function's signature information
             vim.keymap.set(
-                'n', '<C-k>', 
+                'n', '<C-k>',
                 vim.lsp.buf.signature_help,
                 {
                     desc = "Trigger LSP signature help",
@@ -202,10 +202,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Enable code action support
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_codeAction) then
             vim.keymap.set(
-                { 'n', 'v' }, '<space>ca', 
+                { 'n', 'v' }, '<space>ca',
                 vim.lsp.buf.code_action,
                 {
-                    desc = "Selects a code action", 
+                    desc = "Selects a code action",
                     buffer = buffer
                 }
             )
@@ -284,13 +284,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Enable formatting support
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_formatting) then
             vim.keymap.set(
-                'n', '<space>f', 
+                'n', '<space>f',
                 function()
                     vim.lsp.buf.format { async = true }
                 end,
-                { 
+                {
                     desc = "Format buffer",
-                    buffer = buffer 
+                    buffer = buffer
                 }
             )
         end
