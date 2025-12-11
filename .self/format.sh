@@ -12,5 +12,9 @@ set -euo pipefail
 mode="${1:-list}" # accepted: list,write,diff
 filename="$2"
 
-SHFMT_OPTIONS="--indent 4 --case-indent --binary-next-line"
-shfmt --${mode} $SHFMT_OPTIONS "$filename"
+mime_type="$(file --mime-type --brief "$filename")"
+
+if test "$mime_type" = "text/x-shellscript"; then
+    SHFMT_OPTIONS="--indent 4 --case-indent --binary-next-line"
+    shfmt --${mode} $SHFMT_OPTIONS "$filename"
+fi
