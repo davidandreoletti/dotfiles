@@ -75,45 +75,57 @@ archlinux_pacman_install() {
 
 # param1: package name
 archlinux_pacman_aur_install() {
-    # https://wiki.archlinux.org/title/Arch_User_Repository#Prerequisites
+    # Install an AUR package using paru (instead of invoking makepkg directly).
+    # paru will clone the AUR repo, build / install the package + dependencies
     local pkg_name="$1"
-    local pkg_dir="/tmp/aur/${pkg_name}"
 
-    mkdir -p "$pkg_dir"
-    pushd "$pkg_dir"
-        if test -d "package.git"; then
-		pushd "package.git"
-			: #git pull;
-		popd
-	else
-        	git clone --depth=1 "https://aur.archlinux.org/${pkg_name}" "package.git"
-	fi
+    if ! command -v paru >/dev/null 2>&1; then
+        echo "WARNING: paru AUR helper is not installed. Installing paru first." >&2
+        local old_pkg_name="$pkg_name"
+        pkg_name="paru"
 
-        # Prevent error obtaining VCS status: exit status 128. Use -buildvcs=false to disable VCS stamping.
-        # src: https://www.reddit.com/r/archlinux/comments/uqq6uu/comment/i8te37n/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-        chmod -Rv 777 package.git
-	if id "builduser" &>/dev/null; then
-		chown -Rv builduser:root package.git
-	else
-		chown -Rv $USER:$USER package.git
-	fi
-        git config --global --add safe.directory '*'
-
-        pushd "package.git"
-            ls -alh ./
-	    if id "builduser" &>/dev/null; then
-		    sudo su - builduser -c "cd $pkg_dir/package.git; makepkg --syncdeps --install --noconfirm"
+        local pkg_dir="/tmp/aur/${pkg_name}"
+        mkdir -p "$pkg_dir"
+        pushd "$pkg_dir"
+            if test -d "package.git"; then
+                pushd "package.git"
+                    : #git pull
+                popd
             else
-		    cd $pkg_dir/package.git; makepkg --syncdeps --install --noconfirm
-	    fi
-            ls -alh ./
-	    if id "builduser" &>/dev/null; then
-		    pacman --upgrade --needed --noconfirm *.pkg.tar.zst
-	    else
-		    sudo pacman --upgrade --needed --noconfirm *.pkg.tar.zst
-	    fi
+                git clone --depth=1 "https://aur.archlinux.org/${pkg_name}" "package.git"
+                chmod -Rv 777 package.git
+                if id "builduser" &>/dev/null; then
+                    chown -Rv builduser:root package.git
+                else
+                    chown -Rv $USER:$USER package.git
+                fi
+                git config --global --add safe.directory '*'
+            fi
+
+            pushd "package.git"
+                if id "builduser" &>/dev/null; then
+                    sudo su - builduser -c "cd $pkg_dir/package.git; makepkg --syncdeps --install --noconfirm"
+                    pacman --upgrade --needed --noconfirm *.pkg.tar.zst
+                else
+                    pushd $pkg_dir/package.git
+                        makepkg --syncdeps --install --noconfirm
+                        sudo pacman --upgrade --needed --noconfirm *.pkg.tar.zst
+                    popd
+                fi
+            popd
         popd
-    popd
+
+        pkg_name="$old_pkg_name"
+    fi
+
+    message_info_show "paru install $pkg_name ..."
+
+    # Prefer building as the dedicated AUR build user when it exists (e.g. in CI).
+    if id "builduser" &>/dev/null; then
+        sudo ${SUDO_OPTIONS} -u builduser paru -S --needed --noconfirm "$pkg_name"
+    else
+        paru -S --needed --noconfirm "$pkg_name"
+    fi
 }
 
 archlinux_pacman_update_repo_metadata() {

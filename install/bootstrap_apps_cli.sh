@@ -27,6 +27,15 @@ if is_profile_admin_or_similar; then
         python_args="--overwrite"
     fi
 
+    # Install paru
+    if is_archl; then
+        archlinux_pacman_install "base-devel"
+        git clone https://aur.archlinux.org/paru.git /tmp/paru-bin
+        cd /tmp/paru-bin
+            makepkg --syncdeps --install --noconfirm
+        cd -
+    fi
+
     is_cli_priority "critical" && homebrew_brew_install    $python_args "python3" \
     &&  homebrew_brew_link   $python_args "python3" \
     &&  homebrew_postinstall               "python3"
