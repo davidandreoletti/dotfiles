@@ -202,6 +202,13 @@ local function config()
         {},
         {}
     )
+    -- bash
+    setup_lsp(
+        vim_lsp,
+        'bash_ls',
+        client_lsp_capabilties,
+        {}
+    )
     -- Github Copilot
     setup_lsp(
         vim_lsp,

@@ -2,6 +2,7 @@ local function config()
     -- Setup lspconfig-mason based on ':h masson-lspconfig automatic-server-setup'
     require('mason-lspconfig').setup({
          -- LSPs to configure is defined in lspconfig's nvim_lspconfig.lua.
+         -- List available as ":LspInstall xxx"
          ensure_installed = {
             "ruff",
             "pylsp",
@@ -18,6 +19,7 @@ local function config()
             "astro",
             'harper_ls',
             'copilot',
+            'bashls',
          },
          -- For INSTALLED LSPs, automatically enabled LSPs (via vim.lsp.enable(...))
          automatic_enable = true
