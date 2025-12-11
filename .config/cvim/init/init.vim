@@ -174,22 +174,21 @@ let cvim_plugins.vim_surround = {
     \ 'lazy': 1,
     \ }
 "" Show available keybindings.
-"let cvim_plugins.vim_which_key = {
-"    \ 'name': 'liuchengxu/vim-which-key',
-"    \ 'event': 'VeryLazy',
-"    \ 'cmd': ['WhichKey'],
-"    \ 'setting': "$HOME/.config/cvim/settings/vim-which-key.vim"
-"    \ }""
-"if g:vimDistribution ==# g:VIM_FLAVOR_VIM
-"    " no custom plugin needed
-"elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
-"    " WhichKey requires this plugin to work on neovim
-"    let cvim_plugins.vim_which_key = {
-"        \ 'name': 'AckslD/nvim-whichkey-setup.lua',
-"        \ 'setting': "$HOME/.config/cvim/settings/nvim-which-key-setup.lua" ,
-"        \ 'dependencies': { 'liuchengxu/vim-which-key':{'lazy': 1} }
-"        \ }""
-"endif
+if g:vimDistribution ==# g:VIM_FLAVOR_VIM
+    let cvim_plugins.vim_which_key = {
+    \ 'name': 'liuchengxu/vim-which-key',
+    \ 'event': 'VeryLazy',
+    \ 'cmd': ['WhichKey'],
+    \ 'setting': "$HOME/.config/cvim/settings/vim-which-key.vim"
+    \ }"""
+elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
+    " WhichKey requires this plugin to work on neovim
+    let cvim_plugins.vim_which_key = {
+        \ 'name': 'folke/which-key.nvim',
+        \ 'event': 'VeryLazy',
+        \ 'setting': "$HOME/.config/cvim/settings/nvim_which_key.lua" ,
+        \ }""
+endif
 " Visualize Vim Undo Tree
 let cvim_plugins.vim_mundo = {
     \ 'name': 'simnalamburt/vim-mundo' ,

@@ -17,6 +17,7 @@ leader           :let g:mapleader      N
 localleader      :let g:maplocalleader N
 view mapping         :map              N
 view mapping owner  :verbose map       N
+view local mapping <leader>?           N
 }}}
 vimrc development {{{2
 Reload vimrc      <leader>rv           N
