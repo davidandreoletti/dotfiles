@@ -30,3 +30,6 @@ alias docker_delete_all_stopped_containers_and_associated_volumes="docker ps -q 
 
 # Delete all images
 alias docker_delete_all_images="docker images -q | xargs -n1 -I _ docker rmi _"
+
+# TUI for docker
+alias tdocker="lazydocker "
