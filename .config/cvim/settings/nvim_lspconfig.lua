@@ -211,6 +211,13 @@ local function config()
         client_lsp_capabilties,
         {}
     )
+    -- typescript
+    setup_lsp(
+        vim_lsp,
+        'ts_ls',
+        client_lsp_capabilties,
+        {}
+    )
     -- Github Copilot
     setup_lsp(
         vim_lsp,
