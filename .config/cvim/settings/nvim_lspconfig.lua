@@ -1,4 +1,6 @@
 local function setup_lsp(vim_lsp, lsp_name, client_lsp_capabilities, settings, flags)
+    -- lsp_name = A lua file name in https://github.com/neovim/nvim-lspconfig/blob/master/lsp
+
     -- Extend config for a language
     vim_lsp.config(lsp_name,{
         -- Enable LSP with additional completion capabilities
@@ -27,9 +29,9 @@ local function config()
     local vim_lsp = vim.lsp
     local default_capabilities = vim_lsp.protocol.make_client_capabilities()
     local cmp = require('cmp_nvim_lsp')
-    -- cmp-nvim supports different completion results (ie capabilities) on top of 
+    -- cmp-nvim supports different completion results (ie capabilities) on top of
     -- neovim's omnifunc capability.
-    -- cmp-nvim is a LSP client, it must indicate to the LSP server what capabilities 
+    -- cmp-nvim is a LSP client, it must indicate to the LSP server what capabilities
     -- the LSP client support so that the LSP server can serve those completion canditates,
     -- in addition to the default capabilities
     local client_lsp_capabilties = cmp.default_capabilities(default_capabilities)
@@ -40,12 +42,12 @@ local function config()
         "*",
         default_capabilities,
         {
-            root_markers = {".git" } 
+            root_markers = {".git" }
         },
         {
             debounce_text_changes = 200
         }
-    ) 
+    )
     -- python
     setup_lsp(
         vim_lsp,
