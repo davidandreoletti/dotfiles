@@ -1,7 +1,7 @@
 {
   "appearance": {
     "color_theme": "_builtin_default",
-    "left_frame_width": 250
+    "left_frame_width": 312
   },
   "color_picker": {
     "default_tab": 0
@@ -78,7 +78,7 @@
     "last_imperial_units": 5,
     "last_metric_units": 1,
     "last_received_update": "",
-    "last_update_check_time": "2025-07-02T14:11:23",
+    "last_update_check_time": "2025-12-01T12:29:56",
     "max_undo_items": 0,
     "open_projects": [
       "/Users/davidandreoletti/Documents/Developments/APPLIANCES_WORKSPACE/appliances.git/design/annea-audiospeaker-hw0/electronics/project.kicad_pro"
@@ -241,12 +241,31 @@
       "user_grid_y": ""
     },
     "maximized": false,
-    "mru_path": "/Users/davidandreoletti/Documents/Developments/APPLIANCES_WORKSPACE/appliances.git/design/annea-audiospeaker-hw0/electronics/",
-    "perspective": "layout2|name=ProjectTree;caption=Project Files;state=1532;dir=4;layer=1;row=0;pos=0;prop=100000;bestw=250;besth=-1;minw=250;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Editors;caption=Editors;state=508;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=700;besth=590;minw=700;minh=590;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MainToolbar;caption=;state=139596;dir=4;layer=2;row=0;pos=0;prop=100000;bestw=34;besth=227;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(4,2,0)=34|dock_size(4,1,0)=250|dock_size(5,0,0)=700|",
-    "pos_x": -1850,
-    "pos_y": 134,
-    "size_x": 1920,
-    "size_y": 1080,
-    "zoom_factors": []
+    "mru_path": "/Users/davidandreoletti/Documents/Developments/APPLIANCES_WORKSPACE/appliances.git/design/annea-audiospeaker-hw0/electronics/voltage/protection0/",
+    "perspective": "layout2|name=MainToolbar;caption=;state=139596;dir=4;layer=2;row=0;pos=0;prop=100000;bestw=34;besth=227;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ProjectTree;caption=Project Files;state=1532;dir=4;layer=1;row=0;pos=0;prop=100000;bestw=312;besth=-1;minw=250;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Editors;caption=Editors;state=508;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=700;besth=590;minw=700;minh=590;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(4,2,0)=34|dock_size(4,1,0)=312|dock_size(5,0,0)=700|",
+    "pos_x": 407,
+    "pos_y": 249,
+    "size_x": 1680,
+    "size_y": 1050,
+    "zoom_factors": [
+      0.13,
+      0.22,
+      0.35,
+      0.6,
+      1.0,
+      1.5,
+      2.2,
+      3.5,
+      5.0,
+      8.0,
+      13.0,
+      20.0,
+      35.0,
+      50.0,
+      80.0,
+      130.0,
+      220.0,
+      300.0
+    ]
   }
 }

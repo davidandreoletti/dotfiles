@@ -4,8 +4,8 @@
     "color_theme": "_builtin_default"
   },
   "aui": {
-    "appearance_expand_layer_display": false,
-    "appearance_expand_net_display": false,
+    "appearance_expand_layer_display": true,
+    "appearance_expand_net_display": true,
     "appearance_panel_tab": 0,
     "net_inspector_width": -1,
     "properties_panel_width": 20,
@@ -39,9 +39,9 @@
   },
   "drc_dialog": {
     "refill_zones": true,
-    "severities": 24,
+    "severities": 44,
     "test_all_track_errors": false,
-    "test_footprints": false
+    "test_footprints": true
   },
   "editing": {
     "allow_free_pads": false,
@@ -111,8 +111,14 @@
     "use_relative_paths": false
   },
   "find_replace": {
-    "find_history": [],
-    "find_string": "",
+    "find_history": [
+      "VIN",
+      "aou",
+      "REN1",
+      "COUT",
+      "COUNT"
+    ],
+    "find_string": "VIN",
     "match_case": false,
     "match_mode": 0,
     "replace_history": [],
@@ -281,7 +287,26 @@
     "size_x": 880,
     "size_y": 680,
     "zoom": 1.0,
-    "zoom_factors": []
+    "zoom_factors": [
+      0.13,
+      0.22,
+      0.35,
+      0.6,
+      1.0,
+      1.5,
+      2.2,
+      3.5,
+      5.0,
+      8.0,
+      13.0,
+      20.0,
+      35.0,
+      50.0,
+      80.0,
+      130.0,
+      220.0,
+      300.0
+    ]
   },
   "footprint_wizard": {
     "cursor": {
@@ -432,7 +457,26 @@
     "pos_y": 0,
     "size_x": 0,
     "size_y": 0,
-    "zoom_factors": []
+    "zoom_factors": [
+      0.13,
+      0.22,
+      0.35,
+      0.6,
+      1.0,
+      1.5,
+      2.2,
+      3.5,
+      5.0,
+      8.0,
+      13.0,
+      20.0,
+      35.0,
+      50.0,
+      80.0,
+      130.0,
+      220.0,
+      300.0
+    ]
   },
   "footprint_wizard_list": {
     "height": -1,
@@ -459,7 +503,7 @@
     "fix_discontinuities": true,
     "group_items": true,
     "interactive_placement": true,
-    "layer": 40,
+    "layer": 17,
     "line_width": 0.2,
     "line_width_units": 0,
     "origin_units": 0,
@@ -470,7 +514,7 @@
   },
   "lib_tree": {
     "column_widths": {
-      "Description": 299,
+      "Description": 104,
       "Item": 300
     },
     "columns": [
@@ -478,8 +522,8 @@
       "Description"
     ],
     "open_libs": [
-      "Audio_Module",
-      "Battery"
+      "-- Recently Used --",
+      "Connector_Wire"
     ]
   },
   "meta": {
@@ -501,7 +545,7 @@
     "associate_by_ref_sch": false,
     "delete_extra_footprints": false,
     "delete_shorting_tracks": false,
-    "report_filter": -1,
+    "report_filter": 58,
     "update_footprints": true
   },
   "pcb_display": {
@@ -588,8 +632,8 @@
     ],
     "first_run_shown": false,
     "last_footprint3d_dir": "",
-    "last_footprint_lib_dir": "",
-    "last_imperial_units": 0,
+    "last_footprint_lib_dir": "/Users/davidandreoletti/Documents/KiCad/9.0/footprints",
+    "last_imperial_units": 5,
     "last_metric_units": 1,
     "max_undo_items": 0,
     "show_import_issues": true,
@@ -616,8 +660,8 @@
       "shove_vias": true,
       "smart_pads": true,
       "smooth_dragged_segments": true,
-      "snap_to_pads": false,
-      "snap_to_tracks": false,
+      "snap_to_pads": true,
+      "snap_to_tracks": true,
       "start_diagonal": false,
       "suggest_finish": false,
       "via_force_prop_iteration_limit": 40,
@@ -630,7 +674,7 @@
       "always_show_cursor": true,
       "fullscreen_cursor": false
     },
-    "display": 0,
+    "display": 1,
     "footprint_text_shown_columns": "0 1 2 3 4 5 7",
     "grid": {
       "axes_enabled": false,

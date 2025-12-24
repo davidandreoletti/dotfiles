@@ -3,7 +3,7 @@
     "color_theme": "_builtin_default"
   },
   "aui": {
-    "right_panel_width": -1,
+    "right_panel_width": 190,
     "show_layer_manager": true
   },
   "camera": {
@@ -21,7 +21,7 @@
     "on_selection": true,
     "zoom_to_fit": true
   },
-  "current_layer_preset": "legacy_preset_flag",
+  "current_layer_preset": "follow_plot_settings",
   "find_replace": {
     "find_history": [],
     "find_string": "",
@@ -36,7 +36,267 @@
     "highlight_factor": 0.5,
     "select_factor": 0.75
   },
-  "layer_presets": [],
+  "layer_presets": [
+    {
+      "colors": [
+        {
+          "color": "rgb(102, 102, 128)",
+          "layer": "background_bottom"
+        },
+        {
+          "color": "rgb(204, 204, 230)",
+          "layer": "background_top"
+        },
+        {
+          "color": "rgba(110, 115, 77, 0.902)",
+          "layer": "board"
+        },
+        {
+          "color": "rgb(191, 156, 59)",
+          "layer": "copper"
+        },
+        {
+          "color": "rgb(191, 156, 59)",
+          "layer": "copper_bottom"
+        },
+        {
+          "color": "rgb(240, 240, 240)",
+          "layer": "silkscreen_bottom"
+        },
+        {
+          "color": "rgb(240, 240, 240)",
+          "layer": "silkscreen_top"
+        },
+        {
+          "color": "rgba(20, 51, 36, 0.831)",
+          "layer": "soldermask_bottom"
+        },
+        {
+          "color": "rgba(20, 51, 36, 0.831)",
+          "layer": "soldermask_top"
+        },
+        {
+          "color": "rgb(128, 128, 128)",
+          "layer": "solderpaste"
+        },
+        {
+          "color": "rgb(217, 217, 217)",
+          "layer": "user_comments"
+        },
+        {
+          "color": "rgb(217, 217, 217)",
+          "layer": "user_drawings"
+        },
+        {
+          "color": "rgb(179, 26, 26)",
+          "layer": "user_eco1"
+        },
+        {
+          "color": "rgb(179, 26, 26)",
+          "layer": "user_eco2"
+        },
+        {
+          "color": "rgb(194, 194, 194)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(89, 148, 220)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(180, 219, 210)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(216, 200, 82)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(194, 194, 194)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(89, 148, 220)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(180, 219, 210)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(216, 200, 82)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(232, 178, 167)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(89, 148, 220)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(180, 219, 210)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(216, 200, 82)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(194, 194, 194)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(89, 148, 220)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(180, 219, 210)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(216, 200, 82)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(194, 194, 194)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(89, 148, 220)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(180, 219, 210)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(216, 200, 82)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(194, 194, 194)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(89, 148, 220)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(180, 219, 210)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(216, 200, 82)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(194, 194, 194)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(89, 148, 220)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(180, 219, 210)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(216, 200, 82)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(194, 194, 194)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(89, 148, 220)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(180, 219, 210)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(216, 200, 82)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(194, 194, 194)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(89, 148, 220)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(180, 219, 210)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(216, 200, 82)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(194, 194, 194)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(89, 148, 220)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(180, 219, 210)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(216, 200, 82)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(194, 194, 194)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(89, 148, 220)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(180, 219, 210)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(216, 200, 82)",
+          "layer": ""
+        },
+        {
+          "color": "rgb(194, 194, 194)",
+          "layer": ""
+        }
+      ],
+      "layers": [
+        "fp_text",
+        "fp_values",
+        "fp_references",
+        "board",
+        "copper",
+        "copper_bottom",
+        "silkscreen_bottom",
+        "silkscreen_top",
+        "soldermask_bottom",
+        "soldermask_top",
+        "solderpaste",
+        "adhesive",
+        "th_models",
+        "smd_models",
+        "virtual_models",
+        "3d_axes"
+      ],
+      "name": "legacy colors"
+    }
+  ],
   "lib_tree": {
     "column_widths": null,
     "columns": [],
@@ -69,8 +329,8 @@
     "opengl_holes_disableOnMove": false,
     "opengl_render_bbox_only_OnMove": false,
     "opengl_selection_color": "rgb(0, 255, 0)",
-    "opengl_show_model_bbox": false,
-    "opengl_show_off_board_silk": false,
+    "opengl_show_model_bbox": true,
+    "opengl_show_off_board_silk": true,
     "opengl_thickness_disableOnMove": false,
     "opengl_vias_disableOnMove": false,
     "plated_and_bare_copper": false,
@@ -123,16 +383,16 @@
     "raytrace_spread_reflections": 0.02500000037252903,
     "raytrace_spread_refractions": 0.02500000037252903,
     "raytrace_spread_shadows": 0.05000000074505806,
-    "show_adhesive": true,
+    "show_adhesive": false,
     "show_axis": true,
     "show_board_body": true,
-    "show_comments": true,
+    "show_comments": false,
     "show_copper_bottom": true,
     "show_copper_top": true,
-    "show_drawings": true,
-    "show_eco1": true,
-    "show_eco2": true,
-    "show_footprints_dnp": false,
+    "show_drawings": false,
+    "show_eco1": false,
+    "show_eco2": false,
+    "show_footprints_dnp": true,
     "show_footprints_insert": true,
     "show_footprints_normal": true,
     "show_footprints_not_in_posfile": true,
@@ -207,7 +467,7 @@
     "show_import_issues": true,
     "units": 1
   },
-  "use_stackup_colors": true,
+  "use_stackup_colors": false,
   "window": {
     "cursor": {
       "always_show_cursor": true,
@@ -352,11 +612,30 @@
     },
     "maximized": false,
     "mru_path": "",
-    "perspective": "",
-    "pos_x": 0,
-    "pos_y": 0,
-    "size_x": 0,
-    "size_y": 0,
-    "zoom_factors": []
+    "perspective": "layout2|name=MainToolbar;caption=;state=139632;dir=1;layer=6;row=0;pos=0;prop=100000;bestw=738;besth=34;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=InfoBar;caption=;state=131454;dir=1;layer=1;row=0;pos=0;prop=100000;bestw=20;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=LayersManager;caption=Appearance;state=1532;dir=2;layer=3;row=0;pos=0;prop=100000;bestw=190;besth=-1;minw=180;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=DrawFrame;caption=;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=16;besth=16;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,6,0)=34|dock_size(2,3,0)=190|dock_size(5,0,0)=18|",
+    "pos_x": 37,
+    "pos_y": 484,
+    "size_x": 1280,
+    "size_y": 720,
+    "zoom_factors": [
+      0.13,
+      0.22,
+      0.35,
+      0.6,
+      1.0,
+      1.5,
+      2.2,
+      3.5,
+      5.0,
+      8.0,
+      13.0,
+      20.0,
+      35.0,
+      50.0,
+      80.0,
+      130.0,
+      220.0,
+      300.0
+    ]
   }
 }

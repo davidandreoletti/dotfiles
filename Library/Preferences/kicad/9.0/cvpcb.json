@@ -12,7 +12,7 @@
     "zoom_to_fit": true
   },
   "filter_footprint": 0,
-  "filter_footprint_text": "",
+  "filter_footprint_text": "_wire",
   "find_replace": {
     "find_history": [],
     "find_string": "",
@@ -178,9 +178,28 @@
     "size_y": 0,
     "use_45_limit": true,
     "zoom": 1.0,
-    "zoom_factors": []
+    "zoom_factors": [
+      0.13,
+      0.22,
+      0.35,
+      0.6,
+      1.0,
+      1.5,
+      2.2,
+      3.5,
+      5.0,
+      8.0,
+      13.0,
+      20.0,
+      35.0,
+      50.0,
+      80.0,
+      130.0,
+      220.0,
+      300.0
+    ]
   },
-  "footprints_pane_width": 0,
+  "footprints_pane_width": 382,
   "graphics": {
     "canvas_type": 1,
     "highlight_factor": 0.5,
@@ -200,7 +219,7 @@
       "Battery"
     ]
   },
-  "libraries_pane_width": 0,
+  "libraries_pane_width": 256,
   "meta": {
     "version": 0
   },
@@ -234,7 +253,7 @@
       "always_show_cursor": true,
       "fullscreen_cursor": false
     },
-    "display": 0,
+    "display": 1,
     "grid": {
       "axes_enabled": false,
       "fast_grid_1": 15,
@@ -373,11 +392,30 @@
     },
     "maximized": false,
     "mru_path": "",
-    "perspective": "",
-    "pos_x": 0,
-    "pos_y": 0,
-    "size_x": 0,
-    "size_y": 0,
-    "zoom_factors": []
+    "perspective": "layout2|name=MainToolbar;caption=;state=139644;dir=1;layer=6;row=0;pos=0;prop=100000;bestw=724;besth=34;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Libraries;caption=Footprint Libraries;state=2044;dir=4;layer=1;row=0;pos=0;prop=100000;bestw=256;besth=-1;minw=20;minh=-1;maxw=256;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Symbols;caption=Symbol : Footprint Assignments;state=2044;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=400;besth=160;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Footprints;caption=Filtered Footprints;state=2044;dir=2;layer=1;row=0;pos=0;prop=100000;bestw=382;besth=-1;minw=20;minh=-1;maxw=382;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Buttons;caption=;state=139644;dir=3;layer=6;row=0;pos=0;prop=100000;bestw=460;besth=87;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,6,0)=34|dock_size(4,1,0)=258|dock_size(5,0,0)=384|dock_size(2,1,0)=384|dock_size(3,6,0)=87|",
+    "pos_x": -1583,
+    "pos_y": 167,
+    "size_x": 1280,
+    "size_y": 720,
+    "zoom_factors": [
+      0.13,
+      0.22,
+      0.35,
+      0.6,
+      1.0,
+      1.5,
+      2.2,
+      3.5,
+      5.0,
+      8.0,
+      13.0,
+      20.0,
+      35.0,
+      50.0,
+      80.0,
+      130.0,
+      220.0,
+      300.0
+    ]
   }
 }
