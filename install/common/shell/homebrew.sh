@@ -6,6 +6,7 @@ homebrew_is_installed() {
     local brew_init="/tmp/brew_shell_env.sh"
     # case: macOs
     test -d /usr/local/Homebrew && eval "$(/usr/local/Homebrew/bin/brew shellenv)" > $brew_init && source $brew_init
+    test -d /opt/homebrew/bin && eval "$(/opt/homebrew/bin/brew shellenv)" > $brew_init && source $brew_init
     # case: linux
     test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)" > $brew_init && source $brew_init
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" > $brew_init && source $brew_init
@@ -23,6 +24,7 @@ homebrew_install() {
     local brew_init="/tmp/brew_shell_env.sh"
     # - case: macOs
     test -d /usr/local/Homebrew && eval "$(/usr/local/Homebrew/bin/brew shellenv)" > $brew_init && source $brew_init
+    test -d /opt/homebrew/bin && eval "$(/opt/homebrew/bin/brew shellenv)" > $brew_init && source $brew_init
     # - case: linux
     test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)" > $brew_init && source $brew_init
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" > $brew_init && source $brew_init
