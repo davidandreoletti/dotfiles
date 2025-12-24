@@ -73,6 +73,12 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "ghostty"
     is_fedora  &&  fedora_dnf_install                      "ghostty"
     is_archl   &&  archlinux_pacman_install                "ghostty"
+    is_macos   &&  homebrew_brew_cask_install              "kitty"
+    is_fedora  &&  fedora_dnf_install                      "kitty"
+    is_archl   &&  archlinux_pacman_install                "kitty"
+    is_macos   &&  homebrew_brew_cask_install              "alacritty"
+    is_fedora  &&  fedora_dnf_install                      "alacritty"
+    is_archl   &&  archlinux_pacman_install                "alacritty"
 
     # Specialized terminal
     is_macos   &&  homebrew_brew_cask_install              "warp"        # Terminal with AI agent as first class primitive
