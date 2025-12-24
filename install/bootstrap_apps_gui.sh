@@ -107,7 +107,7 @@ if is_profile_admin_or_similar; then
     # Browser
     is_macos   &&  homebrew_brew_cask_install              "google-chrome"              # Day to day
     is_archl   &&  archlinux_pacman_aur_install            "google-chrome"
-    is_macos   &&  homebrew_brew_cask_install              "google-chrome-beta"         # Web dev
+    is_macos   &&  homebrew_brew_cask_install              "google-chrome@beta"         # Web dev
     is_fedora  &&  fedora_dnf_install                      "google-chrome-beta"
     is_archl   &&  archlinux_pacman_aur_install            "google-chrome-canary"
     is_macos   &&  homebrew_brew_cask_install              "firefox"
@@ -212,7 +212,7 @@ if is_profile_admin_or_similar; then
 
     # VSCode
     is_macos   &&  homebrew_brew_cask_install              "visual-studio-code"  \
-    is_macos   &&  homebrew_brew_cask_install              "visual-studio-code@insiders"  \
+               &&  homebrew_brew_cask_install              "visual-studio-code@insiders"  \
                &&  homebrew_brew_cask_install              "__commit_aggregated__"
     is_fedora  &&  fedora_dnf_install                      "code"                \
                &&  fedora_dnf_install                      "__commit_aggregated__"
