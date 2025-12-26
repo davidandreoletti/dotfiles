@@ -122,7 +122,10 @@ defaults write com.apple.dock showhidden -bool true
 # Disable the Launchpad gesture (pinch with thumb and three fingers)
 #defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
 # Reset Launchpad, but keep the desktop wallpaper intact
-find "${HOME}/Library/Application Support/Dock" -maxdepth 1 -name "*-*.db" -delete
+DOCK_SUPPORT_DIR="${HOME}/Library/Application Support/Dock"
+if test -d "$DOCK_SUPPORT_DIR"; then
+    find "$DOCK_SUPPORT_DIR" -maxdepth 1 -name "*-*.db" -delete
+fi
 ###############################################################################
 # Language #
 ###############################################################################
