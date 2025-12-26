@@ -272,8 +272,8 @@ if is_profile_admin_or_similar; then
     else
         is_macos   &&  homebrew_brew_cask_install          "google-cloud-sdk"       \
                    &&  homebrew_brew_cask_install          "__commit_aggregated__"  \
-                   &&  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.$(basename \"echo $SHELL\").inc" \
-                   &&  gcloud components install alpha beta core gsutil bq cloud_sql_proxy datalab
+                   &&  source "$(brew --prefix)/share/google-cloud-sdk/path.$(basename \"echo $SHELL\").inc" \
+                   &&  gcloud components install alpha beta core gsutil bq cloud_sql_proxy
     fi
     is_fedora  &&  fedora_dnf_install                      "google-cloud-cli"
     is_archl   &&  archlinux_pacman_aur_install            "google-cloud-cli"
