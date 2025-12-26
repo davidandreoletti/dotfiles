@@ -181,9 +181,6 @@ if is_profile_admin_or_similar; then
     # Text editor
     is_macos   &&  homebrew_brew_cask_install              "textmate"
 
-    # Markdown editor
-    is_macos   &&  homebrew_brew_cask_install              "mark-text"
-
     # Remote screen
     # setcaap: Allow sunshine to capture KMS without root
     is_fedora  && fedora_dnf_install                       "Sunshine" \
