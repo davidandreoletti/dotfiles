@@ -197,7 +197,6 @@ if is_profile_admin_or_similar; then
     is_archl   &&  archlinux_pacman_install                "remmina"
     is_macos   &&  homebrew_brew_cask_install              "moonlight"          # Client for Sunshine
     is_archl   &&  archlinux_pacman_install                "moonlight-qt"
-    is_macos   &&  homebrew_brew_cask_install              "parsec"             # Local/Remote LAN stream
 
     # ToS
     is_macos   &&  homebrew_brew_cask_install              "thinkorswim"
