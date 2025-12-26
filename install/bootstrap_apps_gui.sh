@@ -121,7 +121,7 @@ if is_profile_admin_or_similar; then
     is_archl   &&  archlinux_pacman_install                "firefox"
 
     # Video player
-    is_macos   &&  homebrew_brew_cask_install              "vlc@nightly"
+    is_macos   &&  homebrew_brew_cask_install              "iina"                 # Better than VLC, reads all video format
     is_fedora  &&  fedora_dnf_install                      "vlc"
     is_archl   &&  archlinux_pacman_install                "vlc"
 
