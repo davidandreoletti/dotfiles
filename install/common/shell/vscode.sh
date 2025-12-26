@@ -3,8 +3,8 @@ vscode_install_extension() {
 
     vscode="/path/missing/to/code"
     # Find vscode by os path
-    #        Fedora          macOS
-    for p in "/usr/bin/code" "/usr/local/bin/code"; do
+    #        Fedora          macOS(intel)          macOS(silicon)
+    for p in "/usr/bin/code" "/usr/local/bin/code" "/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"; do
         if command -v "$p"; then
             vscode="$p"
             break
@@ -19,8 +19,8 @@ vscode_uninstall_extension() {
 
     vscode="/path/missing/to/code"
     # Find vscode by os path
-    #        Fedora          macOS
-    for p in "/usr/bin/code" "/usr/local/bin/code"; do
+    #        Fedora          macOS(intel)          macOS(silicon)
+    for p in "/usr/bin/code" "/usr/local/bin/code" "/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"; do
         if command -v "$p"; then
             vscode="$p"
             break
