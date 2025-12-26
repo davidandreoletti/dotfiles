@@ -26,4 +26,5 @@
    0       17       *        *         0        sh $HOME/.bin/cron-run-dir.sh "$HOME/.cron/daily-afternoon" > /dev/null 2>&1
    0       7        *        *         0        sh $HOME/.bin/cron-run-dir.sh "$HOME/.cron/daily-morning" > /dev/null 2>&1
    0       0        *        *         5        sh $HOME/.bin/cron-run-dir.sh "$HOME/.cron/weekend-any" > /dev/null 2>&1
+   0       0        1        *         *        sh $HOME/.bin/cron-run-dir.sh "$HOME/.cron/monthly-any" > /dev/null 2>&1
 #=====================================================================#
