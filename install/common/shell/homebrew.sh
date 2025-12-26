@@ -88,6 +88,8 @@ homebrew_brew_install() {
             if test -f "$pkgs_file"; then
                 while :; 
                 do
+                    message_info_show "$pkgs_file fetch ..."
+                    sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew fetch --deps --retry $(<"$pkgs_file") 2>${stderr_file};
                     message_info_show "$pkgs_file install ..."
                     if sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew install $(<"$pkgs_file") 2>${stderr_file}; then
                         rm -fv "$pkgs_file"
@@ -108,7 +110,9 @@ homebrew_brew_install() {
             message_info_show "$1 install delayed ..."
             echo -n " $@" >> "$pkgs_file"
         else
-            message_info_show "$@ install ..."
+             message_info_show "$pkgs_file fetch ..."
+             sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew fetch --deps --retry $@
+             message_info_show "$@ install ..."
             sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew install $@
         fi
     done
