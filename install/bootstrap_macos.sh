@@ -119,6 +119,10 @@ else
     exit 1
 fi
 
+if is_arch_aarch64; then
+    softwareupdate_install_rosetta
+fi
+
 HOMEBREW_BREW_INSTALL_AGGREGATED=0
 
 ## Package manager

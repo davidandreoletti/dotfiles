@@ -10,3 +10,7 @@ softwareupdate_list_pending_updates() {
 softwareupdate_install_updates() {
     sudo softwareupdate --install -all
 }
+
+softwareupdate_install_rosetta() {
+    sudo softwareupdate --install-rosetta
+}
