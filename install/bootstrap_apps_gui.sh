@@ -298,12 +298,6 @@ if is_profile_admin_or_similar; then
     # # Ladybug plugin for Grasshopper: analysis of climate data to produce interactive visualization for environmentlly
     #                                   informed design: https://www.ladybug.tools/ladybug.html
 
-    # Embedded development
-    is_macos   &&  homebrew_brew_cask_install              "platformio"        # Embedded software dev platform
-    is_fedora  &&  homebrew_brew_cask_install              "platformio"
-    is_archl   &&  archlinux_pacman_install                "platformio-core" \
-               &&  archlinux_pacman_install                "platformio-core-udev"
-
     # Electronic Design
     is_macos   &&  homebrew_brew_cask_install              "kicad"             # Electronic circuit design
 

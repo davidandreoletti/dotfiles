@@ -550,6 +550,12 @@ if is_profile_admin_or_similar; then
     is_cli_priority "optional" && is_archl  && archlinux_pacman_install  "fuse3"
     is_cli_priority "optional" && is_fedora && fedora_dnf_install        "fuse3-devel"
 
+    # Embedded development
+    is_cli_priority "optional" && is_macos   &&  homebrew_brew_cask_install  "platformio"        # Embedded software dev platform
+    is_cli_priority "optional" && is_fedora  &&  homebrew_brew_cask_install  "platformio"
+    is_cli_priority "optional" && is_archl   &&  archlinux_pacman_install    "platformio-core" \
+                                             &&  archlinux_pacman_install    "platformio-core-udev"
+
     is_cli_priority "critical" && homebrew_brew_install                  "__commit_aggregated__"
     is_cli_priority "critical" && is_fedora && fedora_dnf_install        "__commit_aggregated__"
     is_cli_priority "critical" && is_archl  && archlinux_pacman_install  "__commit_aggregated__"
