@@ -26,18 +26,19 @@
 
          Preference for putting config files in ~/.config rather than ~/Library/Preferences
         -->
+        <!-- Keep synced with .oh-my-shell/shellrc/plugins/common/environment.sh -->
 		<string>
-            <!-- Keep synced with .oh-my-shell/shellrc/plugins/common/environment.sh -->
 			launchctl setenv XDG_CONFIG_HOME $HOME/.config
 			launchctl setenv XDG_CACHE_HOME $HOME/.cache
 			launchctl setenv XDG_DATA_HOME $HOME/.local/share
 			launchctl setenv XDG_STATE_HOME $HOME/.local/state
 
 			launchctl setenv NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
-
-			<!-- Jetbrains idea.properties default location
-			     https://intellij-support.jetbrains.com/hc/en-us/articles/207240985-Changing-IDE-default-directories-used-for-config-plugins-and-caches-storage
-			-->
+		</string>
+		<!-- Jetbrains idea.properties default location
+		     https://intellij-support.jetbrains.com/hc/en-us/articles/207240985-Changing-IDE-default-directories-used-for-config-plugins-and-caches-storage
+		-->
+		<string>
 		    launchctl setenv IDEA_PROPERTIES $HOME/.jetbrains/intellij/ide.properties
 		    launchctl setenv CLION_PROPERTIES $HOME/.jetbrains/clion/ide.properties
 		    launchctl setenv APPCODE_PROPERTIES $HOME/.jetbrains/appcode/ide.properties
@@ -46,10 +47,11 @@
 		    launchctl setenv WEBIDE_PROPERTIES $HOME/.jetbrains/webstorm/ide.properties
 		    launchctl setenv GOLAND_PROPERTIES $HOME/.jetbrains/goland/ide.properties
 		    launchctl setenv RUSTOVER_PROPERTIES $HOME/.jetbrains/rustover/ide.properties
-
-			<!-- Jetbrains .vmoptions default location
-			     https://www.jetbrains.com/help/idea/tuning-the-ide.html#locate-jvm-options-file
-			-->
+		</string>
+		<!-- Jetbrains .vmoptions default location
+		     https://www.jetbrains.com/help/idea/tuning-the-ide.html#locate-jvm-options-file
+		-->
+		<string>
 		    launchctl setenv IDEA_VM_OPTIONS $HOME/.jetbrains/intellij/ide.vmoptions
 		    launchctl setenv CLION_VM_OPTIONS $HOME/.jetbrains/clion/ide.vmoptions
 		    launchctl setenv APPCODE_VM_OPTIONS $HOME/.jetbrains/appcode/ide.vmoptions
