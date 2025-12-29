@@ -7,21 +7,20 @@ export PYENV_ROOT="$HOME/.pyenv"
 #export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 # Init pyenv:
-# - Define where pyenv repo is cloned 
+# - Define where pyenv repo is cloned
 # - Path to pyenv binary
-# - Enable pyenv shim 
+# - Enable pyenv shim
 # - Install the sh dispatch
 # src: https://github.com/ohmyzsh/ohmyzsh/blob/c0074974313215360a9529e01204792cdf6ca473/plugins/pyenv/pyenv.plugin.zsh#L78
 eval "$(pyenv init --path --no-rehash $SHELL_NAME)"
 
 # Init pyenv plugins
-if command_exists pyenv-virtualenv-init ; 
-then 
+if command_exists pyenv-virtualenv-init ;
+then
     # official setup
-    #eval "$(pyenv virtualenv-init -)"; 
+    #eval "$(pyenv virtualenv-init -)";
     # unofficial setup yet shell response is much faster
     # src: https://github.com/pyenv/pyenv-virtualenv/issues/259#issuecomment-1731123922
     # src: https://github.com/ohmyzsh/ohmyzsh/blob/c0074974313215360a9529e01204792cdf6ca473/plugins/pyenv/pyenv.plugin.zsh#L82
-    eval "$(pyenv virtualenv-init - $SHELL_NAME | sed s/precmd/chpwd/g)"; 
+    eval "$(pyenv virtualenv-init - $SHELL_NAME | sed s/precmd/chpwd/g)";
 fi
-
