@@ -305,5 +305,7 @@ Library/Application Support/Code/User/globalStorage/ms-python.python/pythonLocat
 # w3m
 .w3m/history
 .w3m/cookie
+# systemd
+.config/systemd/user/xdg-desktop-autostart.target.wants/sunshine.service
 # Random
 .cache
