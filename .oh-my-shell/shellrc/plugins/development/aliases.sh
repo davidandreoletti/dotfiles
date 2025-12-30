@@ -9,3 +9,7 @@ alias tcode="cd \"${_DEFAULT_DEVELOPMENT_DIR}/\$(find ${_DEFAULT_DEVELOPMENT_DIR
 # Create workspace
 # Usage: code_create_company_workspace_project "company_name" "workspace_name" "project_name"
 alias code_create_workspace="f_code_create_workspace ${_DEFAULT_DEVELOPMENT_DIR} "
+
+# Delete a workspace
+# Usage: workspace_delete
+alias code_wipe_workspace="f_code_wipe_workspace ${_DEFAULT_DEVELOPMENT_DIR}"
