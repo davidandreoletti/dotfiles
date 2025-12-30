@@ -444,6 +444,7 @@ if is_profile_admin_or_similar; then
 
     # Image processing
     is_cli_priority "optional" && homebrew_brew_install                  "imagemagick"         # Required by spaceman-diff
+    is_cli_priority "optional" && homebrew_brew_install                  "potrace"             # Convert rather into vector graphic
 
     # Line oriented search tool
     is_cli_priority "critical" && homebrew_brew_install                  "ripgrep"             # faster grep "rigrep" binary compiled, as nightly build, and including SIMD and all optimizations enabled.
