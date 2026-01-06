@@ -10,6 +10,7 @@ homebrew_is_installed() {
     # case: linux
     test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)" > $brew_init && source $brew_init
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" > $brew_init && source $brew_init
+    test -d /opt/homebrew/bin && eval "$(/opt/homebrew/bin/brew shellenv)" > $brew_init && source $brew_init
 
     command -v brew >/dev/null 2>&1 /dev/null
 }
@@ -28,6 +29,7 @@ homebrew_install() {
     # - case: linux
     test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)" > $brew_init && source $brew_init
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" > $brew_init && source $brew_init
+    test -d /opt/homebrew/bin && eval "$(/opt/homebrew/bin/brew shellenv)" > $brew_init && source $brew_init
     rm -f $brew_init
 
     # Update shell PATH binary cache
