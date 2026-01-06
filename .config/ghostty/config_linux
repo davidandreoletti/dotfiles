@@ -4,3 +4,7 @@
 # - memory usage: 50mb per window → 5mb per window
 gtk-single-instance = desktop
 
+# Supported on Linux only for now
+scrollbar = system
+
+

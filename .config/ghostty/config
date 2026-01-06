@@ -1,6 +1,6 @@
 background-opacity = 1.0
-scrollback-limit = 100000000  # ~100mb per terminal
-scrollbar = system
+# ~100mb per terminal
+scrollback-limit = 100000000
 
 # Automatically injected for bash, zsh, fish, and elvish
 shell-integration = detect
