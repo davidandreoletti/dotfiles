@@ -60,7 +60,7 @@ cat <<EOF >$SSH_AGENT_SETUP_SCRIPT
     # Link ssh-agent socket to normalized paths
     socket_link="\$HOME/.ssh/agent/env/\$USER_SSH_AGENT_ENV_NAME.socket"
     ln -s -f "\$SSH_AUTH_SOCK" "\$socket_link"
-    chmod 600 "$socket_link"
+    chmod 600 "\$socket_link"
 EOF
 
 # Create a single ssh-agent instance across all terminal sessions, for each predefined agent
