@@ -1,5 +1,10 @@
 local function config()
-    local configs = require("nvim-treesitter.configs")
+    -- FIXME: Wait for nvim-treesitter's main branch to release an official release before migrating this config and other config (search for treesitter.configs)
+    --        to migrate over:
+    --        - https://github.com/fredrikaverpil/dotfiles/blob/main/nvim-fredrik/lua/fredrik/plugins/core/treesitter.luaA
+    --        - https://github.com/xaaha/dev-env/blob/main/nvim/.config/nvim/lua/xaaha/plugins/lsp-nvim-treesitter.lua
+    --        - https://www.reddit.com/r/neovim/comments/1ky0i9q/treesittermodulesnvim_a_reimplementation_of/
+    local configs = require("nvim-treesitter")
 
     configs.setup({
         ensure_installed = {

@@ -1,6 +1,6 @@
 local function config()
     -- Setup treesitter
-    require('nvim-treesitter.configs').setup({
+    require('nvim-treesitter').setup({
         highlight = {
            enable = true,
            disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
