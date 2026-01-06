@@ -234,7 +234,7 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
     let cvim_plugins.nvim_cmp = {
         \ 'name': 'hrsh7th/nvim-cmp',
         \ 'setting': "$HOME/.config/cvim/settings/nvim_nvim-cmp.lua",
-        \ 'dependencies': { 
+        \ 'dependencies': {
         \   'hrsh7th/cmp-nvim-lsp':{'lazy': 1},
         \   'hrsh7th/cmp-buffer':{'lazy': 1},
         \   'hrsh7th/cmp-path':{'lazy': 1},
@@ -298,17 +298,17 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
     let cvim_plugins.nvim_cmp_dictionary = {
         \ 'name': 'uga-rosa/cmp-dictionary',
         \ 'lazy': 1,
-        \ }     
+        \ }
     " Auto completion source: vim's omni
     let cvim_plugins.nvim_cmp_omni = {
         \ 'name': 'hrsh7th/cmp-omni',
         \ 'lazy': 1,
-        \ }     
+        \ }
     " Auto completion source: vim's spell
     let cvim_plugins.nvim_cmp_spell = {
         \ 'name': 'f3fora/cmp-spell',
         \ 'lazy': 1,
-        \ }     
+        \ }
     " mason: Language Server Protocols binary installer
     let cvim_plugins.mason = {
         \ 'name': 'mason-org/mason.nvim',
@@ -329,7 +329,7 @@ elseif g:vimDistribution ==# g:VIM_FLAVOR_NEOVIM
     " lspconfig: LSP client config
     let cvim_plugins.lspconfig = {
         \ 'name': 'neovim/nvim-lspconfig',
-        \ 'dependencies': { 
+        \ 'dependencies': {
         \   'hrsh7th/nvim-cmp':{'lazy': 1},
         \ },
         \ 'setting': "$HOME/.config/cvim/settings/nvim_lspconfig.lua"
