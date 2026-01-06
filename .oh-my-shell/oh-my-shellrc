@@ -104,6 +104,7 @@ dot_plugin_if_exists "kubernetes"                   # Requires: gnucoreutils
 dot_plugin_if_exists "fastlane"
 dot_plugin_if_exists "ls"
 dot_plugin_if_exists "man"
+dot_plugin_if_exists "macos"
 dot_plugin_if_exists "mdns"
 dot_plugin_if_exists "mpd"
 dot_plugin_if_exists "misc"
