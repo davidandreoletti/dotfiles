@@ -119,6 +119,7 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "firefox"
     is_fedora  &&  fedora_dnf_install                      "firefox"
     is_archl   &&  archlinux_pacman_install                "firefox"
+    is_macos   &&  homebrew_brew_cask_install              "microsoft-edge"
 
     # Video player
     is_macos   &&  homebrew_brew_cask_install              "iina"                 # Better than VLC, reads all video format
