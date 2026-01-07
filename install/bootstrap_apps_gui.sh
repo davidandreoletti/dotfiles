@@ -314,6 +314,7 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_mas_install                    "409201541"   #  Pages
     is_macos   &&  homebrew_mas_install                    "1295203466"  #  Microsoft Remote Desktop
     is_macos   &&  homebrew_mas_install                    "1388020431"  #  DevCleaner For Xcode (remove simulator & associated caches)
+    is_macos   &&  homebrew_mas_install                    "1381004916"  #  DNS-SD Browser
 
     true
 fi
