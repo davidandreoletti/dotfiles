@@ -557,6 +557,9 @@ if is_profile_admin_or_similar; then
     is_cli_priority "optional" && is_archl   &&  archlinux_pacman_install    "platformio-core" \
                                              &&  archlinux_pacman_install    "platformio-core-udev"
 
+    # Modern make like file
+    is_cli_priority "optional" && is_archl  &&  homebrew_brew_install    "go-task/tap/go-task"  # Process Taskfile.yaml
+
     is_cli_priority "critical" && homebrew_brew_install                  "__commit_aggregated__"
     is_cli_priority "critical" && is_fedora && fedora_dnf_install        "__commit_aggregated__"
     is_cli_priority "critical" && is_archl  && archlinux_pacman_install  "__commit_aggregated__"
