@@ -302,6 +302,9 @@ if is_profile_admin_or_similar; then
     # Electronic Design
     is_macos   &&  homebrew_brew_cask_install              "kicad"             # Electronic circuit design
 
+    # Text to Speech
+    is_macos   &&  homebrew_brew_cask_install              "handy"             # Faster humant to computer words per minute ever
+
     is_macos   &&  homebrew_brew_cask_install              "__commit_aggregated__"
     is_fedora  &&  fedora_dnf_install                      "__commit_aggregated__"
     is_archl   &&  archlinux_pacman_install                "__commit_aggregated__"
