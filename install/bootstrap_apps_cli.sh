@@ -411,7 +411,7 @@ if is_profile_admin_or_similar; then
     # Daily standup manager
     # Task manager
     is_cli_priority "critical" && pipx_pipx_install                      "tasklog"             # Install tasklog cli
-    is_cli_priority "optional" && homebrew_brew_install                  "task"                # Taskwarrior
+    #is_cli_priority "optional" && homebrew_brew_install                  "task"                # Taskwarrior
 
     # AWS SDK
     if ci_is_ci; then
