@@ -125,6 +125,7 @@ if is_profile_admin_or_similar; then
     is_macos   &&  homebrew_brew_cask_install              "iina"                 # Better than VLC, reads all video format
     is_fedora  &&  fedora_dnf_install                      "vlc"
     is_archl   &&  archlinux_pacman_install                "vlc"
+    is_macos   &&  homebrew_brew_cask_install              "jellyfin-media-player" # Jellyfin macOS client as web client is buggy during playback
 
     # Virtualization
     is_macos   &&  homebrew_brew_cask_install              "utm@beta"             # Qemu GUI
