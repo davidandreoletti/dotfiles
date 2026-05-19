@@ -362,6 +362,7 @@ if is_profile_admin_or_similar; then
 
     # Terminal browser
     is_cli_priority "optional" && homebrew_brew_install                  "lynx"                # Terminal browser
+    is_cli_priority "optional" && homebrew_brew_install                  "w3m"                 # Terminal browser
 
     # File sharing
     is_cli_priority "optional" && homebrew_brew_install                  "ffsend"              # Firefox Send client. Required by 1 oh-my-shell plugin
