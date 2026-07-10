@@ -169,6 +169,7 @@ homebrew_brew_upgrade() {
 homebrew_brew_tap_install() {
     brew=$(which brew)
     sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew tap "$1" $2
+    sudo ${SUDO_OPTIONS} -u "$(whoami)" $brew trust --tap "$1"
 }
 
 homebrew_brew_cask_workaround0() {
