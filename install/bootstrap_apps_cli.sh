@@ -6,6 +6,7 @@
 if is_profile_admin_or_similar; then
     homebrew_brew_tap_install              "burntsushi/ripgrep"  "https://github.com/BurntSushi/ripgrep.git"
     homebrew_brew_tap_install              "boz/repo"
+    homebrew_brew_tap_install              "ricardodantas/tap"
     homebrew_brew_tap_install              "quickemu-project/quickemu" "https://github.com/quickemu-project/quickemu"
     #homebrew_brew_tap_install              "mopidy/mopidy"
     is_macos  &&  homebrew_brew_tap_install  "saulpw/vd"
@@ -434,7 +435,7 @@ if is_profile_admin_or_similar; then
     is_cli_priority "critical" && homebrew_brew_install                  "tz"                  # Timezone helper
 
     # Mastodon
-    is_cli_priority "optional" && homebrew_brew_install                  "tut"                 # TUI mastodon client
+    is_cli_priority "optional" && homebrew_brew_install                  "perch"               # TUI mastodon client
 
     # Run command on event
     is_cli_priority "optional" && homebrew_brew_install                  "watch"               # Run a command at regular interval
