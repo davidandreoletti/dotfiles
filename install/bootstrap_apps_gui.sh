@@ -307,6 +307,9 @@ if is_profile_admin_or_similar; then
     # Text to Speech
     is_macos   &&  homebrew_brew_cask_install              "handy"             # Faster humant to computer words per minute ever
 
+    # No sleep
+    is_macos   &&  homebrew_brew_cask_install              "caffeine"          # No computer sleep
+
     is_macos   &&  homebrew_brew_cask_install              "__commit_aggregated__"
     is_fedora  &&  fedora_dnf_install                      "__commit_aggregated__"
     is_archl   &&  archlinux_pacman_install                "__commit_aggregated__"
