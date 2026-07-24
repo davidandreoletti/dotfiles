@@ -1,7 +1,8 @@
 [core]
     # macOS APFS/HFS & Linux ext4 support executable bit
     filemode = true
-    editor = vim
+    # Let git use the $EDITOR value
+    #editor = 'vim'
     excludesFile = ~/.config/git/ignore
     quotePath = true
     logAllRefUpdates = true
