@@ -18,7 +18,6 @@ local function config()
             "dockerls",
             "astro",
             'harper_ls',
-            'copilot',
             'bashls',
          },
          -- For INSTALLED LSPs, automatically enabled LSPs (via vim.lsp.enable(...))
