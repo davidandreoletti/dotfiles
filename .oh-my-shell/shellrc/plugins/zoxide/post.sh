@@ -1,4 +1,6 @@
 # Import data from z only if z has been initialized
 if test -n "${_Z_DATA}"; then
-    zoxide import --merge --from=z "${_Z_DATA}"
+    echo "Cannot import ${_Z_DATA} into zoxide at custom path is not supported"
+    #zoxide import z --merge "${_Z_DATA}"
 fi
+zoxide import z --merge # expected ~/.z
