@@ -307,5 +307,9 @@ Library/Application Support/Code/User/globalStorage/ms-python.python/pythonLocat
 .w3m/cookie
 # systemd
 .config/systemd/user/xdg-desktop-autostart.target.wants/sunshine.service
+# Handy
+Library/Application Support/com.pais.handy/history.db
+Library/Application Support/com.pais.handy/models/*
+Library/Application Support/com.pais.handy/recordings/*
 # Random
 .cache
