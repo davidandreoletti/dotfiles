@@ -559,6 +559,9 @@ if is_profile_admin_or_similar; then
     is_cli_priority "optional" && is_archl   &&  archlinux_pacman_install    "platformio-core" \
                                              &&  archlinux_pacman_install    "platformio-core-udev"
 
+    # AI Agent
+    is_cli_priority "critical" && is_macos   &&  homebrew_brew_cask_install  "hermes"          # agentic platform
+
     # Modern make like file
     is_cli_priority "optional" && is_archl  &&  homebrew_brew_install    "go-task/tap/go-task"  # Process Taskfile.yaml
 
