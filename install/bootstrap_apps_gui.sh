@@ -80,9 +80,6 @@ if is_profile_admin_or_similar; then
     is_fedora  &&  fedora_dnf_install                      "alacritty"
     is_archl   &&  archlinux_pacman_install                "alacritty"
 
-    # Specialized terminal
-    is_macos   &&  homebrew_brew_cask_install              "warp"        # Terminal with AI agent as first class primitive
-
     # Docker repository
     # - from upstream rather than distribution packages
     # src:
