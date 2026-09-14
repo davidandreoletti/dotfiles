@@ -1,6 +1,7 @@
 # Profile shell loading entry point
 # - env var set to enable profiling
 #SHELLRC_PROFILE_SPEED=0
+#set -x
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -180,7 +181,7 @@ dot_plugin_if_exists "workstation"
 dot_plugin_if_exists "xcode"
 dot_plugin_if_exists "yewtube"
 dot_plugin_if_exists "yazi"
-dot_plugin_if_exists "z"
+#dot_plugin_if_exists "z"                                  # Deprecated in favor of zoxide
 dot_plugin_if_exists "zip"
 dot_plugin_if_exists "zoxide"
 dot_plugin_if_exists "zshbench"
