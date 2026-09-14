@@ -24,7 +24,7 @@
         "name": "Transcribe"
       },
       "transcribe_with_post_process": {
-        "current_binding": "option+shift+space",
+        "current_binding": "option_left+e",
         "default_binding": "option+shift+space",
         "description": "Converts your speech into text and applies AI post-processing.",
         "id": "transcribe_with_post_process",
@@ -36,9 +36,10 @@
     "custom_filler_words": null,
     "custom_words": [],
     "debug_mode": false,
-    "experimental_enabled": false,
+    "experimental_enabled": true,
     "external_script_path": null,
     "extra_recording_buffer_ms": 0,
+    "filler_word_removal_enabled": true,
     "history_limit": 0,
     "keyboard_implementation": "handy_keys",
     "lazy_stream_close": false,
@@ -63,7 +64,7 @@
       "openrouter": "",
       "zai": ""
     },
-    "post_process_enabled": false,
+    "post_process_enabled": true,
     "post_process_models": {
       "anthropic": "",
       "apple_intelligence": "Apple Intelligence",
@@ -82,7 +83,7 @@
         "prompt": "Clean this transcript:\n1. Fix spelling, capitalization, and punctuation errors\n2. Convert number words to digits (twenty-five → 25, ten percent → 10%, five dollars → $5)\n3. Replace spoken punctuation with symbols (period → ., comma → ,, question mark → ?)\n4. Remove filler words (um, uh, like as filler)\n5. Keep the language in the original version (if it was french, keep it in french for example)\n\nPreserve exact meaning and word order. Do not paraphrase or reorder content.\n\nReturn only the cleaned transcript.\n\nTranscript:\n${output}"
       }
     ],
-    "post_process_provider_id": "openai",
+    "post_process_provider_id": "custom",
     "post_process_providers": [
       {
         "allow_base_url_edit": false,
@@ -157,21 +158,23 @@
         "supports_structured_output": true
       }
     ],
-    "post_process_selected_prompt_id": null,
+    "post_process_selected_prompt_id": "default_improve_transcriptions",
     "push_to_talk": true,
     "recording_retention_period": "preserve_limit",
+    "reliable_paste": false,
+    "selected_channel": null,
     "selected_language": "auto",
     "selected_microphone": null,
-    "selected_model": "parakeet-tdt-0.6b-v3",
+    "selected_model": "handy-computer/parakeet-unified-en-0.6b-gguf/parakeet-unified-en-0.6b-Q8_0.gguf",
     "selected_output_device": null,
-    "settings_schema_version": 1,
+    "settings_schema_version": 2,
     "show_tray_icon": true,
     "show_whats_new_on_update": true,
     "sound_theme": "marimba",
     "start_hidden": true,
     "theme": "system",
     "transcribe_accelerator": "auto",
-    "transcribe_gpu_device": -1,
+    "transcribe_gpu_device": null,
     "translate_to_english": false,
     "typing_tool": "auto",
     "update_checks_enabled": true,
