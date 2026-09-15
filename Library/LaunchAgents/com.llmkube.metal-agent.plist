@@ -25,6 +25,9 @@
         <!-- macOS laptop IP the llmkube server (on k8s) can dispatch inference request to -->
         <string>--host-ip</string>
         <string>192.168.3.217</string>
+        <!-- Run inference anyway -->
+        <string>--memory-check-mode</string>
+        <string>warn</string>
         <!--
             0: auto detect based on total RAM
             With 48 GB of total RAM => 75% is 36GB memory budget
@@ -38,6 +41,12 @@
         <!-- Inference engine -->
         <string>--runtime</string>
         <string>llama-server</string>
+        <!-- Non random llama server port -->
+        <string>--llama-server-port</string>
+        <string>7799</string>
+        <!-- Longer llama server startup timeout -->
+        <string>--llama-server-startup-timeout</string>
+        <string>3m0s</string>
     </array>
 
     <key>RunAtLoad</key>
