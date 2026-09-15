@@ -311,5 +311,7 @@ Library/Application Support/Code/User/globalStorage/ms-python.python/pythonLocat
 Library/Application Support/com.pais.handy/history.db
 Library/Application Support/com.pais.handy/models/*
 Library/Application Support/com.pais.handy/recordings/*
+# llmkube metal-agent
+.config/llmkube/metal-agent/models
 # Random
 .cache

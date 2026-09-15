@@ -11,7 +11,7 @@
         <string>--namespace</string>
         <string>generic-aiinference-llmkube</string>
         <string>--model-store</string>
-        <string>/tmp/llmkube-models</string>
+        <string>/Users/davidandreoletti/Documents/Developments/DOTFILES_WORKPACE/dotfiles/.config/llmkube/metal-agent/models</string>
         <string>--llama-server</string>
         <string>/opt/homebrew/bin/llama-server</string>
         <string>--port</string>
@@ -20,7 +20,7 @@
         <string>info</string>
         <!-- k8s server to receive llmkube inference requests from -->
         <string>--kubeconfig</string>
-        <string>~/.kube/config</string>
+        <string>/Users/davidandreoletti/.kube/config</string>
         <!-- src: https://github.com/defilantech/LLMKube/blob/53e5090f6a097c380f6106e469ea740041ec66e7/deployment/macos/README.md?plain=1#L1 -->
         <!-- macOS laptop IP the llmkube server (on k8s) can dispatch inference request to -->
         <string>--host-ip</string>
