@@ -133,7 +133,7 @@ if is_profile_admin_or_similar; then
     is_cli_priority "critical" && homebrew_brew_install                  "neovim"
 
     # Local Large Language Model
-    is_cli_priority "optional" && homebrew_brew_install                  "ollama"              # Fetch/Run Large Language Models locally
+    is_cli_priority "optional" && homebrew_brew_install                  "llama-server"        # Inference engine
 
     # RSS
     is_cli_priority "optional" && homebrew_brew_install                  "newsboat"            # RSS/Atom reader
@@ -499,10 +499,8 @@ if is_profile_admin_or_similar; then
     # Typing
     is_cli_priority "optional" && cargo_install                           "thokr"               # Typing tester
 
-    # LLM client
-    #                                                            # Lx: https://prompt.16x.engineer/blog/ai-coding-l1-l5
-    is_cli_priority "optional" && homebrew_brew_install                  "aichat"              # L1: Code completion / question
-    is_cli_priority "optional" && homebrew_brew_install                  "aider"               # L2: Task level completion / Ticket to code
+    # AI agent/client
+    is_cli_priority "optional" && homebrew_brew_install                  "hermes-agent"        # General purpose harness
 
     # Misc
     is_cli_priority "optional" && homebrew_brew_install                  "fortune"             # Fortune cookie
@@ -558,10 +556,6 @@ if is_profile_admin_or_similar; then
     is_cli_priority "optional" && is_fedora  &&  homebrew_brew_cask_install  "platformio"
     is_cli_priority "optional" && is_archl   &&  archlinux_pacman_install    "platformio-core" \
                                              &&  archlinux_pacman_install    "platformio-core-udev"
-
-    # AI Agent
-    is_cli_priority "critical" && is_macos   &&  homebrew_brew_cask_install  "hermes"          # agentic platform
-
     # Modern make like file
     is_cli_priority "optional" && is_archl  &&  homebrew_brew_install    "go-task/tap/go-task"  # Process Taskfile.yaml
 
