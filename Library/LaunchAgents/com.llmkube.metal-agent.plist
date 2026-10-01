@@ -10,8 +10,6 @@
         <string>/usr/local/bin/llmkube-metal-agent</string>
         <string>--namespace</string>
         <string>generic-aiinference-llmkube</string>
-        <string>--model-store</string>
-        <string>/Users/davidandreoletti/Documents/Developments/DOTFILES_WORKPACE/dotfiles/.config/llmkube/metal-agent/models</string>
         <string>--llama-server</string>
         <string>/opt/homebrew/bin/llama-server</string>
         <string>--port</string>
@@ -38,14 +36,29 @@
         <string>0.15</string>
         <string>--memory-pressure-warning</string>
         <string>0.20</string>
-        <!-- Inference engine -->
+        <!-- Model store -->
+        <string>--model-store</string>
+        <string>/Users/davidandreoletti/Documents/Developments/DOTFILES_WORKPACE/dotfiles/.config/llmkube/metal-agent/models</string>
+        <!-- Model allowed roots -->
+        <string>--allowed-model-roots</string>
+        <string>/Users/davidandreoletti/Documents/Developments/DOTFILES_WORKPACE/dotfiles/.config/llmkube/metal-agent/models</string>
+        <!-- Fallback inference engine -->
         <string>--runtime</string>
-        <string>llama-server</string>
+        <string>omlx</string>
         <!-- Non random llama server port -->
         <string>--llama-server-port</string>
         <string>7799</string>
         <!-- Longer llama server startup timeout -->
         <string>--llama-server-startup-timeout</string>
+        <string>3m0s</string>
+        <!-- omlx binary path -->
+        <string>-omlx-bin</string>
+        <string>/opt/homebrew/bin/omlx</string>
+        <!-- Non random omlx server port -->
+        <string>--omlx-port</string>
+        <string>8929</string>
+        <!-- Longer omlx server startup timeout -->
+        <string>--omlx-startup-timeout</string>
         <string>3m0s</string>
     </array>
 
