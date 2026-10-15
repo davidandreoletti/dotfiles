@@ -17,8 +17,11 @@
         <string>--log-level</string>
         <string>info</string>
         <!-- k8s server to receive llmkube inference requests from -->
+        <!-- config-llmkube-metal-agent.yaml generated with: bash k8s.git/cluster/kubernetes/apps/base/generic-aiinference-llmkube/llmkube-kubeconfig-upsert.sh -->
         <string>--kubeconfig</string>
-        <string>/Users/davidandreoletti/.kube/config</string>
+        <string>/Users/davidandreoletti/.kube/config-llmkube-metal-agent.yaml</string>
+        <string>--kube-context</string>
+        <string>llmkube</string>
         <!-- src: https://github.com/defilantech/LLMKube/blob/53e5090f6a097c380f6106e469ea740041ec66e7/deployment/macos/README.md?plain=1#L1 -->
         <!-- macOS laptop IP the llmkube server (on k8s) can dispatch inference request to -->
         <string>--host-ip</string>
@@ -71,11 +74,15 @@
         <false/>
     </dict>
 
+    <!-- The log paths and WorkingDirectory start with a home placeholder
+         that `make install-metal-agent` replaces with $HOME (launchd does not
+         expand ~ or $HOME). The model store defaults to
+         ~/Library/Application Support/llmkube/models. -->
     <key>StandardOutPath</key>
-    <string>/tmp/llmkube-metal-agent.log</string>
+    <string>/Users/davidandreoletti/Library/Logs/llmkube/metal-agent.log</string>
 
     <key>StandardErrorPath</key>
-    <string>/tmp/llmkube-metal-agent.log</string>
+    <string>/Users/davidandreoletti/Library/Logs/llmkube/metal-agent.log</string>
 
     <key>EnvironmentVariables</key>
     <dict>
@@ -86,7 +93,7 @@
     </dict>
 
     <key>WorkingDirectory</key>
-    <string>/tmp</string>
+    <string>/Users/davidandreoletti</string>
 
     <!-- Restart on failure with throttle -->
     <key>ThrottleInterval</key>
