@@ -45,6 +45,9 @@
         <!-- Model allowed roots -->
         <string>--allowed-model-roots</string>
         <string>/Users/davidandreoletti/Documents/Developments/DOTFILES_WORKPACE/dotfiles/.config/llmkube/metal-agent/models</string>
+        <!-- Model max download size: unlimited -->
+        <string>-max-download-size</string>
+        <string>0</string>
         <!-- Fallback inference engine -->
         <string>--runtime</string>
         <string>omlx</string>
