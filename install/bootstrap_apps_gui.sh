@@ -283,7 +283,8 @@ if is_profile_admin_or_similar; then
     # AI Frontend
     is_macos   &&  is_arch_aarch64 \
                &&  homebrew_brew_cask_install              "lm-studio"         # Run inference LLM model
-    is_macos   &&  homebrew_brew_cask_install              "claude"            # Run network claude models
+    is_macos   &&  homebrew_brew_cask_install              "claude"            # Run cloud claude models
+    is_macos   &&  homebrew_brew_cask_install              "claude-code"       # Run terminal claude/open models
 
     # Mecanical Computer Aided Design
     is_macos   &&  homebrew_brew_cask_install              "freecad"           # Physical object design
