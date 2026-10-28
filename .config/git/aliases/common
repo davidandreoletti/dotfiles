@@ -62,7 +62,7 @@
 
     # Pull update from upstream branch, by stashing work dir /index changes, update with upstream, apply saved shash and deleting stash
     # usage: pullSafe
-    pullSafe = "!f() { git stash && git pull && git stash pop; }; f"
+    pullSafe = "!f() { git pull --rebase --autostash; }; f"
 
     # Checkout current branch from a remote, by deleting the curret branch first
     # usage: reCheckoutBranch "some branch name"
