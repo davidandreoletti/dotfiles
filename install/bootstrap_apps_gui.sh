@@ -108,9 +108,7 @@ if is_profile_admin_or_similar; then
     is_archl   &&  archlinux_pacman_aur_install                "miniconda3"
 
     # Browser
-    is_macos   &&  homebrew_brew_cask_install              "google-chrome"              # Day to day
-    is_archl   &&  archlinux_pacman_aur_install            "google-chrome"
-    is_macos   &&  homebrew_brew_cask_install              "google-chrome@beta"         # Web dev
+    is_macos   &&  homebrew_brew_cask_install              "google-chrome@beta"         # Day to day + Web dev
     is_fedora  &&  fedora_dnf_install                      "google-chrome-beta"
     is_archl   &&  archlinux_pacman_aur_install            "google-chrome-canary"
     is_macos   &&  homebrew_brew_cask_install              "firefox"
