@@ -567,12 +567,11 @@ defaults write com.skype.skype SKShowSplash -bool NO
 # Open as vertical split
 defaults write org.vim.MacVim MMVerticalSplit -bool true
 ###############################################################################
-# SourceTree
+# 1Password7
 ###############################################################################
-# Do not modify the $HOME/.gitconfig
-defaults write com.torusknot.SourceTreeNotMAS agreedToUpdateConfig 0
-defaults write com.torusknot.SourceTreeNotMAS agreedToEULA2 1
-defaults write com.torusknot.SourceTreeNotMAS analyticsHasAgreed 0
+# Disable watchtower service to prevent crash on macOS Golden Gate
+defaults write com.agilebits.onepassword7 watchtowerService -bool false
+defaults write "$HOME/Library/Group Containers/2BUA8C4S2C.com.agilebits/Library/Preferences/2BUA8C4S2C.com.agilebits" watchtowerService -bool false
 ###############################################################################
 # Kill affected applications #
 # - Keep this section disabled to keep boostrap_macosx.sh working
